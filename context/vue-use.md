@@ -6631,7 +6631,10 @@ async function openDialog() {
 	<button @click="openDialog">Show Modal</button>
 
 	<teleport to="body">
-		<div v-if="isRevealed" class="modal-layout">
+		<div
+			v-if="isRevealed"
+			class="modal-layout"
+		>
 			<div class="modal">
 				<h2>Confirm?</h2>
 				<button @click="confirm(true)">Yes</button>
@@ -8518,7 +8521,10 @@ const {isLoading} = useImage({
 
 <template>
 	<span v-if="isLoading"> Loading </span>
-	<img v-else :src="avatarUrl" />
+	<img
+		v-else
+		:src="avatarUrl"
+	/>
 </template>
 ```
 
@@ -10212,7 +10218,10 @@ useStyleTag('.foo { margin-top: 32px; }', {media: 'print'})
 
 ```html
 <!-- injected to <head> -->
-<style id="vueuse_styletag_1" media="print">
+<style
+	id="vueuse_styletag_1"
+	media="print"
+>
 	.foo {
 		margin-top: 32px;
 	}
@@ -10497,7 +10506,14 @@ const qrcodeReactive = useQRCode(text)
 #### Response Example
 
 ```html
-<input v-model="text" type="text" /> <img :src="qrcode" alt="QR Code" />
+<input
+	v-model="text"
+	type="text"
+/>
+<img
+	:src="qrcode"
+	alt="QR Code"
+/>
 ```
 
 ### Type Declarations
@@ -10985,8 +11001,14 @@ export default {
 
 <template>
 	<div>
-		<input v-model="a" type="text" />
-		<input v-model="b" type="text" />
+		<input
+			v-model="a"
+			type="text"
+		/>
+		<input
+			v-model="b"
+			type="text"
+		/>
 	</div>
 </template>
 ```
@@ -18283,7 +18305,10 @@ const { isSupported, open, sRGBHex } = useEyeDropper()
 ```vue
 <template>
 	<UseEyeDropper v-slot="{ isSupported, sRGBHex, open ">
-		<button :disabled="!isSupported" @click="() => open()">
+		<button
+			:disabled="!isSupported"
+			@click="() => open()"
+		>
 			sRGBHex: {{ sRGBHex }}
 		</button>
 	</UseEyeDropper>

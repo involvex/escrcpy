@@ -326,7 +326,10 @@ function Tooltip() {
 				Hover me
 			</button>
 			{isOpen && (
-				<div ref={refs.setFloating} style={floatingStyles}>
+				<div
+					ref={refs.setFloating}
+					style={floatingStyles}
+				>
 					Tooltip content
 				</div>
 			)}
@@ -382,7 +385,10 @@ function TooltipWithInteractions() {
 
 	return (
 		<>
-			<button ref={refs.setReference} {...getReferenceProps()}>
+			<button
+				ref={refs.setReference}
+				{...getReferenceProps()}
+			>
 				Hover or focus me
 			</button>
 			{isOpen && (
@@ -440,7 +446,10 @@ function Popover() {
 
 	return (
 		<>
-			<button ref={refs.setReference} {...getReferenceProps()}>
+			<button
+				ref={refs.setReference}
+				{...getReferenceProps()}
+			>
 				{isOpen ? 'Close' : 'Open'} Popover
 			</button>
 			{isOpen && (
@@ -498,7 +507,11 @@ function HoverCard() {
 
 	return (
 		<>
-			<a href="#" ref={refs.setReference} {...getReferenceProps()}>
+			<a
+				href="#"
+				ref={refs.setReference}
+				{...getReferenceProps()}
+			>
 				Hover for details
 			</a>
 			{isOpen && (
@@ -507,7 +520,10 @@ function HoverCard() {
 					style={floatingStyles}
 					{...getFloatingProps()}
 				>
-					<img src="avatar.jpg" alt="User" />
+					<img
+						src="avatar.jpg"
+						alt="User"
+					/>
 					<p>User profile card with safe polygon hover area</p>
 				</div>
 			)}
@@ -556,7 +572,10 @@ function DismissablePopover() {
 
 	return (
 		<>
-			<button ref={refs.setReference} {...getReferenceProps()}>
+			<button
+				ref={refs.setReference}
+				{...getReferenceProps()}
+			>
 				Open
 			</button>
 			{isOpen && (
@@ -607,12 +626,18 @@ function Modal() {
 
 	return (
 		<>
-			<button ref={refs.setReference} {...getReferenceProps()}>
+			<button
+				ref={refs.setReference}
+				{...getReferenceProps()}
+			>
 				Open Modal
 			</button>
 			{isOpen && (
 				<FloatingPortal id="modal-root">
-					<FloatingOverlay lockScroll style={{background: 'rgba(0,0,0,0.5)'}}>
+					<FloatingOverlay
+						lockScroll
+						style={{background: 'rgba(0,0,0,0.5)'}}
+					>
 						<div
 							ref={refs.setFloating}
 							style={{
@@ -673,7 +698,10 @@ function Dialog() {
 
 	return (
 		<>
-			<button ref={refs.setReference} {...getReferenceProps()}>
+			<button
+				ref={refs.setReference}
+				{...getReferenceProps()}
+			>
 				Open Dialog
 			</button>
 			{isOpen && (
@@ -736,7 +764,10 @@ function TooltipWithArrow() {
 
 	return (
 		<>
-			<button ref={refs.setReference} {...getReferenceProps()}>
+			<button
+				ref={refs.setReference}
+				{...getReferenceProps()}
+			>
 				Hover me
 			</button>
 			{isOpen && (
@@ -798,7 +829,12 @@ const {floatingStyles, placement} = useFloating(reference, floating, {
 	>
 		Hover me
 	</button>
-	<div v-if="isOpen" ref="floating" :style="floatingStyles" class="tooltip">
+	<div
+		v-if="isOpen"
+		ref="floating"
+		:style="floatingStyles"
+		class="tooltip"
+	>
 		Tooltip positioned at {{ placement }}
 	</div>
 </template>
@@ -844,8 +880,18 @@ const {floatingStyles, middlewareData, placement} = useFloating(
 </script>
 
 <template>
-	<button ref="reference" @click="isOpen = !isOpen">Toggle tooltip</button>
-	<div v-if="isOpen" ref="floating" :style="floatingStyles" class="tooltip">
+	<button
+		ref="reference"
+		@click="isOpen = !isOpen"
+	>
+		Toggle tooltip
+	</button>
+	<div
+		v-if="isOpen"
+		ref="floating"
+		:style="floatingStyles"
+		class="tooltip"
+	>
 		Vue tooltip with arrow
 		<div
 			ref="arrowEl"

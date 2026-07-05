@@ -3,7 +3,7 @@ name: sync-gitee
 on:
   workflow_dispatch:
   workflow_run:
-    workflows: ['release']
+    workflows: [release]
     types:
       - completed
 
@@ -19,5 +19,5 @@ jobs:
           dst_key: ${{ secrets.GITEE_PRIVATE_KEY }}
           dst_token: ${{ secrets.GITEE_TOKEN }}
           account_type: org
-          white_list: 'escrcpy'
+          white_list: escrcpy
           force_update: true

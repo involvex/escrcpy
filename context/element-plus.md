@@ -198,7 +198,10 @@ A complete HTML example demonstrating how to initialize Element Plus with Vue 3 
 <html>
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+		<meta
+			name="viewport"
+			content="width=device-width,initial-scale=1.0"
+		/>
 		<script src="https://unpkg.com/vue@3"></script>
 		<!-- import CSS -->
 		<link
@@ -252,22 +255,36 @@ A basic example of the el-timeline component displaying a list of events with ti
 ```vue
 <template>
 	<el-timeline>
-		<el-timeline-item center timestamp="2018/4/12" placement="top">
+		<el-timeline-item
+			center
+			timestamp="2018/4/12"
+			placement="top"
+		>
 			<el-card>
 				<h4>Update Github template</h4>
 				<p>Tom committed 2018/4/12 20:46</p>
 			</el-card>
 		</el-timeline-item>
-		<el-timeline-item timestamp="2018/4/3" placement="top">
+		<el-timeline-item
+			timestamp="2018/4/3"
+			placement="top"
+		>
 			<el-card>
 				<h4>Update Github template</h4>
 				<p>Tom committed 2018/4/3 20:46</p>
 			</el-card>
 		</el-timeline-item>
-		<el-timeline-item center timestamp="2018/4/2" placement="top">
+		<el-timeline-item
+			center
+			timestamp="2018/4/2"
+			placement="top"
+		>
 			Event start
 		</el-timeline-item>
-		<el-timeline-item timestamp="2018/4/2" placement="top">
+		<el-timeline-item
+			timestamp="2018/4/2"
+			placement="top"
+		>
 			Event end
 		</el-timeline-item>
 	</el-timeline>
@@ -471,7 +488,10 @@ Customize tooltip animations using the `transition` prop. This example uses a 's
 
 ```vue
 <template>
-	<el-tooltip content="I am an el-tooltip" transition="slide-fade">
+	<el-tooltip
+		content="I am an el-tooltip"
+		transition="slide-fade"
+	>
 		<el-button>trigger me</el-button>
 	</el-tooltip>
 </template>
@@ -673,15 +693,41 @@ This example demonstrates how to nest el-table-column components to create a mul
 
 ```vue
 <template>
-	<el-table :data="tableData" style="width: 100%">
-		<el-table-column prop="date" label="Date" width="150" />
+	<el-table
+		:data="tableData"
+		style="width: 100%"
+	>
+		<el-table-column
+			prop="date"
+			label="Date"
+			width="150"
+		/>
 		<el-table-column label="Delivery Info">
-			<el-table-column prop="name" label="Name" width="120" />
+			<el-table-column
+				prop="name"
+				label="Name"
+				width="120"
+			/>
 			<el-table-column label="Address Info">
-				<el-table-column prop="state" label="State" width="120" />
-				<el-table-column prop="city" label="City" width="120" />
-				<el-table-column prop="address" label="Address" />
-				<el-table-column prop="zip" label="Zip" width="120" />
+				<el-table-column
+					prop="state"
+					label="State"
+					width="120"
+				/>
+				<el-table-column
+					prop="city"
+					label="City"
+					width="120"
+				/>
+				<el-table-column
+					prop="address"
+					label="Address"
+				/>
+				<el-table-column
+					prop="zip"
+					label="Zip"
+					width="120"
+				/>
 			</el-table-column>
 		</el-table-column>
 	</el-table>
@@ -1092,14 +1138,27 @@ A comprehensive example demonstrating a form with various input types including 
 
 ```vue
 <template>
-	<el-form :model="form" label-width="auto" style="max-width: 600px">
+	<el-form
+		:model="form"
+		label-width="auto"
+		style="max-width: 600px"
+	>
 		<el-form-item label="Activity name">
 			<el-input v-model="form.name" />
 		</el-form-item>
 		<el-form-item label="Activity zone">
-			<el-select v-model="form.region" placeholder="please select your zone">
-				<el-option label="Zone one" value="shanghai" />
-				<el-option label="Zone two" value="beijing" />
+			<el-select
+				v-model="form.region"
+				placeholder="please select your zone"
+			>
+				<el-option
+					label="Zone one"
+					value="shanghai"
+				/>
+				<el-option
+					label="Zone two"
+					value="beijing"
+				/>
 			</el-select>
 		</el-form-item>
 		<el-form-item label="Activity time">
@@ -1111,7 +1170,10 @@ A comprehensive example demonstrating a form with various input types including 
 					style="width: 100%"
 				/>
 			</el-col>
-			<el-col :span="2" class="text-center">
+			<el-col
+				:span="2"
+				class="text-center"
+			>
 				<span class="text-gray-500">-</span>
 			</el-col>
 			<el-col :span="11">
@@ -1127,16 +1189,28 @@ A comprehensive example demonstrating a form with various input types including 
 		</el-form-item>
 		<el-form-item label="Activity type">
 			<el-checkbox-group v-model="form.type">
-				<el-checkbox value="Online activities" name="type">
+				<el-checkbox
+					value="Online activities"
+					name="type"
+				>
 					Online activities
 				</el-checkbox>
-				<el-checkbox value="Promotion activities" name="type">
+				<el-checkbox
+					value="Promotion activities"
+					name="type"
+				>
 					Promotion activities
 				</el-checkbox>
-				<el-checkbox value="Offline activities" name="type">
+				<el-checkbox
+					value="Offline activities"
+					name="type"
+				>
 					Offline activities
 				</el-checkbox>
-				<el-checkbox value="Simple brand exposure" name="type">
+				<el-checkbox
+					value="Simple brand exposure"
+					name="type"
+				>
 					Simple brand exposure
 				</el-checkbox>
 			</el-checkbox-group>
@@ -1148,10 +1222,17 @@ A comprehensive example demonstrating a form with various input types including 
 			</el-radio-group>
 		</el-form-item>
 		<el-form-item label="Activity form">
-			<el-input v-model="form.desc" type="textarea" />
+			<el-input
+				v-model="form.desc"
+				type="textarea"
+			/>
 		</el-form-item>
 		<el-form-item>
-			<el-button type="primary" @click="onSubmit">Create</el-button>
+			<el-button
+				type="primary"
+				@click="onSubmit"
+				>Create</el-button
+			>
 			<el-button>Cancel</el-button>
 		</el-form-item>
 	</el-form>
@@ -1789,12 +1870,36 @@ Demonstrates how to enable default summary rows and how to provide a custom summ
 
 ```vue
 <template>
-	<el-table :data="tableData" border show-summary style="width: 100%">
-		<el-table-column prop="id" label="ID" width="180" />
-		<el-table-column prop="name" label="Name" />
-		<el-table-column prop="amount1" sortable label="Amount 1" />
-		<el-table-column prop="amount2" sortable label="Amount 2" />
-		<el-table-column prop="amount3" sortable label="Amount 3" />
+	<el-table
+		:data="tableData"
+		border
+		show-summary
+		style="width: 100%"
+	>
+		<el-table-column
+			prop="id"
+			label="ID"
+			width="180"
+		/>
+		<el-table-column
+			prop="name"
+			label="Name"
+		/>
+		<el-table-column
+			prop="amount1"
+			sortable
+			label="Amount 1"
+		/>
+		<el-table-column
+			prop="amount2"
+			sortable
+			label="Amount 2"
+		/>
+		<el-table-column
+			prop="amount3"
+			sortable
+			label="Amount 3"
+		/>
 	</el-table>
 
 	<el-table
@@ -1805,11 +1910,27 @@ Demonstrates how to enable default summary rows and how to provide a custom summ
 		show-summary
 		style="width: 100%; margin-top: 20px"
 	>
-		<el-table-column prop="id" label="ID" width="180" />
-		<el-table-column prop="name" label="Name" />
-		<el-table-column prop="amount1" label="Cost 1 ($)" />
-		<el-table-column prop="amount2" label="Cost 2 ($)" />
-		<el-table-column prop="amount3" label="Cost 3 ($)" />
+		<el-table-column
+			prop="id"
+			label="ID"
+			width="180"
+		/>
+		<el-table-column
+			prop="name"
+			label="Name"
+		/>
+		<el-table-column
+			prop="amount1"
+			label="Cost 1 ($)"
+		/>
+		<el-table-column
+			prop="amount2"
+			label="Cost 2 ($)"
+		/>
+		<el-table-column
+			prop="amount3"
+			label="Cost 3 ($)"
+		/>
 	</el-table>
 </template>
 
@@ -2138,22 +2259,42 @@ Illustrates how to control the spacing size between elements using the `size` at
 
 ```vue
 <template>
-	<el-space direction="vertical" alignment="start" :size="30">
+	<el-space
+		direction="vertical"
+		alignment="start"
+		:size="30"
+	>
 		<el-radio-group v-model="size">
 			<el-radio value="large">Large</el-radio>
 			<el-radio value="default">Default</el-radio>
 			<el-radio value="small">Small</el-radio>
 		</el-radio-group>
 
-		<el-space wrap :size="size">
-			<el-card v-for="i in 3" :key="i" class="box-card" style="width: 250px">
+		<el-space
+			wrap
+			:size="size"
+		>
+			<el-card
+				v-for="i in 3"
+				:key="i"
+				class="box-card"
+				style="width: 250px"
+			>
 				<template #header>
 					<div class="card-header">
 						<span>Card name</span>
-						<el-button class="button" text>Operation button</el-button>
+						<el-button
+							class="button"
+							text
+							>Operation button</el-button
+						>
 					</div>
 				</template>
-				<div v-for="o in 4" :key="o" class="text item">
+				<div
+					v-for="o in 4"
+					:key="o"
+					class="text item"
+				>
 					{{ 'List item ' + o }}
 				</div>
 			</el-card>
@@ -2209,10 +2350,22 @@ Use the `percentage` attribute to set the progress, which is required and must b
 <template>
 	<div class="demo-progress">
 		<el-progress :percentage="50" />
-		<el-progress :percentage="100" :format="format" />
-		<el-progress :percentage="100" status="success" />
-		<el-progress :percentage="100" status="warning" />
-		<el-progress :percentage="50" status="exception" />
+		<el-progress
+			:percentage="100"
+			:format="format"
+		/>
+		<el-progress
+			:percentage="100"
+			status="success"
+		/>
+		<el-progress
+			:percentage="100"
+			status="warning"
+		/>
+		<el-progress
+			:percentage="50"
+			status="exception"
+		/>
 	</div>
 </template>
 
@@ -2818,7 +2971,11 @@ Demonstrates various tooltip placement options using the placement attribute and
 			</el-tooltip>
 		</div>
 		<div class="row">
-			<el-tooltip class="box-item" effect="dark" placement="left-start">
+			<el-tooltip
+				class="box-item"
+				effect="dark"
+				placement="left-start"
+			>
 				<template #content>
 					Left Top
 					<br />
@@ -2826,7 +2983,11 @@ Demonstrates various tooltip placement options using the placement attribute and
 				</template>
 				<el-button>left-start</el-button>
 			</el-tooltip>
-			<el-tooltip class="box-item" effect="dark" placement="right-start">
+			<el-tooltip
+				class="box-item"
+				effect="dark"
+				placement="right-start"
+			>
 				<template #content>
 					Right Top
 					<br />
@@ -2836,7 +2997,11 @@ Demonstrates various tooltip placement options using the placement attribute and
 			</el-tooltip>
 		</div>
 		<div class="row">
-			<el-tooltip class="box-item" effect="dark" placement="left">
+			<el-tooltip
+				class="box-item"
+				effect="dark"
+				placement="left"
+			>
 				<template #content>
 					Left Center
 					<br />
@@ -2844,7 +3009,11 @@ Demonstrates various tooltip placement options using the placement attribute and
 				</template>
 				<el-button class="mt-3 mb-3">left</el-button>
 			</el-tooltip>
-			<el-tooltip class="box-item" effect="dark" placement="right">
+			<el-tooltip
+				class="box-item"
+				effect="dark"
+				placement="right"
+			>
 				<template #content>
 					Right Center
 					<br />
@@ -2854,7 +3023,11 @@ Demonstrates various tooltip placement options using the placement attribute and
 			</el-tooltip>
 		</div>
 		<div class="row">
-			<el-tooltip class="box-item" effect="dark" placement="left-end">
+			<el-tooltip
+				class="box-item"
+				effect="dark"
+				placement="left-end"
+			>
 				<template #content>
 					Left Bottom
 					<br />
@@ -2862,7 +3035,11 @@ Demonstrates various tooltip placement options using the placement attribute and
 				</template>
 				<el-button>left-end</el-button>
 			</el-tooltip>
-			<el-tooltip class="box-item" effect="dark" placement="right-end">
+			<el-tooltip
+				class="box-item"
+				effect="dark"
+				placement="right-end"
+			>
 				<template #content>
 					Right Bottom
 					<br />
@@ -2930,17 +3107,27 @@ A complete Vue 3 example showing how to configure multiple pagination layouts us
 ```vue
 <template>
 	<div class="flex items-center mb-4">
-		<el-radio-group v-model="size" class="mr-4">
+		<el-radio-group
+			v-model="size"
+			class="mr-4"
+		>
 			<el-radio-button value="default">default</el-radio-button>
 			<el-radio-button value="large">large</el-radio-button>
 			<el-radio-button value="small">small</el-radio-button>
 		</el-radio-group>
 		<div>
 			background:
-			<el-switch v-model="background" class="ml-2" />
+			<el-switch
+				v-model="background"
+				class="ml-2"
+			/>
 		</div>
 		<div class="ml-4">
-			disabled: <el-switch v-model="disabled" class="ml-2" />
+			disabled:
+			<el-switch
+				v-model="disabled"
+				class="ml-2"
+			/>
 		</div>
 	</div>
 
@@ -3194,13 +3381,21 @@ Demonstrates a standard step bar with an active index and a button to navigate t
 
 ```vue
 <template>
-	<el-steps style="max-width: 600px" :active="active" finish-status="success">
+	<el-steps
+		style="max-width: 600px"
+		:active="active"
+		finish-status="success"
+	>
 		<el-step title="Step 1" />
 		<el-step title="Step 2" />
 		<el-step title="Step 3" />
 	</el-steps>
 
-	<el-button style="margin-top: 12px" @click="next">Next step</el-button>
+	<el-button
+		style="margin-top: 12px"
+		@click="next"
+		>Next step</el-button
+	>
 </template>
 
 <script lang="ts" setup>
@@ -3261,18 +3456,37 @@ N/A (Configuration applied to component)
 				class="ml-5"
 				style="max-width: 150px"
 			>
-				<el-option value="dark" label="dark" />
-				<el-option value="light" label="light" />
+				<el-option
+					value="dark"
+					label="dark"
+				/>
+				<el-option
+					value="light"
+					label="light"
+				/>
 			</el-select>
 		</div>
 		<el-divider />
 		<el-config-provider :table="config">
-			<el-table :data="tableData" style="width: 100%">
-				<el-table-column type="selection" width="55" />
-				<el-table-column label="Date" width="120">
+			<el-table
+				:data="tableData"
+				style="width: 100%"
+			>
+				<el-table-column
+					type="selection"
+					width="55"
+				/>
+				<el-table-column
+					label="Date"
+					width="120"
+				>
 					<template #default="scope">{{ scope.row.date }}</template>
 				</el-table-column>
-				<el-table-column property="name" label="Name" width="120" />
+				<el-table-column
+					property="name"
+					label="Name"
+					width="120"
+				/>
 				<el-table-column
 					property="address"
 					label="Address (inherited from config-provider)"
@@ -3403,7 +3617,10 @@ watch(
 			<div class="watermark-container">
 				<h1>Element Plus</h1>
 				<h2>A Vue 3 based component library for designers and developers</h2>
-				<img src="/images/hamburger.png" alt="示例图片" />
+				<img
+					src="/images/hamburger.png"
+					alt="示例图片"
+				/>
 			</div>
 		</el-watermark>
 		<el-form
@@ -3416,7 +3633,9 @@ watch(
 				><el-input v-model="config.content"
 			/></el-form-item>
 			<el-form-item label="Color"
-				><el-color-picker v-model="config.font.color" show-alpha
+				><el-color-picker
+					v-model="config.font.color"
+					show-alpha
 			/></el-form-item>
 			<el-form-item label="FontSize"
 				><el-slider v-model="config.font.fontSize"
@@ -3425,7 +3644,10 @@ watch(
 				><el-slider v-model="config.zIndex"
 			/></el-form-item>
 			<el-form-item label="Rotate"
-				><el-slider v-model="config.rotate" :min="-180" :max="180"
+				><el-slider
+					v-model="config.rotate"
+					:min="-180"
+					:max="180"
 			/></el-form-item>
 		</el-form>
 	</div>
@@ -3622,10 +3844,23 @@ Demonstrates using icons with buttons. Icons can be used alone or with text. The
 ```vue
 <template>
 	<div>
-		<el-button type="primary" :icon="Edit" />
-		<el-button type="primary" :icon="Share" />
-		<el-button type="primary" :icon="Delete" />
-		<el-button type="primary" :icon="Search">Search</el-button>
+		<el-button
+			type="primary"
+			:icon="Edit"
+		/>
+		<el-button
+			type="primary"
+			:icon="Share"
+		/>
+		<el-button
+			type="primary"
+			:icon="Delete"
+		/>
+		<el-button
+			type="primary"
+			:icon="Search"
+			>Search</el-button
+		>
 		<el-button type="primary">
 			Upload<el-icon class="el-icon--right"><Upload /></el-icon>
 		</el-button>
@@ -3648,7 +3883,12 @@ Demonstrates the usage of ElStatistic components within ElRow and ElCol for disp
 ```vue
 <template>
 	<el-row :gutter="16">
-		<el-col :xs="24" :sm="12" :md="8" class="mb-4">
+		<el-col
+			:xs="24"
+			:sm="12"
+			:md="8"
+			class="mb-4"
+		>
 			<div class="statistic-card">
 				<el-statistic :value="98500">
 					<template #title>
@@ -3659,7 +3899,10 @@ Demonstrates the usage of ElStatistic components within ElRow and ElCol for disp
 								content="Number of users who logged into the product in one day"
 								placement="top"
 							>
-								<el-icon style="margin-left: 4px" :size="12">
+								<el-icon
+									style="margin-left: 4px"
+									:size="12"
+								>
 									<Warning />
 								</el-icon>
 							</el-tooltip>
@@ -3679,7 +3922,12 @@ Demonstrates the usage of ElStatistic components within ElRow and ElCol for disp
 				</div>
 			</div>
 		</el-col>
-		<el-col :xs="24" :sm="12" :md="8" class="mb-4">
+		<el-col
+			:xs="24"
+			:sm="12"
+			:md="8"
+			class="mb-4"
+		>
 			<div class="statistic-card">
 				<el-statistic :value="693700">
 					<template #title>
@@ -3690,7 +3938,10 @@ Demonstrates the usage of ElStatistic components within ElRow and ElCol for disp
 								content="Number of users who logged into the product in one month"
 								placement="top"
 							>
-								<el-icon style="margin-left: 4px" :size="12">
+								<el-icon
+									style="margin-left: 4px"
+									:size="12"
+								>
 									<Warning />
 								</el-icon>
 							</el-tooltip>
@@ -3710,9 +3961,17 @@ Demonstrates the usage of ElStatistic components within ElRow and ElCol for disp
 				</div>
 			</div>
 		</el-col>
-		<el-col :xs="24" :sm="12" :md="8" class="mb-4">
+		<el-col
+			:xs="24"
+			:sm="12"
+			:md="8"
+			class="mb-4"
+		>
 			<div class="statistic-card">
-				<el-statistic :value="72000" title="New transactions today">
+				<el-statistic
+					:value="72000"
+					title="New transactions today"
+				>
 					<template #title>
 						<div style="display: inline-flex; align-items: center">
 							New transactions today
@@ -3806,7 +4065,10 @@ Demonstrates how to use the before-collapse property to intercept collapse actio
 
 ```vue
 <template>
-	<div v-loading="loading" class="demo-collapse">
+	<div
+		v-loading="loading"
+		class="demo-collapse"
+	>
 		<div class="flex items-center mb-4">
 			<span class="mr-4">before collapse return: </span>
 			<el-switch
@@ -3818,8 +4080,14 @@ Demonstrates how to use the before-collapse property to intercept collapse actio
 			/>
 		</div>
 
-		<el-collapse v-model="activeNames" :before-collapse="beforeCollapse">
-			<el-collapse-item title="Consistency" name="1">
+		<el-collapse
+			v-model="activeNames"
+			:before-collapse="beforeCollapse"
+		>
+			<el-collapse-item
+				title="Consistency"
+				name="1"
+			>
 				<div>
 					Consistent with real life: in line with the process and logic of real
 					life, and comply with languages and habits that the users are used to;
@@ -4135,8 +4403,17 @@ Use a custom SVG to replace the default loading spinner. This example uses a cir
 				@select="handleSelect"
 			>
 				<template #loading>
-					<svg class="circular" viewBox="0 0 50 50">
-						<circle class="path" cx="25" cy="25" r="20" fill="none" />
+					<svg
+						class="circular"
+						viewBox="0 0 50 50"
+					>
+						<circle
+							class="path"
+							cx="25"
+							cy="25"
+							r="20"
+							fill="none"
+						/>
 					</svg>
 				</template>
 			</el-autocomplete>
@@ -4152,16 +4429,39 @@ Use a custom SVG to replace the default loading spinner. This example uses a cir
 			>
 				<template #loading>
 					<el-icon class="is-loading">
-						<svg class="circular" viewBox="0 0 20 20">
+						<svg
+							class="circular"
+							viewBox="0 0 20 20"
+						>
 							<g
 								class="path2 loading-path"
 								stroke-width="0"
 								style="animation: none; stroke: none"
 							>
-								<circle r="3.375" class="dot1" rx="0" ry="0" />
-								<circle r="3.375" class="dot2" rx="0" ry="0" />
-								<circle r="3.375" class="dot4" rx="0" ry="0" />
-								<circle r="3.375" class="dot3" rx="0" ry="0" />
+								<circle
+									r="3.375"
+									class="dot1"
+									rx="0"
+									ry="0"
+								/>
+								<circle
+									r="3.375"
+									class="dot2"
+									rx="0"
+									ry="0"
+								/>
+								<circle
+									r="3.375"
+									class="dot4"
+									rx="0"
+									ry="0"
+								/>
+								<circle
+									r="3.375"
+									class="dot3"
+									rx="0"
+									ry="0"
+								/>
 							</g>
 						</svg>
 					</el-icon>
@@ -4484,11 +4784,17 @@ Demonstrates the basic usage of the ElPagination component in Vue. It shows how 
 <template>
 	<div class="example-pagination-block">
 		<div class="example-demonstration">When you have few pages</div>
-		<el-pagination layout="prev, pager, next" :total="50" />
+		<el-pagination
+			layout="prev, pager, next"
+			:total="50"
+		/>
 	</div>
 	<div class="example-pagination-block">
 		<div class="example-demonstration">When you have more than 7 pages</div>
-		<el-pagination layout="prev, pager, next" :total="1000" />
+		<el-pagination
+			layout="prev, pager, next"
+			:total="1000"
+		/>
 	</div>
 </template>
 
@@ -4519,7 +4825,12 @@ Demonstrates how to trigger a full-screen loading state using the v-loading dire
 	>
 		As a directive
 	</el-button>
-	<el-button type="primary" @click="openFullScreen2"> As a service </el-button>
+	<el-button
+		type="primary"
+		@click="openFullScreen2"
+	>
+		As a service
+	</el-button>
 </template>
 
 <script lang="ts" setup>
@@ -4680,11 +4991,17 @@ Illustrates how to control the size of the Element Plus Rate component using the
 
 ```vue
 <template>
-	<el-rate v-model="value" size="large" />
+	<el-rate
+		v-model="value"
+		size="large"
+	/>
 	<br />
 	<el-rate v-model="value" />
 	<br />
-	<el-rate v-model="value" size="small" />
+	<el-rate
+		v-model="value"
+		size="small"
+	/>
 </template>
 
 <script lang="ts" setup>
@@ -4711,11 +5028,30 @@ Demonstrates how to use the span-method attribute to merge table cells. The exam
 			border
 			style="width: 100%"
 		>
-			<el-table-column prop="id" label="ID" width="180" />
-			<el-table-column prop="name" label="Name" />
-			<el-table-column prop="amount1" sortable label="Amount 1" />
-			<el-table-column prop="amount2" sortable label="Amount 2" />
-			<el-table-column prop="amount3" sortable label="Amount 3" />
+			<el-table-column
+				prop="id"
+				label="ID"
+				width="180"
+			/>
+			<el-table-column
+				prop="name"
+				label="Name"
+			/>
+			<el-table-column
+				prop="amount1"
+				sortable
+				label="Amount 1"
+			/>
+			<el-table-column
+				prop="amount2"
+				sortable
+				label="Amount 2"
+			/>
+			<el-table-column
+				prop="amount3"
+				sortable
+				label="Amount 3"
+			/>
 		</el-table>
 
 		<el-table
@@ -4724,11 +5060,27 @@ Demonstrates how to use the span-method attribute to merge table cells. The exam
 			border
 			style="width: 100%; margin-top: 20px"
 		>
-			<el-table-column prop="id" label="ID" width="180" />
-			<el-table-column prop="name" label="Name" />
-			<el-table-column prop="amount1" label="Amount 1" />
-			<el-table-column prop="amount2" label="Amount 2" />
-			<el-table-column prop="amount3" label="Amount 3" />
+			<el-table-column
+				prop="id"
+				label="ID"
+				width="180"
+			/>
+			<el-table-column
+				prop="name"
+				label="Name"
+			/>
+			<el-table-column
+				prop="amount1"
+				label="Amount 1"
+			/>
+			<el-table-column
+				prop="amount2"
+				label="Amount 2"
+			/>
+			<el-table-column
+				prop="amount3"
+				label="Amount 3"
+			/>
 		</el-table>
 	</div>
 </template>
@@ -4839,23 +5191,47 @@ Shows how to use the el-check-tag component for toggleable selection states. It 
 <template>
 	<div class="flex gap-2">
 		<el-check-tag checked>Checked</el-check-tag>
-		<el-check-tag :checked="checked" @change="onChange">Toggle me</el-check-tag>
+		<el-check-tag
+			:checked="checked"
+			@change="onChange"
+			>Toggle me</el-check-tag
+		>
 		<el-check-tag disabled>Disabled</el-check-tag>
 	</div>
 	<div class="flex gap-2 mt-4">
-		<el-check-tag :checked="checked1" type="primary" @change="onChange1">
+		<el-check-tag
+			:checked="checked1"
+			type="primary"
+			@change="onChange1"
+		>
 			Tag 1
 		</el-check-tag>
-		<el-check-tag :checked="checked2" type="success" @change="onChange2">
+		<el-check-tag
+			:checked="checked2"
+			type="success"
+			@change="onChange2"
+		>
 			Tag 2
 		</el-check-tag>
-		<el-check-tag :checked="checked3" type="info" @change="onChange3">
+		<el-check-tag
+			:checked="checked3"
+			type="info"
+			@change="onChange3"
+		>
 			Tag 3
 		</el-check-tag>
-		<el-check-tag :checked="checked4" type="warning" @change="onChange4">
+		<el-check-tag
+			:checked="checked4"
+			type="warning"
+			@change="onChange4"
+		>
 			Tag 4
 		</el-check-tag>
-		<el-check-tag :checked="checked5" type="danger" @change="onChange5">
+		<el-check-tag
+			:checked="checked5"
+			type="danger"
+			@change="onChange5"
+		>
 			Tag 5
 		</el-check-tag>
 		<el-check-tag
@@ -4921,22 +5297,38 @@ Illustrates how to group buttons using `<el-button-group>`. Supports horizontal 
 ```vue
 <template>
 	<el-button-group class="mb-4">
-		<el-button type="primary" :icon="ArrowLeft">Previous Page</el-button>
+		<el-button
+			type="primary"
+			:icon="ArrowLeft"
+			>Previous Page</el-button
+		>
 		<el-button type="primary">
 			Next Page<el-icon class="el-icon--right"><ArrowRight /></el-icon>
 		</el-button>
 	</el-button-group>
 	<br />
-	<el-radio-group v-model="direction" class="mb-2">
+	<el-radio-group
+		v-model="direction"
+		class="mb-2"
+	>
 		<el-radio value="horizontal">Horizontal</el-radio>
 		<el-radio value="vertical">Vertical</el-radio>
 	</el-radio-group>
 	<br />
 
 	<el-button-group :direction="direction">
-		<el-button type="primary" :icon="House" />
-		<el-button type="primary" :icon="Operation" />
-		<el-button type="primary" :icon="Notification" />
+		<el-button
+			type="primary"
+			:icon="House"
+		/>
+		<el-button
+			type="primary"
+			:icon="Operation"
+		/>
+		<el-button
+			type="primary"
+			:icon="Notification"
+		/>
 	</el-button-group>
 </template>
 
@@ -4964,10 +5356,22 @@ Includes a description field for each step to provide additional context.
 
 ```vue
 <template>
-	<el-steps style="max-width: 600px" :active="1">
-		<el-step title="Step 1" description="Some description" />
-		<el-step title="Step 2" description="Some description" />
-		<el-step title="Step 3" description="Some description" />
+	<el-steps
+		style="max-width: 600px"
+		:active="1"
+	>
+		<el-step
+			title="Step 1"
+			description="Some description"
+		/>
+		<el-step
+			title="Step 2"
+			description="Some description"
+		/>
+		<el-step
+			title="Step 3"
+			description="Some description"
+		/>
 	</el-steps>
 </template>
 ```
@@ -4982,14 +5386,21 @@ Demonstrates how to create a resizable drawer using the resizable attribute. It 
 
 ```vue
 <template>
-	<el-radio-group v-model="direction" @change="drawer = true">
+	<el-radio-group
+		v-model="direction"
+		@change="drawer = true"
+	>
 		<el-radio-button value="ttb">top</el-radio-button>
 		<el-radio-button value="rtl">right</el-radio-button>
 		<el-radio-button value="btt">bottom</el-radio-button>
 		<el-radio-button value="ltr">left</el-radio-button>
 	</el-radio-group>
 
-	<el-drawer v-model="drawer" :direction="direction" resizable>
+	<el-drawer
+		v-model="drawer"
+		:direction="direction"
+		resizable
+	>
 		This is drawer content.
 	</el-drawer>
 </template>
@@ -5019,14 +5430,30 @@ Shows how to incorporate the el-mention component within an el-form for data ent
 		:model="ruleForm"
 		:rules="rules"
 	>
-		<el-form-item label="name" prop="name">
-			<el-mention v-model="ruleForm.name" :options="options" />
+		<el-form-item
+			label="name"
+			prop="name"
+		>
+			<el-mention
+				v-model="ruleForm.name"
+				:options="options"
+			/>
 		</el-form-item>
-		<el-form-item label="desc" prop="desc">
-			<el-mention v-model="ruleForm.desc" type="textarea" :options="options" />
+		<el-form-item
+			label="desc"
+			prop="desc"
+		>
+			<el-mention
+				v-model="ruleForm.desc"
+				type="textarea"
+				:options="options"
+			/>
 		</el-form-item>
 		<el-form-item>
-			<el-button type="primary" @click="submitForm(ruleFormRef)">
+			<el-button
+				type="primary"
+				@click="submitForm(ruleFormRef)"
+			>
 				Submit
 			</el-button>
 			<el-button @click="resetForm(ruleFormRef)">Reset</el-button>
@@ -5150,7 +5577,11 @@ Demonstrates the fundamental implementation of the Select component using v-mode
 
 ```vue
 <template>
-	<el-select v-model="value" placeholder="Select" style="width: 240px">
+	<el-select
+		v-model="value"
+		placeholder="Select"
+		style="width: 240px"
+	>
 		<el-option
 			v-for="item in options"
 			:key="item.value"
@@ -5186,14 +5617,27 @@ Shows how to implement a vertical layout using the `el-space` component by setti
 ```vue
 <template>
 	<el-space direction="vertical">
-		<el-card v-for="i in 2" :key="i" class="box-card" style="width: 250px">
+		<el-card
+			v-for="i in 2"
+			:key="i"
+			class="box-card"
+			style="width: 250px"
+		>
 			<template #header>
 				<div class="card-header">
 					<span>Card name</span>
-					<el-button class="button" text>Operation button</el-button>
+					<el-button
+						class="button"
+						text
+						>Operation button</el-button
+					>
 				</div>
 			</template>
-			<div v-for="o in 4" :key="o" class="text item">
+			<div
+				v-for="o in 4"
+				:key="o"
+				class="text item"
+			>
 				{{ 'List item ' + o }}
 			</div>
 		</el-card>
@@ -5411,9 +5855,20 @@ Illustrates how to apply different sizes ('large', 'default', 'small') to the El
 ```vue
 <template>
 	<div class="slider-demo-block">
-		<el-slider v-model="value" show-input size="large" />
-		<el-slider v-model="value" show-input />
-		<el-slider v-model="value" show-input size="small" />
+		<el-slider
+			v-model="value"
+			show-input
+			size="large"
+		/>
+		<el-slider
+			v-model="value"
+			show-input
+		/>
+		<el-slider
+			v-model="value"
+			show-input
+			size="small"
+		/>
 	</div>
 </template>
 
@@ -5448,7 +5903,13 @@ Use a custom row renderer to implement colspan. This example shows how to dynami
 
 ```vue
 <template>
-	<el-table-v2 fixed :columns="columns" :data="data" :width="700" :height="400">
+	<el-table-v2
+		fixed
+		:columns="columns"
+		:data="data"
+		:width="700"
+		:height="400"
+	>
 		<template #row="props">
 			<Row v-bind="props" />
 		</template>
@@ -5547,12 +6008,20 @@ Use the scoped slot to customize the thumbnail template for uploaded files. This
 
 ```vue
 <template>
-	<el-upload action="#" list-type="picture-card" :auto-upload="false">
+	<el-upload
+		action="#"
+		list-type="picture-card"
+		:auto-upload="false"
+	>
 		<el-icon><Plus /></el-icon>
 
 		<template #file="{file}">
 			<div>
-				<img class="el-upload-list__item-thumbnail" :src="file.url" alt="" />
+				<img
+					class="el-upload-list__item-thumbnail"
+					:src="file.url"
+					alt=""
+				/>
 				<span class="el-upload-list__item-actions">
 					<span
 						class="el-upload-list__item-preview"
@@ -5580,7 +6049,11 @@ Use the scoped slot to customize the thumbnail template for uploaded files. This
 	</el-upload>
 
 	<el-dialog v-model="dialogVisible">
-		<img w-full :src="dialogImageUrl" alt="Preview Image" />
+		<img
+			w-full
+			:src="dialogImageUrl"
+			alt="Preview Image"
+		/>
 	</el-dialog>
 </template>
 
@@ -5620,9 +6093,17 @@ Demonstrates how to use the Element Plus Image component with different 'fit' mo
 ```vue
 <template>
 	<div class="demo-image">
-		<div v-for="fit in fits" :key="fit" class="block">
+		<div
+			v-for="fit in fits"
+			:key="fit"
+			class="block"
+		>
 			<span class="demonstration">{{ fit }}</span>
-			<el-image style="width: 100px; height: 100px" :src="url" :fit="fit" />
+			<el-image
+				style="width: 100px; height: 100px"
+				:src="url"
+				:fit="fit"
+			/>
 		</div>
 	</div>
 </template>
@@ -6199,14 +6680,27 @@ Demonstrates the basic usage of the `el-space` component to provide unified spac
 ```vue
 <template>
 	<el-space wrap>
-		<el-card v-for="i in 3" :key="i" class="box-card" style="width: 250px">
+		<el-card
+			v-for="i in 3"
+			:key="i"
+			class="box-card"
+			style="width: 250px"
+		>
 			<template #header>
 				<div class="card-header">
 					<span>Card name</span>
-					<el-button class="button" text>Operation button</el-button>
+					<el-button
+						class="button"
+						text
+						>Operation button</el-button
+					>
 				</div>
 			</template>
-			<div v-for="o in 4" :key="o" class="text item">
+			<div
+				v-for="o in 4"
+				:key="o"
+				class="text item"
+			>
 				{{ 'List item ' + o }}
 			</div>
 		</el-card>
@@ -6249,11 +6743,29 @@ Set the `type` attribute to `circle` for a circular progress bar. The `width` at
 ```vue
 <template>
 	<div class="demo-progress">
-		<el-progress type="circle" :percentage="0" />
-		<el-progress type="circle" :percentage="25" />
-		<el-progress type="circle" :percentage="100" status="success" />
-		<el-progress type="circle" :percentage="70" status="warning" />
-		<el-progress type="circle" :percentage="50" status="exception" />
+		<el-progress
+			type="circle"
+			:percentage="0"
+		/>
+		<el-progress
+			type="circle"
+			:percentage="25"
+		/>
+		<el-progress
+			type="circle"
+			:percentage="100"
+			status="success"
+		/>
+		<el-progress
+			type="circle"
+			:percentage="70"
+			status="warning"
+		/>
+		<el-progress
+			type="circle"
+			:percentage="50"
+			status="exception"
+		/>
 	</div>
 </template>
 
@@ -6295,10 +6807,18 @@ Use the `render-content` prop to customize how data items are rendered in the tr
 			@change="handleChange"
 		>
 			<template #left-footer>
-				<el-button class="transfer-footer" size="small">Operation</el-button>
+				<el-button
+					class="transfer-footer"
+					size="small"
+					>Operation</el-button
+				>
 			</template>
 			<template #right-footer>
-				<el-button class="transfer-footer" size="small">Operation</el-button>
+				<el-button
+					class="transfer-footer"
+					size="small"
+					>Operation</el-button
+				>
 			</template>
 		</el-transfer>
 		<p style="text-align: center; margin: 50px 0 20px">
@@ -6324,10 +6844,18 @@ Use the `render-content` prop to customize how data items are rendered in the tr
 					<span>{{ option.key }} - {{ option.label }}</span>
 				</template>
 				<template #left-footer>
-					<el-button class="transfer-footer" size="small">Operation</el-button>
+					<el-button
+						class="transfer-footer"
+						size="small"
+						>Operation</el-button
+					>
 				</template>
 				<template #right-footer>
-					<el-button class="transfer-footer" size="small">Operation</el-button>
+					<el-button
+						class="transfer-footer"
+						size="small"
+						>Operation</el-button
+					>
 				</template>
 			</el-transfer>
 		</div>
@@ -6391,7 +6919,10 @@ Demonstrates how to dynamically add and remove tabs in the Element Plus Tabs com
 ```vue
 <template>
 	<div style="margin-bottom: 20px">
-		<el-button size="small" @click="addTab(editableTabsValue)">
+		<el-button
+			size="small"
+			@click="addTab(editableTabsValue)"
+		>
 			add tab
 		</el-button>
 	</div>
@@ -6576,7 +7107,10 @@ Include Element Plus directly in HTML using unpkg or jsDelivr.
 ```html
 <head>
 	<!-- Import style -->
-	<link rel="stylesheet" href="//unpkg.com/element-plus/dist/index.css" />
+	<link
+		rel="stylesheet"
+		href="//unpkg.com/element-plus/dist/index.css"
+	/>
 	<!-- Import Vue 3 -->
 	<script src="//unpkg.com/vue@3"></script>
 	<!-- Import component library -->
@@ -6851,9 +7385,21 @@ This example demonstrates two table configurations: one with static nested tree 
 			border
 			default-expand-all
 		>
-			<el-table-column prop="date" label="Date" sortable />
-			<el-table-column prop="name" label="Name" sortable />
-			<el-table-column prop="address" label="Address" sortable />
+			<el-table-column
+				prop="date"
+				label="Date"
+				sortable
+			/>
+			<el-table-column
+				prop="name"
+				label="Name"
+				sortable
+			/>
+			<el-table-column
+				prop="address"
+				label="Address"
+				sortable
+			/>
 		</el-table>
 
 		<el-table
@@ -6865,9 +7411,18 @@ This example demonstrates two table configurations: one with static nested tree 
 			:load="load"
 			:tree-props="{children: 'children', hasChildren: 'hasChildren'}"
 		>
-			<el-table-column prop="date" label="Date" />
-			<el-table-column prop="name" label="Name" />
-			<el-table-column prop="address" label="Address" />
+			<el-table-column
+				prop="date"
+				label="Date"
+			/>
+			<el-table-column
+				prop="name"
+				label="Name"
+			/>
+			<el-table-column
+				prop="address"
+				label="Address"
+			/>
 		</el-table>
 	</div>
 </template>
@@ -7002,8 +7557,17 @@ Use the #loading slot to replace the default loading indicator with a custom SVG
 				style="width: 240px"
 			>
 				<template #loading>
-					<svg class="circular" viewBox="0 0 50 50">
-						<circle class="path" cx="25" cy="25" r="20" fill="none" />
+					<svg
+						class="circular"
+						viewBox="0 0 50 50"
+					>
+						<circle
+							class="path"
+							cx="25"
+							cy="25"
+							r="20"
+							fill="none"
+						/>
 					</svg>
 				</template>
 			</el-select-v2>
@@ -7024,16 +7588,39 @@ Use the #loading slot to replace the default loading indicator with a custom SVG
 			>
 				<template #loading>
 					<el-icon class="is-loading">
-						<svg class="circular" viewBox="0 0 20 20">
+						<svg
+							class="circular"
+							viewBox="0 0 20 20"
+						>
 							<g
 								class="path2 loading-path"
 								stroke-width="0"
 								style="animation: none; stroke: none"
 							>
-								<circle r="3.375" class="dot1" rx="0" ry="0" />
-								<circle r="3.375" class="dot2" rx="0" ry="0" />
-								<circle r="3.375" class="dot4" rx="0" ry="0" />
-								<circle r="3.375" class="dot3" rx="0" ry="0" />
+								<circle
+									r="3.375"
+									class="dot1"
+									rx="0"
+									ry="0"
+								/>
+								<circle
+									r="3.375"
+									class="dot2"
+									rx="0"
+									ry="0"
+								/>
+								<circle
+									r="3.375"
+									class="dot4"
+									rx="0"
+									ry="0"
+								/>
+								<circle
+									r="3.375"
+									class="dot3"
+									rx="0"
+									ry="0"
+								/>
 							</g>
 						</svg>
 					</el-icon>
@@ -7281,7 +7868,10 @@ This example demonstrates a vertical navigation menu with nested sub-menus and i
 					<el-icon><icon-menu /></el-icon>
 					<span>Navigator Two</span>
 				</el-menu-item>
-				<el-menu-item index="3" disabled>
+				<el-menu-item
+					index="3"
+					disabled
+				>
 					<el-icon><document /></el-icon>
 					<span>Navigator Three</span>
 				</el-menu-item>
@@ -7323,7 +7913,10 @@ This example demonstrates a vertical navigation menu with nested sub-menus and i
 					<el-icon><icon-menu /></el-icon>
 					<span>Navigator Two</span>
 				</el-menu-item>
-				<el-menu-item index="3" disabled>
+				<el-menu-item
+					index="3"
+					disabled
+				>
 					<el-icon><document /></el-icon>
 					<span>Navigator Three</span>
 				</el-menu-item>
@@ -7447,9 +8040,20 @@ This example shows how to use the #header and #footer slots in an Element Plus C
 		</div>
 		<div>
 			<p>Custom footer content</p>
-			<el-cascader v-model="value" :options="options" :props="props" clearable>
+			<el-cascader
+				v-model="value"
+				:options="options"
+				:props="props"
+				clearable
+			>
 				<template #footer>
-					<el-button link size="small" @click="handleClear"> Clear </el-button>
+					<el-button
+						link
+						size="small"
+						@click="handleClear"
+					>
+						Clear
+					</el-button>
 				</template>
 			</el-cascader>
 		</div>
@@ -7555,7 +8159,10 @@ Demonstrates how to hook into various Dialog lifecycle events like open, opened,
 
 ```vue
 <template>
-	<el-button plain @click="dialogVisible = true">
+	<el-button
+		plain
+		@click="dialogVisible = true"
+	>
 		Open the event Dialog
 	</el-button>
 
@@ -7578,7 +8185,10 @@ Demonstrates how to hook into various Dialog lifecycle events like open, opened,
 		<template #footer>
 			<div class="dialog-footer">
 				<el-button @click="dialogVisible = false">Cancel</el-button>
-				<el-button type="primary" @click="dialogVisible = false">
+				<el-button
+					type="primary"
+					@click="dialogVisible = false"
+				>
 					Confirm
 				</el-button>
 			</div>
@@ -7687,7 +8297,11 @@ Shows how to apply global button configurations like auto-insert space, plain, r
 			<el-checkbox v-model="config.round"> round </el-checkbox>
 			<el-checkbox v-model="config.dashed"> dashed </el-checkbox>
 			<el-checkbox v-model="config.text"> text </el-checkbox>
-			<el-select v-model="config.type" class="ml-5" style="max-width: 150px">
+			<el-select
+				v-model="config.type"
+				class="ml-5"
+				style="max-width: 150px"
+			>
 				<el-option
 					v-for="type in buttonTypes.filter(Boolean)"
 					:key="type"
@@ -7750,7 +8364,10 @@ Control the tooltip's visibility from the parent component using the `:visible` 
 		<template #content>
 			<span>Content</span>
 		</template>
-		<el-button @mouseenter="visible = true" @mouseleave="visible = false">
+		<el-button
+			@mouseenter="visible = true"
+			@mouseleave="visible = false"
+		>
 			Hover me
 		</el-button>
 	</el-tooltip>
@@ -7854,14 +8471,20 @@ Shows how to remove the default border from the ColorPickerPanel by setting the 
 		<el-divider />
 		<div class="flex flex-wrap justify-center gap-4">
 			<div class="p-5">
-				<el-color-picker-panel v-model="value" :border="false" />
+				<el-color-picker-panel
+					v-model="value"
+					:border="false"
+				/>
 			</div>
 			<el-divider
 				class="h-auto"
 				:direction="isNarrow ? 'horizontal' : 'vertical'"
 			/>
 			<el-card>
-				<el-color-picker-panel v-model="value" :border="false" />
+				<el-color-picker-panel
+					v-model="value"
+					:border="false"
+				/>
 			</el-card>
 		</div>
 	</div>
@@ -8000,7 +8623,11 @@ This example shows two equivalent ways to use the `el-button` component in a Vue
 ```vue
 <template>
 	<el-button>Hello</el-button>
-	<el-button type="primary" size="small">Hello</el-button>
+	<el-button
+		type="primary"
+		size="small"
+		>Hello</el-button
+	>
 </template>
 ```
 
@@ -8410,7 +9037,12 @@ This example demonstrates how to add filterable columns to an el-table. It uses 
 <template>
 	<el-button @click="resetDateFilter">reset date filter</el-button>
 	<el-button @click="clearFilter">reset all filters</el-button>
-	<el-table ref="tableRef" row-key="date" :data="tableData" style="width: 100%">
+	<el-table
+		ref="tableRef"
+		row-key="date"
+		:data="tableData"
+		style="width: 100%"
+	>
 		<el-table-column
 			prop="date"
 			label="Date"
@@ -8425,8 +9057,16 @@ This example demonstrates how to add filterable columns to an el-table. It uses 
 			]"
 			:filter-method="filterHandler"
 		/>
-		<el-table-column prop="name" label="Name" width="180" />
-		<el-table-column prop="address" label="Address" :formatter="formatter" />
+		<el-table-column
+			prop="name"
+			label="Name"
+			width="180"
+		/>
+		<el-table-column
+			prop="address"
+			label="Address"
+			:formatter="formatter"
+		/>
 
 		<el-table-column
 			prop="tag"
@@ -8528,27 +9168,42 @@ Shows how to align columns within an `el-row` using the `justify` attribute. Sup
 		<el-col :span="6"><div class="grid-content ep-bg-purple-light" /></el-col>
 		<el-col :span="6"><div class="grid-content ep-bg-purple" /></el-col>
 	</el-row>
-	<el-row class="row-bg" justify="center">
+	<el-row
+		class="row-bg"
+		justify="center"
+	>
 		<el-col :span="6"><div class="grid-content ep-bg-purple" /></el-col>
 		<el-col :span="6"><div class="grid-content ep-bg-purple-light" /></el-col>
 		<el-col :span="6"><div class="grid-content ep-bg-purple" /></el-col>
 	</el-row>
-	<el-row class="row-bg" justify="end">
+	<el-row
+		class="row-bg"
+		justify="end"
+	>
 		<el-col :span="6"><div class="grid-content ep-bg-purple" /></el-col>
 		<el-col :span="6"><div class="grid-content ep-bg-purple-light" /></el-col>
 		<el-col :span="6"><div class="grid-content ep-bg-purple" /></el-col>
 	</el-row>
-	<el-row class="row-bg" justify="space-between">
+	<el-row
+		class="row-bg"
+		justify="space-between"
+	>
 		<el-col :span="6"><div class="grid-content ep-bg-purple" /></el-col>
 		<el-col :span="6"><div class="grid-content ep-bg-purple-light" /></el-col>
 		<el-col :span="6"><div class="grid-content ep-bg-purple" /></el-col>
 	</el-row>
-	<el-row class="row-bg" justify="space-around">
+	<el-row
+		class="row-bg"
+		justify="space-around"
+	>
 		<el-col :span="6"><div class="grid-content ep-bg-purple" /></el-col>
 		<el-col :span="6"><div class="grid-content ep-bg-purple-light" /></el-col>
 		<el-col :span="6"><div class="grid-content ep-bg-purple" /></el-col>
 	</el-row>
-	<el-row class="row-bg" justify="space-evenly">
+	<el-row
+		class="row-bg"
+		justify="space-evenly"
+	>
 		<el-col :span="6"><div class="grid-content ep-bg-purple" /></el-col>
 		<el-col :span="6"><div class="grid-content ep-bg-purple-light" /></el-col>
 		<el-col :span="6"><div class="grid-content ep-bg-purple" /></el-col>
@@ -8590,12 +9245,26 @@ This example demonstrates how to configure an el-table for multiple selection. I
 		style="width: 100%"
 		@selection-change="handleSelectionChange"
 	>
-		<el-table-column type="selection" :selectable="selectable" width="55" />
-		<el-table-column label="Date" width="120">
+		<el-table-column
+			type="selection"
+			:selectable="selectable"
+			width="55"
+		/>
+		<el-table-column
+			label="Date"
+			width="120"
+		>
 			<template #default="scope">{{ scope.row.date }}</template>
 		</el-table-column>
-		<el-table-column property="name" label="Name" width="120" />
-		<el-table-column property="address" label="Address" />
+		<el-table-column
+			property="name"
+			label="Name"
+			width="120"
+		/>
+		<el-table-column
+			property="address"
+			label="Address"
+		/>
 	</el-table>
 	<div style="margin-top: 20px">
 		<el-button @click="toggleSelection([tableData[1], tableData[2]])">
@@ -8756,7 +9425,10 @@ const columns: Column<any>[] = [
 		cellRenderer: () => (
 			<>
 				<ElButton size="small">Edit</ElButton>
-				<ElButton size="small" type="danger">
+				<ElButton
+					size="small"
+					type="danger"
+				>
 					Delete
 				</ElButton>
 			</>
@@ -8792,38 +9464,121 @@ Demonstrates how to use type, plain, round, dashed, and circle attributes to sty
 
 		<div class="button-row">
 			<el-button plain>Plain</el-button>
-			<el-button type="primary" plain>Primary</el-button>
-			<el-button type="success" plain>Success</el-button>
-			<el-button type="info" plain>Info</el-button>
-			<el-button type="warning" plain>Warning</el-button>
-			<el-button type="danger" plain>Danger</el-button>
+			<el-button
+				type="primary"
+				plain
+				>Primary</el-button
+			>
+			<el-button
+				type="success"
+				plain
+				>Success</el-button
+			>
+			<el-button
+				type="info"
+				plain
+				>Info</el-button
+			>
+			<el-button
+				type="warning"
+				plain
+				>Warning</el-button
+			>
+			<el-button
+				type="danger"
+				plain
+				>Danger</el-button
+			>
 		</div>
 
 		<div class="button-row">
 			<el-button round>Round</el-button>
-			<el-button type="primary" round>Primary</el-button>
-			<el-button type="success" round>Success</el-button>
-			<el-button type="info" round>Info</el-button>
-			<el-button type="warning" round>Warning</el-button>
-			<el-button type="danger" round>Danger</el-button>
+			<el-button
+				type="primary"
+				round
+				>Primary</el-button
+			>
+			<el-button
+				type="success"
+				round
+				>Success</el-button
+			>
+			<el-button
+				type="info"
+				round
+				>Info</el-button
+			>
+			<el-button
+				type="warning"
+				round
+				>Warning</el-button
+			>
+			<el-button
+				type="danger"
+				round
+				>Danger</el-button
+			>
 		</div>
 
 		<div class="button-row">
 			<el-button dashed>Dashed</el-button>
-			<el-button type="primary" dashed>Primary</el-button>
-			<el-button type="success" dashed>Success</el-button>
-			<el-button type="info" dashed>Info</el-button>
-			<el-button type="warning" dashed>Warning</el-button>
-			<el-button type="danger" dashed>Danger</el-button>
+			<el-button
+				type="primary"
+				dashed
+				>Primary</el-button
+			>
+			<el-button
+				type="success"
+				dashed
+				>Success</el-button
+			>
+			<el-button
+				type="info"
+				dashed
+				>Info</el-button
+			>
+			<el-button
+				type="warning"
+				dashed
+				>Warning</el-button
+			>
+			<el-button
+				type="danger"
+				dashed
+				>Danger</el-button
+			>
 		</div>
 
 		<div class="button-row">
-			<el-button :icon="Search" circle />
-			<el-button type="primary" :icon="Edit" circle />
-			<el-button type="success" :icon="Check" circle />
-			<el-button type="info" :icon="Message" circle />
-			<el-button type="warning" :icon="Star" circle />
-			<el-button type="danger" :icon="Delete" circle />
+			<el-button
+				:icon="Search"
+				circle
+			/>
+			<el-button
+				type="primary"
+				:icon="Edit"
+				circle
+			/>
+			<el-button
+				type="success"
+				:icon="Check"
+				circle
+			/>
+			<el-button
+				type="info"
+				:icon="Message"
+				circle
+			/>
+			<el-button
+				type="warning"
+				:icon="Star"
+				circle
+			/>
+			<el-button
+				type="danger"
+				:icon="Delete"
+				circle
+			/>
 		</div>
 	</div>
 </template>
@@ -8912,13 +9667,22 @@ Demonstrates how to customize the placement of the tooltip in the Element Plus s
 		<el-slider v-model="value1" />
 	</div>
 	<div class="slider-demo-block">
-		<el-slider v-model="value2" placement="bottom" />
+		<el-slider
+			v-model="value2"
+			placement="bottom"
+		/>
 	</div>
 	<div class="slider-demo-block">
-		<el-slider v-model="value3" placement="right" />
+		<el-slider
+			v-model="value3"
+			placement="right"
+		/>
 	</div>
 	<div class="slider-demo-block">
-		<el-slider v-model="value4" placement="left" />
+		<el-slider
+			v-model="value4"
+			placement="left"
+		/>
 	</div>
 </template>
 
@@ -9089,12 +9853,20 @@ Demonstrates how to use the prefix and suffix named slots in the ElInputNumber c
 ```vue
 <template>
 	<el-space>
-		<el-input-number v-model="num" :min="1" :max="10">
+		<el-input-number
+			v-model="num"
+			:min="1"
+			:max="10"
+		>
 			<template #prefix>
 				<span>￥</span>
 			</template>
 		</el-input-number>
-		<el-input-number v-model="num" :min="1" :max="10">
+		<el-input-number
+			v-model="num"
+			:min="1"
+			:max="10"
+		>
 			<template #suffix>
 				<span>RMB</span>
 			</template>
@@ -9348,7 +10120,11 @@ Demonstrates how to control the size of an Element Plus splitter panel using the
 			<el-splitter-panel>
 				<div class="demo-panel">1</div>
 			</el-splitter-panel>
-			<el-splitter-panel v-model:size="size" :max="200" :min="50">
+			<el-splitter-panel
+				v-model:size="size"
+				:max="200"
+				:min="50"
+			>
 				<div class="demo-panel">{{ size }}px</div>
 			</el-splitter-panel>
 			<el-splitter-panel>
@@ -9451,8 +10227,15 @@ This example demonstrates how to use the el-scrollbar component with the @end-re
 
 ```vue
 <template>
-	<el-scrollbar height="400px" @end-reached="loadMore">
-		<p v-for="item in num" :key="item" class="scrollbar-demo-item">
+	<el-scrollbar
+		height="400px"
+		@end-reached="loadMore"
+	>
+		<p
+			v-for="item in num"
+			:key="item"
+			class="scrollbar-demo-item"
+		>
 			{{ item }}
 		</p>
 	</el-scrollbar>
@@ -9526,7 +10309,10 @@ Configure a year range picker with custom placeholders and a range separator. Th
 							version="1.1"
 							xmlns="http://www.w3.org/2000/svg"
 						>
-							<g stroke-width="1" fill-rule="evenodd">
+							<g
+								stroke-width="1"
+								fill-rule="evenodd"
+							>
 								<g fill="currentColor">
 									<path
 										d="M8.73171,16.7949 C9.03264,17.0795 9.50733,17.0663 9.79196,16.7654 C10.0766,16.4644 10.0634,15.9897 9.76243,15.7051 L4.52339,10.75 L17.2471,10.75 C17.6613,10.75 17.9971,10.4142 17.9971,10 C17.9971,9.58579 17.6613,9.25 17.2471,9.25 L4.52112,9.25 L9.76243,4.29275 C10.0634,4.00812 10.0766,3.53343 9.79196,3.2325 C9.50733,2.93156 9.03264,2.91834 8.73171,3.20297 L2.31449,9.27241 C2.14819,9.4297 2.04819,9.62981 2.01448,9.8386 C2.00308,9.89058 1.99707,9.94459 1.99707,10 C1.99707,10.0576 2.00356,10.1137 2.01585,10.1675 C2.05084,10.3733 2.15039,10.5702 2.31449,10.7254 L8.73171,16.7949 Z"
@@ -9543,7 +10329,10 @@ Configure a year range picker with custom placeholders and a range separator. Th
 							version="1.1"
 							xmlns="http://www.w3.org/2000/svg"
 						>
-							<g stroke-width="1" fill-rule="evenodd">
+							<g
+								stroke-width="1"
+								fill-rule="evenodd"
+							>
 								<g fill="currentColor">
 									<path
 										d="M11.2654,3.20511 C10.9644,2.92049 10.4897,2.93371 10.2051,3.23464 C9.92049,3.53558 9.93371,4.01027 10.2346,4.29489 L15.4737,9.25 L2.75,9.25 C2.33579,9.25 2,9.58579 2,10.0000012 C2,10.4142 2.33579,10.75 2.75,10.75 L15.476,10.75 L10.2346,15.7073 C9.93371,15.9919 9.92049,16.4666 10.2051,16.7675 C10.4897,17.0684 10.9644,17.0817 11.2654,16.797 L17.6826,10.7276 C17.8489,10.5703 17.9489,10.3702 17.9826,10.1614 C17.994,10.1094 18,10.0554 18,10.0000012 C18,9.94241 17.9935,9.88633 17.9812,9.83246 C17.9462,9.62667 17.8467,9.42976 17.6826,9.27455 L11.2654,3.20511 Z"
@@ -9752,12 +10541,26 @@ A simplified version of the step bar where certain layout attributes are ignored
 		:active="1"
 		simple
 	>
-		<el-step title="Step 1" :icon="Edit" />
-		<el-step title="Step 2" :icon="UploadFilled" />
-		<el-step title="Step 3" :icon="Picture" />
+		<el-step
+			title="Step 1"
+			:icon="Edit"
+		/>
+		<el-step
+			title="Step 2"
+			:icon="UploadFilled"
+		/>
+		<el-step
+			title="Step 3"
+			:icon="Picture"
+		/>
 	</el-steps>
 
-	<el-steps style="max-width: 600px" :active="1" finish-status="success" simple>
+	<el-steps
+		style="max-width: 600px"
+		:active="1"
+		finish-status="success"
+		simple
+	>
 		<el-step title="Step 1" />
 		<el-step title="Step 2" />
 		<el-step title="Step 3" />
@@ -9865,7 +10668,10 @@ Apply global configuration for size and zIndex using ElConfigProvider when using
 
 ```vue
 <template>
-	<el-config-provider :size="size" :z-index="zIndex">
+	<el-config-provider
+		:size="size"
+		:z-index="zIndex"
+	>
 		<app />
 	</el-config-provider>
 </template>
@@ -9989,7 +10795,13 @@ This example shows how to use the `rowSpan` property on columns and a custom `Ro
 
 ```vue
 <template>
-	<el-table-v2 fixed :columns="columns" :data="data" :width="700" :height="400">
+	<el-table-v2
+		fixed
+		:columns="columns"
+		:data="data"
+		:width="700"
+		:height="400"
+	>
 		<template #row="props">
 			<Row v-bind="props" />
 		</template>
@@ -10149,10 +10961,22 @@ Uses the icon property to display custom icons for each step.
 
 ```vue
 <template>
-	<el-steps style="max-width: 600px" :active="1">
-		<el-step title="Step 1" :icon="Edit" />
-		<el-step title="Step 2" :icon="Upload" />
-		<el-step title="Step 3" :icon="Picture" />
+	<el-steps
+		style="max-width: 600px"
+		:active="1"
+	>
+		<el-step
+			title="Step 1"
+			:icon="Edit"
+		/>
+		<el-step
+			title="Step 2"
+			:icon="Upload"
+		/>
+		<el-step
+			title="Step 3"
+			:icon="Picture"
+		/>
 	</el-steps>
 </template>
 
@@ -10227,7 +11051,10 @@ Use the `throttle` attribute with an object including `initVal: true` to display
 
 ```vue
 <template>
-	<el-space direction="vertical" alignment="flex-start">
+	<el-space
+		direction="vertical"
+		alignment="flex-start"
+	>
 		<div>
 			<label style="margin-right: 16px">Switch Loading</label>
 			<el-switch v-model="loading" />
@@ -10239,9 +11066,15 @@ Use the `throttle` attribute with an object including `initVal: true` to display
 			:throttle="{leading: 500, initVal: true}"
 		>
 			<template #template>
-				<el-skeleton-item variant="image" style="width: 240px; height: 265px" />
+				<el-skeleton-item
+					variant="image"
+					style="width: 240px; height: 265px"
+				/>
 				<div style="padding: 14px">
-					<el-skeleton-item variant="h3" style="width: 50%" />
+					<el-skeleton-item
+						variant="h3"
+						style="width: 50%"
+					/>
 					<div
 						style="
               display: flex;
@@ -10251,8 +11084,14 @@ Use the `throttle` attribute with an object including `initVal: true` to display
               height: 16px;
             "
 					>
-						<el-skeleton-item variant="text" style="margin-right: 16px" />
-						<el-skeleton-item variant="text" style="width: 30%" />
+						<el-skeleton-item
+							variant="text"
+							style="margin-right: 16px"
+						/>
+						<el-skeleton-item
+							variant="text"
+							style="width: 30%"
+						/>
 					</div>
 				</div>
 			</template>
@@ -10266,7 +11105,11 @@ Use the `throttle` attribute with an object including `initVal: true` to display
 						<span>Delicious hamburger</span>
 						<div class="bottom card-header">
 							<div class="time">{{ currentDate }}</div>
-							<el-button text class="button">operation button</el-button>
+							<el-button
+								text
+								class="button"
+								>operation button</el-button
+							>
 						</div>
 					</div>
 				</el-card>
@@ -10293,7 +11136,10 @@ This snippet illustrates how to configure empty value handling for ElSelect and 
 
 ```vue
 <template>
-	<el-config-provider :value-on-clear="null" :empty-values="[undefined, null]">
+	<el-config-provider
+		:value-on-clear="null"
+		:empty-values="[undefined, null]"
+	>
 		<div class="flex flex-wrap gap-4 items-center">
 			<el-select
 				v-model="value1"
@@ -10374,7 +11220,11 @@ Use the `striped` attribute for a striped effect and `striped-flow` for animatin
 ```vue
 <template>
 	<div class="demo-progress">
-		<el-progress :percentage="50" :stroke-width="15" striped />
+		<el-progress
+			:percentage="50"
+			:stroke-width="15"
+			striped
+		/>
 		<el-progress
 			:percentage="30"
 			:stroke-width="15"
@@ -10399,8 +11249,14 @@ Use the `striped` attribute for a striped effect and `striped-flow` for animatin
 			:duration="duration"
 		/>
 		<el-button-group>
-			<el-button :icon="Minus" @click="decrease" />
-			<el-button :icon="Plus" @click="increase" />
+			<el-button
+				:icon="Minus"
+				@click="decrease"
+			/>
+			<el-button
+				:icon="Plus"
+				@click="increase"
+			/>
 		</el-button-group>
 	</div>
 </template>
@@ -11013,7 +11869,11 @@ This snippet shows how to use the #tag slot in ElCascader to customize the appea
 <template>
 	<div class="m-4">
 		<p>Using slots allows for more flexible control over the display.</p>
-		<el-cascader :options="options" :props="props" clearable>
+		<el-cascader
+			:options="options"
+			:props="props"
+			clearable
+		>
 			<template #tag="{data}">
 				<el-tag
 					v-for="(item, index) in getTags(data)"
@@ -11025,9 +11885,16 @@ This snippet shows how to use the #tag slot in ElCascader to customize the appea
 			</template>
 		</el-cascader>
 		<p>Display top-level tags only</p>
-		<el-cascader :options="options" :props="props" clearable>
+		<el-cascader
+			:options="options"
+			:props="props"
+			clearable
+		>
 			<template #tag="{data}">
-				<el-tag v-for="item in getTopLevelTags(data)" :key="item">
+				<el-tag
+					v-for="item in getTopLevelTags(data)"
+					:key="item"
+				>
 					{{ item }}
 				</el-tag>
 			</template>
@@ -11309,7 +12176,10 @@ Use this snippet to configure a month range picker. It supports custom placehold
 							version="1.1"
 							xmlns="http://www.w3.org/2000/svg"
 						>
-							<g stroke-width="1" fill-rule="evenodd">
+							<g
+								stroke-width="1"
+								fill-rule="evenodd"
+							>
 								<g fill="currentColor">
 									<path
 										d="M8.73171,16.7949 C9.03264,17.0795 9.50733,17.0663 9.79196,16.7654 C10.0766,16.4644 10.0634,15.9897 9.76243,15.7051 L4.52339,10.75 L17.2471,10.75 C17.6613,10.75 17.9971,10.4142 17.9971,10 C17.9971,9.58579 17.6613,9.25 17.2471,9.25 L4.52112,9.25 L9.76243,4.29275 C10.0634,4.00812 10.0766,3.53343 9.79196,3.2325 C9.50733,2.93156 9.03264,2.91834 8.73171,3.20297 L2.31449,9.27241 C2.14819,9.4297 2.04819,9.62981 2.01448,9.8386 C2.00308,9.89058 1.99707,9.94459 1.99707,10 C1.99707,10.0576 2.00356,10.1137 2.01585,10.1675 C2.05084,10.3733 2.15039,10.5702 2.31449,10.7254 L8.73171,16.7949 Z"
@@ -11326,7 +12196,10 @@ Use this snippet to configure a month range picker. It supports custom placehold
 							version="1.1"
 							xmlns="http://www.w3.org/2000/svg"
 						>
-							<g stroke-width="1" fill-rule="evenodd">
+							<g
+								stroke-width="1"
+								fill-rule="evenodd"
+							>
 								<g fill="currentColor">
 									<path
 										d="M11.2654,3.20511 C10.9644,2.92049 10.4897,2.93371 10.2051,3.23464 C9.92049,3.53558 9.93371,4.01027 10.2346,4.29489 L15.4737,9.25 L2.75,9.25 C2.33579,9.25 2,9.58579 2,10.0000012 C2,10.4142 2.33579,10.75 2.75,10.75 L15.476,10.75 L10.2346,15.7073 C9.93371,15.9919 9.92049,16.4666 10.2051,16.7675 C10.4897,17.0684 10.9644,17.0817 11.2654,16.797 L17.6826,10.7276 C17.8489,10.5703 17.9489,10.3702 17.9826,10.1614 C17.994,10.1094 18,10.0554 18,10.0000012 C18,9.94241 17.9935,9.88633 17.9812,9.83246 C17.9462,9.62667 17.8467,9.42976 17.6826,9.27455 L11.2654,3.20511 Z"
@@ -11498,16 +12371,34 @@ The `color` attribute accepts a string, function, or array to define custom prog
 ```vue
 <template>
 	<div class="demo-progress">
-		<el-progress :percentage="percentage" :color="customColor" />
+		<el-progress
+			:percentage="percentage"
+			:color="customColor"
+		/>
 
-		<el-progress :percentage="percentage" :color="customColorMethod" />
+		<el-progress
+			:percentage="percentage"
+			:color="customColorMethod"
+		/>
 
-		<el-progress :percentage="percentage" :color="customColors" />
-		<el-progress :percentage="percentage" :color="customColors" />
+		<el-progress
+			:percentage="percentage"
+			:color="customColors"
+		/>
+		<el-progress
+			:percentage="percentage"
+			:color="customColors"
+		/>
 		<div>
 			<el-button-group>
-				<el-button :icon="Minus" @click="decrease" />
-				<el-button :icon="Plus" @click="increase" />
+				<el-button
+					:icon="Minus"
+					@click="decrease"
+				/>
+				<el-button
+					:icon="Plus"
+					@click="increase"
+				/>
 			</el-button-group>
 		</div>
 	</div>
@@ -11570,7 +12461,10 @@ Displays standard time pickers with optional arrow controls for navigation.
 ```vue
 <template>
 	<div class="example-basic">
-		<el-time-picker v-model="value1" placeholder="Arbitrary time" />
+		<el-time-picker
+			v-model="value1"
+			placeholder="Arbitrary time"
+		/>
 		<el-time-picker
 			v-model="value2"
 			arrow-control
@@ -11653,9 +12547,18 @@ This example demonstrates how to toggle the checkStrictly property to control no
 
 ```vue
 <template>
-	<el-radio-group v-model="treeProps.checkStrictly" class="mb-2">
-		<el-radio-button :value="true" label="true" />
-		<el-radio-button :value="false" label="false" />
+	<el-radio-group
+		v-model="treeProps.checkStrictly"
+		class="mb-2"
+	>
+		<el-radio-button
+			:value="true"
+			label="true"
+		/>
+		<el-radio-button
+			:value="false"
+			label="false"
+		/>
 	</el-radio-group>
 	<el-table
 		:data="tableData"
@@ -11663,10 +12566,23 @@ This example demonstrates how to toggle the checkStrictly property to control no
 		row-key="id"
 		default-expand-all
 	>
-		<el-table-column type="selection" width="55" :selectable="selectable" />
-		<el-table-column prop="date" label="Date" />
-		<el-table-column prop="name" label="Name" />
-		<el-table-column prop="address" label="Address" />
+		<el-table-column
+			type="selection"
+			width="55"
+			:selectable="selectable"
+		/>
+		<el-table-column
+			prop="date"
+			label="Date"
+		/>
+		<el-table-column
+			prop="name"
+			label="Name"
+		/>
+		<el-table-column
+			prop="address"
+			label="Address"
+		/>
 	</el-table>
 </template>
 
@@ -11971,7 +12887,11 @@ This example demonstrates how to use the #suggestion-item slot in an Element Plu
 
 ```vue
 <template>
-	<el-cascader :options="options" filterable placeholder="Try searching: Guide">
+	<el-cascader
+		:options="options"
+		filterable
+		placeholder="Try searching: Guide"
+	>
 		<template #suggestion-item="{item}">
 			<span>🔍 {{ item.pathLabels.join(' > ') }}</span>
 		</template>
@@ -12026,7 +12946,12 @@ Demonstrates the basic implementation of the Input Number component with min/max
 
 ```vue
 <template>
-	<el-input-number v-model="num" :min="1" :max="10" @change="handleChange" />
+	<el-input-number
+		v-model="num"
+		:min="1"
+		:max="10"
+		@change="handleChange"
+	/>
 </template>
 
 <script lang="ts" setup>
@@ -12050,7 +12975,10 @@ Use `scrollToTop` to scroll by pixels or `scrollToRow` to scroll by row count. T
 ```vue
 <template>
 	<div class="mb-4 flex items-center">
-		<el-form-item label="Scroll pixels" class="mr-4">
+		<el-form-item
+			label="Scroll pixels"
+			class="mr-4"
+		>
 			<el-input v-model="scrollDelta" />
 		</el-form-item>
 		<el-form-item label="Scroll rows">
@@ -12174,14 +13102,29 @@ Explains how to control the table layout algorithm using the `table-layout` prop
 
 ```vue
 <template>
-	<el-radio-group v-model="tableLayout" class="mb-2">
+	<el-radio-group
+		v-model="tableLayout"
+		class="mb-2"
+	>
 		<el-radio-button value="fixed">fixed</el-radio-button>
 		<el-radio-button value="auto">auto</el-radio-button>
 	</el-radio-group>
-	<el-table :data="tableData" :table-layout="tableLayout">
-		<el-table-column prop="date" label="Date" />
-		<el-table-column prop="name" label="Name" />
-		<el-table-column prop="address" label="Address" />
+	<el-table
+		:data="tableData"
+		:table-layout="tableLayout"
+	>
+		<el-table-column
+			prop="date"
+			label="Date"
+		/>
+		<el-table-column
+			prop="name"
+			label="Name"
+		/>
+		<el-table-column
+			prop="address"
+			label="Address"
+		/>
 	</el-table>
 </template>
 
@@ -12232,7 +13175,11 @@ Demonstrates setting global link properties such as type and underline behavior 
 			<div class="flex flex-col basis-150px gap-1">
 				<span>Type:</span>
 				<el-select v-model="config.type">
-					<el-option v-for="type in linkTypes" :key="type" :value="type" />
+					<el-option
+						v-for="type in linkTypes"
+						:key="type"
+						:value="type"
+					/>
 				</el-select>
 			</div>
 			<div class="flex flex-col basis-150px gap-1">
@@ -12762,9 +13709,21 @@ Demonstrates how to display the Element Plus carousel in a vertical direction by
 ```vue
 <template>
 	<p class="text-center demonstration">normal vertical layout</p>
-	<el-carousel height="200px" direction="vertical" :autoplay="false">
-		<el-carousel-item v-for="item in 4" :key="item">
-			<h3 text="2xl" justify="center">{{ item }}</h3>
+	<el-carousel
+		height="200px"
+		direction="vertical"
+		:autoplay="false"
+	>
+		<el-carousel-item
+			v-for="item in 4"
+			:key="item"
+		>
+			<h3
+				text="2xl"
+				justify="center"
+			>
+				{{ item }}
+			</h3>
 		</el-carousel-item>
 	</el-carousel>
 	<p class="text-center demonstration">card vertical layout</p>
@@ -12774,8 +13733,16 @@ Demonstrates how to display the Element Plus carousel in a vertical direction by
 		type="card"
 		:autoplay="false"
 	>
-		<el-carousel-item v-for="item in 4" :key="item">
-			<h3 text="2xl" justify="center">{{ item }}</h3>
+		<el-carousel-item
+			v-for="item in 4"
+			:key="item"
+		>
+			<h3
+				text="2xl"
+				justify="center"
+			>
+				{{ item }}
+			</h3>
 		</el-carousel-item>
 	</el-carousel>
 </template>
@@ -12948,7 +13915,10 @@ Use the scoped slot to customize how suggestion items are displayed. Access sugg
 		@select="handleSelect"
 	>
 		<template #suffix>
-			<el-icon class="el-input__icon" @click="handleIconClick">
+			<el-icon
+				class="el-input__icon"
+				@click="handleIconClick"
+			>
 				<edit />
 			</el-icon>
 		</template>
@@ -13086,10 +14056,19 @@ Use the `#footer` slot to add custom content, such as buttons for adding options
 		style="width: 240px"
 	>
 		<template #footer>
-			<el-button v-if="!isAdding" text bg size="small" @click="onAddOption">
+			<el-button
+				v-if="!isAdding"
+				text
+				bg
+				size="small"
+				@click="onAddOption"
+			>
 				Add an option
 			</el-button>
-			<div v-else class="select-footer">
+			<div
+				v-else
+				class="select-footer"
+			>
 				<el-input
 					v-model="optionName"
 					class="option-input"
@@ -13097,10 +14076,18 @@ Use the `#footer` slot to add custom content, such as buttons for adding options
 					size="small"
 				/>
 				<div>
-					<el-button type="primary" size="small" @click="onConfirm">
+					<el-button
+						type="primary"
+						size="small"
+						@click="onConfirm"
+					>
 						confirm
 					</el-button>
-					<el-button size="small" @click="clear">cancel</el-button>
+					<el-button
+						size="small"
+						@click="clear"
+						>cancel</el-button
+					>
 				</div>
 			</div>
 		</template>
@@ -13265,7 +14252,10 @@ Shows how to manually open or close a dropdown menu using the handleOpen and han
 ```vue
 <template>
 	<el-button @click="showClick">show</el-button>
-	<el-dropdown ref="dropdown1" trigger="contextmenu">
+	<el-dropdown
+		ref="dropdown1"
+		trigger="contextmenu"
+	>
 		<span class="el-dropdown-link"> Dropdown List1 </span>
 		<template #dropdown>
 			<el-dropdown-menu>
@@ -13306,22 +14296,42 @@ Use the default scoped slot to access cell data and customize the appearance of 
 			value-format="YYYY-MM-DD"
 		>
 			<template #default="cell">
-				<div class="cell" :class="{current: cell.isCurrent}">
+				<div
+					class="cell"
+					:class="{current: cell.isCurrent}"
+				>
 					<span class="text">{{ cell.text }}</span>
-					<span v-if="isHoliday(cell)" class="holiday" />
+					<span
+						v-if="isHoliday(cell)"
+						class="holiday"
+					/>
 				</div>
 			</template>
 		</el-date-picker>
-		<el-date-picker v-model="month" type="month" placeholder="Pick a month">
+		<el-date-picker
+			v-model="month"
+			type="month"
+			placeholder="Pick a month"
+		>
 			<template #default="cell">
-				<div class="el-date-table-cell" :class="{current: cell.isCurrent}">
+				<div
+					class="el-date-table-cell"
+					:class="{current: cell.isCurrent}"
+				>
 					<span class="el-date-table-cell__text">{{ cell.text + 1 }}期</span>
 				</div>
 			</template>
 		</el-date-picker>
-		<el-date-picker v-model="year" type="year" placeholder="Pick a year">
+		<el-date-picker
+			v-model="year"
+			type="year"
+			placeholder="Pick a year"
+		>
 			<template #default="cell">
-				<div class="el-date-table-cell" :class="{current: cell.isCurrent}">
+				<div
+					class="el-date-table-cell"
+					:class="{current: cell.isCurrent}"
+				>
 					<span class="el-date-table-cell__text">{{ cell.text + 1 }}y</span>
 				</div>
 			</template>
@@ -13472,7 +14482,10 @@ const columns: Column<any>[] = [
 		cellRenderer: () => (
 			<>
 				<ElButton size="small">Edit</ElButton>
-				<ElButton size="small" type="danger">
+				<ElButton
+					size="small"
+					type="danger"
+				>
 					Delete
 				</ElButton>
 			</>
@@ -13771,7 +14784,10 @@ Prepare your final HTML structure to include a placeholder for teleported conten
 	<body>
 		<!--app-teleports-->
 		<div id="app"><!--app-html--></div>
-		<script type="module" src="/src/entry-client.js"></script>
+		<script
+			type="module"
+			src="/src/entry-client.js"
+		></script>
 	</body>
 </html>
 ```
@@ -13786,7 +14802,12 @@ Allows for custom rendering of selected tags within the Element Plus Select comp
 
 ```vue
 <template>
-	<el-select v-model="value" multiple placeholder="Select" style="width: 240px">
+	<el-select
+		v-model="value"
+		multiple
+		placeholder="Select"
+		style="width: 240px"
+	>
 		<el-option
 			v-for="item in colors"
 			:key="item.value"
@@ -13794,12 +14815,20 @@ Allows for custom rendering of selected tags within the Element Plus Select comp
 			:value="item.value"
 		>
 			<div class="flex items-center">
-				<el-tag :color="item.value" style="margin-right: 8px" size="small" />
+				<el-tag
+					:color="item.value"
+					style="margin-right: 8px"
+					size="small"
+				/>
 				<span :style="{color: item.value}">{{ item.label }}</span>
 			</div>
 		</el-option>
 		<template #tag>
-			<el-tag v-for="color in value" :key="color" :color="color" />
+			<el-tag
+				v-for="color in value"
+				:key="color"
+				:color="color"
+			/>
 		</template>
 	</el-select>
 </template>
@@ -13881,7 +14910,12 @@ Demonstrates how to use the `el-slider` component in range mode. The `range` att
 ```vue
 <template>
 	<div class="slider-demo-block">
-		<el-slider v-model="value" range show-stops :max="10" />
+		<el-slider
+			v-model="value"
+			range
+			show-stops
+			:max="10"
+		/>
 	</div>
 </template>
 
@@ -13917,8 +14951,16 @@ Illustrates how to use the `fillRatio` attribute in the `el-space` component to 
 	<div>
 		<div style="margin-bottom: 15px">
 			direction:
-			<el-radio v-model="direction" value="horizontal">horizontal</el-radio>
-			<el-radio v-model="direction" value="vertical">vertical</el-radio>
+			<el-radio
+				v-model="direction"
+				value="horizontal"
+				>horizontal</el-radio
+			>
+			<el-radio
+				v-model="direction"
+				value="vertical"
+				>vertical</el-radio
+			>
 		</div>
 		<div style="margin-bottom: 15px">
 			fillRatio:<el-slider v-model="fillRatio" />
@@ -13930,14 +14972,26 @@ Illustrates how to use the `fillRatio` attribute in the `el-space` component to 
 			:direction="direction"
 			style="width: 100%"
 		>
-			<el-card v-for="i in 5" :key="i" class="box-card">
+			<el-card
+				v-for="i in 5"
+				:key="i"
+				class="box-card"
+			>
 				<template #header>
 					<div class="card-header">
 						<span>Card name</span>
-						<el-button class="button" text>Operation button</el-button>
+						<el-button
+							class="button"
+							text
+							>Operation button</el-button
+						>
 					</div>
 				</template>
-				<div v-for="o in 4" :key="o" class="text item">
+				<div
+					v-for="o in 4"
+					:key="o"
+					class="text item"
+				>
 					{{ 'List item ' + o }}
 				</div>
 			</el-card>
@@ -14096,11 +15150,24 @@ Illustrates how to use the Element Plus Popover component to create a nested con
 
 ```vue
 <template>
-	<el-popover :visible="visible" placement="top" :width="180">
+	<el-popover
+		:visible="visible"
+		placement="top"
+		:width="180"
+	>
 		<p>Are you sure to delete this?</p>
 		<div style="text-align: right; margin: 0">
-			<el-button size="small" text @click="visible = false">cancel</el-button>
-			<el-button size="small" type="primary" @click="visible = false">
+			<el-button
+				size="small"
+				text
+				@click="visible = false"
+				>cancel</el-button
+			>
+			<el-button
+				size="small"
+				type="primary"
+				@click="visible = false"
+			>
 				confirm
 			</el-button>
 		</div>
@@ -14128,14 +15195,30 @@ Demonstrates using the Element Plus Popover component to display a nested table 
 ```vue
 <template>
 	<div style="display: flex; align-items: center">
-		<el-popover placement="right" :width="400" trigger="click">
+		<el-popover
+			placement="right"
+			:width="400"
+			trigger="click"
+		>
 			<template #reference>
 				<el-button style="margin-right: 16px">Click to activate</el-button>
 			</template>
 			<el-table :data="gridData">
-				<el-table-column width="150" property="date" label="date" />
-				<el-table-column width="100" property="name" label="name" />
-				<el-table-column width="300" property="address" label="address" />
+				<el-table-column
+					width="150"
+					property="date"
+					label="date"
+				/>
+				<el-table-column
+					width="100"
+					property="name"
+					label="name"
+				/>
+				<el-table-column
+					width="300"
+					property="address"
+					label="address"
+				/>
 			</el-table>
 		</el-popover>
 
@@ -14171,7 +15254,10 @@ Demonstrates using the Element Plus Popover component to display a nested table 
 						</p>
 					</div>
 
-					<p class="demo-rich-content__desc" style="margin: 0">
+					<p
+						class="demo-rich-content__desc"
+						style="margin: 0"
+					>
 						Element Plus, a Vue 3 based component library for developers,
 						designers and product managers
 					</p>
@@ -14476,8 +15562,16 @@ Demonstrates how to capture selection events from dropdown items using the @comm
 				<el-dropdown-item command="a">Action 1</el-dropdown-item>
 				<el-dropdown-item command="b">Action 2</el-dropdown-item>
 				<el-dropdown-item command="c">Action 3</el-dropdown-item>
-				<el-dropdown-item command="d" disabled>Action 4</el-dropdown-item>
-				<el-dropdown-item command="e" divided>Action 5</el-dropdown-item>
+				<el-dropdown-item
+					command="d"
+					disabled
+					>Action 4</el-dropdown-item
+				>
+				<el-dropdown-item
+					command="e"
+					divided
+					>Action 5</el-dropdown-item
+				>
 			</el-dropdown-menu>
 		</template>
 	</el-dropdown>
@@ -14718,7 +15812,12 @@ When lazily loading node data remotely, lazy loading may sometimes fail. In this
 
 ```vue
 <template>
-	<el-tree style="max-width: 600px" :props="props" :load="loadNode" lazy />
+	<el-tree
+		style="max-width: 600px"
+		:props="props"
+		:load="loadNode"
+		lazy
+	/>
 </template>
 
 <script lang="ts" setup>
@@ -14763,19 +15862,35 @@ This snippet demonstrates how to enable tooltips for overflowing content in `el-
 
 ```vue
 <template>
-	<el-table :data="tableData" style="width: 100%">
-		<el-table-column type="selection" width="55" />
-		<el-table-column label="Date" width="120">
+	<el-table
+		:data="tableData"
+		style="width: 100%"
+	>
+		<el-table-column
+			type="selection"
+			width="55"
+		/>
+		<el-table-column
+			label="Date"
+			width="120"
+		>
 			<template #default="scope">{{ scope.row.date }}</template>
 		</el-table-column>
-		<el-table-column property="name" label="Name" width="120" />
+		<el-table-column
+			property="name"
+			label="Name"
+			width="120"
+		/>
 		<el-table-column
 			property="address"
 			label="use show-overflow-tooltip"
 			width="240"
 			show-overflow-tooltip
 		/>
-		<el-table-column property="address" label="address" />
+		<el-table-column
+			property="address"
+			label="address"
+		/>
 	</el-table>
 </template>
 
@@ -14830,18 +15945,37 @@ This Vue.js snippet demonstrates how to configure the `showOverflowTooltip` prop
 				class="ml-5"
 				style="max-width: 150px"
 			>
-				<el-option value="dark" label="dark" />
-				<el-option value="light" label="light" />
+				<el-option
+					value="dark"
+					label="dark"
+				/>
+				<el-option
+					value="light"
+					label="light"
+				/>
 			</el-select>
 		</div>
 		<el-divider />
 		<el-config-provider :table="config">
-			<el-table :data="tableData" style="width: 100%">
-				<el-table-column type="selection" width="55" />
-				<el-table-column label="Date" width="120">
+			<el-table
+				:data="tableData"
+				style="width: 100%"
+			>
+				<el-table-column
+					type="selection"
+					width="55"
+				/>
+				<el-table-column
+					label="Date"
+					width="120"
+				>
 					<template #default="scope">{{ scope.row.date }}</template>
 				</el-table-column>
-				<el-table-column property="name" label="Name" width="120" />
+				<el-table-column
+					property="name"
+					label="Name"
+					width="120"
+				/>
 				<el-table-column
 					property="address"
 					label="Address (inherited from config-provider)"
@@ -15000,8 +16134,14 @@ Demonstrates the basic implementation of the Element Plus Collapse component in 
 ```vue
 <template>
 	<div class="demo-collapse">
-		<el-collapse v-model="activeNames" @change="handleChange">
-			<el-collapse-item title="Consistency" name="1">
+		<el-collapse
+			v-model="activeNames"
+			@change="handleChange"
+		>
+			<el-collapse-item
+				title="Consistency"
+				name="1"
+			>
 				<div>
 					Consistent with real life: in line with the process and logic of real
 					life, and comply with languages and habits that the users are used to;
@@ -15011,7 +16151,10 @@ Demonstrates the basic implementation of the Element Plus Collapse component in 
 					as: design style, icons and texts, position of elements, etc.
 				</div>
 			</el-collapse-item>
-			<el-collapse-item title="Feedback" name="2">
+			<el-collapse-item
+				title="Feedback"
+				name="2"
+			>
 				<div>
 					Operation feedback: enable the users to clearly perceive their
 					operations by style updates and interactive effects;
@@ -15021,7 +16164,10 @@ Demonstrates the basic implementation of the Element Plus Collapse component in 
 					elements of the page.
 				</div>
 			</el-collapse-item>
-			<el-collapse-item title="Efficiency" name="3">
+			<el-collapse-item
+				title="Efficiency"
+				name="3"
+			>
 				<div>
 					Simplify the process: keep operating process simple and intuitive;
 				</div>
@@ -15034,7 +16180,10 @@ Demonstrates the basic implementation of the Element Plus Collapse component in 
 					the users to identify and frees them from memorizing and recalling.
 				</div>
 			</el-collapse-item>
-			<el-collapse-item title="Controllability" name="4">
+			<el-collapse-item
+				title="Controllability"
+				name="4"
+			>
 				<div>
 					Decision making: giving advice about operations is acceptable, but do
 					not make decisions for the users;
@@ -15187,7 +16336,10 @@ Illustrates the 'lazy' mode for the Element Plus splitter component. When enable
 		style="height: 250px; box-shadow: var(--el-border-color-light) 0px 0px 10px"
 	>
 		<el-splitter lazy>
-			<el-splitter-panel collapsible min="50">
+			<el-splitter-panel
+				collapsible
+				min="50"
+			>
 				<div class="demo-panel">1</div>
 			</el-splitter-panel>
 			<el-splitter-panel collapsible>
@@ -15225,9 +16377,20 @@ This snippet demonstrates how to dynamically assign CSS classes to table rows ba
 		style="width: 100%"
 		:row-class-name="tableRowClassName"
 	>
-		<el-table-column prop="date" label="Date" width="180" />
-		<el-table-column prop="name" label="Name" width="180" />
-		<el-table-column prop="address" label="Address" />
+		<el-table-column
+			prop="date"
+			label="Date"
+			width="180"
+		/>
+		<el-table-column
+			prop="name"
+			label="Name"
+			width="180"
+		/>
+		<el-table-column
+			prop="address"
+			label="Address"
+		/>
 	</el-table>
 </template>
 
@@ -15814,7 +16977,10 @@ This snippet shows how to dynamically change the expand icon's position in an El
 		</div>
 
 		<el-collapse :expand-icon-position="position">
-			<el-collapse-item title="Consistency" name="1">
+			<el-collapse-item
+				title="Consistency"
+				name="1"
+			>
 				<div>
 					Consistent with real life: in line with the process and logic of real
 					life, and comply with languages and habits that the users are used to;
@@ -15824,7 +16990,10 @@ This snippet shows how to dynamically change the expand icon's position in an El
 					as: design style, icons and texts, position of elements, etc.
 				</div>
 			</el-collapse-item>
-			<el-collapse-item title="Feedback" name="2">
+			<el-collapse-item
+				title="Feedback"
+				name="2"
+			>
 				<div>
 					Operation feedback: enable the users to clearly perceive their
 					operations by style updates and interactive effects;
@@ -15834,7 +17003,10 @@ This snippet shows how to dynamically change the expand icon's position in an El
 					elements of the page.
 				</div>
 			</el-collapse-item>
-			<el-collapse-item title="Efficiency" name="3">
+			<el-collapse-item
+				title="Efficiency"
+				name="3"
+			>
 				<div>
 					Simplify the process: keep operating process simple and intuitive;
 				</div>
@@ -15870,7 +17042,10 @@ Demonstrates how to use the `el-skeleton` component with throttle options to con
 
 ```vue
 <template>
-	<el-space direction="vertical" alignment="flex-start">
+	<el-space
+		direction="vertical"
+		alignment="flex-start"
+	>
 		<div>
 			<label style="margin-right: 16px">Switch Loading</label>
 			<el-switch v-model="loading" />
@@ -15882,9 +17057,15 @@ Demonstrates how to use the `el-skeleton` component with throttle options to con
 			:throttle="{leading: 500, trailing: 500, initVal: true}"
 		>
 			<template #template>
-				<el-skeleton-item variant="image" style="width: 240px; height: 265px" />
+				<el-skeleton-item
+					variant="image"
+					style="width: 240px; height: 265px"
+				/>
 				<div style="padding: 14px">
-					<el-skeleton-item variant="h3" style="width: 50%" />
+					<el-skeleton-item
+						variant="h3"
+						style="width: 50%"
+					/>
 					<div
 						style="
               display: flex;
@@ -15894,8 +17075,14 @@ Demonstrates how to use the `el-skeleton` component with throttle options to con
               height: 16px;
             "
 					>
-						<el-skeleton-item variant="text" style="margin-right: 16px" />
-						<el-skeleton-item variant="text" style="width: 30%" />
+						<el-skeleton-item
+							variant="text"
+							style="margin-right: 16px"
+						/>
+						<el-skeleton-item
+							variant="text"
+							style="width: 30%"
+						/>
 					</div>
 				</div>
 			</template>
@@ -15909,7 +17096,11 @@ Demonstrates how to use the `el-skeleton` component with throttle options to con
 						<span>Delicious hamburger</span>
 						<div class="bottom card-header">
 							<div class="time">{{ currentDate }}</div>
-							<el-button text class="button">operation button</el-button>
+							<el-button
+								text
+								class="button"
+								>operation button</el-button
+							>
 						</div>
 					</div>
 				</el-card>
@@ -15936,16 +17127,26 @@ Configures a drawer without a modal overlay using the modal attribute and enable
 
 ```vue
 <template>
-	<el-button plain @click="drawerVisible = true">
+	<el-button
+		plain
+		@click="drawerVisible = true"
+	>
 		Open the modal Drawer
 	</el-button>
 
-	<el-drawer v-model="drawerVisible" :modal="false" modal-penetrable>
+	<el-drawer
+		v-model="drawerVisible"
+		:modal="false"
+		modal-penetrable
+	>
 		<span>It's a modal Drawer</span>
 		<template #footer>
 			<div class="drawer-footer">
 				<el-button @click="drawerVisible = false">Cancel</el-button>
-				<el-button type="primary" @click="drawerVisible = false">
+				<el-button
+					type="primary"
+					@click="drawerVisible = false"
+				>
 					Confirm
 				</el-button>
 			</div>

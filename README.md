@@ -1,5 +1,9 @@
-<div style="display:flex;">
-  <img src="https://cdn.jsdelivr.net/gh/viarotel/resources@latest/logos/escrcpy.png" alt="viarotel-escrcpy" width="108px">
+<div style="display: flex">
+	<img
+		src="https://cdn.jsdelivr.net/gh/viarotel/resources@latest/logos/escrcpy.png"
+		alt="viarotel-escrcpy"
+		width="108px"
+	/>
 </div>
 
 # Escrcpy
@@ -12,8 +16,12 @@
 
 📱 Display and control your Android device graphically with scrcpy. [中文文档](https://github.com/viarotel-org/escrcpy/blob/main/README-CN.md)
 
-<div style="display:flex;">
-  <img src="https://cdn.jsdelivr.net/gh/viarotel/resources@latest/screenshots/escrcpy/en-US/overview.png?version=2.5.1" alt="viarotel-escrcpy" width="100%">
+<div style="display: flex">
+	<img
+		src="https://cdn.jsdelivr.net/gh/viarotel/resources@latest/screenshots/escrcpy/en-US/overview.png?version=2.5.1"
+		alt="viarotel-escrcpy"
+		width="100%"
+	/>
 </div>
 
 <sub>Escrcpy focuses on a stable integration foundation; some advanced features come from the private extension repository EscrcpyX and are offered on a paid basis.</sub>
@@ -84,17 +92,40 @@ This project owes its existence to the following open-source projects:
 
 If this project has helped you, consider buying me a coffee to keep me motivated for further improvements 😛
 
-<div style="display:flex;">
-  <img src="https://cdn.jsdelivr.net/gh/viarotel/resources@latest/donate/viarotel-wepay.png" alt="viarotel-wepay" width="30%">
-  <img src="https://cdn.jsdelivr.net/gh/viarotel/resources@latest/donate/viarotel-alipay.png" alt="viarotel-alipay" width="30%">
-  <a href="https://www.paypal.com/paypalme/viarotel" target="_blank" rel="noopener noreferrer">
-    <img src="https://cdn.jsdelivr.net/gh/viarotel/resources@latest/donate/viarotel-paypal.png" alt="viarotel-paypal" width="30%">
-  </a>
+<div style="display: flex">
+	<img
+		src="https://cdn.jsdelivr.net/gh/viarotel/resources@latest/donate/viarotel-wepay.png"
+		alt="viarotel-wepay"
+		width="30%"
+	/>
+	<img
+		src="https://cdn.jsdelivr.net/gh/viarotel/resources@latest/donate/viarotel-alipay.png"
+		alt="viarotel-alipay"
+		width="30%"
+	/>
+	<a
+		href="https://www.paypal.com/paypalme/viarotel"
+		target="_blank"
+		rel="noopener noreferrer"
+	>
+		<img
+			src="https://cdn.jsdelivr.net/gh/viarotel/resources@latest/donate/viarotel-paypal.png"
+			alt="viarotel-paypal"
+			width="30%"
+		/>
+	</a>
 </div>
 
 You can also support me through the AiFaDian platform.
 
-<div style="display:flex; justify-content:center;"> <a href="https://afdian.com/a/viarotel"><img width="200" src="https://pic1.afdiancdn.com/static/img/welcome/button-sponsorme.png" alt=""></a> </div>
+<div style="display: flex; justify-content: center">
+	<a href="https://afdian.com/a/viarotel"
+		><img
+			width="200"
+			src="https://pic1.afdiancdn.com/static/img/welcome/button-sponsorme.png"
+			alt=""
+	/></a>
+</div>
 
 ## Contributors
 

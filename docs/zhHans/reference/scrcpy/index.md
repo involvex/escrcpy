@@ -7,7 +7,13 @@ title: Scrcpy
 
 # scrcpy (v3.2)
 
-<img src="https://cdn.jsdelivr.net/gh/Genymobile/scrcpy@master/app/data/icon.svg" width="128" height="128" alt="scrcpy" align="right" />
+<img
+	src="https://cdn.jsdelivr.net/gh/Genymobile/scrcpy@master/app/data/icon.svg"
+	width="128"
+	height="128"
+	alt="scrcpy"
+	align="right"
+/>
 
 _发音为 "**scr**een **c**o**py**"_
 

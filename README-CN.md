@@ -1,5 +1,9 @@
-<div style="display:flex;">
-  <img src="https://cdn.jsdelivr.net/gh/viarotel/resources@latest/logos/escrcpy.png" alt="viarotel-escrcpy" width="108px">
+<div style="display: flex">
+	<img
+		src="https://cdn.jsdelivr.net/gh/viarotel/resources@latest/logos/escrcpy.png"
+		alt="viarotel-escrcpy"
+		width="108px"
+	/>
 </div>
 
 # Escrcpy
@@ -12,8 +16,12 @@
 
 📱 使用图形化的 Scrcpy 显示和控制您的 Android 设备[English Document](https://github.com/viarotel-org/escrcpy/blob/main/README.md)
 
-<div style="display:flex;">
-  <img src="https://cdn.jsdelivr.net/gh/viarotel/resources@latest/screenshots/escrcpy/zh-CN/overview.png?version=2.5.1" alt="viarotel-escrcpy" width="100%">
+<div style="display: flex">
+	<img
+		src="https://cdn.jsdelivr.net/gh/viarotel/resources@latest/screenshots/escrcpy/zh-CN/overview.png?version=2.5.1"
+		alt="viarotel-escrcpy"
+		width="100%"
+	/>
 </div>
 
 <sub>Escrcpy 专注于稳定的集成底座能力；部分高级特性源自私有扩展仓库 EscrcpyX，以付费形式提供。</sub>
@@ -84,17 +92,40 @@
 
 如果该项目帮到你的话，可以请我喝杯咖啡，让我更有精神完善该项目 😛
 
-<div style="display:flex;">
-  <img src="https://cdn.jsdelivr.net/gh/viarotel/resources@latest/donate/viarotel-wepay.png" alt="viarotel-wepay" width="30%">
-  <img src="https://cdn.jsdelivr.net/gh/viarotel/resources@latest/donate/viarotel-alipay.png" alt="viarotel-alipay" width="30%">
-  <a href="https://www.paypal.com/paypalme/viarotel" target="_blank" rel="noopener noreferrer">
-    <img src="https://cdn.jsdelivr.net/gh/viarotel/resources@latest/donate/viarotel-paypal.png" alt="viarotel-paypal" width="30%">
-  </a>
+<div style="display: flex">
+	<img
+		src="https://cdn.jsdelivr.net/gh/viarotel/resources@latest/donate/viarotel-wepay.png"
+		alt="viarotel-wepay"
+		width="30%"
+	/>
+	<img
+		src="https://cdn.jsdelivr.net/gh/viarotel/resources@latest/donate/viarotel-alipay.png"
+		alt="viarotel-alipay"
+		width="30%"
+	/>
+	<a
+		href="https://www.paypal.com/paypalme/viarotel"
+		target="_blank"
+		rel="noopener noreferrer"
+	>
+		<img
+			src="https://cdn.jsdelivr.net/gh/viarotel/resources@latest/donate/viarotel-paypal.png"
+			alt="viarotel-paypal"
+			width="30%"
+		/>
+	</a>
 </div>
 
 你还可以通过爱发电平台支持我。
 
-<div style="display:flex; justify-content:center;"> <a href="https://afdian.com/a/viarotel"><img width="200" src="https://pic1.afdiancdn.com/static/img/welcome/button-sponsorme.png" alt=""></a> </div>
+<div style="display: flex; justify-content: center">
+	<a href="https://afdian.com/a/viarotel"
+		><img
+			width="200"
+			src="https://pic1.afdiancdn.com/static/img/welcome/button-sponsorme.png"
+			alt=""
+	/></a>
+</div>
 
 ## 贡献者
 

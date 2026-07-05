@@ -1,5 +1,9 @@
-<div style="display:flex;">
-  <img src="https://cdn.jsdelivr.net/gh/viarotel/resources@latest/logos/escrcpy.png" alt="viarotel-escrcpy" width="108px">
+<div style="display: flex">
+	<img
+		src="https://cdn.jsdelivr.net/gh/viarotel/resources@latest/logos/escrcpy.png"
+		alt="viarotel-escrcpy"
+		width="108px"
+	/>
 </div>
 
 # Escrcpy
@@ -12,8 +16,12 @@
 
 📱 Отображайте и управляйте своим Android-устройством с помощью scrcpy в графическом режиме. [Документация на китайском](https://github.com/viarotel-org/escrcpy/blob/main/README-CN.md)
 
-<div style="display:flex;">
-  <img src="https://cdn.jsdelivr.net/gh/viarotel/resources@latest/screenshots/escrcpy/ru-RU/overview.png?version=2.5.1" alt="viarotel-escrcpy" width="100%">
+<div style="display: flex">
+	<img
+		src="https://cdn.jsdelivr.net/gh/viarotel/resources@latest/screenshots/escrcpy/ru-RU/overview.png?version=2.5.1"
+		alt="viarotel-escrcpy"
+		width="100%"
+	/>
 </div>
 
 <sub>Escrcpy сосредоточен на стабильной интеграционной основе; некоторые расширенные функции поступают из частного репозитория EscrcpyX и предоставляются на платной основе.</sub>
@@ -84,17 +92,40 @@
 
 Если этот проект помог вам, рассмотрите возможность купить мне кофе, чтобы мотивировать меня на дальнейшие улучшения 😛
 
-<div style="display:flex;">
-  <img src="https://cdn.jsdelivr.net/gh/viarotel/resources@latest/donate/viarotel-wepay.png" alt="viarotel-wepay" width="30%">
-  <img src="https://cdn.jsdelivr.net/gh/viarotel/resources@latest/donate/viarotel-alipay.png" alt="viarotel-alipay" width="30%">
-  <a href="https://www.paypal.com/paypalme/viarotel" target="_blank" rel="noopener noreferrer">
-    <img src="https://cdn.jsdelivr.net/gh/viarotel/resources@latest/donate/viarotel-paypal.png" alt="viarotel-paypal" width="30%">
-  </a>
+<div style="display: flex">
+	<img
+		src="https://cdn.jsdelivr.net/gh/viarotel/resources@latest/donate/viarotel-wepay.png"
+		alt="viarotel-wepay"
+		width="30%"
+	/>
+	<img
+		src="https://cdn.jsdelivr.net/gh/viarotel/resources@latest/donate/viarotel-alipay.png"
+		alt="viarotel-alipay"
+		width="30%"
+	/>
+	<a
+		href="https://www.paypal.com/paypalme/viarotel"
+		target="_blank"
+		rel="noopener noreferrer"
+	>
+		<img
+			src="https://cdn.jsdelivr.net/gh/viarotel/resources@latest/donate/viarotel-paypal.png"
+			alt="viarotel-paypal"
+			width="30%"
+		/>
+	</a>
 </div>
 
 Вы также можете поддержать меня через платформу AiFaDian.
 
-<div style="display:flex; justify-content:center;"> <a href="https://afdian.com/a/viarotel"><img width="200" src="https://pic1.afdiancdn.com/static/img/welcome/button-sponsorme.png" alt=""></a> </div>
+<div style="display: flex; justify-content: center">
+	<a href="https://afdian.com/a/viarotel"
+		><img
+			width="200"
+			src="https://pic1.afdiancdn.com/static/img/welcome/button-sponsorme.png"
+			alt=""
+	/></a>
+</div>
 
 ## Участники
 
