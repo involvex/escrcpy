@@ -272,6 +272,8 @@
     "useSupported": true,
     "useSwipe": true,
     "useScheduleStore": true,
+    "useCopilotStore": true,
+    "useTaskStore": true,
     "useTemplateRef": true,
     "useTemplateRefsList": true,
     "useTextDirection": true,

@@ -1,7 +1,7 @@
-import { Buffer } from 'node:buffer'
-import { sleep } from '@autoglm.js/shared'
-import { runAdbCommand } from './utils'
-import { ADBKeyboard } from './keyboard'
+import {sleep} from '@autoglm.js/shared'
+import {ADBKeyboard} from './keyboard'
+import {runAdbCommand} from './utils'
+import {Buffer} from 'node:buffer'
 
 /**
  * Get the current input method (IME) on the device.
@@ -9,19 +9,23 @@ import { ADBKeyboard } from './keyboard'
  * @returns The current IME identifier (e.g., "com.google.android.inputmethod.latin/.LatinIME")
  */
 async function getCurrentIme(deviceId?: string): Promise<string> {
-  try {
-    const result = await runAdbCommand(
-      deviceId,
-      ['shell', 'settings', 'get', 'secure', 'default_input_method'],
-    )
-    // Combine stdout and stderr, then trim
-    const ime = (result.stdout + result.stderr).trim()
-    return ime
-  }
-  catch (error) {
-    console.warn(`Failed to get current IME: ${error instanceof Error ? error.message : 'Unknown error'}`)
-    return ''
-  }
+	try {
+		const result = await runAdbCommand(deviceId, [
+			'shell',
+			'settings',
+			'get',
+			'secure',
+			'default_input_method',
+		])
+		// Combine stdout and stderr, then trim
+		const ime = (result.stdout + result.stderr).trim()
+		return ime
+	} catch (error) {
+		console.warn(
+			`Failed to get current IME: ${error instanceof Error ? error.message : 'Unknown error'}`,
+		)
+		return ''
+	}
 }
 
 /**
@@ -30,17 +34,18 @@ async function getCurrentIme(deviceId?: string): Promise<string> {
  * @param deviceId - Optional device ID for multi-device setups
  */
 async function setIme(ime: string, deviceId?: string): Promise<void> {
-  if (!ime) {
-    console.warn('setIme called with empty IME identifier, skipping')
-    return
-  }
+	if (!ime) {
+		console.warn('setIme called with empty IME identifier, skipping')
+		return
+	}
 
-  try {
-    await runAdbCommand(deviceId, ['shell', 'ime', 'set', ime])
-  }
-  catch (error) {
-    console.warn(`Failed to set IME to "${ime}": ${error instanceof Error ? error.message : 'Unknown error'}`)
-  }
+	try {
+		await runAdbCommand(deviceId, ['shell', 'ime', 'set', ime])
+	} catch (error) {
+		console.warn(
+			`Failed to set IME to "${ime}": ${error instanceof Error ? error.message : 'Unknown error'}`,
+		)
+	}
 }
 
 /**
@@ -48,35 +53,48 @@ async function setIme(ime: string, deviceId?: string): Promise<void> {
  * @returns The original IME identifier for later restoration
  */
 
-export async function detectAndSetAdbKeyboard(deviceId?: string): Promise<string> {
-  // Get current IME before making any changes
-  const currentIme = await getCurrentIme(deviceId)
+export async function detectAndSetAdbKeyboard(
+	deviceId?: string,
+): Promise<string> {
+	// Get current IME before making any changes
+	const currentIme = await getCurrentIme(deviceId)
 
-  try {
-    // Check if ADB Keyboard is installed
-    const checkResult = await ADBKeyboard.prototype.isKeyboardInstalled(deviceId)
+	try {
+		// Check if ADB Keyboard is installed
+		const checkResult =
+			await ADBKeyboard.prototype.isKeyboardInstalled(deviceId)
 
-    if (!checkResult.success) {
-      return currentIme
-    }
+		if (!checkResult.success) {
+			return currentIme
+		}
 
-    // Only switch if not already using ADB Keyboard
-    if (!currentIme.includes('com.android.adbkeyboard/.AdbIME')) {
-      await setIme('com.android.adbkeyboard/.AdbIME', deviceId)
-      // Wait for keyboard switch to take effect
-      await sleep(300)
+		// Only switch if not already using ADB Keyboard
+		if (!currentIme.includes('com.android.adbkeyboard/.AdbIME')) {
+			await setIme('com.android.adbkeyboard/.AdbIME', deviceId)
+			// Wait for keyboard switch to take effect
+			await sleep(300)
 
-      // Warm up the keyboard by typing an empty string
-      const encodedText = Buffer.from('', 'utf8').toString('base64')
-      await runAdbCommand(deviceId, ['shell', 'am', 'broadcast', '-a', 'ADB_INPUT_B64', '--es', 'msg', encodedText])
-    }
+			// Warm up the keyboard by typing an empty string
+			const encodedText = Buffer.from('', 'utf8').toString('base64')
+			await runAdbCommand(deviceId, [
+				'shell',
+				'am',
+				'broadcast',
+				'-a',
+				'ADB_INPUT_B64',
+				'--es',
+				'msg',
+				encodedText,
+			])
+		}
 
-    return currentIme
-  }
-  catch (error) {
-    console.warn(`Failed to set ADB Keyboard: ${error instanceof Error ? error.message : 'Unknown error'}`)
-    return currentIme
-  }
+		return currentIme
+	} catch (error) {
+		console.warn(
+			`Failed to set ADB Keyboard: ${error instanceof Error ? error.message : 'Unknown error'}`,
+		)
+		return currentIme
+	}
 }
 
 /**
@@ -84,27 +102,31 @@ export async function detectAndSetAdbKeyboard(deviceId?: string): Promise<string
  * @param ime - The IME identifier to restore
  * @param deviceId - Optional device ID for multi-device setups
  */
-export async function restoreKeyboard(ime: string, deviceId?: string): Promise<void> {
-  // Validate IME is not empty
-  if (!ime) {
-    console.warn('restoreKeyboard called with empty IME identifier, skipping')
-    return
-  }
+export async function restoreKeyboard(
+	ime: string,
+	deviceId?: string,
+): Promise<void> {
+	// Validate IME is not empty
+	if (!ime) {
+		console.warn('restoreKeyboard called with empty IME identifier, skipping')
+		return
+	}
 
-  // Don't restore if it's already the ADB Keyboard (no need to restore)
-  if (ime.includes('com.android.adbkeyboard/.AdbIME')) {
-    return
-  }
+	// Don't restore if it's already the ADB Keyboard (no need to restore)
+	if (ime.includes('com.android.adbkeyboard/.AdbIME')) {
+		return
+	}
 
-  try {
-    await setIme(ime, deviceId)
-    // Wait for keyboard restore to take effect
-    await sleep(300)
-  }
-  catch (error) {
-    // Silent failure - just log warning
-    console.warn(`Failed to restore keyboard: ${error instanceof Error ? error.message : 'Unknown error'}`)
-  }
+	try {
+		await setIme(ime, deviceId)
+		// Wait for keyboard restore to take effect
+		await sleep(300)
+	} catch (error) {
+		// Silent failure - just log warning
+		console.warn(
+			`Failed to restore keyboard: ${error instanceof Error ? error.message : 'Unknown error'}`,
+		)
+	}
 }
 
 /**
@@ -112,27 +134,41 @@ export async function restoreKeyboard(ime: string, deviceId?: string): Promise<v
  * Automatically saves and restores the original keyboard.
  */
 export async function typeText(text: string, deviceId?: string): Promise<void> {
-  // Save original keyboard and switch to ADB Keyboard
-  const originalIme = await detectAndSetAdbKeyboard(deviceId)
+	// Save original keyboard and switch to ADB Keyboard
+	const originalIme = await detectAndSetAdbKeyboard(deviceId)
 
-  try {
-    await clearText(deviceId)
-    // Encode and type the text
-    const encodedText = Buffer.from(text, 'utf8').toString('base64')
-    await runAdbCommand(deviceId, ['shell', 'am', 'broadcast', '-a', 'ADB_INPUT_B64', '--es', 'msg', encodedText])
-    await sleep(300)
-  }
-  finally {
-    // Always restore the original keyboard, even if typing failed
-    await restoreKeyboard(originalIme, deviceId)
-  }
+	try {
+		await clearText(deviceId)
+		// Encode and type the text
+		const encodedText = Buffer.from(text, 'utf8').toString('base64')
+		await runAdbCommand(deviceId, [
+			'shell',
+			'am',
+			'broadcast',
+			'-a',
+			'ADB_INPUT_B64',
+			'--es',
+			'msg',
+			encodedText,
+		])
+		await sleep(300)
+	} finally {
+		// Always restore the original keyboard, even if typing failed
+		await restoreKeyboard(originalIme, deviceId)
+	}
 }
 
 /**
  * Clear text by sending backspace keystrokes.
  */
 export async function clearText(deviceId?: string): Promise<void> {
-  // Send backspace key multiple times
-  await runAdbCommand(deviceId, ['shell', 'am', 'broadcast', '-a', 'ADB_CLEAR_TEXT'])
-  await sleep(300)
+	// Send backspace key multiple times
+	await runAdbCommand(deviceId, [
+		'shell',
+		'am',
+		'broadcast',
+		'-a',
+		'ADB_CLEAR_TEXT',
+	])
+	await sleep(300)
 }

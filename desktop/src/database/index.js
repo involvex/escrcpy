@@ -35,6 +35,9 @@ export { BaseStore, db, deleteDatabase, getDatabase, resetDatabase } from './cor
 // Hooks
 export { useLiveQuery, useLiveQueryWithDeps, useLiveQueryWithState } from './hooks/index.js'
 
+// Chat module
+export { chatMessageStore, useChatMessages } from './modules/chat/index.js'
+
 // Schedule module
 export {
   ActiveScheduleStatuses,

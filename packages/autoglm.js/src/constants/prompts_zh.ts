@@ -1,5 +1,5 @@
-import dayjs from 'dayjs'
 import 'dayjs/locale/zh-cn.js'
+import dayjs from 'dayjs'
 
 dayjs.locale('zh-cn')
 

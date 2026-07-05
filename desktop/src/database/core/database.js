@@ -24,6 +24,17 @@ const DB_VERSION = 5
  */
 const MODULE_SCHEMAS = {
   /**
+   * Chat module
+   * - id: Unique message identifier
+   * - deviceId: Device ID
+   * - role: Message role (user/assistant)
+   * - content: Message content
+   * - timestamp: Message timestamp
+   */
+  chat: {
+    chatMessages: '++id, deviceId, role, timestamp, [deviceId+timestamp]',
+  },
+  /**
    * Schedule module
    * - id: Unique schedule identifier
    * - deviceIds: Device IDs used by multi-device schedules
@@ -57,6 +68,8 @@ class AppDatabase extends Dexie {
 
     // Configure database version and schema
     this.version(DB_VERSION).stores(mergeSchemas())
+    // Chat module
+    this.chatMessages = this.table('chatMessages')
     // Schedule module
     this.schedules = this.table('schedules')
   }

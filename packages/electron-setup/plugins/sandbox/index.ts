@@ -1,63 +1,63 @@
-import type { ElectronApp, Plugin } from '../../main/types'
-import { SandboxManager } from './helper'
+import type {ElectronApp, Plugin} from '../../main/types'
+import {SandboxManager} from './helper'
 
 /**
  * Sandbox plugin options
  */
 export interface SandboxPluginOptions {
-  /**
-   * Custom service name for dependency injection
-   * @default 'plugin:sandbox'
-   */
-  serviceName?: string
+	/**
+	 * Custom service name for dependency injection
+	 * @default 'plugin:sandbox'
+	 */
+	serviceName?: string
 
-  /**
-   * Custom event name for configuration success
-   * @default 'sandbox:configured'
-   */
-  configuredEventName?: string
+	/**
+	 * Custom event name for configuration success
+	 * @default 'sandbox:configured'
+	 */
+	configuredEventName?: string
 
-  /**
-   * Custom event name for configuration error
-   * @default 'sandbox:config-error'
-   */
-  errorEventName?: string
+	/**
+	 * Custom event name for configuration error
+	 * @default 'sandbox:config-error'
+	 */
+	errorEventName?: string
 
-  /**
-   * Process module (for testing)
-   * @default process
-   */
-  processModule?: NodeJS.Process
+	/**
+	 * Process module (for testing)
+	 * @default process
+	 */
+	processModule?: NodeJS.Process
 }
 
 /**
  * Sandbox configuration result
  */
 export interface SandboxConfigResult {
-  /**
-   * Whether sandbox was disabled
-   */
-  disabled: boolean
+	/**
+	 * Whether sandbox was disabled
+	 */
+	disabled: boolean
 
-  /**
-   * Reason for the configuration decision
-   */
-  reason: string
+	/**
+	 * Reason for the configuration decision
+	 */
+	reason: string
 
-  /**
-   * Check results
-   */
-  checks?: Record<string, any>
+	/**
+	 * Check results
+	 */
+	checks?: Record<string, any>
 
-  /**
-   * Configuration duration in milliseconds
-   */
-  duration?: number
+	/**
+	 * Configuration duration in milliseconds
+	 */
+	duration?: number
 
-  /**
-   * Whether an error occurred
-   */
-  error?: boolean
+	/**
+	 * Whether an error occurred
+	 */
+	error?: boolean
 }
 
 /**
@@ -93,36 +93,36 @@ export interface SandboxConfigResult {
  * This plugin uses `priority: 'pre'` to ensure it loads very early,
  * before app.commandLine becomes immutable.
  */
-export const sandboxPlugin: Plugin<SandboxConfigResult, SandboxPluginOptions> = {
-  name: 'plugin:sandbox',
-  priority: 'pre', // Load very early (before app ready)
+export const sandboxPlugin: Plugin<SandboxConfigResult, SandboxPluginOptions> =
+	{
+		name: 'plugin:sandbox',
+		priority: 'pre', // Load very early (before app ready)
 
-  apply(mainApp: ElectronApp, options: SandboxPluginOptions = {}) {
-    const {
-      serviceName = '',
-      configuredEventName = 'sandbox:configured',
-      errorEventName = 'sandbox:config-error',
-      processModule = process,
-    } = options
+		apply(mainApp: ElectronApp, options: SandboxPluginOptions = {}) {
+			const {
+				serviceName = '',
+				configuredEventName = 'sandbox:configured',
+				errorEventName = 'sandbox:config-error',
+				processModule = process,
+			} = options
 
-    // Override plugin name if custom service name is provided
-    if (serviceName) {
-      sandboxPlugin.name = serviceName
-    }
+			// Override plugin name if custom service name is provided
+			if (serviceName) {
+				sandboxPlugin.name = serviceName
+			}
 
-    const manager = new SandboxManager({ processModule })
+			const manager = new SandboxManager({processModule})
 
-    try {
-      const result = manager.configureSandbox()
-      mainApp?.emit?.(configuredEventName, result)
-      return result
-    }
-    catch (error: any) {
-      console.error('[plugin:sandbox] Failed to configure sandbox:', error)
-      mainApp?.emit?.(errorEventName, error)
-      throw error
-    }
-  },
-}
+			try {
+				const result = manager.configureSandbox()
+				mainApp?.emit?.(configuredEventName, result)
+				return result
+			} catch (error: any) {
+				console.error('[plugin:sandbox] Failed to configure sandbox:', error)
+				mainApp?.emit?.(errorEventName, error)
+				throw error
+			}
+		},
+	}
 
 export default sandboxPlugin

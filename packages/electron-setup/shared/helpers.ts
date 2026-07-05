@@ -1,5 +1,5 @@
-import type { BrowserWindow } from 'electron'
-import type { ElectronApp } from '../main/types'
+import type {ElectronApp} from '../main/types'
+import type {BrowserWindow} from 'electron'
 import path from 'node:path'
 
 /**
@@ -10,54 +10,53 @@ import path from 'node:path'
  * @param options - Load options
  */
 export function loadPage(
-  win: BrowserWindow,
-  options: {
-    prefix?: string
-    query?: Record<string, any> | string
-    rendererDir?: string
-    devRendererDir?: string
-  },
+	win: BrowserWindow,
+	options: {
+		prefix?: string
+		query?: Record<string, any> | string
+		rendererDir?: string
+		devRendererDir?: string
+	},
 ) {
-  const { prefix = '', query, rendererDir = '', devRendererDir } = options || {}
+	const {prefix = '', query, rendererDir = '', devRendererDir} = options || {}
 
-  let stringifyQuery = ''
+	let stringifyQuery = ''
 
-  if (query) {
-    if (typeof query === 'string') {
-      stringifyQuery = query
-    }
-    else {
-      // Filter out empty values and build query string
-      const filteredQuery = Object.fromEntries(
-        Object.entries(query).filter(([_, value]) => {
-          if (value === null || value === undefined || value === '') {
-            return false
-          }
-          if (typeof value === 'object' && Object.keys(value).length === 0) {
-            return false
-          }
-          if (Array.isArray(value) && value.length === 0) {
-            return false
-          }
-          return true
-        }),
-      )
-      stringifyQuery = Object.keys(filteredQuery).length > 0
-        ? `?${new URLSearchParams(filteredQuery).toString()}`
-        : ''
-    }
-  }
+	if (query) {
+		if (typeof query === 'string') {
+			stringifyQuery = query
+		} else {
+			// Filter out empty values and build query string
+			const filteredQuery = Object.fromEntries(
+				Object.entries(query).filter(([_, value]) => {
+					if (value === null || value === undefined || value === '') {
+						return false
+					}
+					if (typeof value === 'object' && Object.keys(value).length === 0) {
+						return false
+					}
+					if (Array.isArray(value) && value.length === 0) {
+						return false
+					}
+					return true
+				}),
+			)
+			stringifyQuery =
+				Object.keys(filteredQuery).length > 0
+					? `?${new URLSearchParams(filteredQuery).toString()}`
+					: ''
+		}
+	}
 
-  // Use development server if available
-  if (devRendererDir) {
-    const url = `${devRendererDir.replace(/\/$/, '')}/${prefix}${stringifyQuery}`
-    win.loadURL(url)
-  }
-  else {
-    win.loadFile(path.join(rendererDir, prefix, 'index.html'), {
-      search: stringifyQuery,
-    })
-  }
+	// Use development server if available
+	if (devRendererDir) {
+		const url = `${devRendererDir.replace(/\/$/, '')}/${prefix}${stringifyQuery}`
+		win.loadURL(url)
+	} else {
+		win.loadFile(path.join(rendererDir, prefix, 'index.html'), {
+			search: stringifyQuery,
+		})
+	}
 }
 
 /**
@@ -78,64 +77,62 @@ export function loadPage(
  * const win = await resolveMainWindow(mainApp, { timeout: 5000 })
  */
 export async function resolveMainWindow(
-  mainApp?: ElectronApp,
-  options: {
-    timeout?: number
-    throwOnTimeout?: boolean
-  } = {},
+	mainApp?: ElectronApp,
+	options: {
+		timeout?: number
+		throwOnTimeout?: boolean
+	} = {},
 ): Promise<BrowserWindow | undefined> {
-  const { timeout = 10000, throwOnTimeout = false } = options
+	const {timeout = 10000, throwOnTimeout = false} = options
 
-  if (!mainApp) {
-    return undefined
-  }
+	if (!mainApp) {
+		return undefined
+	}
 
-  // Strategy 1: Use custom resolver (highest priority)
-  if (mainApp._mainWindowResolver) {
-    return await mainApp._mainWindowResolver(mainApp)
-  }
+	// Strategy 1: Use custom resolver (highest priority)
+	if (mainApp._mainWindowResolver) {
+		return await mainApp._mainWindowResolver(mainApp)
+	}
 
-  // Strategy 2: Check if main window is already registered
-  const existingWindow = mainApp.getMainWindow?.()
-  if (existingWindow) {
-    return existingWindow
-  }
+	// Strategy 2: Check if main window is already registered
+	const existingWindow = mainApp.getMainWindow?.()
+	if (existingWindow) {
+		return existingWindow
+	}
 
-  // Strategy 3: Wait for main window registration (handles timing issues)
-  // This ensures services can safely call resolveMainWindow during initialization
-  // even if the main window is created later
-  return new Promise((resolve, reject) => {
-    // Set timeout to avoid infinite waiting
-    const timeoutId = setTimeout(() => {
-      // Clean up event listener
-      if (mainApp.off) {
-        mainApp.off('main-window:registered', onWindowRegistered)
-      }
+	// Strategy 3: Wait for main window registration (handles timing issues)
+	// This ensures services can safely call resolveMainWindow during initialization
+	// even if the main window is created later
+	return new Promise((resolve, reject) => {
+		// Set timeout to avoid infinite waiting
+		const timeoutId = setTimeout(() => {
+			// Clean up event listener
+			if (mainApp.off) {
+				mainApp.off('main-window:registered', onWindowRegistered)
+			}
 
-      const message = `Timeout (${timeout}ms) waiting for main window registration`
-      if (throwOnTimeout) {
-        reject(new Error(message))
-      }
-      else {
-        console.warn(`[resolveMainWindow] ${message}`)
-        resolve(undefined)
-      }
-    }, timeout)
+			const message = `Timeout (${timeout}ms) waiting for main window registration`
+			if (throwOnTimeout) {
+				reject(new Error(message))
+			} else {
+				console.warn(`[resolveMainWindow] ${message}`)
+				resolve(undefined)
+			}
+		}, timeout)
 
-    if (mainApp.once) {
-      mainApp.once('main-window:registered', onWindowRegistered)
-    }
-    else {
-      clearTimeout(timeoutId)
-      resolve(undefined)
-    }
+		if (mainApp.once) {
+			mainApp.once('main-window:registered', onWindowRegistered)
+		} else {
+			clearTimeout(timeoutId)
+			resolve(undefined)
+		}
 
-    // Listen for main window registration event
-    function onWindowRegistered(win: BrowserWindow) {
-      clearTimeout(timeoutId)
-      resolve(win)
-    }
-  })
+		// Listen for main window registration event
+		function onWindowRegistered(win: BrowserWindow) {
+			clearTimeout(timeoutId)
+			resolve(win)
+		}
+	})
 }
 
 /**
@@ -144,8 +141,8 @@ export async function resolveMainWindow(
  * @returns Base64 encoded string
  */
 export function encodePayload(val: unknown): string {
-  const json = JSON.stringify(val ?? null)
-  return Buffer.from(json, 'utf8').toString('base64')
+	const json = JSON.stringify(val ?? null)
+	return Buffer.from(json, 'utf8').toString('base64')
 }
 
 /**
@@ -154,11 +151,10 @@ export function encodePayload(val: unknown): string {
  * @returns Decoded payload object
  */
 export function decodePayload<T = unknown>(val: string): T {
-  try {
-    const jsonString = Buffer.from(val, 'base64').toString('utf8')
-    return JSON.parse(jsonString) as T
-  }
-  catch (err) {
-    return null as unknown as T
-  }
+	try {
+		const jsonString = Buffer.from(val, 'base64').toString('utf8')
+		return JSON.parse(jsonString) as T
+	} catch (err) {
+		return null as unknown as T
+	}
 }

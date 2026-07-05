@@ -30,16 +30,16 @@ Function-friendly IPC helpers for Electron that mirror `ipcRenderer.invoke` / `i
 
 ```ts
 // renderer
-import { ipcxRenderer } from '@escrcpy/electron-ipcx/renderer'
+import {ipcxRenderer} from '@escrcpy/electron-ipcx/renderer'
 
 await ipcxRenderer.invoke('files:read', {
-  path: '/tmp/demo',
-  onChunk: (chunk: Uint8Array) => console.log(chunk.length),
+	path: '/tmp/demo',
+	onChunk: (chunk: Uint8Array) => console.log(chunk.length),
 })
 
 // manual disposal
-const { promise, dispose } = ipcxRenderer.invokeRetained('task:start', {
-  onProgress: (pct: number) => console.log(pct),
+const {promise, dispose} = ipcxRenderer.invokeRetained('task:start', {
+	onProgress: (pct: number) => console.log(pct),
 })
 await promise
 dispose()
@@ -47,13 +47,19 @@ dispose()
 
 ```ts
 // main
-import { ipcxMain } from '@escrcpy/electron-ipcx/main'
+import {ipcxMain} from '@escrcpy/electron-ipcx/main'
 
-ipcxMain.handle('files:read', async (_event, payload: { path: string, onChunk: (chunk: Uint8Array) => void }) => {
-  // call like a normal function; renderer receives the chunks
-  payload.onChunk(new Uint8Array([1, 2, 3]))
-  return 'done'
-})
+ipcxMain.handle(
+	'files:read',
+	async (
+		_event,
+		payload: {path: string; onChunk: (chunk: Uint8Array) => void},
+	) => {
+		// call like a normal function; renderer receives the chunks
+		payload.onChunk(new Uint8Array([1, 2, 3]))
+		return 'done'
+	},
+)
 ```
 
 ## Error handling & safety

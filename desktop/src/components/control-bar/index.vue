@@ -94,6 +94,7 @@ import { controlBarHeight } from '$control/configs/index.js'
 import Install from './install/index.vue'
 import Launch from './launch/index.vue'
 import Explorer from './explorer/index.vue'
+import Copilot from './copilot/index.vue'
 import Gnirehtet from './gnirehtet/index.vue'
 import Rotation from './rotation/index.vue'
 import Screenshot from './screenshot/index.vue'
@@ -110,6 +111,7 @@ export default {
     Rotation,
     Volume,
     Explorer,
+    Copilot,
     Terminal,
     Schedule,
   },
@@ -217,6 +219,12 @@ export default {
           label: 'device.control.file.name',
           fontIcon: 'i-bi-folder',
           component: 'Explorer',
+        },
+        copilot: {
+          label: 'device.control.copilot',
+          fontIcon: 'i-bi-cpu',
+          component: 'Copilot',
+          hiddenKeys: ['floating'],
         },
         terminal: {
           label: 'device.terminal.name',

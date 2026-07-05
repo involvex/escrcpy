@@ -32,21 +32,29 @@
  * ```
  */
 
-export { createDefaultStorage, ElectronStoreAdapter } from '../shared/adapters/storage-adapter'
+export {
+	createDefaultStorage,
+	ElectronStoreAdapter,
+} from '../shared/adapters/storage-adapter'
 
 // Helpers
-export { decodePayload, encodePayload, loadPage, resolveMainWindow } from '../shared/helpers'
+export {
+	decodePayload,
+	encodePayload,
+	loadPage,
+	resolveMainWindow,
+} from '../shared/helpers'
 
 // Storage interface and adapters
-export type { IStorage } from '../shared/interfaces'
+export type {IStorage} from '../shared/interfaces'
 // Browser window template
-export { createBrowserWindow, TemplateBrowserWindow } from '../shared/template'
+export {createBrowserWindow, TemplateBrowserWindow} from '../shared/template'
 
 // Core app and plugin system
-export { createElectronApp, useElectronApp } from './app'
+export {createElectronApp, useElectronApp} from './app'
 
 // Type exports
 export type * from './types'
 
 // Window manager
-export { createWindowManager, useWindowContext } from './window'
+export {createWindowManager, useWindowContext} from './window'

@@ -22,7 +22,11 @@ import {
   windowIPCPlugin,
 } from '@escrcpy/electron-setup/plugins'
 
-import { browserWindowHeight, browserWindowWidth, getLogoPath } from './configs/index.js'
+import {
+  browserWindowHeight,
+  browserWindowWidth,
+  getLogoPath,
+} from './configs/index.js'
 import { getAppBackgroundColor } from './helpers/index.js'
 
 import {
@@ -39,6 +43,7 @@ import {
 
 import {
   controlModule,
+  copilotModule,
   explorerModule,
   mainModule,
   scheduleModule,
@@ -75,6 +80,7 @@ mainApp.use(launchService)
 mainApp.use(shortcutsService)
 
 mainApp.use(controlModule)
+mainApp.use(copilotModule)
 mainApp.use(explorerModule)
 mainApp.use(terminalModule)
 mainApp.use(scheduleModule)

@@ -7,7 +7,7 @@ import { camelCase, cloneDeep, keyBy } from 'lodash-es'
  */
 export function sleep(time = 500) {
   return new Promise((resolve) => {
-    setTimeout(() => resolve(true), time)
+    setTimeout(resolve, time, true)
   })
 }
 

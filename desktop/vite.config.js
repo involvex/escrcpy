@@ -20,7 +20,8 @@ const alias = {
   $electron: resolve('electron'),
   $control: resolve('pages/control'),
   $explorer: resolve('pages/explorer'),
-  $terminal: resolve('pages/terminal')
+  $copilot: resolve('pages/copilot'),
+  $terminal: resolve('pages/terminal'),
 }
 
 function mergeCommon(config, { command = '' } = {}) {
@@ -35,6 +36,7 @@ function mergeCommon(config, { command = '' } = {}) {
             'sharp',
             'i18next-fs-backend',
             '@lydell/node-pty',
+            'autoglm.js',
           ],
         },
       },
@@ -55,6 +57,7 @@ export default function (args) {
             main: resolve('index.html'),
             control: resolve('pages/control/index.html'),
             explorer: resolve('pages/explorer/index.html'),
+            copilot: resolve('pages/copilot/index.html'),
             terminal: resolve('pages/terminal/index.html'),
           },
         },

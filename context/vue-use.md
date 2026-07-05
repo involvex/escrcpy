@@ -12,7 +12,7 @@ pnpm install
 pnpm dev
 ```
 
---------------------------------
+---
 
 ### Setup and Usage of useAuth
 
@@ -22,71 +22,26 @@ Demonstrates how to initialize Firebase, get the auth instance, and use the useA
 
 ```vue
 <script setup lang="ts">
-import { 
-useAuth
- } from '@vueuse/firebase/useAuth'
-import { 
-initializeApp
- } from 'firebase/app'
-import { 
-getAuth
-,
-GoogleAuthProvider
-,
-signInWithPopup
- } from 'firebase/auth'
+import {getAuth, GoogleAuthProvider, signInWithPopup} from 'firebase/auth'
+import {useAuth} from '@vueuse/firebase/useAuth'
+import {initializeApp} from 'firebase/app'
 
-const 
-app
- =
-initializeApp
-({ /* config */ })
-const 
-auth
- =
-getAuth
-(
-app
-)
-const { 
-isAuthenticated
-,
-user
- } =
-useAuth
-(
-auth
-)
+const app = initializeApp({/* config */})
+const auth = getAuth(app)
+const {isAuthenticated, user} = useAuth(auth)
 
-const 
-signIn
- =
-() =>
-signInWithPopup
-(
-auth
-, new
-GoogleAuthProvider
-())
+const signIn = () => signInWithPopup(auth, new GoogleAuthProvider())
 </script>
 
 <template>
-  <pre v-if="
-isAuthenticated
-">{{ 
-user
- }}</pre>
-  <div v-else>
-    <button @click="
-signIn
-">
-      Sign In with Google
-    </button>
-  </div>
+	<pre v-if="isAuthenticated">{{ user }}</pre>
+	<div v-else>
+		<button @click="signIn">Sign In with Google</button>
+	</div>
 </template>
 ```
 
---------------------------------
+---
 
 ### Installation
 
@@ -94,13 +49,14 @@ Source: https://vueuse.org/electron/README
 
 Install the @vueuse/electron package along with electron itself.
 
-```APIDOC
+````APIDOC
 ## Install
 
 ```bash
 npm i @vueuse/electron electron
-```
-```
+````
+
+````
 
 --------------------------------
 
@@ -120,11 +76,11 @@ export default {
 setup
 (
 props
-, { 
+, {
 emit
  })
 {
-    const 
+    const
 data
  =
 useVModel
@@ -134,7 +90,7 @@ props
 emit
 )
 
-    
+
 console
 .
 log
@@ -143,7 +99,7 @@ data
 .
 value
 ) // props.data
-    
+
 data
 .
 value
@@ -151,9 +107,9 @@ value
   },
 }
 
-```
+````
 
---------------------------------
+---
 
 ### Basic Usage Example
 
@@ -161,7 +117,7 @@ Source: https://vueuse.org/core/useFileDialog
 
 A simple example demonstrating how to use `useFileDialog` to open a file dialog for image files.
 
-```APIDOC
+````APIDOC
 ## Example: Basic File Dialog
 
 ### Description
@@ -205,8 +161,9 @@ onCancel(() => {
     </ul>
   </div>
 </template>
-```
-```
+````
+
+````
 
 --------------------------------
 
@@ -218,9 +175,9 @@ Example of a buffer input.
 
 ```text
 new ArrayBuffer(1024)
-```
+````
 
---------------------------------
+---
 
 ### Install useQRCode dependency
 
@@ -232,7 +189,7 @@ Install the required qrcode package before using the integration.
 npm i qrcode@^1
 ```
 
---------------------------------
+---
 
 ### Install @vueuse/math
 
@@ -244,7 +201,7 @@ Use this command to install the math extension along with the core VueUse librar
 npm i @vueuse/math @vueuse/core
 ```
 
---------------------------------
+---
 
 ### Install Sortable.js
 
@@ -256,7 +213,7 @@ Install the necessary Sortable.js library using npm.
 npm i sortablejs@^1
 ```
 
---------------------------------
+---
 
 ### Install @vueuse/rxjs
 
@@ -268,7 +225,7 @@ Install the package and its peer dependency using npm.
 npm i @vueuse/rxjs rxjs
 ```
 
---------------------------------
+---
 
 ### Usage Example
 
@@ -276,7 +233,7 @@ Source: https://vueuse.org/math/logicAnd
 
 Example demonstrating how to use the logicAnd function with `whenever`.
 
-```APIDOC
+````APIDOC
 ## Usage Example
 
 ### Description
@@ -304,11 +261,13 @@ whenever(logicAnd(a, b), () => {
 })
 
 // To make the console.log appear, you would need to set 'a.value = true' and 'b.value = true'
-```
+````
 
 ### Response
+
 N/A
-```
+
+````
 
 --------------------------------
 
@@ -366,8 +325,9 @@ const openSpecific = () => {
     </ul>
   </div>
 </template>
-```
-```
+````
+
+````
 
 --------------------------------
 
@@ -379,9 +339,9 @@ Install the focus-trap library, which is a peer dependency for useFocusTrap.
 
 ```bash
 npm i focus-trap@^7
-```
+````
 
---------------------------------
+---
 
 ### Install change-case
 
@@ -393,7 +353,7 @@ Install the change-case package as a dependency.
 npm i change-case@^5
 ```
 
---------------------------------
+---
 
 ### Use useWindowSize in Vue Script Setup
 
@@ -403,15 +363,15 @@ Import and use the `useWindowSize` composable in your Vue script setup to get re
 
 ```vue
 <script setup lang="ts">
-import { 
+import {
 useWindowSize
  } from '@vueuse/core'
 
-const { 
+const {
 width
 ,
 height
- } = 
+ } =
 useWindowSize
 ()
 </script>
@@ -420,10 +380,10 @@ useWindowSize
   <
 div
 >
-    Width: {{ 
+    Width: {{
 width
  }}
-    Height: {{ 
+    Height: {{
 height
  }}
   </
@@ -432,7 +392,7 @@ div
 </template>
 ```
 
---------------------------------
+---
 
 ### Install @vueuse/integrations
 
@@ -444,7 +404,7 @@ Install the @vueuse/integrations package using npm.
 npm i @vueuse/integrations
 ```
 
---------------------------------
+---
 
 ### Start and Preview Screen Share Stream
 
@@ -454,55 +414,34 @@ Demonstrates how to use useDisplayMedia to start a screen share stream and previ
 
 ```vue
 <script setup lang="ts">
-import { 
-useDisplayMedia
- } from '@vueuse/core'
-import { 
-useTemplateRef
- } from 'vue'
+import {useDisplayMedia} from '@vueuse/core'
+import {useTemplateRef} from 'vue'
 
-const { 
-stream
-,
-start
- } = 
-useDisplayMedia
-()
+const {stream, start} = useDisplayMedia()
 
 // start streaming
 
-start
-()
+start()
 
-const 
-videoRef
- = 
-useTemplateRef
-('video')
+const videoRef = useTemplateRef('video')
 
-watchEffect
-(() => {
-  // preview on a video element
-  
-videoRef
-.value.srcObject = 
-stream
-.
-value
+watchEffect(() => {
+	// preview on a video element
 
+	videoRef.value.srcObject = stream.value
 })
 </script>
 
 <template>
-  <video 
-ref
-="
+	<video
+		ref="
 video
-" />
+"
+	/>
 </template>
 ```
 
---------------------------------
+---
 
 ### Install @vueuse/core and @vueuse/components
 
@@ -514,7 +453,7 @@ Install the necessary packages for using VueUse core functionalities and its com
 npm i @vueuse/core @vueuse/components
 ```
 
---------------------------------
+---
 
 ### Install NProgress
 
@@ -526,7 +465,7 @@ Install the required nprogress dependency.
 npm i nprogress@^0
 ```
 
---------------------------------
+---
 
 ### HTML Output for Custom Configuration
 
@@ -537,20 +476,20 @@ Shows the resulting HTML structure when using the custom configuration example.
 ```html
 <!--light-->
 <html>
-  <body color-scheme="light">
-    ...
-  </body>
+	<body color-scheme="light">
+		...
+	</body>
 </html>
 
 <!--dark-->
 <html>
-  <body color-scheme="dark">
-    ...
-  </body>
+	<body color-scheme="dark">
+		...
+	</body>
 </html>
 ```
 
---------------------------------
+---
 
 ### Initialize and commit manual ref history
 
@@ -559,57 +498,24 @@ Source: https://vueuse.org/core/useManualRefHistory
 Demonstrates basic setup using shallowRef and manual commit to record snapshots.
 
 ```typescript
-import { 
-useManualRefHistory
- } from '@vueuse/core'
-import { 
-shallowRef
- } from 'vue'
+import {useManualRefHistory} from '@vueuse/core'
+import {shallowRef} from 'vue'
 
-const 
-counter
- = 
-shallowRef
-(0)
-const { 
-history
-, 
-commit
-, 
-undo
-, 
-redo
- } = 
-useManualRefHistory
-(
-counter
-)
+const counter = shallowRef(0)
+const {history, commit, undo, redo} = useManualRefHistory(counter)
 
+counter.value += 1
 
-counter
-.
-value
- += 1
+commit()
 
-commit
-()
-
-
-console
-.
-log
-(
-history
-.
-value
-)
+console.log(history.value)
 /* [
   { snapshot: 1, timestamp: 1601912898062 },
   { snapshot: 0, timestamp: 1601912898061 }
 ] */
 ```
 
---------------------------------
+---
 
 ### Install VueUse Core
 
@@ -621,7 +527,7 @@ Install the core package via npm.
 npm i @vueuse/core
 ```
 
---------------------------------
+---
 
 ### useVModels - Options API Usage
 
@@ -629,7 +535,7 @@ Source: https://vueuse.org/core/usevmodels
 
 Illustrates how to integrate `useVModels` within Vue's Options API. This example shows how to access and modify props using `useVModels` within the `setup` function.
 
-```APIDOC
+````APIDOC
 ## useVModels - Options API
 
 ### Description
@@ -667,20 +573,24 @@ export default {
     foo.value = 'foo' // emit('update:foo', 'foo')
   },
 }
-```
+````
 
 ### Response
+
 #### Success Response (200)
+
 Provides reactive references for props that can be manipulated within the Options API setup.
 
 #### Response Example
+
 ```json
 {
-  "foo": "",
-  "bar": 0
+	"foo": "",
+	"bar": 0
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -718,8 +628,9 @@ const app = createApp(App)
 provideSSRWidth(500, app)
 
 app.mount('#app')
-```
-```
+````
+
+````
 
 --------------------------------
 
@@ -730,7 +641,7 @@ Source: https://vueuse.org/integrations/useSortable
 TypeScript example demonstrating the usage of `start`, `stop`, and `option` functions returned by `useSortable` for controlling and querying the Sortable instance.
 
 ```typescript
-const { 
+const {
 start
 ,
 stop
@@ -752,14 +663,14 @@ start
 
 option
 ('animation', 200) // set
-const 
+const
 animation
- = 
+ =
 option
 ('animation') // get
-```
+````
 
---------------------------------
+---
 
 ### useNProgress with Progress Percentage
 
@@ -767,7 +678,7 @@ Source: https://vueuse.org/integrations/useNProgress
 
 This example shows how to initialize and control the progress bar with a specific percentage.
 
-```APIDOC
+````APIDOC
 ## useNProgress with Progress Percentage
 
 ### Description
@@ -791,18 +702,21 @@ const { progress } = useNProgress(0.5)
 function done() {
   progress.value = 1.0
 }
-```
+````
 
 ### Response
+
 - **progress** (Ref<number | null | undefined>) - A ref that holds the current progress percentage.
 
 ### Response Example
+
 ```json
 {
-  "progress": 1.0
+	"progress": 1.0
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -814,19 +728,19 @@ Import and use the `useDocumentVisibility` composable in your script setup to ge
 
 ```vue
 <script setup lang="ts">
-import { 
+import {
 useDocumentVisibility
  } from '@vueuse/core'
 
-const 
+const
 visibility
- = 
+ =
 useDocumentVisibility
 ()
 </script>
-```
+````
 
---------------------------------
+---
 
 ### Install @vueuse/electron
 
@@ -838,7 +752,7 @@ Install the @vueuse/electron package along with electron itself to use its featu
 npm i @vueuse/electron electron
 ```
 
---------------------------------
+---
 
 ### useSortable Return Values (JavaScript)
 
@@ -848,7 +762,7 @@ JavaScript example illustrating how to use the `start`, `stop`, and `option` fun
 
 ```javascript
 'use strict'
-const { start, stop, option } = useSortable(el, list)
+const {start, stop, option} = useSortable(el, list)
 // Stop sorting
 stop()
 // Start sorting again
@@ -858,7 +772,7 @@ option('animation', 200) // set
 const animation = option('animation') // get
 ```
 
---------------------------------
+---
 
 ### useFuse Usage Example
 
@@ -866,7 +780,7 @@ Source: https://vueuse.org/integrations/useFuse
 
 A basic example demonstrating how to use the useFuse composable with a list of strings and a shallowRef for input.
 
-```APIDOC
+````APIDOC
 ## Usage
 
 ```ts
@@ -893,8 +807,9 @@ const { results } = useFuse(input, data)
  * { "item": "Jane Doe", "index": 2 }
  *
  */
-```
-```
+````
+
+````
 
 --------------------------------
 
@@ -944,7 +859,7 @@ stop()
 
 // Start/restart the timeout
 start()
-```
+````
 
 ### Response
 
@@ -959,11 +874,12 @@ start()
 
 ```json
 {
-  "ready": false,
-  "isPending": true
+	"ready": false,
+	"isPending": true
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -982,9 +898,9 @@ Example of the form state object used in the wizard demo.
   "carbonOffsetting": false,
   "payment": "credit-card"
 }
-```
+````
 
---------------------------------
+---
 
 ### Basic useSwipe Setup
 
@@ -994,23 +910,23 @@ Set up useSwipe to detect swipes on an element. Import useSwipe and useTemplateR
 
 ```vue
 <script setup lang="ts">
-import { 
+import {
 useSwipe
  } from '@vueuse/core'
-import { 
+import {
 useTemplateRef
  } from 'vue'
 
-const 
+const
 el
- = 
+ =
 useTemplateRef
 ('el')
-const { 
+const {
 isSwiping
-, 
+,
 direction
- } = 
+ } =
 useSwipe
 (
 el
@@ -1020,7 +936,7 @@ el
 <template>
   <
 div
- 
+
 ref
 ="
 el
@@ -1032,7 +948,7 @@ div>
 
 ```
 
---------------------------------
+---
 
 ### Basic usePointer Usage
 
@@ -1041,24 +957,12 @@ Source: https://vueuse.org/core/usePointer
 Import and use the `usePointer` function to get reactive references for pointer coordinates and pressure. No additional setup is required.
 
 ```typescript
-import {
-usePointer
-} from '@vueuse/core'
+import {usePointer} from '@vueuse/core'
 
-const { 
-x
-, 
-y
-, 
-pressure
-, 
-pointerType
- } = 
-usePointer
-()
+const {x, y, pressure, pointerType} = usePointer()
 ```
 
---------------------------------
+---
 
 ### Install universal-cookie
 
@@ -1070,7 +974,7 @@ Install the required dependency for useCookies.
 npm i universal-cookie@^7
 ```
 
---------------------------------
+---
 
 ### More Examples
 
@@ -1078,7 +982,7 @@ Source: https://vueuse.org/shared/until
 
 Provides various examples of using `until` with different matching conditions like `toBe`, `toMatch`, `changed`, `toBeTruthy`, `toBeNull`, and negation.
 
-```APIDOC
+````APIDOC
 ## More Examples
 
 ### Description
@@ -1117,15 +1021,19 @@ await until(ref).toBeTruthy()
 await until(ref).toBeNull()
 await until(ref).not.toBeNull()
 await until(ref).not.toBeTruthy()
-```
+````
 
 ### Response
+
 #### Success Response (200)
+
 N/A (This is a client-side composition function)
 
 #### Response Example
+
 N/A
-```
+
+````
 
 --------------------------------
 
@@ -1144,53 +1052,64 @@ Wrapper for `universal-cookie`. Provides a convenient way to access and modify c
 ### Install
 ```bash
 npm i universal-cookie@^7
-```
+````
 
 ### Usage
+
 #### Common Usage
+
 ```vue
 <script setup lang="ts">
-import { useCookies } from '@vueuse/integrations/useCookies'
+import {useCookies} from '@vueuse/integrations/useCookies'
 
 const cookies = useCookies(['locale'])
 </script>
 
 <template>
-  <div>
-    <strong>locale</strong>: {{ cookies.get('locale') }}
-    <hr>
-    <pre>{{ cookies.getAll() }}</pre>
-    <button @click="cookies.set('locale', 'ru-RU')">Russian</button>
-    <button @click="cookies.set('locale', 'en-US')">English</button>
-  </div>
+	<div>
+		<strong>locale</strong>: {{ cookies.get('locale') }}
+		<hr />
+		<pre>{{ cookies.getAll() }}</pre>
+		<button @click="cookies.set('locale', 'ru-RU')">Russian</button>
+		<button @click="cookies.set('locale', 'en-US')">English</button>
+	</div>
 </template>
 ```
 
 ### Options
+
 Access and modify cookies using vue composition-api.
 
 ```typescript
-const { get, getAll, set, remove, addChangeListener, removeChangeListener } = useCookies(['cookie-name'], {
-  doNotParse: false,
-  autoUpdateDependencies: false
-})
+const {get, getAll, set, remove, addChangeListener, removeChangeListener} =
+	useCookies(['cookie-name'], {
+		doNotParse: false,
+		autoUpdateDependencies: false,
+	})
 ```
 
 #### `dependencies` (optional)
+
 Let you optionally specify a list of cookie names your component depend on or that should trigger a re-render. If unspecified, it will render on every cookie change.
 
 #### `options` (optional)
-* `doNotParse` (boolean = false): do not convert the cookie into an object no matter what. **Passed as default value to`get`/`getAll` methods.**
-* `autoUpdateDependencies` (boolean = false): automatically add cookie names ever provided to `get` method. If **true** then you don't need to care about provided `dependencies`.
+
+- `doNotParse` (boolean = false): do not convert the cookie into an object no matter what. **Passed as default value to`get`/`getAll` methods.**
+- `autoUpdateDependencies` (boolean = false): automatically add cookie names ever provided to `get` method. If **true** then you don't need to care about provided `dependencies`.
 
 ### `cookies` (optional)
+
 Let you provide a `universal-cookie` instance (creates a new instance by default)
+
 > Info about methods available in the universal-cookie api docs
 
 ## `createCookies([req])`
+
 Create a `universal-cookie` instance using request (default is window.document.cookie) and returns `useCookies` function with provided universal-cookie instance
-* req (object): Node's http.IncomingMessage request object
-```
+
+- req (object): Node's http.IncomingMessage request object
+
+````
 
 --------------------------------
 
@@ -1201,85 +1120,85 @@ Source: https://vueuse.org/core/useAsyncState
 Provides a comprehensive example of available configuration options for useAsyncState.
 
 ```ts
-const { 
+const {
 state
  } = useAsyncState(promise, initialState, {
   // Execute immediately on creation (default: true)
-  
+
 immediate
 : true,
   // Delay before first execution in ms (default: 0)
-  
+
 delay
 : 0,
   // Reset state to initial before each execution (default: true)
-  
+
 resetOnExecute
 : true,
   // Use shallowRef for state (default: true)
-  
+
 shallow
 : true,
   // Throw errors instead of catching them (default: false)
-  
+
 throwError
 : false,
   // Called when promise resolves
-  
+
 onSuccess
 (
 data
 ) {
-    
+
 console
 .
 log
-('Success:', 
+('Success:',
 data
 )
   },
   // Called when promise rejects
-  
+
 onError
 (
 error
 ) {
-    
+
 console
 .
 error
-('Error:', 
+('Error:',
 error
 )
   },
 })
-```
+````
 
 ```js
 'use strict'
-const { state } = useAsyncState(promise, initialState, {
-  // Execute immediately on creation (default: true)
-  immediate: true,
-  // Delay before first execution in ms (default: 0)
-  delay: 0,
-  // Reset state to initial before each execution (default: true)
-  resetOnExecute: true,
-  // Use shallowRef for state (default: true)
-  shallow: true,
-  // Throw errors instead of catching them (default: false)
-  throwError: false,
-  // Called when promise resolves
-  onSuccess(data) {
-    console.log('Success:', data)
-  },
-  // Called when promise rejects
-  onError(error) {
-    console.error('Error:', error)
-  },
+const {state} = useAsyncState(promise, initialState, {
+	// Execute immediately on creation (default: true)
+	immediate: true,
+	// Delay before first execution in ms (default: 0)
+	delay: 0,
+	// Reset state to initial before each execution (default: true)
+	resetOnExecute: true,
+	// Use shallowRef for state (default: true)
+	shallow: true,
+	// Throw errors instead of catching them (default: false)
+	throwError: false,
+	// Called when promise resolves
+	onSuccess(data) {
+		console.log('Success:', data)
+	},
+	// Called when promise rejects
+	onError(error) {
+		console.error('Error:', error)
+	},
 })
 ```
 
---------------------------------
+---
 
 ### Basic useDropZone Setup
 
@@ -1296,13 +1215,13 @@ import {
   useTemplateRef
 } from 'vue'
 
-const 
+const
 dropZoneRef
- = 
+ =
 useTemplateRef
 ('dropZoneRef')
 
-function 
+function
 onDrop
 (
 files
@@ -1310,26 +1229,26 @@ files
   // called when files are dropped on zone
 }
 
-const { 
+const {
 isOverDropZone
- } = 
+ } =
 useDropZone
 (
 dropZoneRef
 , {
-  
+
 onDrop
 ,
   // specify the types of data to be received.
-  
+
 dataTypes
 : ['image/jpeg'],
   // control multi-file drop
-  
+
 multiple
 : true,
   // whether to prevent default behavior for unhandled events
-  
+
 preventDefaultForUnhandled
 : false,
 })
@@ -1338,7 +1257,7 @@ preventDefaultForUnhandled
 <template>
   <
 div
- 
+
 ref
 ="
 dropZoneRef
@@ -1351,7 +1270,7 @@ div
 
 ```
 
---------------------------------
+---
 
 ### Install Fuse.js
 
@@ -1367,7 +1286,7 @@ npm install fuse.js@^7
 yarn add fuse.js
 ```
 
---------------------------------
+---
 
 ### Install @vueuse/firebase
 
@@ -1379,7 +1298,7 @@ Install the package along with the required firebase dependency.
 npm i @vueuse/firebase firebase
 ```
 
---------------------------------
+---
 
 ### Basic useNow Usage
 
@@ -1388,18 +1307,12 @@ Source: https://vueuse.org/core/usenow
 Import and use the useNow function to get a reactive Date instance. No additional setup is required.
 
 ```typescript
-import {
-useNow
-} from '@vueuse/core'
+import {useNow} from '@vueuse/core'
 
-const
-now
-=
-useNow()
-
+const now = useNow()
 ```
 
---------------------------------
+---
 
 ### useAxios Basic Usage
 
@@ -1407,7 +1320,7 @@ Source: https://vueuse.org/integrations/useAxios
 
 Demonstrates the basic setup for useAxios to fetch data from a given URL.
 
-```APIDOC
+````APIDOC
 ## useAxios Basic Usage
 
 ### Description
@@ -1431,24 +1344,28 @@ None
 import { useAxios } from '@vueuse/integrations/useAxios'
 
 const { data, isFinished } = useAxios('/api/posts')
-```
+````
 
 ### Response
+
 #### Success Response (200)
+
 - **data** (Ref<T>) - Response data
 - **response** (Ref<AxiosResponse>) - Full axios response
 - **isFinished** (Ref<boolean>) - Request has completed (success or error)
 
 #### Response Example
+
 ```json
 {
-  "userId": 1,
-  "id": 1,
-  "title": "delectus aut autem",
-  "completed": false
+	"userId": 1,
+	"id": 1,
+	"title": "delectus aut autem",
+	"completed": false
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -1460,9 +1377,9 @@ Install the required peer dependency for useJwt.
 
 ```bash
 npm install jwt-decode@^4
-```
+````
 
---------------------------------
+---
 
 ### useBluetooth - Battery Level Example
 
@@ -1470,7 +1387,7 @@ Source: https://vueuse.org/core/useBluetooth
 
 An advanced example demonstrating how to read the battery level from a Bluetooth device and listen for changes using the useBluetooth composable.
 
-```APIDOC
+````APIDOC
 ## useBluetooth with Battery Service
 
 ### Description
@@ -1526,19 +1443,23 @@ const { stop } = watchPausable(isConnected, (newIsConnected) => {
   getBatteryLevels()
   stop()
 })
-```
+````
 
 ### Response
+
 #### Success Response (Battery Level Read)
+
 - **batteryPercent** (number | undefined) - The current battery percentage.
 
 #### Response Example
+
 ```json
 {
-  "batteryPercent": 85
+	"batteryPercent": 85
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -1556,7 +1477,7 @@ import {
   createDisposableDirective
 } from '@vueuse/shared'
 
-export const VDirective = 
+export const VDirective =
 createDisposableDirective({
   mounted(el, binding) {
     const value = binding.value
@@ -1564,14 +1485,14 @@ createDisposableDirective({
     if (typeof value === 'function') {
       // [`useMouse`](/core/useMouse/) event listener will be removed automatically when directive is unmounted
       const { x, y } = useMouse()
-      
+
       watch(x, val => value(val))
     }
   }
 })
-```
+````
 
---------------------------------
+---
 
 ### Wizard state example
 
@@ -1581,37 +1502,32 @@ Example of the internal state object managed by useStepper.
 
 ```json
 {
-  "steps": {
-    "user-information": {
-      "title": "User information"
-    },
-    "billing-address": {
-      "title": "Billing address"
-    },
-    "terms": {
-      "title": "Terms"
-    },
-    "payment": {
-      "title": "Payment"
-    }
-  },
-  "stepNames": [
-    "user-information",
-    "billing-address",
-    "terms",
-    "payment"
-  ],
-  "index": 0,
-  "current": {
-    "title": "User information"
-  },
-  "next": "billing-address",
-  "isFirst": true,
-  "isLast": false
+	"steps": {
+		"user-information": {
+			"title": "User information"
+		},
+		"billing-address": {
+			"title": "Billing address"
+		},
+		"terms": {
+			"title": "Terms"
+		},
+		"payment": {
+			"title": "Payment"
+		}
+	},
+	"stepNames": ["user-information", "billing-address", "terms", "payment"],
+	"index": 0,
+	"current": {
+		"title": "User information"
+	},
+	"next": "billing-address",
+	"isFirst": true,
+	"isLast": false
 }
 ```
 
---------------------------------
+---
 
 ### Basic Usage of useMousePressed
 
@@ -1620,18 +1536,12 @@ Source: https://vueuse.org/core/useMousePressed
 Import and use the `useMousePressed` function to get the reactive `pressed` state. No additional setup is required for basic mouse tracking.
 
 ```typescript
-import {
-useMousePressed
-} from '@vueuse/core'
+import {useMousePressed} from '@vueuse/core'
 
-const { 
-pressed
- } = 
-useMousePressed
-()
+const {pressed} = useMousePressed()
 ```
 
---------------------------------
+---
 
 ### Get Mouse Leave State
 
@@ -1640,16 +1550,12 @@ Source: https://vueuse.org/core/usepageleave
 Import and use the `usePageLeave` function to get a reactive boolean indicating if the mouse has left the page. No additional setup is required.
 
 ```typescript
-import {
-  usePageLeave
-} from '@vueuse/core'
+import {usePageLeave} from '@vueuse/core'
 
-const isLeft = 
-usePageLeave
-()
+const isLeft = usePageLeave()
 ```
 
---------------------------------
+---
 
 ### Usage Example
 
@@ -1657,7 +1563,7 @@ Source: https://vueuse.org/shared/createRef
 
 Demonstrates how to use the createRef function in both TypeScript and JavaScript.
 
-```APIDOC
+````APIDOC
 ## Usage
 
 ### TypeScript
@@ -1672,12 +1578,13 @@ const deepData = createRef(initialData, true)
 
 isShallow(shallowData) // true
 isShallow(deepData) // false
-```
+````
 
 ### JavaScript
+
 ```javascript
-import { createRef } from '@vueuse/core'
-import { isShallow } from 'vue'
+import {createRef} from '@vueuse/core'
+import {isShallow} from 'vue'
 
 const initialData = 1
 const shallowData = createRef(initialData)
@@ -1686,7 +1593,8 @@ const deepData = createRef(initialData, true)
 isShallow(shallowData) // true
 isShallow(deepData) // false
 ```
-```
+
+````
 
 --------------------------------
 
@@ -1706,9 +1614,9 @@ online
 =
 useOnline()
 
-```
+````
 
---------------------------------
+---
 
 ### Install Fuse.js with NPM
 
@@ -1720,7 +1628,7 @@ Install Fuse.js version 7 or higher as a peer dependency using NPM.
 npm install fuse.js@^7
 ```
 
---------------------------------
+---
 
 ### Install async-validator
 
@@ -1732,7 +1640,7 @@ Install the async-validator package, which is a peer dependency for useAsyncVali
 npm i async-validator@^4
 ```
 
---------------------------------
+---
 
 ### useWindowSize - Basic Usage
 
@@ -1740,7 +1648,7 @@ Source: https://vueuse.org/core/useWindowSize
 
 This snippet demonstrates the basic usage of the `useWindowSize` composable to get the reactive window width and height.
 
-```APIDOC
+````APIDOC
 ## useWindowSize - Basic Usage
 
 ### Description
@@ -1769,20 +1677,23 @@ const { width, height } = useWindowSize()
     Height: {{ height }}
   </div>
 </template>
-```
+````
 
 ### Response
+
 - **width** (ShallowRef<number>) - Reactive reference to the window's width.
 - **height** (ShallowRef<number>) - Reactive reference to the window's height.
 
 ### Response Example
+
 ```json
 {
-  "width": 1280,
-  "height": 800
+	"width": 1280,
+	"height": 800
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -1793,44 +1704,44 @@ Source: https://vueuse.org/core/useSpeechSynthesis
 Basic setup to access speech synthesis controls and state.
 
 ```typescript
-import { 
+import {
 useSpeechSynthesis
  } from '@vueuse/core'
 
 const {
-  
+
 isSupported
 ,
-  
+
 isPlaying
 ,
-  
+
 status
 ,
-  
+
 voiceInfo
 ,
-  
+
 utterance
 ,
-  
+
 error
 ,
-  
+
 stop
 ,
-  
+
 toggle
 ,
-  
+
 speak
 ,
-} = 
+} =
 useSpeechSynthesis
 ()
-```
+````
 
---------------------------------
+---
 
 ### useMin - Basic Usage with Multiple Arguments
 
@@ -1838,7 +1749,7 @@ Source: https://vueuse.org/math/useMin
 
 Demonstrates how to use `useMin` with multiple reactive number arguments.
 
-```APIDOC
+````APIDOC
 ## useMin with Multiple Arguments
 
 ### Description
@@ -1871,19 +1782,23 @@ const c = ref(2)
 
 const min = useMin(a, b, c)
 // min will be a Ref<1>
-```
+````
 
 ### Response
+
 #### Success Response
+
 - **min** (Ref<number>) - A computed ref containing the minimum value.
 
 #### Response Example
+
 ```json
 {
-  "min": 1
+	"min": 1
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -1903,12 +1818,12 @@ const {
   alpha,
   beta,
   gamma,
-} = 
+} =
 useDeviceOrientation
 ()
-```
+````
 
---------------------------------
+---
 
 ### useWebSocket Basic Usage
 
@@ -1916,7 +1831,7 @@ Source: https://vueuse.org/core/useWebSocket
 
 Demonstrates the basic setup for useWebSocket, including establishing a connection and accessing core properties like status, data, and control functions.
 
-```APIDOC
+````APIDOC
 ## useWebSocket Basic Usage
 
 ### Description
@@ -1943,10 +1858,12 @@ None
 import { useWebSocket } from '@vueuse/core'
 
 const { status, data, send, open, close, ws } = useWebSocket('ws://websocketurl')
-```
+````
 
 ### Response
+
 #### Success Response (Connection Established)
+
 - **data** (Ref<any>) - Latest received data
 - **status** (Ref<'OPEN' | 'CONNECTING' | 'CLOSED'>) - Connection status
 - **ws** (Ref<WebSocket>) - WebSocket instance
@@ -1955,17 +1872,19 @@ const { status, data, send, open, close, ws } = useWebSocket('ws://websocketurl'
 - **close** (Function) - Function to close the connection
 
 #### Response Example
+
 ```json
 {
-  "data": "Received message content",
-  "status": "OPEN",
-  "ws": "WebSocket object",
-  "send": "function",
-  "open": "function",
-  "close": "function"
+	"data": "Received message content",
+	"status": "OPEN",
+	"ws": "WebSocket object",
+	"send": "function",
+	"open": "function",
+	"close": "function"
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -1977,9 +1896,9 @@ Install the @vueuse/router package along with vue-router v5. Ensure you have npm
 
 ```bash
 npm i @vueuse/router vue-router@5
-```
+````
 
---------------------------------
+---
 
 ### Install axios dependency
 
@@ -1991,7 +1910,7 @@ Install the required axios package before using the integration.
 npm i axios@^1
 ```
 
---------------------------------
+---
 
 ### Install drauu dependency
 
@@ -2003,7 +1922,7 @@ Install the required drauu package before using the integration.
 npm i drauu@^0
 ```
 
---------------------------------
+---
 
 ### Basic Media Controls Setup
 
@@ -2025,15 +1944,15 @@ const
 video
 =
 useTemplateRef('video')
-const { 
+const {
 playing
-, 
+,
 currentTime
-, 
+,
 duration
-, 
+,
 volume
- } = 
+ } =
 useMediaControls
 (
 video
@@ -2047,12 +1966,12 @@ src
 
 onMounted
 (() => {
-  
+
 volume
 .
 value
  = 0.5
-  
+
 currentTime
 .
 value
@@ -2063,7 +1982,7 @@ value
 <template>
   <
 video
- 
+
 ref
 ="
 video
@@ -2083,9 +2002,9 @@ button
 >
   <
 span
->{{ 
+>{{
 currentTime
- }} / {{ 
+ }} / {{
 duration
  }}</
 span
@@ -2093,7 +2012,7 @@ span
 </template>
 ```
 
---------------------------------
+---
 
 ### Import and Use usePreferredDark
 
@@ -2102,18 +2021,12 @@ Source: https://vueuse.org/core/usePreferredDark
 Import the `usePreferredDark` composable and use it to get a reactive boolean indicating the user's dark theme preference. No additional setup is required.
 
 ```typescript
-import {
-usePreferredDark
-} from '@vueuse/core'
+import {usePreferredDark} from '@vueuse/core'
 
-const
-isDark
-=
-usePreferredDark
-()
+const isDark = usePreferredDark()
 ```
 
---------------------------------
+---
 
 ### Use useElementBounding in Script Setup
 
@@ -2123,51 +2036,23 @@ Import and use useElementBounding with useTemplateRef to get reactive bounding b
 
 ```vue
 <script setup lang="ts">
-import { 
-useElementBounding
- } from '@vueuse/core'
-import { 
-useTemplateRef
- } from 'vue'
+import {useElementBounding} from '@vueuse/core'
+import {useTemplateRef} from 'vue'
 
-const 
-el
- = 
-useTemplateRef
-('el')
-const { 
-x
-, 
-y
-, 
-top
-, 
-right
-, 
-bottom
-, 
-left
-, 
-width
-, 
-height
- } = 
-useElementBounding
-(
-el
-)
+const el = useTemplateRef('el')
+const {x, y, top, right, bottom, left, width, height} = useElementBounding(el)
 </script>
 
 <template>
-  <div 
-ref
-="
+	<div
+		ref="
 el
-" />
+"
+	/>
 </template>
 ```
 
---------------------------------
+---
 
 ### Use useTrunc for Reactive Truncation
 
@@ -2176,9 +2061,7 @@ Source: https://vueuse.org/math/useTrunc
 Import and use the useTrunc function with refs to get reactive truncated numbers. Ensure you have '@vueuse/math' installed.
 
 ```typescript
-import {
-  useTrunc
-} from '@vueuse/math'
+import {useTrunc} from '@vueuse/math'
 
 const value1 = ref(0.95)
 const value2 = ref(-2.34)
@@ -2186,7 +2069,7 @@ const result1 = useTrunc(value1) // 0
 const result2 = useTrunc(value2) // -2
 ```
 
---------------------------------
+---
 
 ### Initialize useRefHistory
 
@@ -2195,32 +2078,14 @@ Source: https://vueuse.org/core/userefhistory
 Basic setup for tracking a ref's history.
 
 ```typescript
-import { 
-useRefHistory
- } from '@vueuse/core'
-import { 
-shallowRef
- } from 'vue'
+import {useRefHistory} from '@vueuse/core'
+import {shallowRef} from 'vue'
 
-const 
-counter
- = 
-shallowRef
-(0)
-const { 
-history
-, 
-undo
-, 
-redo
- } = 
-useRefHistory
-(
-counter
-)
+const counter = shallowRef(0)
+const {history, undo, redo} = useRefHistory(counter)
 ```
 
---------------------------------
+---
 
 ### Initialize useFileSystemAccess
 
@@ -2229,53 +2094,25 @@ Source: https://vueuse.org/core/usefilesystemaccess
 Demonstrates the import and destructuring of the composable's state and methods.
 
 ```ts
-import { 
-useFileSystemAccess
- } from '@vueuse/core'
+import {useFileSystemAccess} from '@vueuse/core'
 
 const {
-  
-isSupported
-,
-  
-data
-,
-  
-file
-,
-  
-fileName
-,
-  
-fileMIME
-,
-  
-fileSize
-,
-  
-fileLastModified
-,
-  
-create
-,
-  
-open
-,
-  
-save
-,
-  
-saveAs
-,
-  
-updateData
-
-} = 
-useFileSystemAccess
-()
+	isSupported,
+	data,
+	file,
+	fileName,
+	fileMIME,
+	fileSize,
+	fileLastModified,
+	create,
+	open,
+	save,
+	saveAs,
+	updateData,
+} = useFileSystemAccess()
 ```
 
---------------------------------
+---
 
 ### Use native ref in script setup
 
@@ -2285,29 +2122,15 @@ When using <script setup>, native Vue ref is preferred as variables are automati
 
 ```vue
 <script setup lang="ts">
-import { 
-ref
- } from 'vue'
+import {ref} from 'vue'
 
-const 
-target
- = 
-ref
-<HTMLElement | null>(null)
+const target = ref<HTMLElement | null>(null)
 </script>
 
-<template>
-  <
-div
- 
-ref
-="
-target
-" />
-</template>
+<template>< div ref =" target " /></template>
 ```
 
---------------------------------
+---
 
 ### Install Fuse.js with Yarn
 
@@ -2319,7 +2142,7 @@ Install Fuse.js version 7 or higher as a peer dependency using Yarn.
 yarn add fuse.js
 ```
 
---------------------------------
+---
 
 ### Reactive Math.min Usage
 
@@ -2328,52 +2151,22 @@ Source: https://vueuse.org/math/usemin
 Examples demonstrating how to use useMin with arrays or multiple reactive arguments.
 
 ```typescript
-import { 
-useMin
- } from '@vueuse/math'
+import {useMin} from '@vueuse/math'
 
-const 
-array
- = 
-ref
-([1, 2, 3, 4])
-const 
-min
- = 
-useMin
-(
-array
-) // Ref<1>
+const array = ref([1, 2, 3, 4])
+const min = useMin(array) // Ref<1>
 ```
 
 ```typescript
-import { 
-useMin
- } from '@vueuse/math'
+import {useMin} from '@vueuse/math'
 
-const 
-a
- = 
-ref
-(1)
-const 
-b
- = 
-ref
-(3)
+const a = ref(1)
+const b = ref(3)
 
-const 
-min
- = 
-useMin
-(
-a
-, 
-b
-, 2) // Ref<1>
+const min = useMin(a, b, 2) // Ref<1>
 ```
 
---------------------------------
+---
 
 ### createReusableTemplate Usage (Options API)
 
@@ -2381,7 +2174,7 @@ Source: https://vueuse.org/core/createreusabletemplate
 
 Example showing how to integrate createReusableTemplate with Vue's Options API, requiring registration in the `components` option.
 
-```APIDOC
+````APIDOC
 ## createReusableTemplate Usage (Options API)
 
 ### Description
@@ -2422,15 +2215,18 @@ export default defineComponent({
 
   <ReuseTemplate :data="data" msg="The first usage" />
 </template>
-```
+````
 
 ### Response
+
 - `<DefineTemplate>`: Registers the template and renders nothing.
 - `<ReuseTemplate>`: Renders the template provided by `<DefineTemplate>`.
 
 ### Response Example
+
 N/A (Component rendering example.)
-```
+
+````
 
 --------------------------------
 
@@ -2459,8 +2255,9 @@ Renderless component version of the `useNow` composable.
     </button>
   </UseNow>
 </template>
-```
-```
+````
+
+````
 
 --------------------------------
 
@@ -2507,9 +2304,9 @@ POST
   "username": "johndoe",
   "email": "john.doe@example.com"
 }
-```
+````
 
---------------------------------
+---
 
 ### useDark - Basic Usage
 
@@ -2517,7 +2314,7 @@ Source: https://vueuse.org/core/useDark
 
 Demonstrates the basic setup of the useDark composable to enable reactive dark mode.
 
-```APIDOC
+````APIDOC
 ## useDark - Basic Usage
 
 ### Description
@@ -2541,17 +2338,20 @@ import { useDark, useToggle } from '@vueuse/core'
 
 const isDark = useDark()
 const toggleDark = useToggle(isDark)
-```
+````
 
 ### Response
+
 - **isDark** (WritableComputedRef<boolean>) - A reactive boolean indicating the current dark mode state.
 
 ### Response Example
+
 ```json
 // The 'isDark' ref will be true or false based on the current mode.
 // Example: true
 ```
-```
+
+````
 
 --------------------------------
 
@@ -2563,50 +2363,50 @@ Import specific functions from @vueuse/core and use them within a setup script.
 
 ```vue
 <script setup>
-import { 
+import {
 useLocalStorage
-, 
+,
 useMouse
-, 
+,
 usePreferredDark
  } from '@vueuse/core'
 
 // tracks mouse position
-const { 
+const {
 x
-, 
+,
 y
- } = 
+ } =
 useMouse
 ()
 
 // is user prefers dark theme
-const 
+const
 isDark
- = 
+ =
 usePreferredDark
 ()
 
 // persist state in localStorage
-const 
+const
 store
- = 
+ =
 useLocalStorage
 (
   'my-storage',
   {
-    
+
 name
 : 'Apple',
-    
+
 color
 : 'red',
   },
 )
 </script>
-```
+````
 
---------------------------------
+---
 
 ### useMin - Basic Usage with Array
 
@@ -2614,7 +2414,7 @@ Source: https://vueuse.org/math/useMin
 
 Demonstrates how to use `useMin` with a reactive array of numbers.
 
-```APIDOC
+````APIDOC
 ## useMin with Array
 
 ### Description
@@ -2644,19 +2444,23 @@ import { useMin } from '@vueuse/math'
 const array = ref([1, 2, 3, 4])
 const min = useMin(array)
 // min will be a Ref<1>
-```
+````
 
 ### Response
+
 #### Success Response
+
 - **min** (Ref<number>) - A computed ref containing the minimum value.
 
 #### Response Example
+
 ```json
 {
-  "min": 1
+	"min": 1
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -2671,21 +2475,21 @@ import {
 useAbs
 } from '@vueuse/math'
 
-const 
+const
 value
- = 
+ =
 ref
 (-23)
-const 
+const
 absoluteValue
- = 
+ =
 useAbs
 (
 value
 ) // Ref<23>
-```
+````
 
---------------------------------
+---
 
 ### Start Promise Execution
 
@@ -2694,13 +2498,7 @@ Source: https://vueuse.org/core/createtemplatepromise
 Invoking the start method to trigger the promise lifecycle.
 
 ```ts
-const 
-result
- = await 
-TemplatePromise
-.
-start
-()
+const result = await TemplatePromise.start()
 ```
 
 ```js
@@ -2708,7 +2506,7 @@ start
 const result = await TemplatePromise.start()
 ```
 
---------------------------------
+---
 
 ### Tailwind CSS Configuration Example
 
@@ -2719,16 +2517,16 @@ Demonstrates the expected HTML structure for Tailwind CSS dark mode.
 ```html
 <!--light-->
 <html>
-  ...
+	...
 </html>
 
 <!--dark-->
 <html class="dark">
-  ...
+	...
 </html>
 ```
 
---------------------------------
+---
 
 ### Provide SSR Width - Root Component Example
 
@@ -2736,7 +2534,7 @@ Source: https://vueuse.org/core/useSSRWidth
 
 Example of how to provide the SSR width within the root component of your Vue application.
 
-```APIDOC
+````APIDOC
 ## Provide SSR Width - Root Component
 
 ### Description
@@ -2763,8 +2561,9 @@ provideSSRWidth(500)
 <template>
   <!-- Your app content -->
 </template>
-```
-```
+````
+
+````
 
 --------------------------------
 
@@ -2775,24 +2574,24 @@ Source: https://vueuse.org/core/useWebWorker
 Basic setup for registering a Web Worker using a file path.
 
 ```typescript
-import { 
+import {
 useWebWorker
  } from '@vueuse/core'
 
-const { 
+const {
 data
-, 
+,
 post
-, 
+,
 terminate
-, 
+,
 worker
- } = 
+ } =
 useWebWorker
 ('/path/to/worker.js')
-```
+````
 
---------------------------------
+---
 
 ### useClamp - Basic Usage
 
@@ -2800,8 +2599,8 @@ Source: https://vueuse.org/math/useclamp
 
 Demonstrates the basic usage of useClamp with shallow refs for min and max values.
 
-```APIDOC
-## useClamp 
+````APIDOC
+## useClamp
 
 ### Description
 Reactively clamp a value between two other values.
@@ -2830,19 +2629,23 @@ import { shallowRef } from 'vue'
 const min = shallowRef(0)
 const max = shallowRef(10)
 const value = useClamp(0, min, max)
-```
+````
 
 ### Response
+
 #### Success Response (200)
+
 Returns a computed ref that clamps the input value.
 
 #### Response Example
+
 ```json
 {
-  "clampedValue": 5 
+	"clampedValue": 5
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -2875,7 +2678,7 @@ None
 ```typescript
 import { useStepper } from '@vueuse/core'
 
-const { 
+const {
   steps,
   stepNames,
   index,
@@ -2901,10 +2704,12 @@ const {
 
 // Access the step through `current`
 console.log(current.value) // 'billing-address'
-```
+````
 
 ### Response
+
 #### Success Response (200)
+
 This composable does not have a direct success response in the traditional API sense, as it's a client-side utility. The return value is an object containing reactive state and methods for managing the stepper.
 
 - **steps** (Ref<Array<string | number>>) - List of steps.
@@ -2928,27 +2733,21 @@ This composable does not have a direct success response in the traditional API s
 - **isAfter** (Function) - Checks if the current step is after the given step.
 
 #### Response Example
+
 ```json
 {
-  "steps": [
-    "billing-address",
-    "terms",
-    "payment"
-  ],
-  "stepNames": [
-    "billing-address",
-    "terms",
-    "payment"
-  ],
-  "index": 0,
-  "current": "billing-address",
-  "next": "terms",
-  "previous": undefined,
-  "isFirst": true,
-  "isLast": false
+	"steps": ["billing-address", "terms", "payment"],
+	"stepNames": ["billing-address", "terms", "payment"],
+	"index": 0,
+	"current": "billing-address",
+	"next": "terms",
+	"previous": undefined,
+	"isFirst": true,
+	"isLast": false
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -2964,13 +2763,15 @@ Fuse.js is a peer dependency for useFuse. Install it using npm or yarn.
 ### NPM
 ```bash
 npm install fuse.js@^7
-```
+````
 
 ### Yarn
+
 ```bash
 yarn add fuse.js
 ```
-```
+
+````
 
 --------------------------------
 
@@ -2982,13 +2783,13 @@ Import and use `useWindowFocus` in your Vue component's script setup to get a re
 
 ```vue
 <script setup lang="ts">
-import { 
+import {
 useWindowFocus
  } from '@vueuse/core'
 
-const 
+const
 focused
- = 
+ =
 useWindowFocus
 ()
 </script>
@@ -2996,15 +2797,15 @@ useWindowFocus
 <template>
   <
 div
->{{ 
+>{{
 focused
  }}</
 div
 >
 </template>
-```
+````
 
---------------------------------
+---
 
 ### useChangeCase with Options
 
@@ -3012,7 +2813,7 @@ Source: https://vueuse.org/integrations/useChangeCase
 
 Demonstrates how to use `useChangeCase` with custom options for further customization.
 
-```APIDOC
+````APIDOC
 ## useChangeCase with Options
 
 ### Description
@@ -3045,19 +2846,23 @@ changeCase.value // hello-World
 
 input.value = 'vue use'
 changeCase.value // vue-Use
-```
+````
 
 ### Response
+
 #### Success Response (200)
+
 `WritableComputedRef<string>` or `ComputedRef<string>` depending on input.
 
 #### Response Example
+
 ```json
 {
-  "example": "hello-World"
+	"example": "hello-World"
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -3108,10 +2913,12 @@ const { isSupported, notification, permissionGranted, show, close } = useWebNoti
 if (isSupported.value && permissionGranted.value) {
   show()
 }
-```
+````
 
 ### Response
+
 #### Success Response (Composable Return)
+
 - **isSupported** (ShallowRef<boolean>) - Indicates if the browser supports Web Notifications.
 - **notification** (ShallowRef<Notification | null>) - The Notification object.
 - **permissionGranted** (ShallowRef<boolean>) - Indicates if notification permissions are granted.
@@ -3122,7 +2929,8 @@ if (isSupported.value && permissionGranted.value) {
 - **onError** (EventHookOn<Event>) - Hook for the 'error' event.
 - **onClose** (EventHookOn<Event>) - Hook for the 'close' event.
 - **ensurePermissions** (function) - Function to explicitly request permissions.
-```
+
+````
 
 --------------------------------
 
@@ -3151,9 +2959,9 @@ useSubscription(
     )
     .subscribe(toObserver(count)), // same as ).subscribe(val => (count.value = val))
 )
-```
+````
 
---------------------------------
+---
 
 ### useBase64 - Basic Usage
 
@@ -3161,7 +2969,7 @@ Source: https://vueuse.org/core/usebase64
 
 Demonstrates the basic usage of useBase64 with a text input. It shows how to import the function and use it with a shallowRef.
 
-```APIDOC
+````APIDOC
 ## useBase64 - Basic Usage
 
 ### Description
@@ -3188,23 +2996,27 @@ import { shallowRef } from 'vue'
 const text = shallowRef('')
 
 const { base64, promise, execute } = useBase64(text)
-```
+````
 
 ### Response
+
 #### Success Response (200)
+
 - `base64` (ShallowRef<string>) - The resulting base64 string.
 - `promise` (ShallowRef<Promise<string>>) - The promise of the current transformation.
 - `execute` (Function) - Manually trigger the transformation.
 
 #### Response Example
+
 ```json
 {
-  "base64": "data:text/plain;base64,SGVsbG8sIFdvcmxkIQ==",
-  "promise": "Promise<string>",
-  "execute": "function"
+	"base64": "data:text/plain;base64,SGVsbG8sIFdvcmxkIQ==",
+	"promise": "Promise<string>",
+	"execute": "function"
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -3222,9 +3034,9 @@ get
 const a = ref(42)
 
 console.log(get(a)) // 42
-```
+````
 
---------------------------------
+---
 
 ### useNow - Basic Usage
 
@@ -3232,7 +3044,7 @@ Source: https://vueuse.org/core/useNow
 
 This snippet demonstrates the basic usage of the `useNow` composable to get a reactive Date instance.
 
-```APIDOC
+````APIDOC
 ## useNow
 
 ### Description
@@ -3256,8 +3068,9 @@ Reactive current Date instance.
 import { useNow } from '@vueuse/core'
 
 const now = useNow()
-```
-```
+````
+
+````
 
 --------------------------------
 
@@ -3269,9 +3082,9 @@ Requires idb-keyval as a peer dependency.
 
 ```bash
 npm install idb-keyval@^6
-```
+````
 
---------------------------------
+---
 
 ### Options API usage
 
@@ -3280,47 +3093,20 @@ Source: https://vueuse.org/core/usevmodel
 Implementation within the setup function of an Options API component.
 
 ```ts
-import { 
-useVModel
- } from '@vueuse/core'
+import {useVModel} from '@vueuse/core'
 
 export default {
-  
-setup
-(
-props
-, { 
-emit
- }) {
-    const 
-data
- = 
-useVModel
-(
-props
-, 'data', 
-emit
-)
+	setup(props, {emit}) {
+		const data = useVModel(props, 'data', emit)
 
-    
-console
-.
-log
-(
-data
-.
-value
-) // props.data
-    
-data
-.
-value
- = 'foo' // emit('update:data', 'foo')
-  },
+		console.log(data.value) // props.data
+
+		data.value = 'foo' // emit('update:data', 'foo')
+	},
 }
 ```
 
---------------------------------
+---
 
 ### Usage of injectLocal and provideLocal
 
@@ -3330,24 +3116,14 @@ Demonstrates how to provide a value locally and immediately inject it within the
 
 ```vue
 <script setup>
-import { 
-injectLocal
-, 
-provideLocal
- } from '@vueuse/core'
+import {injectLocal, provideLocal} from '@vueuse/core'
 
-
-provideLocal
-('MyInjectionKey', 1)
-const 
-injectedValue
- = 
-injectLocal
-('MyInjectionKey') // injectedValue === 1
+provideLocal('MyInjectionKey', 1)
+const injectedValue = injectLocal('MyInjectionKey') // injectedValue === 1
 </script>
 ```
 
---------------------------------
+---
 
 ### useFavicon Basic Usage
 
@@ -3355,7 +3131,7 @@ Source: https://vueuse.org/core/usefavicon
 
 This example demonstrates the basic usage of `useFavicon` to change the favicon to a static image.
 
-```APIDOC
+````APIDOC
 ## useFavicon
 
 ### Description
@@ -3383,7 +3159,7 @@ import { useFavicon } from '@vueuse/core'
 const icon = useFavicon()
 
 icon.value = 'dark.png' // change current icon
-```
+````
 
 ### Response
 
@@ -3397,10 +3173,11 @@ Returns a `Ref` that controls the favicon.
 
 ```json
 {
-  "icon": "dark.png"
+	"icon": "dark.png"
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -3437,15 +3214,17 @@ N/A
 import { usePreferredColorScheme } from '@vueuse/core'
 
 const preferredColor = usePreferredColorScheme()
-```
+````
 
 ### Response Example
+
 ```json
 {
-  "preferredColor": "dark"
+	"preferredColor": "dark"
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -3486,47 +3265,49 @@ GET
 import { useDevicesList } from '@vueuse/core'
 
 const { devices, videoInputs: cameras, audioInputs: microphones, audioOutputs: speakers } = useDevicesList()
-```
+````
 
 ### Response Example
+
 ```json
 {
-  "devices": [
-    {
-      "deviceId": "device-id-1",
-      "kind": "videoinput",
-      "label": "Camera 1",
-      "groupId": "group-id-1"
-    },
-    {
-      "deviceId": "device-id-2",
-      "kind": "audioinput",
-      "label": "Microphone 1",
-      "groupId": "group-id-2"
-    }
-  ],
-  "videoInputs": [
-    {
-      "deviceId": "device-id-1",
-      "kind": "videoinput",
-      "label": "Camera 1",
-      "groupId": "group-id-1"
-    }
-  ],
-  "audioInputs": [
-    {
-      "deviceId": "device-id-2",
-      "kind": "audioinput",
-      "label": "Microphone 1",
-      "groupId": "group-id-2"
-    }
-  ],
-  "audioOutputs": [],
-  "permissionGranted": true,
-  "ensurePermissions": "[Function: ensurePermissions]"
+	"devices": [
+		{
+			"deviceId": "device-id-1",
+			"kind": "videoinput",
+			"label": "Camera 1",
+			"groupId": "group-id-1"
+		},
+		{
+			"deviceId": "device-id-2",
+			"kind": "audioinput",
+			"label": "Microphone 1",
+			"groupId": "group-id-2"
+		}
+	],
+	"videoInputs": [
+		{
+			"deviceId": "device-id-1",
+			"kind": "videoinput",
+			"label": "Camera 1",
+			"groupId": "group-id-1"
+		}
+	],
+	"audioInputs": [
+		{
+			"deviceId": "device-id-2",
+			"kind": "audioinput",
+			"label": "Microphone 1",
+			"groupId": "group-id-2"
+		}
+	],
+	"audioOutputs": [],
+	"permissionGranted": true,
+	"ensurePermissions": "[Function: ensurePermissions]"
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -3540,11 +3321,11 @@ Configure the request method and other axios options when using useAxios. This e
 import {
 useAxios
 } from '@vueuse/integrations/useAxios'
-import 
+import
 axios
  from 'axios'
 
-const 
+const
 instance
  =
 axios
@@ -3555,20 +3336,20 @@ create
 : '/api',
 })
 
-const { 
+const {
 data
 ,
 isFinished
- } = 
+ } =
 useAxios
-('/posts', { 
+('/posts', {
 method
-: 'POST' }, 
+: 'POST' },
 instance
 )
-```
+````
 
---------------------------------
+---
 
 ### useMax - Reactive Maximum
 
@@ -3576,7 +3357,7 @@ Source: https://vueuse.org/math/usemax
 
 Demonstrates how to use useMax with an array of numbers to get a reactive maximum value.
 
-```APIDOC
+````APIDOC
 ## useMax (Array Input)
 
 ### Description
@@ -3606,19 +3387,23 @@ import { useMax } from '@vueuse/math'
 const array = ref([1, 2, 3, 4])
 const max = useMax(array)
 // max will be a Ref<4>
-```
+````
 
 ### Response
+
 #### Success Response
+
 - **max** (Ref<number>) - A Vue ref containing the maximum number from the input array.
 
 #### Response Example
+
 ```json
 {
-  "max": 4
+	"max": 4
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -3638,22 +3423,22 @@ useTransition(source, {
     // called after the transition ends
   },
 })
-```
+````
 
 ```javascript
 'use strict'
 useTransition(source, {
-  delay: 1000,
-  onStarted() {
-    // called after the transition starts
-  },
-  onFinished() {
-    // called after the transition ends
-  },
+	delay: 1000,
+	onStarted() {
+		// called after the transition starts
+	},
+	onFinished() {
+		// called after the transition ends
+	},
 })
 ```
 
---------------------------------
+---
 
 ### VueUse get() Type Declarations
 
@@ -3668,12 +3453,12 @@ These are the type declarations for the get() utility, showing how it handles re
 export declare function get<T>(ref: MaybeRef<T>): T
 
 export declare function get<T, K extends keyof T>(
-  ref: MaybeRef<T>,
-  key: K,
+	ref: MaybeRef<T>,
+	key: K,
 ): T[K]
 ```
 
---------------------------------
+---
 
 ### Usage of tryOnBeforeUnmount
 
@@ -3682,18 +3467,12 @@ Source: https://vueuse.org/shared/tryOnBeforeUnmount
 Import and execute the function within a component setup context.
 
 ```typescript
-import { 
-tryOnBeforeUnmount
- } from '@vueuse/core'
+import {tryOnBeforeUnmount} from '@vueuse/core'
 
-
-tryOnBeforeUnmount
-(() => {
-
-})
+tryOnBeforeUnmount(() => {})
 ```
 
---------------------------------
+---
 
 ### useAxios with Axios Instance
 
@@ -3701,7 +3480,7 @@ Source: https://vueuse.org/integrations/useAxios
 
 Shows how to use a pre-configured Axios instance with the useAxios composable.
 
-```APIDOC
+````APIDOC
 ## useAxios with Axios Instance
 
 ### Description
@@ -3730,23 +3509,27 @@ const instance = axios.create({
 })
 
 const { data, isFinished } = useAxios('/posts', instance)
-```
+````
 
 ### Response
+
 #### Success Response (200)
+
 - **data** (Ref<T>) - Response data
 - **isFinished** (Ref<boolean>) - Request has completed (success or error)
 
 #### Response Example
+
 ```json
 {
-  "userId": 1,
-  "id": 1,
-  "title": "delectus aut autem",
-  "completed": false
+	"userId": 1,
+	"id": 1,
+	"title": "delectus aut autem",
+	"completed": false
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -3758,38 +3541,38 @@ Demonstrates how to initialize a media stream and bind it to a video element usi
 
 ```vue
 <script setup lang="ts">
-import { 
+import {
 useUserMedia
  } from '@vueuse/core'
-import { 
+import {
 useTemplateRef
-, 
+,
 watchEffect
  } from 'vue'
 
-const { 
+const {
 stream
-, 
+,
 start
- } = 
+ } =
 useUserMedia
 ()
 
 start
 ()
 
-const 
+const
 videoRef
- = 
+ =
 useTemplateRef
 ('video')
 
 watchEffect
 (() => {
   // preview on a video element
-  
+
 videoRef
-.value.srcObject = 
+.value.srcObject =
 stream
 .
 value
@@ -3800,15 +3583,15 @@ value
 <template>
   <
 video
- 
+
 ref
 ="
 video
 " />
 </template>
-```
+````
 
---------------------------------
+---
 
 ### Initialize useDevicesList
 
@@ -3817,21 +3600,17 @@ Source: https://vueuse.org/core/useDevicesList
 Import and destructure the useDevicesList composable to get reactive lists of devices. Aliases can be used for clarity.
 
 ```typescript
-import {
-  useDevicesList
-} from '@vueuse/core'
+import {useDevicesList} from '@vueuse/core'
 
 const {
-  devices,
-  videoInputs: cameras,
-  audioInputs: microphones,
-  audioOutputs: speakers,
-} = 
-useDevicesList
-()
+	devices,
+	videoInputs: cameras,
+	audioInputs: microphones,
+	audioOutputs: speakers,
+} = useDevicesList()
 ```
 
---------------------------------
+---
 
 ### onStartTyping Function
 
@@ -3839,7 +3618,7 @@ Source: https://vueuse.org/core/onStartTyping
 
 Registers a callback that fires when the user starts typing on non-editable elements.
 
-```APIDOC
+````APIDOC
 ## onStartTyping
 
 ### Description
@@ -3857,11 +3636,13 @@ import { onStartTyping } from '@vueuse/core'
 onStartTyping((event) => {
   console.log('User started typing:', event.key)
 })
-```
+````
 
 ### Response
+
 - **void** - This function does not return a value.
-```
+
+````
 
 --------------------------------
 
@@ -3876,9 +3657,9 @@ Example of a JWT header structure.
   "alg": "HS256",
   "typ": "JWT"
 }
-```
+````
 
---------------------------------
+---
 
 ### useTimeout with Callback
 
@@ -3886,7 +3667,7 @@ Source: https://vueuse.org/shared/useTimeout
 
 This example shows how to provide a callback function that executes once the timeout completes.
 
-```APIDOC
+````APIDOC
 ## useTimeout with Callback
 
 ### Description
@@ -3921,7 +3702,7 @@ useTimeout(1000, {
     console.log('Timeout completed!')
   },
 })
-```
+````
 
 ### Response
 
@@ -3935,7 +3716,7 @@ None (The primary effect is the execution of the callback function).
 // No direct JSON response, but 'Timeout completed!' will be logged to the console.
 ```
 
---------------------------------
+---
 
 ### useTransition with Delay and Callbacks
 
@@ -3943,7 +3724,7 @@ Source: https://vueuse.org/core/useTransition
 
 Configures a delay before the transition starts and defines `onStarted` and `onFinished` callbacks.
 
-```APIDOC
+````APIDOC
 ## GET /api/products
 
 ### Description
@@ -3987,8 +3768,9 @@ GET
     }
   ]
 }
-```
-```
+````
+
+````
 
 --------------------------------
 
@@ -4020,21 +3802,25 @@ None
 ### Request Example
 ```typescript
 const { event, data } = useEventSource('https://event-source-url', ['notice', 'update'])
-```
+````
 
 ### Response
+
 #### Success Response (200)
+
 - **event** (Ref<string | null>) - The name of the received event.
 - **data** (Ref<string | null>) - The data associated with the received event.
 
 #### Response Example
+
 ```json
 {
-  "event": "update",
-  "data": "User profile updated"
+	"event": "update",
+	"data": "User profile updated"
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -4046,9 +3832,9 @@ Use this command to add the VueUse AI Agent Skills to your project. This is the 
 
 ```bash
 npx skills add vueuse/skills
-```
+````
 
---------------------------------
+---
 
 ### Initialize useSpeechRecognition
 
@@ -4057,35 +3843,13 @@ Source: https://vueuse.org/core/useSpeechRecognition
 Basic setup for accessing speech recognition state and control methods.
 
 ```typescript
-import { 
-useSpeechRecognition
- } from '@vueuse/core'
+import {useSpeechRecognition} from '@vueuse/core'
 
-const {
-  
-isSupported
-,
-  
-isListening
-,
-  
-isFinal
-,
-  
-result
-,
-  
-start
-,
-  
-stop
-,
-} = 
-useSpeechRecognition
-()
+const {isSupported, isListening, isFinal, result, start, stop} =
+	useSpeechRecognition()
 ```
 
---------------------------------
+---
 
 ### Configure custom clone functions
 
@@ -4094,60 +3858,32 @@ Source: https://vueuse.org/core/useManualRefHistory
 Provides examples for using structuredClone, lodash-es, or klona for deep cloning.
 
 ```typescript
-import { 
-useManualRefHistory
- } from '@vueuse/core'
+import {useManualRefHistory} from '@vueuse/core'
 
-const 
-refHistory
- = 
-useManualRefHistory
-(target, { 
-clone
-: 
-structuredClone
- })
+const refHistory = useManualRefHistory(target, {
+	clone: structuredClone,
+})
 ```
 
 ```typescript
-import { 
-useManualRefHistory
- } from '@vueuse/core'
-import { 
-cloneDeep
- } from 'lodash-es'
+import {useManualRefHistory} from '@vueuse/core'
+import {cloneDeep} from 'lodash-es'
 
-const 
-refHistory
- = 
-useManualRefHistory
-(target, { 
-clone
-: 
-cloneDeep
- })
+const refHistory = useManualRefHistory(target, {
+	clone: cloneDeep,
+})
 ```
 
 ```typescript
-import { 
-useManualRefHistory
- } from '@vueuse/core'
-import { 
-klona
- } from 'klona'
+import {useManualRefHistory} from '@vueuse/core'
+import {klona} from 'klona'
 
-const 
-refHistory
- = 
-useManualRefHistory
-(target, { 
-clone
-: 
-klona
- })
+const refHistory = useManualRefHistory(target, {
+	clone: klona,
+})
 ```
 
---------------------------------
+---
 
 ### useBase64 - Basic Usage
 
@@ -4155,7 +3891,7 @@ Source: https://vueuse.org/core/useBase64
 
 Demonstrates the basic usage of the useBase64 composable with a text input.
 
-```APIDOC
+````APIDOC
 ## useBase64 - Basic Usage
 
 ### Description
@@ -4184,17 +3920,19 @@ import { shallowRef } from 'vue'
 const text = shallowRef('')
 
 const { base64, promise, execute } = useBase64(text)
-```
+````
 
 ### Response Example
+
 ```json
 {
-  "base64": "data:text/plain;base64,SGVsbG8sIFdvcmxkIQ==",
-  "promise": "Promise<string>",
-  "execute": "() => Promise<string>"
+	"base64": "data:text/plain;base64,SGVsbG8sIFdvcmxkIQ==",
+	"promise": "Promise<string>",
+	"execute": "() => Promise<string>"
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -4205,20 +3943,20 @@ Source: https://vueuse.org/integrations/useAxios
 Perform a simple GET request using the useAxios hook.
 
 ```typescript
-import { 
+import {
 useAxios
  } from '@vueuse/integrations/useAxios'
 
-const { 
+const {
 data
-, 
+,
 isFinished
- } = 
+ } =
 useAxios
 ('/api/posts')
-```
+````
 
---------------------------------
+---
 
 ### Lazy Initialization
 
@@ -4226,7 +3964,7 @@ Source: https://vueuse.org/core/computedasync
 
 Configure `computedAsync` to start resolving only on first access.
 
-```APIDOC
+````APIDOC
 ## computedAsync - Lazy Loading
 
 ### Description
@@ -4248,8 +3986,9 @@ const userInfo = computedAsync(
   null,
   { lazy: true, evaluating } // Options object
 )
-```
-```
+````
+
+````
 
 --------------------------------
 
@@ -4285,17 +4024,19 @@ Reactive current Date instance with pause and resume controls.
 import { useNow } from '@vueuse/core'
 
 const { now, pause, resume } = useNow({ controls: true })
-```
+````
 
 ### Response Example
+
 ```json
 {
-  "now": "2023-10-27T10:00:00.000Z",
-  "pause": "function",
-  "resume": "function"
+	"now": "2023-10-27T10:00:00.000Z",
+	"pause": "function",
+	"resume": "function"
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -4350,9 +4091,9 @@ function resetList() {
     Reset
   </button>
 </template>
-```
+````
 
---------------------------------
+---
 
 ### useBluetooth - Default Usage
 
@@ -4360,7 +4101,7 @@ Source: https://vueuse.org/core/useBluetooth
 
 Demonstrates the basic setup and usage of the useBluetooth composable to request and connect to a Bluetooth device.
 
-```APIDOC
+````APIDOC
 ## useBluetooth
 
 ### Description
@@ -4392,14 +4133,17 @@ import { useBluetooth } from '@vueuse/core'
 const { isSupported, isConnected, device, requestDevice, server, error } = useBluetooth({
   acceptAllDevices: true,
 })
-```
+````
 
 ### Response
+
 #### Success Response (Connection Established)
+
 - **device** (BluetoothDevice) - The connected device object.
 - **server** (BluetoothRemoteGATTServer) - The GATT server for the device.
 
 #### Response Example
+
 ```json
 {
   "isConnected": true,
@@ -4407,7 +4151,8 @@ const { isSupported, isConnected, device, requestDevice, server, error } = useBl
   "server": { ...BluetoothRemoteGATTServer object... }
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -4452,22 +4197,27 @@ const root = useMath('sqrt', num) // Ref<1.4142135623730951>
 num.value = 4
 
 console.log(root.value) // 2
-```
+````
 
 ### Response
+
 #### Success Response (200)
+
 Returns a `Ref` containing the result of the Math operation.
 
 #### Response Example
+
 ```json
 {
-  "example": "8" 
+	"example": "8"
 }
 ```
 
 #### Error Handling
+
 N/A
-```
+
+````
 
 --------------------------------
 
@@ -4478,18 +4228,18 @@ Source: https://vueuse.org/core/useNow
 Import and initialize the useNow composable to get a reactive Date instance.
 
 ```ts
-import { 
+import {
 useNow
  } from '@vueuse/core'
 
-const 
+const
 now
- = 
+ =
 useNow
 ()
-```
+````
 
---------------------------------
+---
 
 ### Equivalent of templateRef with Vue's ref in <script setup>
 
@@ -4499,27 +4249,21 @@ When using `<script setup>` in Vue, the native `ref` function provides the same 
 
 ```vue
 <script setup lang="ts">
-import { 
-ref
- } from 'vue'
+import {ref} from 'vue'
 
-const 
-target
- = 
-ref
-<HTMLElement | null>(null)
+const target = ref<HTMLElement | null>(null)
 </script>
 
 <template>
-  <div 
-ref
-="
+	<div
+		ref="
 target
-" />
+"
+	/>
 </template>
 ```
 
---------------------------------
+---
 
 ### Handling Initial Load with useStorageAsync
 
@@ -4527,7 +4271,7 @@ Source: https://vueuse.org/core/usestorageasync
 
 Explains how to manage scenarios where the initial value from async storage might be empty before it's fully loaded. It shows how to wait for the storage to be ready.
 
-```APIDOC
+````APIDOC
 ## GET /api/users/{id}
 
 ### Description
@@ -4561,8 +4305,9 @@ GET
   "email": "john.doe@example.com",
   "createdAt": "2023-10-27T10:00:00Z"
 }
-```
-```
+````
+
+````
 
 --------------------------------
 
@@ -4587,9 +4332,9 @@ const output = useTransition(source, {
   duration: 1000,
   easing: TransitionPresets.easeInOutCubic,
 })
-```
+````
 
---------------------------------
+---
 
 ### Usage Example
 
@@ -4597,7 +4342,7 @@ Source: https://vueuse.org/shared/refAutoReset
 
 Demonstrates how to use the refAutoReset function in a Vue component to manage a message that resets after a delay.
 
-```APIDOC
+````APIDOC
 ## Usage
 
 ```typescript
@@ -4609,10 +4354,11 @@ function setMessage() {
   // here the value will change to 'message has set' but after 1000ms, it will change to 'default message'
   message.value = 'message has set'
 }
-```
+````
 
 **Info:** You can reassign the entire object to trigger updates after making deep mutations to the inner value. Learn more about shallow refs →
-```
+
+````
 
 --------------------------------
 
@@ -4627,7 +4373,7 @@ import {
 useCounter
 } from '@vueuse/core'
 
-const { 
+const {
 count
 ,
 inc
@@ -4637,16 +4383,16 @@ dec
 set
 ,
 reset
-} = 
+} =
 useCounter
-(1, { 
+(1, {
 min
-: 0, 
+: 0,
 max
 : 16 })
-```
+````
 
---------------------------------
+---
 
 ### Install Nuxt Module
 
@@ -4662,7 +4408,7 @@ npx nuxt@latest module add vueuse
 npm i -D @vueuse/nuxt @vueuse/core
 ```
 
---------------------------------
+---
 
 ### useWindowSize - Options
 
@@ -4670,7 +4416,7 @@ Source: https://vueuse.org/core/useWindowSize
 
 This snippet details the available options for configuring the `useWindowSize` composable.
 
-```APIDOC
+````APIDOC
 ## useWindowSize - Options
 
 ### Description
@@ -4713,21 +4459,25 @@ const { width, height } = useWindowSize({
     Height: {{ height }}
   </div>
 </template>
-```
+````
 
 ### Response
+
 - **width** (ShallowRef<number>) - Reactive reference to the window's width.
 - **height** (ShallowRef<number>) - Reactive reference to the window's height.
 
 ### Response Example
+
 (Depends on the options and window state)
+
 ```json
 {
-  "width": 1280,
-  "height": 800
+	"width": 1280,
+	"height": 800
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -4755,12 +4505,12 @@ fetchData
 Promise
 (
 resolve
-=> 
+=>
 setTimeout
 (
 resolve
 , 1000))
-  
+
 count
 .
 value
@@ -4768,11 +4518,11 @@ value
 }
 
 // Only trigger after last fetch is done
-const { 
+const {
 isActive
-, 
+,
 pause
-, 
+,
 resume
  } =
 useTimeoutPoll
@@ -4780,9 +4530,9 @@ useTimeoutPoll
 fetchData
 , 1000)
 
-```
+````
 
---------------------------------
+---
 
 ### Display JWT Payload
 
@@ -4792,12 +4542,12 @@ Example of a JWT payload structure.
 
 ```json
 {
-  "sub": "1234567890",
-  "iat": 1516239022
+	"sub": "1234567890",
+	"iat": 1516239022
 }
 ```
 
---------------------------------
+---
 
 ### transition Manual Execution
 
@@ -4805,7 +4555,7 @@ Source: https://vueuse.org/core/useTransition
 
 Demonstrates manually triggering a transition using the `transition` function and how to cancel it.
 
-```APIDOC
+````APIDOC
 ## POST /api/orders
 
 ### Description
@@ -4846,21 +4596,25 @@ POST
     "country": "USA"
   }
 }
-```
+````
 
 ### Response
+
 #### Success Response (201)
+
 - **orderId** (integer) - The unique identifier for the newly created order.
 - **status** (string) - The status of the order (e.g., 'pending', 'processing').
 
 #### Response Example
+
 ```json
 {
-  "orderId": 5001,
-  "status": "pending"
+	"orderId": 5001,
+	"status": "pending"
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -4878,25 +4632,25 @@ import {
   useTemplateRef
 } from 'vue'
 
-const el = 
+const el =
 useTemplateRef('el')
-const color1 = 
+const color1 =
 useCssVar('--color', el)
 
-const elv = 
+const elv =
 useTemplateRef('elv')
 const key = ref('--color')
-const colorVal = 
+const colorVal =
 useCssVar(key, elv)
 
-const someEl = 
+const someEl =
 useTemplateRef('someEl')
-const color2 = 
-useCssVar('--color', someEl, { 
+const color2 =
+useCssVar('--color', someEl, {
 initialValue: '#eee' })
-```
+````
 
---------------------------------
+---
 
 ### Use usePrecision Hook
 
@@ -4905,25 +4659,21 @@ Source: https://vueuse.org/math/useprecision
 Demonstrates how to use the usePrecision hook with different rounding methods. Ensure you have '@vueuse/math' installed and imported.
 
 ```typescript
-import {
-usePrecision
-} from '@vueuse/math'
+import {usePrecision} from '@vueuse/math'
 
 const value = ref(3.1415)
 const result = usePrecision(value, 2) // 3.14
 
-const ceilResult = usePrecision(value, 2,
-{
-math: 'ceil'
+const ceilResult = usePrecision(value, 2, {
+	math: 'ceil',
 }) // 3.15
 
-const floorResult = usePrecision(value, 3,
-{
-math: 'floor'
+const floorResult = usePrecision(value, 3, {
+	math: 'floor',
 }) // 3.141
 ```
 
---------------------------------
+---
 
 ### Basic Usage of useRouteQuery
 
@@ -4932,49 +4682,22 @@ Source: https://vueuse.org/router/useRouteQuery
 Demonstrates basic initialization, default values, and type transformation for route query parameters.
 
 ```typescript
-import { 
-useRouteQuery
- } from '@vueuse/router'
+import {useRouteQuery} from '@vueuse/router'
 
-const 
-search
- = 
-useRouteQuery
-('search')
+const search = useRouteQuery('search')
 
-const 
-search
- = 
-useRouteQuery
-('search', 'foo') // or with a default value
+const search = useRouteQuery('search', 'foo') // or with a default value
 
-const 
-page
- = 
-useRouteQuery
-('page', '1', { 
-transform
-: 
-Number
- }) // or transforming value
+const page = useRouteQuery('page', '1', {
+	transform: Number,
+}) // or transforming value
 
+console.log(search.value) // route.query.search
 
-console
-.
-log
-(
-search
-.
-value
-) // route.query.search
-
-search
-.
-value
- = 'foobar' // router.replace({ query: { search: 'foobar' } })
+search.value = 'foobar' // router.replace({ query: { search: 'foobar' } })
 ```
 
---------------------------------
+---
 
 ### useTimestamp - Basic Usage
 
@@ -4982,8 +4705,8 @@ Source: https://vueuse.org/core/useTimestamp
 
 Import and use the useTimestamp composable to get a reactive timestamp.
 
-```APIDOC
-## useTimestamp 
+````APIDOC
+## useTimestamp
 
 ### Description
 Reactive current timestamp.
@@ -5010,22 +4733,25 @@ N/A (Composable)
   "offset": 1000,
   "controls": true
 }
-```
+````
 
 ### Response
+
 - **timestamp** (ShallowRef<number>) - The reactive timestamp.
 - **pause** (function) - Function to pause timestamp updates (only if `controls` is true).
 - **resume** (function) - Function to resume timestamp updates (only if `controls` is true).
 
 ### Response Example
+
 ```json
 {
-  "timestamp": 1776449480915,
-  "pause": "function",
-  "resume": "function"
+	"timestamp": 1776449480915,
+	"pause": "function",
+	"resume": "function"
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -5065,23 +4791,27 @@ console.log(cloned.value.key) // Output: 'value'
 
 sync()
 console.log(cloned.value.key) // Output: 'manual'
-```
+````
 
 ### Response
+
 #### Success Response
+
 - **cloned** (Ref<T>) - A ref containing the cloned data, updated only when `sync()` is called.
 - **isModified** (Ref<boolean>) - A ref indicating if the cloned data has been modified compared to the source.
 - **sync** (function) - A function to manually synchronize the cloned data with the source.
 
 #### Response Example
+
 ```json
 {
-  "cloned": {"key": "manual"},
-  "isModified": true,
-  "sync": "[Function: sync]"
+	"cloned": {"key": "manual"},
+	"isModified": true,
+	"sync": "[Function: sync]"
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -5119,9 +4849,9 @@ GET
   "username": "johndoe",
   "email": "john.doe@example.com"
 }
-```
+````
 
---------------------------------
+---
 
 ### useInfiniteScroll - Basic Usage
 
@@ -5129,7 +4859,7 @@ Source: https://vueuse.org/core/useInfiniteScroll
 
 Demonstrates the basic implementation of useInfiniteScroll for loading more data as the user scrolls.
 
-```APIDOC
+````APIDOC
 ## POST /api/users
 
 ### Description
@@ -5152,23 +4882,27 @@ POST
   "name": "John Doe",
   "email": "john.doe@example.com"
 }
-```
+````
 
 ### Response
+
 #### Success Response (201)
+
 - **id** (string) - The unique identifier of the newly created user.
 - **name** (string) - The name of the user.
 - **email** (string) - The email address of the user.
 
 #### Response Example
+
 ```json
 {
-  "id": "user-123",
-  "name": "John Doe",
-  "email": "john.doe@example.com"
+	"id": "user-123",
+	"name": "John Doe",
+	"email": "john.doe@example.com"
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -5213,10 +4947,12 @@ const { x, y, top, right, bottom, left, width, height } = useElementBounding(el)
 <template>
   <div ref="el" />
 </template>
-```
+````
 
 ### Response
+
 #### Success Response (Composable Return)
+
 - **x** (ShallowRef<number>) - The x-coordinate of the element's bounding box.
 - **y** (ShallowRef<number>) - The y-coordinate of the element's bounding box.
 - **top** (ShallowRef<number>) - The top coordinate of the element's bounding box.
@@ -5228,19 +4964,21 @@ const { x, y, top, right, bottom, left, width, height } = useElementBounding(el)
 - **update** (() => void) - A function to manually trigger an update of the bounding box.
 
 #### Response Example
+
 ```json
 {
-  "x": 10,
-  "y": 20,
-  "top": 20,
-  "right": 150,
-  "bottom": 120,
-  "left": 10,
-  "width": 140,
-  "height": 100
+	"x": 10,
+	"y": 20,
+	"top": 20,
+	"right": 150,
+	"bottom": 120,
+	"left": 10,
+	"width": 140,
+	"height": 100
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -5251,7 +4989,7 @@ Source: https://vueuse.org/shared/tryOnUnmounted
 Import and execute the function within a component setup.
 
 ```typescript
-import { 
+import {
 tryOnUnmounted
  } from '@vueuse/core'
 
@@ -5260,9 +4998,9 @@ tryOnUnmounted
 (() => {
 
 })
-```
+````
 
---------------------------------
+---
 
 ### useAxios with Config Options
 
@@ -5270,7 +5008,7 @@ Source: https://vueuse.org/integrations/useAxios
 
 Demonstrates how to pass custom Axios request configurations to useAxios.
 
-```APIDOC
+````APIDOC
 ## useAxios with Config Options
 
 ### Description
@@ -5299,20 +5037,24 @@ const instance = axios.create({
 })
 
 const { data, isFinished } = useAxios('/posts', { method: 'POST' }, instance)
-```
+````
 
 ### Response
+
 #### Success Response (200)
+
 - **data** (Ref<T>) - Response data
 - **isFinished** (Ref<boolean>) - Request has completed (success or error)
 
 #### Response Example
+
 ```json
 {
-  "message": "Post created successfully"
+	"message": "Post created successfully"
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -5340,9 +5082,9 @@ useStorage('key', defaults, storage, {
   // Watch flush timing (default: 'pre')
   flush: 'pre',
 })
-```
+````
 
---------------------------------
+---
 
 ### Battery Status Demo Output
 
@@ -5359,7 +5101,7 @@ level: 1
 
 ```
 
---------------------------------
+---
 
 ### Basic Usage of watchIgnorable
 
@@ -5368,38 +5110,28 @@ Source: https://vueuse.org/shared/watchIgnorable
 Demonstrates how to use watchIgnorable to log changes to a source, with examples of ignoring updates and observing subsequent logged changes.
 
 ```typescript
-import {
-  watchIgnorable
-} from '@vueuse/core'
-import {
-  nextTick,
-  shallowRef
-} from 'vue'
+import {watchIgnorable} from '@vueuse/core'
+import {nextTick, shallowRef} from 'vue'
 
 const source = shallowRef('foo')
 
-const { stop, ignoreUpdates } = watchIgnorable(
-  source,
-  v => console.log(`Changed to ${v}!`),
+const {stop, ignoreUpdates} = watchIgnorable(source, v =>
+	console.log(`Changed to ${v}!`),
 )
-
 
 source.value = 'bar'
 await nextTick() // logs: Changed to bar!
 
-
 ignoreUpdates(() => {
-  source.value = 'foobar'
+	source.value = 'foobar'
 })
 await nextTick() // (nothing happened)
-
 
 source.value = 'hello'
 await nextTick() // logs: Changed to hello!
 
-
 ignoreUpdates(() => {
-  source.value = 'ignored'
+	source.value = 'ignored'
 })
 
 source.value = 'logged'
@@ -5407,7 +5139,7 @@ source.value = 'logged'
 await nextTick() // logs: Changed to logged!
 ```
 
---------------------------------
+---
 
 ### useDateFormat with Locales
 
@@ -5415,7 +5147,7 @@ Source: https://vueuse.org/shared/useDateFormat
 
 Illustrates how to use useDateFormat with specific locales to format dates, using 'en-US' as an example for day names.
 
-```APIDOC
+````APIDOC
 ## useDateFormat with Locales
 
 ### Description
@@ -5455,19 +5187,23 @@ useNow(), 'YYYY-MM-DD (ddd)', { locales: 'en-US' })
 <template>
   <div>{{ formatted }}</div>
 </template>
-```
+````
 
 ### Response
+
 #### Success Response (200)
+
 N/A (Composable Function returns a `ComputedRef<string>`)
 
 #### Response Example
+
 ```json
 {
-  "example": "2023-10-27 (Fri)"
+	"example": "2023-10-27 (Fri)"
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -5511,19 +5247,23 @@ const page = useRouteQuery('page', '1', { transform: Number })
 
 console.log(search.value) // route.query.search
 search.value = 'foobar' // router.replace({ query: { search: 'foobar' } })
-```
+````
 
 ### Response
+
 #### Success Response (200)
+
 Returns a `Ref` object that is synchronized with the specified route query parameter.
 
 #### Response Example
+
 ```json
 {
-  "value": "current_query_param_value"
+	"value": "current_query_param_value"
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -5563,7 +5303,7 @@ const isDark = usePreferredDark()
 const favicon = computed(() => isDark.value ? 'dark.png' : 'light.png')
 
 useFavicon(favicon)
-```
+````
 
 ### Response
 
@@ -5577,10 +5317,11 @@ Returns a `ComputedRef` that is identical to the source ref.
 
 ```json
 {
-  "icon": "light.png"
+	"icon": "light.png"
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -5617,12 +5358,15 @@ const focused = useWindowFocus()
 <template>
   <div>{{ focused }}</div>
 </template>
-```
+````
 
 ### Response
+
 #### Success Response (200)
+
 - **focused** (ShallowRef<boolean>) - A reactive reference indicating whether the window is currently focused.
-```
+
+````
 
 --------------------------------
 
@@ -5663,7 +5407,7 @@ None
 import { useTimeout } from '@vueuse/core'
 
 const ready = useTimeout(1000)
-```
+````
 
 ### Response
 
@@ -5675,10 +5419,11 @@ const ready = useTimeout(1000)
 
 ```json
 {
-  "ready": true // after 1 second
+	"ready": true // after 1 second
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -5705,8 +5450,9 @@ const computedArray = computedInject(ArrayKey, {
     console.log('Setting value:', value)
   },
 })
-```
-```
+````
+
+````
 
 --------------------------------
 
@@ -5717,40 +5463,40 @@ Source: https://vueuse.org/firebase/usertdb
 Basic setup for binding a Firebase Realtime Database reference to a reactive variable.
 
 ```typescript
-import { 
+import {
 useRTDB
  } from '@vueuse/firebase/useRTDB'
-import { 
+import {
 initializeApp
  } from 'firebase/app'
-import { 
+import {
 getDatabase
  } from 'firebase/database'
 
-const 
+const
 app
- = 
+ =
 initializeApp
 ({ /* config */ })
-const 
+const
 db
- = 
+ =
 getDatabase
 (
 app
 )
 
 // in setup()
-const 
+const
 todos
- = 
+ =
 useRTDB
 (
 db
 .ref('todos'))
-```
+````
 
---------------------------------
+---
 
 ### usePreferredColorScheme - Basic Usage
 
@@ -5758,7 +5504,7 @@ Source: https://vueuse.org/core/usePreferredColorScheme
 
 Demonstrates how to use the usePreferredColorScheme composable in a Vue TypeScript setup.
 
-```APIDOC
+````APIDOC
 ## usePreferredColorScheme
 
 ### Description
@@ -5777,21 +5523,25 @@ import {
 } from '@vueuse/core'
 
 const preferredColor = usePreferredColorScheme()
-```
+````
 
 ### Response
+
 Returns a `ComputedRef<ColorSchemeType>` which holds the current color scheme.
 
 #### Success Response (200)
+
 - **preferredColor** (ComputedRef<ColorSchemeType>) - The current color scheme ('dark', 'light', or 'no-preference').
 
 #### Response Example
+
 ```json
 {
-  "preferredColor": "light"
+	"preferredColor": "light"
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -5812,9 +5562,9 @@ import {
 const text = shallowRef('')
 
 const { base64, promise, execute } = useBase64(text)
-```
+````
 
---------------------------------
+---
 
 ### get Utility Function
 
@@ -5822,7 +5572,7 @@ Source: https://vueuse.org/shared/get
 
 The `get` utility function is a shorthand for accessing `ref.value`. It can also be used to access properties of an object referenced by a ref.
 
-```APIDOC
+````APIDOC
 ## get
 
 ### Description
@@ -5853,29 +5603,37 @@ console.log(get(a)) // 42
 
 const obj = ref({ count: 0 })
 console.log(get(obj, 'count')) // 0
-```
+````
 
 ### Response
+
 #### Success Response (200)
+
 - **T** (any) - The value of the ref or the specified property.
 
 #### Response Example
+
 ```json
 {
-  "example": "42"
+	"example": "42"
 }
 ```
 
 #### Type Declarations
+
 ```typescript
 /**
  * Shorthand for accessing `ref.value`
  */
 export declare function get<T>(ref: MaybeRef<T>): T
 
-export declare function get<T, K extends keyof T>(ref: MaybeRef<T>, key: K): T[K]
+export declare function get<T, K extends keyof T>(
+	ref: MaybeRef<T>,
+	key: K,
+): T[K]
 ```
-```
+
+````
 
 --------------------------------
 
@@ -5906,10 +5664,12 @@ N/A (Client-side composable)
 import { usePointer } from '@vueuse/core'
 
 const { x, y, pressure, pointerType } = usePointer()
-```
+````
 
 ### Response
+
 #### Success Response (Composable Return)
+
 - **x** (Ref<number>) - The current X coordinate of the pointer.
 - **y** (Ref<number>) - The current Y coordinate of the pointer.
 - **pressure** (Ref<number>) - The pressure of the pointer (e.g., for stylus).
@@ -5923,22 +5683,24 @@ const { x, y, pressure, pointerType } = usePointer()
 - **isInside** (ShallowRef<boolean>) - Whether the pointer is currently inside the target element.
 
 #### Response Example
+
 ```json
 {
-  "x": 150,
-  "y": 200,
-  "pressure": 0.5,
-  "pointerType": "mouse",
-  "pointerId": 0,
-  "tiltX": 0,
-  "tiltY": 0,
-  "width": 0,
-  "height": 0,
-  "twist": 0,
-  "isInside": true
+	"x": 150,
+	"y": 200,
+	"pressure": 0.5,
+	"pointerType": "mouse",
+	"pointerId": 0,
+	"tiltX": 0,
+	"tiltY": 0,
+	"width": 0,
+	"height": 0,
+	"twist": 0,
+	"isInside": true
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -5978,21 +5740,25 @@ console.log(cloned.value.key) // 'value'
 
 sync()
 console.log(cloned.value.key) // 'manual'
-```
+````
 
 ### Response
+
 #### Success Response
+
 - **cloned** (Ref<T>) - A reactive ref containing the cloned data.
 - **sync** (function) - A function to manually sync the cloned data with the source ref.
 
 #### Response Example
+
 ```json
 {
   "cloned": {"key": "value"},
   "sync": () => {}
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -6008,12 +5774,12 @@ usePermission
 } from '@vueuse/core'
 
 const microphoneAccess
- = 
+ =
 usePermission
 ('microphone')
-```
+````
 
---------------------------------
+---
 
 ### Reactive mouse position output
 
@@ -6049,7 +5815,7 @@ isOutside: true
 
 ```
 
---------------------------------
+---
 
 ### Using the Custom Fetch Hook in a Vue Component
 
@@ -6059,48 +5825,21 @@ Demonstrates how to consume the `useMyFetch` composable within a Vue 3 setup scr
 
 ```vue
 <script setup lang="ts">
-import {
-useMyFetch
-} from './my-fetch-function'
+import {useMyFetch} from './my-fetch-function'
 
-const { 
-onResult
-,
-onError
-} = 
-useMyFetch
-('my api url')
+const {onResult, onError} = useMyFetch('my api url')
 
-
-onResult
-((
-result
-) => {
-  
-console
-.
-log
-(
-result
-)
+onResult(result => {
+	console.log(result)
 })
 
-
-onError
-((
-error
-) => {
-  
-console
-.error
-(
-error
-)
+onError(error => {
+	console.error(error)
 })
 </script>
 ```
 
---------------------------------
+---
 
 ### useDevicesList()
 
@@ -6129,7 +5868,7 @@ Reactive enumerateDevices listing available input/output devices.
 - **ensurePermissions** (function) - Async function to request device permissions.
 ```
 
---------------------------------
+---
 
 ### injectLocal Usage
 
@@ -6137,7 +5876,7 @@ Source: https://vueuse.org/shared/injectLocal
 
 Demonstrates how to use provideLocal and injectLocal within a Vue component's script setup.
 
-```APIDOC
+````APIDOC
 ## POST /api/users
 
 ### Description
@@ -6168,23 +5907,27 @@ None
   "email": "john.doe@example.com",
   "password": "securepassword123"
 }
-```
+````
 
 ### Response
+
 #### Success Response (201)
+
 - **id** (string) - The unique identifier for the newly created user.
 - **username** (string) - The username of the created user.
 - **email** (string) - The email address of the created user.
 
 #### Response Example
+
 ```json
 {
-  "id": "user-12345",
-  "username": "johndoe",
-  "email": "john.doe@example.com"
+	"id": "user-12345",
+	"username": "johndoe",
+	"email": "john.doe@example.com"
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -6227,13 +5970,15 @@ N/A
 <script setup>
 import { UsePreferredColorScheme } from '@vueuse/components';
 </script>
-```
+````
 
 ### Response Example
+
 ```html
 Preferred Color Scheme: light
 ```
-```
+
+````
 
 --------------------------------
 
@@ -6248,12 +5993,12 @@ import {
 useCurrentElement
 } from '@vueuse/core'
 
-const el = 
+const el =
 useCurrentElement
 () // ComputedRef<Element>
-```
+````
 
---------------------------------
+---
 
 ### useCounter - Usage with Options
 
@@ -6261,7 +6006,7 @@ Source: https://vueuse.org/shared/usecounter
 
 Illustrates how to use the useCounter composable with custom initial values and options like minimum and maximum bounds.
 
-```APIDOC
+````APIDOC
 ## useCounter - Usage with Options
 
 ### Description
@@ -6281,9 +6026,10 @@ This example demonstrates initializing the `useCounter` composable with a specif
 import { useCounter } from '@vueuse/core'
 
 const { count, inc, dec, set, reset } = useCounter(1, { min: 0, max: 16 })
-```
+````
 
 ### Response
+
 - **count** (Ref<number>) - The current value of the counter, respecting min/max bounds.
 - **inc** (function) - Function to increment the counter.
 - **dec** (function) - Function to decrement the counter.
@@ -6291,16 +6037,18 @@ const { count, inc, dec, set, reset } = useCounter(1, { min: 0, max: 16 })
 - **reset** (function) - Function to reset the counter to its initial value.
 
 ### Response Example
+
 ```json
 {
-  "count": 1,
-  "inc": "function",
-  "dec": "function",
-  "set": "function",
-  "reset": "function"
+	"count": 1,
+	"inc": "function",
+	"dec": "function",
+	"set": "function",
+	"reset": "function"
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -6315,7 +6063,7 @@ import {
 useWakeLock
 } from '@vueuse/core'
 
-const { 
+const {
 isSupported
 ,
 isActive
@@ -6325,12 +6073,12 @@ forceRequest
 request
 ,
 release
-} = 
+} =
 useWakeLock
 ()
-```
+````
 
---------------------------------
+---
 
 ### Get Parent Element by Template Ref
 
@@ -6340,36 +6088,26 @@ Pass a template ref to `useParentElement` to get the parent element of a specifi
 
 ```vue
 <script setup lang="ts">
-import { 
-useParentElement
- } from '@vueuse/core'
-import { 
-useTemplateRef
- } from 'vue'
+import {useParentElement} from '@vueuse/core'
+import {useTemplateRef} from 'vue'
 
-const tooltip = 
-useTemplateRef
-('tooltip')
+const tooltip = useTemplateRef('tooltip')
 
-const tooltipWrapper = 
-useParentElement
-(
-tooltip
-)
+const tooltipWrapper = useParentElement(tooltip)
 
 onMounted(() => {
-  console.log(tooltipWrapper.value)
+	console.log(tooltipWrapper.value)
 })
 </script>
 
 <template>
-  <div>
-    <p ref="tooltip" />
-  </div>
+	<div>
+		<p ref="tooltip" />
+	</div>
 </template>
 ```
 
---------------------------------
+---
 
 ### useConfirmDialog - Basic Usage
 
@@ -6377,7 +6115,7 @@ Source: https://vueuse.org/core/useConfirmDialog
 
 Demonstrates the basic usage of useConfirmDialog with template-based control.
 
-```APIDOC
+````APIDOC
 ## useConfirmDialog - Basic Usage
 
 ### Description
@@ -6419,8 +6157,9 @@ const { isRevealed, reveal, confirm, cancel, onReveal, onConfirm, onCancel } = u
     </div>
   </teleport>
 </template>
-```
-```
+````
+
+````
 
 --------------------------------
 
@@ -6435,18 +6174,18 @@ import {
   useBattery
 } from '@vueuse/core'
 
-const { 
+const {
   isSupported,
   charging,
   chargingTime,
   dischargingTime,
   level
-} = 
+} =
 useBattery
 ()
-```
+````
 
---------------------------------
+---
 
 ### Delaying Animation Start
 
@@ -6455,30 +6194,20 @@ Source: https://vueuse.org/core/useAnimate
 Demonstrates manual control of animation playback by setting immediate to false.
 
 ```ts
-import { 
-useAnimate
- } from '@vueuse/core'
+import {useAnimate} from '@vueuse/core'
 
-const { 
-play
- } = 
-useAnimate
-(el, keyframes, {
-  
-duration
-: 1000,
-  
-immediate
-: false,
+const {play} = useAnimate(el, keyframes, {
+	duration: 1000,
+
+	immediate: false,
 })
 
 // Start the animation manually
 
-play
-()
+play()
 ```
 
---------------------------------
+---
 
 ### Get and Set Zoom Factor
 
@@ -6487,35 +6216,19 @@ Source: https://vueuse.org/electron/useZoomFactor
 Import and use the useZoomFactor composable to get the current zoom factor and optionally set a new one. Ensure nodeIntegration is enabled if not explicitly providing a webFrame.
 
 ```typescript
-import { 
-useZoomFactor
- } from '@vueuse/electron'
+import {useZoomFactor} from '@vueuse/electron'
 
 // enable nodeIntegration if you don't provide webFrame explicitly
 // see: https://www.electronjs.org/docs/api/webview-tag#nodeintegration
 // Ref result will return
-const 
-factor
- = 
-useZoomFactor
-()
+const factor = useZoomFactor()
 
-console
-.
-log
-(
-factor
-.
-value
-) // print current zoom factor
+console.log(factor.value) // print current zoom factor
 
-factor
-.
-value
- = 2 // change current zoom factor
+factor.value = 2 // change current zoom factor
 ```
 
---------------------------------
+---
 
 ### Customizing Cache Key with getKey
 
@@ -6524,29 +6237,29 @@ Source: https://vueuse.org/core/useMemoize
 Demonstrates how to customize the cache key generation using the `getKey` option. This example ignores the `headers` argument when determining the cache key, using only `userId`.
 
 ```typescript
-const 
+const
 getUser
  =
 useMemoize
 (
-  async (userId: number, 
+  async (userId: number,
 headers
-: AxiosRequestHeaders): 
+: AxiosRequestHeaders):
 Promise
 <UserData>
  =>
-    axios.get(`users/${userId}`, { 
+    axios.get(`users/${userId}`, {
 headers
- }).then(({ data }) => 
+ }).then(({ data }) =>
 data
 ),
   {
     // Use only userId to get/set cache and ignore headers
-    
+
 getKey
-: (userId, 
+: (userId,
 headers
-) => 
+) =>
 userId
 ,
   },
@@ -6556,16 +6269,16 @@ userId
 ```javascript
 'use strict'
 const getUser = useMemoize(
-  async (userId, headers) =>
-    axios.get(`users/${userId}`, { headers }).then(({ data }) => data),
-  {
-    // Use only userId to get/set cache and ignore headers
-    getKey: (userId, headers) => userId,
-  },
+	async (userId, headers) =>
+		axios.get(`users/${userId}`, {headers}).then(({data}) => data),
+	{
+		// Use only userId to get/set cache and ignore headers
+		getKey: (userId, headers) => userId,
+	},
 )
 ```
 
---------------------------------
+---
 
 ### Get Reactive Browser Location
 
@@ -6574,16 +6287,12 @@ Source: https://vueuse.org/core/usebrowserlocation
 Import and use the useBrowserLocation composable to get a reactive reference to the browser's location object. Note: If using Vue Router, prefer its useRoute hook.
 
 ```typescript
-import {
-useBrowserLocation
-} from '@vueuse/core'
+import {useBrowserLocation} from '@vueuse/core'
 
-const location = 
-useBrowserLocation
-()
+const location = useBrowserLocation()
 ```
 
---------------------------------
+---
 
 ### useStyleTag API
 
@@ -6591,7 +6300,7 @@ Source: https://vueuse.org/core/usestyletag
 
 Documentation for the useStyleTag composable, including its parameters, return values, and usage examples.
 
-```APIDOC
+````APIDOC
 ## useStyleTag
 
 ### Description
@@ -6625,18 +6334,21 @@ const { id, css, load, unload, isLoaded } = useStyleTag('.foo { margin-top: 32px
 
 // Later you can modify styles
 css.value = '.foo { margin-top: 64px; }'
-```
+````
 
 ### Custom ID
+
 ```typescript
-useStyleTag('.foo { margin-top: 32px; }', { id: 'custom-id' })
+useStyleTag('.foo { margin-top: 32px; }', {id: 'custom-id'})
 ```
 
 ### Media Query
+
 ```typescript
-useStyleTag('.foo { margin-top: 32px; }', { media: 'print' })
+useStyleTag('.foo { margin-top: 32px; }', {media: 'print'})
 ```
-```
+
+````
 
 --------------------------------
 
@@ -6648,25 +6360,25 @@ Demonstrates how to access gamepad state and filter for standard-mapped controll
 
 ```vue
 <script setup lang="ts">
-import { 
+import {
 useGamepad
  } from '@vueuse/core'
-import { 
+import {
 computed
  } from 'vue'
 
-const { 
+const {
 isSupported
-, 
+,
 gamepads
- } = 
+ } =
 useGamepad
 ()
-const 
+const
 gamepad
- = 
+ =
 computed
-(() => 
+(() =>
 gamepads
 .value.find(g => g.mapping === 'standard'))
 </script>
@@ -6676,9 +6388,9 @@ gamepads
     {{ gamepad.id }}
   </span>
 </template>
-```
+````
 
---------------------------------
+---
 
 ### Get and Set Route Hash
 
@@ -6687,37 +6399,18 @@ Source: https://vueuse.org/router/useroutehash
 Import and use the useRouteHash composable to get the current route's hash value or set a new one. Setting the value uses router.replace to update the hash.
 
 ```typescript
-import {
-useRouteHash
-} from '@vueuse/router'
+import {useRouteHash} from '@vueuse/router'
 
-const
-search
-=
-useRouteHash
-()
+const search = useRouteHash()
 
-
-console
-.
-log
-(
-search
-.
-value
-)
+console.log(search.value)
 // route.hash
 
-search
-.
-value
-=
-'foobar'
+search.value = 'foobar'
 // router.replace({ hash: 'foobar' })
-
 ```
 
---------------------------------
+---
 
 ### Usage of useFloor
 
@@ -6726,25 +6419,13 @@ Source: https://vueuse.org/math/useFloor
 Demonstrates importing and using useFloor with a reactive ref.
 
 ```typescript
-import { 
-useFloor
- } from '@vueuse/math'
+import {useFloor} from '@vueuse/math'
 
-const 
-value
- = 
-ref
-(45.95)
-const 
-result
- = 
-useFloor
-(
-value
-) // 45
+const value = ref(45.95)
+const result = useFloor(value) // 45
 ```
 
---------------------------------
+---
 
 ### Wait for some async data to be ready
 
@@ -6752,7 +6433,7 @@ Source: https://vueuse.org/shared/until
 
 This example demonstrates how to use `until` to wait for asynchronous data fetched by `useAsyncState` to be ready before accessing its state.
 
-```APIDOC
+````APIDOC
 ## Wait for some async data to be ready
 
 ### Description
@@ -6787,15 +6468,19 @@ const { state, isReady } = useAsyncState(
   await until(isReady).toBe(true)
   console.log(state) // state is now ready!
 })()
-```
+````
 
 ### Response
+
 #### Success Response (200)
+
 N/A (This is a client-side composition function)
 
 #### Response Example
+
 N/A
-```
+
+````
 
 --------------------------------
 
@@ -6842,19 +6527,23 @@ const targetIsVisible = useElementVisibility(target)
     <h1>Hello world</h1>
   </div>
 </template>
-```
+````
 
 ### Response
+
 #### Success Response (N/A - Returns a Ref)
+
 - **targetIsVisible** (ShallowRef<boolean>) - A ref that is true when the element is visible, false otherwise.
 
 #### Response Example
+
 ```json
 {
-  "isVisible": true
+	"isVisible": true
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -6880,9 +6569,9 @@ unsubscribe()
 bus.off(listener)
 // clearing all listeners
 bus.reset()
-```
+````
 
---------------------------------
+---
 
 ### Observe performance metrics
 
@@ -6891,50 +6580,34 @@ Source: https://vueuse.org/core/usePerformanceObserver
 Demonstrates how to initialize the observer to track specific performance entry types.
 
 ```typescript
-import { 
-usePerformanceObserver
- } from '@vueuse/core'
+import {usePerformanceObserver} from '@vueuse/core'
 
-const 
-entrys
- = 
-ref
-<PerformanceEntry[]>([])
+const entrys = ref<PerformanceEntry[]>([])
 
-usePerformanceObserver
-({
-  
-entryTypes
-: ['paint'],
-}, (
-list
-) => {
-  
-entrys
-.
-value
- = 
-list
-.
-getEntries
-()
-})
-```
-
-```javascript
-import { usePerformanceObserver } from '@vueuse/core'
-const entrys = ref([])
 usePerformanceObserver(
-  {
-    entryTypes: ['paint'],
-  },
-  (list) => {
-    entrys.value = list.getEntries()
-  },
+	{
+		entryTypes: ['paint'],
+	},
+	list => {
+		entrys.value = list.getEntries()
+	},
 )
 ```
 
---------------------------------
+```javascript
+import {usePerformanceObserver} from '@vueuse/core'
+const entrys = ref([])
+usePerformanceObserver(
+	{
+		entryTypes: ['paint'],
+	},
+	list => {
+		entrys.value = list.getEntries()
+	},
+)
+```
+
+---
 
 ### Promise-based useConfirmDialog
 
@@ -6944,68 +6617,32 @@ This example demonstrates using useConfirmDialog with promises for asynchronous 
 
 ```vue
 <script setup lang="ts">
-import { 
-useConfirmDialog
- } from '@vueuse/core'
+import {useConfirmDialog} from '@vueuse/core'
 
-const {
-  isRevealed
-,
-  reveal
-,
-  confirm
-,
-  cancel
-,
-} = 
-useConfirmDialog
-()
+const {isRevealed, reveal, confirm, cancel} = useConfirmDialog()
 
-async function 
-openDialog
-() {
-  const { data, isCanceled } = await 
-reveal
-()
-  if (!
-isCanceled
-)
-    console.log(
-data
-)
+async function openDialog() {
+	const {data, isCanceled} = await reveal()
+	if (!isCanceled) console.log(data)
 }
 </script>
 
 <template>
-  <button @click="
-openDialog
-">
-    Show Modal
-  </button>
+	<button @click="openDialog">Show Modal</button>
 
-  <teleport to="body">
-    <div v-if="
-isRevealed
-" class="modal-layout">
-      <div class="modal">
-        <h2>Confirm?</h2>
-        <button @click="
-confirm
-(true)">
-          Yes
-        </button>
-        <button @click="
-confirm
-(false)">
-          No
-        </button>
-      </div>
-    </div>
-  </teleport>
+	<teleport to="body">
+		<div v-if="isRevealed" class="modal-layout">
+			<div class="modal">
+				<h2>Confirm?</h2>
+				<button @click="confirm(true)">Yes</button>
+				<button @click="confirm(false)">No</button>
+			</div>
+		</div>
+	</teleport>
 </template>
 ```
 
---------------------------------
+---
 
 ### Passing Arguments to Promise
 
@@ -7014,30 +6651,18 @@ Source: https://vueuse.org/core/createtemplatepromise
 Defining and passing arguments to the start method, accessible via the args property in the template.
 
 ```ts
-import { 
-createTemplatePromise
- } from '@vueuse/core'
+import {createTemplatePromise} from '@vueuse/core'
 
-const 
-TemplatePromise
- = 
-createTemplatePromise
-<boolean, [string, number]>()
+const TemplatePromise = createTemplatePromise<boolean, [string, number]>()
 ```
 
 ```js
-import { createTemplatePromise } from '@vueuse/core'
+import {createTemplatePromise} from '@vueuse/core'
 const TemplatePromise = createTemplatePromise()
 ```
 
 ```ts
-const 
-result
- = await 
-TemplatePromise
-.
-start
-('hello', 123) // Pr
+const result = await TemplatePromise.start('hello', 123) // Pr
 ```
 
 ```js
@@ -7047,14 +6672,14 @@ const result = await TemplatePromise.start('hello', 123) // Pr
 
 ```vue
 <template>
-  <TemplatePromise v-slot="{ 
+  <TemplatePromise v-slot="{
 args
-, 
+,
 resolve
  }">
     <
 div
->{{ 
+>{{
 args
 [0] }}</
 div
@@ -7062,7 +6687,7 @@ div
     <!-- hello -->
     <
 div
->{{ 
+>{{
 args
 [1] }}</
 div
@@ -7083,7 +6708,7 @@ button
 </template>
 ```
 
---------------------------------
+---
 
 ### Basic Usage Output
 
@@ -7105,7 +6730,7 @@ sourceType: null
 
 ```
 
---------------------------------
+---
 
 ### useAbs - Reactive Absolute Value
 
@@ -7113,7 +6738,7 @@ Source: https://vueuse.org/math/useabs
 
 Demonstrates how to use the `useAbs` composable to get the reactive absolute value of a number.
 
-```APIDOC
+````APIDOC
 ## useAbs
 
 ### Description
@@ -7142,20 +6767,24 @@ import { useAbs } from '@vueuse/math'
 
 const value = ref(-23)
 const absValue = useAbs(value) // Ref<23>
-```
+````
 
 ### Response
+
 #### Success Response (Composable Return)
+
 - **absValue** (ComputedRef<number>) - A computed reference containing the absolute value of the input.
 
 #### Response Example
+
 ```json
 {
-  "absValue": 23
+	"absValue": 23
 }
 ```
 
 ### Type Declarations
+
 ```typescript
 /**
  * Reactive `Math.abs`.
@@ -7164,9 +6793,12 @@ const absValue = useAbs(value) // Ref<23>
  *
  * @__NO_SIDE_EFFECTS__
  */
-export declare function useAbs(value: MaybeRefOrGetter<number>): ComputedRef<number>
+export declare function useAbs(
+	value: MaybeRefOrGetter<number>,
+): ComputedRef<number>
 ```
-```
+
+````
 
 --------------------------------
 
@@ -7183,9 +6815,9 @@ useMin
 
 const array = ref([1, 2, 3, 4])
 const min = useMin(array) // Ref<1>
-```
+````
 
---------------------------------
+---
 
 ### useStepper with Steps as Object
 
@@ -7193,7 +6825,7 @@ Source: https://vueuse.org/core/usestepper
 
 This example shows how to use `useStepper` when steps are defined as an object, allowing for more descriptive step configurations. It illustrates accessing the `title` property of the current step.
 
-```APIDOC
+````APIDOC
 ## useStepper with Steps as Object
 
 ### Description
@@ -7216,7 +6848,7 @@ None
 ```typescript
 import { useStepper } from '@vueuse/core'
 
-const { 
+const {
   steps,
   stepNames,
   index,
@@ -7251,10 +6883,12 @@ const {
 
 // Access the step object through `current`
 console.log(current.value.title) // 'User information'
-```
+````
 
 ### Response
+
 #### Success Response (200)
+
 Similar to the array-based approach, this composable returns reactive state and methods. When steps are objects, the `current` computed property will return the full step object.
 
 - **steps** (Ref<Object>) - List of steps.
@@ -7278,39 +6912,36 @@ Similar to the array-based approach, this composable returns reactive state and 
 - **isAfter** (Function) - Checks if the current step is after the given step name.
 
 #### Response Example
+
 ```json
 {
-  "steps": {
-    "user-information": {
-      "title": "User information"
-    },
-    "billing-address": {
-      "title": "Billing address"
-    },
-    "terms": {
-      "title": "Terms"
-    },
-    "payment": {
-      "title": "Payment"
-    }
-  },
-  "stepNames": [
-    "user-information",
-    "billing-address",
-    "terms",
-    "payment"
-  ],
-  "index": 0,
-  "current": {
-    "title": "User information"
-  },
-  "next": "billing-address",
-  "previous": undefined,
-  "isFirst": true,
-  "isLast": false
+	"steps": {
+		"user-information": {
+			"title": "User information"
+		},
+		"billing-address": {
+			"title": "Billing address"
+		},
+		"terms": {
+			"title": "Terms"
+		},
+		"payment": {
+			"title": "Payment"
+		}
+	},
+	"stepNames": ["user-information", "billing-address", "terms", "payment"],
+	"index": 0,
+	"current": {
+		"title": "User information"
+	},
+	"next": "billing-address",
+	"previous": undefined,
+	"isFirst": true,
+	"isLast": false
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -7352,7 +6983,7 @@ onError
 ,
 
 onClose
-,} = 
+,} =
 useWebNotification
 ({
 
@@ -7374,14 +7005,14 @@ tag
 
 if (
 isSupported
-.value && 
+.value &&
 permissionGranted
 .value)
 show()
 
-```
+````
 
---------------------------------
+---
 
 ### Use onStartTyping to Auto-Focus Input
 
@@ -7391,45 +7022,28 @@ Demonstrates how to use onStartTyping to focus an input field when the user star
 
 ```vue
 <script setup lang="ts">
-import { 
-onStartTyping
- } from '@vueuse/core'
-import { 
-useTemplateRef
- } from 'vue'
+import {onStartTyping} from '@vueuse/core'
+import {useTemplateRef} from 'vue'
 
-const 
-input
- = 
-useTemplateRef
-('input')
+const input = useTemplateRef('input')
 
-
-onStartTyping
-(() => {
-  if (!
-input
-.value.active)
-    
-input
-.value.focus()
+onStartTyping(() => {
+	if (!input.value.active) input.value.focus()
 })
 </script>
 
 <template>
-  <input 
-ref
-="
+	<input
+		ref="
 input
-" 
-type
-="text" 
-placeholder
-="Start typing to focus">
+"
+		type="text"
+		placeholder="Start typing to focus"
+	/>
 </template>
 ```
 
---------------------------------
+---
 
 ### useCloned - Custom Clone Function
 
@@ -7437,7 +7051,7 @@ Source: https://vueuse.org/core/useCloned
 
 Illustrates how to provide a custom cloning function to useCloned, for example, using the `klona` library for deep cloning.
 
-```APIDOC
+````APIDOC
 ## useCloned - Custom Clone Function
 
 ### Description
@@ -7462,15 +7076,18 @@ import { klona } from 'klona'
 
 const original = ref({ key: 'value' })
 const { cloned, isModified, sync } = useCloned(original, { clone: klona })
-```
+````
 
 ### Response
+
 #### Success Response
+
 - **cloned** (Ref<T>) - A reactive ref containing the cloned data.
 - **isModified** (Ref<boolean>) - A ref indicating if the cloned data has been modified compared to the source.
 - **sync** (function) - A function to manually sync the cloned data with the source ref.
 
 #### Response Example
+
 ```json
 {
   "cloned": {"key": "value"},
@@ -7478,7 +7095,8 @@ const { cloned, isModified, sync } = useCloned(original, { clone: klona })
   "sync": () => {}
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -7489,25 +7107,25 @@ Source: https://vueuse.org/core/useAsyncState
 Demonstrates initializing useAsyncState with an axios promise and default state.
 
 ```ts
-import { 
+import {
 useAsyncState
  } from '@vueuse/core'
-import 
+import
 axios
  from 'axios'
 
-const { 
+const {
 state
-, 
+,
 isReady
-, 
+,
 isLoading
-, 
+,
 error
- } = 
+ } =
 useAsyncState
 (
-  
+
 axios
 
     .
@@ -7517,18 +7135,18 @@ get
 then
 (
 t
- => 
+ =>
 t
 .
 data
 ),
-  { 
+  {
 id
 : null },
 )
-```
+````
 
---------------------------------
+---
 
 ### Use useVModels in Options API
 
@@ -7537,63 +7155,25 @@ Source: https://vueuse.org/core/useVModels
 Integrate useVModels within the setup function of an Options API component.
 
 ```typescript
-import { 
-useVModels
- } from '@vueuse/core'
+import {useVModels} from '@vueuse/core'
 
 export default {
-  
-props
-: {
-    
-foo
-: 
-String
-,
-    
-bar
-: 
-Number
-,
-  },
-  
-setup
-(
-props
-, { 
-emit
- }) {
-    const { 
-foo
-, 
-bar
- } = 
-useVModels
-(
-props
-, 
-emit
-)
+	props: {
+		foo: String,
+		bar: Number,
+	},
 
-    
-console
-.
-log
-(
-foo
-.
-value
-) // props.foo
-    
-foo
-.
-value
- = 'foo' // emit('update:foo', 'foo')
-  },
+	setup(props, {emit}) {
+		const {foo, bar} = useVModels(props, emit)
+
+		console.log(foo.value) // props.foo
+
+		foo.value = 'foo' // emit('update:foo', 'foo')
+	},
 }
 ```
 
---------------------------------
+---
 
 ### Wait for custom conditions
 
@@ -7601,7 +7181,7 @@ Source: https://vueuse.org/shared/until
 
 This example shows how to use `until` with `invoke` to wait for a counter to exceed a specific value.
 
-```APIDOC
+````APIDOC
 ## Wait for custom conditions
 
 ### Description
@@ -7633,15 +7213,19 @@ invoke(async () => {
   await until(count).toMatch(v => v > 7)
   alert('Counter is now larger than 7!')
 })
-```
+````
 
 ### Response
+
 #### Success Response (200)
+
 N/A (This is a client-side composition function)
 
 #### Response Example
+
 N/A
-```
+
+````
 
 --------------------------------
 
@@ -7678,11 +7262,13 @@ whenever(
   () => console.log('counter is 7 now!'),
   { flush: 'sync' },
 )
-```
+````
 
 ### Response
+
 N/A
-```
+
+````
 
 --------------------------------
 
@@ -7712,11 +7298,13 @@ const dir = useTextDirection({
   selector: 'body',
   observe: true
 })
-```
+````
 
 ### Response
+
 - **WritableComputedRef** (Ref<'ltr' | 'rtl' | 'auto'>) - A reactive reference that reflects and controls the text direction.
-```
+
+````
 
 --------------------------------
 
@@ -7741,9 +7329,9 @@ Provides reactive access to connected gamepads and their state.
 - **onConnected** (EventHookOn<number>) - Hook triggered when a gamepad connects.
 - **onDisconnected** (EventHookOn<number>) - Hook triggered when a gamepad disconnects.
 - **gamepads** (Ref<Gamepad[]>) - Reactive reference to the list of connected gamepads.
-```
+````
 
---------------------------------
+---
 
 ### Basic usage of useStorage
 
@@ -7752,53 +7340,29 @@ Source: https://vueuse.org/core/useStorage
 Demonstrates binding objects, primitives, and different storage types to reactive refs.
 
 ```ts
-import { 
-useStorage
- } from '@vueuse/core'
+import {useStorage} from '@vueuse/core'
 
 // bind object
-const 
-state
- = 
-useStorage
-('my-store', { 
-hello
-: 'hi', 
-greeting
-: 'Hello' })
+const state = useStorage('my-store', {
+	hello: 'hi',
+	greeting: 'Hello',
+})
 
 // bind boolean
-const 
-flag
- = 
-useStorage
-('my-flag', true) // returns Ref<boolean>
+const flag = useStorage('my-flag', true) // returns Ref<boolean>
 
 // bind number
-const 
-count
- = 
-useStorage
-('my-count', 0) // returns Ref<number>
+const count = useStorage('my-count', 0) // returns Ref<number>
 
 // bind string with SessionStorage
-const 
-id
- = 
-useStorage
-('my-id', 'some-string-id', 
-sessionStorage
-) // returns Ref<string>
+const id = useStorage('my-id', 'some-string-id', sessionStorage) // returns Ref<string>
 
 // delete data from storage
 
-state
-.
-value
- = null
+state.value = null
 ```
 
---------------------------------
+---
 
 ### createReusableTemplate Usage (Composition API)
 
@@ -7806,7 +7370,7 @@ Source: https://vueuse.org/core/createreusabletemplate
 
 Basic example of using createReusableTemplate with Vue's Composition API to define and reuse a template section.
 
-```APIDOC
+````APIDOC
 ## createReusableTemplate Usage (Composition API)
 
 ### Description
@@ -7841,15 +7405,18 @@ const [DefineTemplate, ReuseTemplate] = createReusableTemplate()
     <ReuseTemplate />
   </div>
 </template>
-```
+````
 
 ### Response
+
 - `<DefineTemplate>`: Registers the template and renders nothing.
 - `<ReuseTemplate>`: Renders the template provided by `<DefineTemplate>`.
 
 ### Response Example
+
 N/A (This is a component rendering example, not a direct API response.)
-```
+
+````
 
 --------------------------------
 
@@ -7876,9 +7443,10 @@ None for basic usage.
 import { useCounter } from '@vueuse/core'
 
 const { count, inc, dec, set, reset } = useCounter()
-```
+````
 
 ### Response
+
 - **count** (Ref<number>) - The current value of the counter.
 - **inc** (function) - Function to increment the counter.
 - **dec** (function) - Function to decrement the counter.
@@ -7886,16 +7454,18 @@ const { count, inc, dec, set, reset } = useCounter()
 - **reset** (function) - Function to reset the counter to its initial value.
 
 ### Response Example
+
 ```json
 {
-  "count": 0,
-  "inc": "function",
-  "dec": "function",
-  "set": "function",
-  "reset": "function"
+	"count": 0,
+	"inc": "function",
+	"dec": "function",
+	"set": "function",
+	"reset": "function"
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -7911,14 +7481,14 @@ useInterval
 } from '@vueuse/core'
 
 // count will increase every 200ms
-const 
+const
 counter
- = 
+ =
 useInterval
 (200)
-```
+````
 
---------------------------------
+---
 
 ### Type Declaration for injectLocal
 
@@ -7926,7 +7496,7 @@ Source: https://vueuse.org/shared/injectLocal
 
 The TypeScript definition for the injectLocal function, including an example of its usage.
 
-```ts
+````ts
 /**
  * On the basis of `inject`, it is allowed to directly call inject to obtain the value after call provide in the same component.
  *
@@ -7938,13 +7508,10 @@ The TypeScript definition for the injectLocal function, including an example of 
  *
  * @__NO_SIDE_EFFECTS__
  */
-export declare const 
-injectLocal
-: typeof 
-inject
-```
+export declare const injectLocal: typeof inject
+````
 
---------------------------------
+---
 
 ### watchOnce Usage
 
@@ -7952,7 +7519,7 @@ Source: https://vueuse.org/shared/watchOnce
 
 Demonstrates how to use the watchOnce function to watch a source and execute a callback only once.
 
-```APIDOC
+````APIDOC
 ## watchOnce
 
 ### Description
@@ -7982,15 +7549,19 @@ watchOnce(source, () => {
   // triggers only once
   console.log('source changed!')
 })
-```
+````
 
 ### Response
+
 #### Success Response (N/A)
+
 N/A
 
 #### Response Example
+
 N/A
-```
+
+````
 
 --------------------------------
 
@@ -8002,11 +7573,11 @@ Example of using a VueUse function within a Nuxt component.
 
 ```vue
 <script setup lang="ts">
-const { 
+const {
 x
-, 
+,
 y
- } = 
+ } =
 useMouse
 ()
 </script>
@@ -8014,17 +7585,17 @@ useMouse
 <template>
   <
 div
->pos: {{ 
+>pos: {{
 x
- }}, {{ 
+ }}, {{
 y
  }}</
 div
 >
 </template>
-```
+````
 
---------------------------------
+---
 
 ### Use useMath for Power and Square Root
 
@@ -8033,63 +7604,30 @@ Source: https://vueuse.org/math/useMath
 Demonstrates how to use `useMath` to create reactive references for the results of `Math.pow` and `Math.sqrt`. Ensure you import `useMath` and `ref` from their respective modules.
 
 ```typescript
-import {
-useMath
-} from '@vueuse/math'
+import {useMath} from '@vueuse/math'
 
-const 
-base
- = 
-ref
-(2)
-const 
-exponent
- = 
-ref
-(3)
-const 
-result
- = 
-useMath
-('pow',
- 
-base
-,
- 
-exponent
+const base = ref(2)
+const exponent = ref(3)
+const result = useMath(
+	'pow',
+
+	base,
+	exponent,
 ) // Ref<8>
 
-const 
-num
- = 
-ref
-(2)
-const 
-root
- = 
-useMath
-('sqrt',
- 
-num
+const num = ref(2)
+const root = useMath(
+	'sqrt',
+
+	num,
 ) // Ref<1.4142135623730951>
 
+num.value = 4
 
-num
-.
-value
- = 4
-
-console
-.
-log
-(
-root
-.
-value
-) // 2
+console.log(root.value) // 2
 ```
 
---------------------------------
+---
 
 ### Track Device Pixel Ratio with useDevicePixelRatio
 
@@ -8098,18 +7636,12 @@ Source: https://vueuse.org/core/useDevicePixelRatio
 Import and use the `useDevicePixelRatio` function to get a reactive reference to the device's pixel ratio. This is useful for adjusting UI elements or rendering based on screen density.
 
 ```typescript
-import {
-useDevicePixelRatio
-} from '@vueuse/core'
+import {useDevicePixelRatio} from '@vueuse/core'
 
-const { 
-pixelRatio
-} = 
-useDevicePixelRatio
-()
+const {pixelRatio} = useDevicePixelRatio()
 ```
 
---------------------------------
+---
 
 ### Consume Global State
 
@@ -8120,19 +7652,13 @@ Example of consuming a global state store in a Vue component.
 ```vue
 <!-- app.vue -->
 <script setup lang="ts">
-import { 
-useTodos
- } from './store'
+import {useTodos} from './store'
 
-const 
-todos
- = 
-useTodos
-()
+const todos = useTodos()
 </script>
 ```
 
---------------------------------
+---
 
 ### Initialize useToggle
 
@@ -8141,16 +7667,12 @@ Source: https://vueuse.org/shared/useToggle
 Import and initialize useToggle to get a boolean value and a toggle function. The initial value defaults to false.
 
 ```typescript
-import {
-useToggle
-} from '@vueuse/core'
+import {useToggle} from '@vueuse/core'
 
-const [value, toggle] = 
-useToggle
-()
+const [value, toggle] = useToggle()
 ```
 
---------------------------------
+---
 
 ### useAbs - Reactive Absolute Value
 
@@ -8158,7 +7680,7 @@ Source: https://vueuse.org/math/useAbs
 
 Demonstrates how to use the useAbs function to get the absolute value of a reactive number.
 
-```APIDOC
+````APIDOC
 ## useAbs
 
 ### Description
@@ -8188,20 +7710,24 @@ import {
 
 const value = ref(-23)
 const absValue = useAbs(value) // Ref<23>
-```
+````
 
 ### Response
+
 #### Success Response (200)
+
 N/A (Returns a ComputedRef)
 
 #### Response Example
+
 ```json
 {
-  "example": "Ref<23>"
+	"example": "Ref<23>"
 }
 ```
 
 ### Type Declarations
+
 ```typescript
 /**
  * Reactive `Math.abs`.
@@ -8210,12 +7736,12 @@ N/A (Returns a ComputedRef)
  *
  * @__NO_SIDE_EFFECTS__
  */
-export declare function
-useAbs(
-  value: MaybeRefOrGetter<number>,
+export declare function useAbs(
+	value: MaybeRefOrGetter<number>,
 ): ComputedRef<number>
 ```
-```
+
+````
 
 --------------------------------
 
@@ -8249,11 +7775,13 @@ useNProgress(null, {
   minimum: 0.1,
   // other NProgressOptions
 })
-```
+````
 
 ### Response
+
 Returns an object with `isLoading`, `progress`, `start`, `done`, and `remove` functions/refs.
-```
+
+````
 
 --------------------------------
 
@@ -8265,37 +7793,37 @@ Import and use `useInfiniteScroll` to load more data as the user scrolls. Ensure
 
 ```vue
 <script setup lang="ts">
-import { 
+import {
 useInfiniteScroll
  } from '@vueuse/core'
-import { 
+import {
 ref
 ,
 useTemplateRef
  } from 'vue'
 
-const 
+const
 el
- = 
+ =
 useTemplateRef
 ('el')
-const 
+const
 data
- = 
+ =
 ref
 ([1, 2, 3, 4, 5, 6])
 
-const { 
+const {
 reset
- } = 
+ } =
 useInfiniteScroll
 (
-  
+
 el
 ,
   () => {
     // load more
-    
+
 data
 .
 value
@@ -8304,10 +7832,10 @@ push
 (...moreData)
   },
   {
-    
+
 distance
 : 10,
-    
+
 canLoadMore
 : () => {
       // inidicate when there is no more content to load so onLoadMore stops triggering
@@ -8317,15 +7845,15 @@ canLoadMore
   }
 )
 
-function 
+function
 resetList
 () {
-  
+
 data
 .
 value
  = []
-  
+
 reset
 ()
 }
@@ -8334,7 +7862,7 @@ reset
 <template>
   <
 div
- 
+
 ref
 ="
 el
@@ -8343,10 +7871,10 @@ el
 div
  v-for="
 item
- in 
+ in
 data
 ">
-      {{ 
+      {{
 item
  }}
     </
@@ -8367,9 +7895,9 @@ resetList
 button
 >
 </template>
-```
+````
 
---------------------------------
+---
 
 ### Usage of watchOnce
 
@@ -8378,23 +7906,16 @@ Source: https://vueuse.org/shared/watchonce
 Demonstrates the basic implementation of watchOnce to trigger a callback only upon the first change of the source.
 
 ```typescript
-import { 
-watchOnce
- } from '@vueuse/core'
+import {watchOnce} from '@vueuse/core'
 
+watchOnce(source, () => {
+	// triggers only once
 
-watchOnce
-(source, () => {
-  // triggers only once
-  
-console
-.
-log
-('source changed!')
+	console.log('source changed!')
 })
 ```
 
---------------------------------
+---
 
 ### Basic useDark Setup
 
@@ -8403,16 +7924,13 @@ Source: https://vueuse.org/core/usedark
 Import and initialize useDark and useToggle for basic dark mode functionality. isDark is a ref that controls the dark mode state, and toggleDark is a function to switch between light and dark modes.
 
 ```typescript
-import {
-useDark,
-useToggle
-} from '@vueuse/core'
+import {useDark, useToggle} from '@vueuse/core'
 
 const isDark = useDark()
 const toggleDark = useToggle(isDark)
 ```
 
---------------------------------
+---
 
 ### refWithControl Usage
 
@@ -8420,7 +7938,7 @@ Source: https://vueuse.org/shared/refWithControl
 
 Demonstrates the basic usage of refWithControl, showing how to create a controlled ref and interact with it like a normal ref, as well as using its special methods for controlled reactivity.
 
-```APIDOC
+````APIDOC
 ## refWithControl
 
 ### Description
@@ -8463,25 +7981,29 @@ watchEffect(() => {
 
 num.value = 50 // watch effect wouldn't be triggered since it collected nothing.
 console.log(doubled.value) // 100 (updated again since it's a reactive set)
-```
+````
 
 ### Response
+
 #### Success Response (200)
+
 Returns a controlled ref object with additional methods.
 
 #### Response Example
+
 ```json
 {
-  "value": 50,
-  "get": "function",
-  "set": "function",
-  "untrackedGet": "function",
-  "silentSet": "function",
-  "peek": "function",
-  "lay": "function"
+	"value": 50,
+	"get": "function",
+	"set": "function",
+	"untrackedGet": "function",
+	"silentSet": "function",
+	"peek": "function",
+	"lay": "function"
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -8504,9 +8026,9 @@ const {
   triggerElement
 } = usePointerLock()
 
-```
+````
 
---------------------------------
+---
 
 ### Using the onReady Callback
 
@@ -8538,7 +8060,7 @@ No content is returned upon successful deletion.
 (No content)
 ```
 
---------------------------------
+---
 
 ### useThrottledRefHistory Usage Example
 
@@ -8547,35 +8069,17 @@ Source: https://vueuse.org/core/useThrottledRefHistory
 Demonstrates how to use useThrottledRefHistory with a shallowRef counter. It initializes the history with a throttle of 1000ms and deep tracking.
 
 ```typescript
-import {
-useThrottledRefHistory
-} from '@vueuse/core'
-import {
-shallowRef
-} from 'vue'
+import {useThrottledRefHistory} from '@vueuse/core'
+import {shallowRef} from 'vue'
 
-const
-counter
-=
-shallowRef(0)
-const { 
-history
-, 
-undo
-, 
-redo
- } =
-useThrottledRefHistory(
-counter
-, { 
-deep
-: true, 
-throttle
-: 1000 })
-
+const counter = shallowRef(0)
+const {history, undo, redo} = useThrottledRefHistory(counter, {
+	deep: true,
+	throttle: 1000,
+})
 ```
 
---------------------------------
+---
 
 ### useAverage - Basic Usage with Array
 
@@ -8583,7 +8087,7 @@ Source: https://vueuse.org/math/useAverage
 
 Demonstrates how to use `useAverage` with a reactive array of numbers.
 
-```APIDOC
+````APIDOC
 ## POST /api/users
 
 ### Description
@@ -8614,23 +8118,27 @@ None
   "email": "john.doe@example.com",
   "password": "securepassword123"
 }
-```
+````
 
 ### Response
+
 #### Success Response (201 Created)
+
 - **id** (string) - The unique identifier for the newly created user.
 - **username** (string) - The username of the created user.
 - **email** (string) - The email address of the created user.
 
 #### Response Example
+
 ```json
 {
-  "id": "user-12345",
-  "username": "johndoe",
-  "email": "john.doe@example.com"
+	"id": "user-12345",
+	"username": "johndoe",
+	"email": "john.doe@example.com"
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -8681,19 +8189,23 @@ onMounted(() => {
   <div ref="div" />
   <HelloWorld ref="hello" />
 </template>
-```
+````
 
 ### Response
+
 #### Success Response (200)
+
 N/A (Utility function, returns the element directly)
 
 #### Response Example
+
 ```json
 {
-  "example": "<div> or Component's root element"
+	"example": "<div> or Component's root element"
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -8713,9 +8225,9 @@ isMounted
 =
 useMounted
 ()
-```
+````
 
---------------------------------
+---
 
 ### Reactive JSON stringify
 
@@ -8724,66 +8236,24 @@ Source: https://vueuse.org/shared/reactify
 Example of making JSON.stringify reactive to track changes in an object ref.
 
 ```typescript
-import { 
-reactify
- } from '@vueuse/core'
-import { 
-shallowRef
- } from 'vue'
+import {reactify} from '@vueuse/core'
+import {shallowRef} from 'vue'
 
-const 
-stringify
- = 
-reactify
-(
-JSON
-.
-stringify
-)
+const stringify = reactify(JSON.stringify)
 
-const 
-obj
- = 
-shallowRef
-(42)
-const 
-dumped
- = 
-stringify
-(
-obj
-)
+const obj = shallowRef(42)
+const dumped = stringify(obj)
 
+console.log(dumped.value) // '42'
 
-console
-.
-log
-(
-dumped
-.
-value
-) // '42'
+obj.value = {
+	foo: 'bar',
+}
 
-
-obj
-.
-value
- = { 
-foo
-: 'bar' }
-
-
-console
-.
-log
-(
-dumped
-.
-value
-) // '{"foo":"bar"}'
+console.log(dumped.value) // '{"foo":"bar"}'
 ```
 
---------------------------------
+---
 
 ### Initialize useCssVar with Element and Options
 
@@ -8792,12 +8262,8 @@ Source: https://vueuse.org/core/usecssvar
 Demonstrates how to use useCssVar to get and set a CSS variable '--color' on a specific element, with an initial value of '#eee'.
 
 ```typescript
-import {
-  useCssVar
-} from '@vueuse/core'
-import {
-  useTemplateRef
-} from 'vue'
+import {useCssVar} from '@vueuse/core'
+import {useTemplateRef} from 'vue'
 
 const el = useTemplateRef('el')
 const color1 = useCssVar('--color', el)
@@ -8807,10 +8273,10 @@ const key = ref('--color')
 const colorVal = useCssVar(key, elv)
 
 const someEl = useTemplateRef('someEl')
-const color2 = useCssVar('--color', someEl, { initialValue: '#eee' })
+const color2 = useCssVar('--color', someEl, {initialValue: '#eee'})
 ```
 
---------------------------------
+---
 
 ### Basic Event Bus Usage (TypeScript)
 
@@ -8819,64 +8285,30 @@ Source: https://vueuse.org/core/useEventBus
 Demonstrates how to create, listen to, emit, and unregister events using the useEventBus utility in TypeScript. Listeners registered within a component's setup are automatically cleaned up on unmount.
 
 ```typescript
-import {
-useEventBus
-} from '@vueuse/core'
+import {useEventBus} from '@vueuse/core'
 
-const 
-bus
- = 
-useEventBus<string>('news')
+const bus = useEventBus<string>('news')
 
-function 
-listener
-(
-event
-: string) {
-  
-console
-. 
-log
-(`news: ${ 
-event
-}`)
+function listener(event: string) {
+	console.log(`news: ${event}`)
 }
 
 // listen to an event
-const 
-unsubscribe
- = 
-bus
-. 
-on
-(
-listener
-)
+const unsubscribe = bus.on(listener)
 
 // fire an event
-bus
-. 
-emit
-('The Tokyo Olympics has begun')
+bus.emit('The Tokyo Olympics has begun')
 
 // unregister the listener
 unsubscribe()
 // or
-bus
-. 
-off
-(
-listener
-)
+bus.off(listener)
 
 // clearing all listeners
-bus
-. 
-reset
-()
+bus.reset()
 ```
 
---------------------------------
+---
 
 ### Selecting specific devices with useUserMedia
 
@@ -8885,87 +8317,29 @@ Source: https://vueuse.org/core/useUserMedia
 Shows how to combine useDevicesList with useUserMedia to request specific camera and microphone inputs.
 
 ```ts
-import { 
-useDevicesList
-, 
-useUserMedia
- } from '@vueuse/core'
-import { 
-computed
-, 
-reactive
- } from 'vue'
+import {useDevicesList, useUserMedia} from '@vueuse/core'
+import {computed, reactive} from 'vue'
 
-const {
-  
-videoInputs
-: 
-cameras
-,
-  
-audioInputs
-: 
-microphones
-,
-} = 
-useDevicesList
-({
-  
-requestPermissions
-: true,
+const {videoInputs: cameras, audioInputs: microphones} = useDevicesList({
+	requestPermissions: true,
 })
-const 
-currentCamera
- = 
-computed
-(() => 
-cameras
-.
-value
-[0]?.
-deviceId
-)
-const 
-currentMicrophone
- = 
-computed
-(() => 
-microphones
-.
-value
-[0]?.
-deviceId
-)
+const currentCamera = computed(() => cameras.value[0]?.deviceId)
+const currentMicrophone = computed(() => microphones.value[0]?.deviceId)
 
-const { 
-stream
- } = 
-useUserMedia
-({
-  
-constraints
-: 
-reactive
-({
-    
-video
-: { 
-deviceId
-: 
-currentCamera
- },
-    
-audio
-: { 
-deviceId
-: 
-currentMicrophone
-, }
-  })
+const {stream} = useUserMedia({
+	constraints: reactive({
+		video: {
+			deviceId: currentCamera,
+		},
+
+		audio: {
+			deviceId: currentMicrophone,
+		},
+	}),
 })
 ```
 
---------------------------------
+---
 
 ### Template Duplication Problem
 
@@ -8975,16 +8349,16 @@ Example of redundant template code that often necessitates component extraction.
 
 ```vue
 <template>
-  <dialog v-if="showInDialog">
-    <!-- something complex -->
-  </dialog>
-  <div v-else>
-    <!-- something complex -->
-  </div>
+	<dialog v-if="showInDialog">
+		<!-- something complex -->
+	</dialog>
+	<div v-else>
+		<!-- something complex -->
+	</div>
 </template>
 ```
 
---------------------------------
+---
 
 ### VueUse Storage Implementation
 
@@ -8993,13 +8367,13 @@ Source: https://vueuse.org/guide/work-with-ai
 Demonstrates using useStorage and useLocalStorage for managing reactive state in local storage.
 
 ```typescript
-import { useLocalStorage, useStorage } from '@vueuse/core'
+import {useLocalStorage, useStorage} from '@vueuse/core'
 
-const state = useStorage('my-key', { hello: 'hi' }) // localStorage by default
+const state = useStorage('my-key', {hello: 'hi'}) // localStorage by default
 const theme = useLocalStorage('theme', 'light')
 ```
 
---------------------------------
+---
 
 ### useClamp - Reactive Bounds
 
@@ -9007,8 +8381,8 @@ Source: https://vueuse.org/math/useclamp
 
 Demonstrates how all arguments (value, min, max) can be reactive, allowing the clamped value to update automatically when bounds change.
 
-```APIDOC
-## useClamp (Reactive Bounds) 
+````APIDOC
+## useClamp (Reactive Bounds)
 
 ### Description
 All arguments (value, min, max) can be reactive. The clamped value updates automatically when the bounds change.
@@ -9041,19 +8415,23 @@ const max = shallowRef(10)
 const clamped = useClamp(value, min, max)
 
 max.value = 3 // clamped.value automatically becomes 3
-```
+````
 
 ### Response
+
 #### Success Response (200)
+
 Returns a computed ref that dynamically adjusts to reactive bounds.
 
 #### Response Example
+
 ```json
 {
-  "clampedValue": 3 
+	"clampedValue": 3
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -9069,15 +8447,15 @@ localStorage
 setItem
 ('my-store', '{"hello": "hello"}')
 
-const 
+const
 state
- = 
+ =
 useStorage
-('my-store', { 
+('my-store', {
 hello
-: 'hi', 
+: 'hi',
 greeting
-: 'hello' }, 
+: 'hello' },
 localStorage
 )
 
@@ -9092,20 +8470,20 @@ value
 .
 greeting
 ) // undefined, since the value is not presented in storage
-```
+````
 
 ```js
 'use strict'
 localStorage.setItem('my-store', '{"hello": "hello"}')
 const state = useStorage(
-  'my-store',
-  { hello: 'hi', greeting: 'hello' },
-  localStorage,
+	'my-store',
+	{hello: 'hi', greeting: 'hello'},
+	localStorage,
 )
 console.log(state.value.greeting) // undefined, since the value is not presented in storage
 ```
 
---------------------------------
+---
 
 ### Use useFloor for Reactive Flooring
 
@@ -9114,15 +8492,13 @@ Source: https://vueuse.org/math/usefloor
 Import and use the useFloor function with a ref to get a reactive floored value. The result is a computed ref.
 
 ```typescript
-import {
-  useFloor
-} from '@vueuse/math'
+import {useFloor} from '@vueuse/math'
 
 const value = ref(45.95)
 const result = useFloor(value) // 45
 ```
 
---------------------------------
+---
 
 ### Basic useImage Usage
 
@@ -9132,35 +8508,21 @@ Use this composable in your script setup to reactively manage image loading. It 
 
 ```vue
 <script setup lang="ts">
-import { 
-useImage
- } from '@vueuse/core'
+import {useImage} from '@vueuse/core'
 
-const 
-avatarUrl
- = 'https://place.dog/300/200'
-const { 
-isLoading
- } = 
-useImage
-({
- src
-:
- avatarUrl
+const avatarUrl = 'https://place.dog/300/200'
+const {isLoading} = useImage({
+	src: avatarUrl,
 })
 </script>
 
 <template>
-  <span v-if="
-isLoading">
-Loading
-</span>
-  <img v-else :src="
-avatarUrl">
+	<span v-if="isLoading"> Loading </span>
+	<img v-else :src="avatarUrl" />
 </template>
 ```
 
---------------------------------
+---
 
 ### useAverage - Basic Usage with Multiple Arguments
 
@@ -9168,7 +8530,7 @@ Source: https://vueuse.org/math/useAverage
 
 Demonstrates how to use `useAverage` with multiple reactive numbers as arguments.
 
-```APIDOC
+````APIDOC
 ## GET /api/users/{userId}
 
 ### Description
@@ -9208,8 +8570,9 @@ None
   "email": "john.doe@example.com",
   "createdAt": "2023-10-27T10:00:00Z"
 }
-```
-```
+````
+
+````
 
 --------------------------------
 
@@ -9243,9 +8606,9 @@ export function useActiveElement<T extends HTMLElement>(
 
   /* ... */
 }
-```
+````
 
---------------------------------
+---
 
 ### Initialize useWebNotification
 
@@ -9254,68 +8617,34 @@ Source: https://vueuse.org/core/usewebnotification
 Import and initialize useWebNotification with options. It provides reactive states for support, permission, and methods to show, close, and handle notification events. Ensure user grants permission before showing notifications.
 
 ```typescript
-import {
-useWebNotification
-} from '@vueuse/core'
+import {useWebNotification} from '@vueuse/core'
 
 const {
+	isSupported,
+	notification,
+	permissionGranted,
+	show,
+	close,
+	onClick,
+	onShow,
+	onError,
+	onClose,
+} = useWebNotification({
+	title: 'Hello, VueUse world!',
 
-isSupported
-,
+	dir: 'auto',
 
-notification
-,
+	lang: 'en',
 
-permissionGranted
-,
+	renotify: true,
 
-show
-,
-
-close
-,
-
-onClick
-,
-
-onShow
-,
-
-onError
-,
-
-onClose,
-} = 
-useWebNotification
-({
-
-title
-: 'Hello, VueUse world!',
-
-dir
-: 'auto',
-
-lang
-: 'en',
-
-renotify
-: true,
-
-tag
-: 'test',
+	tag: 'test',
 })
 
-if (
-isSupported
-.value && 
-permissionGranted
-.value)
-
-show
-()
+if (isSupported.value && permissionGranted.value) show()
 ```
 
---------------------------------
+---
 
 ### useCloned - Basic Usage
 
@@ -9323,7 +8652,7 @@ Source: https://vueuse.org/core/useCloned
 
 Demonstrates the basic usage of useCloned to create a reactive clone of a ref. Changes to the original ref are reflected in the cloned ref, but not vice-versa by default.
 
-```APIDOC
+````APIDOC
 ## useCloned - Basic Usage
 
 ### Description
@@ -9351,15 +8680,18 @@ const { cloned } = useCloned(original)
 
 original.value.key = 'some new value'
 console.log(cloned.value.key) // 'value'
-```
+````
 
 ### Response
+
 #### Success Response
+
 - **cloned** (Ref<T>) - A reactive ref containing the cloned data.
 - **isModified** (Ref<boolean>) - A ref indicating if the cloned data has been modified compared to the source.
 - **sync** (function) - A function to manually sync the cloned data with the source ref.
 
 #### Response Example
+
 ```json
 {
   "cloned": {"key": "value"},
@@ -9367,7 +8699,8 @@ console.log(cloned.value.key) // 'value'
   "sync": () => {}
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -9394,7 +8727,7 @@ foo
 .
 peek
 () // an alias for `untrackedGet`
-```
+````
 
 ```javascript
 'use strict'
@@ -9404,7 +8737,7 @@ foo.untrackedGet()
 foo.peek() // an alias for `untrackedGet`
 ```
 
---------------------------------
+---
 
 ### useWindowFocus - Component Usage
 
@@ -9412,7 +8745,7 @@ Source: https://vueuse.org/core/usewindowfocus
 
 Shows how to use the renderless component version of `useWindowFocus` provided by `@vueuse/components`.
 
-```APIDOC
+````APIDOC
 ## UseWindowFocus Component
 
 ### Description
@@ -9435,12 +8768,15 @@ N/A (Component)
     Document Focus: {{ focused }}
   </UseWindowFocus>
 </template>
-```
+````
 
 ### Response
+
 #### Success Response (200)
+
 - **focused** (boolean) - The focus state of the window.
-```
+
+````
 
 --------------------------------
 
@@ -9637,9 +8973,9 @@ function removeTodo(id: number) {
             :style="{ animationDelay: `${index * 0.03}s` }"
           >
 
-```
+````
 
---------------------------------
+---
 
 ### useCloned - Basic Usage
 
@@ -9647,7 +8983,7 @@ Source: https://vueuse.org/core/usecloned
 
 Demonstrates the basic usage of useCloned to create a reactive clone of a ref. Changes to the original ref do not affect the cloned ref by default.
 
-```APIDOC
+````APIDOC
 ## useCloned - Basic Usage
 
 ### Description
@@ -9674,23 +9010,27 @@ const { cloned } = useCloned(original)
 
 original.value.key = 'some new value'
 console.log(cloned.value.key) // Output: 'value'
-```
+````
 
 ### Response
+
 #### Success Response
+
 - **cloned** (Ref<T>) - A ref containing the cloned data.
 - **isModified** (Ref<boolean>) - A ref indicating if the cloned data has been modified compared to the source.
 - **sync** (function) - A function to manually synchronize the cloned data with the source.
 
 #### Response Example
+
 ```json
 {
-  "cloned": {"key": "value"},
-  "isModified": false,
-  "sync": "[Function: sync]"
+	"cloned": {"key": "value"},
+	"isModified": false,
+	"sync": "[Function: sync]"
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -9701,29 +9041,29 @@ Source: https://vueuse.org/shared/createRef
 Demonstrates how to initialize shallow and deep references using the createRef utility.
 
 ```ts
-import { 
+import {
 createRef
  } from '@vueuse/core'
-import { 
+import {
 isShallow
-, 
+,
 ref
  } from 'vue'
 
-const 
+const
 initialData
  = 1
 
-const 
+const
 shallowData
- = 
+ =
 createRef
 (
 initialData
 )
-const 
+const
 deepData
- = 
+ =
 createRef
 (
 initialData
@@ -9739,11 +9079,11 @@ isShallow
 (
 deepData
 ) // false
-```
+````
 
 ```js
-import { createRef } from '@vueuse/core'
-import { isShallow } from 'vue'
+import {createRef} from '@vueuse/core'
+import {isShallow} from 'vue'
 const initialData = 1
 const shallowData = createRef(initialData)
 const deepData = createRef(initialData, true)
@@ -9751,7 +9091,7 @@ isShallow(shallowData) // true
 isShallow(deepData) // false
 ```
 
---------------------------------
+---
 
 ### Shorthands: peek, lay, untrackedGet, silentSet
 
@@ -9759,7 +9099,7 @@ Source: https://vueuse.org/shared/refWithControl
 
 Explains the shorthand methods available on the controlled ref for getting and setting values without affecting reactivity tracking.
 
-```APIDOC
+````APIDOC
 ## Shorthands
 
 ### Description
@@ -9784,8 +9124,9 @@ foo.peek()           // Alias for untrackedGet()
 foo.set('bar', false) // Equivalent to foo.silentSet('bar')
 foo.silentSet('bar')
 foo.lay('bar')       // Alias for silentSet()
-```
-```
+````
+
+````
 
 --------------------------------
 
@@ -9796,46 +9137,46 @@ Source: https://vueuse.org/core/computedInject
 Pass an object with get and set functions to enable write operations.
 
 ```typescript
-import { 
+import {
 computedInject
  } from '@vueuse/core'
 
-const 
+const
 computedArray
- = 
+ =
 computedInject
 (ArrayKey, {
-  
+
 get
 (
 source
 ) {
-    return 
+    return
 source
 .value.map(
 item
- => 
+ =>
 item
 .value)
   },
-  
+
 set
 (
 value
 ) {
     // handle setting the value
-    
+
 console
 .
 log
-('Setting value:', 
+('Setting value:',
 value
 )
   },
 })
-```
+````
 
---------------------------------
+---
 
 ### useTimeout with Reactive Duration
 
@@ -9843,7 +9184,7 @@ Source: https://vueuse.org/shared/useTimeout
 
 This example illustrates how the timeout duration can be a reactive ref, allowing it to be updated dynamically.
 
-```APIDOC
+````APIDOC
 ## useTimeout with Reactive Duration
 
 ### Description
@@ -9879,7 +9220,7 @@ const ready = useTimeout(duration)
 
 // Change the duration (only affects future timeouts when using controls)
 duration.value = 2000
-```
+````
 
 ### Response
 
@@ -9891,10 +9232,11 @@ duration.value = 2000
 
 ```json
 {
-  "ready": true // after the current duration, which can be updated reactively.
+	"ready": true // after the current duration, which can be updated reactively.
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -9906,29 +9248,29 @@ Example of using reactiveOmit to filter props before passing them to a child com
 
 ```vue
 <script setup lang="ts">
-import { 
+import {
 reactiveOmit
  } from '@vueuse/core'
 
-const 
+const
 props
- = 
+ =
 defineProps
 <{
-  
+
 value
 : string
-  
+
 color
 ?: string
-  
+
 font
 ?: string
 }>()
 
-const 
+const
 childProps
- = 
+ =
 reactiveOmit
 (
 props
@@ -9947,9 +9289,9 @@ childProps
 div
 >
 </template>
-```
+````
 
---------------------------------
+---
 
 ### useAxios - Basic Usage
 
@@ -9957,7 +9299,7 @@ Source: https://vueuse.org/integrations/useaxios
 
 This snippet demonstrates the basic usage of the useAxios composable without any configuration, returning a promise that resolves with the Axios response.
 
-```APIDOC
+````APIDOC
 ## POST /api/users
 
 ### Description
@@ -9983,23 +9325,27 @@ POST
   "name": "John Doe",
   "email": "john.doe@example.com"
 }
-```
+````
 
 ### Response
+
 #### Success Response (200)
+
 - **id** (string) - The unique identifier for the newly created user.
 - **name** (string) - The name of the user.
 - **email** (string) - The email address of the user.
 
 #### Response Example
+
 ```json
 {
-  "id": "user123",
-  "name": "John Doe",
-  "email": "john.doe@example.com"
+	"id": "user123",
+	"name": "John Doe",
+	"email": "john.doe@example.com"
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -10011,46 +9357,46 @@ Shows initialization with specific configuration options for cookie parsing and 
 
 ```typescript
 const {
-  
+
 get
 ,
-  
+
 getAll
 ,
-  
+
 set
 ,
-  
+
 remove
 ,
-  
+
 addChangeListener
 ,
-  
+
 removeChangeListener
 
-} = 
+} =
 useCookies
 (['cookie-name'], {
-  
+
 doNotParse
 : false,
-  
+
 autoUpdateDependencies
 : false
 })
-```
+````
 
 ```javascript
 'use strict'
-const { get, getAll, set, remove, addChangeListener, removeChangeListener } =
-  useCookies(['cookie-name'], {
-    doNotParse: false,
-    autoUpdateDependencies: false,
-  })
+const {get, getAll, set, remove, addChangeListener, removeChangeListener} =
+	useCookies(['cookie-name'], {
+		doNotParse: false,
+		autoUpdateDependencies: false,
+	})
 ```
 
---------------------------------
+---
 
 ### injectLocal Type Declarations
 
@@ -10058,7 +9404,7 @@ Source: https://vueuse.org/shared/injectLocal
 
 TypeScript type declarations for the injectLocal function, including its purpose and usage examples.
 
-```APIDOC
+````APIDOC
 ## GET /api/users/{id}
 
 ### Description
@@ -10085,25 +9431,29 @@ None
 GET /api/users/user-12345 HTTP/1.1
 Host: api.example.com
 Accept: application/json
-```
+````
 
 ### Response
+
 #### Success Response (200)
+
 - **id** (string) - The unique identifier for the user.
 - **username** (string) - The username of the user.
 - **email** (string) - The email address of the user.
 - **createdAt** (string) - The timestamp when the user was created.
 
 #### Response Example
+
 ```json
 {
-  "id": "user-12345",
-  "username": "johndoe",
-  "email": "john.doe@example.com",
-  "createdAt": "2023-10-27T10:00:00Z"
+	"id": "user-12345",
+	"username": "johndoe",
+	"email": "john.doe@example.com",
+	"createdAt": "2023-10-27T10:00:00Z"
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -10121,9 +9471,9 @@ import { computed } from 'vue'
 // Ref result will return
 const result = useIpcRendererInvoke('custom-channel', 'some data')
 const msg = computed(() => result.value?.msg)
-```
+````
 
---------------------------------
+---
 
 ### Reactive Math.ceil with useCeil
 
@@ -10132,24 +9482,13 @@ Source: https://vueuse.org/math/useCeil
 Use this snippet to get a reactive ceiling value of a number. Ensure you have imported `useCeil` from `@vueuse/math` and `ref` from `vue`.
 
 ```typescript
-import {
-useCeil
-} from '@vueuse/math'
+import {useCeil} from '@vueuse/math'
 
-const 
-value
- = 
-ref
-(0.95)
-const 
-result
- = 
-useCeil(
-value
-) // 1
+const value = ref(0.95)
+const result = useCeil(value) // 1
 ```
 
---------------------------------
+---
 
 ### useTransition Basic Usage
 
@@ -10157,7 +9496,7 @@ Source: https://vueuse.org/core/useTransition
 
 Demonstrates the basic usage of `useTransition` with a source ref and default duration/easing.
 
-```APIDOC
+````APIDOC
 ## POST /api/users
 
 ### Description
@@ -10183,23 +9522,27 @@ POST
   "name": "John Doe",
   "email": "john.doe@example.com"
 }
-```
+````
 
 ### Response
+
 #### Success Response (200)
+
 - **id** (integer) - The unique identifier for the newly created user.
 - **name** (string) - The name of the user.
 - **email** (string) - The email address of the user.
 
 #### Response Example
+
 ```json
 {
-  "id": 1,
-  "name": "John Doe",
-  "email": "john.doe@example.com"
+	"id": 1,
+	"name": "John Doe",
+	"email": "john.doe@example.com"
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -10219,9 +9562,9 @@ Example of how the 'dir' attribute on the html tag influences the detected direc
 <html dir="rtl">
   ...
 </html>
-```
+````
 
---------------------------------
+---
 
 ### useVModel - Options
 
@@ -10229,119 +9572,136 @@ Source: https://vueuse.org/core/useVModel
 
 Explains the various options available for customizing the behavior of useVModel.
 
-```APIDOC
-## Options 
+````APIDOC
+## Options
 
-### Passive Mode 
+### Passive Mode
 By default, `useVModel` returns a computed ref. In passive mode, it creates a local ref that syncs with the prop via `watch`, allowing deep reactivity tracking.
 
 TypeScript
 ```typescript
 const data = useVModel(props, 'modelValue', emit, { passive: true })
-```
+````
 
 JavaScript
+
 ```javascript
-const data = useVModel(props, 'modelValue', emit, { passive: true })
+const data = useVModel(props, 'modelValue', emit, {passive: true})
 ```
 
-### Deep Watching 
+### Deep Watching
+
 When using `passive: true`, you can enable deep watching for nested object changes:
 
 TypeScript
+
 ```typescript
 const data = useVModel(props, 'modelValue', emit, {
-  passive: true,
-  deep: true,
+	passive: true,
+	deep: true,
 })
 ```
 
 JavaScript
+
 ```javascript
 const data = useVModel(props, 'modelValue', emit, {
-  passive: true,
-  deep: true,
+	passive: true,
+	deep: true,
 })
 ```
 
-### Clone Values 
+### Clone Values
+
 Clone the prop value to avoid mutating the original object. Set to `true` to use `JSON.parse(JSON.stringify())` or provide a custom clone function.
 
 TypeScript
+
 ```typescript
 const data = useVModel(props, 'modelValue', emit, {
-  clone: true,
-  // or provide custom clone function
-  // clone: (val) => structuredClone(val),
+	clone: true,
+	// or provide custom clone function
+	// clone: (val) => structuredClone(val),
 })
 ```
 
 JavaScript
+
 ```javascript
 const data = useVModel(props, 'modelValue', emit, {
-  clone: true,
-  // or provide custom clone function
-  // clone: (val) => structuredClone(val),
+	clone: true,
+	// or provide custom clone function
+	// clone: (val) => structuredClone(val),
 })
 ```
 
-### Default Value 
+### Default Value
+
 Provide a default value when the prop is undefined:
 
 TypeScript
+
 ```typescript
 const data = useVModel(props, 'modelValue', emit, {
-  defaultValue: 'default',
+	defaultValue: 'default',
 })
 ```
 
 JavaScript
+
 ```javascript
 const data = useVModel(props, 'modelValue', emit, {
-  defaultValue: 'default',
+	defaultValue: 'default',
 })
 ```
 
-### Custom Event Name 
+### Custom Event Name
+
 Override the default `update:propName` event name:
 
 TypeScript
+
 ```typescript
 const data = useVModel(props, 'value', emit, {
-  eventName: 'change',
+	eventName: 'change',
 })
 ```
 
 JavaScript
+
 ```javascript
 const data = useVModel(props, 'value', emit, {
-  eventName: 'change',
+	eventName: 'change',
 })
 ```
 
-### Emit Validation 
+### Emit Validation
+
 Use `shouldEmit` to validate before emitting. Return `false` to prevent the emit:
 
 TypeScript
+
 ```typescript
 const data = useVModel(props, 'modelValue', emit, {
-  shouldEmit: (value) => {
-    // Only emit if value is valid
-    return value.length > 0
-  },
+	shouldEmit: value => {
+		// Only emit if value is valid
+		return value.length > 0
+	},
 })
 ```
 
 JavaScript
+
 ```javascript
 const data = useVModel(props, 'modelValue', emit, {
-  shouldEmit: (value) => {
-    // Only emit if value is valid
-    return value.length > 0
-  },
+	shouldEmit: value => {
+		// Only emit if value is valid
+		return value.length > 0
+	},
 })
 ```
-```
+
+````
 
 --------------------------------
 
@@ -10374,19 +9734,23 @@ import {
 } from '@vueuse/core'
 
 const isDark = usePreferredDark()
-```
+````
 
 ### Response
+
 #### Success Response (ComputedRef<boolean>)
+
 - **isDark** (boolean) - Reactive boolean indicating if the user prefers dark theme.
 
 #### Response Example
+
 ```json
 {
-  "isDark": true
+	"isDark": true
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -10436,15 +9800,19 @@ const msg = computed(() => result.value?.msg)
 ipcRenderer.on('custom-event', (event, ...args) => {
   console.log(args)
 })
-```
+````
 
 ### Response
+
 #### Success Response (200)
+
 N/A (Composable function, returns reactive refs)
 
 #### Response Example
+
 N/A
-```
+
+````
 
 --------------------------------
 
@@ -10475,24 +9843,29 @@ N/A (Composable function)
 import { usePreferredContrast } from '@vueuse/core'
 
 const preferredContrast = usePreferredContrast()
-```
+````
 
 ### Response
+
 #### Success Response (ComputedRef<ContrastType>)
+
 - **contrast** (ContrastType) - The user's preferred contrast setting.
 
 ### Response Example
+
 ```json
 {
-  "contrast": "no-preference" 
+	"contrast": "no-preference"
 }
 ```
 
 ### Type Declarations
+
 ```typescript
-export type ContrastType = "more" | "less" | "custom" | "no-preference"
+export type ContrastType = 'more' | 'less' | 'custom' | 'no-preference'
 ```
-```
+
+````
 
 --------------------------------
 
@@ -10525,22 +9898,27 @@ None directly on the component, options are passed to the underlying composable 
     Height: {{ height }}
   </UseWindowSize>
 </template>
-```
+````
 
 ### Response
+
 Exposed via v-slot:
+
 - **width** (ShallowRef<number>) - Reactive reference to the window's width.
 - **height** (ShallowRef<number>) - Reactive reference to the window's height.
 
 ### Response Example
+
 (Values are reactive and updated in real-time)
+
 ```json
 {
-  "width": 1280,
-  "height": 800
+	"width": 1280,
+	"height": 800
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -10555,13 +9933,13 @@ import {
   useMagicKeys
 } from '@vueuse/core'
 
-const { 
+const {
   shift
-, 
+,
   space
-, 
+,
   a
- /* keys you want to monitor */ } = 
+ /* keys you want to monitor */ } =
 useMagicKeys
 ()
 
@@ -10577,43 +9955,28 @@ watch
 watchEffect
 (() => {
   if (
-    shift.value && 
+    shift.value &&
     a.value)
     console.log('Shift + A have been pressed')
 })
-```
+````
 
 ```typescript
-const { 
-  shift
-, 
-  space
-, 
-  a
- } = useMagicKeys()
+const {shift, space, a} = useMagicKeys()
 
-
-watch
-(
-  () => 
-  space?.value,
-  (v) => {
-    if (v)
-      console.log('space has been pressed')
-  },
+watch(
+	() => space?.value,
+	v => {
+		if (v) console.log('space has been pressed')
+	},
 )
 
-
-watchEffect
-(() => {
-  if (
-    shift?.value && 
-    a?.value)
-    console.log('Shift + A have been pressed')
+watchEffect(() => {
+	if (shift?.value && a?.value) console.log('Shift + A have been pressed')
 })
 ```
 
---------------------------------
+---
 
 ### useIpcRendererOn
 
@@ -10625,7 +9988,7 @@ Use ipcRenderer.on with ease and ipcRenderer.removeListener automatically on unm
 * `useIpcRendererOn` — use ipcRenderer.on with ease and ipcRenderer.removeListener automatically on unmounted
 ```
 
---------------------------------
+---
 
 ### watchPausable Usage
 
@@ -10633,8 +9996,8 @@ Source: https://vueuse.org/shared/watchPausable
 
 Demonstrates how to use the watchPausable function to create a pausable watcher. It shows how to pause, resume, and stop the watcher, and includes an example of its behavior with asynchronous updates.
 
-```APIDOC
-## watchPausable 
+````APIDOC
+## watchPausable
 
 ### Description
 Creates a pausable watcher. This function is deprecated and will be removed in a future version. It is recommended to use Vue's built-in `watch` instead.
@@ -10676,53 +10039,69 @@ resume()
 
 source.value = 'hello'
 await nextTick() // Changed to hello!
-```
+````
 
 ### Response
+
 #### Success Response
+
 Returns an object with the following properties:
+
 - **stop**: (WatchStopHandle) - A function to stop the watcher.
 - **pause**: () => void - A function to pause the watcher.
 - **resume**: () => void - A function to resume the watcher.
 
 #### Response Example
+
 ```json
 {
-  "stop": "function",
-  "pause": "function",
-  "resume": "function"
+	"stop": "function",
+	"pause": "function",
+	"resume": "function"
 }
 ```
 
 ### Type Declarations
+
 ```typescript
 export interface WatchPausableReturn extends Pausable {
-  stop: WatchStopHandle
+	stop: WatchStopHandle
 }
-export type WatchPausableOptions<Immediate> = WatchWithFilterOptions<Immediate> & PausableFilterOptions
+export type WatchPausableOptions<Immediate> =
+	WatchWithFilterOptions<Immediate> & PausableFilterOptions
 
 /** @deprecated Use Vue's built-in `watch` instead. This function will be removed in future version. */
-export declare function watchPausable<T, Immediate extends Readonly<boolean> = false>(
-  source: WatchSource<T>,
-  cb: WatchCallback<T, Immediate extends true ? T | undefined : T>,
-  options?: WatchPausableOptions<Immediate>
+export declare function watchPausable<
+	T,
+	Immediate extends Readonly<boolean> = false,
+>(
+	source: WatchSource<T>,
+	cb: WatchCallback<T, Immediate extends true ? T | undefined : T>,
+	options?: WatchPausableOptions<Immediate>,
 ): WatchPausableReturn
 /** @deprecated Use Vue's built-in `watch` instead. This function will be removed in future version. */
-export declare function watchPausable<T extends Readonly<MultiWatchSources>, Immediate extends Readonly<boolean> = false>(
-  sources: [...T],
-  cb: WatchCallback<MapSources<T>, MapOldSources<T, Immediate>>,
-  options?: WatchPausableOptions<Immediate>
+export declare function watchPausable<
+	T extends Readonly<MultiWatchSources>,
+	Immediate extends Readonly<boolean> = false,
+>(
+	sources: [...T],
+	cb: WatchCallback<MapSources<T>, MapOldSources<T, Immediate>>,
+	options?: WatchPausableOptions<Immediate>,
 ): WatchPausableReturn
 /** @deprecated Use Vue's built-in `watch` instead. This function will be removed in future version. */
-export declare function watchPausable<T extends object, Immediate extends Readonly<boolean> = false>(
-  source: T,
-  cb: WatchCallback<T, Immediate extends true ? T | undefined : T>,
-  options?: WatchPausableOptions<Immediate>
+export declare function watchPausable<
+	T extends object,
+	Immediate extends Readonly<boolean> = false,
+>(
+	source: T,
+	cb: WatchCallback<T, Immediate extends true ? T | undefined : T>,
+	options?: WatchPausableOptions<Immediate>,
 ): WatchPausableReturn
 
 export declare const pausableWatch: typeof watchPausable
 ```
-```
+
+````
 
 --------------------------------
 
@@ -10734,35 +10113,35 @@ When using the Options API, define createReusableTemplate outside the component 
 
 ```vue
 <script>
-import { 
+import {
 createReusableTemplate
  } from '@vueuse/core'
-import { 
+import {
 defineComponent
  } from 'vue'
 
 const [
 DefineTemplate
-, 
+,
 ReuseTemplate
-] = 
+] =
 createReusableTemplate
 ()
 
-export default 
+export default
 defineComponent
 ({
-  
+
 components
 : {
-    
+
 DefineTemplate
 ,
-    
+
 ReuseTemplate
 ,
   },
-  
+
 setup
 () {
     // ...
@@ -10771,29 +10150,29 @@ setup
 </script>
 
 <template>
-  <DefineTemplate 
+  <DefineTemplate
 v-slot
-="{ 
+="{
 data
-, 
+,
 msg
-, 
+,
 anything
  }">
-    <div >{{ 
+    <div >{{
 data
  }} passed from usage</div>
   </DefineTemplate>
 
-  <ReuseTemplate 
+  <ReuseTemplate
 :data
-="data" 
+="data"
 msg
 ="The first usage" />
 </template>
-```
+````
 
---------------------------------
+---
 
 ### Basic Usage of whenever
 
@@ -10802,17 +10181,17 @@ Source: https://vueuse.org/shared/whenever
 Demonstrates using whenever to trigger a callback when an async state becomes ready.
 
 ```javascript
-import { useAsyncState, whenever } from '@vueuse/core'
+import {useAsyncState, whenever} from '@vueuse/core'
 
-const { state, isReady } = useAsyncState(
-  fetch('https://jsonplaceholder.typicode.com/todos/1').then(t => t.json()),
-  {},
+const {state, isReady} = useAsyncState(
+	fetch('https://jsonplaceholder.typicode.com/todos/1').then(t => t.json()),
+	{},
 )
 
 whenever(isReady, () => console.log(state))
 ```
 
---------------------------------
+---
 
 ### Media query configuration
 
@@ -10821,28 +10200,26 @@ Source: https://vueuse.org/core/useStyleTag
 Demonstrates applying media attributes to the style tag.
 
 ```typescript
-
-useStyleTag
-('.foo { margin-top: 32px; }', { 
-media
-: 'print' })
+useStyleTag('.foo { margin-top: 32px; }', {
+	media: 'print',
+})
 ```
 
 ```javascript
 'use strict'
-useStyleTag('.foo { margin-top: 32px; }', { media: 'print' })
+useStyleTag('.foo { margin-top: 32px; }', {media: 'print'})
 ```
 
 ```html
 <!-- injected to <head> -->
 <style id="vueuse_styletag_1" media="print">
-  .foo {
-    margin-top: 32px;
-  }
+	.foo {
+		margin-top: 32px;
+	}
 </style>
 ```
 
---------------------------------
+---
 
 ### computedInject Usage
 
@@ -10850,7 +10227,7 @@ Source: https://vueuse.org/core/computedinject
 
 Demonstrates how to use computedInject to combine computed properties with injected values. It shows the provider component setup and the receiver component usage.
 
-```APIDOC
+````APIDOC
 ## computedInject
 
 ### Description
@@ -10891,78 +10268,86 @@ const array = ref([
 ])
 
 provide(ArrayKey, array)
-```
+````
 
 **In Receiver Component:**
-```typescript
-import { computedInject } from '@vueuse/core'
-import { ArrayKey } from './provider'
 
-const computedArray = computedInject(ArrayKey, (source) => {
-  const arr = [...source.value]
-  arr.unshift({ key: 0, value: 'all' })
-  return arr
+```typescript
+import {computedInject} from '@vueuse/core'
+import {ArrayKey} from './provider'
+
+const computedArray = computedInject(ArrayKey, source => {
+	const arr = [...source.value]
+	arr.unshift({key: 0, value: 'all'})
+	return arr
 })
 ```
 
 ### Default Value
+
 Provides a default value if the injection key is not found.
 
 ```typescript
-import { computedInject } from '@vueuse/core'
+import {computedInject} from '@vueuse/core'
 
 const computedArray = computedInject(
-  ArrayKey,
-  (source) => {
-    return source.value.map(item => item.value)
-  },
-  ref([]), // default source value
+	ArrayKey,
+	source => {
+		return source.value.map(item => item.value)
+	},
+	ref([]), // default source value
 )
 ```
 
 ### Factory Default
+
 Treats the default value as a factory function when `true` is passed as the fourth argument.
 
 ```typescript
-import { computedInject } from '@vueuse/core'
+import {computedInject} from '@vueuse/core'
 
 const computedArray = computedInject(
-  ArrayKey,
-  (source) => {
-    return source.value.map(item => item.value)
-  },
-  () => ref([]), // factory function for default
-  true, // treat default as factory
+	ArrayKey,
+	source => {
+		return source.value.map(item => item.value)
+	},
+	() => ref([]), // factory function for default
+	true, // treat default as factory
 )
 ```
 
 ### Writable Computed
+
 Creates a writable computed property using `get` and `set` functions.
 
 ```typescript
-import { computedInject } from '@vueuse/core'
+import {computedInject} from '@vueuse/core'
 
 const computedArray = computedInject(ArrayKey, {
-  get(source) {
-    return source.value.map(item => item.value)
-  },
-  set(value) {
-    console.log('Setting value:', value)
-  },
+	get(source) {
+		return source.value.map(item => item.value)
+	},
+	set(value) {
+		console.log('Setting value:', value)
+	},
 })
 ```
 
 ### Response
+
 #### Success Response (200)
+
 Returns a `ComputedRef` based on the provided getter or options.
 
 #### Response Example
+
 ```json
 {
-  "example": "ComputedRef<K | undefined> or ComputedRef<K>"
+	"example": "ComputedRef<K | undefined> or ComputedRef<K>"
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -11023,7 +10408,7 @@ isLowercase
 ? 'πμ' : 'ΠΜ')
   return
 hasPeriod
-? 
+?
 m
 .split('')
 .reduce((acc,
@@ -11043,20 +10428,24 @@ pm
 useDateFormat('2022-01-01 17:05:05', 'hh:mm:ss AA', { customMeridiem })
 // pm.value = '05:05:05 Μ.Μ.'
 </script>
-```
+````
 
 ### Response
+
 #### Success Response (200)
+
 N/A (Composable Function returns a `ComputedRef<string>`)
 
 #### Response Example
+
 ```json
 {
-  "example_am": "05:05:05 ΠΜ",
-  "example_pm": "05:05:05 Μ.Μ."
+	"example_am": "05:05:05 ΠΜ",
+	"example_pm": "05:05:05 Μ.Μ."
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -11097,19 +10486,22 @@ const qrcode = useQRCode('text-to-encode')
 import { shallowRef } from 'vue'
 const text = shallowRef('text-to-encode')
 const qrcodeReactive = useQRCode(text)
-```
+````
 
 ### Response
+
 #### Success Response (200)
+
 - **qrcode** (ShallowRef<string>) - A shallow reference containing the data URL of the generated QR code.
 
 #### Response Example
+
 ```html
-<input v-model="text" type="text" />
-<img :src="qrcode" alt="QR Code" />
+<input v-model="text" type="text" /> <img :src="qrcode" alt="QR Code" />
 ```
 
 ### Type Declarations
+
 ```typescript
 /**
  * Wrapper for qrcode.
@@ -11119,11 +10511,12 @@ const qrcodeReactive = useQRCode(text)
  * @param options
  */
 export declare function useQRCode(
-  text: MaybeRefOrGetter<string>,
-  options?: QRCode.QRCodeToDataURLOptions
+	text: MaybeRefOrGetter<string>,
+	options?: QRCode.QRCodeToDataURLOptions,
 ): ShallowRef<string>
 ```
-```
+
+````
 
 --------------------------------
 
@@ -11143,14 +10536,14 @@ mode
 =
 useTextDirection
 ({
-  
+
 selector
 : 'body'
 })
 
-```
+````
 
---------------------------------
+---
 
 ### Awaiting useAsyncState result
 
@@ -11159,21 +10552,17 @@ Source: https://vueuse.org/core/useAsyncState
 Shows how to await the result of useAsyncState directly in async functions or script setup.
 
 ```ts
-const { 
-state
-, 
-isReady
- } = await useAsyncState(fetchData, null)
+const {state, isReady} = await useAsyncState(fetchData, null)
 // `state` is now populated, `isReady` is true
 ```
 
 ```js
 'use strict'
-const { state, isReady } = await useAsyncState(fetchData, null)
+const {state, isReady} = await useAsyncState(fetchData, null)
 // `state` is now populated, `isReady` is true
 ```
 
---------------------------------
+---
 
 ### Use useMin with multiple arguments
 
@@ -11182,9 +10571,7 @@ Source: https://vueuse.org/math/useMin
 Import useMin from '@vueuse/math' and pass multiple refs or numbers to find the minimum among them.
 
 ```typescript
-import {
-useMin
-} from '@vueuse/math'
+import {useMin} from '@vueuse/math'
 
 const a = ref(1)
 const b = ref(3)
@@ -11192,7 +10579,7 @@ const b = ref(3)
 const min = useMin(a, b, 2) // Ref<1>
 ```
 
---------------------------------
+---
 
 ### Provide Array in Provider Component
 
@@ -11201,51 +10588,51 @@ Source: https://vueuse.org/core/computedInject
 Setup the injection key and provide the reactive array to child components.
 
 ```typescript
-import type { 
+import type {
 InjectionKey
-, 
+,
 Ref
  } from 'vue'
-import { 
+import {
 provide
-, 
+,
 ref
  } from 'vue'
 
 interface Item {
-  
+
 key
 : number
-  
+
 value
 : string
 }
 
-export const 
+export const
 ArrayKey
-: 
+:
 InjectionKey
 <
 Ref
-<Item[]>> = 
+<Item[]>> =
 Symbol
 ('symbol-key')
 
-const 
+const
 array
- = 
+ =
 ref
-([{ 
+([{
 key
-: 1, 
+: 1,
 value
-: '1' }, { 
+: '1' }, {
 key
-: 2, 
+: 2,
 value
-: '2' }, { 
+: '2' }, {
 key
-: 3, 
+: 3,
 value
 : '3' }])
 
@@ -11253,23 +10640,23 @@ value
 provide
 (
 ArrayKey
-, 
+,
 array
 )
 ```
 
 ```javascript
-import { provide, ref } from 'vue'
+import {provide, ref} from 'vue'
 export const ArrayKey = Symbol('symbol-key')
 const array = ref([
-  { key: 1, value: '1' },
-  { key: 2, value: '2' },
-  { key: 3, value: '3' },
+	{key: 1, value: '1'},
+	{key: 2, value: '2'},
+	{key: 3, value: '3'},
 ])
 provide(ArrayKey, array)
 ```
 
---------------------------------
+---
 
 ### Using Controls
 
@@ -11278,47 +10665,26 @@ Source: https://vueuse.org/shared/useTimeout
 Enables manual control over the timeout process by exposing start, stop, and isPending methods.
 
 ```typescript
-import { 
-useTimeout
- } from '@vueuse/core'
+import {useTimeout} from '@vueuse/core'
 
-const { 
-ready
-, 
-start
-, 
-stop
-, 
-isPending
- } = 
-useTimeout
-(1000, { 
-controls
-: true })
+const {ready, start, stop, isPending} = useTimeout(1000, {
+	controls: true,
+})
 
 // Check if timeout is pending
 
-console
-.
-log
-(
-isPending
-.
-value
-) // true
+console.log(isPending.value) // true
 
 // Stop the timeout
 
-stop
-()
+stop()
 
 // Start/restart the timeout
 
-start
-()
+start()
 ```
 
---------------------------------
+---
 
 ### Implement Token Refreshing with afterFetch
 
@@ -11327,86 +10693,86 @@ Source: https://vueuse.org/core/usefetch
 Handle token expiration and refreshing by implementing logic within the `afterFetch` hook. This example shows how to detect the need for a refresh, initiate the refresh process, and re-execute the original request with the new token.
 
 ```typescript
-let 
+let
 isRefreshing
  = false
-const 
+const
 refreshSubscribers
-: 
+:
 Array
 <() => void> = []
 
-const 
+const
 useMyFetch
- = 
+ =
 createFetch
 ({
-  
+
 baseUrl
 : 'https://my-api.com',
-  
+
 options
 : {
-    async 
+    async
 beforeFetch
-({ 
+({
 options
  }) {
-      const 
+      const
 myToken
  = await getMyToken()
-      
+
 options
-. 
+.
 headers
-.Authorization = `Bearer ${ 
+.Authorization = `Bearer ${
 myToken
 }`
 
-      return { 
+      return {
 options
  }
     },
-    
+
 afterFetch
-({ 
+({
 data
- , 
+ ,
 response
- , 
+ ,
 context
- , 
+ ,
 execute
  }) {
       if (needRefreshToken) {
         if (!
 isRefreshing
 ) {
-          
+
 isRefreshing
  = true
-          
+
 refreshToken
 ().
 then
-(( 
+((
 newToken
 ) => {
             if (
 newToken
 .value) {
-              
+
 isRefreshing
  = false
               setMyToken(
 newToken
 .value)
-              
+
 onRefreshed
 ()
             }
             else {
-              
+
 refreshSubscribers
 .
 length
@@ -11416,26 +10782,26 @@ length
           })
         }
 
-        return new 
+        return new
 Promise
-(( 
+((
 resolve
 ) => {
-          
+
 addRefreshSubscriber
 (() => {
-            
+
 execute
 ().
 then
-(( 
+((
 response
 ) => {
-              
+
 resolve
-({ 
+({
 data
- , 
+ ,
 response
  })
             })
@@ -11443,94 +10809,94 @@ response
         })
       }
 
-      return { 
+      return {
 data
- , 
+ ,
 response
  }
     },
     // or use onFetchError with updateDataOnError
-    
+
 updateDataOnError
 : true,
-    
+
 onFetchError
-({ 
+({
 error
- , 
+ ,
 data
- , 
+ ,
 response
- , 
+ ,
 context
- , 
+ ,
 execute
  }) {
       // same as afterFetch
-      return { 
+      return {
 error
- , 
+ ,
 data
  }
     },
   },
-  
+
 fetchOptions
 : {
-    
+
 mode
 : 'cors',
   },
 })
 
-async function 
+async function
 refreshToken
 () {
-  const { 
+  const {
 data
- , 
+ ,
 execute
  } = useFetch<string>('refresh-token', {
-    
+
 immediate
 : false,
   })
 
-  await 
+  await
 execute
 ()
-  return 
+  return
 data
 
 }
 
-function 
+function
 onRefreshed
 () {
-  
+
 refreshSubscribers
 .
 forEach
 (
 callback
- => 
+ =>
 callback
 ())
-  
+
 refreshSubscribers
 .
 length
  = 0
 }
 
-function 
+function
 addRefreshSubscriber
 (
 callback
 
 ```
 
---------------------------------
+---
 
 ### Initialize and Log useTitle
 
@@ -11539,20 +10905,16 @@ Source: https://vueuse.org/core/useTitle
 Import and use the useTitle composable to get and set the document's title. The initial value is the current document title. Not compatible with SSR.
 
 ```typescript
-import {
-  useTitle
-} from '@vueuse/core'
+import {useTitle} from '@vueuse/core'
 
-const title = 
-useTitle
-()
+const title = useTitle()
 
 console.log(title.value) // print current title
 
 title.value = 'Hello' // change current title
 ```
 
---------------------------------
+---
 
 ### Basic useInterval Usage
 
@@ -11561,19 +10923,13 @@ Source: https://vueuse.org/shared/useinterval
 Import and use useInterval to create a counter that increments every 200ms. No additional setup is required for basic functionality.
 
 ```typescript
-import {
-useInterval
-} from '@vueuse/core'
+import {useInterval} from '@vueuse/core'
 
 // count will increase every 200ms
-const
-counter
-=
-useInterval(200)
-
+const counter = useInterval(200)
 ```
 
---------------------------------
+---
 
 ### Implement BroadcastChannel communication
 
@@ -11582,66 +10938,28 @@ Source: https://vueuse.org/core/useBroadcastChannel
 Demonstrates initializing a channel, posting a message, and manually closing the connection.
 
 ```ts
-import { 
-useBroadcastChannel
- } from '@vueuse/core'
-import { 
-shallowRef
- } from 'vue'
+import {useBroadcastChannel} from '@vueuse/core'
+import {shallowRef} from 'vue'
 
-const {
-  
-isSupported
-,
-  
-channel
-,
-  
-post
-,
-  
-close
-,
-  
-error
-,
-  
-isClosed
-,
-} = 
-useBroadcastChannel
-({ 
-name
-: 'vueuse-demo-channel' })
+const {isSupported, channel, post, close, error, isClosed} =
+	useBroadcastChannel({
+		name: 'vueuse-demo-channel',
+	})
 
-const 
-message
- = 
-shallowRef
-('')
+const message = shallowRef('')
 
-
-message
-.
-value
- = 'Hello, VueUse World!'
+message.value = 'Hello, VueUse World!'
 
 // Post the message to the broadcast channel:
 
-post
-(
-message
-.
-value
-)
+post(message.value)
 
 // Option to close the channel if you wish:
 
-close
-()
+close()
 ```
 
---------------------------------
+---
 
 ### Destructure Props with toRefs and useVModel
 
@@ -11651,34 +10969,29 @@ This example demonstrates how to use toRefs in conjunction with useVModel to eas
 
 ```vue
 <script lang="ts">
-import { 
-  toRefs,
-  useVModel
-} from '@vueuse/core'
+import {toRefs, useVModel} from '@vueuse/core'
 
 export default {
-  
-setup
-(props) {
-    const refs = toRefs(useVModel(props, 'data'))
+	setup(props) {
+		const refs = toRefs(useVModel(props, 'data'))
 
-    console.log(refs.a.value) // props.data.a
-    refs.a.value = 'a' // emit('update:data', { ...props.data, a: 'a' })
+		console.log(refs.a.value) // props.data.a
+		refs.a.value = 'a' // emit('update:data', { ...props.data, a: 'a' })
 
-    return { ...refs }
-  }
+		return {...refs}
+	},
 }
 </script>
 
 <template>
-  <div >
-    <input v-model="a" type="text">
-    <input v-model="b" type="text">
-  </div>
+	<div>
+		<input v-model="a" type="text" />
+		<input v-model="b" type="text" />
+	</div>
 </template>
 ```
 
---------------------------------
+---
 
 ### useTimestamp with Controls
 
@@ -11686,7 +10999,7 @@ Source: https://vueuse.org/core/usetimestamp
 
 Enable controls for useTimestamp to get pause and resume functions, allowing you to control the timestamp updates.
 
-```APIDOC
+````APIDOC
 ## useTimestamp with Controls
 
 ### Description
@@ -11712,14 +11025,16 @@ useTimestamp
 ### Request Example
 ```typescript
 const { timestamp, pause, resume } = useTimestamp({ controls: true })
-```
+````
 
 ### JavaScript Example
+
 ```javascript
 'use strict'
-const { timestamp, pause, resume } = useTimestamp({ controls: true })
+const {timestamp, pause, resume} = useTimestamp({controls: true})
 ```
-```
+
+````
 
 --------------------------------
 
@@ -11753,7 +11068,7 @@ export const
       const
         doubleCount
         =
-        computed(() => 
+        computed(() =>
           count
           .value
           * 2)
@@ -11761,7 +11076,7 @@ export const
       // actions
       function
         increment() {
-          
+
 count
           .value++
         }
@@ -11770,9 +11085,9 @@ count
     }
   )
 
-```
+````
 
---------------------------------
+---
 
 ### Component Usage
 
@@ -11780,8 +11095,8 @@ Source: https://vueuse.org/core/useidle
 
 Shows how to use `useIdle` as a renderless component via the `@vueuse/components` package.
 
-```APIDOC
-## Component Usage 
+````APIDOC
+## Component Usage
 
 ### Description
 Provides a renderless component version of `useIdle` for easier integration in templates.
@@ -11810,17 +11125,21 @@ vue
     Is Idle: {{ idle }}
   </UseIdle>
 </template>
-```
+````
 
 ### Response
+
 #### Success Response (200)
+
 N/A (Component renders based on slot props)
 
 #### Response Example
+
 ```html
 Is Idle: true
 ```
-```
+
+````
 
 --------------------------------
 
@@ -11854,19 +11173,23 @@ None
 import { useCurrentElement } from '@vueuse/core'
 
 const el = useCurrentElement() // ComputedRef<Element>
-```
+````
 
 ### Response
+
 #### Success Response (ComputedRef<Element>)
+
 - **el** (ComputedRef<Element>) - A computed ref that holds the DOM element of the current component.
 
 #### Response Example
+
 ```json
 {
-  "el": "<div id=\"app\">...</div>" 
+	"el": "<div id=\"app\">...</div>"
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -11908,15 +11231,19 @@ const { state, isReady } = useAsyncState(
 )
 
 whenever(isReady, () => console.log(state))
-```
+````
 
 ### Response
+
 #### Success Response
+
 N/A (This function triggers a callback, it does not return a direct response)
 
 #### Response Example
+
 N/A
-```
+
+````
 
 --------------------------------
 
@@ -11948,9 +11275,9 @@ update()
 await sleep(1100)
 
 console.log(debounced.value) // { name: 'bar', age: 18 }
-```
+````
 
---------------------------------
+---
 
 ### useWebSocket with Callbacks
 
@@ -11958,7 +11285,7 @@ Source: https://vueuse.org/core/useWebSocket
 
 Shows how to configure callbacks for connection events such as connected, disconnected, errors, and received messages.
 
-```APIDOC
+````APIDOC
 ## useWebSocket with Callbacks
 
 ### Description
@@ -11996,19 +11323,23 @@ const { data } = useWebSocket('ws://websocketurl', {
     console.log('Message:', event.data)
   },
 })
-```
+````
 
 ### Response
+
 #### Success Response (Callbacks executed on events)
+
 - **data** (Ref<any>) - Latest received data
 
 #### Response Example
+
 ```json
 {
-  "data": "Latest message data"
+	"data": "Latest message data"
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -12019,52 +11350,52 @@ Source: https://vueuse.org/core/computedinject
 Creates a writable computed property using computedInject with custom get and set logic.
 
 ```typescript
-import { 
+import {
 computedInject
  }
  from '@vueuse/core'
 
-const 
+const
 computedArray
- = 
+ =
 computedInject
 (ArrayKey, {
-  
+
 get
-( 
+(
 source
 ) {
-    return 
+    return
 source
-. 
+.
 value
-. 
+.
 map
 (
 item
- => 
+ =>
 item
-. 
+.
 value)
   },
-  
+
 set
-( 
+(
 value
 ) {
     // handle setting the value
-    
+
 console
-. 
+.
 log
-('Setting value:', 
+('Setting value:',
 value
 )
   },
 })
-```
+````
 
---------------------------------
+---
 
 ### makeDestructurable API
 
@@ -12072,7 +11403,7 @@ Source: https://vueuse.org/shared/makedestructurable
 
 This section details the makeDestructurable function, its type declarations, and provides usage examples in TypeScript and JavaScript.
 
-```APIDOC
+````APIDOC
 ## makeDestructurable
 
 ### Description
@@ -12088,44 +11419,49 @@ Utility Function
 #### Function Signature
 ```typescript
 export declare function makeDestructurable<T extends Record<string, unknown>, A extends readonly any[]>(obj: T, arr: A): T & A
-```
+````
 
 ### Usage Examples
-#### TypeScript
-```typescript
-import { makeDestructurable } from '@vueuse/core'
 
-const foo = { name: 'foo' }
+#### TypeScript
+
+```typescript
+import {makeDestructurable} from '@vueuse/core'
+
+const foo = {name: 'foo'}
 const bar = 1024
 
-const obj = makeDestructurable(
-  { foo, bar } as const,
-  [foo, bar] as const,
-)
+const obj = makeDestructurable({foo, bar} as const, [foo, bar] as const)
 
-let { foo, bar } = obj
+let {foo, bar} = obj
 let [foo, bar] = obj
 ```
 
 #### JavaScript
-```javascript
-import { makeDestructurable } from '@vueuse/core'
 
-const foo = { name: 'foo' }
+```javascript
+import {makeDestructurable} from '@vueuse/core'
+
+const foo = {name: 'foo'}
 const bar = 1024
 
-const obj = makeDestructurable({ foo, bar }, [foo, bar])
+const obj = makeDestructurable({foo, bar}, [foo, bar])
 
-'use strict'
-let { foo, bar } = obj
+;('use strict')
+let {foo, bar} = obj
 let [foo, bar] = obj
 ```
 
 ### Type Declarations
+
 ```typescript
-export declare function makeDestructurable<T extends Record<string, unknown>, A extends readonly any[]>(obj: T, arr: A): T & A
+export declare function makeDestructurable<
+	T extends Record<string, unknown>,
+	A extends readonly any[],
+>(obj: T, arr: A): T & A
 ```
-```
+
+````
 
 --------------------------------
 
@@ -12152,9 +11488,9 @@ Reactive window size tracking utility that returns the current width and height 
 ### Response
 - **width** (ShallowRef<number>) - The reactive width of the window.
 - **height** (ShallowRef<number>) - The reactive height of the window.
-```
+````
 
---------------------------------
+---
 
 ### useDisplayMedia API
 
@@ -12162,7 +11498,7 @@ Source: https://vueuse.org/core/usedisplaymedia
 
 The useDisplayMedia composable allows you to capture and stream the user's display (screen, window, or tab). It provides reactive references to the media stream and controls to start and stop the stream.
 
-```APIDOC
+````APIDOC
 ## useDisplayMedia
 
 ### Description
@@ -12200,55 +11536,60 @@ watchEffect(() => {
   // preview on a video element
   videoRef.value.srcObject = stream.value
 })
-```
+````
 
 ### Response
+
 #### Success Response (Composable Return)
+
 - **stream** (ShallowRef<MediaStream | undefined>) - The media stream object.
 - **start** (() => Promise<MediaStream | undefined>) - Function to start the display media stream.
 - **stop** (() => void) - Function to stop the display media stream.
 - **enabled** (ShallowRef<boolean>) - Reactive boolean indicating if the stream is enabled.
 
 #### Response Example
+
 ```json
 {
-  "stream": "<MediaStream object>",
-  "start": "<function>",
-  "stop": "<function>",
-  "enabled": "<boolean>"
+	"stream": "<MediaStream object>",
+	"start": "<function>",
+	"stop": "<function>",
+	"enabled": "<boolean>"
 }
 ```
 
 ### Type Declarations
+
 ```typescript
 export interface UseDisplayMediaOptions extends ConfigurableNavigator {
-  /**
-   * If the stream is enabled
-   * @default false
-   */
-  enabled?: MaybeRef<boolean>
-  /**
-   * If the stream video media constraints
-   */
-  video?: boolean | MediaTrackConstraints | undefined
-  /**
-   * If the stream audio media constraints
-   */
-  audio?: boolean | MediaTrackConstraints | undefined
+	/**
+	 * If the stream is enabled
+	 * @default false
+	 */
+	enabled?: MaybeRef<boolean>
+	/**
+	 * If the stream video media constraints
+	 */
+	video?: boolean | MediaTrackConstraints | undefined
+	/**
+	 * If the stream audio media constraints
+	 */
+	audio?: boolean | MediaTrackConstraints | undefined
 }
 
 export interface UseDisplayMediaReturn extends Supportable {
-  stream: ShallowRef<MediaStream | undefined>
-  start: () => Promise<MediaStream | undefined>
-  stop: () => void
-  enabled: ShallowRef<boolean>
+	stream: ShallowRef<MediaStream | undefined>
+	start: () => Promise<MediaStream | undefined>
+	stop: () => void
+	enabled: ShallowRef<boolean>
 }
 
 export declare function useDisplayMedia(
-  options?: UseDisplayMediaOptions,
+	options?: UseDisplayMediaOptions,
 ): UseDisplayMediaReturn
 ```
-```
+
+````
 
 --------------------------------
 
@@ -12293,8 +11634,9 @@ const count = useExtractedObservable(
     immediate: false
   }
 )
-```
-```
+````
+
+````
 
 --------------------------------
 
@@ -12317,9 +11659,9 @@ Performs a reactive fetch request. It returns a state object containing the resp
 #### Request Body
 - **useFetchOptions** (UseFetchOptions) - Optional - Configuration for the fetch lifecycle.
 - **options** (RequestInit) - Optional - Standard fetch request options.
-```
+````
 
---------------------------------
+---
 
 ### useExtractedObservable with Error Handling
 
@@ -12327,7 +11669,7 @@ Source: https://vueuse.org/rxjs/useExtractedObservable
 
 This example shows how to provide custom error handling for an Observable using the `onError` option.
 
-```APIDOC
+````APIDOC
 ## useExtractedObservable with Error Handling
 
 ### Description
@@ -12366,8 +11708,9 @@ const count = useExtractedObservable(
     },
   }
 )
-```
-```
+````
+
+````
 
 --------------------------------
 
@@ -12379,24 +11722,24 @@ Demonstrates how to use the useClipboard function to copy text to the clipboard 
 
 ```vue
 <script setup lang="ts">
-import { 
+import {
 useClipboard
  } from '@vueuse/core'
 
-const 
+const
 source
- = 
+ =
 ref
 ('Hello')
-const { 
+const {
 text
-, 
+,
 copy
-, 
+,
 copied
-, 
+,
 isSupported
- } = 
+ } =
 useClipboard
 ({
  source
@@ -12421,7 +11764,7 @@ source
       <!-- by default, `copied` will be reset in 1.5s -->
       <
 span
- v-if="! 
+ v-if="!
 copied
 ">Copy</
 span
@@ -12438,7 +11781,7 @@ button
 p
 >Current copied: <
 code
->{{ 
+>{{
 text
  || 'none' }}</
 code
@@ -12456,9 +11799,9 @@ p
 p
 >
 </template>
-```
+````
 
---------------------------------
+---
 
 ### Custom Easing with Function
 
@@ -12468,33 +11811,33 @@ For more complex easing, provide a custom easing function. This example uses an 
 
 ```typescript
 function easeOutElastic(n) {
-  return n === 0
-    ? 0
-    : n === 1
-      ? 1
-      : (2 ** (-10 * n)) * Math.sin((n * 10 - 0.75) * ((2 * Math.PI) / 3)) + 1
+	return n === 0
+		? 0
+		: n === 1
+			? 1
+			: 2 ** (-10 * n) * Math.sin((n * 10 - 0.75) * ((2 * Math.PI) / 3)) + 1
 }
 
 useTransition(source, {
-  easing: easeOutElastic,
+	easing: easeOutElastic,
 })
 ```
 
 ```javascript
 'use strict'
 function easeOutElastic(n) {
-  return n === 0
-    ? 0
-    : n === 1
-      ? 1
-      : 2 ** (-10 * n) * Math.sin((n * 10 - 0.75) * ((2 * Math.PI) / 3)) + 1
+	return n === 0
+		? 0
+		: n === 1
+			? 1
+			: 2 ** (-10 * n) * Math.sin((n * 10 - 0.75) * ((2 * Math.PI) / 3)) + 1
 }
 useTransition(source, {
-  easing: easeOutElastic,
+	easing: easeOutElastic,
 })
 ```
 
---------------------------------
+---
 
 ### Basic Usage of useTitle
 
@@ -12503,32 +11846,16 @@ Source: https://vueuse.org/core/usetitle
 Import and use the useTitle composable to get and set the document's title. The current title can be logged, and new titles can be assigned to the returned ref.
 
 ```typescript
-import {
-useTitle
-} from '@vueuse/core'
+import {useTitle} from '@vueuse/core'
 
-const
-title
- = 
-useTitle
-()
+const title = useTitle()
 
-console
-. 
-log
-(
-title
-. 
-value
-) // print current title
+console.log(title.value) // print current title
 
-title
-. 
-value
- = 'Hello' // change current title
+title.value = 'Hello' // change current title
 ```
 
---------------------------------
+---
 
 ### Custom key predicate
 
@@ -12537,26 +11864,17 @@ Source: https://vueuse.org/core/onKeyStroke
 Use a custom function to determine which keys should trigger the handler. This example listens for 'Shift+A'.
 
 ```typescript
-import {
-  onKeyStroke
-} from '@vueuse/core'
+import {onKeyStroke} from '@vueuse/core'
 
-
-onKeyStroke
-(
-  
-e => 
-  e.key === 'A' && 
-  e.shiftKey,
-  (e) => {
-    
-    console
-    .log('Shift+A pressed')
-  },
+onKeyStroke(
+	e => e.key === 'A' && e.shiftKey,
+	e => {
+		console.log('Shift+A pressed')
+	},
 )
 ```
 
---------------------------------
+---
 
 ### HTML Example for Text Direction
 
@@ -12567,17 +11885,16 @@ Demonstrates how applying the 'dir="rtl"' attribute to the html tag affects text
 ```html
 <!--ltr-->
 <html>
-  ...
+	...
 </html>
 
 <!--rtl-->
 <html dir="rtl">
-  ...
+	...
 </html>
-
 ```
 
---------------------------------
+---
 
 ### Use with configuration options
 
@@ -12586,39 +11903,23 @@ Source: https://vueuse.org/integrations/useAxios
 Provide an axios configuration object alongside an instance.
 
 ```typescript
-import { 
-useAxios
- } from '@vueuse/integrations/useAxios'
-import 
-axios
- from 'axios'
+import {useAxios} from '@vueuse/integrations/useAxios'
+import axios from 'axios'
 
-const 
-instance
- = 
-axios
-.
-create
-({
-  
-baseURL
-: '/api',
+const instance = axios.create({
+	baseURL: '/api',
 })
 
-const { 
-data
-, 
-isFinished
- } = 
-useAxios
-('/posts', { 
-method
-: 'POST' }, 
-instance
+const {data, isFinished} = useAxios(
+	'/posts',
+	{
+		method: 'POST',
+	},
+	instance,
 )
 ```
 
---------------------------------
+---
 
 ### useTimeoutFn Type Declarations
 
@@ -12633,7 +11934,7 @@ export interface UseTimeoutFnOptions {
    *
    * @default true
    */
-  
+
 immediate
 ?: boolean
   /**
@@ -12641,21 +11942,21 @@ immediate
    *
    * @default false
    */
-  
+
 immediateCallback
 ?: boolean
 }
-export type 
+export type
 UseTimeoutFnReturn
-< 
+<
 CallbackFn
- extends 
+ extends
 AnyFn
- > = 
+ > =
 Stoppable
-< 
+<
 Parameters
-< 
+<
 CallbackFn
  > | []
 >
@@ -12666,35 +11967,35 @@ CallbackFn
  * @param interval
  * @param options
  */
-export declare function 
+export declare function
 useTimeoutFn
-< 
+<
 CallbackFn
- extends 
+ extends
 AnyFn
 >(
-  
+
 cb
-: 
+:
 CallbackFn
 ,
-  
+
 interval
-: 
+:
 MaybeRefOrGetter
 <number>,
-  
+
 options
 ?: UseTimeoutFnOptions,
-): 
+):
 UseTimeoutFnReturn
-< 
+<
 CallbackFn
 >
 
 ```
 
---------------------------------
+---
 
 ### Programmatically Reset useIdle Timer
 
@@ -12703,60 +12004,25 @@ Source: https://vueuse.org/core/useidle
 This example shows how to programmatically reset the idle timer using the 'reset' function returned by useIdle. It also demonstrates watching the 'idle' state and triggering an action, like incrementing a counter, when the user becomes idle.
 
 ```typescript
-import {
-useCounter
-,
-useIdle
-} from '@vueuse/core'
-import {
-watch
-} from 'vue'
+import {useCounter, useIdle} from '@vueuse/core'
+import {watch} from 'vue'
 
-const { 
-inc
-, 
-count
- } = 
-useCounter
-()
+const {inc, count} = useCounter()
 
-const { 
-idle
-, 
-lastActive
-, 
-reset
- } = 
-useIdle
-(5 * 60 * 1000) // 5 min
+const {idle, lastActive, reset} = useIdle(5 * 60 * 1000) // 5 min
 
+watch(idle, idleValue => {
+	if (idleValue) {
+		inc()
 
-watch
-(
-idle
-, (idleValue) => {
-  if (
-idleValue
-) {
-    
-inc
-()
-    
-console
-.
-log
-(`Triggered ${ 
-count
-.value
-} times`)
-    
-reset
-() // restarts the idle timer. Does not change lastActive value
-  }
+		console.log(`Triggered ${count.value} times`)
+
+		reset() // restarts the idle timer. Does not change lastActive value
+	}
 })
 ```
 
---------------------------------
+---
 
 ### useDark - Configuration Options
 
@@ -12764,7 +12030,7 @@ Source: https://vueuse.org/core/usedark
 
 Illustrates how to configure useDark with custom selectors, attributes, and values for dark and light modes.
 
-```APIDOC
+````APIDOC
 ## useDark - Configuration Options
 
 ### Description
@@ -12792,32 +12058,36 @@ const isDark = useDark({
   valueDark: 'dark',
   valueLight: 'light',
 })
-```
+````
 
 ### Request Example (JavaScript)
+
 ```javascript
 'use strict'
 const isDark = useDark({
-  selector: 'body',
-  attribute: 'color-scheme',
-  valueDark: 'dark',
-  valueLight: 'light',
+	selector: 'body',
+	attribute: 'color-scheme',
+	valueDark: 'dark',
+	valueLight: 'light',
 })
 ```
 
 ### Request Example (Custom onChanged)
+
 ```typescript
 const isDark = useDark({
-  onChanged(dark) {
-    // update the dom, call the API or something
-  },
+	onChanged(dark) {
+		// update the dom, call the API or something
+	},
 })
 ```
 
 ### Response
+
 - **isDark** (WritableComputedRef<boolean>) - A reactive boolean indicating the current dark mode state.
 - **toggleDark** (function) - A function to toggle the `isDark` state.
-```
+
+````
 
 --------------------------------
 
@@ -12829,23 +12099,23 @@ Import and use useElementSize with a template ref to get reactive width and heig
 
 ```vue
 <script setup lang="ts">
-import { 
+import {
 useElementSize
  } from '@vueuse/core'
-import { 
+import {
 useTemplateRef
  } from 'vue'
 
-const 
+const
 el
- = 
+ =
 useTemplateRef
 ('el')
-const { 
+const {
 width
-, 
+,
 height
- } = 
+ } =
 useElementSize
 (
 el
@@ -12855,23 +12125,23 @@ el
 <template>
   <
 div
- 
+
 ref
 ="
 el
 ">
-    Height: {{ 
+    Height: {{
 height
  }}
-    Width: {{ 
+    Width: {{
 width
  }}
   </
 div>
 </template>
-```
+````
 
---------------------------------
+---
 
 ### useVModel - Basic Usage
 
@@ -12879,7 +12149,7 @@ Source: https://vueuse.org/core/useVModel
 
 Demonstrates the basic usage of useVModel with Vue's Composition API (TypeScript and JavaScript).
 
-```APIDOC
+````APIDOC
 ## useVModel
 
 ### Description
@@ -12897,11 +12167,12 @@ const props = defineProps({
 const emit = defineEmits(['update:modelValue'])
 
 const data = useVModel(props, 'modelValue', emit)
-```
+````
 
 #### JavaScript
+
 ```javascript
-import { useVModel } from '@vueuse/core'
+import {useVModel} from '@vueuse/core'
 
 const props = defineProps()
 const emit = defineEmits(['update:modelValue'])
@@ -12910,19 +12181,21 @@ const data = useVModel(props, 'modelValue', emit)
 ```
 
 ### Options API
+
 ```typescript
-import { useVModel } from '@vueuse/core'
+import {useVModel} from '@vueuse/core'
 
 export default {
-  setup(props, { emit }) {
-    const data = useVModel(props, 'data', emit)
+	setup(props, {emit}) {
+		const data = useVModel(props, 'data', emit)
 
-    console.log(data.value) // props.data
-    data.value = 'foo' // emit('update:data', 'foo')
-  }
+		console.log(data.value) // props.data
+		data.value = 'foo' // emit('update:data', 'foo')
+	},
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -12933,32 +12206,32 @@ Source: https://vueuse.org/router/useRouteQuery
 Provides separate get and set functions to handle complex data types like arrays in the URL.
 
 ```typescript
-import { 
+import {
 useRouteQuery
  } from '@vueuse/router'
 
-const 
+const
 filters
- = 
+ =
 useRouteQuery
 ('filters', [], {
-  
+
 transform
 : {
-    
+
 get
-: 
+:
 v
- => 
+ =>
 v
- ? 
+ ?
 v
 .split(',') : [],
-    
+
 set
-: 
+:
 v
- => 
+ =>
 v
 .join(','),
   },
@@ -12966,9 +12239,9 @@ v
 
 // Reading: 'a,b,c' -> ['a', 'b', 'c']
 // Writing: ['a', 'b', 'c'] -> 'a,b,c'
-```
+````
 
---------------------------------
+---
 
 ### Use useVibrate Hook
 
@@ -12977,31 +12250,22 @@ Source: https://vueuse.org/core/useVibrate
 Demonstrates how to use the useVibrate hook to create a vibration pattern. The pattern is defined as an array of milliseconds for vibration and pause durations. The `vibrate()` function starts the pattern, and `stop()` can be used to halt it prematurely. `isSupported` indicates if the device supports vibration.
 
 ```typescript
-import {
-  useVibrate
-} from '@vueuse/core'
+import {useVibrate} from '@vueuse/core'
 
 // This vibrates the device for 300 ms
 // then pauses for 100 ms before vibrating the device again for another 300 ms:
-const { 
-  vibrate,
-  stop,
-  isSupported
-} = 
-useVibrate
-({ 
-  pattern: [300, 100, 300] })
+const {vibrate, stop, isSupported} = useVibrate({
+	pattern: [300, 100, 300],
+})
 
 // Start the vibration, it will automatically stop when the pattern is complete:
-vibrate
-()
+vibrate()
 
 // But if you want to stop it, you can:
-stop
-()
+stop()
 ```
 
---------------------------------
+---
 
 ### Initialize Template Promise
 
@@ -13010,29 +12274,19 @@ Source: https://vueuse.org/core/createtemplatepromise
 Shows how to initialize the component in TypeScript and JavaScript, including optional generic type definitions.
 
 ```ts
-import { 
-createTemplatePromise
- } from '@vueuse/core'
+import {createTemplatePromise} from '@vueuse/core'
 
-const 
-TemplatePromise
- = 
-createTemplatePromise
-()
-const 
-MyPromise
- = 
-createTemplatePromise
-<boolean>() // with generic type
+const TemplatePromise = createTemplatePromise()
+const MyPromise = createTemplatePromise<boolean>() // with generic type
 ```
 
 ```js
-import { createTemplatePromise } from '@vueuse/core'
+import {createTemplatePromise} from '@vueuse/core'
 const TemplatePromise = createTemplatePromise()
 const MyPromise = createTemplatePromise() // with generic type
 ```
 
---------------------------------
+---
 
 ### useImage - Component Usage
 
@@ -13040,7 +12294,7 @@ Source: https://vueuse.org/core/useImage
 
 Shows how to use the renderless component version of `useImage` from the `@vueuse/components` package, providing slots for loading and error states.
 
-```APIDOC
+````APIDOC
 ## UseImage Component
 
 ### Description
@@ -13087,11 +12341,13 @@ N/A (Component Usage)
     </template>
   </UseImage>
 </template>
-```
+````
 
 ### Response
+
 (Handled via slots)
-```
+
+````
 
 --------------------------------
 
@@ -13128,19 +12384,23 @@ None
 import { usePreferredLanguages } from '@vueuse/core'
 
 const languages = usePreferredLanguages()
-```
+````
 
 ### Response
+
 #### Success Response
+
 - **languages** (ShallowRef<readonly string[]>) - A reactive reference containing an array of the user's preferred languages, ordered by preference.
 
 #### Response Example
+
 ```json
 {
-  "languages": ["en-US", "en"]
+	"languages": ["en-US", "en"]
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -13179,19 +12439,23 @@ const sum = useArrayReduce([
   ref(3)
 ], (sum, val) => sum + val)
 // sum.value: 6
-```
+````
 
 ### Response
+
 #### Success Response (200)
+
 - **sum** (ComputedRef<T>) - The computed value of the array reduction.
 
 #### Response Example
+
 ```json
 {
-  "value": 6
+	"value": 6
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -13211,9 +12475,9 @@ languages
 =
 usePreferredLanguages
 ()
-```
+````
 
---------------------------------
+---
 
 ### useDevicesList - Requesting Permissions
 
@@ -13221,7 +12485,7 @@ Source: https://vueuse.org/core/usedeviceslist
 
 Shows how to explicitly request permissions for accessing devices using the `ensurePermissions` method.
 
-```APIDOC
+````APIDOC
 ## POST /api/devices/permissions
 
 ### Description
@@ -13246,19 +12510,23 @@ const { ensurePermissions, permissionGranted } = useDevicesList()
 await ensurePermissions()
 
 console.log(permissionGranted.value)
-```
+````
 
 ### Response
+
 #### Success Response (200)
+
 - **permissionGranted** (boolean) - Indicates if permissions were successfully granted.
 
 ### Response Example
+
 ```json
 {
-  "permissionGranted": true
+	"permissionGranted": true
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -13311,12 +12579,15 @@ trigger(event)
 
 // stop removes all event listeners
 stop()
-```
+````
 
 ### Response
+
 #### Success Response (200)
+
 Returns an object with `stop`, `cancel`, and `trigger` functions.
-```
+
+````
 
 --------------------------------
 
@@ -13328,27 +12599,27 @@ Demonstrates how to import and use the useFileDialog composable within a Vue com
 
 ```vue
 <script setup lang="ts">
-import { 
+import {
 useFileDialog
  } from '@vueuse/core'
 
-const { 
+const {
 files
-, 
+,
 open
-, 
+,
 reset
-, 
+,
 onCancel
-, 
+,
 onChange
- } = 
+ } =
 useFileDialog
 ({
-  
+
 accept
 : 'image/*', // Set to accept only image files
-  
+
 directory
 : true, // Select directories instead of files if set true
 })
@@ -13371,7 +12642,7 @@ onCancel
 <template>
   <
 button
- 
+
 type
 ="button" @
 click
@@ -13383,9 +12654,9 @@ open
 button
 >
 </template>
-```
+````
 
---------------------------------
+---
 
 ### useExtractedObservable with Completion Handling
 
@@ -13393,7 +12664,7 @@ Source: https://vueuse.org/rxjs/useExtractedObservable
 
 This example demonstrates how to attach special behavior when the watched Observable completes using the `onComplete` option.
 
-```APIDOC
+````APIDOC
 ## useExtractedObservable with Completion Handling
 
 ### Description
@@ -13429,8 +12700,9 @@ const count = useExtractedObservable(
     },
   }
 )
-```
-```
+````
+
+````
 
 --------------------------------
 
@@ -13487,33 +12759,42 @@ source.value = {
   extra: 1,
 }
 console.log(cached.value) // Output: { value: 43, extra: 1 }
-```
+````
 
 ### Response
+
 #### Success Response (200)
+
 Returns a cached ref that updates only when the comparator function returns false.
 
 #### Response Example
+
 ```json
 {
-  "value": 42, 
-  "extra": 0 
+	"value": 42,
+	"extra": 0
 }
 ```
 
 ### Type Declarations
+
 ```typescript
-export interface UseCachedOptions<D extends boolean = true> extends ConfigurableDeepRefs<D>, WatchOptions {}
+export interface UseCachedOptions<D extends boolean = true>
+	extends ConfigurableDeepRefs<D>, WatchOptions {}
 
 export declare function useCached<T, D extends boolean = true>(
-  refValue: Ref<T>,
-  comparator?: (a: T, b: T) => boolean,
-  options?: UseCachedOptions<D>
+	refValue: Ref<T>,
+	comparator?: (a: T, b: T) => boolean,
+	options?: UseCachedOptions<D>,
 ): UseCachedReturn<T, D>
 
-export type UseCachedReturn<T = any, D extends boolean = true> = ShallowOrDeepRef<T, D>
+export type UseCachedReturn<
+	T = any,
+	D extends boolean = true,
+> = ShallowOrDeepRef<T, D>
 ```
-```
+
+````
 
 --------------------------------
 
@@ -13524,26 +12805,26 @@ Source: https://vueuse.org/core/useFetch
 Configures a reusable fetch instance with a base URL and authorization headers.
 
 ```typescript
-const 
+const
 useMyFetch
- = 
+ =
 createFetch
 ({
-  
+
 baseUrl
 : 'https://my-api.com',
-  
+
 options
 : {
-    async 
+    async
 beforeFetch
-({ 
+({
 options
  }) {
-      const 
+      const
 myToken
  = await getMyToken()
-      
+
 options
 .
 headers
@@ -13551,50 +12832,50 @@ headers
 myToken
 }`
 
-      return { 
+      return {
 options
  }
     },
   },
-  
+
 fetchOptions
 : {
-    
+
 mode
 : 'cors',
   },
 })
 
-const { 
+const {
 isFetching
-, 
+,
 error
-, 
+,
 data
- } = 
+ } =
 useMyFetch
 ('users')
-```
+````
 
 ```javascript
 'use strict'
 const useMyFetch = createFetch({
-  baseUrl: 'https://my-api.com',
-  options: {
-    async beforeFetch({ options }) {
-      const myToken = await getMyToken()
-      options.headers.Authorization = `Bearer ${myToken}`
-      return { options }
-    },
-  },
-  fetchOptions: {
-    mode: 'cors',
-  },
+	baseUrl: 'https://my-api.com',
+	options: {
+		async beforeFetch({options}) {
+			const myToken = await getMyToken()
+			options.headers.Authorization = `Bearer ${myToken}`
+			return {options}
+		},
+	},
+	fetchOptions: {
+		mode: 'cors',
+	},
 })
-const { isFetching, error, data } = useMyFetch('users')
+const {isFetching, error, data} = useMyFetch('users')
 ```
 
---------------------------------
+---
 
 ### Basic Usage of useClipboard
 
@@ -13604,26 +12885,26 @@ Demonstrates how to use the `useClipboard` composable to copy text to the clipbo
 
 ```vue
 <script setup lang="ts">
-import { 
+import {
 useClipboard
  } from '@vueuse/core'
 
-const 
+const
 source
- = 
+ =
 ref
 ('Hello')
-const { 
+const {
 text
-, 
+,
 copy
-, 
+,
 copied
-, 
+,
 isSupported
- } = 
+ } =
 useClipboard
-({ 
+({
 source
  })
 </script>
@@ -13646,7 +12927,7 @@ source
       <!-- by default, `copied` will be reset in 1.5s -->
       <
 span
- v-if="! 
+ v-if="!
 copied
 ">Copy</
 span
@@ -13663,7 +12944,7 @@ button
 p
 >Current copied: <
 code
->{{ 
+>{{
 text
  || 'none' }}</
 code
@@ -13683,7 +12964,7 @@ p
 </template>
 ```
 
---------------------------------
+---
 
 ### useWebSocket Basic Usage
 
@@ -13691,7 +12972,7 @@ Source: https://vueuse.org/core/useWebSocket
 
 Demonstrates the basic usage of the useWebSocket composable with a WebSocket URL and optional protocols.
 
-```APIDOC
+````APIDOC
 ## useWebSocket Basic Usage
 
 ### Description
@@ -13718,15 +12999,19 @@ None
 const { status, data, send, open, close } = useWebSocket('ws://websocketurl', {
   protocols: ['soap'], // Example: ['soap', 'wamp']
 })
-```
+````
 
 ### Response
+
 #### Success Response (200)
+
 N/A (Composable function returns reactive references)
 
 #### Response Example
+
 N/A
-```
+
+````
 
 --------------------------------
 
@@ -13737,7 +13022,7 @@ Source: https://vueuse.org/router/useroutequery
 Allows defining separate `get` and `set` transformation functions for reading and writing values to the URL query parameter.
 
 ```APIDOC
-## Bidirectional Transform 
+## Bidirectional Transform
 
 ### Description
 You can provide separate `get` and `set` transforms for reading and writing values.
@@ -13766,8 +13051,9 @@ const filters = useRouteQuery('filters', [], {
 
 // Reading: 'a,b,c' -> ['a', 'b', 'c']
 // Writing: ['a', 'b', 'c'] -> 'a,b,c'
-```
-```
+````
+
+````
 
 --------------------------------
 
@@ -13782,21 +13068,21 @@ import {
 useAverage
 } from '@vueuse/math'
 
-const 
+const
 list
- = 
+ =
 ref
 ([1, 2, 3])
-const 
+const
 averageValue
- = 
+ =
 useAverage
 (
 list
 ) // Ref<2>
-```
+````
 
---------------------------------
+---
 
 ### Initialize useWebSocket
 
@@ -13805,28 +13091,12 @@ Source: https://vueuse.org/core/useWebSocket
 Import and initialize the useWebSocket composable with a WebSocket URL. This sets up the connection and provides reactive references for status, data, and control functions.
 
 ```typescript
-import {
-useWebSocket
-} from '@vueuse/core'
+import {useWebSocket} from '@vueuse/core'
 
-const { 
-status
-, 
-data
-, 
-send
-, 
-open
-, 
-close
-, 
-ws
- } = 
-useWebSocket
-('ws://websocketurl')
+const {status, data, send, open, close, ws} = useWebSocket('ws://websocketurl')
 ```
 
---------------------------------
+---
 
 ### useTitle Composable
 
@@ -13834,7 +13104,7 @@ Source: https://vueuse.org/core/usetitle
 
 The useTitle function provides a reactive way to get or set the document title. It is not compatible with Server-Side Rendering (SSR).
 
-```APIDOC
+````APIDOC
 ## useTitle(newTitle?, options?)
 
 ### Description
@@ -13858,11 +13128,13 @@ import { useTitle } from '@vueuse/core'
 const title = useTitle('New Title', {
   titleTemplate: '%s | My Awesome Website'
 })
-```
+````
 
 ### Response
+
 - **Return** (Ref<string | null | undefined> | ComputedRef<string | null | undefined>) - A reactive reference that reflects and controls the document title.
-```
+
+````
 
 --------------------------------
 
@@ -13874,44 +13146,44 @@ Demonstrates how to initialize and use the useClipboardItems composable to copy 
 
 ```vue
 <script setup lang="ts">
-import { 
+import {
 useClipboardItems
  } from '@vueuse/core'
 
-const 
+const
 mime
  = 'text/plain'
-const 
+const
 source
- = 
+ =
 ref
 ([
-  new 
+  new
 ClipboardItem
 ({
     [
 mime
-]: new 
+]: new
 Blob
-(['plain text'], { 
+(['plain text'], {
 type
-: 
+:
 mime
  }),
   })
 ])
 
-const { 
+const {
 content
-, 
+,
 copy
-, 
+,
 copied
-, 
+,
 isSupported
- } = 
+ } =
 useClipboardItems
-({ 
+({
 source
  })
 </script>
@@ -13952,7 +13224,7 @@ p
 >
       Current copied: <
 code
->{{ 
+>{{
 content
  || 'none' }}</
 code
@@ -13971,9 +13243,9 @@ p
 p
 >
 </template>
-```
+````
 
---------------------------------
+---
 
 ### useStorage Configuration and Serializers
 
@@ -14008,7 +13280,7 @@ Configures the behavior of the useStorage reactive storage utility, including se
 - **any**: Raw string passthrough
 ```
 
---------------------------------
+---
 
 ### Use useScreenSafeArea Hook
 
@@ -14017,21 +13289,12 @@ Source: https://vueuse.org/core/usescreensafearea
 Import and use the `useScreenSafeArea` hook in your Vue component to get reactive safe area inset values.
 
 ```typescript
-import {
- useScreenSafeArea
-} from '@vueuse/core'
+import {useScreenSafeArea} from '@vueuse/core'
 
-const { 
- top,
- right,
- bottom,
- left,
-} = 
-useScreenSafeArea
-()
+const {top, right, bottom, left} = useScreenSafeArea()
 ```
 
---------------------------------
+---
 
 ### Basic File Dialog Usage
 
@@ -14045,7 +13308,7 @@ import {
 useFileDialog
 } from '@vueuse/core'
 
-const { 
+const {
 files
 ,
 open
@@ -14055,13 +13318,13 @@ reset
 onCancel
 ,
 onChange
-} = 
+} =
 useFileDialog
 ({
-  
+
 accept
 : 'image/*',
-  
+
 directory
 : true,
 })
@@ -14082,7 +13345,7 @@ onCancel
 <template>
   <
 button
- 
+
 type
 ="button" @
 click
@@ -14095,7 +13358,7 @@ button>
 </template>
 ```
 
---------------------------------
+---
 
 ### Import and Use useOnline Composable
 
@@ -14104,18 +13367,12 @@ Source: https://vueuse.org/core/useonline
 Import the useOnline composable from '@vueuse/core' and use it to get a reactive boolean indicating the online status.
 
 ```typescript
-import {
-useOnline
-} from '@vueuse/core'
+import {useOnline} from '@vueuse/core'
 
-const
-online
-=
-useOnline
-()
+const online = useOnline()
 ```
 
---------------------------------
+---
 
 ### Import and Use useTextDirection
 
@@ -14124,19 +13381,12 @@ Source: https://vueuse.org/core/useTextDirection
 Import the composable and call it to get a reactive reference to the text direction. By default, it returns 'ltr' or 'rtl'.
 
 ```typescript
-import {
-useTextDirection
-} from '@vueuse/core'
+import {useTextDirection} from '@vueuse/core'
 
-const
-dir
-=
-useTextDirection
-()
-
+const dir = useTextDirection()
 ```
 
---------------------------------
+---
 
 ### Basic Usage of useAnimate
 
@@ -14146,70 +13396,70 @@ Demonstrates how to bind an animation to a template reference and access control
 
 ```vue
 <script setup lang="ts">
-import { 
+import {
 useAnimate
  } from '@vueuse/core'
-import { 
+import {
 useTemplateRef
  } from 'vue'
 
-const 
+const
 el
- = 
+ =
 useTemplateRef
 ('el')
 const {
-  
+
 isSupported
 ,
-  
+
 animate
 ,
 
   // actions
-  
+
 play
 ,
-  
+
 pause
 ,
-  
+
 reverse
 ,
-  
+
 finish
 ,
-  
+
 cancel
 ,
 
   // states
-  
+
 pending
 ,
-  
+
 playState
 ,
-  
+
 replaceState
 ,
-  
+
 startTime
 ,
-  
+
 currentTime
 ,
-  
+
 timeline
 ,
-  
+
 playbackRate
 ,
-} = 
+} =
 useAnimate
 (
 el
-, { 
+, {
 transform
 : 'rotate(360deg)' }, 1000)
 </script>
@@ -14217,11 +13467,11 @@ transform
 <template>
   <
 span
- 
+
 ref
 ="
 el
-" 
+"
 style
 ="display:inline-block">useAnimate</
 span
@@ -14229,7 +13479,7 @@ span
 </template>
 ```
 
---------------------------------
+---
 
 ### Date Formatting with Locales
 
@@ -14239,20 +13489,19 @@ Formats the current date and time using a specified locale, for example, 'en-US'
 
 ```vue
 <script setup lang="ts">
-import {
-useDateFormat,
-useNow
-} from '@vueuse/core'
+import {useDateFormat, useNow} from '@vueuse/core'
 
-const formatted = useDateFormat(useNow(), 'YYYY-MM-DD (ddd)', { locales: 'en-US' })
+const formatted = useDateFormat(useNow(), 'YYYY-MM-DD (ddd)', {
+	locales: 'en-US',
+})
 </script>
 
 <template>
-  <div>{{ formatted }}</div>
+	<div>{{ formatted }}</div>
 </template>
 ```
 
---------------------------------
+---
 
 ### usePrevious Utility
 
@@ -14260,7 +13509,7 @@ Source: https://vueuse.org/core/useprevious
 
 Demonstrates how to use the usePrevious utility to store and retrieve the prior value of a ref.
 
-```APIDOC
+````APIDOC
 ## usePrevious
 
 ### Description
@@ -14295,26 +13544,36 @@ console.log(previous.value) // undefined
 counter.value = 'World'
 
 console.log(previous.value) // Hello
-```
+````
 
 ### Response
+
 #### Success Response (200)
+
 N/A (This is a utility function, not an API endpoint)
 
 #### Response Example
+
 N/A
 
 ### Type Declarations
+
 ```typescript
 /**
  * Holds the previous value of a ref.
  *
  * @see   {@link https://vueuse.org/usePrevious}
  */
-export declare function usePrevious<T>(value: MaybeRefOrGetter<T>): Readonly<ShallowRef<T | undefined>>
-export declare function usePrevious<T>(value: MaybeRefOrGetter<T>, initialValue: T): Readonly<ShallowRef<T>>
+export declare function usePrevious<T>(
+	value: MaybeRefOrGetter<T>,
+): Readonly<ShallowRef<T | undefined>>
+export declare function usePrevious<T>(
+	value: MaybeRefOrGetter<T>,
+	initialValue: T,
+): Readonly<ShallowRef<T>>
 ```
-```
+
+````
 
 --------------------------------
 
@@ -14325,7 +13584,7 @@ Source: https://vueuse.org/rxjs/useExtractedObservable
 This example demonstrates the basic usage of `useExtractedObservable` to extract values from an RxJS Observable and expose them as a Vue ref.
 
 ```APIDOC
-## useExtractedObservable 
+## useExtractedObservable
 
 ### Description
 Use an RxJS `Observable` as extracted from one or more composables, return a `ref`, and automatically unsubscribe from it when the component is unmounted.
@@ -14357,15 +13616,17 @@ import { makeSocket, useUser } from '../some/lib/func'
 // setup()
 const user = useUser()
 const lastMessage = useExtractedObservable(user, u => ObservableSocket.create(makeSocket(u.id)).down)
-```
+````
 
 ### Response Example
+
 ```json
 {
-  "latestObservableValue": "any"
+	"latestObservableValue": "any"
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -14393,9 +13654,9 @@ const { data } = useAxios('/api/posts', config, instance, {
   onError: (error) => console.error('Error:', error),
   onFinish: () => console.log('Finished'),
 })
-```
+````
 
---------------------------------
+---
 
 ### Basic Date Formatting
 
@@ -14405,20 +13666,17 @@ Formats the current date and time to 'YYYY-MM-DD HH:mm:ss'. Requires `useNow` to
 
 ```vue
 <script setup lang="ts">
-import {
-useDateFormat,
-useNow
-} from '@vueuse/core'
+import {useDateFormat, useNow} from '@vueuse/core'
 
 const formatted = useDateFormat(useNow(), 'YYYY-MM-DD HH:mm:ss')
 </script>
 
 <template>
-  <div>{{ formatted }}</div>
+	<div>{{ formatted }}</div>
 </template>
 ```
 
---------------------------------
+---
 
 ### useRouteHash API
 
@@ -14426,8 +13684,8 @@ Source: https://vueuse.org/router/useRouteHash
 
 The useRouteHash composable provides a reactive reference to the current route's hash. It can be used to get or set the hash value.
 
-```APIDOC
-## useRouteHash 
+````APIDOC
+## useRouteHash
 
 ### Description
 Shorthand for a reactive `route.hash`. Available in the `@vueuse/router` add-on.
@@ -14457,27 +13715,32 @@ const hash = useRouteHash()
 console.log(hash.value) // route.hash
 
 hash.value = 'foobar' // router.replace({ hash: 'foobar' })
-```
+````
 
 ### Type Declarations
+
 ```typescript
 export declare function useRouteHash(
-  defaultValue?: MaybeRefOrGetter<RouteHashValueRaw>,
-  { mode, route, router }?: ReactiveRouteOptions,
+	defaultValue?: MaybeRefOrGetter<RouteHashValueRaw>,
+	{mode, route, router}?: ReactiveRouteOptions,
 ): Ref<RouteHashValueRaw, RouteHashValueRaw>
 ```
 
 ### Response
+
 #### Success Response (200)
+
 Returns a `Ref` object that holds the route's hash value.
 
 #### Response Example
+
 ```json
 {
-  "example": "#section1"
+	"example": "#section1"
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -14489,34 +13752,34 @@ Demonstrates binding a video element to reactive state variables for playback co
 
 ```vue
 <script setup lang="ts">
-import { 
+import {
 useMediaControls
  } from '@vueuse/core'
-import { 
+import {
 onMounted
-, 
+,
 useTemplateRef
  } from 'vue'
 
-const 
+const
 video
- = 
+ =
 useTemplateRef
 ('video')
-const { 
+const {
 playing
-, 
+,
 currentTime
-, 
+,
 duration
-, 
+,
 volume
- } = 
+ } =
 useMediaControls
 (
 video
 , {
-  
+
 src
 : 'video.mp4',
 })
@@ -14525,12 +13788,12 @@ src
 
 onMounted
 (() => {
-  
+
 volume
 .
 value
  = 0.5
-  
+
 currentTime
 .
 value
@@ -14541,7 +13804,7 @@ value
 <template>
   <
 video
- 
+
 ref
 ="
 video
@@ -14561,17 +13824,17 @@ button
 >
   <
 span
->{{ 
+>{{
 currentTime
- }} / {{ 
+ }} / {{
 duration
  }}</
 span
 >
 </template>
-```
+````
 
---------------------------------
+---
 
 ### createFetch
 
@@ -14590,7 +13853,7 @@ Creates a configured instance of the useFetch composable, allowing you to set a 
 - **config** (CreateFetchOptions) - Optional - Configuration object containing baseUrl, combination, options, and fetchOptions.
 ```
 
---------------------------------
+---
 
 ### Calculate sum from an array
 
@@ -14599,24 +13862,13 @@ Source: https://vueuse.org/math/useSum
 Use `useSum` with a ref containing an array of numbers to get a reactive sum. Ensure the array is imported from `@vueuse/math`.
 
 ```typescript
-import {
-useSum
-} from '@vueuse/math'
+import {useSum} from '@vueuse/math'
 
-const
-array
-=
-ref
-([1, 2, 3, 4])
-const
-sum
-=
-useSum(
-array
-) // Ref<10>
+const array = ref([1, 2, 3, 4])
+const sum = useSum(array) // Ref<10>
 ```
 
---------------------------------
+---
 
 ### Basic useMediaQuery Usage
 
@@ -14625,15 +13877,13 @@ Source: https://vueuse.org/core/useMediaQuery
 Import and use the `useMediaQuery` composable to reactively track media query states like screen size or color scheme preference. The returned value is a computed property.
 
 ```typescript
-import {
-  useMediaQuery
-} from '@vueuse/core'
+import {useMediaQuery} from '@vueuse/core'
 
 const isLargeScreen = useMediaQuery('(min-width: 1024px)')
 const isPreferredDark = useMediaQuery('(prefers-color-scheme: dark)')
 ```
 
---------------------------------
+---
 
 ### useTimestamp Basic Usage
 
@@ -14641,7 +13891,7 @@ Source: https://vueuse.org/core/usetimestamp
 
 Import and use the useTimestamp composable to get a reactive timestamp. The offset option can be used to add a value to the timestamp.
 
-```APIDOC
+````APIDOC
 ## useTimestamp
 
 ### Description
@@ -14667,8 +13917,9 @@ useTimestamp
 import { useTimestamp } from '@vueuse/core'
 
 const timestamp = useTimestamp({ offset: 0 })
-```
-```
+````
+
+````
 
 --------------------------------
 
@@ -14708,17 +13959,21 @@ None
 {
   "example": "// Example of CreateFetchOptions object\n{\n  baseUrl: 'https://api.example.com/v1',\n  combination: 'overwrite',\n  options: {\n    refetch: true\n  },\n  fetchOptions: {\n    mode: 'cors'\n  }\n}"
 }
-```
+````
 
 ### Response
+
 N/A
 
 #### Success Response (200)
+
 N/A
 
 #### Response Example
+
 N/A
-```
+
+````
 
 --------------------------------
 
@@ -14738,9 +13993,9 @@ preferredMotion
 =
 usePreferredReducedMotion
 ()
-```
+````
 
---------------------------------
+---
 
 ### Initialization of refWithControl
 
@@ -14749,11 +14004,7 @@ Source: https://vueuse.org/shared/refWithControl
 Shows the basic initialization syntax for refWithControl.
 
 ```typescript
-const 
-foo
- = 
-refWithControl
-('foo')
+const foo = refWithControl('foo')
 ```
 
 ```javascript
@@ -14761,7 +14012,7 @@ refWithControl
 const foo = refWithControl('foo')
 ```
 
---------------------------------
+---
 
 ### Import and Use usePreferredContrast
 
@@ -14770,18 +14021,12 @@ Source: https://vueuse.org/core/usePreferredContrast
 Import the usePreferredContrast hook from '@vueuse/core' to get a reactive computed property reflecting the user's contrast preference.
 
 ```typescript
-import {
- usePreferredContrast
-} from '@vueuse/core'
+import {usePreferredContrast} from '@vueuse/core'
 
-const
- preferredContrast
- = 
-usePreferredContrast
-()
+const preferredContrast = usePreferredContrast()
 ```
 
---------------------------------
+---
 
 ### useFetch - Prevent Request Firing Immediately
 
@@ -14789,7 +14034,7 @@ Source: https://vueuse.org/core/usefetch
 
 Demonstrates how to prevent useFetch from making a request immediately upon initialization, requiring an explicit call to `execute()`.
 
-```APIDOC
+````APIDOC
 ## useFetch - Prevent Request Firing Immediately
 
 ### Description
@@ -14818,8 +14063,9 @@ None
 ```typescript
 const { execute } = useFetch(url, { immediate: false })
 execute()
-```
-```
+````
+
+````
 
 --------------------------------
 
@@ -14831,21 +14077,21 @@ Use this sensor to get the reactive hover state of an element. Requires importin
 
 ```vue
 <script setup lang="ts">
-import { 
+import {
 useElementHover
  } from '@vueuse/core'
-import { 
+import {
 useTemplateRef
  } from 'vue'
 
-const 
+const
 myHoverableElement
- = 
+ =
 useTemplateRef
 ('myHoverableElement')
-const 
+const
 isHovered
- = 
+ =
 useElementHover
 (
 myHoverableElement
@@ -14853,19 +14099,19 @@ myHoverableElement
 </script>
 
 <template>
-  <button 
+  <button
 ref
 ="
 myHoverableElement
 ">
-    {{ 
+    {{
 isHovered
  }}
   </button>
 </template>
-```
+````
 
---------------------------------
+---
 
 ### useShare with Source Ref
 
@@ -14873,7 +14119,7 @@ Source: https://vueuse.org/core/useshare
 
 Shows how to pass a ref to useShare. Changes to the source ref will automatically update the sharing options.
 
-```APIDOC
+````APIDOC
 ## useShare with Source Ref
 
 ### Description
@@ -14904,15 +14150,19 @@ const { share, isSupported } = useShare(shareOptions)
 
 shareOptions.value.text = 'bar'
 share()
-```
+````
 
 ### Response
+
 #### Success Response (200)
+
 N/A (The `share` function returns a Promise that resolves to void upon successful sharing.)
 
 #### Response Example
+
 None
-```
+
+````
 
 --------------------------------
 
@@ -14923,27 +14173,27 @@ Source: https://vueuse.org/core/useStyleTag
 Demonstrates how to inject a style tag and update its content reactively.
 
 ```typescript
-import { 
+import {
 useStyleTag
  } from '@vueuse/core'
 
 const {
-  
+
 id
 ,
-  
+
 css
 ,
-  
+
 load
 ,
-  
+
 unload
 ,
-  
+
 isLoaded
 ,
-} = 
+} =
 useStyleTag
 ('.foo { margin-top: 32px; }')
 
@@ -14953,17 +14203,17 @@ css
 .
 value
  = '.foo { margin-top: 64px; }'
-```
+````
 
 ```html
 <style id="vueuse_styletag_1">
-  .foo {
-    margin-top: 64px;
-  }
+	.foo {
+		margin-top: 64px;
+	}
 </style>
 ```
 
---------------------------------
+---
 
 ### Create and Use a Projection
 
@@ -14972,35 +14222,17 @@ Source: https://vueuse.org/math/createProjection
 Demonstrates how to create a projector function that maps values from an input domain [0, 10] to an output domain [0, 100]. The projected value updates reactively as the input ref changes.
 
 ```typescript
-import {
-  createProjection
-} from '@vueuse/math'
+import {createProjection} from '@vueuse/math'
 
-const 
-useProjector
- = 
-createProjection
-([0, 1],
- [0, 100])
-const 
-input
- = 
-ref
-(0)
-const 
-projected
- = 
-useProjector(
-input
-)
+const useProjector = createProjection([0, 1], [0, 100])
+const input = ref(0)
+const projected = useProjector(input)
 
-input
-.value = 0.5 // projected.value === 50
-input
-.value = 1 // projected.value === 100
+input.value = 0.5 // projected.value === 50
+input.value = 1 // projected.value === 100
 ```
 
---------------------------------
+---
 
 ### Undo ref value (JavaScript)
 
@@ -15015,7 +14247,7 @@ undo()
 console.log(counter.value) // 0
 ```
 
---------------------------------
+---
 
 ### Basic Usage of useBase64
 
@@ -15024,33 +14256,15 @@ Source: https://vueuse.org/core/useBase64
 Initialize the useBase64 hook with a reactive text reference.
 
 ```ts
-import { 
-useBase64
- } from '@vueuse/core'
-import { 
-shallowRef
- } from 'vue'
+import {useBase64} from '@vueuse/core'
+import {shallowRef} from 'vue'
 
-const 
-text
- = 
-shallowRef
-('')
+const text = shallowRef('')
 
-const { 
-base64
-, 
-promise
-, 
-execute
- } = 
-useBase64
-(
-text
-)
+const {base64, promise, execute} = useBase64(text)
 ```
 
---------------------------------
+---
 
 ### Reactive Storage Key
 
@@ -15058,7 +14272,7 @@ Source: https://vueuse.org/core/usestorage
 
 Demonstrates how to use a ref or getter as a storage key to dynamically update data when the key changes.
 
-```APIDOC
+````APIDOC
 ## Reactive Key Usage
 
 ### Description
@@ -15076,8 +14290,9 @@ const userData = useStorage(
 
 // Changing the key will read from the new storage location
 userId.value = 'user-2'
-```
-```
+````
+
+````
 
 --------------------------------
 
@@ -15100,9 +14315,9 @@ const c = sum(a, b) // c = a + b = 3
 set(a, 2) // shorthand for a.value = 2
 
 console.log(c) // it's 4 (2 + 2)!
-```
+````
 
---------------------------------
+---
 
 ### useDevicesList - Component Usage
 
@@ -15110,7 +14325,7 @@ Source: https://vueuse.org/core/usedeviceslist
 
 Illustrates the usage of the renderless component version of `useDevicesList` from `@vueuse/components`.
 
-```APIDOC
+````APIDOC
 ## UseDevicesList Component
 
 ### Description
@@ -15129,13 +14344,15 @@ A renderless Vue component that provides the functionality of `useDevicesList` t
 <script setup>
 import { UseDevicesList } from '@vueuse/components'
 </script>
-```
+````
 
 ### Slot Props
+
 - **videoInputs** (MediaDeviceInfo[]) - List of video input devices.
 - **audioInputs** (MediaDeviceInfo[]) - List of audio input devices.
 - **audioOutputs** (MediaDeviceInfo[]) - List of audio output devices.
-```
+
+````
 
 --------------------------------
 
@@ -15146,18 +14363,18 @@ Source: https://vueuse.org/core/useBrowserLocation
 Import and initialize the hook to track browser location state.
 
 ```typescript
-import { 
+import {
 useBrowserLocation
  } from '@vueuse/core'
 
-const 
+const
 location
- = 
+ =
 useBrowserLocation
 ()
-```
+````
 
---------------------------------
+---
 
 ### useMax - Multiple Arguments
 
@@ -15165,7 +14382,7 @@ Source: https://vueuse.org/math/usemax
 
 Shows how to use useMax with multiple reactive number arguments to find the maximum among them.
 
-```APIDOC
+````APIDOC
 ## useMax (Multiple Arguments)
 
 ### Description
@@ -15197,19 +14414,23 @@ const b = ref(3)
 
 const max = useMax(a, b, 2)
 // max will be a Ref<3>
-```
+````
 
 ### Response
+
 #### Success Response
+
 - **max** (Ref<number>) - A Vue ref containing the maximum number from the input arguments.
 
 #### Response Example
+
 ```json
 {
-  "max": 3
+	"max": 3
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -15221,17 +14442,17 @@ Use templateRef to bind a ref to a template element within the Options API setup
 
 ```vue
 <script lang="ts">
-import { 
+import {
 templateRef
  } from '@vueuse/core'
 
 export default {
-  
+
 setup
 () {
-    const 
+    const
 target
- = 
+ =
 templateRef
 ('target')
 
@@ -15243,15 +14464,15 @@ templateRef
 <template>
   <
 div
- 
+
 ref
 ="
 target
 " />
 </template>
-```
+````
 
---------------------------------
+---
 
 ### Declare Transition Function
 
@@ -15261,14 +14482,14 @@ Declares the signature for the `transition` function, which animates a source re
 
 ```typescript
 export declare function transition<T>(
-  source: Ref<T>,
-  from: MaybeRefOrGetter<T>,
-  to: MaybeRefOrGetter<T>,
-  options?: TransitionOptions<T>,
+	source: Ref<T>,
+	from: MaybeRefOrGetter<T>,
+	to: MaybeRefOrGetter<T>,
+	options?: TransitionOptions<T>,
 ): PromiseLike<void>
 ```
 
---------------------------------
+---
 
 ### Bidirectional Transform with useRouteQuery
 
@@ -15277,31 +14498,21 @@ Source: https://vueuse.org/router/useroutequery
 Define separate 'get' and 'set' transformation functions for useRouteQuery to handle complex data types in URL query parameters.
 
 ```typescript
-import {
-  useRouteQuery
-} from '@vueuse/router'
+import {useRouteQuery} from '@vueuse/router'
 
-const filters = 
-useRouteQuery
-('filters', [], {
-  
-  transform: {
-    
-    get: v => 
-      v ? 
-        v.split(',') : [],
-    
-    set: v => 
-      v.join(','),
-  },
+const filters = useRouteQuery('filters', [], {
+	transform: {
+		get: v => (v ? v.split(',') : []),
+
+		set: v => v.join(','),
+	},
 })
 
 // Reading: 'a,b,c' -> ['a', 'b', 'c']
 // Writing: ['a', 'b', 'c'] -> 'a,b,c'
-
 ```
 
---------------------------------
+---
 
 ### Basic Usage Implementation
 
@@ -15310,22 +14521,12 @@ Source: https://vueuse.org/core/useMouse
 Initializes the useMouse hook to track mouse coordinates.
 
 ```typescript
-import { 
-useMouse
- } from '@vueuse/core'
+import {useMouse} from '@vueuse/core'
 
-const { 
-x
-, 
-y
-, 
-sourceType
- } = 
-useMouse
-()
+const {x, y, sourceType} = useMouse()
 ```
 
---------------------------------
+---
 
 ### Get Previous Value of a Ref
 
@@ -15334,28 +14535,20 @@ Source: https://vueuse.org/core/useprevious
 Import and use `usePrevious` with a shallowRef. The previous value is initially undefined and updates after the ref's value changes.
 
 ```typescript
-import {
-usePrevious
-} from '@vueuse/core'
-import {
-shallowRef
-} from 'vue'
+import {usePrevious} from '@vueuse/core'
+import {shallowRef} from 'vue'
 
-const counter = 
-shallowRef('Hello')
-const previous = 
-usePrevious(counter)
-
+const counter = shallowRef('Hello')
+const previous = usePrevious(counter)
 
 console.log(previous.value) // undefined
 
 counter.value = 'World'
 
-
 console.log(previous.value) // Hello
 ```
 
---------------------------------
+---
 
 ### Transition Presets
 
@@ -15363,7 +14556,7 @@ Source: https://vueuse.org/core/usetransition
 
 Provides common easing functions and cubic bezier points for transitions.
 
-```APIDOC
+````APIDOC
 ## Transition Presets
 
 Provides common easing functions and cubic bezier points for transitions.
@@ -15377,23 +14570,24 @@ export declare const TransitionPresets: Record<
 > & {
   linear: EasingFunction
 }
-```
+````
 
 ### Usage Example
 
 ```typescript
-import { transition, TransitionPresets } from '@vueuse/core'
+import {transition, TransitionPresets} from '@vueuse/core'
 
 const isVisible = ref(false)
 
 transition(isVisible, {
-  from: false,
-  to: true,
-  duration: 500,
-  easing: TransitionPresets.easeInOutCubic,
+	from: false,
+	to: true,
+	duration: 500,
+	easing: TransitionPresets.easeInOutCubic,
 })
 ```
-```
+
+````
 
 --------------------------------
 
@@ -15405,13 +14599,13 @@ Set `reactive: true` in the options to get a reactive object instead of refs. Th
 
 ```typescript
 const keys = useMagicKeys({ reactive: true })
-```
+````
 
 ```javascript
-const keys = useMagicKeys({ reactive: true })
+const keys = useMagicKeys({reactive: true})
 ```
 
---------------------------------
+---
 
 ### useCached Utility
 
@@ -15419,7 +14613,7 @@ Source: https://vueuse.org/core/usecached
 
 Demonstrates how to use the useCached utility to cache a ref with a custom comparison function.
 
-```APIDOC
+````APIDOC
 ## useCached
 
 ### Description
@@ -15466,21 +14660,27 @@ source.value = {
   extra: 1,
 }
 console.log(cached.value) // Output: { value: 43, extra: 1 } (updated as value changed)
-```
+````
 
 ### Type Declarations
+
 ```typescript
-export interface UseCachedOptions<D extends boolean = true> extends ConfigurableDeepRefs<D>, WatchOptions {}
+export interface UseCachedOptions<D extends boolean = true>
+	extends ConfigurableDeepRefs<D>, WatchOptions {}
 
 export declare function useCached<T, D extends boolean = true>(
-  refValue: Ref<T>,
-  comparator?: (a: T, b: T) => boolean,
-  options?: UseCachedOptions<D>
+	refValue: Ref<T>,
+	comparator?: (a: T, b: T) => boolean,
+	options?: UseCachedOptions<D>,
 ): UseCachedReturn<T, D>
 
-export type UseCachedReturn<T = any, D extends boolean = true> = ShallowOrDeepRef<T, D>
+export type UseCachedReturn<
+	T = any,
+	D extends boolean = true,
+> = ShallowOrDeepRef<T, D>
 ```
-```
+
+````
 
 --------------------------------
 
@@ -15497,9 +14697,9 @@ useColorMode
 
 const mode = useColorMode() // Ref<'dark' | 'light'>
 
-```
+````
 
---------------------------------
+---
 
 ### createDisposableDirective Usage
 
@@ -15507,7 +14707,7 @@ Source: https://vueuse.org/shared/createDisposableDirective
 
 Example of creating a custom Vue directive using createDisposableDirective. This directive utilizes `useMouse` and ensures its effects are cleaned up when the directive is unmounted.
 
-```APIDOC
+````APIDOC
 ## createDisposableDirective
 
 ### Description
@@ -15538,7 +14738,7 @@ import {
   createDisposableDirective
 } from '@vueuse/shared'
 
-export const VDirective = 
+export const VDirective =
 createDisposableDirective
 ({
   mounted(el, binding) {
@@ -15547,20 +14747,24 @@ createDisposableDirective
     if (typeof value === 'function') {
       // [`useMouse`](/core/useMouse/) event listener will be removed automatically when directive is unmounted
       const { x, y } = useMouse()
-      
+
       watch(x, val => value(val))
     }
   }
 })
-```
+````
 
 ### Response
+
 #### Success Response (200)
+
 N/A (This is a utility function, not an API endpoint)
 
 #### Response Example
+
 N/A
-```
+
+````
 
 --------------------------------
 
@@ -15589,8 +14793,9 @@ Reactively track `window.devicePixelRatio`. Since there is no native event liste
 import { useDevicePixelRatio } from '@vueuse/core'
 
 const { pixelRatio } = useDevicePixelRatio()
-```
-```
+````
+
+````
 
 --------------------------------
 
@@ -15609,44 +14814,53 @@ Reactively omit fields from a reactive object by providing the keys to exclude.
 ### Method
 ```ts
 reactiveOmit(obj: T, ...keys: K[]): ReactiveOmitReturn<T, K>
-```
+````
 
 ### Parameters
+
 #### Path Parameters
+
 None
 
 #### Query Parameters
+
 None
 
 #### Request Body
+
 None
 
 ### Request Example
+
 ```ts
-import { reactiveOmit } from '@vueuse/core'
+import {reactiveOmit} from '@vueuse/core'
 
 const obj = reactive({
-  x: 0,
-  y: 0,
-  elementX: 0,
-  elementY: 0,
+	x: 0,
+	y: 0,
+	elementX: 0,
+	elementY: 0,
 })
 
 const picked = reactiveOmit(obj, 'x', 'elementX') // { y: number, elementY: number }
 ```
 
 ### Response
+
 #### Success Response (200)
+
 Returns a new reactive object with the specified keys omitted.
 
 #### Response Example
+
 ```json
 {
-  "y": 0,
-  "elementY": 0
+	"y": 0,
+	"elementY": 0
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -15662,9 +14876,9 @@ console.log(counter.value) // 1
 undo()
 
 console.log(counter.value) // 0
-```
+````
 
---------------------------------
+---
 
 ### Implement reactive window scroll
 
@@ -15674,15 +14888,15 @@ Demonstrates how to import and use the useWindowScroll hook to track and update 
 
 ```vue
 <script setup lang="ts">
-import { 
+import {
 useWindowScroll
  } from '@vueuse/core'
 
-const { 
+const {
 x
-, 
+,
 y
- } = 
+ } =
 useWindowScroll
 ()
 </script>
@@ -15691,9 +14905,9 @@ useWindowScroll
   <
 div
 >
-    read current x, y scroll: {{ 
+    read current x, y scroll: {{
 x
- }}, {{ 
+ }}, {{
 y
  }}
   </
@@ -15724,7 +14938,7 @@ button
 </template>
 ```
 
---------------------------------
+---
 
 ### Use useNavigatorLanguage hook
 
@@ -15733,26 +14947,16 @@ Source: https://vueuse.org/core/useNavigatorLanguage
 Demonstrates how to import and use the hook to track the current language and react to its changes.
 
 ```typescript
-import { 
-useNavigatorLanguage
- } from '@vueuse/core'
+import {useNavigatorLanguage} from '@vueuse/core'
 
-const { 
-language
- } = 
-useNavigatorLanguage
-()
+const {language} = useNavigatorLanguage()
 
-
-watch
-(
-language
-, () => {
-  // Listen to the value changing
+watch(language, () => {
+	// Listen to the value changing
 })
 ```
 
---------------------------------
+---
 
 ### Basic usage of useIntervalFn
 
@@ -15761,24 +14965,14 @@ Source: https://vueuse.org/shared/useIntervalFn
 Demonstrates how to import and initialize the interval function with pause, resume, and active state controls.
 
 ```typescript
-import { 
-useIntervalFn
- } from '@vueuse/core'
+import {useIntervalFn} from '@vueuse/core'
 
-const { 
-pause
-, 
-resume
-, 
-isActive
- } = 
-useIntervalFn
-(() => {
-  /* your function */
+const {pause, resume, isActive} = useIntervalFn(() => {
+	/* your function */
 }, 1000)
 ```
 
---------------------------------
+---
 
 ### Use useParallax in Vue Component
 
@@ -15788,40 +14982,16 @@ Import and use the useParallax composable within a Vue component's setup. It req
 
 ```vue
 <script setup lang="ts">
-import { 
-useParallax
- } from '@vueuse/core'
+import {useParallax} from '@vueuse/core'
 
-const 
-container
- = 
-ref
-(null)
-const { 
-tilt
-, 
-roll
-, 
-source
- } = 
-useParallax
-(
-container
-)
+const container = ref(null)
+const {tilt, roll, source} = useParallax(container)
 </script>
 
-<template>
-  <
-div
- 
-ref
-="
-container
-" />
-</template>
+<template>< div ref =" container " /></template>
 ```
 
---------------------------------
+---
 
 ### Usage of useFps
 
@@ -15830,18 +15000,12 @@ Source: https://vueuse.org/core/useFps
 Import and initialize the useFps reactive reference.
 
 ```typescript
-import { 
-useFps
- } from '@vueuse/core'
+import {useFps} from '@vueuse/core'
 
-const 
-fps
- = 
-useFps
-()
+const fps = useFps()
 ```
 
---------------------------------
+---
 
 ### Basic Dialog Opening with useDialog
 
@@ -15852,8 +15016,8 @@ Illustrates a straightforward way to open a dialog using the `useDialog` composa
 ```typescript
 const dialog = useDialog()
 const result = await dialog.open({
-  title: 'Hello',
-  content: 'World',
+	title: 'Hello',
+	content: 'World',
 })
 ```
 
@@ -15861,12 +15025,12 @@ const result = await dialog.open({
 'use strict'
 const dialog = useDialog()
 const result = await dialog.open({
-  title: 'Hello',
-  content: 'World',
+	title: 'Hello',
+	content: 'World',
 })
 ```
 
---------------------------------
+---
 
 ### useAxios with Options (TypeScript)
 
@@ -15875,63 +15039,33 @@ Source: https://vueuse.org/integrations/useaxios
 Configure advanced options for useAxios, including immediate execution, shallow refs, aborting previous requests, and callbacks like onSuccess, onError, and onFinish.
 
 ```typescript
-const { 
-data
- } = useAxios('/api/posts', config, instance, {
-  // Execute immediately (default: true if url provided)
-  
-immediate
-: true,
-  // Use shallowRef for data (default: true)
-  
-shallow
-: true,
-  // Abort previous request on new execute (default: true)
-  
-abortPrevious
-: true,
-  // Reset data before executing (default: false)
-  
-resetOnExecute
-: false,
-  // Initial data value
-  
-initialData
-: [],
-  // Callbacks
-  
-onSuccess
-: 
-data
- => 
-console
-.
-log
-('Success:', 
-data
-),
-  
-onError
-: 
-error
- => 
-console
-.
-error
-('Error:', 
-error
-),
-  
-onFinish
-: () => 
-console
-.
-log
-('Finished'),
+const {data} = useAxios('/api/posts', config, instance, {
+	// Execute immediately (default: true if url provided)
+
+	immediate: true,
+	// Use shallowRef for data (default: true)
+
+	shallow: true,
+	// Abort previous request on new execute (default: true)
+
+	abortPrevious: true,
+	// Reset data before executing (default: false)
+
+	resetOnExecute: false,
+	// Initial data value
+
+	initialData: [],
+	// Callbacks
+
+	onSuccess: data => console.log('Success:', data),
+
+	onError: error => console.error('Error:', error),
+
+	onFinish: () => console.log('Finished'),
 })
 ```
 
---------------------------------
+---
 
 ### useTimeoutFn API
 
@@ -15939,7 +15073,7 @@ Source: https://vueuse.org/shared/usetimeoutfn
 
 The useTimeoutFn composable provides a reactive way to manage setTimeout, offering control over starting, stopping, and checking the pending state of the timer.
 
-```APIDOC
+````APIDOC
 ## useTimeoutFn
 
 ### Description
@@ -15982,19 +15116,23 @@ const { isPending, start, stop } = useTimeoutFn(() => {
 
 // To restart the timer
 // start()
-```
+````
 
 ### Response
+
 #### Success Response (Implicit)
+
 This composable does not have a direct HTTP response. Its effects are managed within the Vue application's state.
 
 #### Response Example (State)
+
 ```json
 {
-  "isPending": false
+	"isPending": false
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -16014,14 +15152,14 @@ shallowRef
 
 const
 countdown
- = 
+ =
 shallowRef
 (5)
-const { 
+const {
 start
-, 
+,
 reset
- } = 
+ } =
 useCountdown
 (
 countdown
@@ -16050,9 +15188,9 @@ reset
 start
 ()
 
-```
+````
 
---------------------------------
+---
 
 ### useAxios Options
 
@@ -16060,7 +15198,7 @@ Source: https://vueuse.org/integrations/useAxios
 
 Details the available configuration options for the useAxios composable.
 
-```APIDOC
+````APIDOC
 ## useAxios Options
 
 ### Description
@@ -16096,22 +15234,26 @@ const { data } = useAxios('/api/posts', config, instance, {
   onError: (error) => console.error('Error:', error),
   onFinish: () => console.log('Finished'),
 })
-```
+````
 
 ### Response
+
 #### Success Response (200)
+
 - **data** (Ref<T>) - Response data
 
 #### Response Example
+
 ```json
 {
-  "userId": 1,
-  "id": 1,
-  "title": "delectus aut autem",
-  "completed": false
+	"userId": 1,
+	"id": 1,
+	"title": "delectus aut autem",
+	"completed": false
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -16139,9 +15281,9 @@ const userInfo = computedAsync(
     evaluating
   },
 )
-```
+````
 
---------------------------------
+---
 
 ### Use useWindowScroll in Vue Component
 
@@ -16151,15 +15293,15 @@ Import and use `useWindowScroll` to get reactive scroll values. You can also pro
 
 ```vue
 <script setup lang="ts">
-import { 
+import {
 useWindowScroll
  } from '@vueuse/core'
 
-const { 
+const {
 x
-, 
+,
 y
- } = 
+ } =
 useWindowScroll
 ()
 </script>
@@ -16168,9 +15310,9 @@ useWindowScroll
   <
 div
 >
-    read current x, y scroll: {{ 
+    read current x, y scroll: {{
 x
- }}, {{ 
+ }}, {{
 y
  }}
   </
@@ -16198,7 +15340,7 @@ button>
 </template>
 ```
 
---------------------------------
+---
 
 ### Basic Usage of onClickOutside
 
@@ -16208,16 +15350,16 @@ Demonstrates the standard implementation using a template reference to target an
 
 ```vue
 <script setup lang="ts">
-import { 
+import {
 onClickOutside
  } from '@vueuse/core'
-import { 
+import {
 useTemplateRef
  } from 'vue'
 
-const 
+const
 target
- = 
+ =
 useTemplateRef
 ('target')
 
@@ -16225,9 +15367,9 @@ useTemplateRef
 onClickOutside
 (
 target
-, 
+,
 event
- => 
+ =>
 console
 .
 log
@@ -16239,7 +15381,7 @@ event
 <template>
   <
 div
- 
+
 ref
 ="
 target
@@ -16256,7 +15398,7 @@ div
 </template>
 ```
 
---------------------------------
+---
 
 ### useKeyModifier with Custom Events
 
@@ -16264,7 +15406,7 @@ Source: https://vueuse.org/core/usekeymodifier
 
 Customize the events that trigger state updates for `useKeyModifier`. This example shows tracking 'CapsLock' state using only 'mouseup' and 'mousedown' events.
 
-```APIDOC
+````APIDOC
 ## useKeyModifier with Custom Events
 
 ### Description
@@ -16289,12 +15431,15 @@ import { useKeyModifier } from '@vueuse/core'
 const capsLockState = useKeyModifier('CapsLock', { events: ['mouseup', 'mousedown'] })
 
 console.log(capsLockState)
-```
+````
 
 ### Response
+
 #### Success Response (200)
+
 - **value** (boolean | null) - The reactive state of the modifier key, updated based on the specified events.
-```
+
+````
 
 --------------------------------
 
@@ -16330,22 +15475,27 @@ import { provideLocal, injectLocal } from '@vueuse/core'
 provideLocal('MyInjectionKey', 1)
 const injectedValue = injectLocal('MyInjectionKey') // injectedValue === 1
 </script>
-```
+````
 
 ### Response
+
 #### Success Response (provideLocal)
+
 - **void**: The `provideLocal` function does not return a value.
 
 #### Success Response (injectLocal)
+
 - **T**: The type of the injected value.
 
 #### Response Example (injectLocal)
+
 ```json
 {
-  "injectedValue": 1
+	"injectedValue": 1
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -16358,31 +15508,30 @@ Apply modifiers like `prevent`, `stop`, `once`, `capture`, and `self` to control
 ```typescript
 onLongPress(
 target, handler, {
-  
+
 modifiers
 : {
-    
+
 prevent
 : true,
-    
+
 stop
 : true,
   },
 })
-```
+````
 
 ```javascript
 'use strict'
-onLongPress(
-target, handler, {
-  modifiers: {
-    prevent: true,
-    stop: true,
-  },
+onLongPress(target, handler, {
+	modifiers: {
+		prevent: true,
+		stop: true,
+	},
 })
 ```
 
---------------------------------
+---
 
 ### useMouse
 
@@ -16411,7 +15560,7 @@ Tracks the mouse or touch position reactively. Returns the current x and y coord
 - **sourceType** (ShallowRef<UseMouseSourceType>) - The source of the event (mouse, touch, or null).
 ```
 
---------------------------------
+---
 
 ### Initialize useWakeLock
 
@@ -16420,26 +15569,12 @@ Source: https://vueuse.org/core/usewakelock
 Basic implementation of the useWakeLock hook to manage screen wake lock state.
 
 ```typescript
-import { 
-useWakeLock
- } from '@vueuse/core'
+import {useWakeLock} from '@vueuse/core'
 
-const { 
-isSupported
-, 
-isActive
-, 
-forceRequest
-, 
-request
-, 
-release
- } = 
-useWakeLock
-()
+const {isSupported, isActive, forceRequest, request, release} = useWakeLock()
 ```
 
---------------------------------
+---
 
 ### Listen To Multiple Keys
 
@@ -16447,7 +15582,7 @@ Source: https://vueuse.org/core/onKeyStroke
 
 Configure `onKeyStroke` to listen for an array of keys or all keys.
 
-```APIDOC
+````APIDOC
 ## Listen To Multiple Keys
 
 ### Usage
@@ -16467,8 +15602,9 @@ onKeyStroke(true, (e) => {
 onKeyStroke((e) => {
   e.preventDefault()
 })
-```
-```
+````
+
+````
 
 --------------------------------
 
@@ -16516,17 +15652,20 @@ const isDarkCustom = useDark({
     console.log('Dark mode is now:', dark)
   },
 })
-```
+````
 
 ### Response
+
 - **isDark** (WritableComputedRef<boolean>) - A reactive boolean indicating the current dark mode state.
 
 ### Response Example
+
 ```json
 // The 'isDark' ref will be true or false based on the current mode and configuration.
 // Example: false
 ```
-```
+
+````
 
 --------------------------------
 
@@ -16537,7 +15676,7 @@ Source: https://vueuse.org/core/usedevicepixelratio
 This section details the `useDevicePixelRatio` composable, its usage, options, and return values.
 
 ```APIDOC
-## useDevicePixelRatio 
+## useDevicePixelRatio
 
 ### Description
 Reactively track `window.devicePixelRatio`.
@@ -16565,23 +15704,25 @@ None
 import { useDevicePixelRatio } from '@vueuse/core'
 
 const { pixelRatio } = useDevicePixelRatio()
-```
+````
 
 ### Component Usage
+
 ```vue
 <template>
-  <UseDevicePixelRatio v-slot="{ pixelRatio }">
-    Pixel Ratio: {{ pixelRatio }}
-  </UseDevicePixelRatio>
+	<UseDevicePixelRatio v-slot="{pixelRatio}">
+		Pixel Ratio: {{ pixelRatio }}
+	</UseDevicePixelRatio>
 </template>
 ```
 
 ### Type Declarations
+
 ```typescript
 export interface UseDevicePixelRatioOptions extends ConfigurableWindow {}
 export interface UseDevicePixelRatioReturn {
-  pixelRatio: Readonly<ShallowRef<number>>
-  stop: WatchStopHandle
+	pixelRatio: Readonly<ShallowRef<number>>
+	stop: WatchStopHandle
 }
 
 /**
@@ -16592,22 +15733,26 @@ export interface UseDevicePixelRatioReturn {
  * @__NO_SIDE_EFFECTS__
  */
 export declare function useDevicePixelRatio(
-  options?: UseDevicePixelRatioOptions,
+	options?: UseDevicePixelRatioOptions,
 ): UseDevicePixelRatioReturn
 ```
 
 ### Response
+
 #### Success Response (N/A - Composable)
+
 - **pixelRatio** (Readonly<ShallowRef<number>>) - The current device pixel ratio.
 - **stop** (WatchStopHandle) - A function to stop the reactivity.
 
 #### Response Example
+
 ```json
 {
-  "pixelRatio": 1
+	"pixelRatio": 1
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -16645,23 +15790,27 @@ POST
   "email": "john.doe@example.com",
   "password": "securepassword123"
 }
-```
+````
 
 ### Response
+
 #### Success Response (201)
+
 - **id** (integer) - The unique identifier for the newly created user.
 - **username** (string) - The username of the created user.
 - **email** (string) - The email address of the created user.
 
 #### Response Example
+
 ```json
 {
-  "id": 1,
-  "username": "johndoe",
-  "email": "john.doe@example.com"
+	"id": 1,
+	"username": "johndoe",
+	"email": "john.doe@example.com"
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -16694,13 +15843,13 @@ export interface MemoizeCache<Key, Value> {
    */
   clear: () => void
 }
-```
+````
 
 ```javascript
 export {}
 ```
 
---------------------------------
+---
 
 ### useIpcRenderer Available Methods
 
@@ -16709,7 +15858,7 @@ Source: https://vueuse.org/electron/useipcrenderer
 Lists the available methods exposed by the ipcRenderer object through the useIpcRenderer composable.
 
 ```APIDOC
-## Available Methods 
+## Available Methods
 
 ### Description
 These methods are available on the `ipcRenderer` object returned by `useIpcRenderer`.
@@ -16729,7 +15878,7 @@ These methods are available on the `ipcRenderer` object returned by `useIpcRende
 | `sendToHost(channel, ...args)` | Send to webview host                              |
 ```
 
---------------------------------
+---
 
 ### Enable Reactive Mode for useMagicKeys
 
@@ -16738,15 +15887,15 @@ Source: https://vueuse.org/core/useMagicKeys
 Set `reactive: true` in the options to get a reactive object instead of an object of refs. This is useful for direct use in Vue templates.
 
 ```typescript
-const keys = useMagicKeys({ reactive: true })
+const keys = useMagicKeys({reactive: true})
 ```
 
 ```javascript
 'use strict'
-const keys = useMagicKeys({ reactive: true })
+const keys = useMagicKeys({reactive: true})
 ```
 
---------------------------------
+---
 
 ### Manual Ref Management for Mounted State (JavaScript)
 
@@ -16758,11 +15907,11 @@ This is the equivalent manual implementation of useMounted in JavaScript, using 
 'use strict'
 const isMounted = ref(false)
 onMounted(() => {
-  isMounted.value = true
+	isMounted.value = true
 })
 ```
 
---------------------------------
+---
 
 ### Track Caps Lock State
 
@@ -16771,26 +15920,14 @@ Source: https://vueuse.org/core/useKeyModifier
 Import and use useKeyModifier to get a reactive ref for the Caps Lock key state. The initial value is null until the first event.
 
 ```typescript
-import {
-useKeyModifier
-} from '@vueuse/core'
+import {useKeyModifier} from '@vueuse/core'
 
-const capsLockState = 
-useKeyModifier
-('CapsLock')
+const capsLockState = useKeyModifier('CapsLock')
 
-
-console
-.
-log
-(
-capsLockState
-.value
-)
-
+console.log(capsLockState.value)
 ```
 
---------------------------------
+---
 
 ### Use useIpcRendererInvoke in TypeScript
 
@@ -16799,28 +15936,17 @@ Source: https://vueuse.org/electron/useipcrendererinvoke
 Example of using useIpcRendererInvoke with TypeScript. Ensure nodeIntegration is enabled if ipcRenderer is not explicitly provided. The result is a Ref that holds the response from the main process.
 
 ```typescript
-import {
-  useIpcRendererInvoke
-} from '@vueuse/electron'
-import {
-  computed
-} from 'vue'
+import {useIpcRendererInvoke} from '@vueuse/electron'
+import {computed} from 'vue'
 
 // enable nodeIntegration if you don't provide ipcRenderer explicitly
 // see: https://www.electronjs.org/docs/api/webview-tag#nodeintegration
 // Ref result will return
-const
-result
-=
-useIpcRendererInvoke<string>('custom-channel', 'some data')
-const
-msg
-=
-computed(() =>
-result.value?.msg)
+const result = useIpcRendererInvoke<string>('custom-channel', 'some data')
+const msg = computed(() => result.value?.msg)
 ```
 
---------------------------------
+---
 
 ### Configure options
 
@@ -16829,83 +15955,53 @@ Source: https://vueuse.org/integrations/useAxios
 Customize behavior such as immediate execution, shallow refs, and lifecycle callbacks.
 
 ```typescript
-const { 
-data
- } = useAxios('/api/posts', config, instance, {
-  // Execute immediately (default: true if url provided)
-  
-immediate
-: true,
-  // Use shallowRef for data (default: true)
-  
-shallow
-: true,
-  // Abort previous request on new execute (default: true)
-  
-abortPrevious
-: true,
-  // Reset data before executing (default: false)
-  
-resetOnExecute
-: false,
-  // Initial data value
-  
-initialData
-: [],
-  // Callbacks
-  
-onSuccess
-: 
-data
- => 
-console
-.
-log
-('Success:', 
-data
-),
-  
-onError
-: 
-error
- => 
-console
-.
-error
-('Error:', 
-error
-),
-  
-onFinish
-: () => 
-console
-.
-log
-('Finished'),
+const {data} = useAxios('/api/posts', config, instance, {
+	// Execute immediately (default: true if url provided)
+
+	immediate: true,
+	// Use shallowRef for data (default: true)
+
+	shallow: true,
+	// Abort previous request on new execute (default: true)
+
+	abortPrevious: true,
+	// Reset data before executing (default: false)
+
+	resetOnExecute: false,
+	// Initial data value
+
+	initialData: [],
+	// Callbacks
+
+	onSuccess: data => console.log('Success:', data),
+
+	onError: error => console.error('Error:', error),
+
+	onFinish: () => console.log('Finished'),
 })
 ```
 
 ```javascript
 'use strict'
-const { data } = useAxios('/api/posts', config, instance, {
-  // Execute immediately (default: true if url provided)
-  immediate: true,
-  // Use shallowRef for data (default: true)
-  shallow: true,
-  // Abort previous request on new execute (default: true)
-  abortPrevious: true,
-  // Reset data before executing (default: false)
-  resetOnExecute: false,
-  // Initial data value
-  initialData: [],
-  // Callbacks
-  onSuccess: (data) => console.log('Success:', data),
-  onError: (error) => console.error('Error:', error),
-  onFinish: () => console.log('Finished'),
+const {data} = useAxios('/api/posts', config, instance, {
+	// Execute immediately (default: true if url provided)
+	immediate: true,
+	// Use shallowRef for data (default: true)
+	shallow: true,
+	// Abort previous request on new execute (default: true)
+	abortPrevious: true,
+	// Reset data before executing (default: false)
+	resetOnExecute: false,
+	// Initial data value
+	initialData: [],
+	// Callbacks
+	onSuccess: data => console.log('Success:', data),
+	onError: error => console.error('Error:', error),
+	onFinish: () => console.log('Finished'),
 })
 ```
 
---------------------------------
+---
 
 ### Configurations: onBeforeChange and onChanged
 
@@ -16913,7 +16009,7 @@ Source: https://vueuse.org/shared/refWithControl
 
 Details the configuration options `onBeforeChange` and `onChanged` for controlling value changes and reacting to them.
 
-```APIDOC
+````APIDOC
 ## Configurations
 
 ### `onBeforeChange(value, oldValue)`
@@ -16940,29 +16036,33 @@ console.log(num.value) // 1
 
 num.value += 6
 console.log(num.value) // 1 (change dismissed)
-```
+````
 
 ### `onChanged(value, oldValue)`
 
 #### Description
+
 A callback function executed after the ref's value has changed. This provides a synchronous way to react to changes with less overhead than a standard watcher.
 
 #### Parameters
+
 - `value` (T): The new value after the change.
 - `oldValue` (T): The previous value before the change.
 
 #### Example
+
 ```typescript
 const num = refWithControl(0, {
-  onChanged(value, oldValue) {
-    console.log(`Value changed from ${oldValue} to ${value}`);
-  },
+	onChanged(value, oldValue) {
+		console.log(`Value changed from ${oldValue} to ${value}`)
+	},
 })
 
-num.value = 10;
+num.value = 10
 // Output: Value changed from 0 to 10
 ```
-```
+
+````
 
 --------------------------------
 
@@ -16979,21 +16079,21 @@ export interface UseCountdownOptions extends ConfigurableScheduler {
    *
    * @deprecated Please use `scheduler` option instead
    */
-  
+
 interval
-?: 
+?:
 MaybeRefOrGetter
 <number>
   /**
    * Callback function called when the countdown reaches 0.
    */
-  
+
 onComplete
 ?: () => void
   /**
    * Callback function called on each tick of the countdown.
    */
-  
+
 onTick
 ?: () => void
   /**
@@ -17002,7 +16102,7 @@ onTick
    * @deprecated Please use `scheduler` option instead
    * @default false
    */
-  
+
 immediate
 ?: boolean
 }
@@ -17010,35 +16110,35 @@ export interface UseCountdownReturn extends Pausable {
   /**
    * Current countdown value.
    */
-  
+
 remaining
-: 
+:
 ShallowRef
 <number>
   /**
    * Resets the countdown and repeatsLeft to their initial values.
    */
-  
+
 reset
 : (
 countdown
-?: 
+?:
 MaybeRefOrGetter
 <number>) => void
   /**
    * Stops the countdown and resets its state.
    */
-  
+
 stop
 : () => void
   /**
    * Reset the countdown and start it again.
    */
-  
+
 start
 : (
 countdown
-?: 
+?:
 MaybeRefOrGetter
 <number>) => void
 }
@@ -17050,22 +16150,22 @@ MaybeRefOrGetter
  *
  * @see https://vueuse.org/useCountdown
  */
-export declare function 
+export declare function
 useCountdown
 (
-  
+
 initialCountdown
-: 
+:
 MaybeRefOrGetter
 <number>,
-  
+
 options
 ?: UseCountdownOptions,
 ): UseCountdownReturn
 
-```
+````
 
---------------------------------
+---
 
 ### Basic usage of reactify
 
@@ -17074,91 +16174,36 @@ Source: https://vueuse.org/shared/reactify
 Demonstrates converting a simple addition function into a reactive version that accepts shallowRefs.
 
 ```typescript
-import { 
-reactify
- } from '@vueuse/core'
-import { 
-shallowRef
- } from 'vue'
+import {reactify} from '@vueuse/core'
+import {shallowRef} from 'vue'
 
 // a plain function
-function 
-add
-(
-a
-: number, 
-b
-: number): number {
-  return 
-a
- + 
-b
-
+function add(a: number, b: number): number {
+	return
+	a + b
 }
 
 // now it accept refs and returns a computed ref
 // (a: number | Ref<number>, b: number | Ref<number>) => ComputedRef<number>
-const 
-reactiveAdd
- = 
-reactify
-(
-add
-)
+const reactiveAdd = reactify(add)
 
-const 
-a
- = 
-shallowRef
-(1)
-const 
-b
- = 
-shallowRef
-(2)
-const 
-sum
- = 
-reactiveAdd
-(
-a
-, 
-b
-)
+const a = shallowRef(1)
+const b = shallowRef(2)
+const sum = reactiveAdd(a, b)
 
+console.log(sum.value) // 3
 
-console
-.
-log
-(
-sum
-.
-value
-) // 3
+a.value = 5
 
-
-a
-.
-value
- = 5
-
-
-console
-.
-log
-(
-sum
-.
-value
-) // 7
+console.log(sum.value) // 7
 ```
 
 ```javascript
-import { reactify } from '@vueuse/core'
-import { shallowRef } from 'vue'
+import {reactify} from '@vueuse/core'
+import {shallowRef} from 'vue'
 // a plain function
 function add(a, b) {
-  return a + b
+	return a + b
 }
 // now it accept refs and returns a computed ref
 // (a: number | Ref<number>, b: number | Ref<number>) => ComputedRef<number>
@@ -17171,7 +16216,7 @@ a.value = 5
 console.log(sum.value) // 7
 ```
 
---------------------------------
+---
 
 ### useMediaQuery API
 
@@ -17179,7 +16224,7 @@ Source: https://vueuse.org/core/useMediaQuery
 
 Documentation for the useMediaQuery composable.
 
-```APIDOC
+````APIDOC
 ## useMediaQuery
 
 ### Description
@@ -17207,28 +16252,30 @@ import { useMediaQuery } from '@vueuse/core'
 
 const isLargeScreen = useMediaQuery('(min-width: 1024px)')
 const isPreferredDark = useMediaQuery('(prefers-color-scheme: dark)')
-```
+````
 
 ### Server Side Rendering and Nuxt
+
 If you are using `useMediaQuery` with SSR enabled, then you need to specify which screen size you would like to render on the server and before hydration to avoid an hydration mismatch.
 
 ```typescript
-import { useMediaQuery } from '@vueuse/core'
+import {useMediaQuery} from '@vueuse/core'
 
 const isLarge = useMediaQuery('(min-width: 1024px)', {
-  ssrWidth: 768 // Will enable SSR mode and render like if the screen was 768px wide
+	ssrWidth: 768, // Will enable SSR mode and render like if the screen was 768px wide
 })
 
 console.log(isLarge.value) // always false because ssrWidth of 768px is smaller than 1024px
 
 onMounted(() => {
-  console.log(isLarge.value) // false if screen is smaller than 1024px, true if larger than 1024px
+	console.log(isLarge.value) // false if screen is smaller than 1024px, true if larger than 1024px
 })
 ```
 
 Alternatively you can set this up globally for your app using `provideSSRWidth`.
 
 ### Type Declarations
+
 ```typescript
 /**
  * Reactive Media Query.
@@ -17238,25 +16285,29 @@ Alternatively you can set this up globally for your app using `provideSSRWidth`.
  * @param options
  */
 export declare function useMediaQuery(
-  query: MaybeRefOrGetter<string>,
-  options?: ConfigurableWindow & {
-    ssrWidth?: number
-  }
+	query: MaybeRefOrGetter<string>,
+	options?: ConfigurableWindow & {
+		ssrWidth?: number
+	},
 ): ComputedRef<boolean>
 ```
 
 ### Response
+
 #### Success Response (200)
+
 Returns a `ComputedRef<boolean>` which is `true` if the media query matches, `false` otherwise.
 
 #### Response Example
+
 ```json
 {
-  "isLargeScreen": true,
-  "prefersDark": false
+	"isLargeScreen": true,
+	"prefersDark": false
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -17267,60 +16318,60 @@ Source: https://vueuse.org/core/useAnimate
 Illustrates how to pass an options object to control duration, lifecycle callbacks, and persistence.
 
 ```ts
-import { 
+import {
 useAnimate
  } from '@vueuse/core'
 
 
 useAnimate
 (el, keyframes, {
-  
+
 duration
 : 1000,
   // Start playing immediately (default: true)
-  
+
 immediate
 : true,
   // Commit the end styling state to the element (default: false)
-  
+
 commitStyles
 : false,
   // Persist the animation (default: false)
-  
+
 persist
 : false,
   // Callback when animation is initialized
-  
+
 onReady
 (
 animate
 ) {
-    
+
 console
 .
 log
-('Animation ready', 
+('Animation ready',
 animate
 )
   },
   // Callback when an error occurs
-  
+
 onError
 (
 e
 ) {
-    
+
 console
 .
 error
-('Animation error', 
+('Animation error',
 e
 )
   },
 })
-```
+````
 
---------------------------------
+---
 
 ### Track Element Hover State with useElementHover
 
@@ -17330,21 +16381,21 @@ Use this composable to get a reactive boolean indicating if the mouse is current
 
 ```vue
 <script setup lang="ts">
-import { 
+import {
 useElementHover
  } from '@vueuse/core'
-import { 
+import {
 useTemplateRef
  } from 'vue'
 
-const 
+const
 myHoverableElement
- = 
+ =
 useTemplateRef
 ('myHoverableElement')
-const 
+const
 isHovered
- = 
+ =
 useElementHover
 (
 myHoverableElement
@@ -17354,12 +16405,12 @@ myHoverableElement
 <template>
   <
 button
- 
+
 ref
 ="
 myHoverableElement
 ">
-    {{ 
+    {{
 isHovered
  }}
   </
@@ -17368,7 +16419,7 @@ button
 </template>
 ```
 
---------------------------------
+---
 
 ### Using flush: 'pre' option
 
@@ -17377,78 +16428,28 @@ Source: https://vueuse.org/shared/syncrefs
 Demonstrates how setting the flush option to 'pre' delays the target update until the next tick.
 
 ```typescript
-import { 
-syncRefs
- } from '@vueuse/core'
-import { 
-nextTick
-, 
-shallowRef
- } from 'vue'
+import {nextTick, shallowRef} from 'vue'
+import {syncRefs} from '@vueuse/core'
 
-const 
-source
- = 
-shallowRef
-('hello')
-const 
-target
- = 
-shallowRef
-('target')
+const source = shallowRef('hello')
+const target = shallowRef('target')
 
+syncRefs(source, target, {
+	flush: 'pre',
+})
 
-syncRefs
-( 
-source
-, 
-target
-, { 
-flush
-: 'pre' })
+console.log(target.value) // hello
 
+source.value = 'foo'
 
-console
-.
-log
-( 
-target
-.
-value
-) // hello
+console.log(target.value) // hello <- still unchanged, because of flush 'pre'
 
+await nextTick()
 
-source
-.
-value
- = 'foo'
-
-
-console
-.
-log
-( 
-target
-.
-value
-) // hello <- still unchanged, because of flush 'pre'
-
-await 
-nextTick
-()
-
-
-console
-.
-log
-( 
-target
-.
-value
-) // foo <- changed!
+console.log(target.value) // foo <- changed!
 ```
 
---------------------------------
+---
 
 ### JavaScript Basic Key Monitoring
 
@@ -17458,19 +16459,19 @@ JavaScript equivalent for basic key monitoring. Use `watch` or `watchEffect` to 
 
 ```javascript
 'use strict'
-const { shift, space, a } = useMagicKeys()
+const {shift, space, a} = useMagicKeys()
 watch(
-  () => space?.value,
-  (v) => {
-    if (v) console.log('space has been pressed')
-  },
+	() => space?.value,
+	v => {
+		if (v) console.log('space has been pressed')
+	},
 )
 watchEffect(() => {
-  if (shift?.value && a?.value) console.log('Shift + A have been pressed')
+	if (shift?.value && a?.value) console.log('Shift + A have been pressed')
 })
 ```
 
---------------------------------
+---
 
 ### useExtractedObservable Basic Usage
 
@@ -17478,8 +16479,8 @@ Source: https://vueuse.org/rxjs/useextractedobservable
 
 This example demonstrates the basic usage of `useExtractedObservable` to extract values from an RxJS Observable and expose them as a Vue ref. It automatically handles unsubscription when the component unmounts.
 
-```APIDOC
-## useExtractedObservable 
+````APIDOC
+## useExtractedObservable
 
 ### Description
 Use an RxJS `Observable` as extracted from one or more composables, return a `ref`, and automatically unsubscribe from it when the component is unmounted.
@@ -17518,134 +16519,139 @@ import { makeSocket, useUser } from '../some/lib/func'
 // setup()
 const user = useUser()
 const lastMessage = useExtractedObservable(user, u => ObservableSocket.create(makeSocket(u.id)).down)
-```
+````
 
 #### Basic Usage (JavaScript)
+
 ```javascript
-import { useExtractedObservable } from '@vueuse/rxjs'
+import {makeSocket, useUser} from '../some/lib/func'
+import {useExtractedObservable} from '@vueuse/rxjs'
 import ObservableSocket from 'observable-socket'
-import { makeSocket, useUser } from '../some/lib/func'
 
 // setup()
 const user = useUser()
 const lastMessage = useExtractedObservable(
-  user,
-  (u) => ObservableSocket.create(makeSocket(u.id)).down,
+	user,
+	u => ObservableSocket.create(makeSocket(u.id)).down,
 )
 ```
 
 #### Custom Error Handling (TypeScript)
+
 ```typescript
-import { useExtractedObservable } from '@vueuse/rxjs'
-import { interval } from 'rxjs'
-import { mapTo, scan, startWith, tap } from 'rxjs/operators'
-import { shallowRef } from 'vue'
+import {mapTo, scan, startWith, tap} from 'rxjs/operators'
+import {useExtractedObservable} from '@vueuse/rxjs'
+import {shallowRef} from 'vue'
+import {interval} from 'rxjs'
 
 // setup()
 const start = shallowRef(0)
 
 const count = useExtractedObservable(
-  start,
-  (start) => {
-    return interval(1000).pipe(
-      mapTo(1),
-      startWith(start),
-      scan((total, next) => next + total),
-      tap((n) => {
-        if (n === 10)
-          throw new Error('oops')
-      })
-    )
-  },
-  {
-    onError: (err) => {
-      console.log(err.message) // "oops"
-    },
-  }
+	start,
+	start => {
+		return interval(1000).pipe(
+			mapTo(1),
+			startWith(start),
+			scan((total, next) => next + total),
+			tap(n => {
+				if (n === 10) throw new Error('oops')
+			}),
+		)
+	},
+	{
+		onError: err => {
+			console.log(err.message) // "oops"
+		},
+	},
 )
 ```
 
 #### Custom Completion Handling (TypeScript)
+
 ```typescript
-import { useExtractedObservable } from '@vueuse/rxjs'
-import { interval } from 'rxjs'
-import { mapTo, scan, startWith, takeWhile } from 'rxjs/operators'
-import { shallowRef } from 'vue'
+import {mapTo, scan, startWith, takeWhile} from 'rxjs/operators'
+import {useExtractedObservable} from '@vueuse/rxjs'
+import {shallowRef} from 'vue'
+import {interval} from 'rxjs'
 
 // setup()
 const start = shallowRef(0)
 
 const count = useExtractedObservable(
-  start,
-  (start) => {
-    return interval(1000).pipe(
-      mapTo(1),
-      startWith(start),
-      scan((total, next) => next + total),
-      takeWhile(num => num < 10)
-    )
-  },
-  {
-    onComplete: () => {
-      console.log('Done!')
-    },
-  }
+	start,
+	start => {
+		return interval(1000).pipe(
+			mapTo(1),
+			startWith(start),
+			scan((total, next) => next + total),
+			takeWhile(num => num < 10),
+		)
+	},
+	{
+		onComplete: () => {
+			console.log('Done!')
+		},
+	},
 )
 ```
 
 #### Passing Watch Options (TypeScript)
+
 ```typescript
-import { useExtractedObservable } from '@vueuse/rxjs'
-import { interval } from 'rxjs'
-import { mapTo, scan, startWith, takeWhile } from 'rxjs/operators'
-import { shallowRef } from 'vue'
+import {mapTo, scan, startWith, takeWhile} from 'rxjs/operators'
+import {useExtractedObservable} from '@vueuse/rxjs'
+import {shallowRef} from 'vue'
+import {interval} from 'rxjs'
 
 // setup()
 const start = shallowRef<number>()
 
 const count = useExtractedObservable(
-  start,
-  (start) => {
-    return interval(1000).pipe(
-      mapTo(1),
-      startWith(start),
-      scan((total, next) => next + total),
-      takeWhile(num => num < 10)
-    )
-  },
-  {},
-  {
-    immediate: false
-  }
+	start,
+	start => {
+		return interval(1000).pipe(
+			mapTo(1),
+			startWith(start),
+			scan((total, next) => next + total),
+			takeWhile(num => num < 10),
+		)
+	},
+	{},
+	{
+		immediate: false,
+	},
 )
 ```
 
 #### Passing Watch Options (JavaScript)
+
 ```javascript
-import { useExtractedObservable } from '@vueuse/rxjs'
-import { interval } from 'rxjs'
-import { mapTo, scan, startWith, takeWhile } from 'rxjs/operators'
-import { shallowRef } from 'vue'
+import {mapTo, scan, startWith, takeWhile} from 'rxjs/operators'
+import {useExtractedObservable} from '@vueuse/rxjs'
+import {shallowRef} from 'vue'
+import {interval} from 'rxjs'
 
 // setup()
 const start = shallowRef()
 const count = useExtractedObservable(
-  start,
-  (start) => {
-    return interval(1000).pipe(
-      mapTo(1),
-      startWith(start),
-      scan((total, next) => next + total),
-      takeWhile((num) => num < 10),
-    )
-  },
-  {},
-  {
-    immediate: false,
-  },
+	start,
+	start => {
+		return interval(1000).pipe(
+			mapTo(1),
+			startWith(start),
+			scan((total, next) => next + total),
+			takeWhile(num => num < 10),
+		)
+	},
+	{},
+	{
+		immediate: false,
+	},
 )
 ```
-```
+
+````
 
 --------------------------------
 
@@ -17687,74 +16693,83 @@ Provides details on advanced configuration options for `useWebSocket`, including
 const { status, data, close } = useWebSocket('ws://websocketurl', {
   autoReconnect: true,
 })
-```
+````
 
 ### Request Example (custom autoReconnect)
+
 ```typescript
-const { status, data, close } = useWebSocket('ws://websocketurl', {
-  autoReconnect: {
-    retries: 3,
-    delay: 1000,
-    onFailed() {
-      alert('Failed to connect WebSocket after 3 retries')
-    },
-  },
+const {status, data, close} = useWebSocket('ws://websocketurl', {
+	autoReconnect: {
+		retries: 3,
+		delay: 1000,
+		onFailed() {
+			alert('Failed to connect WebSocket after 3 retries')
+		},
+	},
 })
 ```
 
 ### Request Example (exponential backoff delay)
+
 ```typescript
-const { status, data, close } = useWebSocket('ws://websocketurl', {
-  autoReconnect: {
-    retries: 5,
-    delay: retries => Math.min(1000 * 2 ** (retries - 1), 30000),
-  },
+const {status, data, close} = useWebSocket('ws://websocketurl', {
+	autoReconnect: {
+		retries: 5,
+		delay: retries => Math.min(1000 * 2 ** (retries - 1), 30000),
+	},
 })
 ```
 
 ### Request Example (linear backoff delay)
+
 ```typescript
-const { status, data, close } = useWebSocket('ws://websocketurl', {
-  autoReconnect: {
-    retries: 5,
-    delay: retries => retries * 1000,
-  },
+const {status, data, close} = useWebSocket('ws://websocketurl', {
+	autoReconnect: {
+		retries: 5,
+		delay: retries => retries * 1000,
+	},
 })
 ```
 
 ### Request Example (heartbeat enabled)
+
 ```typescript
-const { status, data, close } = useWebSocket('ws://websocketurl', {
-  heartbeat: true,
+const {status, data, close} = useWebSocket('ws://websocketurl', {
+	heartbeat: true,
 })
 ```
 
 ### Request Example (custom heartbeat)
+
 ```typescript
-const { status, data, close } = useWebSocket('ws://websocketurl', {
-  heartbeat: {
-    message: 'ping',
-    scheduler: cb => useIntervalFn(cb, 2000),
-    pongTimeout: 1000,
-  },
+const {status, data, close} = useWebSocket('ws://websocketurl', {
+	heartbeat: {
+		message: 'ping',
+		scheduler: cb => useIntervalFn(cb, 2000),
+		pongTimeout: 1000,
+	},
 })
 ```
 
 ### Response
+
 #### Success Response (Connection with options)
+
 - **status** (Ref<'OPEN' | 'CONNECTING' | 'CLOSED'>) - Connection status
 - **data** (Ref<any>) - Latest received data
 - **close** (Function) - Function to close the connection
 
 #### Response Example
+
 ```json
 {
-  "status": "OPEN",
-  "data": "Latest message data",
-  "close": "function"
+	"status": "OPEN",
+	"data": "Latest message data",
+	"close": "function"
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -17813,9 +16828,9 @@ const userQuery = computed(() =>
   doc(db, 'users', userId.value)
 )
 const userData = useFirestore(userQuery, null)
-```
+````
 
---------------------------------
+---
 
 ### Get Parent Element of Current Component
 
@@ -17825,21 +16840,17 @@ When no argument is passed, `useParentElement` returns the parent element of the
 
 ```vue
 <script setup lang="ts">
-import {
-  useParentElement
-} from '@vueuse/core'
+import {useParentElement} from '@vueuse/core'
 
-const parentEl = 
-useParentElement
-()
+const parentEl = useParentElement()
 
 onMounted(() => {
-  console.log(parentEl.value)
+	console.log(parentEl.value)
 })
 </script>
 ```
 
---------------------------------
+---
 
 ### useQRCode Composable
 
@@ -17847,7 +16858,7 @@ Source: https://vueuse.org/integrations/useQRCode
 
 Documentation for the useQRCode function which generates a reactive QR code data URL.
 
-```APIDOC
+````APIDOC
 ## useQRCode
 
 ### Description
@@ -17867,8 +16878,9 @@ import { shallowRef } from 'vue'
 
 const text = shallowRef('text-to-encode')
 const qrcode = useQRCode(text)
-```
-```
+````
+
+````
 
 --------------------------------
 
@@ -17886,15 +16898,15 @@ import {
 } from '@vueuse/core'
 import { logicAnd } from '@vueuse/math'
 
-const activeElement = 
+const activeElement =
 useActiveElement
 ()
-const notUsingInput = 
+const notUsingInput =
 computed(() =>
   activeElement.value?.tagName !== 'INPUT'
   && activeElement.value?.tagName !== 'TEXTAREA')
 
-const { tab } = 
+const { tab } =
 useMagicKeys
 ()
 
@@ -17906,9 +16918,9 @@ whenever(
   ), () => {
   console.log('Tab has been pressed outside of inputs!')
 })
-```
+````
 
---------------------------------
+---
 
 ### useAxios with Axios Instance
 
@@ -17920,11 +16932,11 @@ Use useAxios with a pre-configured axios instance. This is useful for setting ba
 import {
 useAxios
 } from '@vueuse/integrations/useAxios'
-import 
+import
 axios
  from 'axios'
 
-const 
+const
 instance
  =
 axios
@@ -17935,18 +16947,18 @@ create
 : '/api',
 })
 
-const { 
+const {
 data
 ,
 isFinished
- } = 
+ } =
 useAxios
-('/posts', 
+('/posts',
 instance
 )
 ```
 
---------------------------------
+---
 
 ### Define Breakpoints with Tailwind Presets
 
@@ -17955,10 +16967,7 @@ Source: https://vueuse.org/core/usebreakpoints
 Import and use the `breakpointsTailwind` preset to define breakpoints based on Tailwind CSS conventions. This setup is useful for creating responsive logic in your Vue application.
 
 ```typescript
-import {
-  breakpointsTailwind,
-  useBreakpoints
-} from '@vueuse/core'
+import {breakpointsTailwind, useBreakpoints} from '@vueuse/core'
 
 const breakpoints = useBreakpoints(breakpointsTailwind)
 
@@ -17968,7 +16977,7 @@ const lgAndSmaller = breakpoints.smallerOrEqual('lg') // lg and smaller
 const smallerThanLg = breakpoints.smaller('lg') // only smaller than lg
 ```
 
---------------------------------
+---
 
 ### Basic Usage of refWithControl
 
@@ -17977,107 +16986,39 @@ Source: https://vueuse.org/shared/refWithControl
 Demonstrates how to use refWithControl to manually control reactivity tracking and triggering.
 
 ```typescript
-import { 
-refWithControl
- } from '@vueuse/core'
+import {refWithControl} from '@vueuse/core'
 
-const 
-num
- = 
-refWithControl
-(0)
-const 
-doubled
- = 
-computed
-(() => 
-num
-.
-value
- * 2)
+const num = refWithControl(0)
+const doubled = computed(() => num.value * 2)
 
 // just like normal ref
 
-num
-.
-value
- = 42
+num.value = 42
 
-console
-.
-log
-(
-num
-.
-value
-) // 42
+console.log(num.value) // 42
 
-console
-.
-log
-(
-doubled
-.
-value
-) // 84
+console.log(doubled.value) // 84
 
 // set value without triggering the reactivity
 
-num
-.
-set
-(30, false)
+num.set(30, false)
 
-console
-.
-log
-(
-num
-.
-value
-) // 30
+console.log(num.value) // 30
 
-console
-.
-log
-(
-doubled
-.
-value
-) // 84 (doesn't update)
+console.log(doubled.value) // 84 (doesn't update)
 
 // get value without tracking the reactivity
 
-watchEffect
-(() => {
-  
-console
-.
-log
-(
-num
-.
-peek
-())
+watchEffect(() => {
+	console.log(num.peek())
 }) // 30
 
+num.value = 50 // watch effect wouldn't be triggered since it collected nothing.
 
-num
-.
-value
- = 50 // watch effect wouldn't be triggered since it collected nothing.
-
-console
-.
-log
-(
-doubled
-.
-value
-) // 100 (updated again since it's a reactive set)
+console.log(doubled.value) // 100 (updated again since it's a reactive set)
 ```
 
---------------------------------
+---
 
 ### watchIgnorable Usage
 
@@ -18085,7 +17026,7 @@ Source: https://vueuse.org/shared/watchignorable
 
 Demonstrates the basic usage of watchIgnorable, showing how to watch a source, log changes, and use ignoreUpdates to prevent certain updates from triggering the callback.
 
-```APIDOC
+````APIDOC
 ## POST /watchIgnorable
 
 ### Description
@@ -18109,23 +17050,27 @@ POST
   "source": "foo",
   "cb": "v => console.log(`Changed to ${v}!")"
 }
-```
+````
 
 ### Response
+
 #### Success Response (200)
+
 - **stop** (WatchStopHandle) - A function to stop the watcher.
 - **ignoreUpdates** (IgnoredUpdater) - A function to ignore subsequent updates.
 - **ignorePrevAsyncUpdates** (IgnoredPrevAsyncUpdates) - A function to ignore previous asynchronous updates.
 
 #### Response Example
+
 ```json
 {
-  "stop": "() => void",
-  "ignoreUpdates": "(updater: () => void) => void",
-  "ignorePrevAsyncUpdates": "() => void"
+	"stop": "() => void",
+	"ignoreUpdates": "(updater: () => void) => void",
+	"ignorePrevAsyncUpdates": "() => void"
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -18140,18 +17085,18 @@ import {
 useFetch
 } from '@vueuse/core'
 
-const { 
+const {
 isFetching
-, 
+,
 error
-, 
+,
 data
- } = 
+ } =
 useFetch
 (url)
-```
+````
 
---------------------------------
+---
 
 ### Access Sortable Instance Methods via Component Slot
 
@@ -18161,12 +17106,12 @@ Access `start`, `stop`, and `option` methods from the `UseSortable` component's 
 
 ```vue
 <template>
-  <UseSortable v-slot="{ 
+  <UseSortable v-slot="{
 stop
-, 
+,
 start
  }"
- 
+
 
 v-model
 ="list">
@@ -18200,7 +17145,7 @@ item
  :key="
 item
 .id">
-      {{ 
+      {{
 item
 .name }}
     </
@@ -18210,7 +17155,7 @@ div
 </template>
 ```
 
---------------------------------
+---
 
 ### Sortable Component Slot Scope
 
@@ -18220,7 +17165,7 @@ Access helper functions like `start`, `stop`, and `option` directly from the `Us
 
 ```vue
 <template>
-  <UseSortable v-slot="{ 
+  <UseSortable v-slot="{
 stop
 ,
 start
@@ -18257,7 +17202,7 @@ item
  :key="
 item
 .id">
-      {{ 
+      {{
 item
 .name }}
     </
@@ -18267,7 +17212,7 @@ div
 </template>
 ```
 
---------------------------------
+---
 
 ### Import useAxios from Submodule
 
@@ -18276,10 +17221,10 @@ Source: https://vueuse.org/integrations/README
 For optimal tree-shaking, import composables like useAxios directly from their respective submodules.
 
 ```typescript
-import { useAxios } from '@vueuse/integrations/useAxios'
+import {useAxios} from '@vueuse/integrations/useAxios'
 ```
 
---------------------------------
+---
 
 ### Sync Two Refs Unidirectionally (Right to Left)
 
@@ -18288,18 +17233,15 @@ Source: https://vueuse.org/shared/syncref
 This example demonstrates one-directional synchronization from the right ref to the left ref ('rtl' direction). Changes in 'b' will update 'a', but changes in 'a' will not affect 'b'.
 
 ```typescript
-import {
-  syncRef
-} from '@vueuse/core'
+import {syncRef} from '@vueuse/core'
 
 const a = ref('a')
 const b = ref('b')
 
-const stop = syncRef(a, b, { direction: 'rtl' })
-
+const stop = syncRef(a, b, {direction: 'rtl'})
 ```
 
---------------------------------
+---
 
 ### useAsyncQueue Options
 
@@ -18307,7 +17249,7 @@ Source: https://vueuse.org/core/useAsyncQueue
 
 Explains the various options available for configuring useAsyncQueue, including interrupt on failure, callbacks, and abort signals.
 
-```APIDOC
+````APIDOC
 ## useAsyncQueue Options
 
 ### Description
@@ -18337,26 +17279,28 @@ None
 const { result } = useAsyncQueue([p1, p2], {
   interrupt: false, // continue even if p1 fails
 })
-```
+````
 
 ### Request Example (Callbacks)
+
 ```typescript
-const { result } = useAsyncQueue([p1, p2], {
-  onError() {
-    console.log('A task failed')
-  },
-  onFinished() {
-    console.log('All tasks completed (or interrupted)')
-  },
+const {result} = useAsyncQueue([p1, p2], {
+	onError() {
+		console.log('A task failed')
+	},
+	onFinished() {
+		console.log('All tasks completed (or interrupted)')
+	},
 })
 ```
 
 ### Request Example (Abort Signal)
+
 ```typescript
 const controller = new AbortController()
 
-const { result } = useAsyncQueue([p1, p2], {
-  signal: controller.signal,
+const {result} = useAsyncQueue([p1, p2], {
+	signal: controller.signal,
 })
 
 // Later, abort the queue
@@ -18364,19 +17308,23 @@ controller.abort()
 ```
 
 ### Response
+
 #### Success Response (200)
+
 - **result** (Array<UseAsyncQueueResult<any>>) - An array containing the state and data of each task.
 
 #### Response Example
+
 ```json
 {
-  "result": [
-    { "state": "fulfilled", "data": 1000 },
-    { "state": "fulfilled", "data": 2000 }
-  ]
+	"result": [
+		{"state": "fulfilled", "data": 1000},
+		{"state": "fulfilled", "data": 2000}
+	]
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -18397,9 +17345,9 @@ const reactifiedConsole =
 const a = ref('42')
 
 reactifiedConsole.log(a) // no longer need .value
-```
+````
 
---------------------------------
+---
 
 ### Testing Commands
 
@@ -18419,7 +17367,7 @@ npx playwright install --with-deps
 pnpm test:browser
 ```
 
---------------------------------
+---
 
 ### Extend Watch Options with Debounce in watchDebounced
 
@@ -18428,27 +17376,29 @@ Source: https://vueuse.org/guidelines
 When using `watch` or `watchEffect` internally, make options like `immediate` and `flush` configurable. This example shows `watchDebounced` extending `WatchOptions` with a `debounce` property.
 
 ```typescript
-import type { WatchOptions } from 'vue'
+import type {WatchOptions} from 'vue'
 
 // extend the watch options
 export interface WatchDebouncedOptions extends WatchOptions {
-  debounce?: number
+	debounce?: number
 }
 
 export function watchDebounced(
-  source: any,
-  cb: any,
-  options: WatchDebouncedOptions = {},
+	source: any,
+	cb: any,
+	options: WatchDebouncedOptions = {},
 ): WatchHandle {
-  return watch(
-    source,
-    () => { /* ... */ },
-    options, // pass watch options
-  )
+	return watch(
+		source,
+		() => {
+			/* ... */
+		},
+		options, // pass watch options
+	)
 }
 ```
 
---------------------------------
+---
 
 ### Initialize useThrottledRefHistory
 
@@ -18457,19 +17407,17 @@ Source: https://vueuse.org/core/usethrottledrefhistory
 Import and use useThrottledRefHistory with a ref and options. The history will be updated with a throttle of 1000ms.
 
 ```typescript
-import {
-useThrottledRefHistory
-} from '@vueuse/core'
-import {
-shallowRef
-} from 'vue'
+import {useThrottledRefHistory} from '@vueuse/core'
+import {shallowRef} from 'vue'
 
 const counter = shallowRef(0)
-const { history, undo, redo } = useThrottledRefHistory(counter, { deep: true, throttle: 1000 })
-
+const {history, undo, redo} = useThrottledRefHistory(counter, {
+	deep: true,
+	throttle: 1000,
+})
 ```
 
---------------------------------
+---
 
 ### Trigger device vibration with useVibrate
 
@@ -18478,36 +17426,24 @@ Source: https://vueuse.org/core/usevibrate
 Demonstrates how to initialize the vibration pattern and manually control the vibration state.
 
 ```typescript
-import { 
-useVibrate
- } from '@vueuse/core'
+import {useVibrate} from '@vueuse/core'
 
 // This vibrates the device for 300 ms
 // then pauses for 100 ms before vibrating the device again for another 300 ms:
-const { 
-vibrate
-, 
-stop
-, 
-isSupported
- } = 
-useVibrate
-({ 
-pattern
-: [300, 100, 300] })
+const {vibrate, stop, isSupported} = useVibrate({
+	pattern: [300, 100, 300],
+})
 
 // Start the vibration, it will automatically stop when the pattern is complete:
 
-vibrate
-()
+vibrate()
 
 // But if you want to stop it, you can:
 
-stop
-()
+stop()
 ```
 
---------------------------------
+---
 
 ### Programmatically change focus state
 
@@ -18517,26 +17453,26 @@ Control the focus state of an input element by updating the `focused` ref. This 
 
 ```vue
 <script setup lang="ts">
-import { 
+import {
 useFocus
  } from '@vueuse/core'
-import { 
+import {
 shallowRef
  } from 'vue'
 
-const 
+const
 input
- = 
+ =
 shallowRef
 ()
-const { 
+const {
 focused
- } = 
+ } =
 useFocus
 (
 input
 )
-< 
+<
 /script>
 
 <template>
@@ -18545,7 +17481,7 @@ div
 >
     <
 button
- 
+
 type
 ="button" @
 click
@@ -18558,11 +17494,11 @@ button
 >
     <
 input
- 
+
 ref
 ="
 input
-" 
+"
 type
 ="text">
   </
@@ -18572,7 +17508,7 @@ div
 
 ```
 
---------------------------------
+---
 
 ### Control focus state with a button click
 
@@ -18582,47 +17518,35 @@ This example demonstrates how to change the focus state of an input element by c
 
 ```vue
 <script setup lang="ts">
-import { 
-useFocus
- } from '@vueuse/core'
-import { 
-shallowRef
- } from 'vue'
+import {useFocus} from '@vueuse/core'
+import {shallowRef} from 'vue'
 
-const 
-input
- =
-shallowRef()
-const { 
-focused
- } =
-useFocus(
-input
-)
+const input = shallowRef()
+const {focused} = useFocus(input)
 </script>
 
 <template>
-  <div >
-    <button 
-type="button" @
-click
-="
+	<div>
+		<button
+			type="button"
+			@
+			click="
 focused
- = true">
-      Click me to focus input below
-    </button>
-    <input 
-ref
-="
+ = true"
+		>
+			Click me to focus input below
+		</button>
+		<input
+			ref="
 input
-" 
-type="text">
-  </div>
+"
+			type="text"
+		/>
+	</div>
 </template>
-
 ```
 
---------------------------------
+---
 
 ### Using Global State in a Vue Component
 
@@ -18631,26 +17555,17 @@ Source: https://vueuse.org/shared/createGlobalState
 This snippet shows how to consume the global state defined by useGlobalState within a Vue component's setup function. The state is directly accessible and reactive.
 
 ```typescript
-import {
-  useGlobalState
-} from './store'
+import {useGlobalState} from './store'
 
-export default
-  defineComponent({
-    
-setup
-() {
-      const
-        state
-        =
-        useGlobalState()
-      return { state }
-    },
-  })
-
+export default defineComponent({
+	setup() {
+		const state = useGlobalState()
+		return {state}
+	},
+})
 ```
 
---------------------------------
+---
 
 ### Basic Usage of useDraggable
 
@@ -18660,36 +17575,36 @@ Demonstrates how to initialize useDraggable with a template reference and apply 
 
 ```vue
 <script setup lang="ts">
-import { 
+import {
 useDraggable
  } from '@vueuse/core'
-import { 
+import {
 useTemplateRef
  } from 'vue'
 
-const 
+const
 el
- = 
+ =
 useTemplateRef
 ('el')
 
 // `style` will be a helper computed for `left: ?px; top: ?px;`
-const { 
+const {
 x
-, 
+,
 y
-, 
+,
 style
- } = 
+ } =
 useDraggable
 (
 el
 , {
-  
+
 initialValue
-: { 
+: {
 x
-: 40, 
+: 40,
 y
 : 40 },
 })
@@ -18698,20 +17613,20 @@ y
 <template>
   <
 div
- 
+
 ref
 ="
 el
-" 
+"
 :style
 ="
 style
-" 
+"
 style
 ="position: fixed">
-    Drag me! I am at {{ 
+    Drag me! I am at {{
 x
- }}, {{ 
+ }}, {{
 y
  }}
   </
@@ -18720,7 +17635,7 @@ div
 </template>
 ```
 
---------------------------------
+---
 
 ### Transitioning Non-numeric Values with Custom Interpolation
 
@@ -18729,16 +17644,16 @@ Source: https://vueuse.org/core/usetransition
 Use a custom interpolation function for transitioning complex values like Three.js Quaternions. The interpolation function receives the start, end, and progress values.
 
 ```typescript
-import { Quaternion } from 'three'
+import {Quaternion} from 'three'
 
 const source = ref(new Quaternion())
 
 const output = useTransition(source, {
-  interpolation: (q1, q2, t) => new Quaternion().slerpQuaternions(q1, q2, t)
+	interpolation: (q1, q2, t) => new Quaternion().slerpQuaternions(q1, q2, t),
 })
 ```
 
---------------------------------
+---
 
 ### Configure Breakpoint Strategy
 
@@ -18747,23 +17662,19 @@ Source: https://vueuse.org/core/useBreakpoints
 Control how shortcut properties behave by setting the `strategy` option. 'min-width' (default) is mobile-first, while 'max-width' is desktop-first.
 
 ```ts
-const 
-breakpoints
- = useBreakpoints(breakpointsTailwind, {
-  
-strategy
-: 'max-width', // desktop-first
+const breakpoints = useBreakpoints(breakpointsTailwind, {
+	strategy: 'max-width', // desktop-first
 })
 ```
 
 ```js
 'use strict'
 const breakpoints = useBreakpoints(breakpointsTailwind, {
-  strategy: 'max-width', // desktop-first
+	strategy: 'max-width', // desktop-first
 })
 ```
 
---------------------------------
+---
 
 ### Use RxJS Subscription with Auto-Unsubscribe
 
@@ -18772,22 +17683,21 @@ Source: https://vueuse.org/rxjs/usesubscription
 Use this composable to manage RxJS subscriptions. It automatically calls the `unsubscribe` method before the component unmounts, preventing memory leaks. Ensure you have `@vueuse/rxjs` installed and RxJS imported.
 
 ```typescript
-import { useSubscription } from '@vueuse/rxjs'
-import { interval } from 'rxjs'
+import {useSubscription} from '@vueuse/rxjs'
+import {interval} from 'rxjs'
 
 const count = ref(0)
 
 // useSubscription call unsubscribe method before unmount the component
 useSubscription(
-  interval(1000)
-    .subscribe(() => {
-      count.value++
-      console.log(count)
-    }),
+	interval(1000).subscribe(() => {
+		count.value++
+		console.log(count)
+	}),
 )
 ```
 
---------------------------------
+---
 
 ### Throttle Function Execution
 
@@ -18796,25 +17706,16 @@ Source: https://vueuse.org/shared/useThrottleFn
 Import and use `useThrottleFn` to create a throttled version of your function. The throttled function will be called at most once per the specified millisecond delay. This example shows how to throttle a resize event handler.
 
 ```typescript
-import {
-useThrottleFn
-} from '@vueuse/core'
+import {useThrottleFn} from '@vueuse/core'
 
-const
-throttledFn
- = 
-useThrottleFn(() => {
-  // do something, it will be called at most 1 time per second
+const throttledFn = useThrottleFn(() => {
+	// do something, it will be called at most 1 time per second
 }, 1000)
 
-useEventListener(
-window
-, 'resize',
-throttledFn
-)
+useEventListener(window, 'resize', throttledFn)
 ```
 
---------------------------------
+---
 
 ### Usage of toObserver with VueUse
 
@@ -18823,52 +17724,46 @@ Source: https://vueuse.org/rxjs/toObserver
 Demonstrates converting a ref into an RxJS observer within a subscription.
 
 ```typescript
-import { from, fromEvent, toObserver, useSubscription } from '@vueuse/rxjs'
-import { interval } from 'rxjs'
-import { map, mapTo, startWith, takeUntil, withLatestFrom } from 'rxjs/operators'
-import { shallowRef, useTemplateRef } from 'vue'
+import {map, mapTo, startWith, takeUntil, withLatestFrom} from 'rxjs/operators'
+import {from, fromEvent, toObserver, useSubscription} from '@vueuse/rxjs'
+import {shallowRef, useTemplateRef} from 'vue'
+import {interval} from 'rxjs'
 
 const count = shallowRef(0)
 const button = useTemplateRef('buttonRef')
 
 useSubscription(
-  interval(1000)
-    .pipe(
-      mapTo(1),
-      takeUntil(fromEvent(button, 'click')),
-      withLatestFrom(from(count).pipe(startWith(0))),
-      map(([curr, total]) => curr + total),
-    )
-    .subscribe(toObserver(count)), // same as ).subscribe(val => (count.value = val))
+	interval(1000)
+		.pipe(
+			mapTo(1),
+			takeUntil(fromEvent(button, 'click')),
+			withLatestFrom(from(count).pipe(startWith(0))),
+			map(([curr, total]) => curr + total),
+		)
+		.subscribe(toObserver(count)), // same as ).subscribe(val => (count.value = val))
 )
 ```
 
 ```javascript
-import { from, fromEvent, toObserver, useSubscription } from '@vueuse/rxjs'
-import { interval } from 'rxjs'
-import {
-  map,
-  mapTo,
-  startWith,
-  takeUntil,
-  withLatestFrom,
-} from 'rxjs/operators'
-import { shallowRef, useTemplateRef } from 'vue'
+import {map, mapTo, startWith, takeUntil, withLatestFrom} from 'rxjs/operators'
+import {from, fromEvent, toObserver, useSubscription} from '@vueuse/rxjs'
+import {shallowRef, useTemplateRef} from 'vue'
+import {interval} from 'rxjs'
 const count = shallowRef(0)
 const button = useTemplateRef('buttonRef')
 useSubscription(
-  interval(1000)
-    .pipe(
-      mapTo(1),
-      takeUntil(fromEvent(button, 'click')),
-      withLatestFrom(from(count).pipe(startWith(0))),
-      map(([curr, total]) => curr + total),
-    )
-    .subscribe(toObserver(count)),
+	interval(1000)
+		.pipe(
+			mapTo(1),
+			takeUntil(fromEvent(button, 'click')),
+			withLatestFrom(from(count).pipe(startWith(0))),
+			map(([curr, total]) => curr + total),
+		)
+		.subscribe(toObserver(count)),
 )
 ```
 
---------------------------------
+---
 
 ### Implement a simple virtual list
 
@@ -18877,42 +17772,23 @@ Source: https://vueuse.org/core/useVirtualList
 Initializes a virtual list with a fixed item height. Ensure the itemHeight matches the actual rendered row height to prevent layout issues.
 
 ```ts
-import { 
-useVirtualList
- } from '@vueuse/core'
+import {useVirtualList} from '@vueuse/core'
 
-const { 
-list
-, 
-containerProps
-, 
-wrapperProps
- } = 
-useVirtualList
-(
-  
-Array
-.
-from
-(
-Array
-.
-from
-({ 
-length
-: 99999 }).
-keys
-()),
-  {
-    // Keep `itemHeight` in sync with the item's row.
-    
-itemHeight
-: 22,
-  },
+const {list, containerProps, wrapperProps} = useVirtualList(
+	Array.from(
+		Array.from({
+			length: 99999,
+		}).keys(),
+	),
+	{
+		// Keep `itemHeight` in sync with the item's row.
+
+		itemHeight: 22,
+	},
 )
 ```
 
---------------------------------
+---
 
 ### Define Custom Breakpoints with useBreakpoints
 
@@ -18922,42 +17798,42 @@ Define custom breakpoints for your application using an object mapping breakpoin
 
 ```vue
 <script setup lang="ts">
-import { 
+import {
 useBreakpoints
  } from '@vueuse/core'
 
-const 
+const
 breakpoints
- = 
+ =
 useBreakpoints
 ({
-  
+
 mobile
 : 0, // optional
-  
+
 tablet
 : 640,
-  
+
 laptop
 : 1024,
-  
+
 desktop
 : 1280,
 })
 
 // Can be 'mobile' or 'tablet' or 'laptop' or 'desktop'
-const 
+const
 activeBreakpoint
- = 
+ =
 breakpoints
 .
 active
 ()
 
 // true or false
-const 
+const
 laptop
- = 
+ =
 breakpoints
 .
 between
@@ -18967,7 +17843,7 @@ between
 <template>
   <
 div
- 
+
 :class
 ="
 activeBreakpoint
@@ -18978,7 +17854,7 @@ div>
 </template>
 ```
 
---------------------------------
+---
 
 ### Provide SSR Width in Root Component
 
@@ -18988,18 +17864,13 @@ Alternatively, provide the SSR width directly within your root component's setup
 
 ```vue
 <script setup lang="ts">
-import { 
-provideSSRWidth
- } from '@vueuse/core'
+import {provideSSRWidth} from '@vueuse/core'
 
-
-provideSSRWidth
-(500)
+provideSSRWidth(500)
 </script>
-
 ```
 
---------------------------------
+---
 
 ### useElementVisibility - Options (rootMargin, threshold)
 
@@ -19007,7 +17878,7 @@ Source: https://vueuse.org/core/useelementvisibility
 
 Customize the visibility tracking with `rootMargin` to trigger callbacks sooner and `threshold` to control the visibility percentage required.
 
-```APIDOC
+````APIDOC
 ## useElementVisibility with Options
 
 ### Description
@@ -19040,19 +17911,23 @@ const targetIsVisible = useElementVisibility(target, {
 const targetIsVisible = useElementVisibility(target, {
   threshold: 1.0, // 100% visible
 })
-```
+````
 
 ### Response
+
 #### Success Response (N/A - Returns a Ref)
+
 - **targetIsVisible** (ShallowRef<boolean>) - A ref that is true when the element is visible based on the provided options, false otherwise.
 
 #### Response Example
+
 ```json
 {
-  "isVisible": true
+	"isVisible": true
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -19065,31 +17940,31 @@ Provides the available configuration options for useStorage, including deep watc
 ```typescript
 useStorage('key', defaults, storage, {
   // Watch for deep changes in objects/arrays (default: true)
-  
+
 deep
 : true,
   // Sync across tabs via storage events (default: true)
-  
+
 listenToStorageChanges
 : true,
   // Write default value to storage if not present (default: true)
-  
+
 writeDefaults
 : true,
   // Use shallowRef instead of ref (default: false)
-  
+
 shallow
 : false,
   // Initialize only after component is mounted (default: false)
-  
+
 initOnMounted
 : false,
   // Custom error handler (default: console.error)
-  
+
 onError
-: 
+:
 e
- => 
+ =>
 console
 .
 error
@@ -19097,33 +17972,33 @@ error
 e
 ),
   // Watch flush timing (default: 'pre')
-  
+
 flush
 : 'pre',
 })
-```
+````
 
 ```javascript
 'use strict'
 useStorage('key', defaults, storage, {
-  // Watch for deep changes in objects/arrays (default: true)
-  deep: true,
-  // Sync across tabs via storage events (default: true)
-  listenToStorageChanges: true,
-  // Write default value to storage if not present (default: true)
-  writeDefaults: true,
-  // Use shallowRef instead of ref (default: false)
-  shallow: false,
-  // Initialize only after component is mounted (default: false)
-  initOnMounted: false,
-  // Custom error handler (default: console.error)
-  onError: (e) => console.error(e),
-  // Watch flush timing (default: 'pre')
-  flush: 'pre',
+	// Watch for deep changes in objects/arrays (default: true)
+	deep: true,
+	// Sync across tabs via storage events (default: true)
+	listenToStorageChanges: true,
+	// Write default value to storage if not present (default: true)
+	writeDefaults: true,
+	// Use shallowRef instead of ref (default: false)
+	shallow: false,
+	// Initialize only after component is mounted (default: false)
+	initOnMounted: false,
+	// Custom error handler (default: console.error)
+	onError: e => console.error(e),
+	// Watch flush timing (default: 'pre')
+	flush: 'pre',
 })
 ```
 
---------------------------------
+---
 
 ### Initialize useRouteQuery
 
@@ -19132,32 +18007,22 @@ Source: https://vueuse.org/router/useroutequery
 Import and use useRouteQuery to create a reactive reference linked to a URL query parameter. You can provide an initial value or a default value.
 
 ```typescript
-import {
-  useRouteQuery
-} from '@vueuse/router'
+import {useRouteQuery} from '@vueuse/router'
 
-const search = 
-useRouteQuery
-('search')
+const search = useRouteQuery('search')
 
-const search = 
-useRouteQuery
-('search', 'foo') // or with a default value
+const search = useRouteQuery('search', 'foo') // or with a default value
 
-const page = 
-useRouteQuery
-('page', '1', { 
-  transform: 
-Number
- })
+const page = useRouteQuery('page', '1', {
+	transform: Number,
+})
 
 console.log(search.value) // route.query.search
 
 search.value = 'foobar' // router.replace({ query: { search: 'foobar' } })
-
 ```
 
---------------------------------
+---
 
 ### Use Tailwind Breakpoints with useBreakpoints
 
@@ -19166,51 +18031,17 @@ Source: https://vueuse.org/core/useBreakpoints
 Utilize the predefined Tailwind CSS breakpoints with the useBreakpoints composable. This example demonstrates creating reactive refs for various breakpoint conditions like 'sm and larger' or 'larger than sm'.
 
 ```ts
-import { 
-breakpointsTailwind
-,
-useBreakpoints
- } from '@vueuse/core'
+import {breakpointsTailwind, useBreakpoints} from '@vueuse/core'
 
-const 
-breakpoints
- = 
-useBreakpoints
-(
-breakpointsTailwind
-)
+const breakpoints = useBreakpoints(breakpointsTailwind)
 
-const 
-smAndLarger
- = 
-breakpoints
-.
-greaterOrEqual
-('sm') // sm and larger
-const 
-largerThanSm
- = 
-breakpoints
-.
-greater
-('sm') // only larger than sm
-const 
-lgAndSmaller
- = 
-breakpoints
-.
-smallerOrEqual
-('lg') // lg and smaller
-const 
-smallerThanLg
- = 
-breakpoints
-.
-smaller
-('lg') // only smaller than lg
+const smAndLarger = breakpoints.greaterOrEqual('sm') // sm and larger
+const largerThanSm = breakpoints.greater('sm') // only larger than sm
+const lgAndSmaller = breakpoints.smallerOrEqual('lg') // lg and smaller
+const smallerThanLg = breakpoints.smaller('lg') // only smaller than lg
 ```
 
---------------------------------
+---
 
 ### Handling Cancellation with computedAsync
 
@@ -19219,30 +18050,26 @@ Source: https://vueuse.org/core/computedAsync
 Implement cancellation logic for previous async operations when the computed source changes. This example uses AbortController with the fetch API. The `onCancel` function is provided by `computedAsync` to register cleanup callbacks.
 
 ```typescript
-import {
-  computedAsync
-} from '@vueuse/core'
-import {
-  shallowRef
-} from 'vue'
+import {computedAsync} from '@vueuse/core'
+import {shallowRef} from 'vue'
 
 const packageName = shallowRef('@vueuse/core')
 
-const downloads = computedAsync(async (onCancel) => {
-  const abortController = new AbortController()
+const downloads = computedAsync(async onCancel => {
+	const abortController = new AbortController()
 
-  onCancel(() => abortController.abort())
+	onCancel(() => abortController.abort())
 
-  return await fetch(
-    `https://api.npmjs.org/downloads/point/last-week/${packageName.value}`,
-    { signal: abortController.signal },
-  )
-    .then(response => response.ok ? response.json() : { downloads: '—' })
-    .then(result => result.downloads)
+	return await fetch(
+		`https://api.npmjs.org/downloads/point/last-week/${packageName.value}`,
+		{signal: abortController.signal},
+	)
+		.then(response => (response.ok ? response.json() : {downloads: '—'}))
+		.then(result => result.downloads)
 }, 0)
 ```
 
---------------------------------
+---
 
 ### useAxios Manual Execution
 
@@ -19250,7 +18077,7 @@ Source: https://vueuse.org/integrations/useAxios
 
 Explains how to manually trigger requests using the `execute` function returned by useAxios.
 
-```APIDOC
+````APIDOC
 ## useAxios Manual Execution
 
 ### Description
@@ -19290,23 +18117,27 @@ execute({ params: { key: 1 } })
 // Execute with config and options:
 const { execute } = useAxios(url1, { method: 'GET' }, { immediate: false })
 execute({ params: { key: 1 } })
-```
+````
 
 ### Response
+
 #### Success Response (200)
+
 - **data** (Ref<T>) - Response data
 - **isFinished** (Ref<boolean>) - Request has completed (success or error)
 
 #### Response Example
+
 ```json
 {
-  "userId": 1,
-  "id": 1,
-  "title": "delectus aut autem",
-  "completed": false
+	"userId": 1,
+	"id": 1,
+	"title": "delectus aut autem",
+	"completed": false
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -19341,25 +18172,29 @@ PUT
 {
   "name": "Jane Doe"
 }
-```
+````
 
 ### Response
+
 #### Success Response (200)
+
 - **id** (integer) - The unique identifier for the user.
 - **name** (string) - The updated name of the user.
 - **email** (string) - The updated email address of the user.
 - **updatedAt** (string) - The timestamp when the user was last updated.
 
 #### Response Example
+
 ```json
 {
-  "id": 1,
-  "name": "Jane Doe",
-  "email": "john.doe@example.com",
-  "updatedAt": "2023-10-27T11:00:00Z"
+	"id": 1,
+	"name": "Jane Doe",
+	"email": "john.doe@example.com",
+	"updatedAt": "2023-10-27T11:00:00Z"
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -19393,18 +18228,21 @@ const { isLoading } = useNProgress()
 function toggle() {
   isLoading.value = !isLoading.value
 }
-```
+````
 
 ### Response
+
 - **isLoading** (WritableComputedRef<boolean, boolean>) - A computed ref that controls the visibility and state of the progress bar.
 
 ### Response Example
+
 ```json
 {
-  "isLoading": true
+	"isLoading": true
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -19438,51 +18276,53 @@ None
 import { useEyeDropper } from '@vueuse/core'
 
 const { isSupported, open, sRGBHex } = useEyeDropper()
-```
+````
 
 ### Component Usage
+
 ```vue
 <template>
-  <UseEyeDropper v-slot="{ isSupported, sRGBHex, open ">
-    <button :disabled="!isSupported" @click="() => open()">
-      sRGBHex: {{ sRGBHex }}
-    </button>
-  </UseEyeDropper>
+	<UseEyeDropper v-slot="{ isSupported, sRGBHex, open ">
+		<button :disabled="!isSupported" @click="() => open()">
+			sRGBHex: {{ sRGBHex }}
+		</button>
+	</UseEyeDropper>
 </template>
 ```
 
 ### Type Declarations
+
 ```ts
 export interface EyeDropperOpenOptions {
-  /**
-   * @see https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal
-   */
-  signal?: AbortSignal
+	/**
+	 * @see https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal
+	 */
+	signal?: AbortSignal
 }
 
 export interface EyeDropper {
-  new (): EyeDropper
-  open: (options?: EyeDropperOpenOptions) => Promise<{ sRGBHex: string }>
-  [Symbol.toStringTag]: "EyeDropper"
+	new (): EyeDropper
+	open: (options?: EyeDropperOpenOptions) => Promise<{sRGBHex: string}>
+	[Symbol.toStringTag]: 'EyeDropper'
 }
 
 export interface UseEyeDropperOptions {
-  /**
-   * Initial sRGBHex.
-   *
-   * @default ''
-   */
-  initialValue?: string
+	/**
+	 * Initial sRGBHex.
+	 *
+	 * @default ''
+	 */
+	initialValue?: string
 }
 
 export interface UseEyeDropperReturn extends Supportable {
-  sRGBHex: ShallowRef<string>
-  open: (openOptions?: EyeDropperOpenOptions) => Promise<
-    | {
-        sRGBHex: string
-      }
-    | undefined
-  >
+	sRGBHex: ShallowRef<string>
+	open: (openOptions?: EyeDropperOpenOptions) => Promise<
+		| {
+				sRGBHex: string
+		  }
+		| undefined
+	>
 }
 
 /**
@@ -19493,21 +18333,25 @@ export interface UseEyeDropperReturn extends Supportable {
  * @__NO_SIDE_EFFECTS__
  */
 export declare function useEyeDropper(
-  options?: UseEyeDropperOptions,
+	options?: UseEyeDropperOptions,
 ): UseEyeDropperReturn
 ```
 
 ### Response
+
 #### Success Response (200)
+
 - **sRGBHex** (string) - The selected color in sRGBHex format.
 
 #### Response Example
+
 ```json
 {
-  "sRGBHex": "#ff0000"
+	"sRGBHex": "#ff0000"
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -19518,7 +18362,7 @@ Source: https://vueuse.org/core/useFetch
 You can explicitly set the HTTP request method (e.g., GET, POST) and the expected data type of the response (e.g., JSON, text, blob) by chaining methods to the `useFetch` composable.
 
 ```APIDOC
-## Setting the request method and return type 
+## Setting the request method and return type
 
 The request method and return type can be set by adding the appropriate methods to the end of `useFetch`
 
@@ -19534,20 +18378,22 @@ const { data } = useFetch(url).post().text()
 
 // Request will be sent with GET method and data will be parsed as blob
 const { data } = useFetch(url, { method: 'GET' }, { refetch: true }).blob()
-```
+````
 
 ### JavaScript Examples
+
 ```javascript
 'use strict'
 // Request will be sent with GET method and data will be parsed as JSON
-const { data } = useFetch(url).get().json()
+const {data} = useFetch(url).get().json()
 // Request will be sent with POST method and data will be parsed as text
-const { data } = useFetch(url).post().text()
+const {data} = useFetch(url).post().text()
 // Or set the method using the options
 // Request will be sent with GET method and data will be parsed as blob
-const { data } = useFetch(url, { method: 'GET' }, { refetch: true }).blob()
+const {data} = useFetch(url, {method: 'GET'}, {refetch: true}).blob()
 ```
-```
+
+````
 
 --------------------------------
 
@@ -19558,25 +18404,25 @@ Source: https://vueuse.org/math/useRound
 Demonstrates how to import and apply useRound to a reactive ref.
 
 ```typescript
-import { 
+import {
 useRound
  } from '@vueuse/math'
 
-const 
+const
 value
- = 
+ =
 ref
 (20.49)
-const 
+const
 result
- = 
+ =
 useRound
 (
 value
 ) // 20
-```
+````
 
---------------------------------
+---
 
 ### useConfirmDialog - Promise Usage
 
@@ -19584,7 +18430,7 @@ Source: https://vueuse.org/core/useConfirmDialog
 
 Illustrates using useConfirmDialog with promises for asynchronous operations.
 
-```APIDOC
+````APIDOC
 ## useConfirmDialog - Promise Usage
 
 ### Description
@@ -19629,8 +18475,9 @@ async function openDialog() {
     </div>
   </teleport>
 </template>
-```
-```
+````
+
+````
 
 --------------------------------
 
@@ -19651,9 +18498,9 @@ usePerformanceObserver(
     entrys.value = list.getEntries()
   },
 )
-```
+````
 
---------------------------------
+---
 
 ### Type Declarations for usePerformanceObserver
 
@@ -19662,10 +18509,10 @@ Source: https://vueuse.org/core/useperformanceobserver
 This TypeScript code defines the types for `usePerformanceObserver`, including options like `immediate` and `entryTypes`, and the return type which includes `isSupported`, `start`, and `stop` functions. It also provides the function signature for the composable.
 
 ```typescript
-export type 
+export type
 UsePerformanceObserverOptions
  = PerformanceObserverInit &
-  
+
 ConfigurableWindow
  &
  {
@@ -19674,7 +18521,7 @@ ConfigurableWindow
      *
      * @default true
      */
-    
+
 immediate
 ?: boolean
   }
@@ -19684,33 +18531,33 @@ immediate
  * @see https://vueuse.org/usePerformanceObserver
  * @param options
  */
-export declare function 
+export declare function
 usePerformanceObserver
 (
-  
+
 options
-: 
+:
 UsePerformanceObserverOptions
 ,
-  
+
 callback
 : PerformanceObserverCallback,
 ): {
-  
+
 isSupported
-: 
+:
 UseSupportedReturn
 
-  
+
 start
 : () => void
-  
+
 stop
 : () => void
 }
 ```
 
---------------------------------
+---
 
 ### Configure Window in useActiveElement Usage
 
@@ -19720,10 +18567,10 @@ Demonstrates how to configure the `window` option for `useActiveElement` when wo
 
 ```typescript
 // in iframe and bind to the parent window
-useActiveElement({ window: window.parent })
+useActiveElement({window: window.parent})
 ```
 
---------------------------------
+---
 
 ### Apply Default Value to a Ref
 
@@ -19732,59 +18579,21 @@ Source: https://vueuse.org/shared/refdefault
 Use refDefault to provide a fallback value for a ref. If the source ref's value becomes undefined or null, refDefault will return the specified default value. This example demonstrates its usage with useStorage.
 
 ```typescript
-import {
- refDefault
-, 
-useStorage
- } from '@vueuse/core'
+import {refDefault, useStorage} from '@vueuse/core'
 
-const 
-raw
- = 
-useStorage
-('key')
-const 
-state
- = 
-refDefault
-(
-raw
-, 'default')
+const raw = useStorage('key')
+const state = refDefault(raw, 'default')
 
+raw.value = 'hello'
 
-raw
-.
-value
- = 'hello'
+console.log(state.value) // hello
 
-console
-.
-log
-(
-state
-.
-value
-) // hello
+raw.value = undefined
 
-
-raw
-.
-value
- = 
-undefined
-
-
-console
-.
-log
-(
-state
-.
-value
-) // default
+console.log(state.value) // default
 ```
 
---------------------------------
+---
 
 ### useMediaControls
 
@@ -19792,7 +18601,7 @@ Source: https://vueuse.org/core/useMediaControls
 
 A reactive composable to control HTML media elements.
 
-```APIDOC
+````APIDOC
 ## useMediaControls
 
 ### Description
@@ -19810,10 +18619,12 @@ const { playing, volume } = useMediaControls(video, {
   src: 'video.mp4',
   tracks: [{ kind: 'subtitles', label: 'English', src: 'en.vtt', srcLang: 'en' }]
 });
-```
+````
 
 ### Response
+
 #### Return Value (UseMediaControlsReturn)
+
 - **currentTime** (ShallowRef<number>) - Current playback time.
 - **duration** (ShallowRef<number>) - Total media duration.
 - **playing** (ShallowRef<boolean>) - Playback status.
@@ -19823,7 +18634,8 @@ const { playing, volume } = useMediaControls(video, {
 - **enableTrack** (Function) - Method to enable a specific track.
 - **disableTrack** (Function) - Method to disable a specific track.
 - **togglePictureInPicture** (Function) - Toggles PiP mode.
-```
+
+````
 
 --------------------------------
 
@@ -19865,9 +18677,9 @@ const { count, double } = useCounterStore()!
   >
 </template>
 
-```
+````
 
---------------------------------
+---
 
 ### useObservable Basic Usage
 
@@ -19875,7 +18687,7 @@ Source: https://vueuse.org/rxjs/useObservable
 
 Demonstrates the basic usage of `useObservable` to integrate an RxJS observable with Vue's reactivity system.
 
-```APIDOC
+````APIDOC
 ## useObservable Basic Usage
 
 ### Description
@@ -19915,7 +18727,7 @@ const count = useObservable(
     scan((total, next) => next + total),
   ),
 )
-```
+````
 
 ### Response
 
@@ -19927,10 +18739,11 @@ const count = useObservable(
 
 ```json
 {
-  "value": 0 // or subsequent emitted values
+	"value": 0 // or subsequent emitted values
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -19966,19 +18779,23 @@ import { useArrayReduce } from '@vueuse/core'
 const list = reactive([{ num: 1 }, { num: 2 }])
 const sum = useArrayReduce(list, (sum, val) => sum + val.num, 0)
 // sum.value: 3
-```
+````
 
 ### Response
+
 #### Success Response (200)
+
 - **sum** (ComputedRef<U>) - The computed value of the array reduction with an initial value.
 
 #### Response Example
+
 ```json
 {
-  "value": 3
+	"value": 3
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -20011,9 +18828,9 @@ useSubscription(
     )
     .subscribe(toObserver(count)),
 )
-```
+````
 
---------------------------------
+---
 
 ### useDropZone API
 
@@ -20021,7 +18838,7 @@ Source: https://vueuse.org/core/usedropzone
 
 Documentation for the `useDropZone` composable function.
 
-```APIDOC
+````APIDOC
 ## useDropZone
 
 ### Description
@@ -20077,8 +18894,9 @@ const { isOverDropZone } = useDropZone(dropZoneRef, {
     Drop files here
   </div>
 </template>
-```
-```
+````
+
+````
 
 --------------------------------
 
@@ -20151,9 +18969,9 @@ const { stop } = watchPausable(isConnected, (newIsConnected) => {
     Request Bluetooth Device
   </button>
 </template>
-```
+````
 
---------------------------------
+---
 
 ### whenever - Using a Computed Getter
 
@@ -20161,7 +18979,7 @@ Source: https://vueuse.org/shared/whenever
 
 Illustrates how to use 'whenever' with a computed getter function as the source, allowing it to react to changes in derived state.
 
-```APIDOC
+````APIDOC
 ## whenever - Using a Computed Getter
 
 ### Description
@@ -20183,11 +19001,13 @@ whenever(
   () => counter.value === 7,
   () => console.log('counter is 7 now!'),
 )
-```
+````
 
 ### Response
+
 N/A
-```
+
+````
 
 --------------------------------
 
@@ -20212,9 +19032,9 @@ cancel()
 trigger(event)
 // stop removes all event listeners
 stop()
-```
+````
 
---------------------------------
+---
 
 ### Basic usage of useFavicon
 
@@ -20223,24 +19043,14 @@ Source: https://vueuse.org/core/useFavicon
 Initialize the favicon utility and update the icon by modifying the returned ref value.
 
 ```ts
-import { 
-useFavicon
- } from '@vueuse/core'
+import {useFavicon} from '@vueuse/core'
 
-const 
-icon
- = 
-useFavicon
-()
+const icon = useFavicon()
 
-
-icon
-.
-value
- = 'dark.png' // change current icon
+icon.value = 'dark.png' // change current icon
 ```
 
---------------------------------
+---
 
 ### Controlling onClickOutside with Controls Option (TypeScript)
 
@@ -20249,43 +19059,30 @@ Source: https://vueuse.org/core/onclickoutside
 Use the `controls` option to get `stop`, `cancel`, and `trigger` functions for manual control over the handler. `cancel` prevents the next click, `trigger` fires the handler manually, and `stop` removes listeners.
 
 ```typescript
-const { 
-stop
-, 
-cancel
-, 
-trigger
- } = onClickOutside(
-  modalRef,
-  (
-event
-) => {
-    modal.value = false
-  },
-  { 
-controls
-: true },
+const {stop, cancel, trigger} = onClickOutside(
+	modalRef,
+	event => {
+		modal.value = false
+	},
+	{
+		controls: true,
+	},
 )
 
 // cancel prevents the next click from triggering the handler
 
-cancel
-()
+cancel()
 
 // trigger manually fires the handler
 
-trigger
-(
-event
-)
+trigger(event)
 
 // stop removes all event listeners
 
-stop
-()
+stop()
 ```
 
---------------------------------
+---
 
 ### useSubscription - Basic Usage
 
@@ -20293,7 +19090,7 @@ Source: https://vueuse.org/rxjs/useSubscription
 
 Demonstrates how to use the `useSubscription` composable with an RxJS observable to automatically handle subscription unmounting.
 
-```APIDOC
+````APIDOC
 ## POST /api/users
 
 ### Description
@@ -20318,23 +19115,27 @@ POST
   "email": "john.doe@example.com",
   "password": "securepassword123"
 }
-```
+````
 
 ### Response
+
 #### Success Response (201)
+
 - **id** (string) - The unique identifier for the newly created user.
 - **username** (string) - The username of the created user.
 - **email** (string) - The email address of the created user.
 
 #### Response Example
+
 ```json
 {
-  "id": "user-12345",
-  "username": "johndoe",
-  "email": "john.doe@example.com"
+	"id": "user-12345",
+	"username": "johndoe",
+	"email": "john.doe@example.com"
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -20346,26 +19147,26 @@ Import and use the `useTextSelection` composable in your Vue component's setup. 
 
 ```vue
 <script setup lang="ts">
-import { 
+import {
 useTextSelection
  } from '@vueuse/core'
 
-const 
+const
 state
- = 
+ =
 useTextSelection
 ()
 </script>
 
 <template>
-  <p>{{ 
+  <p>{{
 state
 .text }}
 </p>
 </template>
-```
+````
 
---------------------------------
+---
 
 ### useArrayFind Basic Usage
 
@@ -20373,7 +19174,7 @@ Source: https://vueuse.org/shared/useArrayFind
 
 Demonstrates the basic usage of `useArrayFind` with a static array of refs. The `positive` ref will hold the first element that satisfies the condition `val > 0`.
 
-```APIDOC
+````APIDOC
 ## useArrayFind
 
 ### Description
@@ -20406,9 +19207,10 @@ val
 >
 0)
 // positive.value: 1
-```
+````
 
 ### Type Declarations
+
 ```ts
 export type
 UseArrayFindReturn
@@ -20428,12 +19230,13 @@ export declare function
 useArrayFind
 <T>(
 list
-: MaybeRefOrGetter<MaybeRefOrGetter<T>[]>, 
+: MaybeRefOrGetter<MaybeRefOrGetter<T>[]>,
 fn
 : (element: T, index: number, array: MaybeRefOrGetter<T>[]) => boolean,
 ): UseArrayFindReturn<T>
 ```
-```
+
+````
 
 --------------------------------
 
@@ -20469,23 +19272,27 @@ PUT
   "name": "Jane Doe",
   "email": "jane.doe@example.com"
 }
-```
+````
 
 ### Response
+
 #### Success Response (200)
+
 - **id** (string) - The unique identifier of the updated user.
 - **name** (string) - The updated name of the user.
 - **email** (string) - The updated email address of the user.
 
 #### Response Example
+
 ```json
 {
-  "id": "user-123",
-  "name": "Jane Doe",
-  "email": "jane.doe@example.com"
+	"id": "user-123",
+	"name": "Jane Doe",
+	"email": "jane.doe@example.com"
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -20498,12 +19305,12 @@ This Vue component shows how to consume the counter state injected by `useProvid
 ```vue
 <!-- CountComponent.vue -->
 <script setup lang="ts">
-import { 
+import {
 useCounterStore
  } from './useCounterStore'
 
 // use non-null assertion operator to ignore the case that store is not provided.
-const { 
+const {
 count
 ,
 double
@@ -20526,7 +19333,7 @@ ul
     <
 li
 >
-      count: {{ 
+      count: {{
 count
  }}
     </
@@ -20535,7 +19342,7 @@ li
     <
 li
 >
-      double: {{ 
+      double: {{
 double
  }}
     </
@@ -20545,9 +19352,9 @@ li
 ul
 >
 </template>
-```
+````
 
---------------------------------
+---
 
 ### Basic usage of useZoomLevel
 
@@ -20556,35 +19363,19 @@ Source: https://vueuse.org/electron/useZoomLevel
 Initializes the zoom level and demonstrates how to read and modify it.
 
 ```typescript
-import { 
-useZoomLevel
- } from '@vueuse/electron'
+import {useZoomLevel} from '@vueuse/electron'
 
 // enable nodeIntegration if you don't provide webFrame explicitly
 // see: https://www.electronjs.org/docs/api/webview-tag#nodeintegration
 // Ref result will return
-const 
-level
- = 
-useZoomLevel
-()
+const level = useZoomLevel()
 
-console
-.
-log
-(
-level
-.
-value
-) // print current zoom level
+console.log(level.value) // print current zoom level
 
-level
-.
-value
- = 2 // change current zoom level
+level.value = 2 // change current zoom level
 ```
 
---------------------------------
+---
 
 ### Get Element from Specific Vue Component
 
@@ -20594,37 +19385,23 @@ Pass a specific Vue component reference to `useCurrentElement` to obtain its DOM
 
 ```vue
 <script setup lang="ts">
-import { 
-useCurrentElement
-, 
-VueInstance
- } from '@vueuse/core'
-import { 
-shallowRef
- } from 'vue'
+import {useCurrentElement, VueInstance} from '@vueuse/core'
+import {shallowRef} from 'vue'
 
-const componentRef = 
-shallowRef
-<VueInstance>(null as unknown as VueInstance)
+const componentRef = shallowRef<VueInstance>(null as unknown as VueInstance)
 
-const el = 
-useCurrentElement
-(
-componentRef
-) // ComputedRef<Element>
+const el = useCurrentElement(componentRef) // ComputedRef<Element>
 </script>
 
 <template>
-  <div>
-    <OtherVueComponent 
-ref
-="componentRef" />
-    <p>Hello world</p>
-  </div>
+	<div>
+		<OtherVueComponent ref="componentRef" />
+		<p>Hello world</p>
+	</div>
 </template>
 ```
 
---------------------------------
+---
 
 ### useImage - Basic Usage
 
@@ -20632,7 +19409,7 @@ Source: https://vueuse.org/core/useImage
 
 Demonstrates the basic usage of the `useImage` composable in a Vue.js component to reactively load an image and display a loading state.
 
-```APIDOC
+````APIDOC
 ## useImage - Basic Usage
 
 ### Description
@@ -20671,17 +19448,21 @@ const { isLoading } = useImage({ src: avatarUrl })
   <span v-if="isLoading">Loading</span>
   <img v-else :src="avatarUrl">
 </template>
-```
+````
 
 ### Response
+
 #### Success Response (Image Loaded)
+
 - **isLoading** (boolean) - True if the image is currently loading, false otherwise.
 - **isError** (boolean) - True if there was an error loading the image.
 - **data** (HTMLImageElement | undefined) - The loaded HTMLImageElement or undefined.
 
 #### Response Example
+
 (Implicitly handled by the template logic showing the image or loading state)
-```
+
+````
 
 --------------------------------
 
@@ -20730,50 +19511,50 @@ count
   function
 increment
 () {
-    
+
 count
 .value++
   }
 
-  return { 
+  return {
 count
-, 
+,
 double
-, 
+,
 increment
  }
 })
 
-export { 
+export {
 useProvideCounterStore
  }
 
 // If you want to hide `useCounterStore` and wrap it in default value logic or throw error logic, please don't export `useCounterStore`
-export { 
+export {
 useCounterStore
  }
 
-export function 
+export function
 useCounterStoreWithDefaultValue
 () {
-  return 
+  return
 useCounterStore
 () ?? {
-    
+
 count
 :
 shallowRef(0),
-    
+
 double
 :
 shallowRef(0),
-    
+
 increment
 : () => {},
   }
 }
 
-export function 
+export function
 useCounterStoreOrThrow
 () {
   const
@@ -20784,16 +19565,16 @@ useCounterStore
   if (
 counterStore
  == null)
-    throw new 
+    throw new
 Error
 ('Please call `useProvideCounterStore` on the appropriate parent component')
-  return 
+  return
 counterStore
 
 }
-```
+````
 
---------------------------------
+---
 
 ### Manual Render Function Pattern
 
@@ -20802,28 +19583,23 @@ Source: https://vueuse.org/core/createtemplatepromise
 Demonstrates using render functions to achieve more flexibility, which can feel like reinventing a DSL.
 
 ```typescript
-const 
-result
- = await dialog.open({
-  
-contentSlot
-: () => 
-h
-(MyComponent, { 
-content
- }),
+const result = await dialog.open({
+	contentSlot: () =>
+		h(MyComponent, {
+			content,
+		}),
 })
 ```
 
 ```javascript
 'use strict'
 const result = await dialog.open({
-  title: 'Hello',
-  contentSlot: () => h(MyComponent, { content }),
+	title: 'Hello',
+	contentSlot: () => h(MyComponent, {content}),
 })
 ```
 
---------------------------------
+---
 
 ### Basic Usage with Vue Template
 
@@ -20833,24 +19609,24 @@ Demonstrates defining a template promise and using it within a Vue component scr
 
 ```vue
 <script setup lang="ts">
-import { 
+import {
 createTemplatePromise
  } from '@vueuse/core'
 
-const 
+const
 TemplatePromise
- = 
+ =
 createTemplatePromise
 <
 ReturnType
 >()
 
-async function 
+async function
 open
 () {
-  const 
+  const
 result
- = await 
+ = await
 TemplatePromise
 .
 start
@@ -20862,15 +19638,15 @@ start
 <template>
   <
 TemplatePromise
- 
+
 v-slot
-="{ 
+="{
 promise
-, 
+,
 resolve
-, 
+,
 reject
-, 
+,
 args
  }">
     <!-- your UI -->
@@ -20889,7 +19665,7 @@ button
 </template>
 ```
 
---------------------------------
+---
 
 ### Create and use injection state in JavaScript
 
@@ -20899,45 +19675,44 @@ Defines a composable function `useCounterStore` using `createInjectionState` for
 
 ```javascript
 // useCounterStore.ts
-import { createInjectionState } from '@vueuse/core'
-import { computed, shallowRef } from 'vue'
+import {createInjectionState} from '@vueuse/core'
+import {computed, shallowRef} from 'vue'
 const [useProvideCounterStore, useCounterStore] = createInjectionState(
-  (initialValue) => {
-    // state
-    const count = shallowRef(initialValue)
-    // getters
-    const double = computed(() => count.value * 2)
-    // actions
-    function increment() {
-      count.value++
-    }
-    return { count, double, increment }
-  },
+	initialValue => {
+		// state
+		const count = shallowRef(initialValue)
+		// getters
+		const double = computed(() => count.value * 2)
+		// actions
+		function increment() {
+			count.value++
+		}
+		return {count, double, increment}
+	},
 )
-export { useProvideCounterStore }
+export {useProvideCounterStore}
 // If you want to hide `useCounterStore` and wrap it in default value logic or throw error logic, please don't export `useCounterStore`
-export { useCounterStore }
+export {useCounterStore}
 export function useCounterStoreWithDefaultValue() {
-  return (
-    useCounterStore() ?? {
-      count: shallowRef(0),
-      double: shallowRef(0),
-      increment: () => {},
-    }
-  )
+	return (
+		useCounterStore() ?? {
+			count: shallowRef(0),
+			double: shallowRef(0),
+			increment: () => {},
+		}
+	)
 }
 export function useCounterStoreOrThrow() {
-  const counterStore = useCounterStore()
-  if (counterStore == null)
-    throw new Error(
-      'Please call `useProvideCounterStore` on the appropriate parent component',
-    )
-  return counterStore
+	const counterStore = useCounterStore()
+	if (counterStore == null)
+		throw new Error(
+			'Please call `useProvideCounterStore` on the appropriate parent component',
+		)
+	return counterStore
 }
-
 ```
 
---------------------------------
+---
 
 ### Create Custom Fetch Instance with Base URL and Auth
 
@@ -20946,54 +19721,54 @@ Source: https://vueuse.org/core/usefetch
 Use `createFetch` to set a base URL and automatically add authorization headers to all requests made with the custom instance. This is useful for interacting with APIs that require consistent authentication.
 
 ```typescript
-const 
+const
 useMyFetch
- = 
+ =
 createFetch
 ({
-  
+
 baseUrl
 : 'https://my-api.com',
-  
+
 options
 : {
-    async 
+    async
 beforeFetch
-({ 
+({
 options
  }) {
-      const 
+      const
 myToken
  = await getMyToken()
-      
+
 options
-. 
+.
 headers
-.Authorization = `Bearer ${ 
+.Authorization = `Bearer ${
 myToken
 }`
 
-      return { 
+      return {
 options
  }
     },
   },
-  
+
 fetchOptions
 : {
-    
+
 mode
 : 'cors',
   },
 })
 
-const { 
+const {
 isFetching
- , 
+ ,
 error
- , 
+ ,
 data
- } = 
+ } =
 useMyFetch
 ('users')
 ```
@@ -21001,22 +19776,22 @@ useMyFetch
 ```javascript
 'use strict'
 const useMyFetch = createFetch({
-  baseUrl: 'https://my-api.com',
-  options: {
-    async beforeFetch({ options }) {
-      const myToken = await getMyToken()
-      options.headers.Authorization = `Bearer ${myToken}`
-      return { options }
-    },
-  },
-  fetchOptions: {
-    mode: 'cors',
-  },
+	baseUrl: 'https://my-api.com',
+	options: {
+		async beforeFetch({options}) {
+			const myToken = await getMyToken()
+			options.headers.Authorization = `Bearer ${myToken}`
+			return {options}
+		},
+	},
+	fetchOptions: {
+		mode: 'cors',
+	},
 })
-const { isFetching, error, data } = useMyFetch('users')
+const {isFetching, error, data} = useMyFetch('users')
 ```
 
---------------------------------
+---
 
 ### useIpcRendererInvoke Usage
 
@@ -21024,7 +19799,7 @@ Source: https://vueuse.org/electron/useipcrendererinvoke
 
 Demonstrates how to use the useIpcRendererInvoke composable to interact with the main process in an Electron application. It shows how to handle the result reactively using computed properties.
 
-```APIDOC
+````APIDOC
 ## POST /ipcRenderer/invoke
 
 ### Description
@@ -21053,20 +19828,24 @@ None
   "channel": "custom-channel",
   "args": ["some data"]
 }
-```
+````
 
 ### Response
+
 #### Success Response (200)
+
 - **result** (ShallowRef<T | null>) - A reactive reference containing the data returned from the main process. It will be `null` initially and updated when the main process responds.
 
 #### Response Example
+
 ```json
 {
-  "msg": "Data received from main process"
+	"msg": "Data received from main process"
 }
 ```
 
 ### Type Declarations
+
 ```typescript
 /**
  * Returns Promise<any> - Resolves with the response from the main process.
@@ -21081,9 +19860,9 @@ None
  * @__NO_SIDE_EFFECTS__
  */
 export declare function useIpcRendererInvoke<T>(
-  ipcRenderer: IpcRenderer,
-  channel: string,
-  ...args: any[]
+	ipcRenderer: IpcRenderer,
+	channel: string,
+	...args: any[]
 ): ShallowRef<T | null>
 
 /**
@@ -21099,11 +19878,12 @@ export declare function useIpcRendererInvoke<T>(
  * @__NO_SIDE_EFFECTS__
  */
 export declare function useIpcRendererInvoke<T>(
-  channel: string,
-  ...args: any[]
+	channel: string,
+	...args: any[]
 ): ShallowRef<T | null>
 ```
-```
+
+````
 
 --------------------------------
 
@@ -21142,19 +19922,23 @@ None
   "channel": "custom-channel",
   "args": ["some data"]
 }
-```
+````
 
 ### Response
+
 #### Success Response (200)
+
 - **result** (ShallowRef<T | null>) - A reactive reference containing the response from the main process, or null if not yet received or an error occurred.
 
 #### Response Example
+
 ```json
 {
-  "msg": "Hello from main process"
+	"msg": "Hello from main process"
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -21169,14 +19953,14 @@ export interface UseDevicePixelRatioOptions extends ConfigurableWindow {}
 export interface UseDevicePixelRatioReturn {
 
 pixelRatio
-: 
+:
 Readonly
 <
 ShallowRef
 <number>>
-  
+
 stop
-: 
+:
 WatchStopHandle
 
 }
@@ -21187,16 +19971,16 @@ WatchStopHandle
  *
  * @__NO_SIDE_EFFECTS__
  */
-export declare function 
+export declare function
 useDevicePixelRatio
 (
-  
+
 options
 ?: UseDevicePixelRatioOptions,
 ): UseDevicePixelRatioReturn
-```
+````
 
---------------------------------
+---
 
 ### useObservable with Initial Value
 
@@ -21204,7 +19988,7 @@ Source: https://vueuse.org/rxjs/useObservable
 
 Shows how to provide an initial value to `useObservable` which is used before the observable emits its first value.
 
-```APIDOC
+````APIDOC
 ## useObservable with Initial Value
 
 ### Description
@@ -21240,7 +20024,7 @@ const count = useObservable(
   { initialValue: 0 },
 )
 // count.value is 0 until the first emission
-```
+````
 
 ### Response
 
@@ -21252,10 +20036,11 @@ const count = useObservable(
 
 ```json
 {
-  "value": 0 // initial value until first emission
+	"value": 0 // initial value until first emission
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -21266,7 +20051,7 @@ Source: https://vueuse.org/core/useidle
 Demonstrates how to programmatically reset the idle timer using the `reset` function returned by `useIdle`.
 
 ```APIDOC
-## Programmatic Resetting 
+## Programmatic Resetting
 
 ### Description
 Allows programmatically resetting the idle timer. The `reset` function restarts the idle timer without changing the `lastActive` value.
@@ -21296,15 +20081,19 @@ watch(idle, (idleValue) => {
     reset() // restarts the idle timer. Does not change lastActive value
   }
 })
-```
+````
 
 ### Response
+
 #### Success Response (200)
+
 N/A (Composable function returns refs and functions)
 
 #### Response Example
+
 N/A
-```
+
+````
 
 --------------------------------
 
@@ -21315,33 +20104,33 @@ Source: https://vueuse.org/core/useElementByPoint
 Demonstrates how to integrate useElementByPoint with useMouse to track the element under the cursor.
 
 ```typescript
-import { 
+import {
 useElementByPoint
-, 
+,
 useMouse
  } from '@vueuse/core'
 
-const { 
+const {
 x
-, 
+,
 y
- } = 
+ } =
 useMouse
-({ 
+({
 type
 : 'client' })
-const { 
+const {
 element
- } = 
+ } =
 useElementByPoint
-({ 
+({
 x
-, 
+,
 y
  })
-```
+````
 
---------------------------------
+---
 
 ### createFetch
 
@@ -21349,7 +20138,7 @@ Source: https://vueuse.org/core/usefetch
 
 A factory function to create a customized instance of useFetch with predefined configurations.
 
-```APIDOC
+````APIDOC
 ## createFetch
 
 ### Description
@@ -21376,21 +20165,25 @@ None
 {
   "example": "// Create a fetch instance with a base URL\nconst myFetch = createFetch({ baseUrl: 'https://api.example.com' })\n// Use the instance\nconst { data } = myFetch('/users').json()"
 }
-```
+````
 
 ### Response
+
 Returns a customized `useFetch` function.
 
 #### Success Response (200)
+
 N/A
 
 #### Response Example
+
 ```json
 {
-  "example": "// The returned value is a function, not a direct response\n// Example of using the returned function:\n// const { data } = myFetch('/data')"
+	"example": "// The returned value is a function, not a direct response\n// Example of using the returned function:\n// const { data } = myFetch('/data')"
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -21401,19 +20194,19 @@ Source: https://vueuse.org/core/useCycleList
 Demonstrates basic usage of useCycleList to navigate through an array of strings using state, next, prev, and go methods.
 
 ```typescript
-import { 
+import {
 useCycleList
  } from '@vueuse/core'
 
-const { 
+const {
 state
-, 
+,
 next
-, 
+,
 prev
-, 
+,
 go
- } = 
+ } =
 useCycleList
 ([
   'Dog',
@@ -21463,9 +20256,9 @@ state
 .
 value
 ) // 'Shark'
-```
+````
 
---------------------------------
+---
 
 ### useWebSocket Options and Type Declarations
 
@@ -21473,7 +20266,7 @@ Source: https://vueuse.org/core/usewebsocket
 
 Provides detailed type declarations for the UseWebSocketOptions and UseWebSocketReturn interfaces, outlining all available configuration options and return values.
 
-```APIDOC
+````APIDOC
 ## GET /api/users/{id}
 
 ### Description
@@ -21507,8 +20300,9 @@ GET
   "email": "john.doe@example.com",
   "createdAt": "2023-10-27T10:00:00Z"
 }
-```
-```
+````
+
+````
 
 --------------------------------
 
@@ -21523,16 +20317,16 @@ import {
 useAxios
 } from '@vueuse/integrations/useAxios'
 
-const { 
+const {
 data
 ,
 isFinished
- } = 
+ } =
 useAxios
 ('/api/posts')
-```
+````
 
---------------------------------
+---
 
 ### Handle readiness with onReady callback
 
@@ -21541,53 +20335,29 @@ Source: https://vueuse.org/core/useStorageAsync
 Use the onReady option to execute logic once the storage value is available.
 
 ```typescript
-import { 
-useStorageAsync
- } from '@vueuse/core'
+import {useStorageAsync} from '@vueuse/core'
 
 // Use ES2024 Promise.withResolvers, you may use any Deferred object or EventBus to do same thing.
-const { 
-promise
-, 
-resolve
- } = 
-Promise
-.
-withResolvers
-()
+const {promise, resolve} = Promise.withResolvers()
 
-const 
-accessToken
- = 
-useStorageAsync
-('access.token', '', SomeAsyncStorage, {
-  
-onReady
-(
-value
-) {
-    
-resolve
-(
-value
-)
-  }
+const accessToken = useStorageAsync('access.token', '', SomeAsyncStorage, {
+	onReady(value) {
+		resolve(value)
+	},
 })
 
 // At main.ts
 router.onReady(async () => {
-  // Let's wait accessToken loaded
-  await 
-promise
+	// Let's wait accessToken loaded
+	await promise
 
+	// Now accessToken has loaded, we can safely mount our app
 
-  // Now accessToken has loaded, we can safely mount our app
-
-  app.mount('app')
+	app.mount('app')
 })
 ```
 
---------------------------------
+---
 
 ### Basic usage of useMediaQuery
 
@@ -21596,23 +20366,13 @@ Source: https://vueuse.org/core/usemediaquery
 Tracks media query states reactively using the useMediaQuery hook.
 
 ```typescript
-import { 
-useMediaQuery
- } from '@vueuse/core'
+import {useMediaQuery} from '@vueuse/core'
 
-const 
-isLargeScreen
- = 
-useMediaQuery
-('(min-width: 1024px)')
-const 
-isPreferredDark
- = 
-useMediaQuery
-('(prefers-color-scheme: dark)')
+const isLargeScreen = useMediaQuery('(min-width: 1024px)')
+const isPreferredDark = useMediaQuery('(prefers-color-scheme: dark)')
 ```
 
---------------------------------
+---
 
 ### useShare Basic Usage
 
@@ -21620,7 +20380,7 @@ Source: https://vueuse.org/core/useshare
 
 Demonstrates the basic usage of the useShare composable to share title, text, and URL. The share method must be called in response to a user gesture.
 
-```APIDOC
+````APIDOC
 ## useShare
 
 ### Description
@@ -21655,15 +20415,19 @@ function startShare() {
     url: location.href,
   })
 }
-```
+````
 
 ### Response
+
 #### Success Response (200)
+
 N/A (The `share` function returns a Promise that resolves to void upon successful sharing.)
 
 #### Response Example
+
 None
-```
+
+````
 
 --------------------------------
 
@@ -21705,15 +20469,18 @@ useIpcRendererOn(ipcRenderer, 'custom-event', (event, ...args) => {
 useIpcRendererOn('custom-event', (event, ...args) => {
   console.log(args)
 })
-```
+````
 
 ### Response
+
 Returns the `IpcRenderer` instance.
 
 ### Notes
+
 - Ensure `nodeIntegration` is enabled in your `webview` tag if you don't provide `ipcRenderer` explicitly.
 - Refer to Electron's documentation for `ipcRenderer.on` and `ipcRenderer.removeListener` for more details.
-```
+
+````
 
 --------------------------------
 
@@ -21724,7 +20491,7 @@ Source: https://vueuse.org/rxjs/usesubject
 Demonstrates the basic usage of `useSubject` to bind an RxJS Subject to a Vue ref.
 
 ```APIDOC
-## useSubject 
+## useSubject
 
 ### Description
 Bind an RxJS `Subject` to a `ref` and propagate value changes both ways.
@@ -21757,19 +20524,23 @@ subjectRef.value = 'new value'
 
 // Values emitted by the subject will update subjectRef
 subject.next('from subject')
-```
+````
 
 ### Response
+
 #### Success Response (200)
+
 Returns a `Ref` that is bound to the RxJS Subject.
 
 #### Response Example
+
 ```json
 {
-  "example": "Ref<string | undefined>"
+	"example": "Ref<string | undefined>"
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -21807,9 +20578,9 @@ const { results } = useFuse(input, data)
  * { "item": "Jane Doe", "index": 2 }
  *
  */
-```
+````
 
---------------------------------
+---
 
 ### onStartTyping Type Declarations
 
@@ -21825,21 +20596,14 @@ Provides the TypeScript type declarations for the onStartTyping function, includ
  * @param callback
  * @param options
  */
-export declare function 
-onStartTyping
-(
-  
-callback
-: (event: KeyboardEvent) => void,
-  
-options
-?: 
-ConfigurableDocument
-,
+export declare function onStartTyping(
+	callback: (event: KeyboardEvent) => void,
+
+	options?: ConfigurableDocument,
 ): void
 ```
 
---------------------------------
+---
 
 ### Set Initial Title with useTitle
 
@@ -21848,11 +20612,7 @@ Source: https://vueuse.org/core/usetitle
 Initialize the document title immediately by passing the desired title string as an argument to the useTitle composable.
 
 ```typescript
-const
-title
- = 
-useTitle
-('New Title')
+const title = useTitle('New Title')
 ```
 
 ```javascript
@@ -21860,7 +20620,7 @@ useTitle
 const title = useTitle('New Title')
 ```
 
---------------------------------
+---
 
 ### Advanced useColorMode with System and Storage Access
 
@@ -21869,24 +20629,20 @@ Source: https://vueuse.org/core/useColorMode
 Access system preference and stored override mode separately. Combine them to determine the effective color mode.
 
 ```typescript
-import {
-useColorMode
-} from '@vueuse/core'
+import {useColorMode} from '@vueuse/core'
 
-const { system, store } = useColorMode()
-
+const {system, store} = useColorMode()
 
 system.value // 'dark' | 'light'
 
 store.value // 'dark' | 'light' | 'auto'
 
 const myColorMode = computed(() =>
-  store.value === 'auto' ? system.value : store.value
+	store.value === 'auto' ? system.value : store.value,
 )
-
 ```
 
---------------------------------
+---
 
 ### Basic Usage of useAsyncQueue
 
@@ -21895,103 +20651,53 @@ Source: https://vueuse.org/core/useasyncqueue
 Demonstrates how to use useAsyncQueue to execute a series of asynchronous functions sequentially. The result of each task is passed to the next.
 
 ```typescript
-import {
-useAsyncQueue
-} from '@vueuse/core'
+import {useAsyncQueue} from '@vueuse/core'
 
-function 
-p1
-() {
-  return new 
-Promise
-(( 
-resolve
-) => {
-    
-setTimeout
-(() => {
-      
-resolve
-(1000)
-    }, 10)
-  })
+function p1() {
+	return new Promise(resolve => {
+		setTimeout(() => {
+			resolve(1000)
+		}, 10)
+	})
 }
 
-function 
-p2
-(
-result
-: number) {
-  return new 
-Promise
-(( 
-resolve
-) => {
-    
-setTimeout
-(() => {
-      
-resolve
-(1000 + 
-result
-)
-    }, 20)
-  })
+function p2(result: number) {
+	return new Promise(resolve => {
+		setTimeout(() => {
+			resolve(1000 + result)
+		}, 20)
+	})
 }
 
-const { 
-activeIndex
-,
-result
- } = 
-useAsyncQueue
-([
-p1
-,
-p2
-])
+const {activeIndex, result} = useAsyncQueue([p1, p2])
 
+console.log(activeIndex.value) // current pending task index
 
-console
-.
-log
-(
-activeIndex
-. 
-value
-) // current pending task index
-
-
-console
-.
-log
-(
-result
-) // the tasks result
+console.log(result) // the tasks result
 ```
 
 ```javascript
-import { useAsyncQueue } from '@vueuse/core'
+import {useAsyncQueue} from '@vueuse/core'
 function p1() {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(1000)
-    }, 10)
-  })
+	return new Promise(resolve => {
+		setTimeout(() => {
+			resolve(1000)
+		}, 10)
+	})
 }
 function p2(result) {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(1000 + result)
-    }, 20)
-  })
+	return new Promise(resolve => {
+		setTimeout(() => {
+			resolve(1000 + result)
+		}, 20)
+	})
 }
-const { activeIndex, result } = useAsyncQueue([p1, p2])
+const {activeIndex, result} = useAsyncQueue([p1, p2])
 console.log(activeIndex.value) // current pending task index
 console.log(result) // the tasks result
 ```
 
---------------------------------
+---
 
 ### useTransition with Custom Easing (Cubic Bezier)
 
@@ -21999,7 +20705,7 @@ Source: https://vueuse.org/core/useTransition
 
 Shows how to customize the transition's easing using a cubic bezier curve array.
 
-```APIDOC
+````APIDOC
 ## GET /api/users/{id}
 
 ### Description
@@ -22031,8 +20737,9 @@ GET
   "name": "John Doe",
   "email": "john.doe@example.com"
 }
-```
-```
+````
+
+````
 
 --------------------------------
 
@@ -22068,22 +20775,28 @@ const childProps = reactiveOmit(props, 'value')
     <ChildComp v-bind="childProps" />
   </div>
 </template>
-```
+````
 
 ### Parameters
+
 None for the `reactiveOmit` function itself in this context, as it operates on the `props` object.
 
 ### Request Example
+
 See the `<script setup>` block in the Method section above.
 
 ### Response
+
 #### Success Response (200)
+
 The `childProps` object will contain all properties from the parent's `props` except for 'value'.
 
 #### Response Example
+
 If parent props are `{ value: 'someValue', color: 'red', font: 'Arial' }`,
 then `childProps` will be `{ color: 'red', font: 'Arial' }`.
-```
+
+````
 
 --------------------------------
 
@@ -22094,39 +20807,39 @@ Source: https://vueuse.org/shared/reactivePick
 Demonstrates picking specific keys from a reactive object to create a new reactive subset.
 
 ```typescript
-import { 
+import {
 reactivePick
  } from '@vueuse/core'
 
-const 
+const
 obj
- = 
+ =
 reactive
 ({
-  
+
 x
 : 0,
-  
+
 y
 : 0,
-  
+
 elementX
 : 0,
-  
+
 elementY
 : 0,
 })
 
-const 
+const
 picked
- = 
+ =
 reactivePick
 (
 obj
 , 'x', 'elementX') // { x: number, elementX: number }
-```
+````
 
---------------------------------
+---
 
 ### Basic Date Formatting
 
@@ -22136,15 +20849,15 @@ Formats the current date and time using a predefined token string. Ensure `useNo
 
 ```vue
 <script setup lang="ts">
-import { 
+import {
 useDateFormat
-, 
+,
 useNow
  } from '@vueuse/core'
 
-const 
+const
 formatted
- = 
+ =
 useDateFormat
 (
 useNow
@@ -22154,7 +20867,7 @@ useNow
 <template>
   <
 div
->{{ 
+>{{
 formatted
  }}</
 div
@@ -22162,7 +20875,7 @@ div
 </template>
 ```
 
---------------------------------
+---
 
 ### Initialize useDeviceOrientation
 
@@ -22171,29 +20884,12 @@ Source: https://vueuse.org/core/usedeviceorientation
 Import and destructure the reactive orientation properties from the composable.
 
 ```ts
-import { 
-useDeviceOrientation
- } from '@vueuse/core'
+import {useDeviceOrientation} from '@vueuse/core'
 
-const {
-  
-isAbsolute
-,
-  
-alpha
-,
-  
-beta
-,
-  
-gamma
-,
-} = 
-useDeviceOrientation
-()
+const {isAbsolute, alpha, beta, gamma} = useDeviceOrientation()
 ```
 
---------------------------------
+---
 
 ### Basic Usage of useRafFn
 
@@ -22202,32 +20898,32 @@ Source: https://vueuse.org/core/useRafFn
 Demonstrates how to import and initialize the useRafFn hook to increment a counter on every animation frame.
 
 ```typescript
-import { 
+import {
 useRafFn
  } from '@vueuse/core'
-import { 
+import {
 shallowRef
  } from 'vue'
 
-const 
+const
 count
- = 
+ =
 shallowRef
 (0)
 
-const { 
+const {
 pause
-, 
+,
 resume
- } = 
+ } =
 useRafFn
 (() => {
-  
+
 count
 .
 value
 ++
-  
+
 console
 .
 log
@@ -22239,7 +20935,7 @@ value
 })
 ```
 
---------------------------------
+---
 
 ### useElementBounding - Component Usage
 
@@ -22247,7 +20943,7 @@ Source: https://vueuse.org/core/useelementbounding
 
 Shows how to use the renderless component version of useElementBounding from `@vueuse/components`.
 
-```APIDOC
+````APIDOC
 ## UseElementBounding Component
 
 ### Description
@@ -22276,21 +20972,25 @@ None
     Width: {{ width }} Height: {{ height }}
   </UseElementBounding>
 </template>
-```
+````
 
 ### Response
+
 #### Success Response (v-slot props)
+
 - **width** (number) - The width of the observed element.
 - **height** (number) - The height of the observed element.
 
 #### Response Example
+
 ```json
 {
-  "width": 140,
-  "height": 100
+	"width": 140,
+	"height": 100
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -22301,13 +21001,13 @@ Source: https://vueuse.org/core/useStorageAsync
 Basic initialization of useStorageAsync. Note that the value may be the initial value before the async storage resolves.
 
 ```typescript
-import { 
+import {
 useStorageAsync
  } from '@vueuse/core'
 
-const 
+const
 accessToken
- = 
+ =
 useStorageAsync
 ('access.token', '', SomeAsyncStorage)
 
@@ -22326,7 +21026,7 @@ value
 setTimeout
 (() => {
   // After some time, the async storage is ready
-  
+
 console
 .
 log
@@ -22336,9 +21036,9 @@ accessToken
 value
 ) // "the real value stored in storage"
 }, 500)
-```
+````
 
---------------------------------
+---
 
 ### useObservable Options
 
@@ -22346,7 +21046,7 @@ Source: https://vueuse.org/rxjs/useObservable
 
 Details the available options for `useObservable`, including `initialValue` and `onError`.
 
-```APIDOC
+````APIDOC
 ## useObservable Options
 
 ### Description
@@ -22387,7 +21087,7 @@ const count = useObservable(
     },
   },
 )
-```
+````
 
 ### Response
 
@@ -22399,17 +21099,18 @@ const count = useObservable(
 
 ```json
 {
-  "value": "latest_emitted_value_or_initial_value"
+	"value": "latest_emitted_value_or_initial_value"
 }
 ```
 
 ### Options Table
 
-| Option | Type | Description |
-|---|---|---|
-| `initialValue` | `T` | Value to use before the Observable emits |
-| `onError` | `(err: any) => void` | Error handler for Observable errors |
-```
+| Option         | Type                 | Description                              |
+| -------------- | -------------------- | ---------------------------------------- |
+| `initialValue` | `T`                  | Value to use before the Observable emits |
+| `onError`      | `(err: any) => void` | Error handler for Observable errors      |
+
+````
 
 --------------------------------
 
@@ -22424,19 +21125,19 @@ import {
   useSpeechRecognition
 } from '@vueuse/core'
 
-const { 
+const {
   isSupported,
   isListening,
   isFinal,
   result,
   start,
   stop,
-} = 
+} =
 useSpeechRecognition
 ()
-```
+````
 
---------------------------------
+---
 
 ### Basic usage of watchDebounced
 
@@ -22445,28 +21146,21 @@ Source: https://vueuse.org/shared/watchDebounced
 Demonstrates the standard implementation of watchDebounced with debounce and maxWait options.
 
 ```typescript
-import { 
-watchDebounced
- } from '@vueuse/core'
+import {watchDebounced} from '@vueuse/core'
 
-
-watchDebounced
-(
-  source,
-  () => { 
-console
-.
-log
-('changed!') },
-  { 
-debounce
-: 500, 
-maxWait
-: 1000 },
+watchDebounced(
+	source,
+	() => {
+		console.log('changed!')
+	},
+	{
+		debounce: 500,
+		maxWait: 1000,
+	},
 )
 ```
 
---------------------------------
+---
 
 ### useAsyncQueue Basic Usage
 
@@ -22474,7 +21168,7 @@ Source: https://vueuse.org/core/useAsyncQueue
 
 Demonstrates the basic usage of useAsyncQueue to execute a series of asynchronous tasks sequentially and access their results.
 
-```APIDOC
+````APIDOC
 ## useAsyncQueue Basic Usage
 
 ### Description
@@ -22522,24 +21216,28 @@ const { activeIndex, result } = useAsyncQueue([
 
 console.log(activeIndex.value) // current pending task index
 console.log(result) // the tasks result
-```
+````
 
 ### Response
+
 #### Success Response (200)
+
 - **activeIndex** (ShallowRef<number>) - The index of the currently pending task.
 - **result** (Array<UseAsyncQueueResult<any>>) - An array containing the state and data of each completed task.
 
 #### Response Example
+
 ```json
 {
-  "activeIndex": 1,
-  "result": [
-    { "state": "fulfilled", "data": 1000 },
-    { "state": "fulfilled", "data": 2000 }
-  ]
+	"activeIndex": 1,
+	"result": [
+		{"state": "fulfilled", "data": 1000},
+		{"state": "fulfilled", "data": 2000}
+	]
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -22600,15 +21298,19 @@ function resetComponent() {
     Reset
   </button>
 </template>
-```
+````
 
 ### Response
+
 #### Success Response (200)
+
 Emits a `trigger` event when a long press is detected.
 
 #### Response Example
+
 Event Payload: `PointerEvent`
-```
+
+````
 
 --------------------------------
 
@@ -22646,22 +21348,25 @@ import {
   useEyeDropper
 } from '@vueuse/core'
 
-const { 
+const {
   isSupported,
   open,
   sRGBHex
-} = 
+} =
 useEyeDropper
 ()
-```
+````
 
 ### Response
+
 #### Success Response (N/A - Returns reactive properties)
+
 - **isSupported** (boolean) - Indicates if the EyeDropper API is supported by the browser.
 - **sRGBHex** (ShallowRef<string>) - A reactive reference holding the selected color in sRGB hex format.
 - **open** (function) - A function to open the Eye Dropper.
 
 #### Response Example
+
 ```json
 {
   "isSupported": true,
@@ -22669,7 +21374,8 @@ useEyeDropper
   "open": () => Promise<{ sRGBHex: string } | undefined>
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -22680,21 +21386,21 @@ Source: https://vueuse.org/math/logicAnd
 Demonstrates how to use logicAnd to trigger a callback whenever multiple refs evaluate to true.
 
 ```typescript
-import { 
+import {
 whenever
  } from '@vueuse/core'
-import { 
+import {
 logicAnd
  } from '@vueuse/math'
 
-const 
+const
 a
- = 
+ =
 ref
 (true)
-const 
+const
 b
- = 
+ =
 ref
 (false)
 
@@ -22704,18 +21410,18 @@ whenever
 logicAnd
 (
 a
-, 
+,
 b
 ), () => {
-  
+
 console
 .
 log
 ('both a and b are now truthy!')
 })
-```
+````
 
---------------------------------
+---
 
 ### Usage of useAbs
 
@@ -22724,25 +21430,13 @@ Source: https://vueuse.org/math/useabs
 Demonstrates how to import and use useAbs with a reactive ref to obtain the absolute value.
 
 ```typescript
-import { 
-useAbs
- } from '@vueuse/math'
+import {useAbs} from '@vueuse/math'
 
-const 
-value
- = 
-ref
-(-23)
-const 
-absValue
- = 
-useAbs
-(
-value
-) // Ref<23>
+const value = ref(-23)
+const absValue = useAbs(value) // Ref<23>
 ```
 
---------------------------------
+---
 
 ### useFileSystemAccess Composable
 
@@ -22750,7 +21444,7 @@ Source: https://vueuse.org/core/useFileSystemAccess
 
 Provides methods and reactive state to interact with local files via the File System Access API.
 
-```APIDOC
+````APIDOC
 ## useFileSystemAccess
 
 ### Description
@@ -22775,8 +21469,9 @@ A Vue composable that provides a reactive interface for the browser's File Syste
 import { useFileSystemAccess } from '@vueuse/core'
 
 const { data, open, save } = useFileSystemAccess()
-```
-```
+````
+
+````
 
 --------------------------------
 
@@ -22787,36 +21482,36 @@ Source: https://vueuse.org/core/useDebouncedRefHistory
 Demonstrates how to initialize the function with a shallowRef and configure the debounce delay.
 
 ```typescript
-import { 
+import {
 useDebouncedRefHistory
  } from '@vueuse/core'
-import { 
+import {
 shallowRef
  } from 'vue'
 
-const 
+const
 counter
- = 
+ =
 shallowRef
 (0)
-const { 
+const {
 history
-, 
+,
 undo
-, 
+,
 redo
- } = 
+ } =
 useDebouncedRefHistory
 (
 counter
-, { 
+, {
 deep
-: true, 
+: true,
 debounce
 : 1000 })
-```
+````
 
---------------------------------
+---
 
 ### Passing Data with createReusableTemplate
 
@@ -22824,7 +21519,7 @@ Source: https://vueuse.org/core/createreusabletemplate
 
 Demonstrates how to pass data to the reusable template using slots and props.
 
-```APIDOC
+````APIDOC
 ## Passing Data with createReusableTemplate
 
 ### Description
@@ -22856,14 +21551,17 @@ const [DefineTemplate, ReuseTemplate] = createReusableTemplate()
   <ReuseTemplate :data="anotherData" msg="The second usage" />
   <ReuseTemplate v-bind="{ data: something, msg: 'The third' }" />
 </template>
-```
+````
 
 ### Response
+
 - Data passed via props to `<ReuseTemplate>` is available within the template defined in `<DefineTemplate>` via the `v-slot`.
 
 ### Response Example
+
 N/A (Component rendering example.)
-```
+
+````
 
 --------------------------------
 
@@ -22879,9 +21577,9 @@ Provides ipcRenderer and all of its APIs with Vue reactivity.
 `@vueuse/electron` provides the following functions
 
 * `useIpcRenderer` — provides ipcRenderer and all of its APIs with Vue reactivity
-```
+````
 
---------------------------------
+---
 
 ### useCycleList
 
@@ -22923,7 +21621,7 @@ prev() // 'Lizard'
 go(1) // 'Cat'
 ```
 
---------------------------------
+---
 
 ### Usage of useRouteParams
 
@@ -22932,49 +21630,22 @@ Source: https://vueuse.org/router/userouteparams
 Demonstrates basic usage, default values, and value transformation for route parameters.
 
 ```typescript
-import { 
-useRouteParams
- } from '@vueuse/router'
+import {useRouteParams} from '@vueuse/router'
 
-const 
-userId
- = 
-useRouteParams
-('userId')
+const userId = useRouteParams('userId')
 
-const 
-userId
- = 
-useRouteParams
-('userId', '-1') // or with a default value
+const userId = useRouteParams('userId', '-1') // or with a default value
 
-const 
-userId
- = 
-useRouteParams
-('page', '1', { 
-transform
-: 
-Number
- }) // or transforming value
+const userId = useRouteParams('page', '1', {
+	transform: Number,
+}) // or transforming value
 
+console.log(userId.value) // route.params.userId
 
-console
-.
-log
-(
-userId
-.
-value
-) // route.params.userId
-
-userId
-.
-value
- = '100' // router.replace({ params: { userId: '100' } })
+userId.value = '100' // router.replace({ params: { userId: '100' } })
 ```
 
---------------------------------
+---
 
 ### useFetch
 
@@ -22982,7 +21653,7 @@ Source: https://vueuse.org/core/usefetch
 
 The core composable for making HTTP requests. It can be used with various overloads depending on the arguments provided.
 
-```APIDOC
+````APIDOC
 ## useFetch
 
 ### Description
@@ -23010,22 +21681,26 @@ None (for the basic `useFetch` signature)
   "example": "// Basic usage\nconst { data } = useFetch('/api/users').json()\n
 // With options\nconst { data } = useFetch('/api/posts', { method: 'POST' }, { refetch: true })"
 }
-```
+````
 
 ### Response
+
 #### Success Response (200)
+
 - **data** (any) - The data returned from the fetch request.
 - **error** (Ref<Error | null>) - A ref containing any error that occurred during the fetch.
 - **isFetching** (Ref<boolean>) - A ref indicating if the request is currently in progress.
 - **isFinished** (Ref<boolean>) - A ref indicating if the request has completed.
 
 #### Response Example
+
 ```json
 {
-  "example": "// Example success response structure depends on the API\n{\"id\": 1, \"title\": \"Example Post\" }"
+	"example": "// Example success response structure depends on the API\n{\"id\": 1, \"title\": \"Example Post\" }"
 }
 ```
-```
+
+````
 
 --------------------------------
 
@@ -23069,17 +21744,23 @@ const props = defineProps({
 const emit = defineEmits(['update:foo', 'update:bar'])
 
 const { foo, bar } = useVModels(props, emit)
-```
+````
 
 ### Response
+
 #### Success Response (200)
+
 Returns reactive references for each prop that can be used with v-model.
 
 #### Response Example
+
 ```json
 {
-  "foo": "",
-  "bar": 0
+	"foo": "",
+	"bar": 0
 }
 ```
+
+```
+
 ```
