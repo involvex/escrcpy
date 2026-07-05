@@ -38,25 +38,25 @@
 		"typecheck": "tsc"
 	},
 	"dependencies": {
-		"@clack/prompts": "^0.11.0",
-		"acorn": "^8.15.0",
+		"@clack/prompts": "^1.7.0",
+		"acorn": "^8.17.0",
 		"acorn-loose": "^8.5.2",
 		"consola": "^3.4.2",
-		"dayjs": "^1.11.19",
-		"fs-extra": "^11.3.3",
+		"dayjs": "^1.11.21",
+		"fs-extra": "^11.3.6",
 		"kolorist": "^1.8.0",
 		"mitt": "^3.0.1",
-		"openai": "^6.10.0",
-		"sharp": "^0.34.5",
-		"std-env": "^3.10.0",
-		"tinyexec": "^1.0.2",
-		"unzipper": "^0.12.3"
+		"openai": "^6.45.0",
+		"sharp": "^0.35.3",
+		"std-env": "^4.1.0",
+		"tinyexec": "^1.2.4",
+		"unzipper": "^0.12.5"
 	},
 	"devDependencies": {
 		"@autoglm.js/shared": "workspace:*",
 		"@types/fs-extra": "^11.0.4",
 		"@types/minimist": "^1.2.5",
-		"vitest": "^4.0.16"
+		"vitest": "^4.1.9"
 	},
 	"optionalDependencies": {
 		"@autoglm.js/adb-keyboard": "workspace:*"

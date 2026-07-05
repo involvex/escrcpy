@@ -33,14 +33,14 @@
 	},
 	"dependencies": {
 		"@escrcpy/electron-ipcx": "workspace:*",
-		"electron-store": "^10.0.0",
-		"es-toolkit": "^1.43.0",
-		"nanoid": "^5.0.7",
-		"unctx": "^2.4.0"
+		"electron-store": "^11.0.2",
+		"es-toolkit": "^1.49.0",
+		"nanoid": "^5.1.16",
+		"unctx": "^2.5.0"
 	},
 	"devDependencies": {
-		"electron": "*",
-		"tsdown": "*",
-		"typescript": "*"
+		"electron": "^43.0.0",
+		"tsdown": "^0.22.3",
+		"typescript": "^6.0.3"
 	}
 }
