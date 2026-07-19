@@ -8,12 +8,11 @@ import { localesDir } from '$electron/configs/extra/index.js'
 const lng = electronStore.get('common.language') ?? osLocale() ?? 'en-US'
 const loadPath = path.join(localesDir, '{lng}.json')
 
-i18n
+const initPromise = i18n
   .use(Backend)
   .init({
     lng,
     fallbackLng: 'en-US',
-    initAsync: false,
     backend: {
       loadPath,
     },
@@ -25,7 +24,9 @@ i18n
     returnEmptyString: false,
   })
 
-export const t = i18n.t
+export const t = (...args) => i18n.t(...args)
+
+export { initPromise }
 
 electronStore.onDidChange('common.language', (val) => {
   if (i18n.language === val) {

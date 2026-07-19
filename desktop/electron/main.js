@@ -41,6 +41,8 @@ import {
   updaterService,
 } from './services/index.js'
 
+import { initPromise as i18nInitPromise } from './helpers/i18n/index.js'
+
 import {
   controlModule,
   copilotModule,
@@ -85,6 +87,7 @@ mainApp.use(explorerModule)
 mainApp.use(terminalModule)
 mainApp.use(scheduleModule)
 
-app.whenReady().then(() => {
+app.whenReady().then(async () => {
+  await i18nInitPromise
   mainApp.start()
 })
