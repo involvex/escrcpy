@@ -56,6 +56,7 @@
 		"@autoglm.js/shared": "workspace:*",
 		"@types/fs-extra": "^11.0.4",
 		"@types/minimist": "^1.2.5",
+		"tsdown": "^0.22.3",
 		"vitest": "^4.1.9"
 	},
 	"optionalDependencies": {

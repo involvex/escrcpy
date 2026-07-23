@@ -145,6 +145,7 @@
         "@autoglm.js/shared": "workspace:*",
         "@types/fs-extra": "^11.0.4",
         "@types/minimist": "^1.2.5",
+        "tsdown": "^0.22.3",
         "vitest": "^4.1.9",
       },
       "optionalDependencies": {
@@ -156,6 +157,7 @@
       "version": "2.11.1",
       "devDependencies": {
         "@autoglm.js/shared": "workspace:*",
+        "tsdown": "^0.22.3",
       },
     },
     "packages/autoglm.js-shared": {

@@ -6,7 +6,6 @@ import useUnoCSS from 'unocss/vite'
 import { defineConfig, mergeConfig } from 'vite'
 
 import useElectron from 'vite-plugin-electron/simple'
-import useRenderer from 'vite-plugin-electron-renderer'
 
 import postcssConfig from './postcss.config.js'
 
@@ -86,7 +85,6 @@ export default function (args) {
             },
           },
         }),
-        useRenderer(),
         ...useInternalPlugins(),
       ],
       css: {

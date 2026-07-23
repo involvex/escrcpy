@@ -33,6 +33,7 @@
 		"prepublishOnly": "pnpm build"
 	},
 	"devDependencies": {
-		"@autoglm.js/shared": "workspace:*"
+		"@autoglm.js/shared": "workspace:*",
+		"tsdown": "^0.22.3"
 	}
 }

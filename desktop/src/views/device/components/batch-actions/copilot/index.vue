@@ -24,7 +24,7 @@ const props = defineProps({
   },
 })
 
-const taskStore = useTaskStore()
+const scheduleStore = useScheduleStore()
 
 const loading = ref(false)
 
@@ -36,11 +36,11 @@ const chatInputLazy = useLazy()
 const currentTask = ref(null)
 
 onMounted(() => {
-  taskStore.on('copilot', (task) => {
+  scheduleStore.on('copilot', (task) => {
     currentTask.value = task
 
-    taskStore.start({
-      task,
+    scheduleStore.start({
+      schedule: task,
       handler: executeBatchCopilotTask,
     })
   })
@@ -279,7 +279,7 @@ async function handleSubmit(command) {
 }
 
 async function handleStop() {
-  taskStore.stop(currentTask.value)
+  scheduleStore.stop(currentTask.value)
   props.devices.forEach((device) => {
     copilotClient.stop(device.id)
   })
