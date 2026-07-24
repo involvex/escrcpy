@@ -11,7 +11,8 @@ function loadTranslations(lang) {
   try {
     const filePath = path.join(localesDir, `${lang}.json`)
     return JSON.parse(fs.readFileSync(filePath, 'utf-8'))
-  } catch {
+  }
+  catch {
     return {}
   }
 }

@@ -217,6 +217,22 @@ export default {
       placeholder: 'preferences.common.enableSystemTerminal.placeholder',
       tips: 'preferences.common.enableSystemTerminal.tips',
     },
+    minimizeToTray: {
+      label: 'preferences.common.minimizeToTray.name',
+      field: 'minimizeToTray',
+      type: 'Switch',
+      value: false,
+      placeholder: 'preferences.common.minimizeToTray.placeholder',
+    },
+    globalHotkey: {
+      label: 'preferences.common.globalHotkey.name',
+      field: 'globalHotkey',
+      type: 'Input',
+      value: 'ctrl+shift+m',
+      placeholder: 'preferences.common.globalHotkey.placeholder',
+      tips: 'preferences.common.globalHotkey.tips',
+      span: 24,
+    },
     concurrencyLimit: {
       label: 'preferences.common.concurrencyLimit.name',
       field: 'concurrencyLimit',

@@ -841,6 +841,11 @@
   "preferences.common.gnirehtet.name": "Gnirehtet Path",
   "preferences.common.gnirehtet.placeholder": "Custom gnirehtet path",
   "preferences.common.gnirehtet.tips": "The path for gnirehtet used to provide reverse tethering for devices.",
+  "preferences.common.globalHotkey.name": "Global Hotkey",
+  "preferences.common.globalHotkey.placeholder": "ctrl+shift+m",
+  "preferences.common.globalHotkey.tips": "Press this key combination to show/focus the app from anywhere. Format: ctrl+shift+m, alt+shift+e, etc.",
+  "preferences.common.minimizeToTray.name": "Minimize to Tray",
+  "preferences.common.minimizeToTray.placeholder": "When enabled, close button will minimize to tray instead of showing dialog",
   "preferences.common.name": "Common",
   "preferences.common.scrcpy.append.name": "Scrcpy Arguments",
   "preferences.common.scrcpy.append.placeholder": "Append additional arguments to the scrcpy command",
@@ -1153,5 +1158,10 @@
   "time.unit.second": "second",
   "time.unit.week": "week",
   "time.unit.year": "year",
-  "time.update": "Update time"
+  "time.update": "Update time",
+  "tray.open": "Open App",
+  "tray.quickMirror": "Quick Mirror",
+  "tray.quickMirror.noDevice": "No device to mirror",
+  "tray.quickTerminal": "Quick Terminal",
+  "tray.settings": "Settings"
 }

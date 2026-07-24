@@ -1,16 +1,12 @@
-import { electronAPI } from '@electron-toolkit/preload'
 import { sheller } from '$electron/helpers/shell/index.js'
 import commandHelper from '$renderer/utils/command/index.js'
+import electronStore from '$electron/helpers/store/index.js'
 
 import { ProcessManager } from '$electron/process/manager.js'
 
 import { parseDisplayIds, parseScrcpyAppList, parseScrcpyCameras, parseScrcpyCodecList } from './helper.js'
 
 const processManager = new ProcessManager()
-
-electronAPI.ipcRenderer.on('quit-before', () => {
-  processManager.kill()
-})
 
 function normalizeScrcpyError(error) {
   const message = error?.stderr || error?.message
@@ -65,8 +61,12 @@ async function getEncoders(serial) {
   return value
 }
 
-async function mirror(...args) {
-  return createMirrorProcess(...args)
+async function mirror(serial, options = {}) {
+  electronStore.set('lastConnectedDevice', {
+    id: serial,
+    timestamp: Date.now(),
+  })
+  return createMirrorProcess(serial, options)
 }
 
 async function record(serial, { title, args = '', savePath, ...options } = {}) {
@@ -199,6 +199,14 @@ async function killProcesses() {
   return processManager.kill()
 }
 
+async function quickMirror(deviceId, options = {}) {
+  electronStore.set('lastConnectedDevice', {
+    id: deviceId,
+    timestamp: Date.now(),
+  })
+  return createMirrorProcess(deviceId, options)
+}
+
 export default {
   shell,
   getEncoders,
@@ -210,4 +218,5 @@ export default {
   getDisplayIds,
   getCameraList,
   killProcesses,
+  quickMirror,
 }

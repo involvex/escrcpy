@@ -73,6 +73,18 @@ export const useDeviceStore = defineStore('app-device', () => {
     init()
   }
 
+  function setLastConnectedDevice(deviceId) {
+    $electronStore.set('lastConnectedDevice', {
+      id: deviceId,
+      timestamp: Date.now(),
+    })
+  }
+
+  function getLastConnectedDevice() {
+    const lastDevice = $electronStore.get('lastConnectedDevice')
+    return lastDevice
+  }
+
   return {
     list,
     config,
@@ -80,5 +92,7 @@ export const useDeviceStore = defineStore('app-device', () => {
     getLabel,
     getList,
     setRemark,
+    setLastConnectedDevice,
+    getLastConnectedDevice,
   }
 })

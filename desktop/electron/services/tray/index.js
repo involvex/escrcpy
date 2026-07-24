@@ -5,6 +5,7 @@ import { globalEventEmitter } from '$electron/helpers/emitter/index.js'
 import { sleep } from '$/utils'
 import { resolveMainWindow } from '@escrcpy/electron-setup/main'
 import { t } from '$electron/helpers/i18n/index.js'
+import scrcpy from '$electron/middleware/scrcpy/index.js'
 
 export default {
   name: 'service:tray',
@@ -30,6 +31,12 @@ export default {
         }
 
         event.preventDefault()
+
+        const minimizeToTray = electronStore.get('common.minimizeToTray')
+        if (minimizeToTray) {
+          createTray()
+          return true
+        }
 
         let appCloseCode = electronStore.get('common.appCloseCode')
 
@@ -109,7 +116,56 @@ export default {
       return false
     }
 
+    function navigateToSettings() {
+      const mainWindow = mainApp.getMainWindow()
+      if (mainWindow) {
+        mainWindow.show()
+        mainWindow.webContents.send('navigate-to-route', '/preference')
+      }
+    }
+
+    function openQuickTerminal() {
+      const terminalManager = mainApp.getWindowManager('pages/terminal')
+      if (terminalManager) {
+        terminalManager.open({
+          type: 'local',
+          title: t('tray.quickTerminal'),
+        })
+      }
+    }
+
+    async function quickMirrorLastDevice() {
+      const lastDevice = electronStore.get('lastConnectedDevice')
+      if (!lastDevice?.id) {
+        dialog.showMessageBox({
+          type: 'info',
+          title: t('common.tips'),
+          message: t('tray.quickMirror.noDevice'),
+        })
+        return
+      }
+
+      try {
+        await scrcpy.quickMirror(lastDevice.id, {
+          title: `escrcpy-${lastDevice.id}`,
+        })
+      }
+      catch (error) {
+        console.error('[tray] quickMirror error:', error)
+        dialog.showMessageBox({
+          type: 'error',
+          title: t('common.danger'),
+          message: error.message,
+        })
+      }
+    }
+
     function createTray() {
+      if (tray) {
+        tray.destroy()
+        tray = null
+      }
+
       hideApp()
 
       tray = new Tray(trayPath)
@@ -122,11 +178,32 @@ export default {
 
       const contextMenu = Menu.buildFromTemplate([
         {
-          label: t('common.open'),
+          label: t('tray.open'),
           click: () => {
             showApp()
           },
         },
+        { type: 'separator' },
+        {
+          label: t('tray.quickMirror'),
+          click: () => {
+            quickMirrorLastDevice()
+          },
+        },
+        {
+          label: t('tray.quickTerminal'),
+          click: () => {
+            openQuickTerminal()
+          },
+        },
+        { type: 'separator' },
+        {
+          label: t('tray.settings'),
+          click: () => {
+            navigateToSettings()
+          },
+        },
+        { type: 'separator' },
         {
           label: t('common.restart'),
           click: () => {

@@ -8,7 +8,7 @@
 	},
 	"author": "involvex",
 	"type": "module",
-	"main": "dist-electron/main.js",
+	"main": "desktop/dist-electron/main.js",
 	"bin": {
 		"escrcpy": "bin/cli.js"
 	},

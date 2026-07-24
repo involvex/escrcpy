@@ -841,6 +841,11 @@
   "preferences.common.gnirehtet.name": "gnirehtet 路径",
   "preferences.common.gnirehtet.placeholder": "自定义 gnirehtet 路径",
   "preferences.common.gnirehtet.tips": "用于为设备反向供网的 gnirehtet 地址。",
+  "preferences.common.globalHotkey.name": "全局快捷键",
+  "preferences.common.globalHotkey.placeholder": "ctrl+shift+m",
+  "preferences.common.globalHotkey.tips": "使用此组合键从任意位置显示/聚焦应用。格式：ctrl+shift+m, alt+shift+e 等。",
+  "preferences.common.minimizeToTray.name": "最小化到托盘",
+  "preferences.common.minimizeToTray.placeholder": "启用后，关闭按钮将直接最小化到托盘而不显示对话框",
   "preferences.common.name": "通用",
   "preferences.common.scrcpy.append.name": "scrcpy 参数",
   "preferences.common.scrcpy.append.placeholder": "为 scrcpy 命令追加额外的参数",
@@ -1153,5 +1158,10 @@
   "time.unit.second": "秒",
   "time.unit.week": "周",
   "time.unit.year": "年",
-  "time.update": "更新时间"
+  "time.update": "更新时间",
+  "tray.open": "打开应用",
+  "tray.quickMirror": "快速镜像",
+  "tray.quickMirror.noDevice": "没有可镜像的设备",
+  "tray.quickTerminal": "快速终端",
+  "tray.settings": "设置"
 }
