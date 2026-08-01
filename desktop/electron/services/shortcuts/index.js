@@ -1,4 +1,4 @@
-import { globalShortcut } from 'electron'
+import { app, globalShortcut } from 'electron'
 import electronStore from '$electron/helpers/store/index.js'
 
 export default {

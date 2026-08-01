@@ -27,6 +27,7 @@ export default antfu(
 			globals: {
 				'window.$preload': 'readonly',
 				t: 'readonly',
+				useSubscribeStore: 'readonly',
 				...desktopAutoImport.globals,
 			},
 		},
@@ -81,6 +82,8 @@ export default antfu(
 
 			'ts/no-unsafe-function-type': 'off',
 			'ts/method-signature-style': 'off',
+
+			'no-undef': 'off',
 		},
 	},
 )

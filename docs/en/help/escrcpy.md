@@ -4,7 +4,7 @@ title: Escrcpy
 
 # Escrcpy
 
-### Computer cannot detect device after connecting
+## Computer cannot detect device after connecting
 
 1. Please unplug and reconnect your device, and make sure the device has granted USB debugging authorization.
 2. If it still doesn't work, your computer may be missing necessary drivers. Please install drivers using third-party tools such as DriverWizard and try again.

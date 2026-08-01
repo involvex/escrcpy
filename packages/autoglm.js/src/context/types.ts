@@ -18,6 +18,12 @@ export interface AgentConfigType {
 	topP: number
 	frequencyPenalty: number
 	screenshotQuality?: number
+	/**
+	 * Whether the model supports vision/image input.
+	 * If false, screenshots will not be sent to the model.
+	 * @default true
+	 */
+	vision?: boolean
 }
 
 export interface EventData {

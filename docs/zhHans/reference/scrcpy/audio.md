@@ -38,7 +38,7 @@ scrcpy --no-window
 # 按 Ctrl+C 中断
 ```
 
-无视频时，音频延迟通常不关键，因此可以增加[缓冲](#buffering)以减少卡顿：
+无视频时，音频延迟通常不关键，因此可以增加[缓冲](#缓冲)以减少卡顿：
 
 ```
 scrcpy --no-video --audio-buffer=200

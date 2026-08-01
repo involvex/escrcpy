@@ -184,7 +184,7 @@ cd scrcpy
 
 如果只需构建客户端（服务器二进制文件将被推送到 Android 设备，不依赖于系统架构），可以使用 [预构建服务器]（此时无需 Java 或 Android SDK）。
 
-[预构建服务器]: #选项-2-使用预构建服务器
+[预构建服务器]: #prebuilt-server
 
 #### 选项 1：从源码构建所有内容
 
@@ -212,7 +212,7 @@ _注意：`ninja` [必须][ninja-user] 以非 root 用户运行（只有 `ninja 
 
 [ninja-user]: https://github.com/Genymobile/scrcpy/commit/4c49b27e9f6be02b8e63b508b60535426bd0291a
 
-#### 选项 2：使用预构建服务器
+#### 选项 2：使用预构建服务器 {#prebuilt-server}
 
 - [`scrcpy-server-v3.2`][direct-scrcpy-server]
   <sub>SHA-256: `b920e0ea01936bf2482f4ba2fa985c22c13c621999e3d33b45baa5acfc1ea3d0`</sub>

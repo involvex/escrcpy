@@ -25,6 +25,8 @@ export default {
     '**/node_modules/sharp/**/*',
     '**/node_modules/@img/**/*',
     '**/node_modules/@lydell/**/*',
+    '**/node_modules/autoglm.js/**/*',
+    '**/node_modules/@autoglm.js/**/*',
   ],
 
   win: {

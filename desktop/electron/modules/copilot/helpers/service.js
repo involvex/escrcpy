@@ -133,6 +133,7 @@ class CopilotService {
       topP: config.topP,
       frequencyPenalty: config.frequencyPenalty,
       screenshotQuality: config.screenshotQuality,
+      vision: config.vision,
     }
   }
 

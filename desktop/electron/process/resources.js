@@ -4,7 +4,16 @@ import which from 'which'
 export function extraResolve(filePath) {
   const isProduction = import.meta.env.MODE === 'production'
 
-  const basePath = isProduction ? process.resourcesPath : 'electron/resources'
+  let basePath
+  if (isProduction) {
+    basePath = process.resourcesPath
+    if (basePath.endsWith('\electron') || basePath.endsWith('/electron')) {
+      basePath = basePath.replace(/[/\\]electron$/, '')
+    }
+  }
+  else {
+    basePath = 'electron/resources'
+  }
 
   const value = resolve(basePath, 'extra', filePath)
 

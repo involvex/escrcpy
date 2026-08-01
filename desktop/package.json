@@ -9,16 +9,32 @@
   "main": "dist-electron/main.js",
   "scripts": {
     "build": "vite build",
-    "build:electron": "electron-builder --config=./electron-builder.config.js --publish=never",
+    "build:electron": "electron-builder --config=./electron-builder-alt.config.js --publish=never --win dir && node scripts/patch-autoglm-asar.js dist-release-new && electron-builder --config=./electron-builder-noinstall.config.js --publish=never --win portable --prepackaged dist-release-new/win-unpacked",
     "dev": "vite dev",
     "electron-fix": "npx electron-fix start",
     "locale-sync": "node scripts/locale-sync.js",
     "postinstall": "electron-builder install-app-deps"
   },
   "dependencies": {
+    "@img/colour": "^1.1.0",
+    "@img/sharp-win32-x64": "0.35.3",
     "@lydell/node-pty": "1.2.0-beta.12",
+    "acorn-loose": "^8.5.2",
+    "consola": "^3.4.2",
+    "dayjs": "1.11.21",
+    "detect-libc": "^2.1.2",
+    "fs-extra": "^11.3.6",
+    "graceful-fs": "^4.2.11",
     "i18next-fs-backend": "2.6.6",
-    "sharp": "0.35.3"
+    "jsonfile": "^6.2.1",
+    "kolorist": "^1.8.0",
+    "mitt": "^3.0.1",
+    "openai": "^6.45.0",
+    "semver": "^7.8.5",
+    "sharp": "^0.35.3",
+    "std-env": "^4.1.0",
+    "tinyexec": "^1.2.4",
+    "universalify": "^2.0.1"
   },
   "devDependencies": {
     "@devicefarmer/adbkit": "3.3.8",
@@ -72,6 +88,7 @@
     "i18next-json-sync": "3.1.2",
     "iconv-lite": "0.7.3",
     "ip-regex": "5.0.0",
+    "locale-sync": "^1.1.9",
     "lodash-es": "4.18.1",
     "minimist": "1.2.8",
     "nanoid": "5.1.16",

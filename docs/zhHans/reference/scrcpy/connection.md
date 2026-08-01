@@ -30,7 +30,7 @@ title: Connection（连接）
   scrcpy --select-tcpip
   scrcpy -e   # 简写形式
   ```
-- 选择已监听 TCP/IP 连接的设备（见[下文](#tcpip-无线连接)）：
+- 选择已监听 TCP/IP 连接的设备（见[下文](#tcpip-wireless)）：
   ```bash
   scrcpy --tcpip=192.168.1.1:5555
   scrcpy --tcpip=192.168.1.1        # 默认端口为 5555
@@ -56,7 +56,7 @@ $env:ANDROID_SERIAL = '0123456789abcdef'
 scrcpy
 ```
 
-## TCP/IP（无线连接）
+## TCP/IP（无线连接） {#tcpip-wireless}
 
 _Scrcpy_ 使用 `adb` 与设备通信，而 `adb` 可以通过 TCP/IP [连接] 设备。设备必须与计算机连接在同一网络中。
 

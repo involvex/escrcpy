@@ -142,12 +142,18 @@ export class PhoneAgent {
 	): Promise<StepResult> {
 		this.stepCount++
 
-		// Capture current screen state
-		const screenshot = await getScreenshot(
-			this.agentConfig.deviceId,
-			10,
-			this.agentConfig.screenshotQuality,
-		)
+		// Check if model supports vision
+		const supportsVision = this.agentConfig.vision !== false
+
+		// Capture current screen state (only if vision is supported)
+		let screenshot = null
+		if (supportsVision) {
+			screenshot = await getScreenshot(
+				this.agentConfig.deviceId,
+				10,
+				this.agentConfig.screenshotQuality,
+			)
+		}
 		const currentApp = await getCurrentApp(
 			this.agentConfig.deviceId,
 			this.agentConfig.customApps,
@@ -165,7 +171,10 @@ export class PhoneAgent {
 			const textContent = `${task!}\n\n${screenInfo}`
 
 			this.context.push(
-				MessageBuilder.createUserMessage(textContent, screenshot.base64Data),
+				MessageBuilder.createUserMessage(
+					textContent,
+					supportsVision ? screenshot?.base64Data : undefined,
+				),
 			)
 		} else {
 			// Add screen update message
@@ -173,7 +182,10 @@ export class PhoneAgent {
 			const textContent = `** Screen Info **\n\n${screenInfo}`
 
 			this.context.push(
-				MessageBuilder.createUserMessage(textContent, screenshot.base64Data),
+				MessageBuilder.createUserMessage(
+					textContent,
+					supportsVision ? screenshot?.base64Data : undefined,
+				),
 			)
 		}
 
@@ -217,8 +229,8 @@ export class PhoneAgent {
 			// Execute action
 			const result = await this.actionHandler.execute(
 				action,
-				screenshot.width,
-				screenshot.height,
+				screenshot?.width ?? 0,
+				screenshot?.height ?? 0,
 			)
 
 			// Add assistant response to context

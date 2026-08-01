@@ -32,4 +32,6 @@ dist
 dist-ssr
 dist-electron
 dist-release
+dist-release-new/
+dist-release-*
 dist-docs

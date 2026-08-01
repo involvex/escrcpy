@@ -11,7 +11,7 @@ title: keyboard（键盘）
 - `--keyboard=aoa`：通过 AOAv2 协议模拟物理 HID 键盘
 - `--keyboard=disabled` 禁用键盘输入
 
-默认使用 `sdk` 模式，但如果经常使用 scrcpy，建议切换到 [`uhid`](#uhid) 模式并一次性配置键盘布局。
+默认使用 `sdk` 模式，但如果经常使用 scrcpy，建议切换到 [`uhid`](#uhid-模式) 模式并一次性配置键盘布局。
 
 ---
 
@@ -32,7 +32,7 @@ title: keyboard（键盘）
 
 默认情况下，数字和“特殊字符”通过文本事件插入，而字母通过按键事件注入（以便在游戏中正常响应 WASD 等按键）。
 
-但此行为可能导致[问题][prefertext]。若遇到此类问题，可强制将字母作为文本注入（或直接切换至 [UHID](#uhid) 模式）：
+但此行为可能导致[问题][prefertext]。若遇到此类问题，可强制将字母作为文本注入（或直接切换至 [UHID](#uhid-模式) 模式）：
 
 ```bash
 scrcpy --prefer-text

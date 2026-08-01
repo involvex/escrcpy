@@ -40,5 +40,5 @@
 	"devDependencies": {
 		"@types/unzipper": "^0.10.11"
 	},
-	"packageManager": "pnpm@10.25.0"
+	"packageManager": "bun@1.3.14"
 }
