@@ -46,9 +46,10 @@ export function resolveEnvPath(options = {}) {
  * Setup the PATH environment variable by injecting necessary tool paths
  */
 export function setupEnvPath() {
-  const scrcpyPath = getScrcpyPath({ onlyStore: true })
-  const adbPath = getAdbPath({ onlyStore: true })
-  const gnirehtetPath = getGnirehtetPath({ onlyStore: true })
+  // Use validated resolution (falls back to defaults for missing/invalid paths)
+  const scrcpyPath = getScrcpyPath()
+  const adbPath = getAdbPath()
+  const gnirehtetPath = getGnirehtetPath()
 
   const scrcpyDir = scrcpyPath ? dirname(scrcpyPath) : void 0
   const adbDir = adbPath ? dirname(adbPath) : void 0
