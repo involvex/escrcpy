@@ -835,6 +835,7 @@
   "preferences.common.globalHotkey.name": "全局快捷键",
   "preferences.common.globalHotkey.placeholder": "ctrl+shift+m",
   "preferences.common.globalHotkey.tips": "使用此组合键从任意位置显示/聚焦应用。格式：ctrl+shift+m, alt+shift+e 等。",
+  "preferences.common.mirrorShortcuts.name": "镜像快捷键",
   "preferences.common.gnirehtet.append.name": "gnirehtet 參數",
   "preferences.common.gnirehtet.append.placeholder": "為 gnirehtet 命令加上額外的參數",
   "preferences.common.gnirehtet.append.tips": "注意：錄入參數將會直接附加到 gnirehtet 命令中，如果存在重複的參數，並不會自動進行過濾。",

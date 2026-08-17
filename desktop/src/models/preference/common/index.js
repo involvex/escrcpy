@@ -233,6 +233,15 @@ export default {
       tips: 'preferences.common.globalHotkey.tips',
       span: 24,
     },
+    mirrorShortcuts: {
+      label: 'preferences.common.mirrorShortcuts.name',
+      field: 'mirrorShortcuts',
+      type: 'ShortcutList',
+      value: [
+        { accelerator: 'CommandOrControl+D', keyevent: '187', label: 'Recents' },
+      ],
+      span: 24,
+    },
     concurrencyLimit: {
       label: 'preferences.common.concurrencyLimit.name',
       field: 'concurrencyLimit',

@@ -9,6 +9,7 @@ import SliderCameraZoom from './slider-camera-zoom/index.vue'
 import SelectDisplay from './select-display/index.vue'
 import SelectKeyboardInject from './select-keyboard-inject/index.vue'
 import SelectVideoCodec from './select-video-codec/index.vue'
+import ShortcutList from './shortcut-list/index.vue'
 import Switch from './switch/index.vue'
 
 export const inputModel = {
@@ -19,6 +20,7 @@ export const inputModel = {
   KeyboardInjectSelect: SelectKeyboardInject,
   CameraFpsSelect: SelectCameraFps,
   CameraZoomSlider: SliderCameraZoom,
+  ShortcutList,
 
   ColorPicker,
   Input,

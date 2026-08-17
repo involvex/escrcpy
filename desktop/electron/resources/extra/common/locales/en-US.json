@@ -835,6 +835,7 @@
   "preferences.common.globalHotkey.name": "Global Hotkey",
   "preferences.common.globalHotkey.placeholder": "ctrl+shift+m",
   "preferences.common.globalHotkey.tips": "Press this key combination to show/focus the app from anywhere. Format: ctrl+shift+m, alt+shift+e, etc.",
+  "preferences.common.mirrorShortcuts.name": "Mirror Shortcuts",
   "preferences.common.gnirehtet.append.name": "Gnirehtet Arguments",
   "preferences.common.gnirehtet.append.placeholder": "Append additional arguments to the gnirehtet command",
   "preferences.common.gnirehtet.append.tips": "Note: The entered arguments will be directly appended to the gnirehtet command without filtering duplicate arguments.",

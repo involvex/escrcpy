@@ -835,6 +835,7 @@
   "preferences.common.globalHotkey.name": "全局快捷键",
   "preferences.common.globalHotkey.placeholder": "ctrl+shift+m",
   "preferences.common.globalHotkey.tips": "使用此组合键从任意位置显示/聚焦应用。格式：ctrl+shift+m, alt+shift+e 等。",
+  "preferences.common.mirrorShortcuts.name": "اختصارات المرآة",
   "preferences.common.gnirehtet.append.name": "خيارات Gnirehtet",
   "preferences.common.gnirehtet.append.placeholder": "إلحاق خيارات إضافية لأمر gnirehtet",
   "preferences.common.gnirehtet.append.tips": "ملاحظة: سيتم إلحاق الخيارات المدخلة مباشرةً لأمر gnirehtet دون إزالة الخيارات المكررة.",

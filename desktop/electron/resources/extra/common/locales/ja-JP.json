@@ -835,6 +835,7 @@
   "preferences.common.globalHotkey.name": "全局快捷键",
   "preferences.common.globalHotkey.placeholder": "ctrl+shift+m",
   "preferences.common.globalHotkey.tips": "使用此组合键从任意位置显示/聚焦应用。格式：ctrl+shift+m, alt+shift+e 等。",
+  "preferences.common.mirrorShortcuts.name": "ミラーショートカット",
   "preferences.common.gnirehtet.append.name": "Gnirehtet の引数",
   "preferences.common.gnirehtet.append.placeholder": "Gnirehtet コマンドに引数を追加",
   "preferences.common.gnirehtet.append.tips": "注意: 入力された引数は、重複する引数をフィルタリングせずに Gnirehtet コマンドに直接追加されます。",
