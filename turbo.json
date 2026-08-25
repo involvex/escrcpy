@@ -11,6 +11,7 @@
 			"outputs": ["dist-release/**"]
 		},
 		"dev": {
+			"dependsOn": ["^build"],
 			"cache": false,
 			"persistent": true
 		},

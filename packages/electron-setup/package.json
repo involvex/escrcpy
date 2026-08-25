@@ -27,8 +27,8 @@
 	"scripts": {
 		"build": "tsdown",
 		"dev": "tsdown --watch",
-		"prepare": "pnpm run build",
-		"prepublishOnly": "pnpm run build",
+		"prepare": "tsdown",
+		"prepublishOnly": "tsdown",
 		"typecheck": "tsc"
 	},
 	"dependencies": {
