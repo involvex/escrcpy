@@ -19,7 +19,7 @@
             ...$props,
             ...(item.props || {}),
           }"
-          v-slot="{ loading, trigger }"
+          v-slot="{ loading, trigger, active }"
         >
           <el-dropdown-item :disabled="loading" @click="trigger">
             <template v-if="loading">
@@ -29,6 +29,9 @@
               {{ $t('common.starting') }}
             </template>
             <template v-else>
+              <el-icon v-if="active" class="mr-1">
+                <Check />
+              </el-icon>
               {{ $t(item.label) }}
             </template>
           </el-dropdown-item>
@@ -43,6 +46,7 @@ import Record from './components/record/index.vue'
 import Camera from './components/camera/index.vue'
 import Otg from './components/otg/index.vue'
 import Custom from './components/custom/index.vue'
+import LowLatency from './components/low-latency/index.vue'
 
 const props = defineProps({
   ...Record.props,
@@ -78,6 +82,10 @@ const options = computed(() => {
     {
       label: 'device.actions.more.otg.name',
       component: Otg,
+    },
+    {
+      label: 'device.actions.more.lowLatency.name',
+      component: LowLatency,
     },
     {
       label: 'device.actions.more.custom.name',

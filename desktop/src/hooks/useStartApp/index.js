@@ -1,6 +1,7 @@
 import { quote } from 'shell-quote'
 import { mergeConfig } from '$/store/preference/helpers/index.js'
 import { getLaunchConfig } from '$/utils/launch/index.js'
+import { isPresetDevice, LATENCY_PRESET_ARGS } from '$/utils/latency-preset/index.js'
 import * as displayHelper from '$/utils/device/display/index.js'
 
 export function useStartApp() {
@@ -179,6 +180,7 @@ export function useStartApp() {
     const commands = preferenceStore.scrcpyParameter(mergedConfig, {
       excludes: ['--new-display'],
       useLaunch: shouldCreateNewDisplay,
+      presetArgs: isPresetDevice(deviceId) ? LATENCY_PRESET_ARGS : null,
     })
 
     let newDisplay = ''

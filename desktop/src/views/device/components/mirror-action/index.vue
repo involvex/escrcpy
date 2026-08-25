@@ -14,6 +14,7 @@
 <script>
 import { sleep } from '$/utils'
 import { openFloatControl } from '$/utils/device/index.js'
+import { isPresetDevice, LATENCY_PRESET_ARGS } from '$/utils/latency-preset/index.js'
 
 export default {
   props: {
@@ -45,7 +46,9 @@ export default {
 
       this.toggleRowExpansion(row, true)
 
-      const args = this.preferenceStore.scrcpyParameter(row.id)
+      const args = this.preferenceStore.scrcpyParameter(row.id, {
+        presetArgs: isPresetDevice(row.id) ? LATENCY_PRESET_ARGS : null,
+      })
 
       try {
         const mirroring = this.$scrcpy.mirror(row.id, {

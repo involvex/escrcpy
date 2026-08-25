@@ -140,5 +140,13 @@ export default {
         },
       ],
     },
+    noClipboardAutosync: {
+      label: 'preferences.input.noClipboardAutosync.name',
+      field: '--no-clipboard-autosync',
+      type: 'Switch',
+      value: undefined,
+      placeholder: 'preferences.input.noClipboardAutosync.placeholder',
+      tips: 'preferences.input.noClipboardAutosync.tips',
+    },
   },
 }

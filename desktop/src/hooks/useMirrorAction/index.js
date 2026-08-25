@@ -1,5 +1,6 @@
 import pLimit from 'p-limit'
 import { sleep } from '$/utils'
+import { isPresetDevice, LATENCY_PRESET_ARGS } from '$/utils/latency-preset/index.js'
 
 const MIRROR_START_INTERVAL = 500
 
@@ -31,7 +32,9 @@ export function useMirrorAction() {
   async function startMirror(item, options) {
     const deviceId = item?.id || item
 
-    const args = preferenceStore.scrcpyParameter(deviceId)
+    const args = preferenceStore.scrcpyParameter(deviceId, {
+      presetArgs: isPresetDevice(deviceId) ? LATENCY_PRESET_ARGS : null,
+    })
 
     const mirroring = window.$preload.scrcpy.mirror(deviceId, {
       title: deviceStore.getLabel(deviceId, 'mirror'),

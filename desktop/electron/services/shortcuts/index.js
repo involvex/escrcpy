@@ -1,6 +1,8 @@
 import { app, globalShortcut } from 'electron'
+import { Adb } from '@devicefarmer/adbkit'
 import electronStore from '$electron/helpers/store/index.js'
-import { sheller } from '$electron/helpers/shell/index.js'
+import { getAdbPath } from '$electron/configs/which/index.js'
+import { setupEnvPath } from '$electron/process/helper.js'
 
 const DEFAULT_MIRROR_SHORTCUTS = [
   {
@@ -62,12 +64,20 @@ export default {
       registerHotkey(globalHotkey)
     }
 
+    let adbClient = null
+
+    function getAdbClient() {
+      if (!adbClient) {
+        setupEnvPath()
+        adbClient = Adb.createClient({ bin: getAdbPath() })
+      }
+      return adbClient
+    }
+
     async function sendKeyevent(serial, keyevent) {
       try {
-        await sheller(`adb -s "${serial}" shell input keyevent ${keyevent}`, {
-          shell: true,
-          encoding: 'utf8',
-        })
+        const stream = await getAdbClient().getDevice(serial).shell(`input keyevent ${keyevent}`)
+        await Adb.util.readAll(stream)
       }
       catch (error) {
         console.warn(`[shortcuts] Failed to send keyevent ${keyevent} to ${serial}:`, error?.message || error)

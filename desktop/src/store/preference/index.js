@@ -97,6 +97,7 @@ export const usePreferenceStore = defineStore('app-preference', () => {
       useOtg = false,
       useLaunch = false,
       excludes = [],
+      presetArgs = null,
     } = options || {}
 
     const dataToUse = typeof scope === 'object' ? scope : getData(scope)
@@ -131,7 +132,11 @@ export const usePreferenceStore = defineStore('app-preference', () => {
       delete params['--window-height']
     }
 
-    let value = command.stringify(params)
+    const mergedParams = presetArgs
+      ? { ...params, ...presetArgs }
+      : params
+
+    let value = command.stringify(mergedParams)
     if (dataToUse.scrcpyAppend) {
       value += ` ${dataToUse.scrcpyAppend}`
     }

@@ -3,6 +3,8 @@ import { trayPath } from '$electron/configs/index.js'
 import electronStore from '$electron/helpers/store/index.js'
 import { globalEventEmitter } from '$electron/helpers/emitter/index.js'
 import { sleep } from '$/utils'
+import command from '$renderer/utils/command/index.js'
+import { LATENCY_PRESET_ARGS } from '$/utils/latency-preset/index.js'
 import { resolveMainWindow } from '@escrcpy/electron-setup/main'
 import { t } from '$electron/helpers/i18n/index.js'
 import scrcpy from '$electron/middleware/scrcpy/index.js'
@@ -146,8 +148,15 @@ export default {
       }
 
       try {
+        const presetDevices = electronStore.get('common.latencyPreset') || []
+        const presetEnabled = presetDevices.includes(lastDevice.id)
+        const args = presetEnabled
+          ? command.stringify(LATENCY_PRESET_ARGS)
+          : ''
+
         await scrcpy.quickMirror(lastDevice.id, {
           title: `escrcpy-${lastDevice.id}`,
+          args,
         })
       }
       catch (error) {
