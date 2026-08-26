@@ -16,6 +16,7 @@ import { electronAPI } from '@electron-toolkit/preload'
 import { readDirWithStat } from './helpers/explorer/index.js'
 import { parseDumpsysPackages, parseLsOutput, parsePackageList, parsePackageNames } from './helpers/packages/index.js'
 import { setupEnvPath } from '$electron/process/helper.js'
+import { assertSafePackageName, assertSafeShellArgument, isSafeShellArgument } from '$electron/helpers/shell/safe-args.js'
 import { filterConnectedDevices } from './helpers/index.js'
 
 const processManager = new ProcessManager()
@@ -365,6 +366,9 @@ async function battery(id) {
 async function pair(host, port, code) {
   const address = port ? `${host}:${port}` : host
 
+  assertSafeShellArgument(address, 'address')
+  assertSafeShellArgument(code, 'pairing code')
+
   const { stderr, stdout } = await shell(`pair ${address} ${code}`)
 
   if (stderr) {
@@ -376,6 +380,8 @@ async function pair(host, port, code) {
 
 async function connect(host, port) {
   const address = port ? `${host}:${port}` : host
+
+  assertSafeShellArgument(address, 'address')
 
   const { stderr, stdout } = await shell(`connect ${address}`)
 
@@ -394,6 +400,8 @@ async function connect(host, port) {
 
 async function disconnect(host, port) {
   const address = port ? `${host}:${port}` : host
+
+  assertSafeShellArgument(address, 'address')
 
   const { stderr, stdout } = await shell(`disconnect ${address}`)
 
@@ -645,30 +653,6 @@ async function listPackages(id) {
     system: !userSet.has(item.name),
     disabled: disabledSet.has(item.name),
   }))
-}
-
-/**
- * Android package names: dot-separated segments of letters, digits, `_`, `$`
- * (mirrors what the package manager accepts at install time)
- */
-const PACKAGE_NAME_PATTERN = /^[a-z][\w$]*(?:\.[\w$]+)+$/i
-
-/**
- * Characters that would break out of a single-quoted shell argument
- * or expand into additional commands on the device shell
- */
-const SHELL_UNSAFE_PATTERN = /['"\\;$&|<>()`]/
-
-function assertSafePackageName(pkg) {
-  if (!PACKAGE_NAME_PATTERN.test(String(pkg))) {
-    throw new Error(`Unsafe package name rejected: ${pkg}`)
-  }
-
-  return pkg
-}
-
-function isSafeShellArgument(value) {
-  return !SHELL_UNSAFE_PATTERN.test(String(value))
 }
 
 /**

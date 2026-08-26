@@ -1,4 +1,5 @@
 import { sheller } from '$electron/helpers/shell/index.js'
+import { assertSafePackageName, assertSafeSerial, sanitizeDisplayText, sanitizeFilePath } from '$electron/helpers/shell/safe-args.js'
 import commandHelper from '$renderer/utils/command/index.js'
 import electronStore from '$electron/helpers/store/index.js'
 
@@ -40,8 +41,10 @@ function createMirrorProcess(
   serial,
   { title, args = '', ...options } = {},
 ) {
+  assertSafeSerial(serial)
+
   return createScrcpyProcess(
-    `--serial="${serial}" --window-title="${title}" ${args}`,
+    `--serial="${serial}" --window-title="${sanitizeDisplayText(title)}" ${args}`,
     options,
   )
 }
@@ -51,6 +54,7 @@ async function shell(...args) {
 }
 
 async function getEncoders(serial) {
+  assertSafeSerial(serial)
   const res = await createScrcpyProcess(`--serial="${serial}" --list-encoders`)
 
   const stdout = res.stdout
@@ -69,8 +73,10 @@ async function mirror(serial, options = {}) {
 }
 
 async function record(serial, { title, args = '', savePath, ...options } = {}) {
+  assertSafeSerial(serial)
+
   return createScrcpyProcess(
-    `--serial="${serial}" --window-title="${title}" --record="${savePath}" ${args}`,
+    `--serial="${serial}" --window-title="${sanitizeDisplayText(title)}" --record="${sanitizeFilePath(savePath)}" ${args}`,
     options,
   )
 }
@@ -80,6 +86,8 @@ async function helper(
   command = '',
   options = {},
 ) {
+  assertSafeSerial(serial)
+
   const stringCommand = commandHelper.stringify(command)
 
   return createScrcpyProcess(
@@ -89,6 +97,7 @@ async function helper(
 }
 
 async function getAppList(serial) {
+  assertSafeSerial(serial)
   const res = await createScrcpyProcess(`--serial="${serial}" --list-apps`)
 
   const stdout = res.stdout
@@ -99,6 +108,7 @@ async function getAppList(serial) {
 }
 
 async function getDisplayIds(serial) {
+  assertSafeSerial(serial)
   const res = await createScrcpyProcess(`--serial="${serial}" --list-displays`)
 
   const stdout = res.stdout
@@ -109,6 +119,7 @@ async function getDisplayIds(serial) {
 }
 
 async function getCameraList(serial, options) {
+  assertSafeSerial(serial)
   const res = await createScrcpyProcess(`--serial="${serial}" --list-cameras`)
 
   const stdout = res.stdout
@@ -121,6 +132,8 @@ async function getCameraList(serial, options) {
 async function launch(serial, args = {}) {
   let { commands = '', packageName, useNewDisplay = true, newDisplay = '', landscape, ...options } = args
 
+  assertSafeSerial(serial)
+
   if (useNewDisplay) {
     commands += newDisplay
       ? ` --new-display=${newDisplay}`
@@ -132,6 +145,7 @@ async function launch(serial, args = {}) {
   }
 
   if (packageName && !['unknown'].includes(packageName)) {
+    assertSafePackageName(packageName)
     commands += ` --start-app=${packageName}`
   }
 
