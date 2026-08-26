@@ -27,7 +27,6 @@ export default antfu(
 			globals: {
 				'window.$preload': 'readonly',
 				t: 'readonly',
-				useSubscribeStore: 'readonly',
 				...desktopAutoImport.globals,
 			},
 		},
