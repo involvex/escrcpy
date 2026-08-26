@@ -82,7 +82,15 @@ export default function (args) {
           },
           preload: {
             input: 'electron/preload.js',
-            vite: mergeCommon({}, args),
+            vite: mergeCommon({
+              build: {
+                rollupOptions: {
+                  output: {
+                    format: 'es',
+                  },
+                },
+              },
+            }, args),
             onstart(args) {
               args.reload()
             },
