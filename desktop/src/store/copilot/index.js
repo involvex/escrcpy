@@ -36,17 +36,6 @@ export const useCopilotStore = defineStore('app-copilot', () => {
     window.$preload.store.set('copilot', toRaw(config.value))
   }
 
-  function switchGiteeConfig() {
-    const subscribeStore = useSubscribeStore()
-
-    updateConfig({
-      provider: 'Gitee',
-      baseUrl: ApiModelEnum.Gitee,
-      model: ApiModelEnum.named.Gitee.label,
-      apiKey: subscribeStore.accessToken,
-    })
-  }
-
   function resetConfig(options = {}) {
     if (options.source === 'store') {
       updateConfig(window.$preload.store.get('copilot') ?? defaultConfig)
@@ -60,7 +49,6 @@ export const useCopilotStore = defineStore('app-copilot', () => {
     defaultConfig,
     config,
     updateConfig,
-    switchGiteeConfig,
     resetConfig,
   }
 })

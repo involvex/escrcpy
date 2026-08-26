@@ -54,7 +54,6 @@ export function parseDeviceList(output) {
 class CopilotClient {
   constructor() {
     this.formatter = formatterManager.create()
-    this.preflightChecker = null
   }
 
   /**
@@ -69,23 +68,10 @@ class CopilotClient {
   }
 
   /**
-   * Get the PreflightChecker instance (lazy-loaded)
-   * @private
-   */
-  async _getPreflightChecker() {
-    if (!this.preflightChecker) {
-      const module = await import('$copilot/utils/PreflightChecker.js')
-      this.preflightChecker = module.preflightChecker
-    }
-    return this.preflightChecker
-  }
-
-  /**
-   * Execute a task (supports single-device and batch execution, with preflight checks)
+   * Execute a task (supports single-device and batch execution)
    *
    * **Core features**:
    * - Supports single-device and batch execution
-   * - Automatically runs preflight checks (ADB keyboard, API service, etc.)
    * - Supports function callbacks via electron-ipcx (onData, onExit, onSession)
    * - Automatically formats onData output (via formatter)
    *
@@ -94,60 +80,22 @@ class CopilotClient {
    * @param {string|string[]} options.deviceId - Device ID (string for single device, array for batch)
    * @param {number} [options.maxSteps] - Maximum execution steps
    * @param {boolean} [options.quiet] - Quiet mode (reduced output)
-   * @param {boolean} [options.skipPreflightCheck] - Skip preflight checks (single-device only, default false)
    * @param {function(string, object): void} [options.onData] - Real-time output callback
    *   - Argument 1: formatted {string} - Formatted output
    *   - Argument 2: session {object} - Session object
    * @param {function(object, object): void} [options.onExit] - Task exit callback
    *   - Argument 1: result {object} - Exit info {exitCode, signal}
-   *   - Argument 2: session {object} - Session object
-   * @param {function(object|object[]): void} [options.onSession] - Session creation callback
-   *   - Argument: session {object|object[]} - Single session or session array
-   * @param {function(object): void} [options.onPreflightFail] - Preflight check failure callback
-   *   - Argument: checkResult {object} - Result {passed, failedChecks}
    * @returns {Promise<object|object[]>} Execution result (object for single device, array for batch)
-   * @throws {Error} Thrown when preflight checks fail or execution errors occur
+   * @throws {Error} Thrown when execution errors occur
    */
   async execute(task, options = {}) {
     const {
       deviceId,
-      skipPreflightCheck = false,
-      onPreflightFail,
       onData,
       onExit,
       onSession,
       ...restOptions
     } = options
-
-    if (!skipPreflightCheck && !Array.isArray(deviceId)) {
-      const subscribeStore = useSubscribeStore()
-      const copilotStore = useCopilotStore()
-      const copilotConfig = copilotStore.config || {}
-
-      const checker = await this._getPreflightChecker()
-
-      await subscribeStore.init()
-
-      const checkResult = await checker.runAll({
-        deviceId,
-        copilotConfig,
-        subscribeStore,
-      })
-
-      if (!checkResult.passed) {
-        console.warn(
-          '[CopilotClient] Preflight check failed:',
-          checkResult.failedChecks,
-        )
-
-        if (onPreflightFail) {
-          onPreflightFail(checkResult)
-        }
-
-        const firstFail = checkResult.failedChecks[0]
-        throw new Error(firstFail.message || 'Preflight check did not pass')
-      }
-    }
 
     const wrappedOnData = onData
       ? (payload, session) => {
