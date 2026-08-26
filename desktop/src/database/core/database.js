@@ -15,7 +15,7 @@ import Dexie from 'dexie'
 const DB_NAME = 'escrcpy_local_db'
 
 // Current database version
-const DB_VERSION = 6
+const DB_VERSION = 7
 
 /**
  * Module schema configuration
@@ -47,6 +47,15 @@ const MODULE_SCHEMAS = {
   schedule: {
     schedules: 'id, scheduleType, timerType, status, enabled, scheduledAt, nextRunAt, updatedAt, *deviceIds, [status+enabled], [enabled+scheduledAt]',
   },
+  /**
+   * Copilot task module
+   * - id: Unique task identifier
+   * - status: Task lifecycle status
+   * - createdAt / finishedAt: Timing markers
+   */
+  copilotTask: {
+    copilotTasks: 'id, status, createdAt, finishedAt',
+  },
 }
 
 /**
@@ -72,6 +81,8 @@ class AppDatabase extends Dexie {
     this.chatMessages = this.table('chatMessages')
     // Schedule module
     this.schedules = this.table('schedules')
+    // Copilot task module
+    this.copilotTasks = this.table('copilotTasks')
   }
 
   /**

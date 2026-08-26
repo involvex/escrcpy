@@ -12,7 +12,8 @@ import { MessageRoleEnum, MessageStatusEnum } from '$copilot/dicts/index.js'
 import { deviceSelectionHelper } from '$/utils/device/selection/index.js'
 import ChatInputDialog from './components/chat-input-dialog.vue'
 import copilotClient from '$copilot/services/index.js'
-import { useChatMessages } from '$/database/index.js'
+import { copilotTaskStore, useChatMessages } from '$/database/index.js'
+import { summarizeCopilotBatch } from '$/utils/copilot-task/index.js'
 import pLimit from 'p-limit'
 
 defineOptions({ inheritAttrs: false })
@@ -221,6 +222,17 @@ async function executeBatchCopilotTask(devices, options = {}) {
 
   loading.value = true
 
+  const startedAt = Date.now()
+  const recordId = taskId || `batch-copilot-${startedAt}`
+
+  await copilotTaskStore.createTask({
+    id: recordId,
+    prompt: command,
+    deviceIds: devices.map(device => device.id),
+    total: devices.length,
+    createdAt: startedAt,
+  })
+
   const results = []
   const concurrencyLimit = Number(
     window.$preload.store.get('common.concurrencyLimit') ?? 5,
@@ -240,11 +252,17 @@ async function executeBatchCopilotTask(devices, options = {}) {
     const settledResults = await Promise.allSettled(tasks)
     results.push(...settledResults)
 
-    const successCount = results.filter(
-      r => r.status === 'fulfilled' && r.value.result === 'success',
-    ).length
+    const summary = summarizeCopilotBatch(results)
 
-    if (successCount === 0) {
+    await copilotTaskStore.finishTask(recordId, {
+      status: summary.status,
+      succeeded: summary.succeeded,
+      failed: summary.failed,
+      error: summary.firstError,
+      finishedAt: Date.now(),
+    })
+
+    if (summary.succeeded === 0) {
       ElMessage.error(window.t('common.failed'))
     }
     else {

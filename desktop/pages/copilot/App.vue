@@ -11,6 +11,15 @@
             <el-button
               circle
               text
+              icon="Clock"
+              :title="$t('copilot.history.name')"
+              @click="onHistoryClick"
+            >
+            </el-button>
+
+            <el-button
+              circle
+              text
               icon="Collection"
               :title="$t('copilot.promptManager.title')"
               @click="onPromptManagerClick"
@@ -32,6 +41,7 @@
       <div class="flex-1 min-h-0 overflow-hidden">
         <ChatPanel
           v-if="currentDevice"
+          ref="chatPanelRef"
           :current-device="currentDevice"
           @no-api-key="onConfigClick"
         />
@@ -40,6 +50,8 @@
       <ConfigDialog ref="configDialogRef" />
 
       <PromptManager ref="promptManagerRef" />
+
+      <HistoryDialog ref="historyDialogRef" @rerun="onRerun" />
     </div>
   </el-config-provider>
 </template>
@@ -49,6 +61,7 @@ import { PromptManager } from './components/prompts/index.js'
 import AppHeader from '$/components/app-header/index.vue'
 import ConfigDialog from './components/config/index.vue'
 import ChatPanel from './components/chat/index.vue'
+import HistoryDialog from './components/history/index.vue'
 
 const copilotStore = useCopilotStore()
 const deviceStore = useDeviceStore()
@@ -71,6 +84,8 @@ const { currentDevice, locale, size } = useWindowStateSync({
 
 const configDialogRef = ref(null)
 const promptManagerRef = ref(null)
+const historyDialogRef = ref(null)
+const chatPanelRef = ref(null)
 
 const deviceLabel = computed(() => {
   return deviceStore.getLabel(currentDevice.value, 'name')
@@ -82,6 +97,18 @@ function onConfigClick() {
 
 function onPromptManagerClick() {
   promptManagerRef.value.open()
+}
+
+function onHistoryClick() {
+  historyDialogRef.value.open()
+}
+
+function onRerun(task) {
+  if (!currentDevice.value || !task?.prompt) {
+    return
+  }
+
+  chatPanelRef.value?.handleSubmit(task.prompt)
 }
 </script>
 

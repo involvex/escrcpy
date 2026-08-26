@@ -9,28 +9,28 @@ Each suggestion lists the current state with concrete file references, a propose
 
 ## Summary Table
 
-| ID       | Priority | Category        | Suggestion                                                                                                 | Impact     | Effort     | Confidence |
-| -------- | -------- | --------------- | ---------------------------------------------------------------------------------------------------------- | ---------- | ---------- | ---------- |
-| FEAT-001 | High     | Feature Gap     | Implement the `automation` schedule type handler (data model exists, executor missing) _(implemented)_     | High       | Medium     | 95%        |
-| FEAT-002 | High     | Security        | Harden shell-argument construction in scrcpy/adb middleware against quoting injection _(implemented)_      | High       | Low        | 90%        |
-| FEAT-003 | High     | UX              | OCR language selection + additional tessdata models                                                        | Medium     | Low–Medium | 95%        |
-| FEAT-004 | High     | UX              | Native notification center for long-running tasks                                                          | Medium     | Low        | 90%        |
-| FEAT-005 | High     | Feature Gap     | Preference profile export / import / backup _(hardened: validation + safe apply added to existing import)_ | High       | Medium     | 95%        |
-| FEAT-006 | High     | DevEx           | CI workflow for lint + typecheck + unit tests on PRs _(implemented)_                                       | Medium     | Low        | 95%        |
-| FEAT-007 | High     | Feature         | Device group control (synchronized input across multiple devices)                                          | High       | High       | 85%        |
-| FEAT-008 | Medium   | Feature         | Battery & device telemetry monitor with alerts and history                                                 | Medium     | Medium     | 90%        |
-| FEAT-009 | Medium   | Feature         | Recording post-processing: GIF export, trim, frame extraction                                              | Medium     | Medium     | 90%        |
-| FEAT-010 | Medium   | Maintainability | Unit tests for pure parsers (scrcpy/adb output parsing) _(implemented)_                                    | Medium     | Low        | 95%        |
-| FEAT-011 | Medium   | Feature         | Logcat enhancements: export, saved filter presets, crash-log bundle sharing                                | Medium     | Low–Medium | 90%        |
-| FEAT-012 | Medium   | Feature         | Copilot persistent task history + token/cost tracking                                                      | Medium     | Medium     | 85%        |
-| FEAT-013 | Medium | Feature | Wireless device auto-reconnect manager at startup *(hardened: failure tracking added to existing auto-connect)* | Medium | Low–Medium | 90% |
-| FEAT-014 | Medium   | Feature         | Tray device submenu (per-device connect / mirror / disconnect)                                             | Medium     | Low        | 95%        |
-| FEAT-015 | Medium   | Feature         | Keyboard mapping editor (PC keys → device touches/keyevents)                                               | High       | High       | 80%        |
-| FEAT-016 | Medium   | Feature         | Real CLI beyond `escrcpy` dev launcher (headless mirror/record/screenshot)                                 | Medium     | Medium     | 85%        |
-| FEAT-017 | Low      | Performance     | Cache serial/screen-size enrichment in `getDeviceList` polling                                             | Low–Medium | Low        | 85%        |
-| FEAT-018 | Low      | Feature         | Gamepad support toggle in preferences                                                                      | Low        | Medium     | 80%        |
-| FEAT-019 | Low      | Hygiene         | Remove or wire up unused dependencies (`ga-gtag`)                                                          | Low        | Low        | 85%        |
-| FEAT-020 | Low      | i18n/A11y       | Additional locales, RTL audit for Arabic, accessibility pass                                               | Low        | Medium     | 80%        |
+| ID       | Priority | Category        | Suggestion                                                                                                      | Impact     | Effort     | Confidence |
+| -------- | -------- | --------------- | --------------------------------------------------------------------------------------------------------------- | ---------- | ---------- | ---------- |
+| FEAT-001 | High     | Feature Gap     | Implement the `automation` schedule type handler (data model exists, executor missing) _(implemented)_          | High       | Medium     | 95%        |
+| FEAT-002 | High     | Security        | Harden shell-argument construction in scrcpy/adb middleware against quoting injection _(implemented)_           | High       | Low        | 90%        |
+| FEAT-003 | High     | UX              | OCR language selection + additional tessdata models                                                             | Medium     | Low–Medium | 95%        |
+| FEAT-004 | High     | UX              | Native notification center for long-running tasks                                                               | Medium     | Low        | 90%        |
+| FEAT-005 | High     | Feature Gap     | Preference profile export / import / backup _(hardened: validation + safe apply added to existing import)_      | High       | Medium     | 95%        |
+| FEAT-006 | High     | DevEx           | CI workflow for lint + typecheck + unit tests on PRs _(implemented)_                                            | Medium     | Low        | 95%        |
+| FEAT-007 | High     | Feature         | Device group control (synchronized input across multiple devices)                                               | High       | High       | 85%        |
+| FEAT-008 | Medium   | Feature         | Battery & device telemetry monitor with alerts and history                                                      | Medium     | Medium     | 90%        |
+| FEAT-009 | Medium   | Feature         | Recording post-processing: GIF export, trim, frame extraction                                                   | Medium     | Medium     | 90%        |
+| FEAT-010 | Medium   | Maintainability | Unit tests for pure parsers (scrcpy/adb output parsing) _(implemented)_                                         | Medium     | Low        | 95%        |
+| FEAT-011 | Medium   | Feature         | Logcat enhancements: export, saved filter presets, crash-log bundle sharing                                     | Medium     | Low–Medium | 90%        |
+| FEAT-012 | Medium   | Feature         | Copilot persistent task history + token/cost tracking                                                           | Medium     | Medium     | 85%        |
+| FEAT-013 | Medium   | Feature         | Wireless device auto-reconnect manager at startup _(hardened: failure tracking added to existing auto-connect)_ | Medium     | Low–Medium | 90%        |
+| FEAT-014 | Medium   | Feature         | Tray device submenu (per-device connect / mirror / disconnect)                                                  | Medium     | Low        | 95%        |
+| FEAT-015 | Medium   | Feature         | Keyboard mapping editor (PC keys → device touches/keyevents)                                                    | High       | High       | 80%        |
+| FEAT-016 | Medium   | Feature         | Real CLI beyond `escrcpy` dev launcher (headless mirror/record/screenshot)                                      | Medium     | Medium     | 85%        |
+| FEAT-017 | Low      | Performance     | Cache serial/screen-size enrichment in `getDeviceList` polling                                                  | Low–Medium | Low        | 85%        |
+| FEAT-018 | Low      | Feature         | Gamepad support toggle in preferences                                                                           | Low        | Medium     | 80%        |
+| FEAT-019 | Low      | Hygiene         | Remove or wire up unused dependencies (`ga-gtag`)                                                               | Low        | Low        | 85%        |
+| FEAT-020 | Low      | i18n/A11y       | Additional locales, RTL audit for Arabic, accessibility pass                                                    | Low        | Medium     | 80%        |
 
 ---
 
@@ -152,9 +152,10 @@ Each suggestion lists the current state with concrete file references, a propose
 - **Suggested improvement:** Persist finished task transcripts (prompt, steps, screenshots metadata, outcome, duration) to Dexie; add a history tab in `desktop/pages/copilot/` with re-run ("repeat last task on device X") and search. Optionally track token usage per provider from the openai client responses for cost visibility across the multi-provider setup in `pages/copilot/dicts/api.js`.
 - **Impact:** Medium. **Effort:** Medium. **Confidence:** 85%.
 
-### FEAT-013 — Wireless auto-reconnect manager *(hardened)*
+### FEAT-013 — Wireless auto-reconnect manager _(hardened)_
 
 > **Status:** Startup auto-connect already existed (`wireless-group/index.vue` retrying every Wi-Fi history address when `autoConnect` is enabled) — the original analysis missed it. Shipped hardening: `desktop/src/utils/device/wireless-reconnect/index.js` adds an address filter (only real `host:port` ids, not USB serials or mDNS names) and a persisted failure counter (`wireless.reconnectFailures` in electron-store) so dead addresses stop being retried after 3 consecutive failures; manual connect success or removing the entry clears the counter. 16 unit tests.
+
 - **Suggested improvement:** On app launch (and optionally on a timer), attempt `connect()` for history wireless devices whose last known address matches `<ip>:5555`-style patterns, marking stale entries after N failures. Surface reconnect status inline in the device list. Reduces manual re-pairing friction after reboots/network switches.
 - **Impact:** Medium. **Effort:** Low–Medium. **Confidence:** 90%.
 

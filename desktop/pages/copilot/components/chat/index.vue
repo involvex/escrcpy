@@ -284,6 +284,10 @@ onUnmounted(() => {
     copilotClient.destroy(props.currentDevice?.id)
   }
 })
+
+defineExpose({
+  handleSubmit,
+})
 </script>
 
 <style lang="postcss"></style>

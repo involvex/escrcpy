@@ -38,6 +38,13 @@ export { useLiveQuery, useLiveQueryWithDeps, useLiveQueryWithState } from './hoo
 // Chat module
 export { chatMessageStore, useChatMessages } from './modules/chat/index.js'
 
+// Copilot task module
+export {
+  CopilotTaskStatus,
+  copilotTaskStore,
+  useCopilotTasks,
+} from './modules/copilot-task/index.js'
+
 // Schedule module
 export {
   ActiveScheduleStatuses,
