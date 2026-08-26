@@ -15,7 +15,7 @@ import Dexie from 'dexie'
 const DB_NAME = 'escrcpy_local_db'
 
 // Current database version
-const DB_VERSION = 5
+const DB_VERSION = 6
 
 /**
  * Module schema configuration
@@ -32,7 +32,7 @@ const MODULE_SCHEMAS = {
    * - timestamp: Message timestamp
    */
   chat: {
-    chatMessages: '++id, deviceId, role, timestamp, [deviceId+timestamp]',
+    chatMessages: '++id, sessionId, deviceId, role, timestamp, [deviceId+timestamp]',
   },
   /**
    * Schedule module
