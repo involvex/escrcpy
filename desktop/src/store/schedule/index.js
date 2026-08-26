@@ -69,7 +69,7 @@ function normalizeScheduleForTimer(schedule) {
   }
 }
 
-export { getNextRetryAt, getScheduledAt, isTimeoutExpired }
+export { getScheduledAt, isTimeoutExpired }
 
 export const useScheduleStore = defineStore('app-schedule', () => {
   const model = ref([

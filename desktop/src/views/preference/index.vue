@@ -169,6 +169,10 @@ watch(() => preferenceData.value.theme, (val) => {
 function _handleSave() {
   preferenceStore.setData(preferenceData.value)
 }
+
+onBeforeUnmount(() => {
+  handleSave.flush()
+})
 </script>
 
 <style scoped lang="postcss">
