@@ -67,7 +67,11 @@ export default {
 
       this.loading = true
 
-      this.toggleRowExpansion(row, true)
+      const showControlBar = window.$preload.store.get('common.controlBarOnMirror') !== false
+
+      if (showControlBar) {
+        this.toggleRowExpansion(row, true)
+      }
 
       const savePath = this.getRecordPath(row)
 
@@ -94,7 +98,7 @@ export default {
 
         this.loading = false
 
-        if (['default'].includes(this.$props.type)) {
+        if (showControlBar) {
           openFloatControl(toRaw(this.row))
         }
 

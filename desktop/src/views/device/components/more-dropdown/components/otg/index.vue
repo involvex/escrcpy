@@ -36,7 +36,11 @@ export default {
 
       this.loading = true
 
-      this.toggleRowExpansion(row, true)
+      const showControlBar = window.$preload.store.get('common.controlBarOnMirror') !== false
+
+      if (showControlBar) {
+        this.toggleRowExpansion(row, true)
+      }
 
       const args = `--otg ${this.preferenceStore.scrcpyParameter(row.id, {
         excludes: [

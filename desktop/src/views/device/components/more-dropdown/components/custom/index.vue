@@ -58,7 +58,11 @@ async function handleScrcpy(args) {
     args += ' --video-source=camera'
   }
 
-  toggleRowExpansion(row, true)
+  const showControlBar = window.$preload.store.get('common.controlBarOnMirror') !== false
+
+  if (showControlBar) {
+    toggleRowExpansion(row, true)
+  }
 
   try {
     const mirroring = window.$preload.scrcpy.mirror(row.id, {
@@ -72,7 +76,9 @@ async function handleScrcpy(args) {
 
     loading.value = false
 
-    openFloatControl(toRaw(row))
+    if (showControlBar) {
+      openFloatControl(toRaw(row))
+    }
 
     await mirroring
   }
