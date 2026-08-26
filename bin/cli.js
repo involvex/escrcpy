@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import { spawn, spawnSync } from 'node:child_process'
+import { createRequire } from 'node:module'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import fs from 'node:fs'
@@ -16,7 +17,8 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 const rootDir = join(__dirname, '..')
 
-const CLI_VERSION = '2.11.1'
+const require = createRequire(import.meta.url)
+const { version: CLI_VERSION } = require('../package.json')
 
 const USAGE = `escrcpy - headless companion for the escrcpy desktop app
 
@@ -88,7 +90,6 @@ function startMirror(parsed) {
     buildScrcpyArgs(parsed.serial, parsed.scrcpyArgs),
     {
       stdio: 'inherit',
-      shell: process.platform === 'win32',
     },
   )
 
@@ -109,6 +110,12 @@ function captureScreenshot(parsed) {
   if (result.status !== 0) {
     console.error(result.stderr.toString() || 'Screenshot capture failed')
     process.exit(result.status || 1)
+  }
+
+  const outDir = dirname(parsed.out)
+
+  if (outDir && outDir !== '.') {
+    fs.mkdirSync(outDir, { recursive: true })
   }
 
   fs.writeFileSync(parsed.out, result.stdout)

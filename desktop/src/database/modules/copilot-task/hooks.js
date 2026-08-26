@@ -25,8 +25,11 @@ export function useCopilotTasks(options = {}) {
     subscription?.unsubscribe?.()
 
     subscription = liveQuery(async () => {
-      const records = await db.copilotTasks.toArray()
-      return records.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0)).slice(0, limit)
+      return db.copilotTasks
+        .orderBy('createdAt')
+        .reverse()
+        .limit(limit)
+        .toArray()
     }).subscribe({
       next(value) {
         tasks.value = value || []
@@ -47,11 +50,12 @@ export function useCopilotTasks(options = {}) {
   })
 
   async function clearFinished() {
-    const finished = tasks.value.filter(task =>
-      task.status !== CopilotTaskStatus.RUNNING,
-    )
+    const staleIds = await db.copilotTasks
+      .where('status')
+      .notEqual(CopilotTaskStatus.RUNNING)
+      .primaryKeys()
 
-    return copilotTaskStore.bulkDelete(finished.map(task => task.id))
+    return copilotTaskStore.bulkDelete(staleIds)
   }
 
   return {

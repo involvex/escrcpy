@@ -73,7 +73,7 @@
 import dayjs from 'dayjs'
 import { CopilotTaskStatus, useCopilotTasks } from '$/database/index.js'
 
-defineEmits(['rerun'])
+const emit = defineEmits(['rerun'])
 
 const visible = ref(false)
 
@@ -88,8 +88,12 @@ function close() {
 }
 
 function handleRerun(row) {
+  if (!row?.prompt) {
+    return
+  }
+
   visible.value = false
-  return row
+  emit('rerun', row)
 }
 
 defineExpose({

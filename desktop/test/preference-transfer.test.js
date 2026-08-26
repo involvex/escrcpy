@@ -13,7 +13,7 @@ const VALID_PREFERENCES = {
   copilot: { model: 'autoglm-phone', maxSteps: 20 },
 }
 
-describe('pREFERENCE_TRANSFER_KEYS', () => {
+describe('preference transfer keys', () => {
   it('covers the persisted top-level preference keys', () => {
     for (const key of [
       'common',

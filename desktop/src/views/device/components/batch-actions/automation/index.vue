@@ -40,11 +40,17 @@ async function executeAutomation(devices, { payload } = {}) {
     const concurrencyLimit = Number(window.$preload.store.get('common.concurrencyLimit') ?? 3)
     const limit = pLimit(Math.max(1, Math.min(concurrencyLimit, targets.length)))
 
-    const results = await Promise.all(
+    const settled = await Promise.allSettled(
       targets.map(deviceId => limit(() => runAutomationSteps(steps, { deviceId }))),
     )
 
-    return results.length === targets.length
+    const failed = settled.filter(item => item.status === 'rejected')
+
+    if (failed.length === targets.length) {
+      throw failed[0].reason
+    }
+
+    return failed.length === 0
   }
   finally {
     loading.value = false

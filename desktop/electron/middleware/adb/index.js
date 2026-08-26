@@ -86,6 +86,8 @@ async function kill(...params) {
 
 async function getDeviceIP(id) {
   try {
+    assertSafeSerial(id)
+
     const { stdout } = await shell(`-s ${id} shell ip -f inet addr show wlan0`)
     const reg = /inet ([0-9.]+)\/\d+/
     const match = stdout.match(reg)

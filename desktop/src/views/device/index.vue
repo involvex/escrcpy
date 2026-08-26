@@ -158,6 +158,7 @@
 
 <script setup>
 import pLimit from 'p-limit'
+import { onActivated, onDeactivated } from 'vue'
 import { sleep } from '$/utils/index.js'
 import { uniqBy } from 'lodash-es'
 
@@ -334,6 +335,11 @@ onBeforeUnmount(() => {
 
 onActivated(() => {
   getDeviceData()
+  telemetryStore.start()
+})
+
+onDeactivated(() => {
+  telemetryStore.stop()
 })
 </script>
 
