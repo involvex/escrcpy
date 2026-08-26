@@ -22,7 +22,6 @@ function createScrcpyProcess(command, options = {}) {
     ...options,
     stderr: (data) => {
       options?.stderr?.(data, scrcpyProcess)
-      console.error('scrcpyProcess.stderr.data:', data)
     },
   })
 
