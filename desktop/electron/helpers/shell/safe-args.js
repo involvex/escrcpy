@@ -83,6 +83,26 @@ export function sanitizeFilePath(value) {
 }
 
 /**
+ * Validates a scrcpy arguments string. Only allows safe flag patterns:
+ * flags (--flag, --flag=value, -f, -f value), alphanumerics, spaces,
+ * dots, colons, slashes, commas, equals, hyphens, and underscores.
+ * Rejects any shell metacharacters that could enable command injection.
+ * @param {unknown} args
+ * @returns {string} the original args when safe
+ * @throws {Error} when the args contain unsafe characters
+ */
+export function assertSafeScrcpyArgs(args) {
+  const value = String(args ?? '')
+  // Allow: alphanumerics, whitespace, - = . / : , _ space
+  // Disallow: quotes, $ & | ; ` ( ) < > ! * ? [ ] { } \ ^ % #
+  const SAFE_SCRCPY_ARGS = /^[\w\s\-=./:,]*$/
+  if (!SAFE_SCRCPY_ARGS.test(value)) {
+    throw new Error(`Unsafe scrcpy arguments rejected: ${value}`)
+  }
+  return value
+}
+
+/**
  * Android package names: dot-separated segments of letters, digits, `_`, `$`
  * (mirrors what the package manager accepts at install time)
  * @param {unknown} pkg

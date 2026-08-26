@@ -7,6 +7,7 @@ import { defineStore } from 'pinia'
 import { scheduleStore as scheduleDataStore, ScheduleStatus } from '$/database/index.js'
 import { db } from '$/database/core/database.js'
 import { clonePlainValue } from '$/utils/index.js'
+import { getNextRetryAt } from './pure-helpers.js'
 
 dayjs.extend(duration)
 
@@ -61,16 +62,14 @@ function isTimeoutExpired(schedule) {
   return schedule?.timerType === ScheduleTimerType.TIMEOUT && Number(schedule.scheduledAt || 0) <= Date.now()
 }
 
-function getNextRetryAt() {
-  return Date.now() + 1000
-}
-
 function normalizeScheduleForTimer(schedule) {
   return {
     ...schedule,
     timeout: schedule.timerType === ScheduleTimerType.TIMEOUT ? schedule.scheduledAt : schedule.timeout,
   }
 }
+
+export { getNextRetryAt, getScheduledAt, isTimeoutExpired }
 
 export const useScheduleStore = defineStore('app-schedule', () => {
   const model = ref([
@@ -323,7 +322,7 @@ export const useScheduleStore = defineStore('app-schedule', () => {
     console.error('Failed to execute schedule timer:', error)
 
     if (canRetry && schedule.timerType === ScheduleTimerType.TIMEOUT) {
-      const scheduledAt = getNextRetryAt()
+      const scheduledAt = getNextRetryAt(retryCount)
       const result = await scheduleDataStore.updateStatus(schedule.id, ScheduleStatus.PENDING, {
         retryCount,
         failedAt: Date.now(),

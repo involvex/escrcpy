@@ -99,12 +99,19 @@ class CopilotService {
   }
 
   _isCopilotConfigChanged(nextValue = {}, prevValue = {}) {
-    const IGNORED_KEYS = ['prompts']
+    const CRITICAL_KEYS = ['baseUrl', 'apiKey', 'model', 'provider']
 
-    const normalizedNext = omit(nextValue, IGNORED_KEYS)
-    const normalizedPrev = omit(prevValue, IGNORED_KEYS)
+    const pickCritical = (obj) => {
+      const result = {}
+      for (const key of CRITICAL_KEYS) {
+        if (Object.prototype.hasOwnProperty.call(obj, key)) {
+          result[key] = obj[key]
+        }
+      }
+      return result
+    }
 
-    return !isEqual(normalizedNext, normalizedPrev)
+    return !isEqual(pickCritical(nextValue), pickCritical(prevValue))
   }
 
   /**

@@ -43,8 +43,11 @@ export function useMirrorAction() {
     })
 
     mirroring?.catch?.((error) => {
-      console.error('useMirrorAction.mirror.args', args)
-      console.error('useMirrorAction.mirror.error', error)
+      if (import.meta.env.DEV) {
+        console.error('useMirrorAction.mirror.args', args)
+        console.error('useMirrorAction.mirror.error', error)
+      }
+      ElMessage.error(error?.message || window.t('common.failed'))
     })
 
     await sleep(MIRROR_START_INTERVAL)

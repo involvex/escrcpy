@@ -162,8 +162,8 @@ export class Edger {
       this.isDragging = false
     })
 
-    // Track mouse position
-    this.startMouseTracking()
+    // Track mouse position — started on demand in dockToEdge()
+    // this.startMouseTracking()
 
     // Add window focus event listening
     this.window.on('blur', this.handleWindowBlur)
@@ -333,6 +333,9 @@ export class Edger {
   }
 
   startMouseTracking() {
+    if (this.mouseTrackingTimer) {
+      return
+    }
     const trackMouse = () => {
       if (!this.dockEdge || !this.window || this.window.isDestroyed())
         return
@@ -575,6 +578,10 @@ export class Edger {
       clearInterval(this.animationTimer)
       this.animationTimer = null
     }
+    if (this.mouseTrackingTimer) {
+      clearInterval(this.mouseTrackingTimer)
+      this.mouseTrackingTimer = null
+    }
   }
 
   checkEdgeSnap() {
@@ -655,6 +662,8 @@ export class Edger {
         })
         break
     }
+
+    this.startMouseTracking()
   }
 }
 

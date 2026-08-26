@@ -8,6 +8,7 @@
     :show-after="500"
     :disabled="!connectFlag"
     @before-enter="onBeforeEnter"
+    @before-leave="onBeforeLeave"
     @after-leave="onAfterLeave"
   >
     <template #reference>
@@ -174,11 +175,12 @@ async function getBattery() {
   }
 }
 
-function onAfterLeave() {
+function onBeforeLeave() {
   clearInterval(screencapTimer.value)
+}
 
+function onAfterLeave() {
   onViewerClose()
-
   loading.value = false
 }
 
@@ -187,7 +189,23 @@ function onError() {
   props.device.status = 'offline'
 }
 
+function handleVisibilityChange() {
+  if (document.visibilityState === 'hidden') {
+    clearInterval(screencapTimer.value)
+  }
+  else if (connectFlag.value) {
+    screencapTimer.value = setInterval(() => {
+      getScreencap()
+    }, 5 * 1000)
+  }
+}
+
+onMounted(() => {
+  document.addEventListener('visibilitychange', handleVisibilityChange)
+})
+
 onBeforeUnmount(() => {
+  document.removeEventListener('visibilitychange', handleVisibilityChange)
   onAfterLeave()
 })
 </script>

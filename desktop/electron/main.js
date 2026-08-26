@@ -32,6 +32,7 @@ import { getAppBackgroundColor } from './helpers/index.js'
 import {
   contextMenuService,
   edgerService,
+  errorReportingService,
   handlesService,
   launchService,
   lifecycleService,
@@ -76,6 +77,7 @@ mainApp.use(windowIPCPlugin)
 mainApp.use(clipboardPlugin)
 
 mainApp.use(edgerService)
+mainApp.use(errorReportingService)
 mainApp.use(listenersService)
 mainApp.use(handlesService)
 mainApp.use(trayService)

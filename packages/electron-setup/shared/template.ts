@@ -243,8 +243,9 @@ function createWindowOptions(
 
 		webPreferences: {
 			preload: path.join(preloadDir!, 'preload.mjs'),
-			nodeIntegration: true,
-			sandbox: false,
+			contextIsolation: true,
+			nodeIntegration: false,
+			sandbox: true,
 			spellcheck: false,
 			...(overrides.webPreferences ?? {}),
 		},

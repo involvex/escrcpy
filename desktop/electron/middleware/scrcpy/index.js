@@ -1,5 +1,5 @@
 import { sheller } from '$electron/helpers/shell/index.js'
-import { assertSafePackageName, assertSafeSerial, sanitizeDisplayText, sanitizeFilePath } from '$electron/helpers/shell/safe-args.js'
+import { assertSafePackageName, assertSafeScrcpyArgs, assertSafeSerial, sanitizeDisplayText, sanitizeFilePath } from '$electron/helpers/shell/safe-args.js'
 import commandHelper from '$renderer/utils/command/index.js'
 import electronStore from '$electron/helpers/store/index.js'
 
@@ -42,6 +42,7 @@ function createMirrorProcess(
   { title, args = '', ...options } = {},
 ) {
   assertSafeSerial(serial)
+  assertSafeScrcpyArgs(args)
 
   return createScrcpyProcess(
     `--serial="${serial}" --window-title="${sanitizeDisplayText(title)}" ${args}`,
@@ -74,6 +75,7 @@ async function mirror(serial, options = {}) {
 
 async function record(serial, { title, args = '', savePath, ...options } = {}) {
   assertSafeSerial(serial)
+  assertSafeScrcpyArgs(args)
 
   return createScrcpyProcess(
     `--serial="${serial}" --window-title="${sanitizeDisplayText(title)}" --record="${sanitizeFilePath(savePath)}" ${args}`,
@@ -133,6 +135,7 @@ async function launch(serial, args = {}) {
   let { commands = '', packageName, useNewDisplay = true, newDisplay = '', landscape, ...options } = args
 
   assertSafeSerial(serial)
+  assertSafeScrcpyArgs(commands)
 
   if (useNewDisplay) {
     commands += newDisplay

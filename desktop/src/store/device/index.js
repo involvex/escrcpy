@@ -69,7 +69,12 @@ export const useDeviceStore = defineStore('app-device', () => {
   }
 
   function setRemark(deviceId, value) {
-    $electronStore.set(['device', deviceId, 'remark'], value)
+    const raw = String(value ?? '').slice(0, 100)
+    const cleaned = Array.from(raw).filter((c) => {
+      const code = c.codePointAt(0)
+      return code >= 0x20 && code !== 0x7F
+    }).join('').trim()
+    $electronStore.set(['device', deviceId, 'remark'], cleaned)
     init()
   }
 

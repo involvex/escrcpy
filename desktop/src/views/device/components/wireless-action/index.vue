@@ -3,8 +3,11 @@
     v-if="!row.wifi"
     type="primary"
     text
+    :loading="connectLoading"
     :disabled="['unauthorized', 'offline'].includes(row.status)"
-    :title="$t('device.wireless.mode')"
+    :title="connectLoading
+      ? $t('device.wireless.connect.progress')
+      : $t('device.wireless.mode')"
     @click="handleWifi(row)"
   >
     <template #icon>
@@ -48,11 +51,13 @@ export default {
   },
   data() {
     return {
+      connectLoading: false,
       stopLoading: false,
     }
   },
   methods: {
     async handleWifi(row) {
+      this.connectLoading = true
       try {
         const host = await this.$adb.getDeviceIP(row.id)
 
@@ -71,6 +76,9 @@ export default {
         if (error?.message || error?.cause?.message) {
           this.$message.warning(error?.message || error?.cause?.message)
         }
+      }
+      finally {
+        this.connectLoading = false
       }
     },
 

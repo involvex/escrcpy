@@ -5,6 +5,7 @@ import adb from '$electron/middleware/adb/index.js'
 
 import { ProcessManager } from '$electron/process/manager.js'
 import { sheller } from '$electron/helpers/shell/index.js'
+import { assertSafeSerial, assertSafeShellArgument } from '$electron/helpers/shell/safe-args.js'
 
 const processManager = new ProcessManager()
 
@@ -38,10 +39,15 @@ async function shell(command, options = {}) {
 }
 
 function install(deviceId) {
+  assertSafeSerial(deviceId)
   return shell(`install "${deviceId}"`)
 }
 
 function start(deviceId, options = {}) {
+  assertSafeSerial(deviceId)
+  if (options.append) {
+    assertSafeShellArgument(options.append, 'gnirehtet append')
+  }
   const append = options.append ? ` ${options.append}` : ''
 
   return shell(`start "${deviceId}"${append}`)
@@ -49,11 +55,15 @@ function start(deviceId, options = {}) {
 
 async function stop(deviceId) {
   await processManager.kill()
+  if (deviceId) {
+    assertSafeSerial(deviceId)
+  }
   const command = deviceId ? ` "${deviceId}"` : ''
   return shell(`stop${command}`)
 }
 
 function tunnel(deviceId) {
+  assertSafeSerial(deviceId)
   return shell(`tunnel "${deviceId}"`)
 }
 

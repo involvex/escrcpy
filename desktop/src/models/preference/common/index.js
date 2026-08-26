@@ -254,5 +254,13 @@ export default {
       placeholder: 'preferences.common.concurrencyLimit.placeholder',
       tips: 'preferences.common.concurrencyLimit.tips',
     },
+    errorReporting: {
+      label: 'preferences.common.errorReporting.name',
+      field: 'errorReporting',
+      type: 'Switch',
+      value: false,
+      placeholder: 'preferences.common.errorReporting.placeholder',
+      tips: 'preferences.common.errorReporting.tips',
+    },
   },
 }
