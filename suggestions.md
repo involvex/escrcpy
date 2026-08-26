@@ -9,28 +9,28 @@ Each suggestion lists the current state with concrete file references, a propose
 
 ## Summary Table
 
-| ID       | Priority | Category        | Suggestion                                                                                             | Impact     | Effort     | Confidence |
-| -------- | -------- | --------------- | ------------------------------------------------------------------------------------------------------ | ---------- | ---------- | ---------- |
-| FEAT-001 | High     | Feature Gap     | Implement the `automation` schedule type handler (data model exists, executor missing) _(implemented)_ | High       | Medium     | 95%        |
-| FEAT-002 | High     | Security        | Harden shell-argument construction in scrcpy/adb middleware against quoting injection _(implemented)_  | High       | Low        | 90%        |
-| FEAT-003 | High     | UX              | OCR language selection + additional tessdata models                                                    | Medium     | Low–Medium | 95%        |
-| FEAT-004 | High     | UX              | Native notification center for long-running tasks                                                      | Medium     | Low        | 90%        |
-| FEAT-005 | High | Feature Gap | Preference profile export / import / backup *(hardened: validation + safe apply added to existing import)* | High | Medium | 95% |
-| FEAT-006 | High | DevEx | CI workflow for lint + typecheck + unit tests on PRs *(implemented)* | Medium | Low | 95% |
-| FEAT-007 | High     | Feature         | Device group control (synchronized input across multiple devices)                                      | High       | High       | 85%        |
-| FEAT-008 | Medium   | Feature         | Battery & device telemetry monitor with alerts and history                                             | Medium     | Medium     | 90%        |
-| FEAT-009 | Medium   | Feature         | Recording post-processing: GIF export, trim, frame extraction                                          | Medium     | Medium     | 90%        |
-| FEAT-010 | Medium   | Maintainability | Unit tests for pure parsers (scrcpy/adb output parsing) _(implemented)_                                | Medium     | Low        | 95%        |
-| FEAT-011 | Medium   | Feature         | Logcat enhancements: export, saved filter presets, crash-log bundle sharing                            | Medium     | Low–Medium | 90%        |
-| FEAT-012 | Medium   | Feature         | Copilot persistent task history + token/cost tracking                                                  | Medium     | Medium     | 85%        |
-| FEAT-013 | Medium   | Feature         | Wireless device auto-reconnect manager at startup                                                      | Medium     | Low–Medium | 90%        |
-| FEAT-014 | Medium   | Feature         | Tray device submenu (per-device connect / mirror / disconnect)                                         | Medium     | Low        | 95%        |
-| FEAT-015 | Medium   | Feature         | Keyboard mapping editor (PC keys → device touches/keyevents)                                           | High       | High       | 80%        |
-| FEAT-016 | Medium   | Feature         | Real CLI beyond `escrcpy` dev launcher (headless mirror/record/screenshot)                             | Medium     | Medium     | 85%        |
-| FEAT-017 | Low      | Performance     | Cache serial/screen-size enrichment in `getDeviceList` polling                                         | Low–Medium | Low        | 85%        |
-| FEAT-018 | Low      | Feature         | Gamepad support toggle in preferences                                                                  | Low        | Medium     | 80%        |
-| FEAT-019 | Low      | Hygiene         | Remove or wire up unused dependencies (`ga-gtag`)                                                      | Low        | Low        | 85%        |
-| FEAT-020 | Low      | i18n/A11y       | Additional locales, RTL audit for Arabic, accessibility pass                                           | Low        | Medium     | 80%        |
+| ID       | Priority | Category        | Suggestion                                                                                                 | Impact     | Effort     | Confidence |
+| -------- | -------- | --------------- | ---------------------------------------------------------------------------------------------------------- | ---------- | ---------- | ---------- |
+| FEAT-001 | High     | Feature Gap     | Implement the `automation` schedule type handler (data model exists, executor missing) _(implemented)_     | High       | Medium     | 95%        |
+| FEAT-002 | High     | Security        | Harden shell-argument construction in scrcpy/adb middleware against quoting injection _(implemented)_      | High       | Low        | 90%        |
+| FEAT-003 | High     | UX              | OCR language selection + additional tessdata models                                                        | Medium     | Low–Medium | 95%        |
+| FEAT-004 | High     | UX              | Native notification center for long-running tasks                                                          | Medium     | Low        | 90%        |
+| FEAT-005 | High     | Feature Gap     | Preference profile export / import / backup _(hardened: validation + safe apply added to existing import)_ | High       | Medium     | 95%        |
+| FEAT-006 | High     | DevEx           | CI workflow for lint + typecheck + unit tests on PRs _(implemented)_                                       | Medium     | Low        | 95%        |
+| FEAT-007 | High     | Feature         | Device group control (synchronized input across multiple devices)                                          | High       | High       | 85%        |
+| FEAT-008 | Medium   | Feature         | Battery & device telemetry monitor with alerts and history                                                 | Medium     | Medium     | 90%        |
+| FEAT-009 | Medium   | Feature         | Recording post-processing: GIF export, trim, frame extraction                                              | Medium     | Medium     | 90%        |
+| FEAT-010 | Medium   | Maintainability | Unit tests for pure parsers (scrcpy/adb output parsing) _(implemented)_                                    | Medium     | Low        | 95%        |
+| FEAT-011 | Medium   | Feature         | Logcat enhancements: export, saved filter presets, crash-log bundle sharing                                | Medium     | Low–Medium | 90%        |
+| FEAT-012 | Medium   | Feature         | Copilot persistent task history + token/cost tracking                                                      | Medium     | Medium     | 85%        |
+| FEAT-013 | Medium | Feature | Wireless device auto-reconnect manager at startup *(hardened: failure tracking added to existing auto-connect)* | Medium | Low–Medium | 90% |
+| FEAT-014 | Medium   | Feature         | Tray device submenu (per-device connect / mirror / disconnect)                                             | Medium     | Low        | 95%        |
+| FEAT-015 | Medium   | Feature         | Keyboard mapping editor (PC keys → device touches/keyevents)                                               | High       | High       | 80%        |
+| FEAT-016 | Medium   | Feature         | Real CLI beyond `escrcpy` dev launcher (headless mirror/record/screenshot)                                 | Medium     | Medium     | 85%        |
+| FEAT-017 | Low      | Performance     | Cache serial/screen-size enrichment in `getDeviceList` polling                                             | Low–Medium | Low        | 85%        |
+| FEAT-018 | Low      | Feature         | Gamepad support toggle in preferences                                                                      | Low        | Medium     | 80%        |
+| FEAT-019 | Low      | Hygiene         | Remove or wire up unused dependencies (`ga-gtag`)                                                          | Low        | Low        | 85%        |
+| FEAT-020 | Low      | i18n/A11y       | Additional locales, RTL audit for Arabic, accessibility pass                                               | Low        | Medium     | 80%        |
 
 ---
 
@@ -78,7 +78,7 @@ Each suggestion lists the current state with concrete file references, a propose
 - **Suggested improvement:** Emit a `task-finished` event over IPC from main-process completions and show OS notifications (Electron `Notification` with click-to-reveal for saved files). Add a preference switch `common.taskNotifications` in `desktop/src/models/preference/common/index.js` so users can opt out. Especially valuable when the main window is minimized to tray (`common.minimizeToTray`).
 - **Impact:** Medium. **Effort:** Low. **Confidence:** 90%.
 
-### FEAT-005 — Preference profile export / import / backup *(hardened)*
+### FEAT-005 — Preference profile export / import / backup _(hardened)_
 
 > **Status:** Basic export/import already existed (`views/preference/index.vue` copying the raw store file via dialog IPC) — the original analysis missed it because the handlers are named generically. What was genuinely missing and is now shipped: import validation. `desktop/src/utils/preference-transfer/index.js` parses/validates payloads (raw store dumps or wrapped envelopes, known top-level keys only, plain-object values) with 13 unit tests; a new `import-preference` IPC handler in `services/handles` applies validated data through `store.setAll()` instead of blindly overwriting the live config file on disk; the preference/device/theme stores all refresh after import.
 
@@ -90,9 +90,10 @@ Each suggestion lists the current state with concrete file references, a propose
   - Optional: scheduled automatic backups of the electron-store file.
 - **Impact:** High for power/multi-device users. **Effort:** Medium. **Confidence:** 95%.
 
-### FEAT-006 — CI workflow for lint, typecheck, and unit tests *(implemented)*
+### FEAT-006 — CI workflow for lint, typecheck, and unit tests _(implemented)_
 
 > **Status:** Shipped as `.github/workflows/ci.yml` (bun 1.3.14 → `bun install` → scoped `eslint desktop` → `bun run test`). Repo-wide lint remains red due to a pre-existing prettier-vs-eslint conflict on manifest indentation (prettier `useTabs: true` vs jsonc space rules) affecting ~2900 errors in docs/manifests/packages configs — gating is therefore scoped to the desktop app tree, which lints clean.
+
 - **Suggested improvement:** Add `.github/workflows/ci.yml` running on push/PR: `bun install`, `bun run lint`, and `bun run test` (workspace Vitest task; desktop parser/safety suites already exist under `desktop/test/`). Later: gate releases on CI success.
 - **Impact:** Medium (regression protection). **Effort:** Low. **Confidence:** 95%.
 
@@ -151,10 +152,9 @@ Each suggestion lists the current state with concrete file references, a propose
 - **Suggested improvement:** Persist finished task transcripts (prompt, steps, screenshots metadata, outcome, duration) to Dexie; add a history tab in `desktop/pages/copilot/` with re-run ("repeat last task on device X") and search. Optionally track token usage per provider from the openai client responses for cost visibility across the multi-provider setup in `pages/copilot/dicts/api.js`.
 - **Impact:** Medium. **Effort:** Medium. **Confidence:** 85%.
 
-### FEAT-013 — Wireless auto-reconnect manager
+### FEAT-013 — Wireless auto-reconnect manager *(hardened)*
 
-- **Category:** Feature
-- **Files:** History devices merged in `desktop/src/store/device/helpers/index.js`; wireless connect primitives exist (`pair/connect/discoverConnect` in adb middleware); `common.autoConnect` preference already exists in `models/preference/common/index.js`.
+> **Status:** Startup auto-connect already existed (`wireless-group/index.vue` retrying every Wi-Fi history address when `autoConnect` is enabled) — the original analysis missed it. Shipped hardening: `desktop/src/utils/device/wireless-reconnect/index.js` adds an address filter (only real `host:port` ids, not USB serials or mDNS names) and a persisted failure counter (`wireless.reconnectFailures` in electron-store) so dead addresses stop being retried after 3 consecutive failures; manual connect success or removing the entry clears the counter. 16 unit tests.
 - **Suggested improvement:** On app launch (and optionally on a timer), attempt `connect()` for history wireless devices whose last known address matches `<ip>:5555`-style patterns, marking stale entries after N failures. Surface reconnect status inline in the device list. Reduces manual re-pairing friction after reboots/network switches.
 - **Impact:** Medium. **Effort:** Low–Medium. **Confidence:** 90%.
 

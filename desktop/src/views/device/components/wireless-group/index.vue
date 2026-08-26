@@ -86,6 +86,7 @@
 import pLimit from 'p-limit'
 import { sleep } from '$/utils'
 import { parseDeviceId } from '$/utils/device'
+import { createWirelessReconnectTracker, isWirelessAddress } from '$/utils/device/wireless-reconnect/index.js'
 import DiscoverAction from './discover-action/index.vue'
 import QrAction from './qr-action/index.vue'
 
@@ -114,6 +115,11 @@ const elAutocompleteRef = ref()
 const wirelessList = computed(() =>
   deviceStore.list.filter(item => item.wifi),
 )
+
+const reconnectTracker = createWirelessReconnectTracker({
+  load: () => window.$preload.store.get('wireless.reconnectFailures') || {},
+  save: value => window.$preload.store.set('wireless.reconnectFailures', value),
+})
 
 onMounted(() => {
   const unwatch = watch(
@@ -189,6 +195,7 @@ function handleRemove(info) {
     return
 
   wirelessList.value.splice(index, 1)
+  reconnectTracker.recordSuccess(info.id)
   autocompleteKey.value++
 }
 
@@ -197,7 +204,9 @@ async function handleBatch() {
     return
   }
 
-  const list = wirelessList.value
+  const list = wirelessList.value.filter(item =>
+    isWirelessAddress(item.id) && reconnectTracker.canAttempt(item.id),
+  )
 
   if (!list.length) {
     return
@@ -213,8 +222,9 @@ async function handleBatch() {
       limit(() =>
         window.$preload.adb
           .connect(id)
-          .catch((e) => {
-            // console.warn(`Failed to connect ${id}: ${e.message}`)
+          .then(() => reconnectTracker.recordSuccess(id))
+          .catch(() => {
+            reconnectTracker.recordFailure(id)
           }),
       ),
     )
@@ -262,6 +272,7 @@ async function handleConnect(addr = address.value) {
 
   try {
     await window.$preload.adb.connect(addr)
+    reconnectTracker.recordSuccess(addr)
     await sleep()
     ElMessage.success(window.t('device.wireless.connect.success'))
   }
