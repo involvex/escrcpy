@@ -648,6 +648,30 @@ async function listPackages(id) {
 }
 
 /**
+ * Android package names: dot-separated segments of letters, digits, `_`, `$`
+ * (mirrors what the package manager accepts at install time)
+ */
+const PACKAGE_NAME_PATTERN = /^[a-z][\w$]*(?:\.[\w$]+)+$/i
+
+/**
+ * Characters that would break out of a single-quoted shell argument
+ * or expand into additional commands on the device shell
+ */
+const SHELL_UNSAFE_PATTERN = /['"\\;$&|<>()`]/
+
+function assertSafePackageName(pkg) {
+  if (!PACKAGE_NAME_PATTERN.test(String(pkg))) {
+    throw new Error(`Unsafe package name rejected: ${pkg}`)
+  }
+
+  return pkg
+}
+
+function isSafeShellArgument(value) {
+  return !SHELL_UNSAFE_PATTERN.test(String(value))
+}
+
+/**
  * Bulk package info from `dumpsys package`
  * @param {string} id - Device ID
  * @returns {Promise<Record<string, { versionName: string, versionCode: string, firstInstallTime: string, lastUpdateTime: string, installerPackageName: string, permissions: string[] }>>}
@@ -667,6 +691,7 @@ async function getPackagesInfo(id) {
 async function getPackagesSizes(id, packages) {
   const metaByPackage = new Map()
   const filesByDir = new Map()
+  const unsafePaths = new Set()
 
   for (const item of packages) {
     const separatorIndex = item.apkPath.lastIndexOf('/')
@@ -677,6 +702,13 @@ async function getPackagesSizes(id, packages) {
 
     const dir = item.apkPath.slice(0, separatorIndex)
     const baseName = item.apkPath.slice(separatorIndex + 1)
+
+    // Skip paths that could break out of the quoted shell argument
+    if (!isSafeShellArgument(dir) || !isSafeShellArgument(baseName)) {
+      console.warn(`getPackagesSizes skipped unsafe path: ${item.apkPath}`)
+      unsafePaths.add(item.name)
+      continue
+    }
 
     metaByPackage.set(item.name, { dir, baseName })
     filesByDir.set(dir, [])
@@ -702,6 +734,10 @@ async function getPackagesSizes(id, packages) {
 
   const result = {}
 
+  for (const name of unsafePaths) {
+    result[name] = { size: null, splits: [] }
+  }
+
   for (const [name, { dir, baseName }] of metaByPackage) {
     const entries = filesByDir.get(dir) || []
     const apkFiles = entries.filter(entry => entry.name.endsWith('.apk'))
@@ -720,18 +756,32 @@ async function getPackagesSizes(id, packages) {
 }
 
 async function enablePackage(id, pkg) {
+  assertSafePackageName(pkg)
   return deviceShell(id, `pm enable ${pkg}`)
 }
 
 async function disablePackage(id, pkg) {
+  assertSafePackageName(pkg)
   return deviceShell(id, `pm disable-user ${pkg}`)
 }
 
 async function clearPackage(id, pkg) {
+  assertSafePackageName(pkg)
   return deviceShell(id, `pm clear ${pkg}`)
 }
 
+/**
+ * Uninstall for system apps without root: remove for the current user only
+ * @param {string} id - Device ID
+ * @param {string} pkg - Package name
+ */
+async function uninstallSystemForUser(id, pkg) {
+  assertSafePackageName(pkg)
+  return deviceShell(id, `pm uninstall -k --user 0 ${pkg}`)
+}
+
 async function launchPackage(id, pkg) {
+  assertSafePackageName(pkg)
   return deviceShell(id, `monkey -p ${pkg} -c android.intent.category.LAUNCHER 1`)
 }
 
@@ -747,6 +797,7 @@ export {
   launchPackage,
   listPackages,
   openLogcat,
+  uninstallSystemForUser,
 }
 
 export default {
@@ -764,6 +815,7 @@ export default {
   screencap,
   install,
   uninstall,
+  uninstallSystemForUser,
   isInstalled,
   version,
   push,

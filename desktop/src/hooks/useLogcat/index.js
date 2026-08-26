@@ -279,7 +279,9 @@ export function useLogcat(deviceIdRef) {
       return
     }
 
-    const fileName = `logcat-${deviceIdRef.value}-${dayjs().format('YYYY-MM-DD-HH-mm-ss')}.log`
+    // Wireless device IDs contain `:` which is illegal in Windows filenames
+    const safeDeviceId = deviceIdRef.value.replaceAll(/[<>:"/\\|?*]/g, '_')
+    const fileName = `logcat-${safeDeviceId}-${dayjs().format('YYYY-MM-DD-HH-mm-ss')}.log`
     const blob = new Blob([content], { type: 'text/plain;charset=utf-8' })
     const url = URL.createObjectURL(blob)
 

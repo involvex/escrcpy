@@ -150,10 +150,7 @@ export function useApps(deviceIdRef) {
 
       try {
         if (item.system) {
-          await window.$preload.adb.deviceShell(
-            deviceIdRef.value,
-            `pm uninstall -k --user 0 ${item.name}`,
-          )
+          await window.$preload.adb.uninstallSystemForUser(deviceIdRef.value, item.name)
         }
         else {
           await window.$preload.adb.uninstall(deviceIdRef.value, item.name)
@@ -172,10 +169,7 @@ export function useApps(deviceIdRef) {
 
           try {
             if (item.system) {
-              await window.$preload.adb.deviceShell(
-                deviceIdRef.value,
-                `pm uninstall -k --user 0 ${item.name}`,
-              )
+              await window.$preload.adb.uninstallSystemForUser(deviceIdRef.value, item.name)
             }
             else {
               await window.$preload.adb.uninstall(deviceIdRef.value, item.name)
