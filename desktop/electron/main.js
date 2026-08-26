@@ -44,9 +44,11 @@ import {
 import { initPromise as i18nInitPromise } from './helpers/i18n/index.js'
 
 import {
+  appsModule,
   controlModule,
   copilotModule,
   explorerModule,
+  logcatModule,
   mainModule,
   scheduleModule,
   terminalModule,
@@ -86,6 +88,8 @@ mainApp.use(copilotModule)
 mainApp.use(explorerModule)
 mainApp.use(terminalModule)
 mainApp.use(scheduleModule)
+mainApp.use(logcatModule)
+mainApp.use(appsModule)
 
 app.whenReady().then(async () => {
   await i18nInitPromise

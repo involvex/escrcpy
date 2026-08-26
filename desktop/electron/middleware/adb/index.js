@@ -14,6 +14,7 @@ import adbScanner, { MDNS_CONFIG, probeDeviceCandidates, scanMdnsDevices } from 
 import { ADBUploader } from './helpers/uploader/index.js'
 import { electronAPI } from '@electron-toolkit/preload'
 import { readDirWithStat } from './helpers/explorer/index.js'
+import { parseDumpsysPackages, parseLsOutput, parsePackageList, parsePackageNames } from './helpers/packages/index.js'
 import { setupEnvPath } from '$electron/process/helper.js'
 import { filterConnectedDevices } from './helpers/index.js'
 
@@ -21,7 +22,10 @@ const processManager = new ProcessManager()
 
 let client = null
 
+const logcatReaders = new Map()
+
 electronAPI.ipcRenderer.on('quit-before', () => {
+  closeAllLogcats()
   client?.kill?.()
   processManager.kill()
 })
@@ -560,6 +564,191 @@ export async function installAdbKeyboard(deviceId) {
   }
 }
 
+/**
+ * Open a logcat stream for a device
+ * @param {string} id - Device ID
+ * @param {Object} options
+ * @param {boolean} [options.clear] - Clear logcat before opening
+ * @param {(entry: { date: Date, pid: number, tid: number, priority: number, tag: string, message: string }) => void} [options.onEntry]
+ * @param {() => void} [options.onEnd]
+ * @param {(error: Error) => void} [options.onError]
+ */
+async function openLogcat(id, options = {}) {
+  const { clear = false, onEntry = () => {}, onEnd = () => {}, onError = () => {} } = options
+
+  closeLogcat(id)
+
+  const device = client.getDevice(id)
+  const reader = await device.openLogcat({ clear })
+
+  logcatReaders.set(id, reader)
+
+  reader.on('entry', entry => onEntry(entry))
+  reader.on('end', () => {
+    if (logcatReaders.get(id) === reader) {
+      logcatReaders.delete(id)
+    }
+    onEnd()
+  })
+  reader.on('error', error => onError(error))
+
+  return true
+}
+
+function closeLogcat(id) {
+  const reader = logcatReaders.get(id)
+
+  if (!reader) {
+    return false
+  }
+
+  try {
+    reader.end()
+  }
+  catch (error) {
+    console.warn(`closeLogcat(${id}) error:`, error?.message || error)
+  }
+  finally {
+    logcatReaders.delete(id)
+  }
+
+  return true
+}
+
+function closeAllLogcats() {
+  for (const id of [...logcatReaders.keys()]) {
+    closeLogcat(id)
+  }
+}
+
+function isLogcatOpen(id) {
+  return logcatReaders.has(id)
+}
+
+/**
+ * List installed packages with apk paths and type classification
+ * @param {string} id - Device ID
+ * @returns {Promise<{ name: string, apkPath: string, system: boolean, disabled: boolean }[]>}
+ */
+async function listPackages(id) {
+  const [allRaw, userRaw, disabledRaw] = await Promise.all([
+    deviceShell(id, 'pm list packages -f'),
+    deviceShell(id, 'pm list packages -3'),
+    deviceShell(id, 'pm list packages -d'),
+  ])
+
+  const userSet = new Set(parsePackageNames(userRaw))
+  const disabledSet = new Set(parsePackageNames(disabledRaw))
+
+  return parsePackageList(allRaw).map(item => ({
+    ...item,
+    system: !userSet.has(item.name),
+    disabled: disabledSet.has(item.name),
+  }))
+}
+
+/**
+ * Bulk package info from `dumpsys package`
+ * @param {string} id - Device ID
+ * @returns {Promise<Record<string, { versionName: string, versionCode: string, firstInstallTime: string, lastUpdateTime: string, installerPackageName: string, permissions: string[] }>>}
+ */
+async function getPackagesInfo(id) {
+  const stdout = await deviceShell(id, 'dumpsys package')
+  return parseDumpsysPackages(stdout)
+}
+
+/**
+ * Get sizes of files in remote directories via `ls -l` (covers split APKs).
+ * Split APKs share the package's install directory on modern Android.
+ * @param {string} id - Device ID
+ * @param {{ name: string, apkPath: string }[]} packages
+ * @returns {Promise<Record<string, { size: number | null, splits: { name: string, size: number }[] }>>} keyed by package name
+ */
+async function getPackagesSizes(id, packages) {
+  const metaByPackage = new Map()
+  const filesByDir = new Map()
+
+  for (const item of packages) {
+    const separatorIndex = item.apkPath.lastIndexOf('/')
+
+    if (separatorIndex <= 0) {
+      continue
+    }
+
+    const dir = item.apkPath.slice(0, separatorIndex)
+    const baseName = item.apkPath.slice(separatorIndex + 1)
+
+    metaByPackage.set(item.name, { dir, baseName })
+    filesByDir.set(dir, [])
+  }
+
+  const concurrencyLimit = Number(electronStore.get('common.concurrencyLimit') ?? 10)
+  const limit = pLimit(concurrencyLimit)
+
+  await Promise.all(
+    [...filesByDir.keys()].map(dir =>
+      limit(async () => {
+        try {
+          const stdout = await deviceShell(id, `ls -l '${dir}'`)
+          filesByDir.set(dir, parseLsOutput(stdout))
+        }
+        catch (error) {
+          console.warn(`getPackagesSizes ls failed for ${dir}:`, error?.message || error)
+          filesByDir.set(dir, [])
+        }
+      }),
+    ),
+  )
+
+  const result = {}
+
+  for (const [name, { dir, baseName }] of metaByPackage) {
+    const entries = filesByDir.get(dir) || []
+    const apkFiles = entries.filter(entry => entry.name.endsWith('.apk'))
+    const base = apkFiles.find(entry => entry.name === baseName)
+    const splits = apkFiles
+      .filter(entry => entry.name !== baseName)
+      .map(({ name: splitName, size }) => ({ name: splitName, size }))
+
+    result[name] = {
+      size: typeof base?.size === 'number' ? base.size : null,
+      splits,
+    }
+  }
+
+  return result
+}
+
+async function enablePackage(id, pkg) {
+  return deviceShell(id, `pm enable ${pkg}`)
+}
+
+async function disablePackage(id, pkg) {
+  return deviceShell(id, `pm disable-user ${pkg}`)
+}
+
+async function clearPackage(id, pkg) {
+  return deviceShell(id, `pm clear ${pkg}`)
+}
+
+async function launchPackage(id, pkg) {
+  return deviceShell(id, `monkey -p ${pkg} -c android.intent.category.LAUNCHER 1`)
+}
+
+export {
+  clearPackage,
+  closeAllLogcats,
+  closeLogcat,
+  disablePackage,
+  enablePackage,
+  getPackagesInfo,
+  getPackagesSizes,
+  isLogcatOpen,
+  launchPackage,
+  listPackages,
+  openLogcat,
+}
+
 export default {
   shell,
   init,
@@ -591,4 +780,15 @@ export default {
   killProcesses,
   installAdbKeyboard,
   isInstalledAdbKeyboard,
+  openLogcat,
+  closeLogcat,
+  closeAllLogcats,
+  isLogcatOpen,
+  listPackages,
+  getPackagesInfo,
+  getPackagesSizes,
+  enablePackage,
+  disablePackage,
+  clearPackage,
+  launchPackage,
 }

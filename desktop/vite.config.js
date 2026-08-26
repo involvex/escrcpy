@@ -58,6 +58,8 @@ export default function (args) {
             explorer: resolve('pages/explorer/index.html'),
             copilot: resolve('pages/copilot/index.html'),
             terminal: resolve('pages/terminal/index.html'),
+            logcat: resolve('pages/logcat/index.html'),
+            apps: resolve('pages/apps/index.html'),
           },
         },
       },

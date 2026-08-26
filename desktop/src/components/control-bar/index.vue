@@ -101,6 +101,8 @@ import Screenshot from './screenshot/index.vue'
 import Terminal from './terminal/index.vue'
 import Schedule from './schedule/index.vue'
 import Volume from './volume/index.vue'
+import Logcat from './logcat/index.vue'
+import Apps from './apps/index.vue'
 
 export default {
   components: {
@@ -114,6 +116,8 @@ export default {
     Copilot,
     Terminal,
     Schedule,
+    Logcat,
+    Apps,
   },
   props: {
     device: {
@@ -230,6 +234,16 @@ export default {
           label: 'device.terminal.name',
           fontIcon: 'i-bi-terminal',
           component: 'Terminal',
+        },
+        logcat: {
+          label: 'logcat.name',
+          fontIcon: 'i-bi-list-checks',
+          component: 'Logcat',
+        },
+        apps: {
+          label: 'apps.name',
+          fontIcon: 'i-bi-grid-1x2',
+          component: 'Apps',
         },
         schedule: {
           label: 'device.schedule.name',
