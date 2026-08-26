@@ -8,7 +8,7 @@
 
 const SHELL_UNSAFE_PATTERN = /['"\\;$&|<>()`]/
 
-const SERIAL_PATTERN = /^[\w.:-]+$/
+const SERIAL_PATTERN = /^[\w.:[\]-]+$/
 
 const PACKAGE_NAME_PATTERN = /^[a-z][\w$]*(?:\.[\w$]+)+$/i
 

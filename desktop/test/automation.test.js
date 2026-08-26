@@ -69,6 +69,18 @@ describe('buildDeviceCommand', () => {
     expect(buildDeviceCommand({ type: 'command', value: 'dumpsys battery' }))
       .toBe('dumpsys battery')
   })
+
+  it('throws on non-finite tap or swipe coordinates', () => {
+    expect(() => buildDeviceCommand({ type: 'tap', x: undefined, y: 2 }))
+      .toThrowError(/coordinates/i)
+    expect(() => buildDeviceCommand({
+      type: 'swipe',
+      startX: 10,
+      startY: 20,
+      endX: Number.NaN,
+      endY: 40,
+    })).toThrowError(/coordinates/i)
+  })
 })
 
 describe('validateAutomationSteps', () => {

@@ -36,8 +36,8 @@ Usage:
 Options:
   --adb <path>                  path to the adb binary (default: PATH)
   --scrcpy <path>               path to the scrcpy binary (default: PATH)
-  -h, --help                    show this help
-  -v, --version                 show version
+  -h, --help                    show this help  (wins from any position)
+  -v, --version                 show version    (wins from any position)
 
 Environment:
   ESCRCPY_ADB                   fallback path for adb

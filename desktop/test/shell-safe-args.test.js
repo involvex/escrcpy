@@ -46,6 +46,7 @@ describe('assertSafeSerial', () => {
     '192.168.1.7:5555',
     'localhost:7555',
     'R58NA1B2C3',
+    '[fd7a:115c:a1e0::9c01]:5555',
   ])('accepts adb-style serial %s', (serial) => {
     expect(assertSafeSerial(serial)).toBe(serial)
   })

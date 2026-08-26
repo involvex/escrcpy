@@ -181,6 +181,7 @@ const MIRROR_START_INTERVAL = 1000
 
 const deviceStore = useDeviceStore()
 const preferenceStore = usePreferenceStore()
+const telemetryStore = useTelemetryStore()
 
 const loading = ref(false)
 const autoMirrorConcurrencyLimit = Number(window.$preload.store.get('common.concurrencyLimit') ?? 5)
@@ -269,6 +270,8 @@ async function onAdbWatch(type, ret) {
   }
 
   if (type === 'remove') {
+    telemetryStore.clearDevice(ret.id)
+
     mirrorActionRefs.value = mirrorActionRefs.value.filter(
       item => item.row.id !== ret.id,
     )
@@ -319,8 +322,6 @@ async function handleRefresh() {
 function onAutoConnected() {}
 
 let unAdbWatch = null
-
-const telemetryStore = useTelemetryStore()
 
 onMounted(async () => {
   await getDeviceData()

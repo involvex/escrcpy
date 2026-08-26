@@ -62,11 +62,28 @@ export function buildDeviceCommand(step) {
   const { type } = step
 
   switch (type) {
-    case AutomationStepType.TAP:
-      return `input tap ${toFiniteNumber(step.x)} ${toFiniteNumber(step.y)}`
+    case AutomationStepType.TAP: {
+      const x = toFiniteNumber(step.x)
+      const y = toFiniteNumber(step.y)
+
+      if (x === null || y === null) {
+        throw new Error(`Invalid tap coordinates: ${step.x}, ${step.y}`)
+      }
+
+      return `input tap ${x} ${y}`
+    }
 
     case AutomationStepType.SWIPE: {
-      const base = `input swipe ${toFiniteNumber(step.startX)} ${toFiniteNumber(step.startY)} ${toFiniteNumber(step.endX)} ${toFiniteNumber(step.endY)}`
+      const startX = toFiniteNumber(step.startX)
+      const startY = toFiniteNumber(step.startY)
+      const endX = toFiniteNumber(step.endX)
+      const endY = toFiniteNumber(step.endY)
+
+      if (startX === null || startY === null || endX === null || endY === null) {
+        throw new Error(`Invalid swipe coordinates: ${step.startX}, ${step.startY}, ${step.endX}, ${step.endY}`)
+      }
+
+      const base = `input swipe ${startX} ${startY} ${endX} ${endY}`
       const duration = toFiniteNumber(step.duration)
       return duration > 0 ? `${base} ${duration}` : base
     }

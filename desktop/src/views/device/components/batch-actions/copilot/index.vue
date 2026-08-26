@@ -272,6 +272,12 @@ async function executeBatchCopilotTask(devices, options = {}) {
   catch (error) {
     console.error('Batch execution failed:', error)
     ElMessage.error(error.message || window.t('common.failed'))
+
+    await copilotTaskStore.finishTask(recordId, {
+      status: 'failed',
+      error: error?.message || 'Unknown error',
+      finishedAt: Date.now(),
+    }).catch(() => {})
   }
   finally {
     loading.value = false
