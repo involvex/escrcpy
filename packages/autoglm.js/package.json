@@ -34,7 +34,7 @@
 		"dev": "tsdown --watch",
 		"prepare": "tsdown",
 		"prepublishOnly": "tsdown",
-		"test": "vitest",
+		"test": "vitest run",
 		"typecheck": "tsc"
 	},
 	"dependencies": {
@@ -58,7 +58,7 @@
 		"@types/fs-extra": "^11.0.4",
 		"@types/minimist": "^1.2.5",
 		"tsdown": "^0.22.3",
-		"vitest": "^4.1.9"
+		"vitest": "^3.2.4"
 	},
 	"optionalDependencies": {
 		"@autoglm.js/adb-keyboard": "workspace:*"

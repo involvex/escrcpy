@@ -13,7 +13,8 @@
     "dev": "vite dev",
     "electron-fix": "npx electron-fix start",
     "locale-sync": "node scripts/locale-sync.js",
-    "postinstall": "electron-builder install-app-deps"
+    "postinstall": "electron-builder install-app-deps",
+    "test": "vitest run"
   },
   "dependencies": {
     "@img/colour": "^1.1.0",
@@ -117,6 +118,7 @@
     "vite-plugin-electron": "1.1.0",
     "vite-plugin-electron-renderer": "1.0.0",
     "vite-plugin-native": "2.2.2",
+    "vitest": "^3.2.4",
     "vue": "3.5.39",
     "vue-draggable-resizable": "3.0.0",
     "vue-router": "5.1.0",

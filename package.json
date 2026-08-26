@@ -32,7 +32,8 @@
 		"lang-sync": "node ./scripts/lang-sync.js",
 		"lint": "eslint .",
 		"lint:fix": "eslint . --fix",
-		"prepare": "husky"
+		"prepare": "husky",
+		"test": "turbo run test"
 	},
 	"prettier": "@involvex/prettier-config",
 	"overrides": {
