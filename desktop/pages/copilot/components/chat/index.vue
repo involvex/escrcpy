@@ -188,7 +188,7 @@ async function handleSubmit(text) {
       )
     ) {
       throw new Error(
-        `${temporaryMessage.value.content}\n\n${window.t('copilot.check.subscription.expired.maybe')}`,
+        `${temporaryMessage.value.content}\n\n${window.t('copilot.error.executionFailed')}`,
       )
     }
 

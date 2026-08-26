@@ -44,7 +44,7 @@ export default {
     async handleClick(row = this.row) {
       this.loading = true
 
-      const showControlBar = this.preferenceStore.getData(row.id)?.controlBarOnMirror !== false
+      const showControlBar = window.$preload.store.get('common.controlBarOnMirror') !== false
 
       if (showControlBar) {
         this.toggleRowExpansion(row, true)
