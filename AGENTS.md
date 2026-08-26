@@ -1,6 +1,6 @@
 # AGENTS
 
-Escrcpy is a pnpm + Turborepo monorepo for an Electron GUI around Android mirroring/control with scrcpy. Keep this file focused on agent-critical facts; link existing docs instead of copying them. For the broader overview, start with [develop.md](../develop.md).
+Escrcpy is a Bun + Turborepo monorepo for an Electron GUI around Android mirroring/control with scrcpy. Keep this file focused on agent-critical facts; link existing docs instead of copying them. For the broader overview, start with [develop.md](../develop.md).
 
 ## Architecture
 
@@ -8,20 +8,19 @@ Escrcpy is a pnpm + Turborepo monorepo for an Electron GUI around Android mirror
 - Renderer windows are separate Vite entries in [desktop/vite.config.js](../desktop/vite.config.js): `main`, `control`, `explorer`, `copilot`, `terminal`, `automation`, and `mirror`.
 - Window modules live under [desktop/electron/modules/](../desktop/electron/modules/). Register main-process features as modules/services instead of adding logic to the preload script.
 - [packages/electron-setup/](../packages/electron-setup/) provides app/plugin/window management primitives. [packages/electron-ipcx/README.md](../packages/electron-ipcx/README.md) documents IPC with renderer callbacks.
-- [packages/wscrcpy/](../packages/wscrcpy/) contains scrcpy session/client logic. Preserve its `WscrcpySession` model and `DeviceTarget = 'all' | 'primary' | string | string[]` contract.
 
 ## Commands
 
-- Install: `corepack enable pnpm && pnpm install`.
-- Dev: `pnpm dev` starts Turbo-managed app development; the desktop Vite server uses port `1535`.
-- Lint: `pnpm lint` or `pnpm lint:fix`.
-- Build: `pnpm build`; platform variants are `pnpm build:win`, `pnpm build:mac`, and `pnpm build:linux`.
-- Docs: `pnpm docs:dev`, `pnpm docs:build`, `pnpm docs:preview`.
-- i18n sync: `pnpm lang-sync` after editing locale keys in `desktop/electron/resources/extra/common/locales/*.json`.
-- Electron install repair: `pnpm electron-fix` when Electron reports an incomplete install.
-- wscrcpy type check: `pnpm exec tsc -p packages/wscrcpy/tsconfig.json --pretty false`.
+- Install: `bun install`.
+- Dev: `bun run dev` starts Turbo-managed app development; the desktop Vite server uses port `1535`.
+- Lint: `bun run lint` or `bun run lint:fix`.
+- Test: `bun run test` runs workspace unit tests (Turbo task); desktop parser/safety tests live in [desktop/test/](../desktop/test/) via Vitest.
+- Build: `bun run build`; platform variants are `bun run build:win`, `bun run build:mac`, and `bun run build:linux`.
+- Docs: `bun run docs:dev`, `bun run docs:build`, `bun run docs:preview`.
+- i18n sync: `bun run lang-sync` after editing locale keys in `desktop/electron/resources/extra/common/locales/*.json`.
+- Electron install repair: `bun run electron-fix` when Electron reports an incomplete install.
 
-There is no repo-wide test script today. For changes, run the smallest meaningful verification first, then `pnpm lint`; use `pnpm build` for packaging, Electron main-process, Vite config, dependency, or release-sensitive changes.
+For changes, run the smallest meaningful verification first, then `bun run lint`; use `bun run build` for packaging, Electron main-process, Vite config, dependency, or release-sensitive changes.
 
 ## Frontend Patterns
 
@@ -48,8 +47,7 @@ There is no repo-wide test script today. For changes, run the smallest meaningfu
 
 - In `desktop/electron/middleware/scrcpy`, never resolve a ready Promise with the scrcpy process object directly. It is thenable-like and Promise resolution can adopt it, causing `resolveOnReady` to hang; resolve with plain data or `undefined`.
 - Turbo disables caching for Electron packaging in [turbo.json](../turbo.json). Do not assume packaging output is incremental or cache-backed.
-- Native dependencies such as `sharp`, Electron, Vite, tsdown, and TypeScript are pinned/overridden in [pnpm-workspace.yaml](../pnpm-workspace.yaml); change them deliberately.
-- Audio in wscrcpy is intentionally opt-in by default. On Windows, audio plus control should default `clipboardAutosync` to `false` because clipboard device messages can destabilize the controller while streams keep running.
+- Native dependencies such as `sharp`, Electron, Vite, tsdown, and TypeScript are pinned/overridden in the root [package.json](../package.json) `overrides`; change them deliberately.
 - The desktop app is mostly JavaScript/JSDoc, while workspace packages may be TypeScript. Do not add broad strict TS assumptions to the desktop renderer/main app.
 - Use kebab-case for new directories and files.
 
