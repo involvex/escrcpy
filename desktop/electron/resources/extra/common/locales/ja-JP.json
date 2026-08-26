@@ -905,8 +905,6 @@
   "preferences.common.file.name": "ファイルの場所",
   "preferences.common.file.placeholder": "ユーザーのデスクトップ",
   "preferences.common.file.tips": "スクリーンショットと録画の保存先です。",
-  "preferences.common.floatControl.name": "フローティングコントロールバー",
-  "preferences.common.floatControl.placeholder": "有効化するとミラーリング中にデバイスのフローティングコントロールバーを自動で開きます",
   "preferences.common.globalHotkey.name": "全局快捷键",
   "preferences.common.globalHotkey.placeholder": "ctrl+shift+m",
   "preferences.common.globalHotkey.tips": "使用此组合键从任意位置显示/聚焦应用。格式：ctrl+shift+m, alt+shift+e 等。",

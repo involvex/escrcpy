@@ -905,8 +905,6 @@
   "preferences.common.file.name": "Место сохранения файлов",
   "preferences.common.file.placeholder": "Рабочий стол пользователя",
   "preferences.common.file.tips": "Место для сохранения скриншотов и записей",
-  "preferences.common.floatControl.name": "Плавающая панель управления",
-  "preferences.common.floatControl.placeholder": "После включения плавающая панель управления устройства будет автоматически открываться во время зеркалирования",
   "preferences.common.globalHotkey.name": "全局快捷键",
   "preferences.common.globalHotkey.placeholder": "ctrl+shift+m",
   "preferences.common.globalHotkey.tips": "使用此组合键从任意位置显示/聚焦应用。格式：ctrl+shift+m, alt+shift+e 等。",

@@ -905,8 +905,6 @@
   "preferences.common.file.name": "檔案儲存路徑",
   "preferences.common.file.placeholder": "使用者桌面",
   "preferences.common.file.tips": "截圖和錄製的影像存放在這裡",
-  "preferences.common.floatControl.name": "浮動操控欄",
-  "preferences.common.floatControl.placeholder": "啟用後，鏡像時將會自動開啟裝置浮動操控欄",
   "preferences.common.globalHotkey.name": "全局快捷键",
   "preferences.common.globalHotkey.placeholder": "ctrl+shift+m",
   "preferences.common.globalHotkey.tips": "使用此组合键从任意位置显示/聚焦应用。格式：ctrl+shift+m, alt+shift+e 等。",

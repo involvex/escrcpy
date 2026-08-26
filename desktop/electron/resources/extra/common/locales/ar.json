@@ -905,8 +905,6 @@
   "preferences.common.file.name": "مكان الملفات",
   "preferences.common.file.placeholder": "سطح مكتب المستخدم",
   "preferences.common.file.tips": "مكان حفظ لقطات الشاشة والتسجيلات",
-  "preferences.common.floatControl.name": "شريط التحكم العائم",
-  "preferences.common.floatControl.placeholder": "عند تفعيل هذا الخيار، سيتم فتح شريط التحكم العائم للجهاز تلقائيًا خلال عرض الشاشة",
   "preferences.common.globalHotkey.name": "全局快捷键",
   "preferences.common.globalHotkey.placeholder": "ctrl+shift+m",
   "preferences.common.globalHotkey.tips": "使用此组合键从任意位置显示/聚焦应用。格式：ctrl+shift+m, alt+shift+e 等。",

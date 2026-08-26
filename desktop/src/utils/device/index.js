@@ -122,12 +122,6 @@ export async function selectAndSendFileToDevice(
 }
 
 export function openFloatControl(device) {
-  const floatControl = window.$preload.store.get('common.floatControl')
-
-  if (!floatControl) {
-    return false
-  }
-
   window.$preload.win.open('pages/control', { device })
   return true
 }

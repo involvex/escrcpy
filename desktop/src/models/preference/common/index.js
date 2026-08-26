@@ -179,13 +179,6 @@ export default {
       value: undefined,
       placeholder: 'preferences.common.auto-mirror.placeholder',
     },
-    floatControl: {
-      label: 'preferences.common.floatControl.name',
-      field: 'floatControl',
-      type: 'Switch',
-      value: undefined,
-      placeholder: 'preferences.common.floatControl.placeholder',
-    },
     controlBarOnMirror: {
       label: 'preferences.common.controlBarOnMirror.name',
       field: 'controlBarOnMirror',
