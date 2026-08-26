@@ -86,6 +86,10 @@ export const useScheduleStore = defineStore('app-schedule', () => {
       label: 'device.mirror.start',
       value: 'mirror',
     },
+    {
+      label: 'automation.name.execute',
+      value: 'automation',
+    },
   ])
 
   const list = shallowRef([])

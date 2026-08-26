@@ -76,6 +76,106 @@
             </el-form-item>
           </el-card>
 
+          <el-card
+            v-if="model.scheduleType === 'automation'"
+            :header="$t('automation.steps')"
+            shadow="never"
+            class="el-card--beautify"
+          >
+            <div
+              v-for="(step, index) in automationSteps"
+              :key="index"
+              class="flex items-center gap-2 mb-2 flex-wrap"
+            >
+              <span class="w-6 text-right text-gray-400">{{ index + 1 }}</span>
+
+              <el-select
+                v-model="step.type"
+                :placeholder="$t('automation.step.type')"
+                class="!w-28 flex-none"
+                @change="onStepTypeChange(step)"
+              >
+                <el-option
+                  v-for="(labelKey, value) in stepTypeLabels"
+                  :key="value"
+                  :label="$t(labelKey)"
+                  :value="value"
+                />
+              </el-select>
+
+              <template v-if="step.type === 'tap'">
+                <el-input-number v-model="step.x" :min="0" :controls="false" :placeholder="$t('automation.step.x')" class="!w-24" />
+                <el-input-number v-model="step.y" :min="0" :controls="false" :placeholder="$t('automation.step.y')" class="!w-24" />
+              </template>
+
+              <template v-else-if="step.type === 'swipe'">
+                <el-input-number v-model="step.startX" :min="0" :controls="false" :placeholder="$t('automation.step.startX')" class="!w-20" />
+                <el-input-number v-model="step.startY" :min="0" :controls="false" :placeholder="$t('automation.step.startY')" class="!w-20" />
+                <el-input-number v-model="step.endX" :min="0" :controls="false" :placeholder="$t('automation.step.endX')" class="!w-20" />
+                <el-input-number v-model="step.endY" :min="0" :controls="false" :placeholder="$t('automation.step.endY')" class="!w-20" />
+                <el-input-number v-model="step.duration" :min="0" :controls="false" :placeholder="$t('automation.step.duration')" class="!w-20" />
+              </template>
+
+              <template v-else-if="step.type === 'text'">
+                <el-input
+                  v-model="step.value"
+                  :placeholder="$t('automation.step.input.placeholder')"
+                  clearable
+                  class="!w-64"
+                />
+              </template>
+
+              <template v-else-if="step.type === 'key'">
+                <el-select
+                  v-model="step.code"
+                  :placeholder="$t('automation.step.key.select')"
+                  filterable
+                  allow-create
+                  default-first-option
+                  class="!w-40"
+                >
+                  <el-option
+                    v-for="(code, name) in AUTOMATION_KEYCODES"
+                    :key="code"
+                    :label="`${$t(`automation.keys.${keyLabelKeys[name] || name}`)} (${code})`"
+                    :value="name"
+                  />
+                </el-select>
+              </template>
+
+              <template v-else-if="step.type === 'wait'">
+                <el-input-number v-model="step.ms" :min="1" :controls="false" :placeholder="$t('automation.step.delayBefore')" class="!w-28" />
+                <span class="text-gray-400 text-sm">ms</span>
+              </template>
+
+              <template v-else-if="step.type === 'command'">
+                <el-input
+                  v-model="step.value"
+                  :placeholder="$t('automation.step.command.placeholder')"
+                  clearable
+                  class="!w-80"
+                >
+                  <template #suffix>
+                    <span class="text-gray-400 text-xs">{{ $t('automation.step.command.hint') }}</span>
+                  </template>
+                </el-input>
+              </template>
+
+              <div class="flex-auto"></div>
+
+              <el-button
+                text
+                icon="Delete"
+                :title="$t('common.delete')"
+                @click="removeStep(index)"
+              />
+            </div>
+
+            <el-button class="mt-1" icon="Plus" plain @click="addStep">
+              {{ $t('automation.step.add') }}
+            </el-button>
+          </el-card>
+
           <el-card :header="$t('device.schedule.section.frequency')" shadow="never" class="el-card--beautify">
             <el-form-item
               :label="$t('device.schedule.frequency')"
@@ -207,6 +307,7 @@ import { Cron } from 'croner'
 
 import InputPath from '$/components/preference-form/components/input-path/index.vue'
 import CronSelector from '$/components/cron-selector/index.vue'
+import { AUTOMATION_KEYCODES, AutomationStepType, validateAutomationSteps } from '$/utils/automation/index.js'
 
 import {
   timeUnit as intervalModel,
@@ -242,6 +343,69 @@ const model = ref({
   extra: void 0,
   automationConfig: null,
 })
+
+const stepTypeLabels = {
+  [AutomationStepType.TAP]: 'automation.step.tap',
+  [AutomationStepType.SWIPE]: 'automation.step.swipe',
+  [AutomationStepType.TEXT]: 'automation.step.text',
+  [AutomationStepType.KEY]: 'automation.step.key',
+  [AutomationStepType.WAIT]: 'automation.step.wait',
+  [AutomationStepType.COMMAND]: 'automation.step.command',
+}
+
+const keyLabelKeys = {
+  VOLUME_UP: 'volumeUp',
+  VOLUME_DOWN: 'volumeDown',
+  RECENT_APPS: 'recentApps',
+  DEL: 'delete',
+}
+
+const automationSteps = computed(() => {
+  return model.value.automationConfig?.steps || []
+})
+
+function ensureAutomationConfig() {
+  if (!model.value.automationConfig) {
+    model.value.automationConfig = { steps: [] }
+  }
+
+  if (!Array.isArray(model.value.automationConfig.steps)) {
+    model.value.automationConfig.steps = []
+  }
+
+  return model.value.automationConfig.steps
+}
+
+function addStep() {
+  ensureAutomationConfig().push({
+    type: AutomationStepType.TAP,
+    x: 0,
+    y: 0,
+  })
+}
+
+function removeStep(index) {
+  ensureAutomationConfig().splice(index, 1)
+}
+
+function onStepTypeChange(step) {
+  const defaults = {
+    [AutomationStepType.TAP]: { x: 0, y: 0 },
+    [AutomationStepType.SWIPE]: { startX: 0, startY: 0, endX: 0, endY: 0 },
+    [AutomationStepType.TEXT]: { value: '' },
+    [AutomationStepType.KEY]: { code: 'BACK' },
+    [AutomationStepType.WAIT]: { ms: 1000 },
+    [AutomationStepType.COMMAND]: { value: '' },
+  }
+
+  Object.keys(step).forEach((key) => {
+    if (key !== 'type') {
+      delete step[key]
+    }
+  })
+
+  Object.assign(step, defaults[step.type] || {})
+}
 
 const rules = computed(() => {
   const baseRules = {
@@ -317,8 +481,10 @@ const rules = computed(() => {
         required: true,
         trigger: 'change',
         validator: (rule, value, callback) => {
-          if (!value?.scriptId) {
-            callback(new Error(window.t('common.required')))
+          const problem = validateAutomationSteps(value?.steps)
+
+          if (problem) {
+            callback(new Error(problem))
           }
           else {
             callback()

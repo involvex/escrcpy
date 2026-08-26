@@ -37,6 +37,8 @@
       </component>
     </el-button-group>
   </Scrollable>
+
+  <AutomationListener />
 </template>
 
 <script setup>
@@ -47,6 +49,7 @@ import FilePush from './file-push/index.vue'
 import Screenshot from './screenshot/index.vue'
 import Schedule from './schedule/index.vue'
 import Delete from './delete/index.vue'
+import AutomationListener from './automation/index.vue'
 
 const props = defineProps({
   devices: {

@@ -11,7 +11,7 @@ Each suggestion lists the current state with concrete file references, a propose
 
 | ID       | Priority | Category        | Suggestion                                                                                            | Impact     | Effort     | Confidence |
 | -------- | -------- | --------------- | ----------------------------------------------------------------------------------------------------- | ---------- | ---------- | ---------- |
-| FEAT-001 | High     | Feature Gap     | Implement the `automation` schedule type handler (data model exists, executor missing)                | High       | Medium     | 95%        |
+| FEAT-001 | High | Feature Gap | Implement the `automation` schedule type handler (data model exists, executor missing) *(implemented)* | High | Medium | 95% |
 | FEAT-002 | High     | Security        | Harden shell-argument construction in scrcpy/adb middleware against quoting injection _(implemented)_ | High       | Low        | 90%        |
 | FEAT-003 | High     | UX              | OCR language selection + additional tessdata models                                                   | Medium     | Low–Medium | 95%        |
 | FEAT-004 | High     | UX              | Native notification center for long-running tasks                                                     | Medium     | Low        | 90%        |
@@ -36,7 +36,9 @@ Each suggestion lists the current state with concrete file references, a propose
 
 ## High Priority Suggestions
 
-### FEAT-001 — Implement the `automation` schedule type handler
+### FEAT-001 — Implement the `automation` schedule type handler *(implemented)*
+
+> **Status:** Shipped. Pure executor in `desktop/src/utils/automation/index.js` (tap/swipe/text/key/wait/command steps → adb shell, 22 unit tests), schedule listener at `desktop/src/views/device/components/batch-actions/automation/index.vue`, and a step editor in `schedule-dialog`. The legacy `scriptId` contract was replaced by inline `automationConfig.steps`; the orphaned `automation.*` i18n vocabulary was reused.
 
 - **Category:** Feature gap (partially built feature)
 - **Files:**
