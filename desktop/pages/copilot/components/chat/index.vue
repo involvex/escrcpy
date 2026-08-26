@@ -152,6 +152,41 @@ async function handleSubmit(text) {
   }
 
   inputText.value = ''
+
+  const shellMatch = trimmedText.match(/^shell\s+([\s\S]+)$/i)
+
+  if (shellMatch) {
+    isExecuting.value = true
+    try {
+      const deviceId = props.currentDevice?.id
+
+      if (!deviceId) {
+        throw new Error(window.t('copilot.noDevice'))
+      }
+
+      const command = shellMatch[1].trim()
+      const stdout = await window.$preload.adb.deviceShell(deviceId, command)
+
+      await addMessage({
+        role: MessageRoleEnum.ASSISTANT,
+        content: `\`\`\`sh\n$ ${command}\n${stdout || '(no output)'}\n\`\`\``,
+        timestamp: Date.now(),
+        status: MessageStatusEnum.COMPLETED,
+      })
+    }
+    catch (error) {
+      await addMessage({
+        role: MessageRoleEnum.ASSISTANT,
+        content: error.message ?? window.t('copilot.error.executionFailed'),
+        timestamp: Date.now(),
+        status: MessageStatusEnum.FAILED,
+      })
+    }
+    finally {
+      isExecuting.value = false
+    }
+    return
+  }
   isExecuting.value = true
   currentOutput.value = ''
 
