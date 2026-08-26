@@ -186,6 +186,14 @@ export default {
       value: undefined,
       placeholder: 'preferences.common.floatControl.placeholder',
     },
+    controlBarOnMirror: {
+      label: 'preferences.common.controlBarOnMirror.name',
+      field: 'controlBarOnMirror',
+      type: 'Switch',
+      value: true,
+      placeholder: 'preferences.common.controlBarOnMirror.placeholder',
+      tips: 'preferences.common.controlBarOnMirror.tips',
+    },
     edgeHidden: {
       label: 'preferences.common.edgeHidden.name',
       field: 'edgeHidden',

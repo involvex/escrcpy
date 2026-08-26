@@ -44,7 +44,11 @@ export default {
     async handleClick(row = this.row) {
       this.loading = true
 
-      this.toggleRowExpansion(row, true)
+      const showControlBar = this.preferenceStore.getData(row.id)?.controlBarOnMirror !== false
+
+      if (showControlBar) {
+        this.toggleRowExpansion(row, true)
+      }
 
       const args = this.preferenceStore.scrcpyParameter(row.id, {
         presetArgs: isPresetDevice(row.id) ? LATENCY_PRESET_ARGS : null,
@@ -62,7 +66,9 @@ export default {
 
         this.loading = false
 
-        openFloatControl(toRaw(row))
+        if (showControlBar) {
+          openFloatControl(toRaw(row))
+        }
 
         await mirroring
       }
