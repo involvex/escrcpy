@@ -9,34 +9,34 @@ Each suggestion lists the current state with concrete file references, a propose
 
 ## Summary Table
 
-| ID       | Priority | Category        | Suggestion                                                                                            | Impact     | Effort     | Confidence |
-| -------- | -------- | --------------- | ----------------------------------------------------------------------------------------------------- | ---------- | ---------- | ---------- |
-| FEAT-001 | High | Feature Gap | Implement the `automation` schedule type handler (data model exists, executor missing) *(implemented)* | High | Medium | 95% |
-| FEAT-002 | High     | Security        | Harden shell-argument construction in scrcpy/adb middleware against quoting injection _(implemented)_ | High       | Low        | 90%        |
-| FEAT-003 | High     | UX              | OCR language selection + additional tessdata models                                                   | Medium     | Low–Medium | 95%        |
-| FEAT-004 | High     | UX              | Native notification center for long-running tasks                                                     | Medium     | Low        | 90%        |
-| FEAT-005 | High     | Feature Gap     | Preference profile export / import / backup                                                           | High       | Medium     | 95%        |
-| FEAT-006 | High     | DevEx           | CI workflow for lint + typecheck + unit tests on PRs                                                  | Medium     | Low        | 95%        |
-| FEAT-007 | High     | Feature         | Device group control (synchronized input across multiple devices)                                     | High       | High       | 85%        |
-| FEAT-008 | Medium   | Feature         | Battery & device telemetry monitor with alerts and history                                            | Medium     | Medium     | 90%        |
-| FEAT-009 | Medium   | Feature         | Recording post-processing: GIF export, trim, frame extraction                                         | Medium     | Medium     | 90%        |
-| FEAT-010 | Medium   | Maintainability | Unit tests for pure parsers (scrcpy/adb output parsing) _(implemented)_                               | Medium     | Low        | 95%        |
-| FEAT-011 | Medium   | Feature         | Logcat enhancements: export, saved filter presets, crash-log bundle sharing                           | Medium     | Low–Medium | 90%        |
-| FEAT-012 | Medium   | Feature         | Copilot persistent task history + token/cost tracking                                                 | Medium     | Medium     | 85%        |
-| FEAT-013 | Medium   | Feature         | Wireless device auto-reconnect manager at startup                                                     | Medium     | Low–Medium | 90%        |
-| FEAT-014 | Medium   | Feature         | Tray device submenu (per-device connect / mirror / disconnect)                                        | Medium     | Low        | 95%        |
-| FEAT-015 | Medium   | Feature         | Keyboard mapping editor (PC keys → device touches/keyevents)                                          | High       | High       | 80%        |
-| FEAT-016 | Medium   | Feature         | Real CLI beyond `escrcpy` dev launcher (headless mirror/record/screenshot)                            | Medium     | Medium     | 85%        |
-| FEAT-017 | Low      | Performance     | Cache serial/screen-size enrichment in `getDeviceList` polling                                        | Low–Medium | Low        | 85%        |
-| FEAT-018 | Low      | Feature         | Gamepad support toggle in preferences                                                                 | Low        | Medium     | 80%        |
-| FEAT-019 | Low      | Hygiene         | Remove or wire up unused dependencies (`ga-gtag`)                                                     | Low        | Low        | 85%        |
-| FEAT-020 | Low      | i18n/A11y       | Additional locales, RTL audit for Arabic, accessibility pass                                          | Low        | Medium     | 80%        |
+| ID       | Priority | Category        | Suggestion                                                                                             | Impact     | Effort     | Confidence |
+| -------- | -------- | --------------- | ------------------------------------------------------------------------------------------------------ | ---------- | ---------- | ---------- |
+| FEAT-001 | High     | Feature Gap     | Implement the `automation` schedule type handler (data model exists, executor missing) _(implemented)_ | High       | Medium     | 95%        |
+| FEAT-002 | High     | Security        | Harden shell-argument construction in scrcpy/adb middleware against quoting injection _(implemented)_  | High       | Low        | 90%        |
+| FEAT-003 | High     | UX              | OCR language selection + additional tessdata models                                                    | Medium     | Low–Medium | 95%        |
+| FEAT-004 | High     | UX              | Native notification center for long-running tasks                                                      | Medium     | Low        | 90%        |
+| FEAT-005 | High | Feature Gap | Preference profile export / import / backup *(hardened: validation + safe apply added to existing import)* | High | Medium | 95% |
+| FEAT-006 | High | DevEx | CI workflow for lint + typecheck + unit tests on PRs *(implemented)* | Medium | Low | 95% |
+| FEAT-007 | High     | Feature         | Device group control (synchronized input across multiple devices)                                      | High       | High       | 85%        |
+| FEAT-008 | Medium   | Feature         | Battery & device telemetry monitor with alerts and history                                             | Medium     | Medium     | 90%        |
+| FEAT-009 | Medium   | Feature         | Recording post-processing: GIF export, trim, frame extraction                                          | Medium     | Medium     | 90%        |
+| FEAT-010 | Medium   | Maintainability | Unit tests for pure parsers (scrcpy/adb output parsing) _(implemented)_                                | Medium     | Low        | 95%        |
+| FEAT-011 | Medium   | Feature         | Logcat enhancements: export, saved filter presets, crash-log bundle sharing                            | Medium     | Low–Medium | 90%        |
+| FEAT-012 | Medium   | Feature         | Copilot persistent task history + token/cost tracking                                                  | Medium     | Medium     | 85%        |
+| FEAT-013 | Medium   | Feature         | Wireless device auto-reconnect manager at startup                                                      | Medium     | Low–Medium | 90%        |
+| FEAT-014 | Medium   | Feature         | Tray device submenu (per-device connect / mirror / disconnect)                                         | Medium     | Low        | 95%        |
+| FEAT-015 | Medium   | Feature         | Keyboard mapping editor (PC keys → device touches/keyevents)                                           | High       | High       | 80%        |
+| FEAT-016 | Medium   | Feature         | Real CLI beyond `escrcpy` dev launcher (headless mirror/record/screenshot)                             | Medium     | Medium     | 85%        |
+| FEAT-017 | Low      | Performance     | Cache serial/screen-size enrichment in `getDeviceList` polling                                         | Low–Medium | Low        | 85%        |
+| FEAT-018 | Low      | Feature         | Gamepad support toggle in preferences                                                                  | Low        | Medium     | 80%        |
+| FEAT-019 | Low      | Hygiene         | Remove or wire up unused dependencies (`ga-gtag`)                                                      | Low        | Low        | 85%        |
+| FEAT-020 | Low      | i18n/A11y       | Additional locales, RTL audit for Arabic, accessibility pass                                           | Low        | Medium     | 80%        |
 
 ---
 
 ## High Priority Suggestions
 
-### FEAT-001 — Implement the `automation` schedule type handler *(implemented)*
+### FEAT-001 — Implement the `automation` schedule type handler _(implemented)_
 
 > **Status:** Shipped. Pure executor in `desktop/src/utils/automation/index.js` (tap/swipe/text/key/wait/command steps → adb shell, 22 unit tests), schedule listener at `desktop/src/views/device/components/batch-actions/automation/index.vue`, and a step editor in `schedule-dialog`. The legacy `scriptId` contract was replaced by inline `automationConfig.steps`; the orphaned `automation.*` i18n vocabulary was reused.
 
@@ -78,9 +78,10 @@ Each suggestion lists the current state with concrete file references, a propose
 - **Suggested improvement:** Emit a `task-finished` event over IPC from main-process completions and show OS notifications (Electron `Notification` with click-to-reveal for saved files). Add a preference switch `common.taskNotifications` in `desktop/src/models/preference/common/index.js` so users can opt out. Especially valuable when the main window is minimized to tray (`common.minimizeToTray`).
 - **Impact:** Medium. **Effort:** Low. **Confidence:** 90%.
 
-### FEAT-005 — Preference profile export / import / backup
+### FEAT-005 — Preference profile export / import / backup *(hardened)*
 
-- **Category:** Feature gap (documented milestone not implemented)
+> **Status:** Basic export/import already existed (`views/preference/index.vue` copying the raw store file via dialog IPC) — the original analysis missed it because the handlers are named generically. What was genuinely missing and is now shipped: import validation. `desktop/src/utils/preference-transfer/index.js` parses/validates payloads (raw store dumps or wrapped envelopes, known top-level keys only, plain-object values) with 13 unit tests; a new `import-preference` IPC handler in `services/handles` applies validated data through `store.setAll()` instead of blindly overwriting the live config file on disk; the preference/device/theme stores all refresh after import.
+
 - **Files:** `docs/en/guide/milestones.md` lists "Export and import preferences ?" — grep shows no export/import implementation anywhere in renderer or main. All config lives in electron-store via `desktop/electron/helpers/store/index.js`, plus Dexie data (`desktop/src/database/`).
 - **Current state:** Users migrating machines or managing many per-device configs (`scrcpy.<serial>` scopes in `desktop/src/store/preference/helpers/index.js`) must hand-edit JSON store files.
 - **Suggested improvement:** Add "Export config" / "Import config" buttons to `views/preference/index.vue`:
@@ -89,10 +90,9 @@ Each suggestion lists the current state with concrete file references, a propose
   - Optional: scheduled automatic backups of the electron-store file.
 - **Impact:** High for power/multi-device users. **Effort:** Medium. **Confidence:** 95%.
 
-### FEAT-006 — CI workflow for lint, typecheck, and unit tests
+### FEAT-006 — CI workflow for lint, typecheck, and unit tests *(implemented)*
 
-- **Category:** Developer experience
-- **Files:** `.github/workflows/` contains only release/doc/sync workflows; no PR validation. Repo has no root test script; only `packages/autoglm.js` and `packages/electron-ipcx` have vitest setups.
+> **Status:** Shipped as `.github/workflows/ci.yml` (bun 1.3.14 → `bun install` → scoped `eslint desktop` → `bun run test`). Repo-wide lint remains red due to a pre-existing prettier-vs-eslint conflict on manifest indentation (prettier `useTabs: true` vs jsonc space rules) affecting ~2900 errors in docs/manifests/packages configs — gating is therefore scoped to the desktop app tree, which lints clean.
 - **Suggested improvement:** Add `.github/workflows/ci.yml` running on push/PR: `bun install`, `bun run lint`, and `bun run test` (workspace Vitest task; desktop parser/safety suites already exist under `desktop/test/`). Later: gate releases on CI success.
 - **Impact:** Medium (regression protection). **Effort:** Low. **Confidence:** 95%.
 

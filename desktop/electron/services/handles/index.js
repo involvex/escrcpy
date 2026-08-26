@@ -2,6 +2,8 @@ import { app, BrowserWindow, dialog, ipcMain, Menu, screen, shell } from 'electr
 import fs from 'fs-extra'
 import path from 'node:path'
 import { openLogPath } from '$root/electron/helpers/debugger/index.js'
+import electronStore from '$electron/helpers/store/index.js'
+import { parsePreferenceImport } from '$renderer/utils/preference-transfer/index.js'
 import { isWindowDestroyed } from '$electron/helpers/index.js'
 
 export default {
@@ -73,6 +75,30 @@ export default {
         await fs.copy(filePath, destinationPath)
 
         return true
+      },
+    )
+
+    // Validate and apply a preference config file onto the live store
+    ipcMain.handle(
+      'import-preference',
+      async (_, filePath) => {
+        if (typeof filePath !== 'string' || !filePath) {
+          throw new Error('Failure to obtain the file path')
+        }
+
+        const raw = await fs.readFile(filePath, 'utf8')
+        const parsed = parsePreferenceImport(raw)
+
+        if (!parsed.ok) {
+          throw new Error(parsed.error)
+        }
+
+        electronStore.setAll({
+          ...electronStore.getAll(),
+          ...parsed.preferences,
+        })
+
+        return { applied: Object.keys(parsed.preferences) }
       },
     )
 
@@ -208,6 +234,7 @@ export default {
       ipcMain.removeHandler('get-primary-display')
       ipcMain.removeHandler('show-save-dialog')
       ipcMain.removeHandler('show-save-dialog-path')
+      ipcMain.removeHandler('import-preference')
       ipcMain.removeHandler('get-temp-path')
       ipcMain.removeHandler('rename-temp-file')
       ipcMain.removeHandler('navigate-to-route')

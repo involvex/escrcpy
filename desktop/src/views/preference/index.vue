@@ -42,6 +42,7 @@ import ScopeSelect from './components/scope-select/index.vue'
 
 const preferenceStore = usePreferenceStore()
 const themeStore = useThemeStore()
+const deviceStore = useDeviceStore()
 
 const preferenceData = computed({
   get() {
@@ -88,10 +89,12 @@ function onScopeChange(value) {
 }
 
 async function handleImport() {
+  let filePaths
+
   try {
-    await window.$preload.ipcRenderer.invoke('show-open-dialog', {
-      preset: 'replaceFile',
-      filePath: window.$preload.store.getPath(),
+    filePaths = await window.$preload.ipcRenderer.invoke('show-open-dialog', {
+      properties: ['openFile'],
+      defaultPath: window.$preload.store.getPath(),
       filters: [
         {
           name: window.t('preferences.config.import.placeholder'),
@@ -99,15 +102,24 @@ async function handleImport() {
         },
       ],
     })
-
-    ElMessage.success(window.t('preferences.config.import.success'))
-    preferenceStore.init()
   }
   catch (error) {
-    if (error.message) {
-      const message = error.message?.match(/Error: (.*)/)?.[1]
-      ElMessage.warning(message || error.message)
-    }
+    return false
+  }
+
+  try {
+    const { applied } = await window.$preload.ipcRenderer.invoke('import-preference', filePaths[0])
+
+    preferenceStore.init()
+    deviceStore.init()
+    themeStore.update(window.$preload.store.get('common.theme'))
+
+    ElMessage.success(window.t('preferences.config.import.success'))
+    console.info('[preference] imported keys:', applied.join(', '))
+  }
+  catch (error) {
+    const message = error.message?.match(/Error: (.*)/)?.[1]
+    ElMessage.warning(message || error.message)
   }
 }
 
