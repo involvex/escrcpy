@@ -319,13 +319,17 @@ function onAutoConnected() {}
 
 let unAdbWatch = null
 
+const telemetryStore = useTelemetryStore()
+
 onMounted(async () => {
   await getDeviceData()
   unAdbWatch = await window.$preload.adb.watch(onAdbWatch)
+  telemetryStore.start()
 })
 
 onBeforeUnmount(() => {
   unAdbWatch?.()
+  telemetryStore.stop()
 })
 
 onActivated(() => {

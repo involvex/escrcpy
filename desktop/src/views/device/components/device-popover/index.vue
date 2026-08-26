@@ -23,24 +23,38 @@
             {{ deviceInfo.id }}
           </el-descriptions-item>
 
-          <template v-if="deviceInfo.battery">
+          <template v-if="liveBattery">
             <el-descriptions-item :label="$t('device.battery')">
-              {{ deviceInfo.battery.batteryPercentage ? `${deviceInfo.battery.batteryPercentage}%` : '-' }}
+              {{ liveBattery.batteryPercentage ? `${liveBattery.batteryPercentage}%` : '-' }}
             </el-descriptions-item>
             <el-descriptions-item :label="$t('device.isCharging')">
-              {{ deviceInfo.battery.isCharging ? $t('common.yes') : $t('common.no') }}
+              {{ liveBattery.isCharging ? $t('common.yes') : $t('common.no') }}
             </el-descriptions-item>
             <el-descriptions-item :label="$t('device.temperature')">
-              {{ deviceInfo.battery.temperatureCelsius ? `${deviceInfo.battery.temperatureCelsius}℃` : '-' }}
+              {{ liveBattery.temperatureCelsius ? `${liveBattery.temperatureCelsius}℃` : '-' }}
             </el-descriptions-item>
             <el-descriptions-item :label="$t('device.powerSource')">
-              {{ deviceInfo.battery.powerSource || '-' }}
+              {{ liveBattery.powerSource || '-' }}
             </el-descriptions-item>
             <el-descriptions-item :label="$t('device.voltage')">
-              {{ deviceInfo.battery.voltageV ? `${deviceInfo.battery.voltageV}v` : '-' }}
+              {{ liveBattery.voltageV ? `${liveBattery.voltageV}v` : '-' }}
             </el-descriptions-item>
           </template>
         </el-descriptions>
+
+        <svg
+          v-if="batterySparkPath"
+          viewBox="0 0 100 24"
+          preserveAspectRatio="none"
+          class="w-full h-6 mt-2 text-primary-500"
+        >
+          <path
+            :d="batterySparkPath"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+          />
+        </svg>
       </div>
     </div>
 
@@ -49,6 +63,8 @@
 </template>
 
 <script setup>
+import { buildSparklinePath } from '$/utils/device/telemetry/index.js'
+
 const props = defineProps({
   device: {
     type: Object,
@@ -56,12 +72,35 @@ const props = defineProps({
   },
 })
 
+const telemetryStore = useTelemetryStore()
+
 const loading = ref(false)
 
 const deviceInfo = ref({
   screencap: void 0,
   battery: void 0,
 })
+
+const liveBattery = computed(() => {
+  return telemetryStore.entries[props.device.id]?.battery || deviceInfo.value.battery
+})
+
+const batterySparkPath = computed(() => {
+  const levels = (telemetryStore.samples[props.device.id] || [])
+    .map(sample => sample.level)
+    .filter(level => Number.isFinite(level))
+
+  return buildSparklinePath(levels, { width: 100, height: 24 })
+})
+
+watch(
+  () => telemetryStore.entries[props.device.id]?.battery,
+  (battery) => {
+    if (battery) {
+      deviceInfo.value.battery = battery
+    }
+  },
+)
 
 const connectFlag = computed(() => ['device', 'emulator'].includes(props.device.status))
 
@@ -99,7 +138,6 @@ async function onBeforeEnter() {
 
   screencapTimer.value = setInterval(() => {
     getScreencap()
-    getBattery()
   }, 5 * 1000)
 
   await Promise.allSettled([getScreencap(), getBattery()])
@@ -119,9 +157,16 @@ async function getScreencap() {
 }
 
 async function getBattery() {
+  const battery = telemetryStore.entries[props.device.id]?.battery
+
+  if (battery) {
+    deviceInfo.value.battery = battery
+    return
+  }
+
   try {
-    const battery = await window.$preload.adb.battery(props.device.id)
-    Object.assign(deviceInfo.value, { battery: battery.computed })
+    const fetched = await window.$preload.adb.battery(props.device.id)
+    Object.assign(deviceInfo.value, { battery: fetched.computed })
   }
   catch (error) {
     onError()
