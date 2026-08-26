@@ -18,15 +18,15 @@ Each suggestion lists the current state with concrete file references, a propose
 | FEAT-005 | High     | Feature Gap     | Preference profile export / import / backup _(hardened: validation + safe apply added to existing import)_      | High       | Medium     | 95%        |
 | FEAT-006 | High     | DevEx           | CI workflow for lint + typecheck + unit tests on PRs _(implemented)_                                            | Medium     | Low        | 95%        |
 | FEAT-007 | High     | Feature         | Device group control (synchronized input across multiple devices)                                               | High       | High       | 85%        |
-| FEAT-008 | Medium   | Feature         | Battery & device telemetry monitor with alerts and history                                                      | Medium     | Medium     | 90%        |
+| FEAT-008 | Medium | Feature | Battery & device telemetry monitor with alerts and history *(implemented: polling store, alerts, sparkline; Dexie history deferred)* | Medium | Medium | 90% |
 | FEAT-009 | Medium   | Feature         | Recording post-processing: GIF export, trim, frame extraction                                                   | Medium     | Medium     | 90%        |
 | FEAT-010 | Medium   | Maintainability | Unit tests for pure parsers (scrcpy/adb output parsing) _(implemented)_                                         | Medium     | Low        | 95%        |
 | FEAT-011 | Medium   | Feature         | Logcat enhancements: export, saved filter presets, crash-log bundle sharing                                     | Medium     | Low–Medium | 90%        |
-| FEAT-012 | Medium   | Feature         | Copilot persistent task history + token/cost tracking                                                           | Medium     | Medium     | 85%        |
+| FEAT-012 | Medium | Feature | Copilot persistent task history + token/cost tracking *(implemented: Dexie task records, history dialog, rerun; token tracking deferred)* | Medium | Medium | 85% |
 | FEAT-013 | Medium   | Feature         | Wireless device auto-reconnect manager at startup _(hardened: failure tracking added to existing auto-connect)_ | Medium     | Low–Medium | 90%        |
 | FEAT-014 | Medium   | Feature         | Tray device submenu (per-device connect / mirror / disconnect)                                                  | Medium     | Low        | 95%        |
 | FEAT-015 | Medium   | Feature         | Keyboard mapping editor (PC keys → device touches/keyevents)                                                    | High       | High       | 80%        |
-| FEAT-016 | Medium   | Feature         | Real CLI beyond `escrcpy` dev launcher (headless mirror/record/screenshot)                                      | Medium     | Medium     | 85%        |
+| FEAT-016 | Medium | Feature | Real CLI beyond `escrcpy` dev launcher (headless mirror/record/screenshot) *(implemented: devices/mirror/shot/install)* | Medium | Medium | 85% |
 | FEAT-017 | Low      | Performance     | Cache serial/screen-size enrichment in `getDeviceList` polling                                                  | Low–Medium | Low        | 85%        |
 | FEAT-018 | Low      | Feature         | Gamepad support toggle in preferences                                                                           | Low        | Medium     | 80%        |
 | FEAT-019 | Low      | Hygiene         | Remove or wire up unused dependencies (`ga-gtag`)                                                               | Low        | Low        | 85%        |
@@ -173,10 +173,9 @@ Each suggestion lists the current state with concrete file references, a propose
 - **Suggested improvement:** Per-device keymap profiles: capture PC keys, bind them to device actions (`input keyevent`, `input tap x y`, `input swipe`), edit visually over a screenshot overlay of the device screen, and activate while a mirror window is focused (globalShortcut scoped to window focus). Store profiles in electron-store under `keymap.<serial>` consistent with per-device scope conventions.
 - **Impact:** High for gaming/testing niches. **Effort:** High. **Confidence:** 80%.
 
-### FEAT-016 — Real CLI (headless operations)
+### FEAT-016 — Real CLI (headless operations) *(implemented)*
 
-- **Category:** Feature
-- **Files:** `bin/cli.js` currently only spawns `bun run dev` (see `Plans/add-cli-bin.md`); all scrcpy/adb logic lives behind Electron IPC.
+> **Status:** Shipped. `bin/cli.js` now dispatches subcommands (`devices [--json]`, `mirror <serial> [args…]`, `shot <serial> [-o]`, `install <serial> <apk>`) while keeping the legacy dev launcher as the default. Pure parsing/building lives in `desktop/src/utils/cli/index.js` (18 tests) and serials are validated with the FEAT-002 `assertSafeSerial` helper. Binaries resolve via `--adb`/`--scrcpy` flags or `ESCRCPY_ADB`/`ESCRCPY_SCRCPY` env, else PATH — no Electron imports required. Live-verified against a connected device; surfaced a real adb quirk (mdns tls entries use space separators, parser handles both). Known wart: prettier's tab formatting fights eslint on this file, same as root manifests.
 - **Suggested improvement:** Extract thin wrappers around `$electron/middleware/scrcpy` and `middleware/adb` (they depend only on Node + adbkit, not Electron APIs except store/config paths — inject defaults) and expose subcommands: `escrcpy mirror --serial X [--record out.mp4]`, `escrcpy shot --serial X -o out.png`, `escrcpy devices`, `escrcpy install apk...`. Enables scripting/CI usage without the GUI and satisfies headless automation requests.
 - **Impact:** Medium. **Effort:** Medium. **Confidence:** 85%.
 
