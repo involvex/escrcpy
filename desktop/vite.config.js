@@ -36,6 +36,7 @@ function mergeCommon(config, { command = '' } = {}) {
             'i18next-fs-backend',
             '@lydell/node-pty',
             'autoglm.js',
+            'tesseract.js',
           ],
         },
       },

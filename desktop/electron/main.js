@@ -50,6 +50,7 @@ import {
   explorerModule,
   logcatModule,
   mainModule,
+  ocrModule,
   scheduleModule,
   terminalModule,
 } from './modules/index.js'
@@ -90,6 +91,7 @@ mainApp.use(terminalModule)
 mainApp.use(scheduleModule)
 mainApp.use(logcatModule)
 mainApp.use(appsModule)
+mainApp.use(ocrModule)
 
 app.whenReady().then(async () => {
   await i18nInitPromise

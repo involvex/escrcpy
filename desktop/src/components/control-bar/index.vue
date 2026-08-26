@@ -103,6 +103,7 @@ import Schedule from './schedule/index.vue'
 import Volume from './volume/index.vue'
 import Logcat from './logcat/index.vue'
 import Apps from './apps/index.vue'
+import Ocr from './ocr/index.vue'
 
 export default {
   components: {
@@ -118,6 +119,7 @@ export default {
     Schedule,
     Logcat,
     Apps,
+    Ocr,
   },
   props: {
     device: {
@@ -244,6 +246,11 @@ export default {
           label: 'apps.name',
           fontIcon: 'i-bi-grid-1x2',
           component: 'Apps',
+        },
+        ocr: {
+          label: 'device.control.ocr.name',
+          fontIcon: 'i-bi-body-text',
+          component: 'Ocr',
         },
         schedule: {
           label: 'device.schedule.name',

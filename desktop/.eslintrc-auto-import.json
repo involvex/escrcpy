@@ -259,6 +259,7 @@
     "useNetwork": true,
     "useNow": true,
     "useObjectUrl": true,
+    "useOcrAction": true,
     "useOffsetPagination": true,
     "useOnline": true,
     "usePageLeave": true,

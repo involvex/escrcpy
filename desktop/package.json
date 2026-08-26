@@ -33,6 +33,7 @@
     "semver": "^7.8.5",
     "sharp": "^0.35.3",
     "std-env": "^4.1.0",
+    "tesseract.js": "^7.0.0",
     "tinyexec": "^1.2.4",
     "universalify": "^2.0.1"
   },
