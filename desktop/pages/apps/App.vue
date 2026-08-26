@@ -19,6 +19,7 @@ const deviceName = computed(() => {
 })
 
 const {
+  packages,
   loading,
   search,
   typeFilter,
