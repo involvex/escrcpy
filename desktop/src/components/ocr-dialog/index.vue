@@ -171,15 +171,15 @@ watch(
 )
 
 watch(
-  () => props.modelValue,
-  (value) => {
+  () => [props.modelValue, props.mode],
+  ([value, mode]) => {
     if (!value) {
       return
     }
 
     resetState()
 
-    if (props.mode === 'result') {
+    if (mode === 'result') {
       localText.value = props.text ?? ''
 
       nextTick(() => {
@@ -207,7 +207,7 @@ watch(
       v-loading="busy"
       class="flex flex-col items-center gap-3"
     >
-      <div class="relative leading-none max-w-full">
+      <div class="relative leading-none w-fit max-w-full">
         <img
           ref="imgRef"
           :src="imageSrc"
