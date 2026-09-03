@@ -13,6 +13,7 @@
         "@involvex/prettier-config": "^0.0.5",
         "eslint": "10.6.0",
         "eslint-plugin-format": "2.0.1",
+        "ga-gtag": "1.2.0",
         "husky": "9.1.7",
         "prettier": "^3.9.4",
         "prettier-plugin-markdown-html": "^1.4.1",
