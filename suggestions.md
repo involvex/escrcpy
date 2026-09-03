@@ -29,7 +29,7 @@ Each suggestion lists the current state with concrete file references, a propose
 | FEAT-016 | Medium   | Feature         | Real CLI beyond `escrcpy` dev launcher (headless mirror/record/screenshot) _(implemented: devices/mirror/shot/install)_                   | Medium     | Medium     | 85%        |
 | FEAT-017 | Low      | Performance     | Cache serial/screen-size enrichment in `getDeviceList` polling                                                                            | Low–Medium | Low        | 85%        |
 | FEAT-018 | Low      | Feature         | Gamepad support toggle in preferences                                                                                                     | Low        | Medium     | 80%        |
-| FEAT-019 | Low      | Hygiene         | Remove or wire up unused dependencies (`ga-gtag`)                                                                                         | Low        | Low        | 85%        |
+| FEAT-019 | Low      | Hygiene         | Remove or wire up unused dependencies (`ga-gtag`)                                                                                         | Low        | Low        | 100%       | _shipped_: removed from `desktop/package.json`, added to root `package.json` devDependencies for docs build |
 | FEAT-020 | Low      | i18n/A11y       | Additional locales, RTL audit for Arabic, accessibility pass                                                                              | Low        | Medium     | 80%        |
 
 ---
@@ -198,9 +198,9 @@ Each suggestion lists the current state with concrete file references, a propose
 
 ### FEAT-019 — Remove or wire up unused dependencies
 
-- **Files:** `ga-gtag` is declared in `desktop/package.json` but no `gtag` reference exists in `desktop/src` or `desktop/pages` (grep verified). Similar candidates worth auditing: `simple-git`, `d3-random`, `swapy`, `acorn-loose` (verify actual import sites before removal).
-- **Improvement:** Either implement an analytics module with an explicit opt-in/out preference (privacy-friendly) or drop the dependency. Shrinks installer and review surface.
-- **Impact:** Low. **Effort:** Low. **Confidence:** 85%.
+- **Files:** `ga-gtag` was declared in `desktop/package.json` but no `gtag` reference existed in `desktop/src` or `desktop/pages` (grep verified). _Shipped_: removed from `desktop/package.json`, added to root `package.json` devDependencies (needed by `docs/.vitepress/theme/gtag/index.js` for GA4 tracking).
+- **Improvement:** Dropped the dependency from the desktop app; it remains available only at the root for the docs build. Shrinks the desktop installer and review surface.
+- **Impact:** Low. **Effort:** Low. **Confidence:** 100%.
 
 ### FEAT-020 — Locale expansion + RTL/accessibility audit
 
