@@ -7,7 +7,7 @@
  */
 import electronStore from '$electron/helpers/store/index.js'
 import { sessionManager } from './session.js'
-import { isEqual, omit } from 'lodash-es'
+import { isEqual } from 'lodash-es'
 
 // ==================== Type Definitions ====================
 
@@ -104,7 +104,7 @@ class CopilotService {
     const pickCritical = (obj) => {
       const result = {}
       for (const key of CRITICAL_KEYS) {
-        if (Object.prototype.hasOwnProperty.call(obj, key)) {
+        if (Object.hasOwn(obj, key)) {
           result[key] = obj[key]
         }
       }

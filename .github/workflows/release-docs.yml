@@ -21,15 +21,14 @@ jobs:
         with:
           node-version: 24
 
-      - name: Enable corepack and pnpm
-        run: |
-          corepack enable
-          corepack prepare pnpm@10.29.2 --activate
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
+        with:
+          bun-version: 1.4.0
 
       - name: Install and Build
         run: |
-          pnpm install
-          pnpm docs:build
+          bun install
+          bun run docs:build
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4

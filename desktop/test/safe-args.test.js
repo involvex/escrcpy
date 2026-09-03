@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { assertSafeScrcpyArgs, assertSafeSerial, assertSafePackageName } from '../electron/helpers/shell/safe-args.js'
+import { assertSafePackageName, assertSafeScrcpyArgs, assertSafeSerial } from '../electron/helpers/shell/safe-args.js'
 
 describe('assertSafeScrcpyArgs', () => {
   it('accepts valid flag patterns', () => {

@@ -36,13 +36,12 @@ jobs:
         with:
           node-version: 24
 
-      - name: Enable corepack and pnpm
-        run: |
-          corepack enable
-          corepack prepare pnpm@10.29.2 --activate
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
+        with:
+          bun-version: 1.4.0
 
       - name: Install Dependencies
-        run: pnpm install
+        run: bun install
 
       - name: Install Flatpak toolchain (Linux)
         if: matrix.platform == 'linux'
@@ -53,7 +52,7 @@ jobs:
           flatpak --user install -y --noninteractive flathub org.freedesktop.Platform//23.08 org.freedesktop.Sdk//23.08 org.electronjs.Electron2.BaseApp//23.08
 
       - name: Build ${{ matrix.platform }}
-        run: pnpm ${{ matrix.build_command }}
+        run: bun run ${{ matrix.build_command }}
 
       - name: Create Release
         uses: softprops/action-gh-release@v2
