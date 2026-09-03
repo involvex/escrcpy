@@ -119,7 +119,7 @@ const vitePressConfig = {
 	},
 
 	sitemap: {
-		hostname: 'https://viarotel.eu.org',
+		hostname: `https://involvex.github.io${base}`,
 	},
 
 	vite: viteConfig,
