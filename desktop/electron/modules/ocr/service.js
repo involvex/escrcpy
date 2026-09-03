@@ -1,8 +1,12 @@
+import fs from 'node:fs'
 import path from 'node:path'
 import { app, clipboard, ipcMain } from 'electron'
 
-let workerPromise = null
+const workers = new Map()
 let quitHooked = false
+
+export const OCR_ALLOWED_LANGS = new Set(['eng', 'chi_sim', 'chi_tra', 'jpn', 'rus', 'ara'])
+export const OCR_DEFAULT_LANG = 'eng'
 
 function getLangPath() {
   if (app.isPackaged) {
@@ -12,18 +16,34 @@ function getLangPath() {
   return path.join(app.getAppPath(), 'electron', 'resources', 'extra', 'common', 'tesseract')
 }
 
+export function sanitizeOcrLang(value) {
+  const lang = String(value ?? OCR_DEFAULT_LANG).trim()
+  return OCR_ALLOWED_LANGS.has(lang) ? lang : OCR_DEFAULT_LANG
+}
+
+function hasTrainedData(lang) {
+  try {
+    return fs.existsSync(path.join(getLangPath(), `${lang}.traineddata`))
+  }
+  catch {
+    return false
+  }
+}
+
 /**
- * Lazily create and cache the recognition worker.
+ * Lazily create and cache one recognition worker per language.
  * tessdata_fast ships LSTM-only models, hence OEM 1.
+ * Missing models fall back to English at call time (no throw).
  */
-function getWorker() {
-  if (!workerPromise) {
-    workerPromise = (async () => {
+function getWorker(rawLang) {
+  const lang = sanitizeOcrLang(rawLang)
+  if (!workers.has(lang)) {
+    const promise = (async () => {
       // Bare specifier on purpose: tesseract.js is rollup-externalized and
       // resolved from node_modules at runtime (works with asar: false)
       const { createWorker } = await import(/* @vite-ignore */ 'tesseract.js')
 
-      return createWorker('eng', 1, {
+      return createWorker(lang, 1, {
         langPath: getLangPath(),
         gzip: false,
         logger: () => {},
@@ -31,12 +51,13 @@ function getWorker() {
     })()
       .catch((error) => {
         // Allow a retry on the next invocation instead of caching the failure
-        workerPromise = null
+        workers.delete(lang)
         throw error
       })
+    workers.set(lang, promise)
   }
 
-  return workerPromise
+  return workers.get(lang).then(worker => ({ worker, lang }))
 }
 
 function stripDataUrl(value) {
@@ -47,16 +68,18 @@ function stripDataUrl(value) {
 const MAX_IMAGE_BASE64_LENGTH = 20 * 1024 * 1024
 
 export function terminateOcrWorker() {
-  if (!workerPromise) {
+  if (!workers.size) {
     return false
   }
 
-  const promise = workerPromise
-  workerPromise = null
+  const promises = [...workers.values()]
+  workers.clear()
 
-  promise
-    .then(worker => worker.terminate())
-    .catch(error => console.warn('terminateOcrWorker:', error?.message || error))
+  for (const promise of promises) {
+    promise
+      .then(worker => (typeof worker?.terminate === 'function' ? worker.terminate() : worker?.worker?.terminate?.()))
+      .catch(error => console.warn('terminateOcrWorker:', error?.message || error))
+  }
 
   return true
 }
@@ -70,13 +93,18 @@ export function registerOcrService() {
       throw new Error(`OCR payload rejected: expected a base64 image under ${Math.round(MAX_IMAGE_BASE64_LENGTH / 1024 / 1024)} MB`)
     }
 
-    const worker = await getWorker()
+    const requested = sanitizeOcrLang(payload.lang)
+    const effective = hasTrainedData(requested) ? requested : OCR_DEFAULT_LANG
+    const { worker } = await getWorker(effective)
     const buffer = Buffer.from(encoded, 'base64')
 
     const { data } = await worker.recognize(buffer)
 
     return {
       text: data?.text ?? '',
+      lang: effective,
+      fallback: effective !== requested,
+      requested,
     }
   })
 

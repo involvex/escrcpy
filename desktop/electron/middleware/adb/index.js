@@ -12,7 +12,7 @@ import { parseBatteryDump } from './helpers/battery/index.js'
 import { ADBDownloader } from './helpers/downloader/index.js'
 import adbScanner, { MDNS_CONFIG, probeDeviceCandidates, scanMdnsDevices } from './helpers/scanner/index.js'
 import { ADBUploader } from './helpers/uploader/index.js'
-import { electronAPI } from '@electron-toolkit/preload'
+import { onQuitBefore } from '$electron/helpers/lifecycle/index.js'
 import { readDirWithStat } from './helpers/explorer/index.js'
 import { parseDumpsysPackages, parseLsOutput, parsePackageList, parsePackageNames } from './helpers/packages/index.js'
 import { setupEnvPath } from '$electron/process/helper.js'
@@ -25,7 +25,7 @@ let client = null
 
 const logcatReaders = new Map()
 
-electronAPI.ipcRenderer.on('quit-before', () => {
+onQuitBefore(() => {
   closeAllLogcats()
   client?.kill?.()
   processManager.kill()

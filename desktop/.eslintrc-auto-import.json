@@ -15,6 +15,7 @@
     "InjectionKey": true,
     "MaybeRef": true,
     "MaybeRefOrGetter": true,
+    "OCR_LANG_OPTIONS": true,
     "PropType": true,
     "Ref": true,
     "ScheduleStatus": true,

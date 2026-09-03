@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest'
 import {
   buildAdbArgs,
   buildScrcpyArgs,
+  buildScrcpyRecordArgs,
   parseAdbDevices,
   parseCliArgs,
 } from '../src/utils/cli/index.js'
@@ -53,8 +54,58 @@ describe('parseCliArgs', () => {
     [['mirror'], /serial required/i],
     [['shot'], /serial required/i],
     [['install', 'abc'], /apk path required/i],
+    [['record', 's1'], /output file required/i],
+    [['shell', 's1'], /command required/i],
+    [['push', 's1'], /local path required/i],
+    [['pull', 's1'], /remote path required/i],
+    [['connect'], /host.*required/i],
+    [['--timeout', 'oops', 'devices'], /timeout/i],
   ])('rejects invalid input %j', (argv, errorPattern) => {
     expect(parseCliArgs(argv).error).toMatch(errorPattern)
+  })
+
+  it('parses record/shell/push/pull/connect/battery/logcat', () => {
+    expect(parseCliArgs(['record', 's1', '-o', 'out.mp4', '--no-audio'])).toMatchObject({
+      command: 'record',
+      serial: 's1',
+      out: 'out.mp4',
+      scrcpyArgs: ['--no-audio'],
+    })
+    expect(parseCliArgs(['shell', 's1', '--', 'getprop', 'ro.build.version.sdk'])).toMatchObject({
+      command: 'shell',
+      serial: 's1',
+      shellCmd: ['getprop', 'ro.build.version.sdk'],
+    })
+    expect(parseCliArgs(['push', 's1', 'a.apk'])).toMatchObject({
+      command: 'push',
+      local: 'a.apk',
+      remote: '/sdcard/Download/',
+    })
+    expect(parseCliArgs(['pull', 's1', '/sdcard/a.txt', 'out.txt'])).toMatchObject({
+      command: 'pull',
+      remote: '/sdcard/a.txt',
+      local: 'out.txt',
+    })
+    expect(parseCliArgs(['connect', '192.168.1.10:5555'])).toMatchObject({
+      command: 'connect',
+      host: '192.168.1.10:5555',
+    })
+    expect(parseCliArgs(['battery', 's1', '--json'])).toMatchObject({
+      command: 'battery',
+      serial: 's1',
+      json: true,
+    })
+    expect(parseCliArgs(['logcat', 's1', '--dump', '-o', 'log.txt'])).toMatchObject({
+      command: 'logcat',
+      serial: 's1',
+      dump: true,
+      out: 'log.txt',
+    })
+    expect(parseCliArgs(['--timeout', '5000', '--wait-for-device', 'shell', 's1', 'uptime'])).toMatchObject({
+      command: 'shell',
+      timeoutMs: 5000,
+      waitForDevice: true,
+    })
   })
 })
 
@@ -115,5 +166,15 @@ describe('buildAdbArgs / buildScrcpyArgs', () => {
   it('builds scrcpy args with the serial first', () => {
     expect(buildScrcpyArgs('s1')).toEqual(['-s', 's1'])
     expect(buildScrcpyArgs('s1', ['--no-audio'])).toEqual(['-s', 's1', '--no-audio'])
+    expect(buildScrcpyRecordArgs('s1', 'out.mp4', ['--no-audio'])).toEqual(['-s', 's1', '--record=out.mp4', '--no-audio'])
+  })
+
+  it('builds adb args for shell/push/pull/connect/battery/logcat', () => {
+    expect(buildAdbArgs('shell', 's1', undefined, { shellCmd: ['getprop'] })).toEqual(['-s', 's1', 'shell', 'getprop'])
+    expect(buildAdbArgs('push', 's1', undefined, { local: 'a', remote: 'r' })).toEqual(['-s', 's1', 'push', 'a', 'r'])
+    expect(buildAdbArgs('pull', 's1', undefined, { remote: 'r', local: 'l' })).toEqual(['-s', 's1', 'pull', 'r', 'l'])
+    expect(buildAdbArgs('connect', 'h:5555')).toEqual(['connect', 'h:5555'])
+    expect(buildAdbArgs('battery', 's1')).toEqual(['-s', 's1', 'shell', 'dumpsys', 'battery'])
+    expect(buildAdbArgs('logcat', 's1', undefined, { dump: true })).toEqual(['-s', 's1', 'logcat', '-d'])
   })
 })

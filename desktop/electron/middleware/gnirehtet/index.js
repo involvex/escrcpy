@@ -1,4 +1,4 @@
-import { electronAPI } from '@electron-toolkit/preload'
+import { onQuitBefore } from '$electron/helpers/lifecycle/index.js'
 import electronStore from '$electron/helpers/store/index.js'
 
 import adb from '$electron/middleware/adb/index.js'
@@ -9,7 +9,7 @@ import { assertSafeSerial, assertSafeShellArgument } from '$electron/helpers/she
 
 const processManager = new ProcessManager()
 
-electronAPI.ipcRenderer.on('quit-before', async () => {
+onQuitBefore(async () => {
   stop().catch((error) => {
     console.warn(error.message || 'Stop service failure')
   })

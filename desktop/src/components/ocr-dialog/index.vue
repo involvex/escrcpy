@@ -20,9 +20,17 @@ const props = defineProps({
     type: String,
     default: '',
   },
+  lang: {
+    type: String,
+    default: 'eng',
+  },
+  langOptions: {
+    type: Array,
+    default: () => [],
+  },
 })
 
-const emit = defineEmits(['update:modelValue', 'confirm', 'copy'])
+const emit = defineEmits(['update:modelValue', 'update:lang', 'confirm', 'copy'])
 
 const MIN_SIZE = 8
 
@@ -248,6 +256,23 @@ watch(
       </div>
 
       <div class="flex items-center gap-2 self-end *:app-region-no-drag">
+        <el-select
+          v-if="langOptions?.length"
+          :model-value="lang"
+          :disabled="busy"
+          size="default"
+          style="width: 140px"
+          :placeholder="$t('ocr.lang.placeholder')"
+          @update:model-value="emit('update:lang', $event)"
+        >
+          <el-option
+            v-for="option in langOptions"
+            :key="option.value"
+            :label="option.label"
+            :value="option.value"
+          />
+        </el-select>
+
         <el-button :disabled="busy || !selection" @click="selection = null">
           {{ $t('ocr.crop.reset') }}
         </el-button>

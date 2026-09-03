@@ -7,6 +7,9 @@
     :image-src="imageSrc"
     :busy="busy"
     :text="text"
+    :lang="lang"
+    :lang-options="OCR_LANG_OPTIONS"
+    @update:lang="setLang"
     @confirm="handleConfirm"
     @copy="handleCopy"
     @update:model-value="value => !value && handleClose()"
@@ -15,7 +18,7 @@
 
 <script setup>
 import OcrDialog from '$/components/ocr-dialog/index.vue'
-import useOcrAction from '$/hooks/useOcrAction/index.js'
+import useOcrAction, { OCR_LANG_OPTIONS } from '$/hooks/useOcrAction/index.js'
 
 defineOptions({ inheritAttrs: false })
 
@@ -35,6 +38,8 @@ const {
   imageSrc,
   busy,
   text,
+  lang,
+  setLang,
   invoke,
   handleConfirm,
   handleCopy,

@@ -4,6 +4,24 @@
  * Render <OcrDialog> yourself and bind the returned state.
  * @param {import('vue').Ref<string>} deviceIdRef
  */
+export const OCR_LANG_OPTIONS = [
+  { value: 'eng', label: 'English' },
+  { value: 'chi_sim', label: '简体中文' },
+  { value: 'chi_tra', label: '繁體中文' },
+  { value: 'jpn', label: '日本語' },
+  { value: 'rus', label: 'Русский' },
+  { value: 'ara', label: 'العربية' },
+]
+
+function loadStoredOcrLang() {
+  try {
+    return window.$preload?.store?.get?.('ocr.lang') || 'eng'
+  }
+  catch {
+    return 'eng'
+  }
+}
+
 export function useOcrAction(deviceIdRef) {
   const loading = ref(false)
   const dialogVisible = ref(false)
@@ -11,6 +29,17 @@ export function useOcrAction(deviceIdRef) {
   const imageSrc = ref('')
   const busy = ref(false)
   const text = ref('')
+  const lang = ref(loadStoredOcrLang())
+
+  function setLang(value) {
+    lang.value = value || 'eng'
+    try {
+      window.$preload?.store?.set?.('ocr.lang', lang.value)
+    }
+    catch {
+      // persistence is best-effort
+    }
+  }
 
   let imageUrl = ''
 
@@ -56,9 +85,14 @@ export function useOcrAction(deviceIdRef) {
     try {
       const croppedBase64 = await cropImage(imageUrl, { x, y, width, height })
 
-      const { text: recognized } = await window.$preload.ipcRenderer.invoke('ocr:recognize', {
+      const { text: recognized, fallback, requested } = await window.$preload.ipcRenderer.invoke('ocr:recognize', {
         imageBase64: croppedBase64,
+        lang: lang.value,
       })
+
+      if (fallback) {
+        ElMessage.warning(window.t('ocr.fallback', { requested: requested || lang.value }))
+      }
 
       const trimmed = String(recognized ?? '').trim()
 
@@ -102,6 +136,8 @@ export function useOcrAction(deviceIdRef) {
     imageSrc,
     busy,
     text,
+    lang,
+    setLang,
     invoke,
     handleConfirm,
     handleCopy,
