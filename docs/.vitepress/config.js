@@ -10,6 +10,8 @@ export const appDescription =
 export const defaultLocale = 'en'
 export const locales = [defaultLocale, 'zhHans']
 
+export const base = '/escrcpy/'
+
 export function useImgTag(src = '') {
 	return `<img src="${src}" style="width: 20px; height: 20px;" class="hover:opacity-100 opacity-70 duration-500" />`
 }
@@ -35,6 +37,7 @@ const vueConfig = {
 }
 
 const vitePressConfig = {
+	base,
 	title: appName,
 	description: appDescription,
 	head: [
@@ -79,7 +82,7 @@ const vitePressConfig = {
 			},
 			{
 				icon: {
-					svg: useImgTag('/images/logo-gitcode.png'),
+					svg: useImgTag(`${base}images/logo-gitcode.png`),
 				},
 				link: 'https://gitcode.com/viarotel-org',
 			},
