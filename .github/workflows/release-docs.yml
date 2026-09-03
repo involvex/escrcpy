@@ -7,10 +7,14 @@ on:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
+
+concurrency: ci-${{ github.ref }}
 
 jobs:
-  build-and-deploy:
-    concurrency: ci-${{ github.ref }} # Recommended if you intend to make multiple deployments in quick succession.
+  build:
+    name: Build
     runs-on: ubuntu-latest
     steps:
       - name: Check out Git repository
@@ -25,13 +29,29 @@ jobs:
         with:
           bun-version: 1.4.0
 
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+        with:
+          publish_dir: dist-docs
+
       - name: Install and Build
         run: |
           bun install
           bun run docs:build
 
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@v4
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v5
         with:
-          branch: docs
-          folder: dist-docs
+          path: dist-docs
+
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
