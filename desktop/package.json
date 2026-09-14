@@ -31,7 +31,7 @@
     "jszip": "^3.10.2",
     "kolorist": "^1.8.0",
     "mitt": "^3.0.1",
-    "openai": "^6.45.0",
+    "openai": "^7.15.0",
     "semver": "^7.8.5",
     "sharp": "^0.35.3",
     "std-env": "^4.1.0",
@@ -40,7 +40,7 @@
     "universalify": "^2.0.1"
   },
   "devDependencies": {
-    "@devicefarmer/adbkit": "3.3.8",
+    "@devicefarmer/adbkit": "3.3.9",
     "@electron-toolkit/preload": "3.0.2",
     "@electron-toolkit/utils": "4.0.0",
     "@electron/remote": "2.1.3",
@@ -67,7 +67,7 @@
     "autoglm.js": "workspace:*",
     "big.js": "7.0.1",
     "bonjour-service": "1.4.2",
-    "build-md": "0.4.5",
+    "build-md": "0.4.6",
     "compare-versions": "6.1.1",
     "create-desktop-shortcuts": "1.11.1",
     "croner": "10.0.1",

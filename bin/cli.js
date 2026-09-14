@@ -1,10 +1,15 @@
 #!/usr/bin/env node
 import {spawn, spawnSync} from 'node:child_process'
-import {basename, dirname, join} from 'node:path'
-import {createRequire} from 'node:module'
-import {fileURLToPath} from 'node:url'
 import fs from 'node:fs'
+import {createRequire} from 'node:module'
+import {basename, dirname, join} from 'node:path'
+import {fileURLToPath} from 'node:url'
 
+import {
+	assertSafeSerial,
+	assertSafeShellArgument,
+	sanitizeFilePath,
+} from '../desktop/electron/helpers/shell/safe-args.js'
 import {
 	buildAdbArgs,
 	buildScrcpyArgs,
@@ -12,11 +17,6 @@ import {
 	parseAdbDevices,
 	parseCliArgs,
 } from '../desktop/src/utils/cli/index.js'
-import {
-	assertSafeSerial,
-	assertSafeShellArgument,
-	sanitizeFilePath,
-} from '../desktop/electron/helpers/shell/safe-args.js'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)

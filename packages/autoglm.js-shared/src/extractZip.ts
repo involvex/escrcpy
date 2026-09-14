@@ -1,6 +1,6 @@
 import {chmodr} from 'chmodr'
-import unzip from 'unzipper'
 import fs from 'node:fs'
+import unzip from 'unzipper'
 
 export async function extractZip(zipPath: string, extractPath: string) {
 	if (!fs.existsSync(zipPath)) {

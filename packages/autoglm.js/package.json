@@ -47,7 +47,7 @@
 		"graceful-fs": "^4.2.11",
 		"kolorist": "^1.8.0",
 		"mitt": "^3.0.1",
-		"openai": "^6.45.0",
+		"openai": "^7.15.0",
 		"sharp": "^0.35.3",
 		"std-env": "^4.1.0",
 		"tinyexec": "^1.2.4",

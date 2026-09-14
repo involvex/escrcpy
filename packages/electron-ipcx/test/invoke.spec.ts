@@ -1,7 +1,7 @@
 import {beforeEach, describe, expect, it, vi} from 'vitest'
 
-import {ipcxRenderer} from '../renderer'
 import {ipcxMain} from '../main'
+import {ipcxRenderer} from '../renderer'
 
 const rendererListeners = new Map<string, Set<(...args: unknown[]) => void>>()
 const ipcMainHandlers = new Map<string, (...args: unknown[]) => unknown>()

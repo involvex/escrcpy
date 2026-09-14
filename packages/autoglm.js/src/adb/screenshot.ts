@@ -1,10 +1,10 @@
-import {unlink} from 'node:fs/promises'
 import {randomUUID} from 'node:crypto'
-import {runAdbCommand} from './utils'
-import {Screenshot} from './types'
-import {join} from 'node:path'
+import {unlink} from 'node:fs/promises'
 import {tmpdir} from 'node:os'
+import {join} from 'node:path'
 import sharp from 'sharp'
+import {Screenshot} from './types'
+import {runAdbCommand} from './utils'
 /**
  * Take a screenshot and return it as a base64 encoded string.
  * Similar to the Python version, saves to temp file first then converts to base64.

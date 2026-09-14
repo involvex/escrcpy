@@ -1,7 +1,7 @@
 import {sleep} from '@autoglm.js/shared'
+import {Buffer} from 'node:buffer'
 import {ADBKeyboard} from './keyboard'
 import {runAdbCommand} from './utils'
-import {Buffer} from 'node:buffer'
 
 /**
  * Get the current input method (IME) on the device.

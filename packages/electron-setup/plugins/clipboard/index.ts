@@ -1,6 +1,6 @@
+import {clipboard, ipcMain} from 'electron'
 import type {ElectronApp, Plugin} from '../../main/types'
 import {copyFilesToClipboard} from './helper'
-import {clipboard, ipcMain} from 'electron'
 
 /**
  * Clipboard plugin options

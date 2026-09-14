@@ -1,5 +1,5 @@
-import {createRequire} from 'node:module'
 import antfu from '@antfu/eslint-config'
+import {createRequire} from 'node:module'
 
 const require = createRequire(import.meta.url)
 

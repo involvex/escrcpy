@@ -2,15 +2,15 @@ import type {
 	IpcRenderer as ElectronIpcRenderer,
 	IpcRendererEvent,
 } from 'electron'
-import {createCallbackError, safeCall, unwrapError} from '../shared/errors'
-import type {InvokeEnvelope, InvokeHandle} from '../shared/types'
-import {SimpleChannelGenerator} from '../shared/channel-pool'
 import {ipcRenderer as electronIpcRenderer} from 'electron'
-import {prepareInboundArgs} from '../shared/validators'
-import {serializeArgs} from '../shared/serialize'
-import {exposeClassAPI} from '../shared/expose'
+import {SimpleChannelGenerator} from '../shared/channel-pool'
 import {debugLogger} from '../shared/debug'
+import {createCallbackError, safeCall, unwrapError} from '../shared/errors'
+import {exposeClassAPI} from '../shared/expose'
 import {getByPath} from '../shared/paths'
+import {serializeArgs} from '../shared/serialize'
+import type {InvokeEnvelope, InvokeHandle} from '../shared/types'
+import {prepareInboundArgs} from '../shared/validators'
 
 /**
  * Renderer-side IPC extension that enables function arguments by proxying callbacks through unique channels.

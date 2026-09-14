@@ -5,8 +5,8 @@ import type {
 	ExpressionStatement,
 	Literal,
 } from 'acorn'
-import type {Action} from './types'
 import {parse} from 'acorn-loose'
+import type {Action} from './types'
 
 function getElements(node: Expression, index: number = 1) {
 	if (node.type !== 'SequenceExpression') {

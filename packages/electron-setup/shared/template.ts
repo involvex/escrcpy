@@ -1,14 +1,14 @@
+import type {BrowserWindowConstructorOptions} from 'electron'
+import {BrowserWindow, shell} from 'electron'
+import {debounce} from 'es-toolkit'
+import path from 'node:path'
 import type {
 	EnhancedBrowserWindow,
 	TemplateBrowserWindowOptions,
 } from '../main/types'
 import {createDefaultStorage} from './adapters/storage-adapter'
-import type {BrowserWindowConstructorOptions} from 'electron'
 import {loadPage as builtInLoadPage} from './helpers'
-import {BrowserWindow, shell} from 'electron'
 import type {IStorage} from './interfaces'
-import {debounce} from 'es-toolkit'
-import path from 'node:path'
 
 /**
  * Electron Store key for persisting window bounds

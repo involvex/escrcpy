@@ -1,3 +1,14 @@
+import {
+	back,
+	doubleTap,
+	home,
+	launchApp,
+	longPress,
+	swipe,
+	tap,
+} from '@/adb/device'
+import {typeText} from '@/adb/input'
+import type {AgentContext} from '@/context'
 import type {
 	Action,
 	ActionCallbacks,
@@ -15,17 +26,6 @@ import type {
 	TypeAction,
 	WaitAction,
 } from './types'
-import {
-	back,
-	doubleTap,
-	home,
-	launchApp,
-	longPress,
-	swipe,
-	tap,
-} from '@/adb/device'
-import type {AgentContext} from '@/context'
-import {typeText} from '@/adb/input'
 
 /**
  * Create a finish action.

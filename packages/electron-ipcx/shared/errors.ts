@@ -3,8 +3,8 @@
  * Defines error codes, types, and error wrapping logic
  */
 
-import type {ErrorEnvelope} from './types'
 import {debugLogger} from './debug'
+import type {ErrorEnvelope} from './types'
 
 export enum IpcxErrorCode {
 	// Payload validation errors (1xxx)

@@ -1,8 +1,8 @@
-import {createSerializeError, IpcxErrorCode} from './errors'
-import type {FunctionDescriptor} from './types'
-import {debugLogger} from './debug'
-import {formatPath} from './paths'
 import {nanoid} from 'nanoid'
+import {debugLogger} from './debug'
+import {createSerializeError, IpcxErrorCode} from './errors'
+import {formatPath} from './paths'
+import type {FunctionDescriptor} from './types'
 
 function isPlainObject(value: unknown): value is Record<string, unknown> {
 	if (Object.prototype.toString.call(value) !== '[object Object]') return false

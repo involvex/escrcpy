@@ -3,10 +3,10 @@
  * Provides type guards and envelope normalization logic
  */
 
-import type {FunctionDescriptor, InvokeEnvelope} from './types'
-import {createPayloadError, IpcxErrorCode} from './errors'
 import {debugLogger} from './debug'
+import {createPayloadError, IpcxErrorCode} from './errors'
 import {parsePath} from './paths'
+import type {FunctionDescriptor, InvokeEnvelope} from './types'
 
 /**
  * Type guard: determines if a payload is an InvokeEnvelope

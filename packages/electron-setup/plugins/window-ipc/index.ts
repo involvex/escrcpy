@@ -1,7 +1,7 @@
-import type {ElectronApp, Plugin} from '../../main/types'
 import {ipcxMain} from '@escrcpy/electron-ipcx/main'
 import type {IpcMainInvokeEvent} from 'electron'
 import {BrowserWindow} from 'electron'
+import type {ElectronApp, Plugin} from '../../main/types'
 
 /**
  * Window IPC plugin options

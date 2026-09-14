@@ -1,7 +1,7 @@
 import type {AgentContext} from '@/context'
-import type {ModelResponse} from './types'
 import {EventType} from '@/context'
 import OpenAI from 'openai'
+import type {ModelResponse} from './types'
 /**
  * Helper class for building conversation messages.
  */

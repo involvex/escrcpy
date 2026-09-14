@@ -1,8 +1,8 @@
-import {ADBAutoInstaller} from './installer'
 import type {AgentContext} from '@/context'
 import {ADBConnection} from './connection'
-import type {DeviceInfo} from './types'
+import {ADBAutoInstaller} from './installer'
 import {ADBKeyboard} from './keyboard'
+import type {DeviceInfo} from './types'
 
 export class ADBManager {
 	private ctx: AgentContext

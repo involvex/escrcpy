@@ -1,5 +1,5 @@
-import {EventType} from './context'
 import {AutoGLM} from './autoglm'
+import {EventType} from './context'
 
 export * from './adb/types'
 export {runAdbCommand} from './adb/utils'

@@ -1,7 +1,7 @@
-import {ADBAutoInstaller} from './installer'
-import {CONNECTION_TYPE} from './constants'
-import type {DeviceInfo} from './types'
 import {exec} from 'tinyexec'
+import {CONNECTION_TYPE} from './constants'
+import {ADBAutoInstaller} from './installer'
+import type {DeviceInfo} from './types'
 
 export class ADBConnection {
 	adb: string

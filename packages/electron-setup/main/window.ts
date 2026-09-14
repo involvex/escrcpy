@@ -1,3 +1,11 @@
+import type {BrowserWindow, BrowserWindowConstructorOptions} from 'electron'
+import {nanoid} from 'nanoid'
+import {AsyncLocalStorage} from 'node:async_hooks'
+import {EventEmitter} from 'node:events'
+import {createContext} from 'unctx'
+import {encodePayload} from '../shared/helpers'
+import type {TemplateBrowserWindow} from '../shared/template'
+import {useElectronApp} from './app'
 import type {
 	WindowContext,
 	WindowHooks,
@@ -5,14 +13,6 @@ import type {
 	WindowManagerOptions,
 	WindowMeta,
 } from './types'
-import type {BrowserWindow, BrowserWindowConstructorOptions} from 'electron'
-import type {TemplateBrowserWindow} from '../shared/template'
-import {AsyncLocalStorage} from 'node:async_hooks'
-import {encodePayload} from '../shared/helpers'
-import {EventEmitter} from 'node:events'
-import {useElectronApp} from './app'
-import {createContext} from 'unctx'
-import {nanoid} from 'nanoid'
 
 /**
  * Window context - allows hooks to access window context via useWindowContext()

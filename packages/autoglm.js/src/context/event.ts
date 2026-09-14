@@ -1,5 +1,5 @@
-import type {EventData} from './types'
 import mitt from 'mitt'
+import type {EventData} from './types'
 
 export enum EventType {
 	START = 'start',

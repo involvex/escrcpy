@@ -1,12 +1,12 @@
-import type {ChatCompletionMessageParam} from 'openai/resources/chat/completions'
-import {MessageBuilder, ModelClient} from '@/model/client'
 import {ActionHandler, finish} from '@/actions/handler'
-import {getFinishMessage} from '@/utils/finishMessage'
-import {getCurrentApp, getScreenshot} from '@/adb'
 import {parseAction} from '@/actions/parse'
+import {getCurrentApp, getScreenshot} from '@/adb'
 import type {AgentContext} from '@/context'
-import type {StepResult} from './types'
 import {EventType} from '@/context'
+import {MessageBuilder, ModelClient} from '@/model/client'
+import {getFinishMessage} from '@/utils/finishMessage'
+import type {ChatCompletionMessageParam} from 'openai/resources/chat/completions'
+import type {StepResult} from './types'
 
 export class PhoneAgent {
 	private ctx: AgentContext

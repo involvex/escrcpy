@@ -1,5 +1,5 @@
-import {SYSTEM_PROMPT_ZH} from '@/constants/prompts_zh'
 import {SYSTEM_PROMPT_EN} from '@/constants/prompts_en'
+import {SYSTEM_PROMPT_ZH} from '@/constants/prompts_zh'
 import type {AgentConfigType} from './types'
 
 /**

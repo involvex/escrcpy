@@ -10,7 +10,7 @@
       },
       "devDependencies": {
         "@antfu/eslint-config": "9.1.0",
-        "@involvex/prettier-config": "^0.0.5",
+        "@involvex/prettier-config": "^0.0.6",
         "eslint": "10.6.0",
         "eslint-plugin-format": "2.0.1",
         "ga-gtag": "1.2.0",
@@ -49,7 +49,7 @@
         "jszip": "^3.10.2",
         "kolorist": "^1.8.0",
         "mitt": "^3.0.1",
-        "openai": "^6.45.0",
+        "openai": "^7.15.0",
         "semver": "^7.8.5",
         "sharp": "^0.35.3",
         "std-env": "^4.1.0",
@@ -58,7 +58,7 @@
         "universalify": "^2.0.1",
       },
       "devDependencies": {
-        "@devicefarmer/adbkit": "3.3.8",
+        "@devicefarmer/adbkit": "3.3.9",
         "@electron-toolkit/preload": "3.0.2",
         "@electron-toolkit/utils": "4.0.0",
         "@electron/remote": "2.1.3",
@@ -85,7 +85,7 @@
         "autoglm.js": "workspace:*",
         "big.js": "7.0.1",
         "bonjour-service": "1.4.2",
-        "build-md": "0.4.5",
+        "build-md": "0.4.6",
         "compare-versions": "6.1.1",
         "create-desktop-shortcuts": "1.11.1",
         "croner": "10.0.1",
@@ -157,7 +157,7 @@
         "graceful-fs": "^4.2.11",
         "kolorist": "^1.8.0",
         "mitt": "^3.0.1",
-        "openai": "^6.45.0",
+        "openai": "^7.15.0",
         "sharp": "^0.35.3",
         "std-env": "^4.1.0",
         "tinyexec": "^1.2.4",
@@ -374,7 +374,7 @@
 
     "@develar/schema-utils": ["@develar/schema-utils@2.6.5", "", { "dependencies": { "ajv": "^6.12.0", "ajv-keywords": "^3.4.1" } }, "sha512-0cp4PsWQ/9avqTVMCtZ+GirikIA36ikvjtHweU4/j8yLtgObI0+JUPhYFScgwlteveGB1rt3Cm8UhN04XayDig=="],
 
-    "@devicefarmer/adbkit": ["@devicefarmer/adbkit@3.3.8", "", { "dependencies": { "@devicefarmer/adbkit-logcat": "^2.1.2", "@devicefarmer/adbkit-monkey": "~1.2.1", "bluebird": "~3.7", "commander": "^9.1.0", "debug": "~4.3.1", "node-forge": "^1.3.1", "split": "~1.0.1" }, "bin": { "adbkit": "bin/adbkit" } }, "sha512-7rBLLzWQnBwutH2WZ0EWUkQdihqrnLYCUMaB44hSol9e0/cdIhuNFcqZO0xNheAU6qqHVA8sMiLofkYTgb+lmw=="],
+    "@devicefarmer/adbkit": ["@devicefarmer/adbkit@3.3.9", "", { "dependencies": { "@devicefarmer/adbkit-logcat": "^2.1.2", "@devicefarmer/adbkit-monkey": "~1.2.1", "bluebird": "~3.7", "commander": "^9.1.0", "debug": "~4.3.1", "node-forge": "^1.3.1", "split": "~1.0.1" }, "bin": { "adbkit": "bin/adbkit" } }, "sha512-AYxk5G/b2BPEfubcuxVEZEOpsLf0isqrPNJnnwAlUjZAiLdFg/uvLNRDuBhsC/Ar62X+rUhVlvlL+tKp9HCjfQ=="],
 
     "@devicefarmer/adbkit-logcat": ["@devicefarmer/adbkit-logcat@2.1.3", "", {}, "sha512-yeaGFjNBc/6+svbDeul1tNHtNChw6h8pSHAt5D+JsedUrMTN7tla7B15WLDyekxsuS2XlZHRxpuC6m92wiwCNw=="],
 
@@ -578,7 +578,7 @@
 
     "@img/sharp-win32-x64": ["@img/sharp-win32-x64@0.35.3", "", { "os": "win32", "cpu": "x64" }, "sha512-D4y1vNeZrIIJCN+uHaWVtH86B+aCrdMYYjicy9pXHvbGZeGYLLSd3wdVuC37FxVXlU1ARsk84eKWfWMXGYEqvA=="],
 
-    "@involvex/prettier-config": ["@involvex/prettier-config@0.0.5", "", { "dependencies": { "prettier-plugin-markdown-html": "^1.4.0", "prettier-plugin-organize-imports": "^4.3.0", "prettier-plugin-packagejson": "^3.0.2", "prettier-plugin-prisma": "^5.0.0", "prettier-plugin-properties": "^0.3.1", "prettier-plugin-sort-imports": "^1.8.11", "prettier-plugin-toml": "^2.0.6", "prettier-plugin-yaml": "^1.1.3" }, "peerDependencies": { "prettier": ">=3.8.2" } }, "sha512-3PFR3htPzu5EzfQhUZeqL7cNCjHCxkGP2kRL74XCJbRARva+aqed6PjUjlIe9LD07ENXYw1xtS2LrafxjY8elA=="],
+    "@involvex/prettier-config": ["@involvex/prettier-config@0.0.6", "", { "dependencies": { "prettier-plugin-markdown-html": "^1.4.0", "prettier-plugin-organize-imports": "^4.3.0", "prettier-plugin-packagejson": "^3.0.2", "prettier-plugin-prisma": "^5.0.0", "prettier-plugin-properties": "^0.3.1", "prettier-plugin-toml": "^2.0.6", "prettier-plugin-yaml": "^1.1.3" }, "peerDependencies": { "prettier": ">=3.8.2" } }, "sha512-57UdT0FQkdoWO9ROrBbUFUguAV4a2UmxqRjBa6DQ447CYmTRdwzrF6YkEkCH+cRmxc0TpcOe+PWvWHYhGjRBJg=="],
 
     "@isaacs/cliui": ["@isaacs/cliui@8.0.2", "", { "dependencies": { "string-width": "^5.1.2", "string-width-cjs": "npm:string-width@^4.2.0", "strip-ansi": "^7.0.1", "strip-ansi-cjs": "npm:strip-ansi@^6.0.1", "wrap-ansi": "^8.1.0", "wrap-ansi-cjs": "npm:wrap-ansi@^7.0.0" } }, "sha512-O8jcjabXaleOG9DQ0+ARXWZBTfnP4WNAqzuiJK7ll44AmxGKv/J2M4TPjxjY3znBCfvBXFzucm1twdyFybFqEA=="],
 
@@ -1344,7 +1344,7 @@
 
     "buffer-from": ["buffer-from@1.1.2", "", {}, "sha512-E+XQCRwSbaaiChtv6k6Dwgc+bx+Bs6vuKJHHl5kox/BaKbhiXzqQOwK4cO22yElGp2OCmjwVhT3HmxgyPGnJfQ=="],
 
-    "build-md": ["build-md@0.4.5", "", {}, "sha512-Oyxix9dsm60Dp9uA+MWBnNuQS+kVlWvgByVxaq3hixRsH3Sfbi4zhkOEeS08zxVB3egOPmDdM9RDSWw7u4vniw=="],
+    "build-md": ["build-md@0.4.6", "", {}, "sha512-e6yBlJexV8+ybSj4u6YHyXgF7TtMGbxUC8gpKrvdEim7WRsGlASXMtGCJyrfyxJ58GoCrZW1SwT92kqA5I10qg=="],
 
     "builder-util": ["builder-util@26.15.3", "", { "dependencies": { "@types/debug": "^4.1.6", "builder-util-runtime": "9.7.0", "chalk": "^4.1.2", "cross-spawn": "^7.0.6", "debug": "^4.3.4", "fs-extra": "^10.1.0", "http-proxy-agent": "^7.0.0", "https-proxy-agent": "^7.0.0", "js-yaml": "^4.1.0", "sanitize-filename": "^1.6.3", "source-map-support": "^0.5.19", "stat-mode": "^1.0.0", "temp-file": "^3.4.0", "tiny-async-pool": "1.3.0" } }, "sha512-q2hn7Mbo2nFNkVekPiHFx6Nfo3hURmES3tfBn+k5Pqxl2RkmP3QGqZUhH/q9Pch/4G05NRhPjDlVj1O8q4Txvw=="],
 
@@ -2424,7 +2424,7 @@
 
     "oniguruma-to-es": ["oniguruma-to-es@3.1.1", "", { "dependencies": { "emoji-regex-xs": "^1.0.0", "regex": "^6.0.1", "regex-recursion": "^6.0.2" } }, "sha512-bUH8SDvPkH3ho3dvwJwfonjlQ4R80vjyvrU8YpxuROddv55vAEJrTuCuCVUhhsHbtlD9tGGbaNApGQckXhS8iQ=="],
 
-    "openai": ["openai@6.45.0", "", { "peerDependencies": { "@aws-sdk/credential-provider-node": ">=3.972.0 <4", "@smithy/hash-node": ">=4.3.0 <5", "@smithy/signature-v4": ">=5.4.0 <6", "ws": "^8.18.0", "zod": "^3.25 || ^4.0" }, "optionalPeers": ["@aws-sdk/credential-provider-node", "@smithy/hash-node", "@smithy/signature-v4", "ws", "zod"] }, "sha512-5DQVNErssk0afNpTTHUm/qZPU4iKR9OYdNid8Ib4puq4gHNNvGWZht2zY4h9a8JMF949Ik6m8gQutllVPbjdnw=="],
+    "openai": ["openai@7.15.0", "", { "peerDependencies": { "@aws-sdk/credential-provider-node": ">=3.972.0 <4", "@smithy/hash-node": ">=4.3.0 <5", "@smithy/signature-v4": ">=5.4.0 <6", "undici": ">=5 <9", "ws": "^8.21.0", "zod": "^3.25 || ^4.0" }, "optionalPeers": ["@aws-sdk/credential-provider-node", "@smithy/hash-node", "@smithy/signature-v4", "undici", "ws", "zod"] }, "sha512-2DIwesnPSduw68MFx7nAdgvshrgvS8WOan5W8+tgUMlAy/tY+Q41g80Pa+w/v64rHA6rtn+dketa8QvMVxU96w=="],
 
     "opencollective-postinstall": ["opencollective-postinstall@2.0.3", "", { "bin": { "opencollective-postinstall": "index.js" } }, "sha512-8AV/sCtuzUeTo8gQK5qDZzARrulB3egtLzFgteqB2tcT4Mw7B8Kt7JcDHmltjz6FOAHsvTevk70gZEbhM4ZS9Q=="],
 

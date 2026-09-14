@@ -1,7 +1,7 @@
-import {withSidebar} from 'vitepress-sidebar'
-import {withI18n} from 'vitepress-i18n'
-import {defineConfig} from 'vitepress'
 import {resolve} from 'node:path'
+import {defineConfig} from 'vitepress'
+import {withI18n} from 'vitepress-i18n'
+import {withSidebar} from 'vitepress-sidebar'
 
 export const appName = 'Escrcpy'
 export const appDescription =

@@ -1,3 +1,7 @@
+import type {BrowserWindow} from 'electron'
+import {EventEmitter} from 'node:events'
+import {createContext} from 'unctx'
+import {createDefaultStorage} from '../shared/adapters/storage-adapter'
 import type {
 	ElectronApp,
 	ElectronAppConfig,
@@ -5,10 +9,6 @@ import type {
 	PluginPriority,
 	PluginState,
 } from './types'
-import {createDefaultStorage} from '../shared/adapters/storage-adapter'
-import type {BrowserWindow} from 'electron'
-import {EventEmitter} from 'node:events'
-import {createContext} from 'unctx'
 
 /**
  * Priority to numeric value mapping for sorting

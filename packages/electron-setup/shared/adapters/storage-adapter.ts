@@ -1,5 +1,5 @@
-import type {IStorage} from '../interfaces'
 import Store from 'electron-store'
+import type {IStorage} from '../interfaces'
 
 /**
  * Adapter that wraps electron-store to implement IStorage interface

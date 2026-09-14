@@ -1,5 +1,5 @@
-import type {ElectronApp, Plugin} from '../../main/types'
 import {ipcMain, nativeTheme} from 'electron'
+import type {ElectronApp, Plugin} from '../../main/types'
 
 /**
  * Theme plugin options

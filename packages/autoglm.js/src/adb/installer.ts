@@ -1,8 +1,8 @@
 // import { isLinux, isMacOS, isWindows } from 'std-env'
 import {AUTOGLM_FILEPATH} from '@/constants'
+import fs from 'fs-extra'
 import {execSync} from 'node:child_process'
 import path from 'node:path'
-import fs from 'fs-extra'
 
 export class ADBAutoInstaller {
 	private installPath: string

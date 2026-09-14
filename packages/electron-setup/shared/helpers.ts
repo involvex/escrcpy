@@ -1,6 +1,6 @@
-import type {ElectronApp} from '../main/types'
 import type {BrowserWindow} from 'electron'
 import path from 'node:path'
+import type {ElectronApp} from '../main/types'
 
 /**
  * Load page in BrowserWindow

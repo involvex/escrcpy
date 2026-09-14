@@ -1,8 +1,8 @@
-import type {AgentConfigType, EventData} from './context/types'
-import {checkModelApi, checkSystemRequirements} from './check'
-import {AgentContext, EventType} from './context'
 import {ADBManager} from './adb/manager'
 import {PhoneAgent} from './agent'
+import {checkModelApi, checkSystemRequirements} from './check'
+import {AgentContext, EventType} from './context'
+import type {AgentConfigType, EventData} from './context/types'
 
 export class AutoGLM {
 	private phoneAgent: PhoneAgent

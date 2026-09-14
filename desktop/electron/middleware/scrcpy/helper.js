@@ -40,7 +40,7 @@ export function parseScrcpyCodecList(rawText) {
     return {
       video: [],
       audio: [],
-      error: 'Input must be a string'
+      error: 'Input must be a string',
     }
   }
 

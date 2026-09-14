@@ -1,5 +1,5 @@
-import {ADBAutoInstaller} from './installer'
 import {exec} from 'tinyexec'
+import {ADBAutoInstaller} from './installer'
 
 /**
  * Get ADB command prefix with optional device specifier.

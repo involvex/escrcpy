@@ -1,10 +1,10 @@
-import type {EventType, MittEvents} from './event'
-import {createAgentConfigStore} from './config'
-import type {AgentConfigStore} from './config'
-import type {AgentConfigType} from './types'
-import {createEmitter} from './event'
-import type {Emitter} from 'mitt'
 import dayjs from 'dayjs'
+import type {Emitter} from 'mitt'
+import type {AgentConfigStore} from './config'
+import {createAgentConfigStore} from './config'
+import type {EventType, MittEvents} from './event'
+import {createEmitter} from './event'
+import type {AgentConfigType} from './types'
 
 export {EventType} from './event'
 

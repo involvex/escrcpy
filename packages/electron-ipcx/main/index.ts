@@ -4,16 +4,16 @@ import type {
 	IpcMainInvokeEvent,
 	WebContents,
 } from 'electron'
+import {ipcMain as electronIpcMain} from 'electron'
+import {clonePayload} from '../shared/clone'
+import {debugLogger} from '../shared/debug'
+import {safeCall, wrapError} from '../shared/errors'
+import {setByPath} from '../shared/paths'
 import {
 	isInvokeEnvelope,
 	normalizeEnvelope,
 	prepareInboundArgs,
 } from '../shared/validators'
-import {safeCall, wrapError} from '../shared/errors'
-import {ipcMain as electronIpcMain} from 'electron'
-import {clonePayload} from '../shared/clone'
-import {debugLogger} from '../shared/debug'
-import {setByPath} from '../shared/paths'
 
 /**
  * Main-process IPC extension that reconstructs function proxies for incoming invokes.

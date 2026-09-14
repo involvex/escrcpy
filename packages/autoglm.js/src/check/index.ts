@@ -1,8 +1,8 @@
-import {getErrorMessage} from '@/utils/errorMessage'
 import {ADBConnection} from '@/adb/connection'
-import type {AgentContext} from '@/context'
 import {ADBKeyboard} from '@/adb/keyboard'
 import {ErrorCode} from '@/constants'
+import type {AgentContext} from '@/context'
+import {getErrorMessage} from '@/utils/errorMessage'
 import OpenAI from 'openai'
 
 export async function checkSystemRequirements(ctx: AgentContext) {
