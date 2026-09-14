@@ -262,5 +262,16 @@ export default {
       placeholder: 'preferences.common.errorReporting.placeholder',
       tips: 'preferences.common.errorReporting.tips',
     },
+    logcatMaxBufferSize: {
+      label: 'preferences.logcat.maxBufferSize.name',
+      field: 'logcatMaxBufferSize',
+      type: 'InputNumber',
+      value: 20000,
+      min: 1000,
+      max: 100000,
+      step: 1000,
+      placeholder: 'preferences.logcat.maxBufferSize.placeholder',
+      tips: 'preferences.logcat.maxBufferSize.tips',
+    },
   },
 }

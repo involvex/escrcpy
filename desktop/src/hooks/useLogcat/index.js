@@ -1,8 +1,14 @@
 import dayjs from 'dayjs'
+import { useDeviceStore } from '$/store/device/index.js'
+import { useScreenshotAction } from '$/hooks/useScreenshotAction/index.js'
 
-const MAX_BUFFER_SIZE = 20000
 const BUFFER_SLACK = 2000
 const FLUSH_INTERVAL = 200
+const DEFAULT_MAX_BUFFER_SIZE = 20000
+
+function getMaxBufferSize() {
+  return Number(window.$preload?.store?.get('common.logcatMaxBufferSize') ?? DEFAULT_MAX_BUFFER_SIZE)
+}
 
 const PRIORITY_LETTERS = {
   0: '?',
@@ -119,8 +125,9 @@ export function useLogcat(deviceIdRef) {
       buffer.push(...pending.splice(0))
     }
 
-    if (buffer.length > MAX_BUFFER_SIZE + BUFFER_SLACK) {
-      buffer = buffer.slice(-MAX_BUFFER_SIZE)
+    const maxBufferSize = getMaxBufferSize()
+    if (buffer.length > maxBufferSize + BUFFER_SLACK) {
+      buffer = buffer.slice(-maxBufferSize)
     }
 
     // While paused the view stays frozen, but the buffer is still
@@ -295,6 +302,108 @@ export function useLogcat(deviceIdRef) {
     ElMessage.success(window.t('logcat.export.success'))
   }
 
+  function exportCsv() {
+    const entries = filteredEntries.value
+
+    if (!entries.length) {
+      ElMessage.warning(window.t('logcat.export.empty'))
+      return
+    }
+
+    const header = 'Time,Level,Tag,PID,TID,Message\n'
+    const content = header + entries.map(e =>
+      [
+        e.time,
+        e.level,
+        `"${e.tag.replace(/"/g, '""')}"`,
+        e.pid,
+        e.tid,
+        `"${e.message.replace(/"/g, '""')}"`,
+      ].join(','),
+    ).join('\n')
+
+    const safeDeviceId = deviceIdRef.value.replaceAll(/[<>:"/\\|?*]/g, '_')
+    const fileName = `logcat-${safeDeviceId}-${dayjs().format('YYYY-MM-DD-HH-mm-ss')}.csv`
+    const blob = new Blob([content], { type: 'text/csv;charset=utf-8' })
+    const url = URL.createObjectURL(blob)
+
+    const anchor = document.createElement('a')
+    anchor.href = url
+    anchor.download = fileName
+    anchor.click()
+
+    URL.revokeObjectURL(url)
+
+    ElMessage.success(window.t('logcat.export.success'))
+  }
+
+  async function exportCrashBundle() {
+    const crashEntries = filteredEntries.value.filter(e => e.crash)
+
+    if (!crashEntries.length) {
+      ElMessage.warning(window.t('logcat.crashBundle.noCrashes'))
+      return
+    }
+
+    try {
+      // 1. Get device info
+      const deviceStore = useDeviceStore()
+      const device = deviceStore.list.find(d => d.id === deviceIdRef.value)
+      const deviceInfo = {
+        id: device?.id,
+        name: device?.name,
+        model: device?.model,
+        androidVersion: device?.androidVersion,
+        sdk: device?.sdk,
+        abi: device?.abi,
+      }
+
+      // 2. Take screenshot (silent)
+      const { singleInvoke: captureScreenshot } = useScreenshotAction({ silent: true })
+      const screenshotPath = await captureScreenshot(deviceIdRef.value, { silent: true, skipClipboard: true })
+
+      // 3. Get dumpsys output
+      const dumpsysOutput = await window.$preload.adb.deviceShell(deviceIdRef.value, 'dumpsys')
+
+      // 4. Create ZIP using JSZip
+      const JSZip = (await import('jszip')).default
+      const zip = new JSZip()
+
+      // Add crash log entries
+      zip.file('crash-logs.txt', crashEntries.map(formatEntry).join('\n'))
+
+      // Add device info
+      zip.file('device-info.json', JSON.stringify(deviceInfo, null, 2))
+
+      // Add dumpsys
+      zip.file('dumpsys.txt', dumpsysOutput)
+
+      // Add screenshot if captured
+      if (screenshotPath) {
+        const screenshotBlob = await window.$preload.fs.readFile(screenshotPath)
+        zip.file('screenshot.jpg', screenshotBlob)
+      }
+
+      // Generate and download
+      const content = await zip.generateAsync({ type: 'blob' })
+      const safeDeviceId = deviceIdRef.value.replaceAll(/[<>:"/\\|?*]/g, '_')
+      const fileName = `crash-bundle-${safeDeviceId}-${dayjs().format('YYYY-MM-DD-HH-mm-ss')}.zip`
+
+      const url = URL.createObjectURL(content)
+      const anchor = document.createElement('a')
+      anchor.href = url
+      anchor.download = fileName
+      anchor.click()
+      URL.revokeObjectURL(url)
+
+      ElMessage.success(window.t('logcat.crashBundle.success'))
+    }
+    catch (error) {
+      console.error('Crash bundle export failed:', error)
+      ElMessage.error(`${window.t('common.failed')}: ${error?.message || error}`)
+    }
+  }
+
   function teardown() {
     if (flushTimer) {
       clearTimeout(flushTimer)
@@ -334,6 +443,8 @@ export function useLogcat(deviceIdRef) {
     togglePause,
     refreshPidMap,
     exportLog,
+    exportCsv,
+    exportCrashBundle,
   }
 }
 

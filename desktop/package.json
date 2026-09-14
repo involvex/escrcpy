@@ -28,6 +28,7 @@
     "graceful-fs": "^4.2.11",
     "i18next-fs-backend": "2.6.6",
     "jsonfile": "^6.2.1",
+    "jszip": "^3.10.2",
     "kolorist": "^1.8.0",
     "mitt": "^3.0.1",
     "openai": "^6.45.0",

@@ -9,28 +9,28 @@ Each suggestion lists the current state with concrete file references, a propose
 
 ## Summary Table
 
-| ID       | Priority | Category        | Suggestion                                                                            | Impact     | Effort     | Confidence |
-| -------- | -------- | --------------- | ------------------------------------------------------------------------------------- | ---------- | ---------- | ---------- |
-| FEAT-001 | High     | Feature Gap     | Implement the `automation` schedule type handler                                      | High       | Medium     | 95%        | ✅ **DONE**                                                                           |
-| FEAT-002 | High     | Security        | Harden shell-argument construction in scrcpy/adb middleware against quoting injection | High       | Low        | 90%        | ✅ **DONE**                                                                           |
-| FEAT-003 | High     | UX              | OCR language selection + additional tessdata models                                   | Medium     | Low–Medium | 95%        | 🟡 **MOSTLY DONE** (chi_tra.traineddata missing)                                      |
-| FEAT-004 | High     | UX              | Native notification center for long-running tasks                                     | Medium     | Low        | 90%        | ❌ **NOT DONE**                                                                       |
-| FEAT-005 | High     | Feature Gap     | Preference profile export / import / backup (with validation + safe apply)            | High       | Medium     | 95%        | ✅ **DONE**                                                                           |
-| FEAT-006 | High     | DevEx           | CI workflow for lint + typecheck + unit tests on PRs                                  | Medium     | Low        | 95%        | ✅ **DONE**                                                                           |
-| FEAT-007 | High     | Feature         | Device group control (synchronized input across multiple devices)                     | High       | High       | 85%        | ❌ **NOT DONE**                                                                       |
-| FEAT-008 | Medium   | Feature         | Battery & device telemetry monitor with alerts and history                            | Medium     | Medium     | 90%        | 🟡 **PARTIAL** (Dexie history deferred)                                               |
-| FEAT-009 | Medium   | Feature         | Recording post-processing: GIF export, trim, frame extraction                         | Medium     | Medium     | 90%        | ❌ **NOT DONE**                                                                       |
-| FEAT-010 | Medium   | Maintainability | Unit tests for pure parsers (scrcpy/adb output parsing)                               | Medium     | Low        | 95%        | ✅ **DONE**                                                                           |
-| FEAT-011 | Medium   | Feature         | Logcat enhancements: export, saved filter presets, crash-log bundle sharing           | Medium     | Low–Medium | 90%        | 🟡 **PARTIAL** (export .log + pause/resume done; CSV, presets, crash bundles missing) |
-| FEAT-012 | Medium   | Feature         | Copilot persistent task history + token/cost tracking                                 | Medium     | Medium     | 85%        | 🟡 **PARTIAL** (Dexie task records + history + rerun done; token tracking deferred)   |
-| FEAT-013 | Medium   | Feature         | Wireless device auto-reconnect manager at startup                                     | Medium     | Low–Medium | 90%        | ✅ **DONE** (failure tracking hardened)                                               |
-| FEAT-014 | Medium   | Feature         | Tray device submenu (per-device connect / mirror / disconnect)                        | Medium     | Low        | 95%        | ✅ **DONE**                                                                           |
-| FEAT-015 | Medium   | Feature         | Keyboard mapping editor (PC keys → device touches/keyevents)                          | High       | High       | 80%        | ❌ **NOT DONE**                                                                       |
-| FEAT-016 | Medium   | Feature         | Real CLI beyond `escrcpy` dev launcher (headless mirror/record/screenshot)            | Medium     | Medium     | 85%        | ✅ **DONE**                                                                           |
-| FEAT-017 | Low      | Performance     | Cache serial/screen-size enrichment in `getDeviceList` polling                        | Low–Medium | Low        | 85%        | ❌ **NOT DONE**                                                                       |
-| FEAT-018 | Low      | Feature         | Gamepad support toggle in preferences                                                 | Low        | Medium     | 80%        | ✅ **DONE**                                                                           |
-| FEAT-019 | Low      | Hygiene         | Remove or wire up unused dependencies (`ga-gtag`)                                     | Low        | Low        | 100%       | ✅ **DONE** (moved to root devDependencies)                                           |
-| FEAT-020 | Low      | i18n/A11y       | Additional locales, RTL audit for Arabic, accessibility pass                          | Low        | Medium     | 80%        | ❌ **NOT DONE**                                                                       |
+| ID       | Priority | Category        | Suggestion                                                                            | Impact     | Effort     | Confidence | Status                                                                                     |
+| -------- | -------- | --------------- | ------------------------------------------------------------------------------------- | ---------- | ---------- | ---------- | ------------------------------------------------------------------------------------------ |
+| FEAT-001 | High     | Feature Gap     | Implement the `automation` schedule type handler                                      | High       | Medium     | 95%        | ✅ **DONE**                                                                                |
+| FEAT-002 | High     | Security        | Harden shell-argument construction in scrcpy/adb middleware against quoting injection | High       | Low        | 90%        | ✅ **DONE**                                                                                |
+| FEAT-003 | High     | UX              | OCR language selection + additional tessdata models                                   | Medium     | Low–Medium | 95%        | 🟡 **MOSTLY DONE** (chi_tra.traineddata missing)                                           |
+| FEAT-004 | High     | UX              | Native notification center for long-running tasks                                     | Medium     | Low        | 90%        | ❌ **NOT DONE**                                                                            |
+| FEAT-005 | High     | Feature Gap     | Preference profile export / import / backup (with validation + safe apply)            | High       | Medium     | 95%        | ✅ **DONE**                                                                                |
+| FEAT-006 | High     | DevEx           | CI workflow for lint + typecheck + unit tests on PRs                                  | Medium     | Low        | 95%        | ✅ **DONE**                                                                                |
+| FEAT-007 | High     | Feature         | Device group control (synchronized input across multiple devices)                     | High       | High       | 85%        | ❌ **NOT DONE**                                                                            |
+| FEAT-008 | Medium   | Feature         | Battery & device telemetry monitor with alerts and history                            | Medium     | Medium     | 90%        | 🟡 **PARTIAL** (Dexie history deferred)                                                    |
+| FEAT-009 | Medium   | Feature         | Recording post-processing: GIF export, trim, frame extraction                         | Medium     | Medium     | 90%        | ❌ **NOT DONE**                                                                            |
+| FEAT-010 | Medium   | Maintainability | Unit tests for pure parsers (scrcpy/adb output parsing)                               | Medium     | Low        | 95%        | ✅ **DONE**                                                                                |
+| FEAT-011 | Medium   | Feature         | Logcat enhancements: export, saved filter presets, crash-log bundle sharing           | Medium     | Low–Medium | 90%        | ✅ **DONE** (CSV export, filter presets, crash bundles, configurable buffer, context menu) |
+| FEAT-012 | Medium   | Feature         | Copilot persistent task history + token/cost tracking                                 | Medium     | Medium     | 85%        | 🟡 **PARTIAL** (Dexie task records + history + rerun done; token tracking deferred)        |
+| FEAT-013 | Medium   | Feature         | Wireless device auto-reconnect manager at startup                                     | Medium     | Low–Medium | 90%        | ✅ **DONE** (failure tracking hardened)                                                    |
+| FEAT-014 | Medium   | Feature         | Tray device submenu (per-device connect / mirror / disconnect)                        | Medium     | Low        | 95%        | ✅ **DONE**                                                                                |
+| FEAT-015 | Medium   | Feature         | Keyboard mapping editor (PC keys → device touches/keyevents)                          | High       | High       | 80%        | ✅ **DONE** (fully implemented: keymap editor, profiles, global shortcuts, import/export)  |
+| FEAT-016 | Medium   | Feature         | Real CLI beyond `escrcpy` dev launcher (headless mirror/record/screenshot)            | Medium     | Medium     | 85%        | ✅ **DONE**                                                                                |
+| FEAT-017 | Low      | Performance     | Cache serial/screen-size enrichment in `getDeviceList` polling                        | Low–Medium | Low        | 85%        | ❌ **NOT DONE**                                                                            |
+| FEAT-018 | Low      | Feature         | Gamepad support toggle in preferences                                                 | Low        | Medium     | 80%        | ✅ **DONE**                                                                                |
+| FEAT-019 | Low      | Hygiene         | Remove or wire up unused dependencies (`ga-gtag`)                                     | Low        | Low        | 100%       | ✅ **DONE** (moved to root devDependencies)                                                |
+| FEAT-020 | Low      | i18n/A11y       | Additional locales, RTL audit for Arabic, accessibility pass                          | Low        | Medium     | 80%        | ❌ **NOT DONE**                                                                            |
 
 ---
 
@@ -60,7 +60,7 @@ Each suggestion lists the current state with concrete file references, a propose
 
 - **Category:** Feature (documented milestone "Device group control feature")
 - **Files:** Foundation exists: batch actions framework in `desktop/src/views/device/components/batch-actions/`, wireless grouping UI in `device/components/wireless-group/`, remark-based groups, and `concurrencyLimit` setting via `p-limit` in `desktop/electron/middleware/adb/index.js`.
-- **Current state:** Batch actions cover mirror/screenshot/install/push/copilot, but there is no way to broadcast _input_ (taps, swipes, text, keyevents) to several mirrored devices simultaneously — a common need for app testing/farming scenarios.
+- **Current state:** Batch actions cover mirror/screenshot/install/push/copilot, but there is no way to broadcast _input_ (taps, swipes, text, keyevents) to several mirrored devices simultaneously — a common need for app testing/farming scenarios. No `group-control` Vite entry exists in `desktop/vite.config.js`.
 - **Suggested improvement:** Create a "Group Control" window entry (new Vite entry in `desktop/vite.config.js`) that:
   1. Opens N low-cost mirrors (`--no-audio --max-size=...`) in a CSS grid layout.
   2. Designates one mirror as the leader (first in list or user-selected).
@@ -68,18 +68,6 @@ Each suggestion lists the current state with concrete file references, a propose
   4. Reuses `p-limit` concurrency from `common.concurrencyLimit`.
   5. Adds a device selector in the device list to create/manage groups (extend `wireless-group` or new `device-group` component).
 - **Impact:** High — differentiator feature for testing/farming. **Effort:** High. **Confidence:** 85%.
-
-### FEAT-015 — Keyboard mapping editor
-
-- **Category:** Feature (documented milestone "Keyboard mapping feature")
-- **Files:** No mapping implementation exists. Relevant primitives: `sendKeyevent()` in `desktop/electron/services/shortcuts/index.js`, mirror shortcuts model in `models/preference/common/index.js` (`mirrorShortcuts`), and scrcpy AOA/OTG modes.
-- **Suggested improvement:** Per-device keymap profiles:
-  1. Capture PC keys via globalShortcut (scoped to mirror window focus via `BrowserWindow.isFocused()`).
-  2. Bind to device actions: `input keyevent`, `input tap x y`, `input swipe`, or custom adb shell commands.
-  3. Visual editor over a screenshot overlay of the device screen (reuse `useScreenshotAction` + canvas).
-  4. Store profiles in electron-store under `keymap.<serial>` consistent with per-device scope conventions in `store/preference/helpers/index.js`.
-  5. Activate only while a mirror window for that device is focused.
-- **Impact:** High for gaming/testing niches. **Effort:** High. **Confidence:** 80%.
 
 ---
 
@@ -149,6 +137,34 @@ Each suggestion lists the current state with concrete file references, a propose
 
 ---
 
+## New Feature Suggestions (Based on Codebase Analysis)
+
+### FEAT-021 — Mirror window: Touch/click coordinate overlay for debugging
+
+- **Category:** UX / DevTool
+- **Files:** `desktop/pages/control/` (floating control bar), `desktop/src/hooks/useScaleScreen/`
+- **Current state:** No visual feedback for touch coordinates; useful for calibrating keyboard mappings or automation scripts.
+- **Suggested improvement:** Add an optional overlay in the mirror/control window showing real-time touch coordinates (x, y) and scaled coordinates, toggleable via shortcut or control bar button.
+- **Impact:** Low–Medium. **Effort:** Low. **Confidence:** 85%.
+
+### FEAT-022 — Device connection health dashboard
+
+- **Category:** Feature / Monitoring
+- **Files:** `desktop/src/store/device/index.js`, `desktop/electron/middleware/adb/`
+- **Current state:** Device list shows basic status (online/offline/unauthorized). No connection quality metrics, reconnect history, or USB/Wi-Fi signal info.
+- **Suggested improvement:** Add a health panel showing: connection type (USB/Wi-Fi), last seen, reconnect count, ADB latency (ping), and authorization status history. Could reuse telemetry infrastructure.
+- **Impact:** Medium. **Effort:** Medium. **Confidence:** 80%.
+
+### FEAT-023 — Automation script marketplace / sharing
+
+- **Category:** Feature / Community
+- **Files:** `desktop/src/database/modules/automation/`, `desktop/pages/automation/`
+- **Current state:** Automation scripts stored locally in Dexie. No import/export, sharing, or discovery mechanism.
+- **Suggested improvement:** Add export/import for automation scripts (JSON), a built-in script gallery (curated), and community sharing via GitHub Gists or similar. Include script metadata (description, tags, device requirements).
+- **Impact:** Medium. **Effort:** Medium. **Confidence:** 75%.
+
+---
+
 ## Notes & Non-Suggestions
 
 - The single code TODO (`desktop/pages/terminal/hooks/useTerminal/index.js:174` — delay ensuring terminal readiness) should be replaced with a deterministic readiness signal rather than a longer sleep; fold into terminal work.
@@ -164,36 +180,38 @@ Each suggestion lists the current state with concrete file references, a propose
 
 ## High-Priority Quick Wins (Low Effort, High Impact)
 
-| Item     | Description                                                        | Est. Effort | Files to Touch                                                                                                                                                                 |
-| -------- | ------------------------------------------------------------------ | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **QW-1** | Add `chi_tra.traineddata` to tessdata resources                    | ~30 min     | `desktop/electron/resources/extra/common/tesseract/` (add file), verify build bundling                                                                                         |
-| **QW-2** | Make logcat ring buffer size configurable                          | ~1 hr       | `desktop/src/hooks/useLogcat/index.js`, `desktop/src/models/preference/common/index.js`, i18n keys                                                                             |
-| **QW-3** | Add CSV export to logcat                                           | ~1 hr       | `desktop/src/hooks/useLogcat/index.js` (extend `exportLog`), toolbar i18n                                                                                                      |
-| **QW-4** | Add `taskNotifications` preference + skeleton notification service | ~2–3 hr     | `desktop/src/models/preference/common/index.js`, new `desktop/electron/services/notifications/`, IPC handlers in `handles/index.js`, emitters in scrcpy/batch/schedule/copilot |
-| **QW-5** | Add filter presets to logcat filter-bar                            | ~2 hr       | `desktop/pages/logcat/components/filter-bar/index.vue`, electron-store key `logcat.filterPresets`, UI for save/load/delete                                                     |
-| **QW-6** | Add crash-bundle export (zip logs + screenshot + device info)      | ~2–3 hr     | `desktop/src/hooks/useLogcat/index.js`, `desktop/src/hooks/useScreenshotAction/index.js`, new IPC for zip creation                                                             |
+| Item     | Description                                                        | Est. Effort | Files to Touch                                                                                                                                                                 | Status  |
+| -------- | ------------------------------------------------------------------ | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| **QW-1** | Add `chi_tra.traineddata` to tessdata resources                    | ~30 min     | `desktop/electron/resources/extra/common/tesseract/` (add file), verify build bundling                                                                                         | ❌      |
+| **QW-2** | Make logcat ring buffer size configurable                          | ~1 hr       | `desktop/src/hooks/useLogcat/index.js`, `desktop/src/models/preference/common/index.js`, i18n keys                                                                             | ✅ DONE |
+| **QW-3** | Add CSV export to logcat                                           | ~1 hr       | `desktop/src/hooks/useLogcat/index.js` (extend `exportLog`), toolbar i18n                                                                                                      | ✅ DONE |
+| **QW-4** | Add `taskNotifications` preference + skeleton notification service | ~2–3 hr     | `desktop/src/models/preference/common/index.js`, new `desktop/electron/services/notifications/`, IPC handlers in `handles/index.js`, emitters in scrcpy/batch/schedule/copilot | ❌      |
+| **QW-5** | Add filter presets to logcat filter-bar                            | ~2 hr       | `desktop/pages/logcat/components/filter-bar/index.vue`, electron-store key `logcat.filterPresets`, UI for save/load/delete                                                     | ✅ DONE |
+| **QW-6** | Add crash-bundle export (zip logs + screenshot + device info)      | ~2–3 hr     | `desktop/src/hooks/useLogcat/index.js`, `desktop/src/hooks/useScreenshotAction/index.js`, new IPC for zip creation                                                             | ✅ DONE |
+| **QW-7** | Add Dexie persistence for battery history                          | ~3–4 hr     | `desktop/src/store/telemetry/index.js`, Dexie schema migration, device popover history tab                                                                                     | ❌      |
+| **QW-8** | Add copilot token tracking to schema + history view                | ~2–3 hr     | `desktop/src/database/modules/copilot-task/store.js`, `desktop/electron/modules/copilot/helpers/service.js`, history component                                                 | ❌      |
+
+---
 
 ## High-Priority Larger Features (Plan Required)
 
 | Item         | Description                                            | Est. Effort | Prerequisites                                                                                                               |
 | ------------ | ------------------------------------------------------ | ----------- | --------------------------------------------------------------------------------------------------------------------------- |
 | **FEAT-007** | Device group control (synchronized multi-device input) | 2–3 weeks   | New Vite entry, group device selector, leader/follower mirror grid, input forwarding via adb shell or scrcpy control socket |
-| **FEAT-015** | Keyboard mapping editor                                | 2–3 weeks   | Per-device keymap store, globalShortcut scoped to window focus, visual editor over screenshot canvas, action binding UI     |
 | **FEAT-009** | Recording post-processing (GIF/trim/frames)            | 1–2 weeks   | Post-record dialog, sharp/ffmpeg integration, recordings history view (Dexie or fs index)                                   |
-| **FEAT-008** | Battery history persistence (Dexie)                    | 1 week      | Dexie schema + migration, history view with sparkline, cleanup job                                                          |
+| **FEAT-012** | Copilot token tracking completion                      | 1 week      | Schema migration, OpenAI response parsing, pricing map                                                                      |
 
 ---
 
 ## Suggested Implementation Order
 
-1. **Quick Wins (Week 1–2):** QW-1, QW-2, QW-3, QW-4, QW-5, QW-6 — all independent, low risk, high user-visible value.
-2. **FEAT-008 completion (Week 2–3):** Battery Dexie history — builds on existing telemetry store, small schema addition.
-3. **FEAT-011 completion (Week 3):** Logcat crash bundles — reuses screenshot + logcat + dumpsys.
-4. **FEAT-012 enhancement (Week 3–4):** Copilot token tracking — schema + OpenAI response parsing.
-5. **FEAT-009 (Week 4–6):** Recording post-processing — new UI, ffmpeg/sharp pipeline, history view.
-6. **FEAT-007 (Week 6–10):** Device group control — largest feature, needs new window entry, mirror grid, input forwarding.
-7. **FEAT-015 (Week 10–14):** Keyboard mapping editor — complex UX, per-device profiles, globalShortcut management.
-8. **FEAT-017, FEAT-020:** Ongoing / as capacity allows.
+1. **Quick Wins Week 1:** QW-1, QW-2, QW-3, QW-7 — all independent, low risk, high user-visible value.
+2. **Quick Wins Week 2:** QW-4, QW-5, QW-6, QW-8 — notification infrastructure + logcat polish + copilot tokens.
+3. **FEAT-009 (Week 3–4):** Recording post-processing — new UI, ffmpeg/sharp pipeline, history view.
+4. **FEAT-007 (Week 5–8):** Device group control — largest feature, needs new window entry, mirror grid, input forwarding.
+5. **FEAT-012 (Week 9–10):** Copilot token tracking — schema migration, OpenAI response parsing, pricing map.
+6. **FEAT-017, FEAT-020:** Ongoing / as capacity allows.
+7. **FEAT-021, FEAT-022, FEAT-023:** New features — evaluate after core items.
 
 ---
 
@@ -201,7 +219,7 @@ Each suggestion lists the current state with concrete file references, a propose
 
 When implementing the above, use these agent prompts for each major feature:
 
-### For Quick Wins (QW-1 through QW-6):
+### For Quick Wins (QW-1 through QW-8):
 
 > You are the build agent. Implement the following quick win: [QW-N description].
 > Files to modify: [list from table].
@@ -220,17 +238,6 @@ When implementing the above, use these agent prompts for each major feature:
 > 6. Add group selector in device list (extend `wireless-group` or new component).
 >    Verify: `bun run lint`, `bun run test`, manual test with 2+ devices.
 
-### For FEAT-015 (Keyboard Mapping Editor):
-
-> You are the build agent. Implement Keyboard Mapping Editor.
->
-> 1. Add `keymap.<serial>` scope in `desktop/src/store/preference/helpers/index.js`.
-> 2. Create `desktop/src/views/device/components/keyboard-mapping/` with visual editor (screenshot canvas + key binding UI).
-> 3. Register globalShortcuts scoped to mirror window focus (`BrowserWindow.isFocused()`) in `services/shortcuts/index.js`.
-> 4. Bind PC keys to device actions: `input keyevent`, `input tap`, `input swipe`, custom shell commands.
-> 5. Persist profiles to electron-store; activate only when corresponding mirror window is focused.
->    Verify: `bun run lint`, `bun run test`, manual test key bindings.
-
 ### For FEAT-009 (Recording Post-Processing):
 
 > You are the build agent. Implement Recording Post-Processing.
@@ -241,6 +248,16 @@ When implementing the above, use these agent prompts for each major feature:
 > 4. For Frames: `sharp` pipeline to save PNGs at timestamps.
 > 5. Add "Recordings" history view (new page or device popover tab) indexing files under `common.savePath` (Dexie or fs watch).
 >    Verify: `bun run lint`, `bun run test`, manual test with a recording.
+
+### For FEAT-012 completion (Copilot Token Tracking):
+
+> You are the build agent. Add token usage tracking to Copilot tasks.
+>
+> 1. Extend `copilotTaskSchema` in `desktop/src/database/modules/copilot-task/store.js` with `promptTokens`, `completionTokens`, `totalTokens`, `estimatedCost`.
+> 2. In `desktop/electron/modules/copilot/helpers/service.js`, extract `usage` from OpenAI-compatible response and pass to `finishTask()`.
+> 3. Add per-model pricing map in `desktop/pages/copilot/dicts/api.js`.
+> 4. Update history table to show token columns (behind `copilot.trackTokens` preference).
+>    Verify: `bun run lint`, `bun run test`, manual test with copilot task.
 
 ---
 
@@ -254,3 +271,5 @@ For each implemented item:
 - [ ] Manual verification on Windows (primary) + note macOS/Linux gaps
 - [ ] Update `suggestions.md` status to ✅ DONE or 🟡 PARTIAL with notes
 - [ ] Commit with Angular convention: `feat(scope): description` / `fix(scope): description`
+
+(End of file - total 398 lines)

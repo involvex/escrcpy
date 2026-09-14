@@ -38,9 +38,34 @@ const {
   togglePause,
   refreshPidMap,
   exportLog,
+  exportCsv,
+  exportCrashBundle,
 } = useLogcat(deviceId)
 
 const logTableRef = ref()
+
+function handleFilterByPid(pid) {
+  if (!pid) {
+    return
+  }
+  // Find the package name for this PID
+  const pkg = pidMap.value.get(pid)
+  if (pkg) {
+    packageName.value = pkg
+  }
+}
+
+function handleFilterByTag(tag) {
+  if (!tag) {
+    return
+  }
+  // Add tag to tag filter
+  const currentTags = tagText.value.split(',').map(t => t.trim()).filter(Boolean)
+  if (!currentTags.includes(tag)) {
+    currentTags.push(tag)
+    tagText.value = currentTags.join(', ')
+  }
+}
 
 onMounted(async () => {
   const currentDeviceId = deviceId.value
@@ -104,6 +129,8 @@ function handleRefreshClick() {
         @toggle-pause="togglePause"
         @clear="clear"
         @export="exportLog"
+        @export-csv="exportCsv"
+        @export-crash-bundle="exportCrashBundle"
         @reconnect="connect({ clear: true })"
       />
 
@@ -120,7 +147,12 @@ function handleRefreshClick() {
       <CrashBanner :count="crashCount" @jump="handleJumpToCrash" />
 
       <div class="flex-1 min-h-0 border-t border-gray-200 dark:border-gray-700">
-        <LogTable ref="logTableRef" :entries="filteredEntries" />
+        <LogTable
+          ref="logTableRef"
+          :entries="filteredEntries"
+          @filter-by-pid="handleFilterByPid"
+          @filter-by-tag="handleFilterByTag"
+        />
       </div>
 
       <div class="flex items-center px-2 h-7 text-xs text-gray-500 border-t border-gray-200 dark:border-gray-700">

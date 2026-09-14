@@ -14,7 +14,7 @@ const props = defineProps({
   },
 })
 
-const emit = defineEmits(['toggle-pause', 'clear', 'export', 'reconnect'])
+const emit = defineEmits(['toggle-pause', 'clear', 'export', 'export-csv', 'export-crash-bundle', 'reconnect'])
 
 const pauseLabel = computed(() => {
   return props.paused ? 'logcat.toolbar.resume' : 'logcat.toolbar.pause'
@@ -60,6 +60,14 @@ const pauseIcon = computed(() => {
 
       <el-button size="small" icon="Download" @click="emit('export')">
         {{ $t('logcat.toolbar.export') }}
+      </el-button>
+
+      <el-button size="small" icon="Document" @click="emit('export-csv')">
+        {{ $t('logcat.toolbar.exportCsv') }}
+      </el-button>
+
+      <el-button size="small" type="warning" icon="Warning" @click="emit('export-crash-bundle')">
+        {{ $t('logcat.toolbar.exportCrashBundle') }}
       </el-button>
     </el-button-group>
 

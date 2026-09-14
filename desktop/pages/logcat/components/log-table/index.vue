@@ -1,4 +1,7 @@
 <script setup>
+import { computed, nextTick, onMounted, onUnmounted, ref, watch } from 'vue'
+import { ElMessage } from 'element-plus'
+
 const props = defineProps({
   entries: {
     type: Array,
@@ -10,12 +13,20 @@ const props = defineProps({
   },
 })
 
+const emit = defineEmits(['filter-by-pid', 'filter-by-tag', 'copy-pid', 'copy-tag', 'copy-message'])
+
 const ROW_HEIGHT = 22
 const OVERSCAN = 10
 
 const containerRef = ref()
 const scrollTop = ref(0)
 const viewportHeight = ref(400)
+
+// Context menu state
+const contextMenuVisible = ref(false)
+const contextMenuX = ref(0)
+const contextMenuY = ref(0)
+const contextEntry = ref(null)
 
 let stickToBottom = true
 
@@ -80,6 +91,63 @@ function scrollToIndex(index) {
   })
 }
 
+function onContextMenu(event, entry) {
+  event.preventDefault()
+  event.stopPropagation()
+  contextEntry.value = entry
+  contextMenuX.value = event.clientX
+  contextMenuY.value = event.clientY
+  contextMenuVisible.value = true
+}
+
+function closeContextMenu() {
+  contextMenuVisible.value = false
+  contextEntry.value = null
+}
+
+function handleFilterByPid() {
+  if (!contextEntry.value) {
+    return
+  }
+  emit('filter-by-pid', contextEntry.value.pid)
+  closeContextMenu()
+}
+
+function handleFilterByTag() {
+  if (!contextEntry.value) {
+    return
+  }
+  emit('filter-by-tag', contextEntry.value.tag)
+  closeContextMenu()
+}
+
+function handleCopyPid() {
+  if (!contextEntry.value) {
+    return
+  }
+  navigator.clipboard.writeText(String(contextEntry.value.pid))
+  closeContextMenu()
+  ElMessage.success(window.t('logcat.context.copyPid'))
+}
+
+function handleCopyTag() {
+  if (!contextEntry.value) {
+    return
+  }
+  navigator.clipboard.writeText(contextEntry.value.tag)
+  closeContextMenu()
+  ElMessage.success(window.t('logcat.context.copyTag'))
+}
+
+function handleCopyMessage() {
+  if (!contextEntry.value) {
+    return
+  }
+  navigator.clipboard.writeText(contextEntry.value.message)
+  closeContextMenu()
+  ElMessage.success(window.t('logcat.context.copyMessage'))
+}
+
 watch(
   () => props.entries.length,
   () => {
@@ -103,11 +171,17 @@ onMounted(() => {
   }
 
   scrollToBottom()
+
+  // Close context menu on click outside
+  document.addEventListener('click', closeContextMenu)
+  document.addEventListener('scroll', closeContextMenu, true)
 })
 
 onUnmounted(() => {
   resizeObserver?.disconnect()
   resizeObserver = null
+  document.removeEventListener('click', closeContextMenu)
+  document.removeEventListener('scroll', closeContextMenu, true)
 })
 
 defineExpose({
@@ -129,6 +203,7 @@ defineExpose({
         class="log-row absolute left-0 w-full flex gap-2 px-2 leading-[22px] whitespace-nowrap"
         :class="rowClass(entry)"
         :style="{ top: `${(startIndex + index) * ROW_HEIGHT}px`, height: `${ROW_HEIGHT}px` }"
+        @contextmenu="onContextMenu"
       >
         <span class="flex-none opacity-60">{{ entry.time }}</span>
         <span class="flex-none w-3 text-center font-bold">{{ entry.level }}</span>
@@ -137,6 +212,54 @@ defineExpose({
         <span class="truncate" :title="entry.message">{{ entry.message }}</span>
       </div>
     </div>
+  </div>
+
+  <!-- Context Menu -->
+  <div
+    v-if="contextMenuVisible"
+    class="fixed z-50 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded shadow-lg py-1 min-w-[160px]"
+    :style="{ left: `${contextMenuX}px`, top: `${contextMenuY}px` }"
+    @click.stop
+  >
+    <div class="px-3 py-1.5 text-xs text-gray-500 dark:text-gray-400 border-b border-gray-200 dark:border-gray-700">
+      PID: {{ contextEntry?.pid }} | {{ contextEntry?.tag }}
+    </div>
+    <button
+      class="w-full text-left px-3 py-1.5 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center gap-2"
+      @click="handleFilterByPid"
+    >
+      <i class="i-bi-funnel"></i>
+      {{ $t('logcat.context.filterByPid') }}
+    </button>
+    <button
+      class="w-full text-left px-3 py-1.5 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center gap-2"
+      @click="handleFilterByTag"
+    >
+      <i class="i-bi-tag"></i>
+      {{ $t('logcat.context.filterByTag') }}
+    </button>
+    <hr class="border-gray-200 dark:border-gray-700 my-1" />
+    <button
+      class="w-full text-left px-3 py-1.5 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center gap-2"
+      @click="handleCopyPid"
+    >
+      <i class="i-bi-clipboard"></i>
+      {{ $t('logcat.context.copyPid') }}
+    </button>
+    <button
+      class="w-full text-left px-3 py-1.5 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center gap-2"
+      @click="handleCopyTag"
+    >
+      <i class="i-bi-tag"></i>
+      {{ $t('logcat.context.copyTag') }}
+    </button>
+    <button
+      class="w-full text-left px-3 py-1.5 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center gap-2"
+      @click="handleCopyMessage"
+    >
+      <i class="i-bi-clipboard-text"></i>
+      {{ $t('logcat.context.copyMessage') }}
+    </button>
   </div>
 </template>
 
