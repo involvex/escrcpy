@@ -2,8 +2,8 @@
   <div class="space-y-3">
     <el-alert
       v-if="!profiles.length"
-      title="暂无映射方案"
-      description="点击下方按钮创建第一个方案"
+      :title="$t('keymap.editor.profile.emptyTitle')"
+      :description="$t('keymap.editor.profile.emptyDescription')"
       type="info"
       show-icon
       class="mb-2"
@@ -14,7 +14,7 @@
         <el-input
           v-model="profile.name"
           size="small"
-          placeholder="方案名称"
+          :placeholder="$t('keymap.editor.profile.placeholder')"
           class="!w-48"
           @input="emitChange"
         />
@@ -75,7 +75,8 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
+import { usePreferenceStore } from '$/store/preference/index.js'
 
 const props = defineProps({
   modelValue: {
@@ -93,6 +94,8 @@ const props = defineProps({
 })
 
 const emit = defineEmits(['update:model-value'])
+
+const preferenceStore = usePreferenceStore()
 
 const profiles = computed({
   get() {
@@ -113,6 +116,19 @@ const activeProfile = computed({
 })
 
 const expandedProfiles = ref([])
+
+// Update activeProfile options in the preference model when profiles change
+watch(
+  () => profiles.value,
+  (newProfiles) => {
+    const options = newProfiles.map(p => ({
+      label: p.name || p.id,
+      value: p.id,
+    }))
+    preferenceStore.setModel('keymap.children.activeProfile.options', options)
+  },
+  { deep: true, immediate: true },
+)
 
 function emitChange() {
   emit('update:model-value', profiles.value)
@@ -179,17 +195,17 @@ function formatBindingParams(binding) {
   const { action, params } = binding
   switch (action) {
     case 'keyevent':
-      return `Keyevent: ${params.code || '未设置'}`
+      return `${$t('keymap.editor.binding.keyevent')}: ${params.code || $t('keymap.editor.binding.notSet')}`
     case 'tap':
-      return `Tap: (${params.x || 0}, ${params.y || 0})`
+      return `${$t('keymap.editor.binding.tap')}: (${params.x || 0}, ${params.y || 0})`
     case 'swipe':
-      return `Swipe: (${params.startX || 0}, ${params.startY || 0}) -> (${params.endX || 0}, ${params.endY || 0})`
+      return `${$t('keymap.editor.binding.swipe')}: (${params.startX || 0}, ${params.startY || 0}) -> (${params.endX || 0}, ${params.endY || 0})`
     case 'text':
-      return `Text: ${params.text || '未设置'}`
+      return `${$t('keymap.editor.binding.text')}: ${params.text || $t('keymap.editor.binding.notSet')}`
     case 'shell':
-      return `Shell: ${params.command || '未设置'}`
+      return `${$t('keymap.editor.binding.shell')}: ${params.command || $t('keymap.editor.binding.notSet')}`
     case 'macro':
-      return `Macro: ${params.steps?.length || 0} steps`
+      return `${$t('keymap.editor.binding.macro')}: ${params.steps?.length || 0} ${$t('keymap.editor.binding.steps')}`
     default:
       return JSON.stringify(params)
   }

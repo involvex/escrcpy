@@ -147,13 +147,13 @@
         <div class="space-y-2">
           <div v-for="(step, index) in form.params.steps" :key="step.id" class="flex items-center gap-2 p-2 bg-gray-50 dark:bg-gray-800 rounded">
             <span class="text-gray-500 dark:text-gray-400 text-sm">{{ index + 1 }}.</span>
-            <el-select v-model="step.type" size="small" style="width: 120px;" placeholder="Type">
-              <el-option label="Keyevent" value="keyevent" />
-              <el-option label="Tap" value="tap" />
-              <el-option label="Swipe" value="swipe" />
-              <el-option label="Text" value="text" />
-              <el-option label="Shell" value="shell" />
-              <el-option label="Wait" value="wait" />
+            <el-select v-model="step.type" size="small" style="width: 120px;" :placeholder="$t('keymap.editor.binding.macro.stepTypePlaceholder')">
+              <el-option
+                v-for="type in macroStepTypes"
+                :key="type.value"
+                :label="type.label"
+                :value="type.value"
+              />
             </el-select>
             <div v-if="step.type === 'keyevent'" class="flex-1">
               <el-select v-model="step.params.code" size="small" style="width: 100%;" filterable placeholder="Keycode">
@@ -248,6 +248,15 @@ const actionTypes = [
   { value: 'text', label: $t('keymap.action.text') },
   { value: 'shell', label: $t('keymap.action.shell') },
   { value: 'macro', label: $t('keymap.action.macro') },
+]
+
+const macroStepTypes = [
+  { value: 'keyevent', label: $t('keymap.action.keyevent') },
+  { value: 'tap', label: $t('keymap.action.tap') },
+  { value: 'swipe', label: $t('keymap.action.swipe') },
+  { value: 'text', label: $t('keymap.action.text') },
+  { value: 'shell', label: $t('keymap.action.shell') },
+  { value: 'wait', label: $t('keymap.action.wait') },
 ]
 
 watch(() => props.visible, (val) => {
@@ -370,12 +379,12 @@ function removeStep(index) {
 function submit() {
   // Validate
   if (!form.value.key) {
-    ElMessage.warning('请设置按键')
+    ElMessage.warning($t('keymap.editor.binding.keyRequired'))
     return
   }
 
   if (!form.value.action) {
-    ElMessage.warning('请选择动作类型')
+    ElMessage.warning($t('keymap.editor.binding.actionRequired'))
     return
   }
 
@@ -384,31 +393,31 @@ function submit() {
   switch (form.value.action) {
     case 'keyevent':
       if (!params.code) {
-        ElMessage.warning('请选择按键码')
+        ElMessage.warning($t('keymap.editor.binding.keyevent.codeRequired'))
         return
       }
       break
     case 'tap':
       if (params.x === undefined || params.y === undefined) {
-        ElMessage.warning('请设置点击坐标')
+        ElMessage.warning($t('keymap.editor.binding.tap.coordsRequired'))
         return
       }
       break
     case 'swipe':
       if (params.startX === undefined || params.startY === undefined || params.endX === undefined || params.endY === undefined) {
-        ElMessage.warning('请设置滑动坐标')
+        ElMessage.warning($t('keymap.editor.binding.swipe.coordsRequired'))
         return
       }
       break
     case 'text':
       if (!params.text) {
-        ElMessage.warning('请输入文本内容')
+        ElMessage.warning($t('keymap.editor.binding.text.contentRequired'))
         return
       }
       break
     case 'shell':
       if (!params.command) {
-        ElMessage.warning('请输入Shell命令')
+        ElMessage.warning($t('keymap.editor.binding.shell.commandRequired'))
         return
       }
       break
