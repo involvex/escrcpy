@@ -62,7 +62,7 @@ describe('parseScrcpyCodecList', () => {
     const broken = parseScrcpyCodecList(null)
     expect(broken.video).toEqual([])
     expect(broken.audio).toEqual([])
-    expect(broken.error).toBeTruthy()
+    expect(broken.error).toBe('Input must be a string')
   })
 
   it('skips option lines lacking codec+encoder pairs', () => {

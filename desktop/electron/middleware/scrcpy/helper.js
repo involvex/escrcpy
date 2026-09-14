@@ -36,6 +36,14 @@ export function parseScrcpyAppList(rawText) {
  * @returns
  */
 export function parseScrcpyCodecList(rawText) {
+  if (typeof rawText !== 'string') {
+    return {
+      video: [],
+      audio: [],
+      error: 'Input must be a string'
+    }
+  }
+
   try {
     const result = {
       video: [],

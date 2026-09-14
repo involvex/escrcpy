@@ -1,14 +1,13 @@
-import { describe, it, expect } from 'vitest'
+import { describe, expect, it } from 'vitest'
 import {
-  KeymapActionType,
-  resolveKeyeventCode,
-  validateKeymapBinding,
   buildKeymapCommand,
   createDefaultBinding,
   createDefaultProfile,
-} from '$/utils/keymap/index.js'
+  resolveKeyeventCode,
+  validateKeymapBinding,
+} from '../src/utils/keymap/index.js'
 
-describe('Keymap Executor', () => {
+describe('keymap Executor', () => {
   describe('resolveKeyeventCode', () => {
     it('resolves known key names', () => {
       expect(resolveKeyeventCode('HOME')).toBe(3)
@@ -85,11 +84,11 @@ describe('Keymap Executor', () => {
       expect(validateKeymapBinding({ action: 'macro', params: { steps: [] } })).toBeTruthy()
       expect(validateKeymapBinding({
         action: 'macro',
-        params: { steps: [{ type: 'tap', x: 100, y: 200 }] }
+        params: { steps: [{ type: 'tap', x: 100, y: 200 }] },
       })).toBeNull()
       expect(validateKeymapBinding({
         action: 'macro',
-        params: { steps: [{ type: 'invalid' }] }
+        params: { steps: [{ type: 'invalid' }] },
       })).toBeTruthy()
     })
   })
@@ -107,11 +106,11 @@ describe('Keymap Executor', () => {
     it('builds swipe commands', () => {
       expect(buildKeymapCommand({
         action: 'swipe',
-        params: { startX: 100, startY: 100, endX: 200, endY: 200 }
+        params: { startX: 100, startY: 100, endX: 200, endY: 200 },
       })).toBe('input swipe 100 100 200 200')
       expect(buildKeymapCommand({
         action: 'swipe',
-        params: { startX: 100, startY: 100, endX: 200, endY: 200, duration: 300 }
+        params: { startX: 100, startY: 100, endX: 200, endY: 200, duration: 300 },
       })).toBe('input swipe 100 100 200 200 300')
     })
 
