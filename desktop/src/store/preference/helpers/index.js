@@ -53,7 +53,7 @@ export const getStoreData = (scope) => {
   topFields.forEach((key) => {
     const storeValue = window.$preload.store.get(key) || {}
 
-    if (['scrcpy'].includes(key)) {
+    if (['scrcpy', 'keymap'].includes(key)) {
       Object.assign(value, storeValue[scope || 'global'])
       return
     }
@@ -84,7 +84,7 @@ export function setStoreData(data, scope) {
 
   const storeList = Object.entries(storeModel).reduce((arr, [field, value]) => {
     arr.push({
-      field: field === 'scrcpy' ? ['scrcpy', scope] : field,
+      field: ['scrcpy', 'keymap'].includes(field) ? [field, scope] : field,
       value,
     })
 

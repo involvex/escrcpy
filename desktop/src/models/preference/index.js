@@ -7,6 +7,7 @@ import launch from './launch/index.js'
 import record from './record/index.js'
 import video from './video/index.js'
 import window from './window/index.js'
+import keymap from './keymap/index.js'
 
 export default {
   common,
@@ -18,4 +19,5 @@ export default {
   record,
   input,
   camera,
+  keymap,
 }

@@ -227,6 +227,88 @@ export default {
       return true
     })
 
+    // Keymap: track which device's control window is focused
+    ipcMain.handle('keymap:set-focused-device', async (_, serial) => {
+      mainApp.emit('keymap:set-focused-device', serial)
+      return true
+    })
+
+    // Keymap: execute a binding/profile for testing
+    ipcMain.handle('keymap:execute', async (_, { serial, binding, profile }) => {
+      try {
+        const { executeKeymapProfile } = await import('$renderer/utils/keymap/index.js')
+        const { getAdbPath } = await import('$electron/configs/which/index.js')
+        const { setupEnvPath } = await import('$electron/process/helper.js')
+        const { Adb } = await import('@devicefarmer/adbkit')
+        const { assertSafeSerial, assertSafeShellArgument } = await import('$electron/helpers/shell/safe-args.js')
+
+        setupEnvPath()
+        const adbClient = Adb.createClient({ bin: getAdbPath() })
+
+        await executeKeymapProfile(profile, serial, {
+          exec: async (id, command) => {
+            assertSafeSerial(id)
+            if (command.startsWith('input ')) {
+              // input commands are safe
+            }
+            else {
+              assertSafeShellArgument(command, 'keymap shell command')
+            }
+            const stream = await adbClient.getDevice(id).shell(command)
+            await Adb.util.readAll(stream)
+          },
+        })
+
+        return { success: true }
+      }
+      catch (error) {
+        console.warn('[keymap] Execute failed:', error?.message || error)
+        return { success: false, error: error?.message || String(error) }
+      }
+    })
+
+    // Keymap: import profile with validation
+    ipcMain.handle('keymap:import', async (_, filePath) => {
+      try {
+        const { validateKeymapBinding } = await import('$renderer/utils/keymap/index.js')
+        const fs = await import('fs-extra')
+        const raw = await fs.readFile(filePath, 'utf8')
+        const profile = JSON.parse(raw)
+
+        if (!profile || typeof profile !== 'object') {
+          return { success: false, error: 'Invalid profile format' }
+        }
+
+        if (!Array.isArray(profile.bindings)) {
+          return { success: false, error: 'Profile must have bindings array' }
+        }
+
+        for (const binding of profile.bindings) {
+          const err = validateKeymapBinding(binding)
+          if (err) {
+            return { success: false, error: `Invalid binding: ${err}` }
+          }
+        }
+
+        // Generate new IDs to avoid conflicts
+        const sanitizedProfile = {
+          ...profile,
+          id: `profile_${Date.now()}_${Math.random().toString(36).slice(2)}`,
+          name: `${profile.name || 'Imported'} (imported)`,
+          bindings: profile.bindings.map(b => ({
+            ...b,
+            id: `binding_${Date.now()}_${Math.random().toString(36).slice(2)}`,
+          })),
+        }
+
+        return { success: true, profile: sanitizedProfile }
+      }
+      catch (error) {
+        console.warn('[keymap] Import failed:', error?.message || error)
+        return { success: false, error: error?.message || String(error) }
+      }
+    })
+
     return () => {
       ipcMain.removeHandler('show-open-dialog')
       ipcMain.removeHandler('open-path')
@@ -240,6 +322,9 @@ export default {
       ipcMain.removeHandler('navigate-to-route')
       ipcMain.removeHandler('open-log-path')
       ipcMain.removeHandler('open-system-menu')
+      ipcMain.removeHandler('keymap:set-focused-device')
+      ipcMain.removeHandler('keymap:execute')
+      ipcMain.removeHandler('keymap:import')
     }
   },
 }

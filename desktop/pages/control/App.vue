@@ -93,6 +93,14 @@ const focusFlag = ref(true)
 
 window.$preload.ipcRenderer.on('window-focus', (event, value) => {
   focusFlag.value = value
+
+  // Notify main process of focused device for keymap shortcuts
+  if (value && currentDevice.value?.id) {
+    window.$preload.ipcRenderer.invoke('keymap:set-focused-device', currentDevice.value.id)
+  }
+  else if (!value) {
+    window.$preload.ipcRenderer.invoke('keymap:set-focused-device', null)
+  }
 })
 </script>
 

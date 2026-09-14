@@ -47,6 +47,7 @@ import Camera from './components/camera/index.vue'
 import Otg from './components/otg/index.vue'
 import Custom from './components/custom/index.vue'
 import LowLatency from './components/low-latency/index.vue'
+import Keymap from './components/keymap/index.vue'
 
 const props = defineProps({
   ...Record.props,
@@ -90,6 +91,10 @@ const options = computed(() => {
     {
       label: 'device.actions.more.custom.name',
       component: Custom,
+    },
+    {
+      label: 'device.actions.more.keymap.name',
+      component: Keymap,
     },
   ]
 })

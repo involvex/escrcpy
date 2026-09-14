@@ -11,6 +11,7 @@ import SelectKeyboardInject from './select-keyboard-inject/index.vue'
 import SelectVideoCodec from './select-video-codec/index.vue'
 import ShortcutList from './shortcut-list/index.vue'
 import Switch from './switch/index.vue'
+import KeymapProfileList from './keymap-profile-list/index.vue'
 
 export const inputModel = {
   PathInput: InputPath,
@@ -21,6 +22,7 @@ export const inputModel = {
   CameraFpsSelect: SelectCameraFps,
   CameraZoomSlider: SliderCameraZoom,
   ShortcutList,
+  KeymapProfileList,
 
   ColorPicker,
   Input,
