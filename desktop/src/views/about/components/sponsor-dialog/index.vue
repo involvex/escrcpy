@@ -2,50 +2,33 @@
   <el-dialog
     v-model="visible"
     :title="$t('about.donate.title')"
-    fullscreen
     center
-    class="el-dialog--beautify el-dialog--flex el-dialog--fullscreen"
+    class="el-dialog--beautify"
+    width="480px"
     @closed="onClosed"
   >
-    <div class="pt-4 pb-8">
-      {{ $t('about.donate.description') }}
-    </div>
-
-    <div class="flex space-x-4">
-      <el-image v-for="(item, index) of imageList" :key="index" :src="item.src" :alt="item.alt" preview-teleported :preview-src-list :initial-index="index" fit="contain" class="!flex-1 !w-0 !border !rounded-md !overflow-hidden" />
+    <div class="pt-2 pb-4 text-center space-y-4">
+      <p>{{ $t('about.donate.description') }}</p>
+      <el-button type="primary" size="large" @click="openSponsors">
+        GitHub Sponsors
+      </el-button>
+      <div>
+        <a
+          class="text-primary-500 hover:underline"
+          href="https://github.com/sponsors/involvex"
+          target="_blank"
+        >github.com/sponsors/involvex</a>
+      </div>
     </div>
   </el-dialog>
 </template>
 
 <script>
-import alipay from '$/assets/sponsor/viarotel-alipay.png'
-import wepay from '$/assets/sponsor/viarotel-wepay.png'
-import paypal from '$/assets/sponsor/viarotel-paypal.png'
-
 export default {
   data() {
     return {
       visible: false,
-      imageList: [
-        {
-          src: alipay,
-          alt: 'Alipay',
-        },
-        {
-          src: wepay,
-          alt: 'Wepay',
-        },
-        {
-          src: paypal,
-          alt: 'Paypal',
-        },
-      ],
     }
-  },
-  computed: {
-    previewSrcList() {
-      return this.imageList.map(item => item.src)
-    },
   },
   methods: {
     open() {
@@ -53,6 +36,9 @@ export default {
     },
     close() {
       this.visible = false
+    },
+    openSponsors() {
+      window.open('https://github.com/sponsors/involvex', '_blank')
     },
     submit() {},
     onClosed() {},

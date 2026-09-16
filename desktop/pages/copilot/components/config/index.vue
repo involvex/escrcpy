@@ -23,13 +23,23 @@
 
               <el-col :span="12">
                 <el-form-item prop="model" :label="$t('copilot.config.model')">
-                  <el-select
-                    v-model="configForm.model" :placeholder="$t('copilot.config.modelPlaceholder')"
-                    allow-create filterable class="w-full"
-                  >
-                    <el-option v-for="item of modelOptions" :key="item" :label="item" :value="item">
-                    </el-option>
-                  </el-select>
+                  <div class="flex w-full gap-2">
+                    <el-select
+                      v-model="configForm.model" :placeholder="$t('copilot.config.modelPlaceholder')"
+                      allow-create filterable class="flex-1 min-w-0"
+                      :loading="modelsLoading"
+                    >
+                      <el-option v-for="item of modelOptions" :key="item" :label="item" :value="item">
+                      </el-option>
+                    </el-select>
+                    <el-button
+                      :loading="modelsLoading"
+                      :title="$t('copilot.config.refreshModels') || 'Refresh models'"
+                      @click="fetchModels"
+                    >
+                      <el-icon><Refresh /></el-icon>
+                    </el-button>
+                  </div>
                 </el-form-item>
               </el-col>
 
@@ -134,6 +144,7 @@
 
 <script setup>
 import { ApiModelEnum } from '$copilot/dicts/api.js'
+import copilotClient from '$copilot/services/index.js'
 
 const props = defineProps({})
 
@@ -144,6 +155,8 @@ const copilotStore = useCopilotStore()
 const dialog = useDialog()
 
 const showApiKey = ref(false)
+const modelsLoading = ref(false)
+const remoteModels = ref([])
 
 const configFormRef = ref(null)
 
@@ -176,20 +189,62 @@ const formRules = reactive({
   ],
 })
 
+const providerDefaultModel = computed(() => {
+  const provider = configForm.value.provider
+  return ApiModelEnum.named[provider]?.label || ''
+})
+
 const modelOptions = computed(() => {
-  return [...new Set(ApiModelEnum.labels)]
+  const defaults = providerDefaultModel.value ? [providerDefaultModel.value] : []
+  return [...new Set([...remoteModels.value, ...defaults, configForm.value.model].filter(Boolean))]
 })
 
 const providerOptions = computed(() => {
   return ApiModelEnum.keys
 })
 
-function onProviderChange(val) {
-  configForm.value.model = ApiModelEnum.named[val].label
-  configForm.value.baseUrl = ApiModelEnum[val]
+async function fetchModels() {
+  const { baseUrl, apiKey } = configForm.value
+  if (!baseUrl) {
+    return
+  }
+
+  modelsLoading.value = true
+  try {
+    const result = await copilotClient.listModels({ baseUrl, apiKey })
+    if (result?.success && Array.isArray(result.models)) {
+      remoteModels.value = result.models
+      if (result.models.length && !result.models.includes(configForm.value.model)) {
+        // Keep current model if custom; otherwise prefer provider default if listed
+        const preferred = providerDefaultModel.value
+        if (preferred && result.models.includes(preferred)) {
+          configForm.value.model = preferred
+        }
+      }
+    }
+    else if (result?.message) {
+      ElMessage.warning(result.message)
+    }
+  }
+  catch (error) {
+    console.warn('[copilot] listModels failed:', error?.message || error)
+  }
+  finally {
+    modelsLoading.value = false
+  }
 }
 
-async function onOpen() { }
+async function onProviderChange(val) {
+  configForm.value.model = ApiModelEnum.named[val].label
+  configForm.value.baseUrl = ApiModelEnum[val]
+  remoteModels.value = []
+  await fetchModels()
+}
+
+async function onOpen() {
+  remoteModels.value = []
+  await fetchModels()
+}
 
 function onClose() {
   handleClearValidate()
@@ -234,6 +289,7 @@ async function onResetClick() {
   }
 
   copilotStore.resetConfig()
+  remoteModels.value = []
 
   handleClearValidate()
 

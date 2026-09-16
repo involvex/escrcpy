@@ -156,9 +156,8 @@ export class PreflightChecker {
     }
 
     try {
-      // Check API validity via IPC call to main process
-      const apiStatus = await window.$preload.ipcRenderer.invoke(
-        'copilot:checkModelApi',
+      // Check API validity via Copilot client (ipcx)
+      const apiStatus = await (await import('$copilot/services/index.js')).default.checkModelApi(
         { baseUrl, apiKey, model },
       )
 

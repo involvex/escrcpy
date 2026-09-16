@@ -2,12 +2,21 @@ import { sheller } from '$electron/helpers/shell/index.js'
 import { assertSafePackageName, assertSafeScrcpyArgs, assertSafeSerial, sanitizeDisplayText, sanitizeFilePath } from '$electron/helpers/shell/safe-args.js'
 import commandHelper from '$renderer/utils/command/index.js'
 import electronStore from '$electron/helpers/store/index.js'
+import { getScrcpyPath } from '$electron/configs/which/index.js'
+import { setupEnvPath } from '$electron/process/helper.js'
 
 import { ProcessManager } from '$electron/process/manager.js'
 
 import { parseDisplayIds, parseScrcpyAppList, parseScrcpyCameras, parseScrcpyCodecList } from './helper.js'
 
 const processManager = new ProcessManager()
+
+function quoteCmdPath(filePath) {
+  if (!filePath) {
+    return 'scrcpy'
+  }
+  return `"${String(filePath).replace(/"/g, '')}"`
+}
 
 function normalizeScrcpyError(error) {
   const message = error?.stderr || error?.message
@@ -17,7 +26,10 @@ function normalizeScrcpyError(error) {
 function createScrcpyProcess(command, options = {}) {
   let scrcpyProcess = null
 
-  scrcpyProcess = sheller(`scrcpy ${command}`, {
+  setupEnvPath()
+  const bin = quoteCmdPath(getScrcpyPath())
+
+  scrcpyProcess = sheller(`${bin} ${command}`, {
     shell: true,
     encoding: 'utf8',
     ...options,

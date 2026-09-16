@@ -1,9 +1,11 @@
-import { sheller } from '$electron/helpers/shell/index.js'
+import { spawn as ptySpawn } from '@lydell/node-pty'
 import { getAdbPath } from '$electron/configs/index.js'
+import { setupEnvPath } from '$electron/process/helper.js'
 import { BaseTerminalProvider } from './base.js'
+import { assertSafeSerial } from '$electron/helpers/shell/safe-args.js'
 
 /**
- * Device Terminal Provider
+ * Device Terminal Provider — PTY-backed `adb shell` for colors and resize.
  */
 export class DeviceTerminalProvider extends BaseTerminalProvider {
   /**
@@ -13,85 +15,67 @@ export class DeviceTerminalProvider extends BaseTerminalProvider {
    */
   constructor(config) {
     super(config)
-    this.controller = null
+    this.pty = null
     this.deviceId = null
+    this._resizeTimer = null
+    this._onData = this._onData.bind(this)
+    this._onExit = this._onExit.bind(this)
   }
 
   /**
-   * Launch ADB Shell terminal
+   * Launch ADB Shell terminal via node-pty
    * @param {Object} options
    * @param {string} options.deviceId - Device ID
-   * @param {string} [options.encoding] - Encoding
+   * @param {number} [options.cols]
+   * @param {number} [options.rows]
    */
   async spawn(options = {}) {
-    const { deviceId, encoding = 'utf8' } = options
+    const { deviceId, cols = 90, rows = 24 } = options
 
     if (!deviceId) {
       throw new Error('[DeviceTerminal] deviceId is required')
     }
 
+    assertSafeSerial(deviceId)
+    setupEnvPath()
+
     this.deviceId = deviceId
     const adbPath = getAdbPath()
 
+    if (!adbPath) {
+      throw new Error('[DeviceTerminal] ADB path not found')
+    }
+
+    const enhancedEnv = {
+      ...process.env,
+      TERM: 'xterm-256color',
+      COLORTERM: 'truecolor',
+      LANG: process.env.LANG || 'en_US.UTF-8',
+    }
+
     try {
-      let isEnded = false
-
-      const adbProcess = sheller(
-        [adbPath, '-s', deviceId, 'shell', '-tt'],
-        {
-          shell: false,
-          encoding,
-          stdio: ['pipe', 'pipe', 'pipe'],
-          stdout: (text) => {
-            this._emitData(text)
-          },
-          stderr: (text) => {
-            this._emitData(text)
-          },
-        },
-      )
-
-      adbProcess.on('close', (code, signal) => {
-        isEnded = true
-        this._emitExit(code, signal)
-      })
-
-      adbProcess.on('error', (error) => {
-        this._emitError({
-          message: error.message,
-          code: 'SPAWN_ERROR',
-        })
-      })
-
-      adbProcess.catch((error) => {
-        if (isEnded) {
-          return
-        }
-
-        this._emitError({
-          message: error.message,
-          code: 'SPAWN_ERROR',
-        })
-      })
-
-      this.controller = {
-        send: (data) => {
-          if (!adbProcess.stdin?.writable)
-            return
-          adbProcess.stdin.write(data)
-        },
-        stop: () => {
-          adbProcess.kill?.('SIGTERM')
-        },
-        get isEnded() {
-          return isEnded
-        },
-        get raw() {
-          return adbProcess
-        },
+      const ptyOptions = {
+        name: 'xterm-256color',
+        cols,
+        rows,
+        cwd: process.cwd(),
+        env: enhancedEnv,
       }
 
+      if (process.platform === 'win32') {
+        ptyOptions.useConpty = true
+        ptyOptions.conptyInheritCursor = true
+      }
+      else {
+        ptyOptions.encoding = 'utf8'
+      }
+
+      // Interactive shell with forced TTY allocation
+      this.pty = ptySpawn(adbPath, ['-s', deviceId, 'shell', '-tt'], ptyOptions)
       this.isAlive = true
+
+      this.pty.onData(this._onData)
+      this.pty.onExit(this._onExit)
     }
     catch (error) {
       this._emitError({
@@ -102,48 +86,69 @@ export class DeviceTerminalProvider extends BaseTerminalProvider {
     }
   }
 
+  /** @private */
+  _onData(data) {
+    this._emitData(data)
+  }
+
+  /** @private */
+  _onExit({ exitCode, signal }) {
+    this._emitExit(exitCode, signal)
+    this.isAlive = false
+  }
+
   /**
-   * Write data to ADB stdin
+   * Write data to ADB shell PTY
    */
   write(data) {
-    if (!this.controller || !this.isAlive) {
-      console.warn('[DeviceTerminal] Cannot write: process not alive')
+    if (!this.pty || !this.isAlive) {
+      console.warn('[DeviceTerminal] Cannot write: PTY not alive')
+      return false
+    }
+    this.pty.write(data)
+    return true
+  }
+
+  /**
+   * Resize terminal via PTY winsize
+   */
+  resize(cols, rows) {
+    if (!this.pty || !this.isAlive) {
+      console.warn('[DeviceTerminal] Cannot resize: PTY not alive')
       return
     }
 
-    this.controller.send(data)
+    clearTimeout(this._resizeTimer)
+    this._resizeTimer = setTimeout(() => {
+      if (this.pty && this.isAlive) {
+        this.pty.resize(cols, rows)
+      }
+    }, 16)
   }
 
   /**
-   * Resize terminal (ADB does not support dynamic resizing)
-   * @note ADB shell does not support SIGWINCH, this method is a placeholder
-   */
-  resize(cols, rows) {
-    console.warn('[DeviceTerminal] ADB shell does not support dynamic resize')
-  }
-
-  /**
-   * Destroy ADB Shell
+   * Destroy ADB Shell PTY
    */
   async destroy() {
-    if (!this.controller) {
+    if (!this.pty) {
       return
     }
 
     try {
-      if (!this.controller.isEnded) {
-        this.controller.stop()
+      this.pty.removeAllListeners()
+      if (this.isAlive) {
+        this.pty.kill()
+        this.isAlive = false
       }
-
-      this.isAlive = false
-      console.log(`[DeviceTerminal] Destroyed: ${this.deviceId} (${this.instanceId})`)
     }
     catch (error) {
       console.error('[DeviceTerminal] Destroy error:', error)
     }
     finally {
-      this.controller = null
+      this.pty = null
       this.deviceId = null
+      clearTimeout(this._resizeTimer)
+      this._resizeTimer = null
     }
   }
 }

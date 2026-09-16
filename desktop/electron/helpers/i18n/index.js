@@ -1,11 +1,38 @@
 import i18n from 'i18next'
 import fs from 'node:fs'
 import path from 'node:path'
-import osLocale from 'os-locale'
 import electronStore from '$electron/helpers/store/index.js'
 import { localesDir } from '$electron/configs/extra/index.js'
 
-const lng = electronStore.get('common.language') ?? osLocale() ?? 'en-US'
+const FALLBACK_LANG = 'en-US'
+
+function listAvailableLanguages() {
+  try {
+    return fs.readdirSync(localesDir)
+      .filter(name => name.endsWith('.json'))
+      .map(name => name.replace(/\.json$/i, ''))
+  }
+  catch {
+    return [FALLBACK_LANG]
+  }
+}
+
+const availableLanguages = listAvailableLanguages()
+
+function resolveLanguage(lang) {
+  if (lang && availableLanguages.includes(lang)) {
+    return lang
+  }
+  return FALLBACK_LANG
+}
+
+const storedLang = electronStore.get('common.language')
+const lng = resolveLanguage(storedLang)
+
+// Migrate unsupported language codes (e.g. legacy `de`) to a real locale file
+if (storedLang && storedLang !== lng) {
+  electronStore.set('common.language', lng)
+}
 
 function loadTranslations(lang) {
   try {
@@ -21,13 +48,13 @@ const resources = {
   [lng]: { translation: loadTranslations(lng) },
 }
 
-if (lng !== 'en-US') {
-  resources['en-US'] = { translation: loadTranslations('en-US') }
+if (lng !== FALLBACK_LANG) {
+  resources[FALLBACK_LANG] = { translation: loadTranslations(FALLBACK_LANG) }
 }
 
 const initPromise = i18n.init({
   lng,
-  fallbackLng: 'en-US',
+  fallbackLng: FALLBACK_LANG,
   resources,
   interpolation: {
     escapeValue: false,
@@ -42,17 +69,26 @@ export const t = (...args) => i18n.t(...args)
 export { initPromise }
 
 electronStore.onDidChange('common.language', (val) => {
-  if (i18n.language === val) {
+  const next = resolveLanguage(val)
+  if (val && val !== next) {
+    electronStore.set('common.language', next)
+    return
+  }
+  if (i18n.language === next) {
     return
   }
 
-  changeLanguage(val)
+  changeLanguage(next)
 })
 
 function changeLanguage(val) {
-  const newResources = loadTranslations(val)
-  i18n.addResourceBundle(val, 'translation', newResources, true, true)
-  i18n.changeLanguage(val)
+  const next = resolveLanguage(val)
+  const newResources = loadTranslations(next)
+  if (!Object.keys(newResources).length && next !== FALLBACK_LANG) {
+    return changeLanguage(FALLBACK_LANG)
+  }
+  i18n.addResourceBundle(next, 'translation', newResources, true, true)
+  i18n.changeLanguage(next)
 }
 
 function onLanguageChanged(callback) {

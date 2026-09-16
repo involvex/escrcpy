@@ -71,27 +71,27 @@ const actionModel = [
   },
   {
     label: 'device.control.capture',
-    fontIcon: 'i-bi-camera',
+    elIcon: 'Camera',
     component: Screenshot,
   },
   {
     label: 'device.control.install',
-    fontIcon: 'i-bi-file-arrow-up',
+    elIcon: 'Upload',
     component: Application,
   },
   {
     label: 'device.control.file.push',
-    fontIcon: 'i-bi-folder',
+    elIcon: 'Folder',
     component: FilePush,
   },
   {
     label: 'device.control.copilot',
-    fontIcon: 'i-bi-cpu',
+    elIcon: 'Cpu',
     component: Copilot,
   },
   {
     label: 'device.schedule.name',
-    fontIcon: 'i-bi-clock',
+    elIcon: 'Clock',
     component: Schedule,
   },
 ]

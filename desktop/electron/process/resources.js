@@ -24,6 +24,11 @@ export function buildResolve(value) {
   return resolve(`electron/resources/build/${value}`)
 }
 
-export function whichResolve(command) {
-  return which.sync(command, { nothrow: true, path: process.env.PATH })
+/**
+ * Resolve a command on PATH.
+ * @param {string} command
+ * @param {string} [pathEnv] - PATH to search (defaults to process.env.PATH)
+ */
+export function whichResolve(command, pathEnv = process.env.PATH) {
+  return which.sync(command, { nothrow: true, path: pathEnv || process.env.PATH })
 }

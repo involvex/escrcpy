@@ -1,23 +1,14 @@
+# Disabled for the involvex/escrcpy fork — no Gitee publish.
+# Original upstream sync targeted viarotel-org/escrcpy.
 name: sync-gitee
 
 on:
   workflow_dispatch:
-  workflow_run:
-    workflows: [release]
-    types:
-      - completed
 
 jobs:
   sync-to-gitee:
+    if: false
     runs-on: ubuntu-latest
     steps:
-      - name: gitee-mirror-action
-        uses: Yikun/hub-mirror-action@v1.5
-        with:
-          src: github/viarotel-org
-          dst: gitee/viarotel-org
-          dst_key: ${{ secrets.GITEE_PRIVATE_KEY }}
-          dst_token: ${{ secrets.GITEE_TOKEN }}
-          account_type: org
-          white_list: escrcpy
-          force_update: true
+      - name: Skipped
+        run: echo "Gitee sync is disabled for this fork."

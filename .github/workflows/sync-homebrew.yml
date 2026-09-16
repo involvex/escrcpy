@@ -1,21 +1,14 @@
+# Disabled for the involvex/escrcpy fork — no Homebrew publish.
+# Original upstream sync targeted viarotel-org/homebrew-escrcpy.
 name: sync-homebrew
 
 on:
   workflow_dispatch:
-  workflow_run:
-    workflows: [release-assets]
-    types:
-      - completed
 
 jobs:
   sync-homebrew:
+    if: false
     runs-on: macos-latest
-
     steps:
-      - name: Update Homebrew cask
-        uses: LanikSJ/homebrew-bump-cask@v1
-        with:
-          token: ${{ secrets.GH_TOKEN }}
-          tap: viarotel-org/escrcpy
-          cask: escrcpy
-          livecheck: true
+      - name: Skipped
+        run: echo "Homebrew sync is disabled for this fork."

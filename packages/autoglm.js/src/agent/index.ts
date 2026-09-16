@@ -174,6 +174,7 @@ export class PhoneAgent {
 				MessageBuilder.createUserMessage(
 					textContent,
 					supportsVision ? screenshot?.base64Data : undefined,
+					supportsVision ? screenshot?.mimeType : undefined,
 				),
 			)
 		} else {
@@ -185,6 +186,7 @@ export class PhoneAgent {
 				MessageBuilder.createUserMessage(
 					textContent,
 					supportsVision ? screenshot?.base64Data : undefined,
+					supportsVision ? screenshot?.mimeType : undefined,
 				),
 			)
 		}

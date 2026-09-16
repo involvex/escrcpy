@@ -42,35 +42,26 @@
 
 ### Manual Installation via Released Packages
 
-Check the [Releases Page](https://github.com/viarotel-org/escrcpy/releases)
+Check the [Releases Page](https://github.com/involvex/escrcpy/releases)
 
-### macOS Installation via Homebrew
-
-Refer to [homebrew-escrcpy](https://github.com/viarotel-org/homebrew-escrcpy)
+> This is the **involvex/escrcpy** fork of [viarotel-org/escrcpy](https://github.com/viarotel-org/escrcpy). Gitee and Homebrew publishes are not provided for this fork.
 
 ## Documentation
 
-- [Getting Started](https://viarotel.eu.org/guide/started)
-- [Shortcuts](https://viarotel.eu.org/reference/scrcpy/shortcuts)
-- [Device Operations](https://viarotel.eu.org/guide/operation)
-- [Preferences](https://viarotel.eu.org/guide/preferences)
-- [Reverse Tethering](https://viarotel.eu.org/reference/gnirehtet/)
+- [Getting Started](https://github.com/involvex/escrcpy#readme)
+- Upstream docs may still apply: [viarotel.eu.org](https://viarotel.eu.org/)
 
 ## For Developers
 
-If you are a developer and wish to run or help improve this project, refer to the [Development Documentation](https://github.com/viarotel-org/escrcpy/blob/main/develop.md)
+If you are a developer and wish to run or help improve this project, refer to the [Development Documentation](https://github.com/involvex/escrcpy/blob/main/develop.md)
 
 ## Get Help
 
-As an open-source project powered by passion, support is limited, and updates are irregular.
+- [Report Issues](https://github.com/involvex/escrcpy/issues)
 
-- [FAQ](https://viarotel.eu.org/help/escrcpy)
-- [Report Issues](https://github.com/viarotel-org/escrcpy/issues)
-- [Contact Email](mailto:viarotel@qq.com)
+## Donate
 
-## What's Next?
-
-[Milestones](https://viarotel.eu.org/guide/milestones)
+Support development via [GitHub Sponsors](https://github.com/sponsors/involvex).
 
 ## Acknowledgments
 
@@ -88,51 +79,12 @@ This project owes its existence to the following open-source projects:
 
 - [ADB Device Manager 2](https://github.com/Shrey113/Adb-Device-Manager-2)
 
-## Donate
-
-If this project has helped you, consider buying me a coffee to keep me motivated for further improvements 😛
-
-<div style="display: flex">
-	<img
-		src="https://cdn.jsdelivr.net/gh/viarotel/resources@latest/donate/viarotel-wepay.png"
-		alt="viarotel-wepay"
-		width="30%"
-	/>
-	<img
-		src="https://cdn.jsdelivr.net/gh/viarotel/resources@latest/donate/viarotel-alipay.png"
-		alt="viarotel-alipay"
-		width="30%"
-	/>
-	<a
-		href="https://www.paypal.com/paypalme/viarotel"
-		target="_blank"
-		rel="noopener noreferrer"
-	>
-		<img
-			src="https://cdn.jsdelivr.net/gh/viarotel/resources@latest/donate/viarotel-paypal.png"
-			alt="viarotel-paypal"
-			width="30%"
-		/>
-	</a>
-</div>
-
-You can also support me through the AiFaDian platform.
-
-<div style="display: flex; justify-content: center">
-	<a href="https://afdian.com/a/viarotel"
-		><img
-			width="200"
-			src="https://pic1.afdiancdn.com/static/img/welcome/button-sponsorme.png"
-			alt=""
-	/></a>
-</div>
-
 ## Contributors
 
 Thanks to all who contributed!
 
-[Contributors](https://github.com/viarotel/escrcpy/graphs/contributors)
+[Contributors](https://github.com/involvex/escrcpy/graphs/contributors)
 
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=viarotel-org/escrcpy&type=Date)](https://star-history.com/#viarotel-org/escrcpy&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=involvex/escrcpy&type=Date)](https://star-history.com/#involvex/escrcpy&Date)

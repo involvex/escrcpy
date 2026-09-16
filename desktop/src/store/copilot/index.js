@@ -1,6 +1,14 @@
 import { ApiModelEnum } from '$copilot/dicts/api.js'
 import { isEqual } from 'lodash-es'
 
+const DEFAULT_PROMPTS = [
+  'Open Settings',
+  'Go to the home screen',
+  'Take a screenshot and describe what you see',
+  'shell pm list packages -3',
+  'Open the recent apps overview',
+]
+
 export const useCopilotStore = defineStore('app-copilot', () => {
   const defaultConfig = {
     provider: 'BigModel',
@@ -8,16 +16,23 @@ export const useCopilotStore = defineStore('app-copilot', () => {
     model: ApiModelEnum.named.BigModel.label,
     apiKey: '',
     maxSteps: 50,
-    lang: 'cn',
+    lang: 'en',
     quiet: false,
-    prompts: [],
+    prompts: [...DEFAULT_PROMPTS],
   }
 
   const config = ref({
     ...defaultConfig,
   })
 
-  updateConfig(window.$preload.store.get('copilot') ?? {})
+  const stored = window.$preload.store.get('copilot') ?? {}
+  updateConfig({
+    ...stored,
+    // Seed default presets when the user has never configured prompts
+    prompts: Array.isArray(stored.prompts) && stored.prompts.length
+      ? stored.prompts
+      : [...DEFAULT_PROMPTS],
+  })
 
   window.$preload.store.onDidChange('copilot', (val) => {
     if (isEqual(val, config.value)) {

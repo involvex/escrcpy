@@ -1,5 +1,6 @@
 import { cloneDeep, keyBy, mergeWith, pick, pickBy, uniq } from 'lodash-es'
 import preferenceModel from '$/models/preference/index.js'
+import { clonePlainValue } from '$/utils/index.js'
 
 const topFields = getTopFields()
 
@@ -72,7 +73,14 @@ export function setStoreData(data, scope) {
     return obj
   }, {})
 
-  Object.entries(data).forEach(([key, value]) => {
+  const plainData = clonePlainValue(data)
+
+  // Scrub invalid numeric coercions (cleared InputNumber → 0)
+  if (plainData['--screen-off-timeout'] != null && plainData['--screen-off-timeout'] < 1) {
+    plainData['--screen-off-timeout'] = undefined
+  }
+
+  Object.entries(plainData).forEach(([key, value]) => {
     const { parentField } = modelMap?.[key] || {}
 
     if (!parentField) {
@@ -108,7 +116,7 @@ export function setStoreData(data, scope) {
       },
     )
 
-    window.$preload.store.set(item.field, pickValue)
+    window.$preload.store.set(item.field, clonePlainValue(pickValue))
   })
 }
 

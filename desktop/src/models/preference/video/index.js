@@ -34,6 +34,7 @@ export default {
       type: 'InputNumber',
       value: undefined,
       placeholder: 'preferences.video.maxSize.placeholder',
+      tips: 'preferences.video.maxSize.tips',
     },
     videoBitRate: {
       label: 'preferences.video.videoBitRate.name',
@@ -41,6 +42,7 @@ export default {
       type: 'Input',
       value: undefined,
       placeholder: 'preferences.video.videoBitRate.placeholder',
+      tips: 'preferences.video.videoBitRate.tips',
       append: 'bps',
     },
     maxFps: {

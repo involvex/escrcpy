@@ -49,6 +49,68 @@ export default {
       return await agent.checkModelApi()
     })
 
+    ipcxMain.handle(createChannel('listModels'), async (_, config = {}) => {
+      try {
+        const baseUrl = String(config.baseUrl || '').replace(/\/+$/, '')
+        const apiKey = config.apiKey || ''
+
+        if (!baseUrl) {
+          return { success: false, models: [], message: 'Base URL is required' }
+        }
+
+        const headers = {
+          Accept: 'application/json',
+        }
+
+        if (apiKey) {
+          headers.Authorization = `Bearer ${apiKey}`
+        }
+
+        if (/openrouter\.ai/i.test(baseUrl)) {
+          headers['HTTP-Referer'] = 'https://github.com/involvex/escrcpy'
+          headers['X-Title'] = 'Escrcpy Copilot'
+        }
+
+        const response = await fetch(`${baseUrl}/models`, { headers })
+        if (!response.ok) {
+          const text = await response.text().catch(() => '')
+          return {
+            success: false,
+            models: [],
+            message: `HTTP ${response.status}: ${text.slice(0, 200) || response.statusText}`,
+          }
+        }
+
+        const payload = await response.json()
+        const raw = Array.isArray(payload?.data)
+          ? payload.data
+          : Array.isArray(payload?.models)
+            ? payload.models
+            : Array.isArray(payload)
+              ? payload
+              : []
+
+        const models = [...new Set(
+          raw
+            .map((item) => {
+              if (typeof item === 'string')
+                return item
+              return item?.id || item?.name || item?.model
+            })
+            .filter(Boolean),
+        )]
+
+        return { success: true, models }
+      }
+      catch (error) {
+        return {
+          success: false,
+          models: [],
+          message: error?.message || String(error),
+        }
+      }
+    })
+
     ipcxMain.handle(createChannel('setIdleTimeout'), async (_, timeout) => {
       copilotService.setIdleTimeout(timeout)
       return true
@@ -63,6 +125,7 @@ export default {
         'getSessionByDevice',
         'getActiveSessions',
         'checkModelApi',
+        'listModels',
         'setIdleTimeout',
       ]
 

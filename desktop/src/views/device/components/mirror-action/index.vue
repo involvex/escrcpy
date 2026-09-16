@@ -50,13 +50,25 @@ export default {
         this.toggleRowExpansion(row, true)
       }
 
-      const args = this.preferenceStore.scrcpyParameter(row.id, {
-        presetArgs: isPresetDevice(row.id) ? LATENCY_PRESET_ARGS : null,
+      let serial = row.id
+      let args = this.preferenceStore.scrcpyParameter(serial, {
+        presetArgs: isPresetDevice(serial) ? LATENCY_PRESET_ARGS : null,
       })
 
       try {
-        const mirroring = this.$scrcpy.mirror(row.id, {
-          title: this.deviceStore.getLabel(row, 'mirror'),
+        try {
+          serial = await window.$preload.adb.ensureDeviceOnline(row.id)
+        }
+        catch (readyError) {
+          console.warn('mirror.ensureDeviceOnline', readyError?.message || readyError)
+        }
+
+        args = this.preferenceStore.scrcpyParameter(serial, {
+          presetArgs: isPresetDevice(serial) ? LATENCY_PRESET_ARGS : null,
+        })
+
+        const mirroring = this.$scrcpy.mirror(serial, {
+          title: this.deviceStore.getLabel({ ...row, id: serial }, 'mirror'),
           args,
           stdout: this.onStdout,
           stderr: this.onStderr,
@@ -67,18 +79,46 @@ export default {
         this.loading = false
 
         if (showControlBar) {
-          openFloatControl(toRaw(row))
+          openFloatControl(toRaw({ ...row, id: serial }))
         }
 
         await mirroring
       }
       catch (error) {
+        const message = error?.message || String(error)
+        const transient = /closed|offline|not found|adb push|Server connection failed/i.test(message)
+
+        if (transient) {
+          try {
+            await window.$preload.adb.ensureAdbDaemon?.()
+            serial = await window.$preload.adb.ensureDeviceOnline(row.id)
+            args = this.preferenceStore.scrcpyParameter(serial, {
+              presetArgs: isPresetDevice(serial) ? LATENCY_PRESET_ARGS : null,
+            })
+            console.warn('mirror.retry', serial)
+            await this.$scrcpy.mirror(serial, {
+              title: this.deviceStore.getLabel({ ...row, id: serial }, 'mirror'),
+              args,
+              stdout: this.onStdout,
+              stderr: this.onStderr,
+            })
+            this.loading = false
+            return
+          }
+          catch (retryError) {
+            console.error('mirror.retry.error', retryError)
+          }
+        }
+
         console.error('mirror.args', args)
         console.error('mirror.error', error)
 
-        if (error.message) {
-          this.$message.warning(error.message)
+        if (message) {
+          this.$message.warning(message)
         }
+      }
+      finally {
+        this.loading = false
       }
     },
 

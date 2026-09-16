@@ -3,7 +3,6 @@ import {
   getDefaultData,
   getScrcpyExcludeKeys,
   getStoreData,
-  getTopFields,
   mergeConfig,
   setStoreData,
 } from './helpers/index.js'
@@ -35,7 +34,27 @@ export const usePreferenceStore = defineStore('app-preference', () => {
 
   function init(scope = deviceScope.value) {
     data.value = getData(scope)
+    scrubInvalidPrefs()
     return data.value
+  }
+
+  /** Remove coerced InputNumber junk (e.g. --screen-off-timeout=0) from live + stored prefs. */
+  function scrubInvalidPrefs() {
+    const timeout = data.value?.['--screen-off-timeout']
+    if (timeout != null && Number(timeout) < 1) {
+      data.value['--screen-off-timeout'] = undefined
+      const scrcpyRoot = window.$preload.store.get('scrcpy') || {}
+      for (const [scopeKey, scopeData] of Object.entries(scrcpyRoot)) {
+        if (!scopeData || typeof scopeData !== 'object' || Array.isArray(scopeData)) {
+          continue
+        }
+        if (scopeData['--screen-off-timeout'] != null && Number(scopeData['--screen-off-timeout']) < 1) {
+          const next = { ...scopeData }
+          delete next['--screen-off-timeout']
+          window.$preload.store.set(['scrcpy', scopeKey], next)
+        }
+      }
+    }
   }
 
   function setScope(value) {
@@ -53,15 +72,10 @@ export const usePreferenceStore = defineStore('app-preference', () => {
       window.$preload.store.clear()
     }
     else {
-      const fields = getTopFields()
-      fields.forEach((key) => {
-        if (key === 'scrcpy') {
-          deviceScope.value = scope
-          window.$preload.store.set(['scrcpy', scope], {})
-          return false
-        }
-        window.$preload.store.set(key, {})
-      })
+      // Device-scope reset only clears that device's scrcpy overrides.
+      // Never wipe shared `common` prefs (language, controlBarOnMirror, paths, hotkeys).
+      deviceScope.value = scope
+      window.$preload.store.set(['scrcpy', scope], {})
     }
     init()
   }
@@ -106,6 +120,11 @@ export const usePreferenceStore = defineStore('app-preference', () => {
     }
 
     const params = Object.entries(dataToUse).reduce((obj, [key, value]) => {
+      // 0 from cleared InputNumber must not become --screen-off-timeout=0
+      if (key === '--screen-off-timeout' && (!value || value < 1)) {
+        return obj
+      }
+
       const shouldExclude
         = (!value && typeof value !== 'number')
           || scrcpyExcludeKeys.value.includes(key)

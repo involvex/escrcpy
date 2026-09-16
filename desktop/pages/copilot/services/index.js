@@ -199,6 +199,15 @@ class CopilotClient {
   }
 
   /**
+   * Fetch available models from the provider API
+   * @param {object} config
+   * @returns {Promise<{success: boolean, models: string[], message?: string}>}
+   */
+  listModels(config) {
+    return this._invoke('listModels', config)
+  }
+
+  /**
    * Set idle timeout (session manager configuration)
    *
    * @param {number} timeout - Timeout in milliseconds

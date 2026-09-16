@@ -38,34 +38,17 @@ export default {
       label: 'common.language.name',
       field: 'language',
       type: 'Select',
-      value: window.navigator.language,
+      value: 'en-US',
       placeholder: 'common.language.placeholder',
       options: [
-        {
-          label: '中文',
-          value: 'zh-CN',
-        },
-        {
-          label: '繁體中文',
-          value: 'zh-TW',
-        },
-        {
-          label: '日本語',
-          value: 'ja-JP',
-        },
         {
           label: 'English',
           value: 'en-US',
         },
-        {
-          label: 'Русский',
-          value: 'ru-RU',
-        },
-        {
-          label: 'العربية',
-          value: 'ar',
-        },
       ],
+      props: {
+        clearable: false,
+      },
     },
     appCloseCode: {
       label: 'appClose.name',

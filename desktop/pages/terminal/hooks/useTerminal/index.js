@@ -115,6 +115,41 @@ export function useTerminal({ theme = 'github' }) {
     terminal.value.onData(handleInput)
     terminal.value.onResize(handleResize)
 
+    terminal.value.attachCustomKeyEventHandler((event) => {
+      if (event.type !== 'keydown') {
+        return true
+      }
+
+      const isMod = event.ctrlKey || event.metaKey
+
+      // Ctrl+Shift+C — copy selection
+      if (isMod && event.shiftKey && event.key.toLowerCase() === 'c') {
+        const selection = terminal.value.getSelection()
+        if (selection) {
+          navigator.clipboard.writeText(selection)
+        }
+        return false
+      }
+
+      // Ctrl+Shift+V — paste
+      if (isMod && event.shiftKey && event.key.toLowerCase() === 'v') {
+        navigator.clipboard.readText().then((text) => {
+          if (text && sessionId.value) {
+            window.$preload.terminal.write(sessionId.value, text)
+          }
+        }).catch(() => {})
+        return false
+      }
+
+      // Ctrl+L — clear scrollback/viewport
+      if (isMod && !event.shiftKey && event.key.toLowerCase() === 'l') {
+        terminal.value.clear()
+        return false
+      }
+
+      return true
+    })
+
     unwatchTheme?.()
     unwatchTheme = watch(
       () => themeStore.isDark,
@@ -168,6 +203,9 @@ export function useTerminal({ theme = 'github' }) {
 
       if (terminalConfig.value.type === 'local') {
         terminal.value.writeln(`\x1B[38;2;15;140;121m[Tip]\x1B[0m Full system commands, enhanced with scrcpy, adb, fastboot, and gnirehtet.${newline}`)
+      }
+      else if (terminalConfig.value.type === 'device') {
+        terminal.value.writeln(`\x1B[38;2;15;140;121m[Tip]\x1B[0m Device shell with color support. Shortcuts: Ctrl+Shift+C copy, Ctrl+Shift+V paste, Ctrl+L clear, Ctrl+C interrupt.${newline}`)
       }
 
       if (terminalConfig.value.command) {

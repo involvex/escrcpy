@@ -65,6 +65,7 @@ import {
   MessageStatusEnum,
   TaskStatusEnum,
 } from '$copilot/dicts/index.js'
+import { runPreflightChecks } from '$copilot/utils/PreflightChecker.js'
 
 defineOptions({
   inheritAttrs: false,
@@ -196,6 +197,17 @@ async function handleSubmit(text) {
   try {
     const deviceId = props.currentDevice?.id
 
+    const preflight = await runPreflightChecks({
+      deviceId,
+      copilotConfig: config,
+      skipKeyboardCheck: !deviceId,
+    })
+
+    if (!preflight.passed) {
+      const failed = preflight.failedChecks.map(item => item.message).filter(Boolean).join('\n')
+      throw new Error(failed || window.t('copilot.error.executionFailed'))
+    }
+
     const [, failureList] = await copilotClient.execute(trimmedText, {
       deviceId,
       onData: (output, { payload }) => {
@@ -205,7 +217,7 @@ async function handleSubmit(text) {
           temporaryMessage.value.content = currentOutput.value
           const event = payload?.event || 'start'
           temporaryMessage.value.status
-            = TaskStatusEnum.raw(event).messageStatus || MessageStatusEnum.ERROR
+            = TaskStatusEnum.raw(event)?.messageStatus ?? MessageStatusEnum.RUNNING
         }
 
         scrollToBottom()

@@ -6,8 +6,11 @@
 
 <script setup>
 import Layouts from './layouts/index.vue'
+import { isPresetDevice, LATENCY_PRESET_ARGS } from '$/utils/latency-preset/index.js'
 
 const router = useRouter()
+const preferenceStore = usePreferenceStore()
+const deviceStore = useDeviceStore()
 
 const { locale, size } = useWindowStateSync()
 
@@ -27,6 +30,34 @@ window.$preload.ipcRenderer.on('execute-arguments-change', async (event, params)
 
 window.$preload.ipcRenderer.on('navigate-to-route', (event, route) => {
   router.push(route)
+})
+
+window.$preload.ipcRenderer.on('hotkey:mirror-max-size', async (_event, payload = {}) => {
+  const deviceId = payload.deviceId
+  if (!deviceId) {
+    return
+  }
+
+  try {
+    preferenceStore.init()
+
+    const args = preferenceStore.scrcpyParameter(deviceId, {
+      presetArgs: isPresetDevice(deviceId) ? LATENCY_PRESET_ARGS : null,
+    })
+
+    await window.$preload.scrcpy.mirror(deviceId, {
+      title: deviceStore.getLabel(deviceId, 'mirror'),
+      args,
+    })
+
+    ElMessage.success(
+      `Mirror max size: ${payload.previous || '?'} → ${payload.maxSize}`,
+    )
+  }
+  catch (error) {
+    console.warn('[hotkey] remirror failed:', error?.message || error)
+    ElMessage.warning(error?.message || 'Failed to remirror with new resolution')
+  }
 })
 
 onMounted(() => {

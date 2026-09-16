@@ -75,7 +75,12 @@ export function saveDevicesToStore(devices) {
   const cleanedDevices = devices
     .filter(device => !['unauthorized'].includes(device.status))
     .map(device => ({
-      ...device,
+      id: device.id,
+      name: device.name,
+      remark: device.remark || '',
+      wifi: Boolean(device.wifi),
+      product: device.product,
+      serialNo: device.serialNo,
       status: 'offline',
       type: 'offline',
     }))

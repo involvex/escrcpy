@@ -83,7 +83,7 @@ export async function getScreenshot(
 
 		// Cleanup device temp file (fire and forget)
 		await runAdbCommand(deviceId, ['shell', 'rm', '/sdcard/tmp_screenshot.png'])
-		return new Screenshot(base64Data, width, height)
+		return new Screenshot(base64Data, width, height, 'image/webp')
 	} catch (error) {
 		console.error(`Screenshot error: ${error}`)
 
@@ -108,5 +108,5 @@ function createFallbackScreenshot(_isSensitive: boolean): Screenshot {
 	const blackPixelBase64 =
 		'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=='
 
-	return new Screenshot(blackPixelBase64, 1080, 2400)
+	return new Screenshot(blackPixelBase64, 1080, 2400, 'image/png')
 }

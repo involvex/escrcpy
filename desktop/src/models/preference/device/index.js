@@ -10,6 +10,9 @@ export default {
       placeholder: 'preferences.device.screenOffTimeout.placeholder',
       tips: 'preferences.device.screenOffTimeout.tips',
       append: 's',
+      props: {
+        min: 1,
+      },
     },
     stayAwake: {
       label: 'preferences.device.stayAwake.name',

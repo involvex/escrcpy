@@ -49,32 +49,32 @@ const props = defineProps({})
 const actionModel = [
   {
     label: 'device.arrange.name',
-    fontIcon: 'i-bi-window-split',
+    elIcon: 'Grid',
     component: Arrange,
   },
   {
     label: 'device.terminal.name',
-    fontIcon: 'i-bi-terminal',
+    elIcon: 'Monitor',
     component: Terminal,
   },
   {
     label: 'device.schedule.list',
-    fontIcon: 'i-bi-clock',
+    elIcon: 'Clock',
     component: Schedule,
   },
   {
     label: 'device.log.name',
-    fontIcon: 'i-qlementine-icons-run-debug-16',
+    elIcon: 'Document',
     component: Log,
   },
   {
     label: 'device.restart.name',
-    fontIcon: 'i-iconoir-refresh',
+    elIcon: 'RefreshRight',
     component: Restart,
   },
   {
     label: 'common.search',
-    fontIcon: 'i-bi-search',
+    elIcon: 'Search',
     component: Search,
   },
 ]

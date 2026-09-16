@@ -1,5 +1,6 @@
 import fs from 'node:fs'
 import path from 'node:path'
+import { execFileSync } from 'node:child_process'
 import { adbKeyboardApkPath, desktopPath, getDefaultAdbPath } from '$electron/configs/index.js'
 import electronStore from '$electron/helpers/store/index.js'
 import { Adb } from '@devicefarmer/adbkit'
@@ -16,12 +17,25 @@ import { onQuitBefore } from '$electron/helpers/lifecycle/index.js'
 import { readDirWithStat } from './helpers/explorer/index.js'
 import { parseDumpsysPackages, parseLsOutput, parsePackageList, parsePackageNames } from './helpers/packages/index.js'
 import { setupEnvPath } from '$electron/process/helper.js'
-import { assertSafePackageName, assertSafeShellArgument, isSafeShellArgument } from '$electron/helpers/shell/safe-args.js'
+import { assertSafePackageName, assertSafeSerial, assertSafeShellArgument, isSafeShellArgument } from '$electron/helpers/shell/safe-args.js'
 import { filterConnectedDevices } from './helpers/index.js'
+import { getAdbPath } from '$electron/configs/which/index.js'
 
 const processManager = new ProcessManager()
 
 let client = null
+let daemonReadyPromise = null
+
+function quoteCmdPath(filePath) {
+  if (!filePath) {
+    return 'adb'
+  }
+  return `"${String(filePath).replace(/"/g, '')}"`
+}
+
+function getPinnedAdbBin() {
+  return getAdbPath() || 'adb'
+}
 
 const logcatReaders = new Map()
 
@@ -59,7 +73,8 @@ function normalizeAdbError(error) {
 }
 
 async function shell(command) {
-  const adbProcess = sheller(`adb ${command}`, {
+  const bin = quoteCmdPath(getPinnedAdbBin())
+  const adbProcess = sheller(`${bin} ${command}`, {
     shell: true,
     encoding: 'utf8',
   })
@@ -153,6 +168,12 @@ async function version() {
 }
 
 async function watch(callback) {
+  if (!client) {
+    init()
+  }
+  if (!client?.trackDevices) {
+    throw new Error('ADB client is not initialized')
+  }
   const tracker = await client.trackDevices()
   tracker.on('add', async (ret) => {
     callback('add', ret)
@@ -469,7 +490,10 @@ async function getSerialNo(id) {
     value = ret.replace(/[\n\r]/g, '')
   }
   catch (error) {
-    console.error('getSerialNo.error', error?.message || error)
+    const message = error?.message || String(error)
+    if (!/not found|device offline|no devices|closed|ECONNRESET/i.test(message)) {
+      console.error('getSerialNo.error', message)
+    }
   }
 
   return value
@@ -489,22 +513,41 @@ async function getScreenSize(id) {
     }
   }
   catch (error) {
-    console.error('getScreenSize.error', error?.message || error)
+    const message = error?.message || String(error)
+    if (!/not found|device offline|no devices|closed|ECONNRESET/i.test(message)) {
+      console.error('getScreenSize.error', message)
+    }
   }
 
   return null
 }
 
 async function getDeviceList() {
+  if (!client) {
+    init()
+  }
+  await waitForDaemon()
+  await pruneOfflineWireless()
+
   const listDevicesWithPaths = await client.listDevicesWithPaths()
   const devices = listDevicesWithPaths.filter(item => !['offline'].includes(item.type))
 
   const concurrencyLimit = Number(electronStore.get('common.concurrencyLimit') ?? 10)
   const limit = pLimit(concurrencyLimit)
+  const enrichable = new Set(['device', 'emulator'])
 
   const value = await Promise.all(
     devices.map(item =>
       limit(async () => {
+        if (!enrichable.has(item.type)) {
+          return {
+            ...item,
+            serialNo: item.id,
+            screenWidth: null,
+            screenHeight: null,
+          }
+        }
+
         const [serialNo, screenSize] = await Promise.all([
           getSerialNo(item.id),
           getScreenSize(item.id),
@@ -525,7 +568,160 @@ async function getDeviceList() {
 function init() {
   // Setup the PATH environment variable by injecting necessary tool paths
   setupEnvPath()
-  client = Adb.createClient()
+  // Always pin the adbkit client to the resolved binary (system PATH preferred)
+  const bin = getPinnedAdbBin()
+  client = Adb.createClient({ bin })
+  // Claim :5037 with this exact binary so Scoop/SDK adb versions cannot fight
+  daemonReadyPromise = ensureAdbDaemon(bin).catch((error) => {
+    console.warn('[adb] ensureAdbDaemon:', error?.message || error)
+  })
+}
+
+/**
+ * Ensure the ADB server is healthy with the pinned binary.
+ * Only kill/restart when the live daemon rejects this client (version mismatch / dead).
+ */
+async function ensureAdbDaemon(bin = getPinnedAdbBin()) {
+  if (!bin || bin === 'adb') {
+    return false
+  }
+
+  setupEnvPath()
+
+  const run = (args) => {
+    try {
+      return {
+        ok: true,
+        out: execFileSync(bin, args, {
+          encoding: 'utf8',
+          timeout: 12000,
+          windowsHide: true,
+          stdio: ['ignore', 'pipe', 'pipe'],
+        }),
+      }
+    }
+    catch (error) {
+      const message = `${error?.stderr || ''}${error?.stdout || ''}${error?.message || error}`
+      return { ok: false, message }
+    }
+  }
+
+  const probe = run(['devices'])
+  if (probe.ok) {
+    return true
+  }
+
+  const needsRestart = /cannot connect to daemon|could not read ok|failed to start daemon|protocol fault|ADB server didn't ACK/i.test(
+    probe.message || '',
+  )
+
+  if (!needsRestart) {
+    console.warn('[adb] devices probe failed:', probe.message)
+    return false
+  }
+
+  console.warn('[adb] Restarting daemon to resolve client/server conflict')
+  run(['kill-server'])
+  const started = run(['start-server'])
+  if (!started.ok) {
+    throw new Error(started.message || 'Failed to start ADB daemon')
+  }
+
+  const again = run(['devices'])
+  if (!again.ok) {
+    throw new Error(again.message || 'ADB daemon still unhealthy after restart')
+  }
+
+  return true
+}
+
+async function waitForDaemon() {
+  if (daemonReadyPromise) {
+    await daemonReadyPromise
+  }
+}
+
+/**
+ * Drop stale offline tcpip endpoints so they stop stealing reconnect/mirror attempts.
+ */
+async function pruneOfflineWireless() {
+  if (!client) {
+    return []
+  }
+
+  const devices = await client.listDevices()
+  const offlineWireless = devices.filter(
+    item => item.type === 'offline' && String(item.id).includes(':'),
+  )
+
+  for (const item of offlineWireless) {
+    try {
+      assertSafeShellArgument(item.id, 'address')
+      await shell(`disconnect ${item.id}`)
+    }
+    catch {
+      // ignore disconnect failures
+    }
+  }
+
+  return offlineWireless.map(item => item.id)
+}
+
+/**
+ * Ensure a serial is online before mirroring. Reconnects IP:port targets once.
+ * @returns {Promise<string>} usable serial
+ */
+async function ensureDeviceOnline(serial) {
+  assertSafeSerial(serial)
+  await waitForDaemon()
+  await pruneOfflineWireless()
+
+  const devices = await client.listDevices()
+  const match = devices.find(item => item.id === serial)
+
+  if (match && ['device', 'emulator'].includes(match.type)) {
+    return serial
+  }
+
+  // Prefer another live transport for the same wireless host
+  if (String(serial).includes(':')) {
+    const [host, port] = String(serial).split(':')
+    const liveSibling = devices.find(
+      item => ['device', 'emulator'].includes(item.type)
+        && String(item.id).startsWith(`${host}:`),
+    )
+    if (liveSibling) {
+      return liveSibling.id
+    }
+
+    try {
+      await connect(host, port)
+      await new Promise(resolve => setTimeout(resolve, 400))
+      const after = await client.listDevices()
+      const reconnected = after.find(
+        item => (item.id === serial || String(item.id).startsWith(`${host}:`))
+          && ['device', 'emulator'].includes(item.type),
+      )
+      if (reconnected) {
+        return reconnected.id
+      }
+    }
+    catch (error) {
+      console.warn('[adb] ensureDeviceOnline reconnect:', error?.message || error)
+    }
+  }
+
+  // Fall back to any online device when the requested serial vanished
+  const online = devices.find(item => ['device', 'emulator'].includes(item.type))
+  if (online && match?.type === 'offline') {
+    return online.id
+  }
+
+  if (!match) {
+    throw new Error(`Device '${serial}' not found`)
+  }
+
+  throw new Error(`Device '${serial}' is ${match.type || 'unavailable'}`)
 }
 
 async function killProcesses() {
@@ -829,4 +1025,8 @@ export default {
   disablePackage,
   clearPackage,
   launchPackage,
+  ensureAdbDaemon,
+  ensureDeviceOnline,
+  pruneOfflineWireless,
+  waitForDaemon,
 }

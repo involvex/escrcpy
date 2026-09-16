@@ -54,7 +54,7 @@ export default {
   buildDependenciesFromSource: false,
   publish: {
     provider: 'github',
-    owner: 'viarotel-org',
+    owner: 'involvex',
     repo: 'escrcpy',
     updaterCacheDirName: 'escrcpy-updater',
   },

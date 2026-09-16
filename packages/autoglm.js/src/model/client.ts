@@ -24,6 +24,7 @@ export class MessageBuilder {
 	static createUserMessage(
 		text: string,
 		imageBase64?: string,
+		mimeType: string = 'image/png',
 	): OpenAI.Chat.ChatCompletionMessageParam {
 		const content: Array<
 			| {type: 'text'; text: string}
@@ -34,7 +35,7 @@ export class MessageBuilder {
 			content.push({
 				type: 'image_url',
 				image_url: {
-					url: `data:image/png;base64,${imageBase64}`,
+					url: `data:${mimeType};base64,${imageBase64}`,
 				},
 			})
 		}

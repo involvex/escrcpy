@@ -135,7 +135,7 @@ export default {
 
   publish: {
     provider: 'github',
-    owner: 'viarotel-org',
+    owner: 'involvex',
     repo: 'escrcpy',
     updaterCacheDirName: 'escrcpy-updater',
   },

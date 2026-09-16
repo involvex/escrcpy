@@ -33,16 +33,23 @@
         </el-button>
       </div>
 
-      <div class="text-sm">
-        Supported by
-
-        <a
-          class="hover:underline text-primary-500"
-          href="https://viarotel.github.io/"
-          target="_blank"
-        >Viarotel</a>
-
-        v{{ version }}
+      <div class="text-sm text-center space-y-1">
+        <div>
+          <a
+            class="hover:underline text-primary-500"
+            href="https://github.com/involvex/escrcpy"
+            target="_blank"
+          >involvex/escrcpy</a>
+          — fork of
+          <a
+            class="hover:underline text-primary-500"
+            href="https://github.com/viarotel-org/escrcpy"
+            target="_blank"
+          >viarotel-org/escrcpy</a>
+        </div>
+        <div class="text-gray-500 dark:text-gray-400">
+          v{{ version }}
+        </div>
       </div>
     </div>
 
@@ -59,15 +66,7 @@ import UpdateDialog from './components/update-dialog/index.vue'
 const loading = ref(false)
 const percent = ref(0)
 const escrcpyURL = homepage
-const { language: locale } = useI18n()
-
-const docsUrl = computed(() => {
-  const localePath = {
-    'zh-CN': 'zhHans/',
-  }[locale.value] || ''
-
-  return `https://viarotel.eu.org/${localePath}`
-})
+const docsUrl = 'https://github.com/involvex/escrcpy'
 
 const sponsorDialogRef = ref()
 const updateDialogRef = ref()
@@ -77,7 +76,7 @@ function onDonateClick() {
 }
 
 function onDocsClick() {
-  window.open(docsUrl.value)
+  window.open(`${docsUrl}#readme`)
 }
 
 function handleUpdate() {
@@ -131,7 +130,7 @@ function onUpdateError() {
           type: 'error',
         },
       )
-      window.open(`${docsUrl.value}/guide/started`)
+      window.open(`${docsUrl}/releases`)
     }
     catch (error) {
       console.warn(error.message)

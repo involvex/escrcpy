@@ -100,6 +100,72 @@ export default {
       registeredMirrorShortcuts.clear()
     }
 
+    // Shift+= / Shift+- fail on many Windows layouts; Alt+Arrow is reliable
+    const RESOLUTION_UP_ACCELS = ['CommandOrControl+Alt+Up']
+    const RESOLUTION_DOWN_ACCELS = ['CommandOrControl+Alt+Down']
+    const registeredResolutionShortcuts = new Set()
+
+    function clampMaxSize(value) {
+      return Math.min(4096, Math.max(320, Math.round(value)))
+    }
+
+    function adjustMirrorMaxSize(factor) {
+      const serial = focusedDeviceSerial || electronStore.get('lastConnectedDevice')?.id
+      if (!serial) {
+        console.warn('[shortcuts] No focused/last device for resolution adjust')
+        return
+      }
+
+      const scrcpyRoot = electronStore.get('scrcpy') || {}
+      const globalData = scrcpyRoot.global || {}
+      const deviceData = scrcpyRoot[serial] || {}
+      const current = Number(deviceData['--max-size'] ?? globalData['--max-size']) || 1920
+      const next = clampMaxSize(factor > 1 ? current * 1.5 : current / 1.5)
+
+      electronStore.set(['scrcpy', serial], {
+        ...deviceData,
+        '--max-size': next,
+      })
+
+      const mainWindow = mainApp.getMainWindow()
+      mainWindow?.webContents?.send('hotkey:mirror-max-size', {
+        deviceId: serial,
+        maxSize: next,
+        previous: current,
+      })
+    }
+
+    function unregisterResolutionShortcuts() {
+      registeredResolutionShortcuts.forEach((accelerator) => {
+        globalShortcut.unregister(accelerator)
+      })
+      registeredResolutionShortcuts.clear()
+    }
+
+    function registerResolutionShortcuts() {
+      unregisterResolutionShortcuts()
+
+      for (const accelerator of RESOLUTION_UP_ACCELS) {
+        const success = globalShortcut.register(accelerator, () => adjustMirrorMaxSize(1.5))
+        if (success) {
+          registeredResolutionShortcuts.add(accelerator)
+        }
+        else {
+          console.warn(`[shortcuts] Failed to register resolution up: ${accelerator}`)
+        }
+      }
+
+      for (const accelerator of RESOLUTION_DOWN_ACCELS) {
+        const success = globalShortcut.register(accelerator, () => adjustMirrorMaxSize(1 / 1.5))
+        if (success) {
+          registeredResolutionShortcuts.add(accelerator)
+        }
+        else {
+          console.warn(`[shortcuts] Failed to register resolution down: ${accelerator}`)
+        }
+      }
+    }
+
     function registerMirrorShortcuts() {
       unregisterMirrorShortcuts()
 
@@ -231,6 +297,7 @@ export default {
     updateHotkey()
     registerMirrorShortcuts()
     registerKeymapShortcuts()
+    registerResolutionShortcuts()
 
     electronStore.onDidChange('common.globalHotkey', (newValue) => {
       registerHotkey(newValue)
@@ -297,6 +364,7 @@ export default {
       }
       unregisterMirrorShortcuts()
       unregisterKeymapShortcuts()
+      unregisterResolutionShortcuts()
     }
   },
 }

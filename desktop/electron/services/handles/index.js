@@ -193,6 +193,54 @@ export default {
       }
     })
 
+    /**
+     * Open the OS terminal with PATH already set up for adb/scrcpy/gnirehtet.
+     * @param {{ command?: string }} payload
+     */
+    ipcMain.handle('open-system-terminal', async (_, payload = {}) => {
+      try {
+        const { setupEnvPath } = await import('$electron/process/helper.js')
+        const { spawn } = await import('node:child_process')
+        const { assertSafeShellArgument } = await import('$electron/helpers/shell/safe-args.js')
+
+        setupEnvPath()
+
+        const command = typeof payload.command === 'string' ? payload.command.trim() : ''
+        if (command) {
+          assertSafeShellArgument(command, 'system terminal command')
+        }
+
+        const env = { ...process.env }
+
+        if (process.platform === 'win32') {
+          const args = command
+            ? ['/c', 'start', 'cmd.exe', '/k', command]
+            : ['/c', 'start', 'cmd.exe']
+          spawn('cmd.exe', args, { detached: true, stdio: 'ignore', env, windowsHide: true }).unref()
+        }
+        else if (process.platform === 'darwin') {
+          const script = command
+            ? `tell application "Terminal" to do script ${JSON.stringify(command)}`
+            : 'tell application "Terminal" to do script ""'
+          spawn('osascript', ['-e', script], { detached: true, stdio: 'ignore', env }).unref()
+        }
+        else {
+          const shellCmd = command || 'bash'
+          spawn('x-terminal-emulator', ['-e', 'bash', '-lc', shellCmd], {
+            detached: true,
+            stdio: 'ignore',
+            env,
+          }).unref()
+        }
+
+        return { success: true }
+      }
+      catch (error) {
+        console.error('IPC open-system-terminal error:', error.message)
+        return { success: false, error: error?.message || String(error) }
+      }
+    })
+
     ipcMain.handle('open-system-menu', (event, args = {}) => {
       const win = BrowserWindow.fromWebContents(event.sender)
 
@@ -321,6 +369,7 @@ export default {
       ipcMain.removeHandler('rename-temp-file')
       ipcMain.removeHandler('navigate-to-route')
       ipcMain.removeHandler('open-log-path')
+      ipcMain.removeHandler('open-system-terminal')
       ipcMain.removeHandler('open-system-menu')
       ipcMain.removeHandler('keymap:set-focused-device')
       ipcMain.removeHandler('keymap:execute')

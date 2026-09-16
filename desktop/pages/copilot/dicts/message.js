@@ -28,6 +28,10 @@ export const TaskStatusEnum = Enum({
     value: 'thinking',
     messageStatus: MessageStatusEnum.RUNNING,
   },
+  THINKING_STREAM: {
+    value: 'thinking_stream',
+    messageStatus: MessageStatusEnum.RUNNING,
+  },
   ACTION: {
     value: 'action',
     messageStatus: MessageStatusEnum.RUNNING,

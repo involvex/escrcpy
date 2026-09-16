@@ -1,4 +1,22 @@
 import { isEqual } from 'lodash-es'
+import { clonePlainValue } from '$/utils/index.js'
+
+/** Preferred early placement so terminal/logcat are visible without scrolling. */
+const PRIORITY_BAR_KEYS = ['terminal', 'logcat']
+
+function migrateBarLayout(layout = []) {
+  const next = Array.isArray(layout) ? [...layout] : []
+
+  for (const key of [...PRIORITY_BAR_KEYS].reverse()) {
+    const existingIndex = next.indexOf(key)
+    if (existingIndex !== -1) {
+      next.splice(existingIndex, 1)
+    }
+    next.unshift(key)
+  }
+
+  return next
+}
 
 export const useControlStore = defineStore('app-control', () => {
   const barLayout = ref([])
@@ -6,7 +24,17 @@ export const useControlStore = defineStore('app-control', () => {
   const swapyKey = ref('')
 
   function getBarLayout() {
-    barLayout.value = window.$preload.store.get('control.barLayout') || []
+    const stored = window.$preload.store.get('control.barLayout') || []
+    const migratedFlag = window.$preload.store.get('control.barLayoutMigratedV1')
+    let next = Array.isArray(stored) ? stored : []
+
+    if (!migratedFlag) {
+      next = migrateBarLayout(next)
+      window.$preload.store.set('control.barLayout', next)
+      window.$preload.store.set('control.barLayoutMigratedV1', true)
+    }
+
+    barLayout.value = next
     return barLayout.value
   }
 
@@ -23,7 +51,7 @@ export const useControlStore = defineStore('app-control', () => {
 
     updateSwapyKey()
 
-    window.$preload.store.set('control.barLayout', value)
+    window.$preload.store.set('control.barLayout', clonePlainValue(value))
   }
 
   function setupWatcher() {

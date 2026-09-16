@@ -37,6 +37,10 @@ export default defineConfig({
       'el-dark': 'var(--el-box-shadow-dark)',
     },
   },
+  safelist: [
+    'i-bi-list-checks',
+    'i-bi-terminal',
+  ],
   shortcuts: {
     'inset-0': 'top-0 bottom-0 left-0 right-0',
     'inset-center':

@@ -170,8 +170,18 @@ function _handleSave() {
   preferenceStore.setData(preferenceData.value)
 }
 
-onBeforeUnmount(() => {
+function flushPendingSave() {
   handleSave.flush()
+}
+
+onBeforeUnmount(() => {
+  flushPendingSave()
+})
+
+// Flush before window unload / app quit so toggles are not lost to the debounce window
+window.addEventListener('beforeunload', flushPendingSave)
+onUnmounted(() => {
+  window.removeEventListener('beforeunload', flushPendingSave)
 })
 </script>
 

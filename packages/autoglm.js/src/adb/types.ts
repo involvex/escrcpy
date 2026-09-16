@@ -23,6 +23,7 @@ export class Screenshot {
 		public base64Data: string,
 		public width: number,
 		public height: number,
+		public mimeType: string = 'image/png',
 	) {}
 }
 

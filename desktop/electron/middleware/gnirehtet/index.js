@@ -9,15 +9,27 @@ import { assertSafeSerial, assertSafeShellArgument } from '$electron/helpers/she
 
 const processManager = new ProcessManager()
 
+const FGS_TIMEOUT_HINT
+  = 'Gnirehtet VPN service timed out starting (ForegroundServiceDidNotStartInTime). '
+    + 'Approve the VPN prompt on the device, disable battery restrictions for Gnirehtet, then retry. '
+    + 'If the client is broken, enable "Gnirehtet Fix" once to reinstall.'
+
 onQuitBefore(async () => {
   stop().catch((error) => {
     console.warn(error.message || 'Stop service failure')
   })
 })
 
+function enhanceGnirehtetError(error) {
+  const message = String(error?.stderr || error?.message || error || '')
+  if (/ForegroundServiceDidNotStartInTime|startForeground/i.test(message)) {
+    return new Error(`${message}\n\n${FGS_TIMEOUT_HINT}`)
+  }
+  return new Error(message)
+}
+
 function normalizeGnirehtetError(error) {
-  const message = error?.stderr || error?.message
-  throw new Error(message)
+  throw enhanceGnirehtetError(error)
 }
 
 async function shell(command, options = {}) {
@@ -78,19 +90,58 @@ async function isInstalled(deviceId) {
   }
 }
 
+function delay(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms))
+}
+
 function relay() {
   return new Promise((resolve, reject) => {
     shell('relay', {
       stdout: (data) => {
-        if (data.includes('Relay server started')) {
+        if (data.includes('Relay server started') || /already (running|started)/i.test(data)) {
           resolve(data)
         }
       },
       stderr: (error) => {
+        const text = String(error || '')
+        // Soft-handle relay already bound / already running
+        if (/already|Address already in use|bind/i.test(text)) {
+          resolve(text)
+          return
+        }
         reject(error)
       },
+    }).catch((error) => {
+      const text = String(error?.message || error || '')
+      if (/already|Address already in use|bind/i.test(text)) {
+        resolve(text)
+        return
+      }
+      reject(error)
     })
   })
+}
+
+/**
+ * Prefer install-once. gnirehtetFix only forces reinstall when the client is missing
+ * or the previous start failed with an install-related error — not on every start.
+ */
+async function ensureClientInstalled(deviceId, { forceReinstall = false } = {}) {
+  const installed = await isInstalled(deviceId)
+
+  if (installed && !forceReinstall) {
+    return false
+  }
+
+  await install(deviceId).catch((error) => {
+    throw enhanceGnirehtetError(
+      error?.message ? error : new Error(error?.message || 'Gnirehtet Install Client fail'),
+    )
+  })
+
+  // Give PackageManager / VPN stack a moment after install before startForeground
+  await delay(800)
+  return true
 }
 
 async function run(deviceId) {
@@ -99,28 +150,35 @@ async function run(deviceId) {
   })
 
   await relay().catch((error) => {
-    throw new Error(error?.message || 'Gnirehtet Relay fail')
+    throw enhanceGnirehtetError(
+      error?.message ? error : new Error(error?.message || 'Gnirehtet Relay fail'),
+    )
   })
 
-  let installed = false
-
   const gnirehtetFix = electronStore.get('common.gnirehtetFix') || false
-
-  if (!gnirehtetFix) {
-    installed = await isInstalled(deviceId)
-  }
-
-  if (!installed) {
-    await install(deviceId).catch((error) => {
-      throw new Error(error?.message || 'Gnirehtet Install Client fail')
-    })
-  }
+  // Fix mode: reinstall only if not installed, or as a one-shot repair when start fails below
+  await ensureClientInstalled(deviceId, { forceReinstall: false })
 
   const gnirehtetAppend = electronStore.get('common.gnirehtetAppend')
 
-  await start(deviceId, { append: gnirehtetAppend }).catch((error) => {
-    throw new Error(error?.message || 'Gnirehtet Start fail')
-  })
+  try {
+    await start(deviceId, { append: gnirehtetAppend })
+  }
+  catch (error) {
+    const message = String(error?.message || error || '')
+    const shouldRepair = gnirehtetFix
+      || /not installed|INSTALL_|ForegroundServiceDidNotStartInTime|startForeground/i.test(message)
+
+    if (!shouldRepair) {
+      throw enhanceGnirehtetError(error)
+    }
+
+    // One-shot repair: reinstall client, settle, retry start once
+    await ensureClientInstalled(deviceId, { forceReinstall: true })
+    await start(deviceId, { append: gnirehtetAppend }).catch((retryError) => {
+      throw enhanceGnirehtetError(retryError)
+    })
+  }
 }
 
 async function killProcesses() {
