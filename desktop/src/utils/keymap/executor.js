@@ -5,6 +5,16 @@ import {
   validateAutomationSteps,
 } from '$/utils/automation/index.js'
 
+import { resolveKeyeventCode as resolveCuratedKeyeventCode } from './keycodes.js'
+
+export {
+  KEYEVENT_CODES as CURATED_KEYEVENT_CODES,
+  formatAccelerator,
+  getKeyeventLabel,
+  getKeyeventName,
+  KEYEVENT_LIST,
+} from './keycodes.js'
+
 /**
  * @typedef {Object} KeymapBinding
  * @property {string} id - Unique binding identifier
@@ -54,6 +64,10 @@ export const KEYEVENT_CODES = {
 }
 
 export function resolveKeyeventCode(code) {
+  const curated = resolveCuratedKeyeventCode(code)
+  if (curated !== null) {
+    return curated
+  }
   if (typeof code === 'string') {
     const upper = code.toUpperCase()
     if (KEYEVENT_CODES[upper] !== undefined) {

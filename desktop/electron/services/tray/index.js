@@ -269,10 +269,16 @@ export default {
           ? command.stringify(LATENCY_PRESET_ARGS)
           : ''
 
-        await scrcpy.quickMirror(lastDevice.id, {
-          title: `escrcpy-${lastDevice.id}`,
-          args,
-        })
+        mainApp.emit('mirror:started', lastDevice.id)
+        try {
+          await scrcpy.quickMirror(lastDevice.id, {
+            title: `escrcpy-${lastDevice.id}`,
+            args,
+          })
+        }
+        finally {
+          mainApp.emit('mirror:stopped', lastDevice.id)
+        }
       }
       catch (error) {
         console.error('[tray] quickMirror error:', error)
@@ -300,10 +306,16 @@ export default {
     async function mirrorTrayDevice(id) {
       try {
         assertSafeSerial(id)
-        await scrcpy.mirror(id, {
-          title: `escrcpy-${id}`,
-          args: getMirrorArgsFor(id),
-        })
+        mainApp.emit('mirror:started', id)
+        try {
+          await scrcpy.mirror(id, {
+            title: `escrcpy-${id}`,
+            args: getMirrorArgsFor(id),
+          })
+        }
+        finally {
+          mainApp.emit('mirror:stopped', id)
+        }
       }
       catch (error) {
         console.error('[tray] mirror error:', error)

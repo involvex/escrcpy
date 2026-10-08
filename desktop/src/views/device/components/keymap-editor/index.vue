@@ -33,7 +33,7 @@
       <div class="flex items-center gap-2">
         <el-select
           v-model="activeProfileId"
-          placeholder="{{ $t('preferences.keymap.activeProfile.placeholder') }}"
+          :placeholder="$t('preferences.keymap.activeProfile.placeholder')"
           style="width: 240px;"
           size="small"
           @change="onProfileChange"
@@ -181,6 +181,7 @@ import { useWindowStateSync } from '$/hooks/useWindowStateSync/index.js'
 import { useScreenshotAction } from '$/hooks/useScreenshotAction/index.js'
 import KeymapCanvas from './canvas-overlay.vue'
 import BindingFormDialog from './binding-form.vue'
+import { getKeyeventLabel } from '$/utils/keymap/index.js'
 
 defineOptions({ name: 'KeymapEditor' })
 
@@ -450,7 +451,7 @@ function formatBindingParams(binding) {
   const { action, params } = binding
   switch (action) {
     case 'keyevent':
-      return `Keyevent: ${params.code || '未设置'}`
+      return `Keyevent: ${getKeyeventLabel(params.code) || params.code || '未设置'}`
     case 'tap':
       return `Tap: (${params.x || 0}, ${params.y || 0})`
     case 'swipe':

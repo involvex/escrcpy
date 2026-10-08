@@ -11,6 +11,43 @@ import { parseDisplayIds, parseScrcpyAppList, parseScrcpyCameras, parseScrcpyCod
 
 const processManager = new ProcessManager()
 
+/**
+ * Notify the main process that a windowed mirror started/stopped so the
+ * shortcuts service can keep OS-wide hotkeys unregistered until needed.
+ * No-op when running in the main process (tray emits directly) or when
+ * IPC is unavailable.
+ */
+async function notifyMirror(event, serial) {
+  try {
+    if (typeof serial === 'undefined' || serial === null) {
+      return
+    }
+    const { ipcRenderer } = await import('electron').catch(() => ({}))
+    await ipcRenderer?.invoke?.(event, String(serial))?.catch?.(() => {})
+  }
+  catch {
+    // ignore notification failures (main process, tests)
+  }
+}
+
+function trackMirrorProcess(serial, child) {
+  notifyMirror('mirror:started', serial)
+  if (child && typeof child.once === 'function') {
+    let done = false
+    const onEnd = () => {
+      if (done) {
+        return
+      }
+      done = true
+      notifyMirror('mirror:stopped', serial)
+    }
+    child.once('exit', onEnd)
+    child.once('close', onEnd)
+    child.once('error', onEnd)
+  }
+  return child
+}
+
 function quoteCmdPath(filePath) {
   if (!filePath) {
     return 'scrcpy'
@@ -82,7 +119,7 @@ async function mirror(serial, options = {}) {
     id: serial,
     timestamp: Date.now(),
   })
-  return createMirrorProcess(serial, options)
+  return trackMirrorProcess(serial, createMirrorProcess(serial, options))
 }
 
 async function record(serial, { title, args = '', savePath, ...options } = {}) {
@@ -170,7 +207,7 @@ async function launch(serial, args = {}) {
 
   const signalText = /New display:.+?\(id=(\d+)\)/i
 
-  const child = createMirrorProcess(serial, {
+  const child = trackMirrorProcess(serial, createMirrorProcess(serial, {
     ...options,
     args: commands,
     stdout: (data) => {
@@ -188,7 +225,7 @@ async function launch(serial, args = {}) {
 
       promise?.resolve?.(displayId)
     },
-  })
+  }))
 
   return new Promise((resolve, reject) => {
     let settled = false
@@ -232,7 +269,7 @@ async function quickMirror(deviceId, options = {}) {
     id: deviceId,
     timestamp: Date.now(),
   })
-  return createMirrorProcess(deviceId, options)
+  return trackMirrorProcess(deviceId, createMirrorProcess(deviceId, options))
 }
 
 export default {

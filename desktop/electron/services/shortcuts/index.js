@@ -1,4 +1,4 @@
-import { app, globalShortcut } from 'electron'
+import { app, BrowserWindow, globalShortcut } from 'electron'
 import { Adb } from '@devicefarmer/adbkit'
 import electronStore from '$electron/helpers/store/index.js'
 import { getAdbPath } from '$electron/configs/which/index.js'
@@ -7,6 +7,7 @@ import { assertSafeSerial, assertSafeShellArgument } from '$electron/helpers/she
 import {
   executeKeymapProfile,
   getActiveProfile,
+  resolveKeyeventCode,
 } from '$renderer/utils/keymap/index.js'
 
 const DEFAULT_MIRROR_SHORTCUTS = [
@@ -22,6 +23,9 @@ function seedDefaults() {
   if (!existing || existing.length === 0) {
     electronStore.set('common.mirrorShortcuts', DEFAULT_MIRROR_SHORTCUTS)
   }
+  if (electronStore.get('common.mirrorShortcutsGlobal') === undefined) {
+    electronStore.set('common.mirrorShortcutsGlobal', false)
+  }
 }
 
 export default {
@@ -32,8 +36,57 @@ export default {
     const registeredMirrorShortcuts = new Map()
     const keymapShortcuts = new Map() // accelerator -> { serial, binding }
     let focusedDeviceSerial = null
+    const activeMirrorCounts = new Map()
+    const activeMirrors = {
+      has: serial => (activeMirrorCounts.get(String(serial)) || 0) > 0,
+      get size() {
+        let n = 0
+        activeMirrorCounts.forEach(count => (count > 0) && n++)
+        return n
+      },
+      * [Symbol.iterator]() {
+        for (const [serial, count] of activeMirrorCounts) {
+          if (count > 0) {
+            yield serial
+          }
+        }
+      },
+    }
+    let isAppFocused = (BrowserWindow.getFocusedWindow() != null)
     const keymapExecutionTimers = new Map() // accelerator -> timeout for rate limiting
     const KEYMAP_EXECUTION_COOLDOWN = 300 // ms
+
+    function isGlobalShortcutsEnabled() {
+      return electronStore.get('common.mirrorShortcutsGlobal') === true
+    }
+
+    function getActiveTargetSerial() {
+      if (focusedDeviceSerial && activeMirrors.has(focusedDeviceSerial)) {
+        return focusedDeviceSerial
+      }
+      if (isGlobalShortcutsEnabled() && activeMirrors.size > 0) {
+        if (focusedDeviceSerial && activeMirrors.has(focusedDeviceSerial)) {
+          return focusedDeviceSerial
+        }
+        return [...activeMirrors][0]
+      }
+      return null
+    }
+
+    /**
+     * Shortcuts may only steal OS keys while a device is actively mirrored
+     * AND (the app is focused OR the user explicitly opted into global mode).
+     * Otherwise everything stays unregistered so keys reach Edge/other apps.
+     */
+    function shouldShortcutsBeActive() {
+      if (activeMirrors.size === 0) {
+        return false
+      }
+      if (isGlobalShortcutsEnabled()) {
+        return getActiveTargetSerial() !== null
+      }
+      return isAppFocused && getActiveTargetSerial() !== null
+    }
 
     function showApp() {
       if (process.platform === 'darwin') {
@@ -85,7 +138,13 @@ export default {
 
     async function sendKeyevent(serial, keyevent) {
       try {
-        const stream = await getAdbClient().getDevice(serial).shell(`input keyevent ${keyevent}`)
+        assertSafeSerial(serial)
+        const code = resolveKeyeventCode(keyevent)
+        if (code === null) {
+          console.warn(`[shortcuts] Invalid keyevent: ${keyevent}`)
+          return
+        }
+        const stream = await getAdbClient().getDevice(serial).shell(`input keyevent ${code}`)
         await Adb.util.readAll(stream)
       }
       catch (error) {
@@ -110,9 +169,12 @@ export default {
     }
 
     function adjustMirrorMaxSize(factor) {
-      const serial = focusedDeviceSerial || electronStore.get('lastConnectedDevice')?.id
+      if (!shouldShortcutsBeActive()) {
+        return
+      }
+      const serial = getActiveTargetSerial()
       if (!serial) {
-        console.warn('[shortcuts] No focused/last device for resolution adjust')
+        console.warn('[shortcuts] No active mirrored device for resolution adjust')
         return
       }
 
@@ -177,7 +239,11 @@ export default {
         }
 
         const success = globalShortcut.register(item.accelerator, () => {
-          const serial = focusedDeviceSerial || electronStore.get('lastConnectedDevice')?.id
+          // Defense in depth: never send when gated off, even if unregister raced.
+          if (!shouldShortcutsBeActive()) {
+            return
+          }
+          const serial = getActiveTargetSerial()
           if (serial) {
             sendKeyevent(serial, item.keyevent)
           }
@@ -240,6 +306,9 @@ export default {
           }
 
           const success = globalShortcut.register(accelerator, () => {
+            if (!shouldShortcutsBeActive()) {
+              return
+            }
             // Rate limiting: prevent rapid-fire execution
             const now = Date.now()
             const lastExecution = keymapExecutionTimers.get(accelerator) || 0
@@ -248,8 +317,13 @@ export default {
             }
             keymapExecutionTimers.set(accelerator, now)
 
-            // Determine target serial: binding's serial > focused device > last connected
-            const targetSerial = serial || focusedDeviceSerial || electronStore.get('lastConnectedDevice')?.id
+            // Strict target: binding device (if still mirroring) else focused mirrored device.
+            // Never fall back to lastConnectedDevice.
+            const candidates = [
+              serial && activeMirrors.has(serial) ? serial : null,
+              getActiveTargetSerial(),
+            ].filter(Boolean)
+            const targetSerial = candidates[0] || null
             if (targetSerial) {
               executeKeymapForSerial(targetSerial, profile)
             }
@@ -286,25 +360,89 @@ export default {
       }
     }
 
+    function refreshShortcutRegistration() {
+      if (shouldShortcutsBeActive()) {
+        registerMirrorShortcuts()
+        registerKeymapShortcuts()
+        registerResolutionShortcuts()
+      }
+      else {
+        unregisterMirrorShortcuts()
+        unregisterKeymapShortcuts()
+        unregisterResolutionShortcuts()
+      }
+    }
+
+    function updateAppFocus() {
+      const focused = BrowserWindow.getFocusedWindow() != null
+      if (focused !== isAppFocused) {
+        isAppFocused = focused
+        refreshShortcutRegistration()
+      }
+    }
+
+    function handleWindowFocus() {
+      isAppFocused = true
+      refreshShortcutRegistration()
+    }
+
+    function handleWindowBlur() {
+      // blur fires before the next window's focus; defer so focus-switch keeps keys.
+      setTimeout(updateAppFocus, 50)
+    }
+
+    function handleMirrorStarted(serial) {
+      if (serial) {
+        const key = String(serial)
+        activeMirrorCounts.set(key, (activeMirrorCounts.get(key) || 0) + 1)
+        refreshShortcutRegistration()
+      }
+    }
+
+    function handleMirrorStopped(serial) {
+      if (serial) {
+        const key = String(serial)
+        const next = (activeMirrorCounts.get(key) || 1) - 1
+        if (next <= 0) {
+          activeMirrorCounts.delete(key)
+        }
+        else {
+          activeMirrorCounts.set(key, next)
+        }
+      }
+      else {
+        activeMirrorCounts.clear()
+      }
+      refreshShortcutRegistration()
+    }
+
+    function handleFocusedDevice(serial) {
+      focusedDeviceSerial = serial ? String(serial) : null
+      refreshShortcutRegistration()
+    }
+
     // IPC handler for renderer to report focused device
-    mainApp.on?.('keymap:set-focused-device', (serial) => {
-      focusedDeviceSerial = serial
-      // Re-register mirror shortcuts to use the new focused device
-      registerMirrorShortcuts()
-    })
+    mainApp.on?.('keymap:set-focused-device', handleFocusedDevice)
+    mainApp.on?.('mirror:started', handleMirrorStarted)
+    mainApp.on?.('mirror:stopped', handleMirrorStopped)
+    app.on('browser-window-focus', handleWindowFocus)
+    app.on('browser-window-blur', handleWindowBlur)
 
     seedDefaults()
     updateHotkey()
-    registerMirrorShortcuts()
-    registerKeymapShortcuts()
-    registerResolutionShortcuts()
+    updateAppFocus()
+    refreshShortcutRegistration()
 
     electronStore.onDidChange('common.globalHotkey', (newValue) => {
       registerHotkey(newValue)
     })
 
     electronStore.onDidChange('common.mirrorShortcuts', () => {
-      registerMirrorShortcuts()
+      refreshShortcutRegistration()
+    })
+
+    electronStore.onDidChange('common.mirrorShortcutsGlobal', () => {
+      refreshShortcutRegistration()
     })
 
     // Watch for keymap changes with debounced re-registration
@@ -331,7 +469,7 @@ export default {
         const currentState = getKeymapState()
         if (currentState !== lastKeymapState) {
           lastKeymapState = currentState
-          registerKeymapShortcuts()
+          refreshShortcutRegistration()
         }
       }, 50)
     }
@@ -359,6 +497,11 @@ export default {
         clearTimeout(keymapChangeTimer)
       }
       keymapExecutionTimers.clear()
+      mainApp.off?.('keymap:set-focused-device', handleFocusedDevice)
+      mainApp.off?.('mirror:started', handleMirrorStarted)
+      mainApp.off?.('mirror:stopped', handleMirrorStopped)
+      app.removeListener('browser-window-focus', handleWindowFocus)
+      app.removeListener('browser-window-blur', handleWindowBlur)
       if (registeredHotkey) {
         globalShortcut.unregister(registeredHotkey)
       }

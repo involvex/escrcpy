@@ -226,6 +226,14 @@ export default {
       ],
       span: 24,
     },
+    mirrorShortcutsGlobal: {
+      label: 'preferences.common.mirrorShortcutsGlobal.name',
+      field: 'mirrorShortcutsGlobal',
+      type: 'Switch',
+      value: false,
+      placeholder: 'preferences.common.mirrorShortcutsGlobal.placeholder',
+      tips: 'preferences.common.mirrorShortcutsGlobal.tips',
+    },
     concurrencyLimit: {
       label: 'preferences.common.concurrencyLimit.name',
       field: 'concurrencyLimit',

@@ -43,7 +43,7 @@
       <!-- Action Type Selector -->
       <div>
         <label class="block text-sm font-medium mb-1">{{ $t('keymap.editor.binding.action') }}</label>
-        <el-select v-model="form.action" placeholder="{{ $t('keymap.editor.binding.action.placeholder') }}" size="small" style="width: 100%;">
+        <el-select v-model="form.action" :placeholder="$t('keymap.editor.binding.action.placeholder')" size="small" style="width: 100%;">
           <el-option
             v-for="action in actionTypes"
             :key="action.value"
@@ -56,12 +56,12 @@
       <!-- Action Parameters -->
       <div v-if="form.action === 'keyevent'">
         <label class="block text-sm font-medium mb-1">{{ $t('keymap.editor.binding.keyevent.code') }}</label>
-        <el-select v-model="form.params.code" placeholder="{{ $t('keymap.editor.binding.keyevent.code.placeholder') }}" size="small" style="width: 100%;" filterable>
+        <el-select v-model="form.params.code" :placeholder="$t('keymap.editor.binding.keyevent.code.placeholder')" size="small" style="width: 100%;" filterable>
           <el-option
-            v-for="code in keyeventCodes"
-            :key="code"
-            :label="code"
-            :value="code"
+            v-for="option in keyeventOptions"
+            :key="option.value"
+            :label="option.label"
+            :value="option.value"
           />
         </el-select>
         <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">
@@ -123,7 +123,7 @@
 
       <div v-if="form.action === 'text'">
         <label class="block text-sm font-medium mb-1">{{ $t('keymap.editor.binding.text.content') }}</label>
-        <el-input v-model="form.params.text" type="textarea" :rows="3" placeholder="{{ $t('keymap.editor.binding.text.placeholder') }}" size="small" style="width: 100%;" />
+        <el-input v-model="form.params.text" type="textarea" :rows="3" :placeholder="$t('keymap.editor.binding.text.placeholder')" size="small" style="width: 100%;" />
         <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">
           {{ $t('keymap.editor.binding.text.help') }}
         </p>
@@ -156,8 +156,8 @@
               />
             </el-select>
             <div v-if="step.type === 'keyevent'" class="flex-1">
-              <el-select v-model="step.params.code" size="small" style="width: 100%;" filterable placeholder="Keycode">
-                <el-option v-for="code in keyeventCodes" :key="code" :label="code" :value="code" />
+              <el-select v-model="step.params.code" size="small" style="width: 100%;" filterable :placeholder="$t('keymap.editor.binding.keyevent.code.placeholder')">
+                <el-option v-for="option in keyeventOptions" :key="option.value" :label="option.label" :value="option.value" />
               </el-select>
             </div>
             <div v-if="step.type === 'tap'" class="flex-1 flex gap-1">
@@ -214,8 +214,8 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue'
-import { KEYEVENT_CODES } from '$renderer/utils/keymap/index.js'
+import { computed, ref, watch } from 'vue'
+import { getKeyeventLabel, KEYEVENT_LIST } from '$renderer/utils/keymap/index.js'
 
 defineProps({
   visible: { type: Boolean, default: false },
@@ -239,7 +239,10 @@ const editingIndex = ref(-1)
 const waitingForKey = ref(false)
 const keyListenerAttached = ref(false)
 
-const keyeventCodes = KEYEVENT_CODES
+const keyeventOptions = computed(() => KEYEVENT_LIST.map(entry => ({
+  label: getKeyeventLabel(entry.code),
+  value: entry.code,
+})))
 
 const actionTypes = [
   { value: 'keyevent', label: $t('keymap.action.keyevent') },

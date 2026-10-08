@@ -3,6 +3,10 @@ import {
   buildKeymapCommand,
   createDefaultBinding,
   createDefaultProfile,
+  formatAccelerator,
+  getKeyeventLabel,
+  getKeyeventName,
+  KEYEVENT_LIST,
   resolveKeyeventCode,
   validateKeymapBinding,
 } from '../src/utils/keymap/index.js'
@@ -159,6 +163,42 @@ describe('keymap Executor', () => {
       expect(profile.name).toBe('Test Profile')
       expect(profile.bindings).toEqual([])
       expect(profile.id).toMatch(/^profile_\d+_[a-z0-9]+$/)
+    })
+  })
+
+  describe('keyevent human-readable labels', () => {
+    it('resolves RECENT_APPS alias and APP_SWITCH to 187', () => {
+      expect(resolveKeyeventCode('RECENT_APPS')).toBe(187)
+      expect(resolveKeyeventCode('APP_SWITCH')).toBe(187)
+      expect(resolveKeyeventCode('app_switch')).toBe(187)
+    })
+
+    it('maps numeric codes back to canonical names', () => {
+      expect(getKeyeventName(187)).toBe('APP_SWITCH')
+      expect(getKeyeventName('187')).toBe('APP_SWITCH')
+      expect(getKeyeventName(3)).toBe('HOME')
+      expect(getKeyeventName(9999)).toBeNull()
+    })
+
+    it('formats human-readable labels with codes', () => {
+      expect(getKeyeventLabel(187)).toBe('Recents (187)')
+      expect(getKeyeventLabel('187')).toBe('Recents (187)')
+      expect(getKeyeventLabel(3)).toBe('Home (3)')
+      expect(getKeyeventLabel(4)).toBe('Back (4)')
+      expect(getKeyeventLabel(9999)).toBe('Code 9999')
+      expect(getKeyeventLabel('INVALID')).toBeNull()
+    })
+
+    it('ships a curated list covering legacy codes', () => {
+      const codes = new Set(KEYEVENT_LIST.map(entry => entry.code))
+      for (const code of [3, 4, 24, 25, 26, 27, 66, 67, 82, 87, 88, 126, 127, 164, 187]) {
+        expect(codes.has(code)).toBe(true)
+      }
+    })
+
+    it('formats accelerators for display', () => {
+      expect(formatAccelerator('CommandOrControl+D')).toMatch(/Ctrl\+D|Cmd\+D/)
+      expect(formatAccelerator('')).toBe('')
     })
   })
 })

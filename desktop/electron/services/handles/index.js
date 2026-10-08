@@ -281,6 +281,18 @@ export default {
       return true
     })
 
+    // Mirror activity: renderer preload notifies main so global shortcuts
+    // can stay unregistered until a device is actually mirrored.
+    ipcMain.handle('mirror:started', async (_, serial) => {
+      mainApp.emit('mirror:started', serial)
+      return true
+    })
+
+    ipcMain.handle('mirror:stopped', async (_, serial) => {
+      mainApp.emit('mirror:stopped', serial)
+      return true
+    })
+
     // Keymap: execute a binding/profile for testing
     ipcMain.handle('keymap:execute', async (_, { serial, binding, profile }) => {
       try {
@@ -372,6 +384,8 @@ export default {
       ipcMain.removeHandler('open-system-terminal')
       ipcMain.removeHandler('open-system-menu')
       ipcMain.removeHandler('keymap:set-focused-device')
+      ipcMain.removeHandler('mirror:started')
+      ipcMain.removeHandler('mirror:stopped')
       ipcMain.removeHandler('keymap:execute')
       ipcMain.removeHandler('keymap:import')
     }

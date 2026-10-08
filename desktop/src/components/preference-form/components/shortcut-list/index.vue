@@ -13,14 +13,23 @@
         @input="emitChange"
       >
       </el-input>
-      <el-input
+      <el-select
         v-model="item.keyevent"
-        placeholder="187"
-        class="!w-20"
+        filterable
+        allow-create
+        default-first-option
+        :placeholder="$t('keymap.editor.binding.keyevent.code.placeholder')"
+        class="!w-48"
         size="small"
-        @input="emitChange"
+        @change="emitChange"
       >
-      </el-input>
+        <el-option
+          v-for="option in keyeventOptions"
+          :key="option.value"
+          :label="option.label"
+          :value="option.value"
+        />
+      </el-select>
       <el-input
         v-model="item.label"
         placeholder="Label"
@@ -45,6 +54,8 @@
 </template>
 
 <script>
+import { getKeyeventLabel, KEYEVENT_LIST } from '$/utils/keymap/index.js'
+
 export default {
   name: 'ShortcutList',
   props: {
@@ -70,6 +81,12 @@ export default {
       set(value) {
         this.$emit('update:model-value', value)
       },
+    },
+    keyeventOptions() {
+      return KEYEVENT_LIST.map(entry => ({
+        label: getKeyeventLabel(entry.code),
+        value: entry.code,
+      }))
     },
   },
   methods: {
