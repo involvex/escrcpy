@@ -23,13 +23,13 @@ export default {
       },
       hooks: {
         shown(win, { payload }) {
-          trySend(win, 'device-change', payload.device)
+          trySend(win.webContents, 'device-change', payload.device)
         },
         focus(win) {
-          trySend(win, 'window-focus', true)
+          trySend(win.webContents, 'window-focus', true)
         },
         blur(win) {
-          trySend(win, 'window-focus', false)
+          trySend(win.webContents, 'window-focus', false)
         },
       },
     })

@@ -1,3 +1,4 @@
+import electron from 'electron'
 import { sheller } from '$electron/helpers/shell/index.js'
 import { assertSafePackageName, assertSafeScrcpyArgs, assertSafeSerial, sanitizeDisplayText, sanitizeFilePath } from '$electron/helpers/shell/safe-args.js'
 import commandHelper from '$renderer/utils/command/index.js'
@@ -15,15 +16,19 @@ const processManager = new ProcessManager()
  * Notify the main process that a windowed mirror started/stopped so the
  * shortcuts service can keep OS-wide hotkeys unregistered until needed.
  * No-op when running in the main process (tray emits directly) or when
- * IPC is unavailable.
+ * IPC is unavailable. Uses a static electron import like the other
+ * middleware: dynamic import() is unreliable in the bundled ESM preload
+ * and would fail silently, leaving hotkeys permanently unregistered.
  */
-async function notifyMirror(event, serial) {
+function notifyMirror(event, serial) {
   try {
     if (typeof serial === 'undefined' || serial === null) {
       return
     }
-    const { ipcRenderer } = await import('electron').catch(() => ({}))
-    await ipcRenderer?.invoke?.(event, String(serial))?.catch?.(() => {})
+    // Default import: safe in preload (has ipcRenderer), main (absent
+    // there, tray emits directly) and bundlers. A named ipcRenderer import
+    // would fail at link time wherever the export does not exist.
+    electron?.ipcRenderer?.invoke?.(event, String(serial))?.catch?.(() => {})
   }
   catch {
     // ignore notification failures (main process, tests)

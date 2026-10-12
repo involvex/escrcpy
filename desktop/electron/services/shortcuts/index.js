@@ -9,6 +9,10 @@ import {
   getActiveProfile,
   resolveKeyeventCode,
 } from '$renderer/utils/keymap/index.js'
+import {
+  selectTargetSerial,
+  shouldActivateShortcuts,
+} from './target.js'
 
 const DEFAULT_MIRROR_SHORTCUTS = [
   {
@@ -36,21 +40,56 @@ export default {
     const registeredMirrorShortcuts = new Map()
     const keymapShortcuts = new Map() // accelerator -> { serial, binding }
     let focusedDeviceSerial = null
+    let lastMirrorSerial = null
     const activeMirrorCounts = new Map()
-    const activeMirrors = {
-      has: serial => (activeMirrorCounts.get(String(serial)) || 0) > 0,
-      get size() {
-        let n = 0
-        activeMirrorCounts.forEach(count => (count > 0) && n++)
-        return n
-      },
-      * [Symbol.iterator]() {
-        for (const [serial, count] of activeMirrorCounts) {
-          if (count > 0) {
-            yield serial
+    const activeMirrorOrder = []
+
+    function isActiveMirror(serial) {
+      return (activeMirrorCounts.get(String(serial)) || 0) > 0
+    }
+
+    function activeMirrorCount() {
+      let n = 0
+      activeMirrorCounts.forEach(count => (count > 0) && n++)
+      return n
+    }
+
+    function addActiveMirror(serial) {
+      const key = String(serial)
+      activeMirrorCounts.set(key, (activeMirrorCounts.get(key) || 0) + 1)
+      const index = activeMirrorOrder.indexOf(key)
+      if (index !== -1) {
+        activeMirrorOrder.splice(index, 1)
+      }
+      activeMirrorOrder.push(key)
+      lastMirrorSerial = key
+    }
+
+    function removeActiveMirror(serial) {
+      if (serial) {
+        const key = String(serial)
+        const next = (activeMirrorCounts.get(key) || 1) - 1
+        if (next <= 0) {
+          activeMirrorCounts.delete(key)
+          const index = activeMirrorOrder.indexOf(key)
+          if (index !== -1) {
+            activeMirrorOrder.splice(index, 1)
           }
         }
-      },
+        else {
+          activeMirrorCounts.set(key, next)
+        }
+        if (lastMirrorSerial === key && !isActiveMirror(key)) {
+          lastMirrorSerial = activeMirrorOrder.length > 0
+            ? activeMirrorOrder[activeMirrorOrder.length - 1]
+            : null
+        }
+      }
+      else {
+        activeMirrorCounts.clear()
+        activeMirrorOrder.length = 0
+        lastMirrorSerial = null
+      }
     }
     let isAppFocused = (BrowserWindow.getFocusedWindow() != null)
     const keymapExecutionTimers = new Map() // accelerator -> timeout for rate limiting
@@ -61,16 +100,11 @@ export default {
     }
 
     function getActiveTargetSerial() {
-      if (focusedDeviceSerial && activeMirrors.has(focusedDeviceSerial)) {
-        return focusedDeviceSerial
-      }
-      if (isGlobalShortcutsEnabled() && activeMirrors.size > 0) {
-        if (focusedDeviceSerial && activeMirrors.has(focusedDeviceSerial)) {
-          return focusedDeviceSerial
-        }
-        return [...activeMirrors][0]
-      }
-      return null
+      return selectTargetSerial({
+        focusedDeviceSerial,
+        activeSerials: activeMirrorOrder,
+        fallbackSerial: lastMirrorSerial,
+      })
     }
 
     /**
@@ -79,13 +113,12 @@ export default {
      * Otherwise everything stays unregistered so keys reach Edge/other apps.
      */
     function shouldShortcutsBeActive() {
-      if (activeMirrors.size === 0) {
-        return false
-      }
-      if (isGlobalShortcutsEnabled()) {
-        return getActiveTargetSerial() !== null
-      }
-      return isAppFocused && getActiveTargetSerial() !== null
+      return shouldActivateShortcuts({
+        activeCount: activeMirrorCount(),
+        targetSerial: getActiveTargetSerial(),
+        isAppFocused,
+        globalEnabled: isGlobalShortcutsEnabled(),
+      })
     }
 
     function showApp() {
@@ -320,7 +353,7 @@ export default {
             // Strict target: binding device (if still mirroring) else focused mirrored device.
             // Never fall back to lastConnectedDevice.
             const candidates = [
-              serial && activeMirrors.has(serial) ? serial : null,
+              serial && isActiveMirror(serial) ? serial : null,
               getActiveTargetSerial(),
             ].filter(Boolean)
             const targetSerial = candidates[0] || null
@@ -360,8 +393,15 @@ export default {
       }
     }
 
+    let lastActiveState = null
+
     function refreshShortcutRegistration() {
-      if (shouldShortcutsBeActive()) {
+      const active = shouldShortcutsBeActive()
+      if (active !== lastActiveState) {
+        lastActiveState = active
+        console.debug(`[shortcuts] ${active ? 'registered' : 'unregistered'} (target=${getActiveTargetSerial() || 'none'}, mirrors=${activeMirrorCount()}, focused=${isAppFocused})`)
+      }
+      if (active) {
         registerMirrorShortcuts()
         registerKeymapShortcuts()
         registerResolutionShortcuts()
@@ -393,26 +433,18 @@ export default {
 
     function handleMirrorStarted(serial) {
       if (serial) {
-        const key = String(serial)
-        activeMirrorCounts.set(key, (activeMirrorCounts.get(key) || 0) + 1)
+        addActiveMirror(serial)
+        // Adopt the mirror when nothing is explicitly focused so a missed
+        // focus event can never leave hotkeys permanently dead.
+        if (!focusedDeviceSerial) {
+          focusedDeviceSerial = String(serial)
+        }
         refreshShortcutRegistration()
       }
     }
 
     function handleMirrorStopped(serial) {
-      if (serial) {
-        const key = String(serial)
-        const next = (activeMirrorCounts.get(key) || 1) - 1
-        if (next <= 0) {
-          activeMirrorCounts.delete(key)
-        }
-        else {
-          activeMirrorCounts.set(key, next)
-        }
-      }
-      else {
-        activeMirrorCounts.clear()
-      }
+      removeActiveMirror(serial)
       refreshShortcutRegistration()
     }
 
