@@ -1020,7 +1020,7 @@
   "preferences.common.mirrorShortcuts.name": "اختصارات المرآة",
   "preferences.common.mirrorShortcutsGlobal.name": "允许全局快捷键",
   "preferences.common.mirrorShortcutsGlobal.placeholder": "镜像期间即使应用失去焦点仍保持快捷键生效",
-  "preferences.common.mirrorShortcutsGlobal.tips": "关闭（推荐）时，仅在设备镜像中且应用窗口聚焦时快捷键才生效，浏览器等其他应用可正常使用按键。开启后镜像期间快捷键全局生效。",
+  "preferences.common.mirrorShortcutsGlobal.tips": "关闭（推荐）时，仅在镜像窗口处于前台时快捷键才生效，应用窗口和浏览器中的按键不受影响。开启后镜像期间快捷键全局生效（当前台检测不可用时可开启此项）。",
   "preferences.common.name": "شائع",
   "preferences.common.scrcpy.append.name": "خيارات Scrcpy",
   "preferences.common.scrcpy.append.placeholder": "إلحاق خيارات إضافية لأمر scrcpy",

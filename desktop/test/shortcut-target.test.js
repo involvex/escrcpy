@@ -51,6 +51,32 @@ describe('shortcut target selection', () => {
       })).toBe('dev2')
     })
 
+    it('prefers the frontmost mirror over stale focus', () => {
+      expect(selectTargetSerial({
+        focusedDeviceSerial: 'dev1',
+        foregroundSerial: 'dev2',
+        activeSerials: ['dev1', 'dev2'],
+        fallbackSerial: 'dev1',
+      })).toBe('dev2')
+    })
+
+    it('prefers the foreground mirror over the fallback', () => {
+      expect(selectTargetSerial({
+        focusedDeviceSerial: 'gone',
+        foregroundSerial: 'dev1',
+        activeSerials: ['dev1', 'dev2'],
+        fallbackSerial: 'dev2',
+      })).toBe('dev1')
+    })
+
+    it('ignores foreground serials that are no longer active', () => {
+      expect(selectTargetSerial({
+        foregroundSerial: 'gone',
+        activeSerials: ['dev1'],
+        fallbackSerial: 'dev1',
+      })).toBe('dev1')
+    })
+
     it('ignores fallback serials that are no longer active', () => {
       expect(selectTargetSerial({
         activeSerials: ['dev1'],
@@ -65,9 +91,15 @@ describe('shortcut target selection', () => {
       expect(shouldActivateShortcuts({ activeCount: 1, targetSerial: null, isAppFocused: true })).toBe(false)
     })
 
-    it('requires app focus in gated (default) mode', () => {
-      expect(shouldActivateShortcuts({ activeCount: 1, targetSerial: 'dev1', isAppFocused: true })).toBe(true)
-      expect(shouldActivateShortcuts({ activeCount: 1, targetSerial: 'dev1', isAppFocused: false })).toBe(false)
+    it('requires a frontmost mirror window in gated (default) mode', () => {
+      // App focus alone must not steal main-window keys (inputs, terminal,
+      // binding capture) — only a frontmost mirror activates.
+      expect(shouldActivateShortcuts({ activeCount: 1, targetSerial: 'dev1', isAppFocused: true, isMirrorForeground: false })).toBe(false)
+      expect(shouldActivateShortcuts({ activeCount: 1, targetSerial: 'dev1', isAppFocused: false, isMirrorForeground: false })).toBe(false)
+    })
+
+    it('stays active when a mirror window is frontmost', () => {
+      expect(shouldActivateShortcuts({ activeCount: 1, targetSerial: 'dev1', isAppFocused: false, isMirrorForeground: true })).toBe(true)
     })
 
     it('allows unfocused operation in global opt-in mode', () => {

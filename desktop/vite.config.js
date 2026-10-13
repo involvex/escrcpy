@@ -37,6 +37,10 @@ function mergeCommon(config, { command = '' } = {}) {
             '@lydell/node-pty',
             'autoglm.js',
             'tesseract.js',
+            // Native N-API foreground probe: must stay a runtime require so
+            // createRequire(bindingPath) resolves inside node_modules. The
+            // win32/macOS prebuilds come from node-pre-gyp, not the bundler.
+            'active-win',
           ],
         },
       },

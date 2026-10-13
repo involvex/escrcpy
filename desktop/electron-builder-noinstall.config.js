@@ -15,6 +15,8 @@ export default {
     '**/node_modules/@lydell/node-pty-*${platform}-${arch}/**/*',
     '**/node_modules/autoglm.js/**/*',
     '**/node_modules/@autoglm.js/**/*',
+    // Externalized foreground probe (+ its prebuilt native binding).
+    '**/node_modules/active-win/**/*',
   ],
   asar: false,
   asarUnpack: [
@@ -23,6 +25,7 @@ export default {
     '**/node_modules/@lydell/**/*',
     '**/node_modules/autoglm.js/**/*',
     '**/node_modules/@autoglm.js/**/*',
+    '**/node_modules/active-win/**/*',
   ],
   win: {
     icon: 'logo.ico',

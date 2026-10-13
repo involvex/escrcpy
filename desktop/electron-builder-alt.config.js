@@ -13,6 +13,8 @@ export default {
     '**/node_modules/@img/sharp-*${platform}-${arch}/**/*',
     '!**/node_modules/@lydell/node-pty-*/**/*',
     '**/node_modules/@lydell/node-pty-*${platform}-${arch}/**/*',
+    // Externalized foreground probe (+ its prebuilt native binding).
+    '**/node_modules/active-win/**/*',
   ],
   asar: false,
   win: {

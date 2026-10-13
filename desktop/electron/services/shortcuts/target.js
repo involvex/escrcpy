@@ -26,16 +26,21 @@ export function toSerialList(values) {
 }
 
 /**
- * Pick the device a shortcut should target: explicit focus wins when it is
- * still mirrored, otherwise the most recently started mirror still active.
- * Never invents a target outside the active set.
- * @param {{ focusedDeviceSerial?: string|null, activeSerials?: Array<string>, fallbackSerial?: string|null }} state
+ * Pick the device a shortcut should target: the frontmost mirror window
+ * wins, then explicit focus while still mirrored, otherwise the most
+ * recently started mirror still active. Never invents a target outside the
+ * active set.
+ * @param {{ focusedDeviceSerial?: string|null, foregroundSerial?: string|null, activeSerials?: Array<string>, fallbackSerial?: string|null }} state
  * @returns {string|null}
  */
-export function selectTargetSerial({ focusedDeviceSerial, activeSerials, fallbackSerial } = {}) {
+export function selectTargetSerial({ focusedDeviceSerial, foregroundSerial, activeSerials, fallbackSerial } = {}) {
   const actives = toSerialList(activeSerials)
   if (actives.length === 0) {
     return null
+  }
+  const foreground = foregroundSerial ? String(foregroundSerial) : null
+  if (foreground && actives.includes(foreground)) {
+    return foreground
   }
   const focused = focusedDeviceSerial ? String(focusedDeviceSerial) : null
   if (focused && actives.includes(focused)) {
@@ -50,15 +55,19 @@ export function selectTargetSerial({ focusedDeviceSerial, activeSerials, fallbac
 
 /**
  * Whether OS-wide shortcuts may be registered right now.
- * @param {{ activeCount?: number, targetSerial?: string|null, isAppFocused?: boolean, globalEnabled?: boolean }} state
+ * Gated (default) mode allows registration only while a scrcpy mirror
+ * window is frontmost. App focus alone never activates: keys pressed in the
+ * main window (inputs, terminal, binding capture) belong to the app, and
+ * anything else (browser, …) must receive its keys untouched.
+ * @param {{ activeCount?: number, targetSerial?: string|null, isAppFocused?: boolean, isMirrorForeground?: boolean, globalEnabled?: boolean }} state
  * @returns {boolean}
  */
-export function shouldActivateShortcuts({ activeCount, targetSerial, isAppFocused, globalEnabled } = {}) {
+export function shouldActivateShortcuts({ activeCount, targetSerial, isMirrorForeground, globalEnabled } = {}) {
   if ((activeCount || 0) <= 0 || !targetSerial) {
     return false
   }
   if (globalEnabled) {
     return true
   }
-  return isAppFocused === true
+  return isMirrorForeground === true
 }

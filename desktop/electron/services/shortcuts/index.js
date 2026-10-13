@@ -13,6 +13,7 @@ import {
   selectTargetSerial,
   shouldActivateShortcuts,
 } from './target.js'
+import { probeForeground } from './foreground.js'
 
 const DEFAULT_MIRROR_SHORTCUTS = [
   {
@@ -92,6 +93,14 @@ export default {
       }
     }
     let isAppFocused = (BrowserWindow.getFocusedWindow() != null)
+    // True while a scrcpy mirror window (external native process) is the OS
+    // foreground window. Needed because focusing a mirror fires
+    // `browser-window-blur`, which would otherwise unregister hotkeys exactly
+    // when the user is interacting with the mirror.
+    let isMirrorForeground = false
+    let foregroundSerial = null
+    let foregroundTimer = null
+    const FOREGROUND_POLL_MS = 500
     const keymapExecutionTimers = new Map() // accelerator -> timeout for rate limiting
     const KEYMAP_EXECUTION_COOLDOWN = 300 // ms
 
@@ -102,6 +111,7 @@ export default {
     function getActiveTargetSerial() {
       return selectTargetSerial({
         focusedDeviceSerial,
+        foregroundSerial,
         activeSerials: activeMirrorOrder,
         fallbackSerial: lastMirrorSerial,
       })
@@ -109,16 +119,66 @@ export default {
 
     /**
      * Shortcuts may only steal OS keys while a device is actively mirrored
-     * AND (the app is focused OR the user explicitly opted into global mode).
-     * Otherwise everything stays unregistered so keys reach Edge/other apps.
+     * AND (a mirror window is frontmost OR the user explicitly opted into
+     * global mode). App focus alone never activates: main-window keys
+     * (inputs, terminal, binding capture) belong to the app, and anything
+     * else (browser, …) must receive its keys untouched.
      */
     function shouldShortcutsBeActive() {
       return shouldActivateShortcuts({
         activeCount: activeMirrorCount(),
         targetSerial: getActiveTargetSerial(),
         isAppFocused,
+        isMirrorForeground,
         globalEnabled: isGlobalShortcutsEnabled(),
       })
+    }
+
+    /**
+     * Poll the OS foreground window, but only while it can change the
+     * outcome: mirrors active and gated mode. Zero cost when idle
+     * (no mirrors) or in global opt-in (always on). Runs regardless of app
+     * focus: focusing the app must deactivate, focusing a mirror must
+     * activate, and both transitions go through here.
+     */
+    async function pollForegroundOnce() {
+      if (activeMirrorCount() === 0 || isGlobalShortcutsEnabled()) {
+        return
+      }
+      const { isMirrorForeground: front, foregroundSerial: serial, unavailable } = await probeForeground(activeMirrorOrder)
+      // A dead probe is otherwise invisible (active-win stubs to undefined):
+      // warn once so "hotkeys never fire" is diagnosable from the console.
+      if (unavailable && !pollForegroundOnce._warned) {
+        pollForegroundOnce._warned = true
+        console.warn('[shortcuts] foreground detection unavailable (active-win has no usable native binding); mirror hotkeys stay off until the Global switch is enabled')
+      }
+      if (front !== isMirrorForeground || (serial || null) !== (foregroundSerial || null)) {
+        isMirrorForeground = front
+        foregroundSerial = serial || null
+        refreshShortcutRegistration()
+      }
+    }
+
+    function ensureForegroundPolling() {
+      const needed = activeMirrorCount() > 0 && !isGlobalShortcutsEnabled()
+      if (needed && !foregroundTimer) {
+        // Immediate check so mirror focus takes effect without waiting a tick.
+        pollForegroundOnce()
+        foregroundTimer = setInterval(() => {
+          pollForegroundOnce().catch(() => {})
+        }, FOREGROUND_POLL_MS)
+        if (typeof foregroundTimer.unref === 'function') {
+          foregroundTimer.unref()
+        }
+      }
+      else if (!needed && foregroundTimer) {
+        clearInterval(foregroundTimer)
+        foregroundTimer = null
+      }
+      if (!needed && (isMirrorForeground || foregroundSerial)) {
+        isMirrorForeground = false
+        foregroundSerial = null
+      }
     }
 
     function showApp() {
@@ -399,7 +459,7 @@ export default {
       const active = shouldShortcutsBeActive()
       if (active !== lastActiveState) {
         lastActiveState = active
-        console.debug(`[shortcuts] ${active ? 'registered' : 'unregistered'} (target=${getActiveTargetSerial() || 'none'}, mirrors=${activeMirrorCount()}, focused=${isAppFocused})`)
+        console.debug(`[shortcuts] ${active ? 'registered' : 'unregistered'} (target=${getActiveTargetSerial() || 'none'}, mirrors=${activeMirrorCount()}, focused=${isAppFocused}, mirrorFg=${isMirrorForeground})`)
       }
       if (active) {
         registerMirrorShortcuts()
@@ -418,12 +478,14 @@ export default {
       if (focused !== isAppFocused) {
         isAppFocused = focused
         refreshShortcutRegistration()
+        ensureForegroundPolling()
       }
     }
 
     function handleWindowFocus() {
       isAppFocused = true
       refreshShortcutRegistration()
+      ensureForegroundPolling()
     }
 
     function handleWindowBlur() {
@@ -440,12 +502,14 @@ export default {
           focusedDeviceSerial = String(serial)
         }
         refreshShortcutRegistration()
+        ensureForegroundPolling()
       }
     }
 
     function handleMirrorStopped(serial) {
       removeActiveMirror(serial)
       refreshShortcutRegistration()
+      ensureForegroundPolling()
     }
 
     function handleFocusedDevice(serial) {
@@ -464,6 +528,7 @@ export default {
     updateHotkey()
     updateAppFocus()
     refreshShortcutRegistration()
+    ensureForegroundPolling()
 
     electronStore.onDidChange('common.globalHotkey', (newValue) => {
       registerHotkey(newValue)
@@ -475,6 +540,7 @@ export default {
 
     electronStore.onDidChange('common.mirrorShortcutsGlobal', () => {
       refreshShortcutRegistration()
+      ensureForegroundPolling()
     })
 
     // Watch for keymap changes with debounced re-registration
@@ -527,6 +593,10 @@ export default {
     return () => {
       if (keymapChangeTimer) {
         clearTimeout(keymapChangeTimer)
+      }
+      if (foregroundTimer) {
+        clearInterval(foregroundTimer)
+        foregroundTimer = null
       }
       keymapExecutionTimers.clear()
       mainApp.off?.('keymap:set-focused-device', handleFocusedDevice)
