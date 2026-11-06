@@ -108,7 +108,7 @@ async function loadBindingDirect() {
     const { createRequire } = await import('node:module')
     const path = await import('node:path')
     const fs = await import('node:fs')
-    // eslint-disable-next-line no-undef
+
     const require = createRequire(import.meta.url)
     const pkgJson = require.resolve('active-win/package.json')
     const bindingRoot = path.join(path.dirname(pkgJson), 'lib', 'binding')

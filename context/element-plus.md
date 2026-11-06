@@ -196,39 +196,36 @@ A complete HTML example demonstrating how to initialize Element Plus with Vue 3 
 
 ```html
 <html>
-	<head>
-		<meta charset="UTF-8" />
-		<meta
-			name="viewport"
-			content="width=device-width,initial-scale=1.0"
-		/>
-		<script src="https://unpkg.com/vue@3"></script>
-		<!-- import CSS -->
-		<link
-			rel="stylesheet"
-			href="https://unpkg.com/element-plus/dist/index.css"
-		/>
-		<!-- import JavaScript -->
-		<script src="https://unpkg.com/element-plus"></script>
-		<title>Element Plus demo</title>
-	</head>
-	<body>
-		<div id="app">
-			<el-button>{{ message }}</el-button>
-		</div>
-		<script>
-			const App = {
-				data() {
-					return {
-						message: 'Hello Element Plus',
-					}
-				},
-			}
-			const app = Vue.createApp(App)
-			app.use(ElementPlus)
-			app.mount('#app')
-		</script>
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <script src="https://unpkg.com/vue@3"></script>
+    <!-- import CSS -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/element-plus/dist/index.css"
+    />
+    <!-- import JavaScript -->
+    <script src="https://unpkg.com/element-plus"></script>
+    <title>Element Plus demo</title>
+  </head>
+  <body>
+    <div id="app">
+      <el-button>{{ message }}</el-button>
+    </div>
+    <script>
+      const App = {
+        data() {
+          return {
+            message: 'Hello Element Plus',
+          }
+        },
+      }
+      const app = Vue.createApp(App)
+      app.use(ElementPlus)
+      app.mount('#app')
+    </script>
+  </body>
 </html>
 ```
 
@@ -254,40 +251,26 @@ A basic example of the el-timeline component displaying a list of events with ti
 
 ```vue
 <template>
-	<el-timeline>
-		<el-timeline-item
-			center
-			timestamp="2018/4/12"
-			placement="top"
-		>
-			<el-card>
-				<h4>Update Github template</h4>
-				<p>Tom committed 2018/4/12 20:46</p>
-			</el-card>
-		</el-timeline-item>
-		<el-timeline-item
-			timestamp="2018/4/3"
-			placement="top"
-		>
-			<el-card>
-				<h4>Update Github template</h4>
-				<p>Tom committed 2018/4/3 20:46</p>
-			</el-card>
-		</el-timeline-item>
-		<el-timeline-item
-			center
-			timestamp="2018/4/2"
-			placement="top"
-		>
-			Event start
-		</el-timeline-item>
-		<el-timeline-item
-			timestamp="2018/4/2"
-			placement="top"
-		>
-			Event end
-		</el-timeline-item>
-	</el-timeline>
+  <el-timeline>
+    <el-timeline-item center timestamp="2018/4/12" placement="top">
+      <el-card>
+        <h4>Update Github template</h4>
+        <p>Tom committed 2018/4/12 20:46</p>
+      </el-card>
+    </el-timeline-item>
+    <el-timeline-item timestamp="2018/4/3" placement="top">
+      <el-card>
+        <h4>Update Github template</h4>
+        <p>Tom committed 2018/4/3 20:46</p>
+      </el-card>
+    </el-timeline-item>
+    <el-timeline-item center timestamp="2018/4/2" placement="top">
+      Event start
+    </el-timeline-item>
+    <el-timeline-item timestamp="2018/4/2" placement="top">
+      Event end
+    </el-timeline-item>
+  </el-timeline>
 </template>
 ```
 
@@ -321,147 +304,147 @@ Illustrates advanced configurations of the Element Plus Descriptions component, 
 
 ```vue
 <template>
-	<el-radio-group v-model="size">
-		<el-radio value="large">Large</el-radio>
-		<el-radio value="default">Default</el-radio>
-		<el-radio value="small">Small</el-radio>
-	</el-radio-group>
+  <el-radio-group v-model="size">
+    <el-radio value="large">Large</el-radio>
+    <el-radio value="default">Default</el-radio>
+    <el-radio value="small">Small</el-radio>
+  </el-radio-group>
 
-	<el-descriptions
-		class="margin-top"
-		title="With border"
-		:column="3"
-		:size="size"
-		border
-	>
-		<template #extra>
-			<el-button type="primary">Operation</el-button>
-		</template>
-		<el-descriptions-item>
-			<template #label>
-				<div class="cell-item">
-					<el-icon :style="iconStyle">
-						<user />
-					</el-icon>
-					Username
-				</div>
-			</template>
-			kooriookami
-		</el-descriptions-item>
-		<el-descriptions-item>
-			<template #label>
-				<div class="cell-item">
-					<el-icon :style="iconStyle">
-						<iphone />
-					</el-icon>
-					Telephone
-				</div>
-			</template>
-			18100000000
-		</el-descriptions-item>
-		<el-descriptions-item>
-			<template #label>
-				<div class="cell-item">
-					<el-icon :style="iconStyle">
-						<location />
-					</el-icon>
-					Place
-				</div>
-			</template>
-			Suzhou
-		</el-descriptions-item>
-		<el-descriptions-item>
-			<template #label>
-				<div class="cell-item">
-					<el-icon :style="iconStyle">
-						<tickets />
-					</el-icon>
-					Remarks
-				</div>
-			</template>
-			<el-tag size="small">School</el-tag>
-		</el-descriptions-item>
-		<el-descriptions-item>
-			<template #label>
-				<div class="cell-item">
-					<el-icon :style="iconStyle">
-						<office-building />
-					</el-icon>
-					Address
-				</div>
-			</template>
-			No.1188, Wuzhong Avenue, Wuzhong District, Suzhou, Jiangsu Province
-		</el-descriptions-item>
-	</el-descriptions>
+  <el-descriptions
+    class="margin-top"
+    title="With border"
+    :column="3"
+    :size="size"
+    border
+  >
+    <template #extra>
+      <el-button type="primary">Operation</el-button>
+    </template>
+    <el-descriptions-item>
+      <template #label>
+        <div class="cell-item">
+          <el-icon :style="iconStyle">
+            <user />
+          </el-icon>
+          Username
+        </div>
+      </template>
+      kooriookami
+    </el-descriptions-item>
+    <el-descriptions-item>
+      <template #label>
+        <div class="cell-item">
+          <el-icon :style="iconStyle">
+            <iphone />
+          </el-icon>
+          Telephone
+        </div>
+      </template>
+      18100000000
+    </el-descriptions-item>
+    <el-descriptions-item>
+      <template #label>
+        <div class="cell-item">
+          <el-icon :style="iconStyle">
+            <location />
+          </el-icon>
+          Place
+        </div>
+      </template>
+      Suzhou
+    </el-descriptions-item>
+    <el-descriptions-item>
+      <template #label>
+        <div class="cell-item">
+          <el-icon :style="iconStyle">
+            <tickets />
+          </el-icon>
+          Remarks
+        </div>
+      </template>
+      <el-tag size="small">School</el-tag>
+    </el-descriptions-item>
+    <el-descriptions-item>
+      <template #label>
+        <div class="cell-item">
+          <el-icon :style="iconStyle">
+            <office-building />
+          </el-icon>
+          Address
+        </div>
+      </template>
+      No.1188, Wuzhong Avenue, Wuzhong District, Suzhou, Jiangsu Province
+    </el-descriptions-item>
+  </el-descriptions>
 
-	<el-descriptions
-		class="margin-top"
-		title="Without border"
-		:column="3"
-		:size="size"
-		:style="blockMargin"
-	>
-		<template #extra>
-			<el-button type="primary">Operation</el-button>
-		</template>
-		<el-descriptions-item label="Username">kooriookami</el-descriptions-item>
-		<el-descriptions-item label="Telephone">18100000000</el-descriptions-item>
-		<el-descriptions-item label="Place">Suzhou</el-descriptions-item>
-		<el-descriptions-item label="Remarks">
-			<el-tag size="small">School</el-tag>
-		</el-descriptions-item>
-		<el-descriptions-item label="Address">
-			No.1188, Wuzhong Avenue, Wuzhong District, Suzhou, Jiangsu Province
-		</el-descriptions-item>
-	</el-descriptions>
+  <el-descriptions
+    class="margin-top"
+    title="Without border"
+    :column="3"
+    :size="size"
+    :style="blockMargin"
+  >
+    <template #extra>
+      <el-button type="primary">Operation</el-button>
+    </template>
+    <el-descriptions-item label="Username">kooriookami</el-descriptions-item>
+    <el-descriptions-item label="Telephone">18100000000</el-descriptions-item>
+    <el-descriptions-item label="Place">Suzhou</el-descriptions-item>
+    <el-descriptions-item label="Remarks">
+      <el-tag size="small">School</el-tag>
+    </el-descriptions-item>
+    <el-descriptions-item label="Address">
+      No.1188, Wuzhong Avenue, Wuzhong District, Suzhou, Jiangsu Province
+    </el-descriptions-item>
+  </el-descriptions>
 </template>
 
 <script setup lang="ts">
 import {
-	Iphone,
-	Location,
-	OfficeBuilding,
-	Tickets,
-	User,
+  Iphone,
+  Location,
+  OfficeBuilding,
+  Tickets,
+  User,
 } from '@element-plus/icons-vue'
-import {computed, ref} from 'vue'
+import { computed, ref } from 'vue'
 
-import type {ComponentSize} from 'element-plus'
+import type { ComponentSize } from 'element-plus'
 
 const size = ref<ComponentSize>('default')
 
 const iconStyle = computed(() => {
-	const marginMap = {
-		large: '8px',
-		default: '6px',
-		small: '4px',
-	}
-	return {
-		marginRight: marginMap[size.value] || marginMap.default,
-	}
+  const marginMap = {
+    large: '8px',
+    default: '6px',
+    small: '4px',
+  }
+  return {
+    marginRight: marginMap[size.value] || marginMap.default,
+  }
 })
 const blockMargin = computed(() => {
-	const marginMap = {
-		large: '32px',
-		default: '28px',
-		small: '24px',
-	}
-	return {
-		marginTop: marginMap[size.value] || marginMap.default,
-	}
+  const marginMap = {
+    large: '32px',
+    default: '28px',
+    small: '24px',
+  }
+  return {
+    marginTop: marginMap[size.value] || marginMap.default,
+  }
 })
 </script>
 
 <style scoped>
 .el-descriptions {
-	margin-top: 20px;
+  margin-top: 20px;
 }
 .cell-item {
-	display: flex;
-	align-items: center;
+  display: flex;
+  align-items: center;
 }
 .margin-top {
-	margin-top: 20px;
+  margin-top: 20px;
 }
 </style>
 ```
@@ -488,29 +471,26 @@ Customize tooltip animations using the `transition` prop. This example uses a 's
 
 ```vue
 <template>
-	<el-tooltip
-		content="I am an el-tooltip"
-		transition="slide-fade"
-	>
-		<el-button>trigger me</el-button>
-	</el-tooltip>
+  <el-tooltip content="I am an el-tooltip" transition="slide-fade">
+    <el-button>trigger me</el-button>
+  </el-tooltip>
 </template>
 
 <script lang="ts" setup></script>
 
 <style>
 .slide-fade-enter-active {
-	transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
 }
 
 .slide-fade-leave-active {
-	transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
 }
 
 .slide-fade-enter-from,
 .slide-fade-leave-to {
-	transform: translateX(120px);
-	opacity: 0;
+  transform: translateX(120px);
+  opacity: 0;
 }
 </style>
 ```
@@ -693,104 +673,78 @@ This example demonstrates how to nest el-table-column components to create a mul
 
 ```vue
 <template>
-	<el-table
-		:data="tableData"
-		style="width: 100%"
-	>
-		<el-table-column
-			prop="date"
-			label="Date"
-			width="150"
-		/>
-		<el-table-column label="Delivery Info">
-			<el-table-column
-				prop="name"
-				label="Name"
-				width="120"
-			/>
-			<el-table-column label="Address Info">
-				<el-table-column
-					prop="state"
-					label="State"
-					width="120"
-				/>
-				<el-table-column
-					prop="city"
-					label="City"
-					width="120"
-				/>
-				<el-table-column
-					prop="address"
-					label="Address"
-				/>
-				<el-table-column
-					prop="zip"
-					label="Zip"
-					width="120"
-				/>
-			</el-table-column>
-		</el-table-column>
-	</el-table>
+  <el-table :data="tableData" style="width: 100%">
+    <el-table-column prop="date" label="Date" width="150" />
+    <el-table-column label="Delivery Info">
+      <el-table-column prop="name" label="Name" width="120" />
+      <el-table-column label="Address Info">
+        <el-table-column prop="state" label="State" width="120" />
+        <el-table-column prop="city" label="City" width="120" />
+        <el-table-column prop="address" label="Address" />
+        <el-table-column prop="zip" label="Zip" width="120" />
+      </el-table-column>
+    </el-table-column>
+  </el-table>
 </template>
 
 <script lang="ts" setup>
 const tableData = [
-	{
-		date: '2016-05-03',
-		name: 'Tom',
-		state: 'California',
-		city: 'Los Angeles',
-		address: 'No. 189, Grove St, Los Angeles',
-		zip: 'CA 90036',
-	},
-	{
-		date: '2016-05-02',
-		name: 'Tom',
-		state: 'California',
-		city: 'Los Angeles',
-		address: 'No. 189, Grove St, Los Angeles',
-		zip: 'CA 90036',
-	},
-	{
-		date: '2016-05-04',
-		name: 'Tom',
-		state: 'California',
-		city: 'Los Angeles',
-		address: 'No. 189, Grove St, Los Angeles',
-		zip: 'CA 90036',
-	},
-	{
-		date: '2016-05-01',
-		name: 'Tom',
-		state: 'California',
-		city: 'Los Angeles',
-		address: 'No. 189, Grove St, Los Angeles',
-		zip: 'CA 90036',
-	},
-	{
-		date: '2016-05-08',
-		name: 'Tom',
-		state: 'California',
-		city: 'Los Angeles',
-		address: 'No. 189, Grove St, Los Angeles',
-		zip: 'CA 90036',
-	},
-	{
-		date: '2016-05-06',
-		name: 'Tom',
-		state: 'California',
-		city: 'Los Angeles',
-		address: 'No. 189, Grove St, Los Angeles',
-		zip: 'CA 90036',
-	},
-	{
-		date: '2016-05-07',
-		name: 'Tom',
-		state: 'California',
-		city: 'Los Angeles',
-		address: 'No. 189, Grove St, Los Angeles',
-		zip: 'CA 90036',
-	},
+  {
+    date: '2016-05-03',
+    name: 'Tom',
+    state: 'California',
+    city: 'Los Angeles',
+    address: 'No. 189, Grove St, Los Angeles',
+    zip: 'CA 90036',
+  },
+  {
+    date: '2016-05-02',
+    name: 'Tom',
+    state: 'California',
+    city: 'Los Angeles',
+    address: 'No. 189, Grove St, Los Angeles',
+    zip: 'CA 90036',
+  },
+  {
+    date: '2016-05-04',
+    name: 'Tom',
+    state: 'California',
+    city: 'Los Angeles',
+    address: 'No. 189, Grove St, Los Angeles',
+    zip: 'CA 90036',
+  },
+  {
+    date: '2016-05-01',
+    name: 'Tom',
+    state: 'California',
+    city: 'Los Angeles',
+    address: 'No. 189, Grove St, Los Angeles',
+    zip: 'CA 90036',
+  },
+  {
+    date: '2016-05-08',
+    name: 'Tom',
+    state: 'California',
+    city: 'Los Angeles',
+    address: 'No. 189, Grove St, Los Angeles',
+    zip: 'CA 90036',
+  },
+  {
+    date: '2016-05-06',
+    name: 'Tom',
+    state: 'California',
+    city: 'Los Angeles',
+    address: 'No. 189, Grove St, Los Angeles',
+    zip: 'CA 90036',
+  },
+  {
+    date: '2016-05-07',
+    name: 'Tom',
+    state: 'California',
+    city: 'Los Angeles',
+    address: 'No. 189, Grove St, Los Angeles',
+    zip: 'CA 90036',
+  },
 ]
 </script>
 ```
@@ -1118,13 +1072,13 @@ Source: https://element-plus.org/en-US/component/notification
 Example of importing the ElNotification component and using a custom icon for the close action.
 
 ```javascript
-import {CloseBold} from '@element-plus/icons-vue'
-import {ElNotification} from 'element-plus'
+import { CloseBold } from '@element-plus/icons-vue'
+import { ElNotification } from 'element-plus'
 
 ElNotification({
-	title: 'Title',
-	message: 'This is a message',
-	closeIcon: CloseBold,
+  title: 'Title',
+  message: 'This is a message',
+  closeIcon: CloseBold,
 })
 ```
 
@@ -1138,123 +1092,88 @@ A comprehensive example demonstrating a form with various input types including 
 
 ```vue
 <template>
-	<el-form
-		:model="form"
-		label-width="auto"
-		style="max-width: 600px"
-	>
-		<el-form-item label="Activity name">
-			<el-input v-model="form.name" />
-		</el-form-item>
-		<el-form-item label="Activity zone">
-			<el-select
-				v-model="form.region"
-				placeholder="please select your zone"
-			>
-				<el-option
-					label="Zone one"
-					value="shanghai"
-				/>
-				<el-option
-					label="Zone two"
-					value="beijing"
-				/>
-			</el-select>
-		</el-form-item>
-		<el-form-item label="Activity time">
-			<el-col :span="11">
-				<el-date-picker
-					v-model="form.date1"
-					type="date"
-					placeholder="Pick a date"
-					style="width: 100%"
-				/>
-			</el-col>
-			<el-col
-				:span="2"
-				class="text-center"
-			>
-				<span class="text-gray-500">-</span>
-			</el-col>
-			<el-col :span="11">
-				<el-time-picker
-					v-model="form.date2"
-					placeholder="Pick a time"
-					style="width: 100%"
-				/>
-			</el-col>
-		</el-form-item>
-		<el-form-item label="Instant delivery">
-			<el-switch v-model="form.delivery" />
-		</el-form-item>
-		<el-form-item label="Activity type">
-			<el-checkbox-group v-model="form.type">
-				<el-checkbox
-					value="Online activities"
-					name="type"
-				>
-					Online activities
-				</el-checkbox>
-				<el-checkbox
-					value="Promotion activities"
-					name="type"
-				>
-					Promotion activities
-				</el-checkbox>
-				<el-checkbox
-					value="Offline activities"
-					name="type"
-				>
-					Offline activities
-				</el-checkbox>
-				<el-checkbox
-					value="Simple brand exposure"
-					name="type"
-				>
-					Simple brand exposure
-				</el-checkbox>
-			</el-checkbox-group>
-		</el-form-item>
-		<el-form-item label="Resources">
-			<el-radio-group v-model="form.resource">
-				<el-radio value="Sponsor">Sponsor</el-radio>
-				<el-radio value="Venue">Venue</el-radio>
-			</el-radio-group>
-		</el-form-item>
-		<el-form-item label="Activity form">
-			<el-input
-				v-model="form.desc"
-				type="textarea"
-			/>
-		</el-form-item>
-		<el-form-item>
-			<el-button
-				type="primary"
-				@click="onSubmit"
-				>Create</el-button
-			>
-			<el-button>Cancel</el-button>
-		</el-form-item>
-	</el-form>
+  <el-form :model="form" label-width="auto" style="max-width: 600px">
+    <el-form-item label="Activity name">
+      <el-input v-model="form.name" />
+    </el-form-item>
+    <el-form-item label="Activity zone">
+      <el-select v-model="form.region" placeholder="please select your zone">
+        <el-option label="Zone one" value="shanghai" />
+        <el-option label="Zone two" value="beijing" />
+      </el-select>
+    </el-form-item>
+    <el-form-item label="Activity time">
+      <el-col :span="11">
+        <el-date-picker
+          v-model="form.date1"
+          type="date"
+          placeholder="Pick a date"
+          style="width: 100%"
+        />
+      </el-col>
+      <el-col :span="2" class="text-center">
+        <span class="text-gray-500">-</span>
+      </el-col>
+      <el-col :span="11">
+        <el-time-picker
+          v-model="form.date2"
+          placeholder="Pick a time"
+          style="width: 100%"
+        />
+      </el-col>
+    </el-form-item>
+    <el-form-item label="Instant delivery">
+      <el-switch v-model="form.delivery" />
+    </el-form-item>
+    <el-form-item label="Activity type">
+      <el-checkbox-group v-model="form.type">
+        <el-checkbox value="Online activities" name="type">
+          Online activities
+        </el-checkbox>
+        <el-checkbox value="Promotion activities" name="type">
+          Promotion activities
+        </el-checkbox>
+        <el-checkbox value="Offline activities" name="type">
+          Offline activities
+        </el-checkbox>
+        <el-checkbox value="Simple brand exposure" name="type">
+          Simple brand exposure
+        </el-checkbox>
+      </el-checkbox-group>
+    </el-form-item>
+    <el-form-item label="Resources">
+      <el-radio-group v-model="form.resource">
+        <el-radio value="Sponsor">Sponsor</el-radio>
+        <el-radio value="Venue">Venue</el-radio>
+      </el-radio-group>
+    </el-form-item>
+    <el-form-item label="Activity form">
+      <el-input v-model="form.desc" type="textarea" />
+    </el-form-item>
+    <el-form-item>
+      <el-button type="primary" @click="onSubmit">Create</el-button>
+      <el-button>Cancel</el-button>
+    </el-form-item>
+  </el-form>
 </template>
 
 <script lang="ts" setup>
-import {reactive} from 'vue'
+import { reactive } from 'vue'
 
 // do not use same name with ref
 const form = reactive({
-	name: '',
-	region: '',
-	date1: '',
-	date2: '',
-	delivery: false,
-	type: [],
-	resource: '',
-	desc: '',
+  name: '',
+  region: '',
+  date1: '',
+  date2: '',
+  delivery: false,
+  type: [],
+  resource: '',
+  desc: '',
 })
 
 const onSubmit = () => {
-	console.log('submit!')
+  console.log('submit!')
 }
 </script>
 ```
@@ -1561,42 +1480,42 @@ Implement a singleton tooltip using virtual triggering. This allows multiple tri
 
 ```vue
 <template>
-	<div>
-		<el-button
-			v-for="i in 3"
-			:key="i"
-			@mouseover="e => (buttonRef = e.currentTarget)"
-			@click="visible = !visible"
-			>Click to open tooltip</el-button
-		>
-	</div>
+  <div>
+    <el-button
+      v-for="i in 3"
+      :key="i"
+      @mouseover="(e) => (buttonRef = e.currentTarget)"
+      @click="visible = !visible"
+      >Click to open tooltip</el-button
+    >
+  </div>
 
-	<el-tooltip
-		ref="tooltipRef"
-		:visible="visible"
-		:popper-options="{
-			modifiers: [
-				{
-					name: 'computeStyles',
-					options: {
-						adaptive: false,
-						enabled: false,
-					},
-				},
-			],
-		}"
-		:virtual-ref="buttonRef"
-		virtual-triggering
-		popper-class="singleton-tooltip"
-	>
-		<template #content>
-			<span> Some content </span>
-		</template>
-	</el-tooltip>
+  <el-tooltip
+    ref="tooltipRef"
+    :visible="visible"
+    :popper-options="{
+      modifiers: [
+        {
+          name: 'computeStyles',
+          options: {
+            adaptive: false,
+            enabled: false,
+          },
+        },
+      ],
+    }"
+    :virtual-ref="buttonRef"
+    virtual-triggering
+    popper-class="singleton-tooltip"
+  >
+    <template #content>
+      <span> Some content </span>
+    </template>
+  </el-tooltip>
 </template>
 
 <script setup lang="ts">
-import {ref} from 'vue'
+import { ref } from 'vue'
 
 const buttonRef = ref()
 const tooltipRef = ref()
@@ -1606,7 +1525,7 @@ const visible = ref(false)
 
 <style>
 .singleton-tooltip {
-	transition: transform 0.3s var(--el-transition-function-fast-bezier);
+  transition: transform 0.3s var(--el-transition-function-fast-bezier);
 }
 </style>
 ```
@@ -1870,122 +1789,82 @@ Demonstrates how to enable default summary rows and how to provide a custom summ
 
 ```vue
 <template>
-	<el-table
-		:data="tableData"
-		border
-		show-summary
-		style="width: 100%"
-	>
-		<el-table-column
-			prop="id"
-			label="ID"
-			width="180"
-		/>
-		<el-table-column
-			prop="name"
-			label="Name"
-		/>
-		<el-table-column
-			prop="amount1"
-			sortable
-			label="Amount 1"
-		/>
-		<el-table-column
-			prop="amount2"
-			sortable
-			label="Amount 2"
-		/>
-		<el-table-column
-			prop="amount3"
-			sortable
-			label="Amount 3"
-		/>
-	</el-table>
+  <el-table :data="tableData" border show-summary style="width: 100%">
+    <el-table-column prop="id" label="ID" width="180" />
+    <el-table-column prop="name" label="Name" />
+    <el-table-column prop="amount1" sortable label="Amount 1" />
+    <el-table-column prop="amount2" sortable label="Amount 2" />
+    <el-table-column prop="amount3" sortable label="Amount 3" />
+  </el-table>
 
-	<el-table
-		:data="tableData"
-		border
-		height="200"
-		:summary-method="getSummaries"
-		show-summary
-		style="width: 100%; margin-top: 20px"
-	>
-		<el-table-column
-			prop="id"
-			label="ID"
-			width="180"
-		/>
-		<el-table-column
-			prop="name"
-			label="Name"
-		/>
-		<el-table-column
-			prop="amount1"
-			label="Cost 1 ($)"
-		/>
-		<el-table-column
-			prop="amount2"
-			label="Cost 2 ($)"
-		/>
-		<el-table-column
-			prop="amount3"
-			label="Cost 3 ($)"
-		/>
-	</el-table>
+  <el-table
+    :data="tableData"
+    border
+    height="200"
+    :summary-method="getSummaries"
+    show-summary
+    style="width: 100%; margin-top: 20px"
+  >
+    <el-table-column prop="id" label="ID" width="180" />
+    <el-table-column prop="name" label="Name" />
+    <el-table-column prop="amount1" label="Cost 1 ($)" />
+    <el-table-column prop="amount2" label="Cost 2 ($)" />
+    <el-table-column prop="amount3" label="Cost 3 ($)" />
+  </el-table>
 </template>
 
 <script lang="ts" setup>
-import type {TableColumnCtx} from 'element-plus'
-import type {VNode} from 'vue'
-import {h} from 'vue'
+import type { TableColumnCtx } from 'element-plus'
+import type { VNode } from 'vue'
+import { h } from 'vue'
 
 interface Product {
-	id: string
-	name: string
-	amount1: string
-	amount2: string
-	amount3: number
+  id: string
+  name: string
+  amount1: string
+  amount2: string
+  amount3: number
 }
 
 interface SummaryMethodProps<T = Product> {
-	columns: TableColumnCtx<T>[]
-	data: T[]
+  columns: TableColumnCtx<T>[]
+  data: T[]
 }
 
 const getSummaries = (param: SummaryMethodProps) => {
-	const {columns, data} = param
-	const sums: (string | VNode)[] = []
-	columns.forEach((column, index) => {
-		if (index === 0) {
-			sums[index] = h('div', {style: {textDecoration: 'underline'}}, [
-				'Total Cost',
-			])
-			return
-		}
-		const values = data.map(item => Number(item[column.property]))
-		if (!values.every(value => Number.isNaN(value))) {
-			sums[index] = `$ ${values.reduce((prev, curr) => {
-				const value = Number(curr)
-				if (!Number.isNaN(value)) {
-					return prev + curr
-				} else {
-					return prev
-				}
-			}, 0)}`
-		} else {
-			sums[index] = 'N/A'
-		}
-	})
+  const { columns, data } = param
+  const sums: (string | VNode)[] = []
+  columns.forEach((column, index) => {
+    if (index === 0) {
+      sums[index] = h('div', { style: { textDecoration: 'underline' } }, [
+        'Total Cost',
+      ])
+      return
+    }
+    const values = data.map((item) => Number(item[column.property]))
+    if (!values.every((value) => Number.isNaN(value))) {
+      sums[index] = `$ ${values.reduce((prev, curr) => {
+        const value = Number(curr)
+        if (!Number.isNaN(value)) {
+          return prev + curr
+        } else {
+          return prev
+        }
+      }, 0)}`
+    } else {
+      sums[index] = 'N/A'
+    }
+  })
 
-	return sums
+  return sums
 }
 
 const tableData: Product[] = [
-	{id: '12987122', name: 'Tom', amount1: '234', amount2: '3.2', amount3: 10},
-	{id: '12987123', name: 'Tom', amount1: '165', amount2: '4.43', amount3: 12},
-	{id: '12987124', name: 'Tom', amount1: '324', amount2: '1.9', amount3: 9},
-	{id: '12987125', name: 'Tom', amount1: '621', amount2: '2.2', amount3: 17},
-	{id: '12987126', name: 'Tom', amount1: '539', amount2: '4.1', amount3: 15},
+  { id: '12987122', name: 'Tom', amount1: '234', amount2: '3.2', amount3: 10 },
+  { id: '12987123', name: 'Tom', amount1: '165', amount2: '4.43', amount3: 12 },
+  { id: '12987124', name: 'Tom', amount1: '324', amount2: '1.9', amount3: 9 },
+  { id: '12987125', name: 'Tom', amount1: '621', amount2: '2.2', amount3: 17 },
+  { id: '12987126', name: 'Tom', amount1: '539', amount2: '4.1', amount3: 15 },
 ]
 </script>
 ```
@@ -2000,97 +1879,97 @@ Demonstrates the basic setup of the TreeSelect component with hierarchical data.
 
 ```vue
 <template>
-	<el-tree-select
-		v-model="value"
-		:data="data"
-		:render-after-expand="false"
-		style="width: 240px"
-	/>
-	<el-divider />
-	show checkbox:
-	<el-tree-select
-		v-model="value"
-		:data="data"
-		:render-after-expand="false"
-		show-checkbox
-		style="width: 240px"
-	/>
+  <el-tree-select
+    v-model="value"
+    :data="data"
+    :render-after-expand="false"
+    style="width: 240px"
+  />
+  <el-divider />
+  show checkbox:
+  <el-tree-select
+    v-model="value"
+    :data="data"
+    :render-after-expand="false"
+    show-checkbox
+    style="width: 240px"
+  />
 </template>
 
 <script lang="ts" setup>
-import {ref} from 'vue'
+import { ref } from 'vue'
 
 const value = ref()
 
 const data = [
-	{
-		value: '1',
-		label: 'Level one 1',
-		children: [
-			{
-				value: '1-1',
-				label: 'Level two 1-1',
-				children: [
-					{
-						value: '1-1-1',
-						label: 'Level three 1-1-1',
-					},
-				],
-			},
-		],
-	},
-	{
-		value: '2',
-		label: 'Level one 2',
-		children: [
-			{
-				value: '2-1',
-				label: 'Level two 2-1',
-				children: [
-					{
-						value: '2-1-1',
-						label: 'Level three 2-1-1',
-					},
-				],
-			},
-			{
-				value: '2-2',
-				label: 'Level two 2-2',
-				children: [
-					{
-						value: '2-2-1',
-						label: 'Level three 2-2-1',
-					},
-				],
-			},
-		],
-	},
-	{
-		value: '3',
-		label: 'Level one 3',
-		children: [
-			{
-				value: '3-1',
-				label: 'Level two 3-1',
-				children: [
-					{
-						value: '3-1-1',
-						label: 'Level three 3-1-1',
-					},
-				],
-			},
-			{
-				value: '3-2',
-				label: 'Level two 3-2',
-				children: [
-					{
-						value: '3-2-1',
-						label: 'Level three 3-2-1',
-					},
-				],
-			},
-		],
-	},
+  {
+    value: '1',
+    label: 'Level one 1',
+    children: [
+      {
+        value: '1-1',
+        label: 'Level two 1-1',
+        children: [
+          {
+            value: '1-1-1',
+            label: 'Level three 1-1-1',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    value: '2',
+    label: 'Level one 2',
+    children: [
+      {
+        value: '2-1',
+        label: 'Level two 2-1',
+        children: [
+          {
+            value: '2-1-1',
+            label: 'Level three 2-1-1',
+          },
+        ],
+      },
+      {
+        value: '2-2',
+        label: 'Level two 2-2',
+        children: [
+          {
+            value: '2-2-1',
+            label: 'Level three 2-2-1',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    value: '3',
+    label: 'Level one 3',
+    children: [
+      {
+        value: '3-1',
+        label: 'Level two 3-1',
+        children: [
+          {
+            value: '3-1-1',
+            label: 'Level three 3-1-1',
+          },
+        ],
+      },
+      {
+        value: '3-2',
+        label: 'Level two 3-2',
+        children: [
+          {
+            value: '3-2-1',
+            label: 'Level three 3-2-1',
+          },
+        ],
+      },
+    ],
+  },
 ]
 </script>
 ```
@@ -2259,53 +2138,33 @@ Illustrates how to control the spacing size between elements using the `size` at
 
 ```vue
 <template>
-	<el-space
-		direction="vertical"
-		alignment="start"
-		:size="30"
-	>
-		<el-radio-group v-model="size">
-			<el-radio value="large">Large</el-radio>
-			<el-radio value="default">Default</el-radio>
-			<el-radio value="small">Small</el-radio>
-		</el-radio-group>
+  <el-space direction="vertical" alignment="start" :size="30">
+    <el-radio-group v-model="size">
+      <el-radio value="large">Large</el-radio>
+      <el-radio value="default">Default</el-radio>
+      <el-radio value="small">Small</el-radio>
+    </el-radio-group>
 
-		<el-space
-			wrap
-			:size="size"
-		>
-			<el-card
-				v-for="i in 3"
-				:key="i"
-				class="box-card"
-				style="width: 250px"
-			>
-				<template #header>
-					<div class="card-header">
-						<span>Card name</span>
-						<el-button
-							class="button"
-							text
-							>Operation button</el-button
-						>
-					</div>
-				</template>
-				<div
-					v-for="o in 4"
-					:key="o"
-					class="text item"
-				>
-					{{ 'List item ' + o }}
-				</div>
-			</el-card>
-		</el-space>
-	</el-space>
+    <el-space wrap :size="size">
+      <el-card v-for="i in 3" :key="i" class="box-card" style="width: 250px">
+        <template #header>
+          <div class="card-header">
+            <span>Card name</span>
+            <el-button class="button" text>Operation button</el-button>
+          </div>
+        </template>
+        <div v-for="o in 4" :key="o" class="text item">
+          {{ 'List item ' + o }}
+        </div>
+      </el-card>
+    </el-space>
+  </el-space>
 </template>
 
 <script lang="ts" setup>
-import {ref} from 'vue'
+import { ref } from 'vue'
 
-import type {ComponentSize} from 'element-plus'
+import type { ComponentSize } from 'element-plus'
 
 const size = ref<ComponentSize>('default')
 </script>
@@ -2321,18 +2180,18 @@ Configures a time selection dropdown with a defined start, end, and step interva
 
 ```vue
 <template>
-	<el-time-select
-		v-model="value"
-		style="width: 240px"
-		start="08:30"
-		step="00:15"
-		end="18:30"
-		placeholder="Select time"
-	/>
+  <el-time-select
+    v-model="value"
+    style="width: 240px"
+    start="08:30"
+    step="00:15"
+    end="18:30"
+    placeholder="Select time"
+  />
 </template>
 
 <script lang="ts" setup>
-import {ref} from 'vue'
+import { ref } from 'vue'
 
 const value = ref('')
 </script>
@@ -2348,35 +2207,23 @@ Use the `percentage` attribute to set the progress, which is required and must b
 
 ```vue
 <template>
-	<div class="demo-progress">
-		<el-progress :percentage="50" />
-		<el-progress
-			:percentage="100"
-			:format="format"
-		/>
-		<el-progress
-			:percentage="100"
-			status="success"
-		/>
-		<el-progress
-			:percentage="100"
-			status="warning"
-		/>
-		<el-progress
-			:percentage="50"
-			status="exception"
-		/>
-	</div>
+  <div class="demo-progress">
+    <el-progress :percentage="50" />
+    <el-progress :percentage="100" :format="format" />
+    <el-progress :percentage="100" status="success" />
+    <el-progress :percentage="100" status="warning" />
+    <el-progress :percentage="50" status="exception" />
+  </div>
 </template>
 
 <script lang="ts" setup>
-const format = percentage => (percentage === 100 ? 'Full' : `${percentage}%`)
+const format = (percentage) => (percentage === 100 ? 'Full' : `${percentage}%`)
 </script>
 
 <style scoped>
 .demo-progress .el-progress--line {
-	margin-bottom: 15px;
-	max-width: 600px;
+  margin-bottom: 15px;
+  max-width: 600px;
 }
 </style>
 ```
@@ -2391,62 +2238,62 @@ Shows how to customize the placeholder content for the Element Plus Image compon
 
 ```vue
 <template>
-	<div class="demo-image__placeholder">
-		<div class="block">
-			<span class="demonstration">Default</span>
-			<el-image :src="src" />
-		</div>
-		<div class="block">
-			<span class="demonstration">Custom</span>
-			<el-image :src="src">
-				<template #placeholder>
-					<div class="image-slot">Loading<span class="dot">...</span></div>
-				</template>
-			</el-image>
-		</div>
-	</div>
+  <div class="demo-image__placeholder">
+    <div class="block">
+      <span class="demonstration">Default</span>
+      <el-image :src="src" />
+    </div>
+    <div class="block">
+      <span class="demonstration">Custom</span>
+      <el-image :src="src">
+        <template #placeholder>
+          <div class="image-slot">Loading<span class="dot">...</span></div>
+        </template>
+      </el-image>
+    </div>
+  </div>
 </template>
 
 <script lang="ts" setup>
 const src =
-	'https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg'
+  'https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg'
 </script>
 
 <style scoped>
 .demo-image__placeholder .block {
-	padding: 30px 0;
-	text-align: center;
-	border-right: solid 1px var(--el-border-color);
-	display: inline-block;
-	width: 49%;
-	box-sizing: border-box;
-	vertical-align: top;
+  padding: 30px 0;
+  text-align: center;
+  border-right: solid 1px var(--el-border-color);
+  display: inline-block;
+  width: 49%;
+  box-sizing: border-box;
+  vertical-align: top;
 }
 .demo-image__placeholder .demonstration {
-	display: block;
-	color: var(--el-text-color-secondary);
-	font-size: 14px;
-	margin-bottom: 20px;
+  display: block;
+  color: var(--el-text-color-secondary);
+  font-size: 14px;
+  margin-bottom: 20px;
 }
 .demo-image__placeholder .el-image {
-	padding: 0 5px;
-	max-width: 300px;
-	max-height: 200px;
+  padding: 0 5px;
+  max-width: 300px;
+  max-height: 200px;
 }
 
 .demo-image__placeholder.image-slot {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: 100%;
-	height: 100%;
-	background: var(--el-fill-color-light);
-	color: var(--el-text-color-secondary);
-	font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background: var(--el-fill-color-light);
+  color: var(--el-text-color-secondary);
+  font-size: 14px;
 }
 .demo-image__placeholder .dot {
-	animation: dot 2s infinite steps(3, start);
-	overflow: hidden;
+  animation: dot 2s infinite steps(3, start);
+  overflow: hidden;
 }
 </style>
 ```
@@ -2461,127 +2308,127 @@ Enable node dragging and dropping by adding the `draggable` attribute. This exam
 
 ```vue
 <template>
-	<el-tree
-		style="max-width: 600px"
-		:allow-drop="allowDrop"
-		:allow-drag="allowDrag"
-		:data="data"
-		draggable
-		default-expand-all
-		node-key="id"
-		@node-drag-start="handleDragStart"
-		@node-drag-enter="handleDragEnter"
-		@node-drag-leave="handleDragLeave"
-		@node-drag-over="handleDragOver"
-		@node-drag-end="handleDragEnd"
-		@node-drop="handleDrop"
-	/>
+  <el-tree
+    style="max-width: 600px"
+    :allow-drop="allowDrop"
+    :allow-drag="allowDrag"
+    :data="data"
+    draggable
+    default-expand-all
+    node-key="id"
+    @node-drag-start="handleDragStart"
+    @node-drag-enter="handleDragEnter"
+    @node-drag-leave="handleDragLeave"
+    @node-drag-over="handleDragOver"
+    @node-drag-end="handleDragEnd"
+    @node-drop="handleDrop"
+  />
 </template>
 
 <script lang="ts" setup>
 import type {
-	AllowDropType,
-	NodeDropType,
-	RenderContentContext,
+  AllowDropType,
+  NodeDropType,
+  RenderContentContext,
 } from 'element-plus'
 
 type Node = RenderContentContext['node']
 
 const handleDragStart = (node: Node, ev: DragEvent) => {
-	console.log('drag start', node)
+  console.log('drag start', node)
 }
 const handleDragEnter = (draggingNode: Node, dropNode: Node, ev: DragEvent) => {
-	console.log('tree drag enter:', dropNode.label)
+  console.log('tree drag enter:', dropNode.label)
 }
 const handleDragLeave = (draggingNode: Node, dropNode: Node, ev: DragEvent) => {
-	console.log('tree drag leave:', dropNode.label)
+  console.log('tree drag leave:', dropNode.label)
 }
 const handleDragOver = (draggingNode: Node, dropNode: Node, ev: DragEvent) => {
-	console.log('tree drag over:', dropNode.label)
+  console.log('tree drag over:', dropNode.label)
 }
 const handleDragEnd = (
-	draggingNode: Node,
-	dropNode: Node | null,
-	dropType: NodeDropType,
-	ev: DragEvent,
+  draggingNode: Node,
+  dropNode: Node | null,
+  dropType: NodeDropType,
+  ev: DragEvent,
 ) => {
-	console.log('tree drag end:', dropNode && dropNode.label, dropType)
+  console.log('tree drag end:', dropNode && dropNode.label, dropType)
 }
 const handleDrop = (
-	draggingNode: Node,
-	dropNode: Node,
-	dropType: Exclude<NodeDropType, 'none'>,
-	ev: DragEvent,
+  draggingNode: Node,
+  dropNode: Node,
+  dropType: Exclude<NodeDropType, 'none'>,
+  ev: DragEvent,
 ) => {
-	console.log('tree drop:', dropNode.label, dropType)
+  console.log('tree drop:', dropNode.label, dropType)
 }
 const allowDrop = (draggingNode: Node, dropNode: Node, type: AllowDropType) => {
-	if (dropNode.data.label === 'Level two 3-1') {
-		return type !== 'inner'
-	} else {
-		return true
-	}
+  if (dropNode.data.label === 'Level two 3-1') {
+    return type !== 'inner'
+  } else {
+    return true
+  }
 }
 const allowDrag = (draggingNode: Node) => {
-	return !draggingNode.data.label.includes('Level three 3-1-1')
+  return !draggingNode.data.label.includes('Level three 3-1-1')
 }
 
 const data = [
-	{
-		label: 'Level one 1',
-		children: [
-			{
-				label: 'Level two 1-1',
-				children: [
-					{
-						label: 'Level three 1-1-1',
-					},
-				],
-			},
-		],
-	},
-	{
-		label: 'Level one 2',
-		children: [
-			{
-				label: 'Level two 2-1',
-				children: [
-					{
-						label: 'Level three 2-1-1',
-					},
-				],
-			},
-			{
-				label: 'Level two 2-2',
-				children: [
-					{
-						label: 'Level three 2-2-1',
-					},
-				],
-			},
-		],
-	},
-	{
-		label: 'Level one 3',
-		children: [
-			{
-				label: 'Level two 3-1',
-				children: [
-					{
-						label: 'Level three 3-1-1',
-					},
-				],
-			},
-			{
-				label: 'Level two 3-2',
-				children: [
-					{
-						label: 'Level three 3-2-1',
-					},
-				],
-			},
-		],
-	},
+  {
+    label: 'Level one 1',
+    children: [
+      {
+        label: 'Level two 1-1',
+        children: [
+          {
+            label: 'Level three 1-1-1',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    label: 'Level one 2',
+    children: [
+      {
+        label: 'Level two 2-1',
+        children: [
+          {
+            label: 'Level three 2-1-1',
+          },
+        ],
+      },
+      {
+        label: 'Level two 2-2',
+        children: [
+          {
+            label: 'Level three 2-2-1',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    label: 'Level one 3',
+    children: [
+      {
+        label: 'Level two 3-1',
+        children: [
+          {
+            label: 'Level three 3-1-1',
+          },
+        ],
+      },
+      {
+        label: 'Level two 3-2',
+        children: [
+          {
+            label: 'Level three 3-2-1',
+          },
+        ],
+      },
+    ],
+  },
 ]
 </script>
 ```
@@ -2854,11 +2701,11 @@ Source: https://element-plus.org/en-US/component/message
 Illustrates how to inject the current application context into an Element Plus message instance. This is useful for ensuring messages inherit app properties. The example shows how to get the `appContext` using `getCurrentInstance` and pass it as the second argument to the `ElMessage` constructor.
 
 ```typescript
-import {ElMessage} from 'element-plus'
-import {getCurrentInstance} from 'vue'
+import { ElMessage } from 'element-plus'
+import { getCurrentInstance } from 'vue'
 
 // in your setup method
-const {appContext} = getCurrentInstance()!
+const { appContext } = getCurrentInstance()!
 ElMessage({}, appContext)
 ```
 
@@ -2872,63 +2719,63 @@ This example demonstrates how to perform asynchronous searches from a server. It
 
 ```vue
 <template>
-	<el-autocomplete
-		v-model="state"
-		:fetch-suggestions="querySearchAsync"
-		placeholder="Please input"
-		@select="handleSelect"
-	/>
+  <el-autocomplete
+    v-model="state"
+    :fetch-suggestions="querySearchAsync"
+    placeholder="Please input"
+    @select="handleSelect"
+  />
 </template>
 
 <script lang="ts" setup>
-import {onMounted, ref} from 'vue'
+import { onMounted, ref } from 'vue'
 
 const state = ref('')
 
 interface LinkItem {
-	value: string
-	link: string
+  value: string
+  link: string
 }
 
 const links = ref<LinkItem[]>([])
 
 const loadAll = () => {
-	return [
-		{value: 'vue', link: 'https://github.com/vuejs/vue'},
-		{value: 'element', link: 'https://github.com/ElemeFE/element'},
-		{value: 'cooking', link: 'https://github.com/ElemeFE/cooking'},
-		{value: 'mint-ui', link: 'https://github.com/ElemeFE/mint-ui'},
-		{value: 'vuex', link: 'https://github.com/vuejs/vuex'},
-		{value: 'vue-router', link: 'https://github.com/vuejs/vue-router'},
-		{value: 'babel', link: 'https://github.com/babel/babel'},
-	]
+  return [
+    { value: 'vue', link: 'https://github.com/vuejs/vue' },
+    { value: 'element', link: 'https://github.com/ElemeFE/element' },
+    { value: 'cooking', link: 'https://github.com/ElemeFE/cooking' },
+    { value: 'mint-ui', link: 'https://github.com/ElemeFE/mint-ui' },
+    { value: 'vuex', link: 'https://github.com/vuejs/vuex' },
+    { value: 'vue-router', link: 'https://github.com/vuejs/vue-router' },
+    { value: 'babel', link: 'https://github.com/babel/babel' },
+  ]
 }
 
 let timeout: ReturnType<typeof setTimeout>
 const querySearchAsync = (queryString: string, cb: (arg: any) => void) => {
-	const results = queryString
-		? links.value.filter(createFilter(queryString))
-		: links.value
+  const results = queryString
+    ? links.value.filter(createFilter(queryString))
+    : links.value
 
-	clearTimeout(timeout)
-	timeout = setTimeout(() => {
-		cb(results)
-	}, 3000 * Math.random())
+  clearTimeout(timeout)
+  timeout = setTimeout(() => {
+    cb(results)
+  }, 3000 * Math.random())
 }
 const createFilter = (queryString: string) => {
-	return (restaurant: LinkItem) => {
-		return (
-			restaurant.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0
-		)
-	}
+  return (restaurant: LinkItem) => {
+    return (
+      restaurant.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0
+    )
+  }
 }
 
 const handleSelect = (item: Record<string, any>) => {
-	console.log(item)
+  console.log(item)
 }
 
 onMounted(() => {
-	links.value = loadAll()
+  links.value = loadAll()
 })
 </script>
 ```
@@ -2943,155 +2790,131 @@ Demonstrates various tooltip placement options using the placement attribute and
 
 ```vue
 <template>
-	<div class="tooltip-base-box">
-		<div class="row center">
-			<el-tooltip
-				class="box-item"
-				effect="dark"
-				content="Top Left prompts info"
-				placement="top-start"
-			>
-				<el-button>top-start</el-button>
-			</el-tooltip>
-			<el-tooltip
-				class="box-item"
-				effect="dark"
-				content="Top Center prompts info"
-				placement="top"
-			>
-				<el-button>top</el-button>
-			</el-tooltip>
-			<el-tooltip
-				class="box-item"
-				effect="dark"
-				content="Top Right prompts info"
-				placement="top-end"
-			>
-				<el-button>top-end</el-button>
-			</el-tooltip>
-		</div>
-		<div class="row">
-			<el-tooltip
-				class="box-item"
-				effect="dark"
-				placement="left-start"
-			>
-				<template #content>
-					Left Top
-					<br />
-					prompts info
-				</template>
-				<el-button>left-start</el-button>
-			</el-tooltip>
-			<el-tooltip
-				class="box-item"
-				effect="dark"
-				placement="right-start"
-			>
-				<template #content>
-					Right Top
-					<br />
-					prompts info
-				</template>
-				<el-button>right-start</el-button>
-			</el-tooltip>
-		</div>
-		<div class="row">
-			<el-tooltip
-				class="box-item"
-				effect="dark"
-				placement="left"
-			>
-				<template #content>
-					Left Center
-					<br />
-					prompts info
-				</template>
-				<el-button class="mt-3 mb-3">left</el-button>
-			</el-tooltip>
-			<el-tooltip
-				class="box-item"
-				effect="dark"
-				placement="right"
-			>
-				<template #content>
-					Right Center
-					<br />
-					prompts info
-				</template>
-				<el-button>right</el-button>
-			</el-tooltip>
-		</div>
-		<div class="row">
-			<el-tooltip
-				class="box-item"
-				effect="dark"
-				placement="left-end"
-			>
-				<template #content>
-					Left Bottom
-					<br />
-					prompts info
-				</template>
-				<el-button>left-end</el-button>
-			</el-tooltip>
-			<el-tooltip
-				class="box-item"
-				effect="dark"
-				placement="right-end"
-			>
-				<template #content>
-					Right Bottom
-					<br />
-					prompts info
-				</template>
-				<el-button>right-end</el-button>
-			</el-tooltip>
-		</div>
-		<div class="row center">
-			<el-tooltip
-				class="box-item"
-				effect="dark"
-				content="Bottom Left prompts info"
-				placement="bottom-start"
-			>
-				<el-button>bottom-start</el-button>
-			</el-tooltip>
-			<el-tooltip
-				class="box-item"
-				effect="dark"
-				content="Bottom Center prompts info"
-				placement="bottom"
-			>
-				<el-button>bottom</el-button>
-			</el-tooltip>
-			<el-tooltip
-				class="box-item"
-				effect="dark"
-				content="Bottom Right prompts info"
-				placement="bottom-end"
-			>
-				<el-button>bottom-end</el-button>
-			</el-tooltip>
-		</div>
-	</div>
+  <div class="tooltip-base-box">
+    <div class="row center">
+      <el-tooltip
+        class="box-item"
+        effect="dark"
+        content="Top Left prompts info"
+        placement="top-start"
+      >
+        <el-button>top-start</el-button>
+      </el-tooltip>
+      <el-tooltip
+        class="box-item"
+        effect="dark"
+        content="Top Center prompts info"
+        placement="top"
+      >
+        <el-button>top</el-button>
+      </el-tooltip>
+      <el-tooltip
+        class="box-item"
+        effect="dark"
+        content="Top Right prompts info"
+        placement="top-end"
+      >
+        <el-button>top-end</el-button>
+      </el-tooltip>
+    </div>
+    <div class="row">
+      <el-tooltip class="box-item" effect="dark" placement="left-start">
+        <template #content>
+          Left Top
+          <br />
+          prompts info
+        </template>
+        <el-button>left-start</el-button>
+      </el-tooltip>
+      <el-tooltip class="box-item" effect="dark" placement="right-start">
+        <template #content>
+          Right Top
+          <br />
+          prompts info
+        </template>
+        <el-button>right-start</el-button>
+      </el-tooltip>
+    </div>
+    <div class="row">
+      <el-tooltip class="box-item" effect="dark" placement="left">
+        <template #content>
+          Left Center
+          <br />
+          prompts info
+        </template>
+        <el-button class="mt-3 mb-3">left</el-button>
+      </el-tooltip>
+      <el-tooltip class="box-item" effect="dark" placement="right">
+        <template #content>
+          Right Center
+          <br />
+          prompts info
+        </template>
+        <el-button>right</el-button>
+      </el-tooltip>
+    </div>
+    <div class="row">
+      <el-tooltip class="box-item" effect="dark" placement="left-end">
+        <template #content>
+          Left Bottom
+          <br />
+          prompts info
+        </template>
+        <el-button>left-end</el-button>
+      </el-tooltip>
+      <el-tooltip class="box-item" effect="dark" placement="right-end">
+        <template #content>
+          Right Bottom
+          <br />
+          prompts info
+        </template>
+        <el-button>right-end</el-button>
+      </el-tooltip>
+    </div>
+    <div class="row center">
+      <el-tooltip
+        class="box-item"
+        effect="dark"
+        content="Bottom Left prompts info"
+        placement="bottom-start"
+      >
+        <el-button>bottom-start</el-button>
+      </el-tooltip>
+      <el-tooltip
+        class="box-item"
+        effect="dark"
+        content="Bottom Center prompts info"
+        placement="bottom"
+      >
+        <el-button>bottom</el-button>
+      </el-tooltip>
+      <el-tooltip
+        class="box-item"
+        effect="dark"
+        content="Bottom Right prompts info"
+        placement="bottom-end"
+      >
+        <el-button>bottom-end</el-button>
+      </el-tooltip>
+    </div>
+  </div>
 </template>
 
 <style>
 .tooltip-base-box {
-	width: 600px;
+  width: 600px;
 }
 .tooltip-base-box .row {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 .tooltip-base-box .center {
-	justify-content: center;
+  justify-content: center;
 }
 .tooltip-base-box .box-item {
-	width: 110px;
-	margin-top: 10px;
+  width: 110px;
+  margin-top: 10px;
 }
 </style>
 ```
@@ -3106,96 +2929,87 @@ A complete Vue 3 example showing how to configure multiple pagination layouts us
 
 ```vue
 <template>
-	<div class="flex items-center mb-4">
-		<el-radio-group
-			v-model="size"
-			class="mr-4"
-		>
-			<el-radio-button value="default">default</el-radio-button>
-			<el-radio-button value="large">large</el-radio-button>
-			<el-radio-button value="small">small</el-radio-button>
-		</el-radio-group>
-		<div>
-			background:
-			<el-switch
-				v-model="background"
-				class="ml-2"
-			/>
-		</div>
-		<div class="ml-4">
-			disabled:
-			<el-switch
-				v-model="disabled"
-				class="ml-2"
-			/>
-		</div>
-	</div>
+  <div class="flex items-center mb-4">
+    <el-radio-group v-model="size" class="mr-4">
+      <el-radio-button value="default">default</el-radio-button>
+      <el-radio-button value="large">large</el-radio-button>
+      <el-radio-button value="small">small</el-radio-button>
+    </el-radio-group>
+    <div>
+      background:
+      <el-switch v-model="background" class="ml-2" />
+    </div>
+    <div class="ml-4">
+      disabled:
+      <el-switch v-model="disabled" class="ml-2" />
+    </div>
+  </div>
 
-	<hr class="my-4" />
+  <hr class="my-4" />
 
-	<div class="demo-pagination-block">
-		<div class="demonstration">Total item count</div>
-		<el-pagination
-			v-model:current-page="currentPage1"
-			:page-size="100"
-			:size="size"
-			:disabled="disabled"
-			:background="background"
-			layout="total, prev, pager, next"
-			:total="1000"
-			@size-change="handleSizeChange"
-			@current-change="handleCurrentChange"
-		/>
-	</div>
-	<div class="demo-pagination-block">
-		<div class="demonstration">Change page size</div>
-		<el-pagination
-			v-model:current-page="currentPage2"
-			v-model:page-size="pageSize2"
-			:page-sizes="[100, 200, 300, 400]"
-			:size="size"
-			:disabled="disabled"
-			:background="background"
-			layout="sizes, prev, pager, next"
-			:total="1000"
-			@size-change="handleSizeChange"
-			@current-change="handleCurrentChange"
-		/>
-	</div>
-	<div class="demo-pagination-block">
-		<div class="demonstration">Jump to</div>
-		<el-pagination
-			v-model:current-page="currentPage3"
-			v-model:page-size="pageSize3"
-			:size="size"
-			:disabled="disabled"
-			:background="background"
-			layout="prev, pager, next, jumper"
-			:total="1000"
-			@size-change="handleSizeChange"
-			@current-change="handleCurrentChange"
-		/>
-	</div>
-	<div class="demo-pagination-block">
-		<div class="demonstration">All combined</div>
-		<el-pagination
-			v-model:current-page="currentPage4"
-			v-model:page-size="pageSize4"
-			:page-sizes="[100, 200, 300, 400]"
-			:size="size"
-			:disabled="disabled"
-			:background="background"
-			layout="total, sizes, prev, pager, next, jumper"
-			:total="400"
-			@size-change="handleSizeChange"
-			@current-change="handleCurrentChange"
-		/>
-	</div>
+  <div class="demo-pagination-block">
+    <div class="demonstration">Total item count</div>
+    <el-pagination
+      v-model:current-page="currentPage1"
+      :page-size="100"
+      :size="size"
+      :disabled="disabled"
+      :background="background"
+      layout="total, prev, pager, next"
+      :total="1000"
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+    />
+  </div>
+  <div class="demo-pagination-block">
+    <div class="demonstration">Change page size</div>
+    <el-pagination
+      v-model:current-page="currentPage2"
+      v-model:page-size="pageSize2"
+      :page-sizes="[100, 200, 300, 400]"
+      :size="size"
+      :disabled="disabled"
+      :background="background"
+      layout="sizes, prev, pager, next"
+      :total="1000"
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+    />
+  </div>
+  <div class="demo-pagination-block">
+    <div class="demonstration">Jump to</div>
+    <el-pagination
+      v-model:current-page="currentPage3"
+      v-model:page-size="pageSize3"
+      :size="size"
+      :disabled="disabled"
+      :background="background"
+      layout="prev, pager, next, jumper"
+      :total="1000"
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+    />
+  </div>
+  <div class="demo-pagination-block">
+    <div class="demonstration">All combined</div>
+    <el-pagination
+      v-model:current-page="currentPage4"
+      v-model:page-size="pageSize4"
+      :page-sizes="[100, 200, 300, 400]"
+      :size="size"
+      :disabled="disabled"
+      :background="background"
+      layout="total, sizes, prev, pager, next, jumper"
+      :total="400"
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+    />
+  </div>
 </template>
 
 <script lang="ts" setup>
-import type {ComponentSize} from 'element-plus'
-import {ref} from 'vue'
+import type { ComponentSize } from 'element-plus'
+import { ref } from 'vue'
 
 const currentPage1 = ref(5)
 const currentPage2 = ref(5)
@@ -3209,10 +3023,10 @@ const background = ref(false)
 const disabled = ref(false)
 
 const handleSizeChange = (val: number) => {
-	console.log(`${val} items per page`)
+  console.log(`${val} items per page`)
 }
 const handleCurrentChange = (val: number) => {
-	console.log(`current page: ${val}`)
+  console.log(`current page: ${val}`)
 }
 </script>
 ```
@@ -3227,53 +3041,53 @@ Demonstrates the basic setup for the Tree V2 component with virtual scrolling. E
 
 ```vue
 <template>
-	<el-tree-v2
-		style="max-width: 600px"
-		:data="data"
-		:props="props"
-		:height="200"
-	/>
+  <el-tree-v2
+    style="max-width: 600px"
+    :data="data"
+    :props="props"
+    :height="200"
+  />
 </template>
 
 <script lang="ts" setup>
 interface Tree {
-	id: string
-	label: string
-	children?: Tree[]
+  id: string
+  label: string
+  children?: Tree[]
 }
 
 const getKey = (prefix: string, id: number) => {
-	return `${prefix}-${id}`
+  return `${prefix}-${id}`
 }
 
 const createData = (
-	maxDeep: number,
-	maxChildren: number,
-	minNodesNumber: number,
-	deep = 1,
-	key = 'node',
+  maxDeep: number,
+  maxChildren: number,
+  minNodesNumber: number,
+  deep = 1,
+  key = 'node',
 ): Tree[] => {
-	let id = 0
-	return Array.from({length: minNodesNumber})
-		.fill(deep)
-		.map(() => {
-			const childrenNumber =
-				deep === maxDeep ? 0 : Math.round(Math.random() * maxChildren)
-			const nodeKey = getKey(key, ++id)
-			return {
-				id: nodeKey,
-				label: nodeKey,
-				children: childrenNumber
-					? createData(maxDeep, maxChildren, childrenNumber, deep + 1, nodeKey)
-					: undefined,
-			}
-		})
+  let id = 0
+  return Array.from({ length: minNodesNumber })
+    .fill(deep)
+    .map(() => {
+      const childrenNumber =
+        deep === maxDeep ? 0 : Math.round(Math.random() * maxChildren)
+      const nodeKey = getKey(key, ++id)
+      return {
+        id: nodeKey,
+        label: nodeKey,
+        children: childrenNumber
+          ? createData(maxDeep, maxChildren, childrenNumber, deep + 1, nodeKey)
+          : undefined,
+      }
+    })
 }
 
 const props = {
-	value: 'id',
-	label: 'label',
-	children: 'children',
+  value: 'id',
+  label: 'label',
+  children: 'children',
 }
 const data = createData(4, 30, 40)
 </script>
@@ -3381,30 +3195,22 @@ Demonstrates a standard step bar with an active index and a button to navigate t
 
 ```vue
 <template>
-	<el-steps
-		style="max-width: 600px"
-		:active="active"
-		finish-status="success"
-	>
-		<el-step title="Step 1" />
-		<el-step title="Step 2" />
-		<el-step title="Step 3" />
-	</el-steps>
+  <el-steps style="max-width: 600px" :active="active" finish-status="success">
+    <el-step title="Step 1" />
+    <el-step title="Step 2" />
+    <el-step title="Step 3" />
+  </el-steps>
 
-	<el-button
-		style="margin-top: 12px"
-		@click="next"
-		>Next step</el-button
-	>
+  <el-button style="margin-top: 12px" @click="next">Next step</el-button>
 </template>
 
 <script lang="ts" setup>
-import {ref} from 'vue'
+import { ref } from 'vue'
 
 const active = ref(0)
 
 const next = () => {
-	if (active.value++ > 2) active.value = 0
+  if (active.value++ > 2) active.value = 0
 }
 </script>
 ```
@@ -3446,99 +3252,80 @@ N/A (Configuration applied to component)
 
 ```vue
 <template>
-	<div>
-		<div>
-			<el-checkbox v-model="config.showOverflowTooltip">
-				showOverflowTooltip
-			</el-checkbox>
-			<el-select
-				v-model="config.tooltipEffect"
-				class="ml-5"
-				style="max-width: 150px"
-			>
-				<el-option
-					value="dark"
-					label="dark"
-				/>
-				<el-option
-					value="light"
-					label="light"
-				/>
-			</el-select>
-		</div>
-		<el-divider />
-		<el-config-provider :table="config">
-			<el-table
-				:data="tableData"
-				style="width: 100%"
-			>
-				<el-table-column
-					type="selection"
-					width="55"
-				/>
-				<el-table-column
-					label="Date"
-					width="120"
-				>
-					<template #default="scope">{{ scope.row.date }}</template>
-				</el-table-column>
-				<el-table-column
-					property="name"
-					label="Name"
-					width="120"
-				/>
-				<el-table-column
-					property="address"
-					label="Address (inherited from config-provider)"
-					width="300"
-				/>
-				<el-table-column
-					property="address"
-					label="Address (explicit false)"
-					:show-overflow-tooltip="false"
-				/>
-			</el-table>
-		</el-config-provider>
-	</div>
+  <div>
+    <div>
+      <el-checkbox v-model="config.showOverflowTooltip">
+        showOverflowTooltip
+      </el-checkbox>
+      <el-select
+        v-model="config.tooltipEffect"
+        class="ml-5"
+        style="max-width: 150px"
+      >
+        <el-option value="dark" label="dark" />
+        <el-option value="light" label="light" />
+      </el-select>
+    </div>
+    <el-divider />
+    <el-config-provider :table="config">
+      <el-table :data="tableData" style="width: 100%">
+        <el-table-column type="selection" width="55" />
+        <el-table-column label="Date" width="120">
+          <template #default="scope">{{ scope.row.date }}</template>
+        </el-table-column>
+        <el-table-column property="name" label="Name" width="120" />
+        <el-table-column
+          property="address"
+          label="Address (inherited from config-provider)"
+          width="300"
+        />
+        <el-table-column
+          property="address"
+          label="Address (explicit false)"
+          :show-overflow-tooltip="false"
+        />
+      </el-table>
+    </el-config-provider>
+  </div>
 </template>
 
 <script lang="ts" setup>
-import {reactive} from 'vue'
+import { reactive } from 'vue'
 
-import type {TableConfigContext} from 'element-plus'
+import type { TableConfigContext } from 'element-plus'
 
 const config = reactive<TableConfigContext>({
-	showOverflowTooltip: true,
-	tooltipEffect: 'dark',
+  showOverflowTooltip: true,
+  tooltipEffect: 'dark',
 })
 
 interface User {
-	date: string
-	name: string
-	address: string
+  date: string
+  name: string
+  address: string
 }
 
 const tableData: User[] = [
-	{
-		date: '2016-05-04',
-		name: 'Aleyna Kutzner',
-		address: 'Lohrbergstr. 86c, Süd Lilli, Saarland',
-	},
-	{
-		date: '2016-05-03',
-		name: 'Helen Jacobi',
-		address: '760 A Street, South Frankfield, Illinois',
-	},
-	{
-		date: '2016-05-02',
-		name: 'Brandon Deckert',
-		address: 'Arnold-Ohletz-Str. 41a, Alt Malinascheid, Thüringen',
-	},
-	{
-		date: '2016-05-01',
-		name: 'Margie Smith',
-		address: '23618 Windsor Drive, West Ricardoview, Idaho',
-	},
+  {
+    date: '2016-05-04',
+    name: 'Aleyna Kutzner',
+    address: 'Lohrbergstr. 86c, Süd Lilli, Saarland',
+  },
+  {
+    date: '2016-05-03',
+    name: 'Helen Jacobi',
+    address: '760 A Street, South Frankfield, Illinois',
+  },
+  {
+    date: '2016-05-02',
+    name: 'Brandon Deckert',
+    address: 'Arnold-Ohletz-Str. 41a, Alt Malinascheid, Thüringen',
+  },
+  {
+    date: '2016-05-01',
+    name: 'Margie Smith',
+    address: '23618 Windsor Drive, West Ricardoview, Idaho',
+  },
 ]
 </script>
 ```
@@ -3553,16 +3340,16 @@ Demonstrates the standard implementation of a PageHeader for simple navigation s
 
 ```vue
 <template>
-	<el-page-header @back="goBack">
-		<template #content>
-			<span class="text-large font-600 mr-3"> Title </span>
-		</template>
-	</el-page-header>
+  <el-page-header @back="goBack">
+    <template #content>
+      <span class="text-large font-600 mr-3"> Title </span>
+    </template>
+  </el-page-header>
 </template>
 
 <script lang="ts" setup>
 const goBack = () => {
-	console.log('go back')
+  console.log('go back')
 }
 </script>
 ```
@@ -3577,80 +3364,72 @@ Provides a comprehensive example of customizing watermark parameters such as z-i
 
 ```vue
 <script setup lang="ts">
-import {isDark} from '~/composables/dark'
-import {reactive, watch} from 'vue'
+import { isDark } from '~/composables/dark'
+import { reactive, watch } from 'vue'
 
 const config = reactive({
-	content: 'Element Plus',
-	font: {
-		fontSize: 16,
-		color: 'rgba(0, 0, 0, 0.15)',
-	},
-	zIndex: -1,
-	rotate: -22,
-	gap: [100, 100] as [number, number],
-	offset: [] as unknown as [number, number],
+  content: 'Element Plus',
+  font: {
+    fontSize: 16,
+    color: 'rgba(0, 0, 0, 0.15)',
+  },
+  zIndex: -1,
+  rotate: -22,
+  gap: [100, 100] as [number, number],
+  offset: [] as unknown as [number, number],
 })
 
 watch(
-	isDark,
-	value => {
-		config.font.color = value
-			? 'rgba(255, 255, 255, .15)'
-			: 'rgba(0, 0, 0, .15)'
-	},
-	{immediate: true},
+  isDark,
+  (value) => {
+    config.font.color = value
+      ? 'rgba(255, 255, 255, .15)'
+      : 'rgba(0, 0, 0, .15)'
+  },
+  { immediate: true },
 )
 </script>
 
 <template>
-	<div class="wrapper">
-		<el-watermark
-			class="watermark"
-			:content="config.content"
-			:font="config.font"
-			:z-index="config.zIndex"
-			:rotate="config.rotate"
-			:gap="config.gap"
-			:offset="config.offset"
-		>
-			<div class="watermark-container">
-				<h1>Element Plus</h1>
-				<h2>A Vue 3 based component library for designers and developers</h2>
-				<img
-					src="/images/hamburger.png"
-					alt="示例图片"
-				/>
-			</div>
-		</el-watermark>
-		<el-form
-			class="form"
-			:model="config"
-			label-position="top"
-			label-width="50px"
-		>
-			<el-form-item label="Content"
-				><el-input v-model="config.content"
-			/></el-form-item>
-			<el-form-item label="Color"
-				><el-color-picker
-					v-model="config.font.color"
-					show-alpha
-			/></el-form-item>
-			<el-form-item label="FontSize"
-				><el-slider v-model="config.font.fontSize"
-			/></el-form-item>
-			<el-form-item label="zIndex"
-				><el-slider v-model="config.zIndex"
-			/></el-form-item>
-			<el-form-item label="Rotate"
-				><el-slider
-					v-model="config.rotate"
-					:min="-180"
-					:max="180"
-			/></el-form-item>
-		</el-form>
-	</div>
+  <div class="wrapper">
+    <el-watermark
+      class="watermark"
+      :content="config.content"
+      :font="config.font"
+      :z-index="config.zIndex"
+      :rotate="config.rotate"
+      :gap="config.gap"
+      :offset="config.offset"
+    >
+      <div class="watermark-container">
+        <h1>Element Plus</h1>
+        <h2>A Vue 3 based component library for designers and developers</h2>
+        <img src="/images/hamburger.png" alt="示例图片" />
+      </div>
+    </el-watermark>
+    <el-form
+      class="form"
+      :model="config"
+      label-position="top"
+      label-width="50px"
+    >
+      <el-form-item label="Content"
+        ><el-input v-model="config.content"
+      /></el-form-item>
+      <el-form-item label="Color"
+        ><el-color-picker v-model="config.font.color" show-alpha
+      /></el-form-item>
+      <el-form-item label="FontSize"
+        ><el-slider v-model="config.font.fontSize"
+      /></el-form-item>
+      <el-form-item label="zIndex"
+        ><el-slider v-model="config.zIndex"
+      /></el-form-item>
+      <el-form-item label="Rotate"
+        ><el-slider v-model="config.rotate" :min="-180" :max="180"
+      /></el-form-item>
+    </el-form>
+  </div>
 </template>
 ```
 
@@ -3664,20 +3443,20 @@ Provides an example of asynchronously loading mention options from a remote sour
 
 ```vue
 <template>
-	<el-mention
-		v-model="value"
-		:options="options"
-		:loading="loading"
-		style="width: 320px"
-		placeholder="Please input"
-		@search="handleSearch"
-	/>
+  <el-mention
+    v-model="value"
+    :options="options"
+    :loading="loading"
+    style="width: 320px"
+    placeholder="Please input"
+    @search="handleSearch"
+  />
 </template>
 
 <script setup lang="ts">
-import {onBeforeUnmount, ref} from 'vue'
+import { onBeforeUnmount, ref } from 'vue'
 
-import type {MentionOption} from 'element-plus'
+import type { MentionOption } from 'element-plus'
 
 const value = ref('')
 const loading = ref(false)
@@ -3685,22 +3464,22 @@ const options = ref<MentionOption[]>([])
 
 let timer: ReturnType<typeof setTimeout>
 const handleSearch = (pattern: string) => {
-	if (timer) clearTimeout(timer)
+  if (timer) clearTimeout(timer)
 
-	loading.value = true
-	timer = setTimeout(() => {
-		options.value = ['Fuphoenixes', 'kooriookami', 'Jeremy', 'btea'].map(
-			item => ({
-				label: pattern + item,
-				value: pattern + item,
-			}),
-		)
-		loading.value = false
-	}, 1500)
+  loading.value = true
+  timer = setTimeout(() => {
+    options.value = ['Fuphoenixes', 'kooriookami', 'Jeremy', 'btea'].map(
+      (item) => ({
+        label: pattern + item,
+        value: pattern + item,
+      }),
+    )
+    loading.value = false
+  }, 1500)
 }
 
 onBeforeUnmount(() => {
-	if (timer) clearTimeout(timer)
+  if (timer) clearTimeout(timer)
 })
 </script>
 ```
@@ -3795,40 +3574,40 @@ Demonstrates basic and disabled link buttons. The `link` prop is used to style b
 
 ```vue
 <template>
-	<p>Basic link button</p>
-	<div class="mb-4">
-		<el-button
-			v-for="button in buttons"
-			:key="button.text"
-			:type="button.type"
-			link
-		>
-			{{ button.text }}
-		</el-button>
-	</div>
+  <p>Basic link button</p>
+  <div class="mb-4">
+    <el-button
+      v-for="button in buttons"
+      :key="button.text"
+      :type="button.type"
+      link
+    >
+      {{ button.text }}
+    </el-button>
+  </div>
 
-	<p>Disabled link button</p>
-	<div>
-		<el-button
-			v-for="button in buttons"
-			:key="button.text"
-			:type="button.type"
-			link
-			disabled
-		>
-			{{ button.text }}
-		</el-button>
-	</div>
+  <p>Disabled link button</p>
+  <div>
+    <el-button
+      v-for="button in buttons"
+      :key="button.text"
+      :type="button.type"
+      link
+      disabled
+    >
+      {{ button.text }}
+    </el-button>
+  </div>
 </template>
 
 <script setup lang="ts">
 const buttons = [
-	{type: '', text: 'plain'},
-	{type: 'primary', text: 'primary'},
-	{type: 'success', text: 'success'},
-	{type: 'info', text: 'info'},
-	{type: 'warning', text: 'warning'},
-	{type: 'danger', text: 'danger'},
+  { type: '', text: 'plain' },
+  { type: 'primary', text: 'primary' },
+  { type: 'success', text: 'success' },
+  { type: 'info', text: 'info' },
+  { type: 'warning', text: 'warning' },
+  { type: 'danger', text: 'danger' },
 ] as const
 </script>
 ```
@@ -3843,32 +3622,19 @@ Demonstrates using icons with buttons. Icons can be used alone or with text. The
 
 ```vue
 <template>
-	<div>
-		<el-button
-			type="primary"
-			:icon="Edit"
-		/>
-		<el-button
-			type="primary"
-			:icon="Share"
-		/>
-		<el-button
-			type="primary"
-			:icon="Delete"
-		/>
-		<el-button
-			type="primary"
-			:icon="Search"
-			>Search</el-button
-		>
-		<el-button type="primary">
-			Upload<el-icon class="el-icon--right"><Upload /></el-icon>
-		</el-button>
-	</div>
+  <div>
+    <el-button type="primary" :icon="Edit" />
+    <el-button type="primary" :icon="Share" />
+    <el-button type="primary" :icon="Delete" />
+    <el-button type="primary" :icon="Search">Search</el-button>
+    <el-button type="primary">
+      Upload<el-icon class="el-icon--right"><Upload /></el-icon>
+    </el-button>
+  </div>
 </template>
 
 <script setup lang="ts">
-import {Delete, Edit, Search, Share, Upload} from '@element-plus/icons-vue'
+import { Delete, Edit, Search, Share, Upload } from '@element-plus/icons-vue'
 </script>
 ```
 
@@ -3882,175 +3648,151 @@ Demonstrates the usage of ElStatistic components within ElRow and ElCol for disp
 
 ```vue
 <template>
-	<el-row :gutter="16">
-		<el-col
-			:xs="24"
-			:sm="12"
-			:md="8"
-			class="mb-4"
-		>
-			<div class="statistic-card">
-				<el-statistic :value="98500">
-					<template #title>
-						<div style="display: inline-flex; align-items: center">
-							Daily active users
-							<el-tooltip
-								effect="dark"
-								content="Number of users who logged into the product in one day"
-								placement="top"
-							>
-								<el-icon
-									style="margin-left: 4px"
-									:size="12"
-								>
-									<Warning />
-								</el-icon>
-							</el-tooltip>
-						</div>
-					</template>
-				</el-statistic>
-				<div class="statistic-footer">
-					<div class="footer-item">
-						<span>than yesterday</span>
-						<span class="green">
-							24%
-							<el-icon>
-								<CaretTop />
-							</el-icon>
-						</span>
-					</div>
-				</div>
-			</div>
-		</el-col>
-		<el-col
-			:xs="24"
-			:sm="12"
-			:md="8"
-			class="mb-4"
-		>
-			<div class="statistic-card">
-				<el-statistic :value="693700">
-					<template #title>
-						<div style="display: inline-flex; align-items: center">
-							Monthly Active Users
-							<el-tooltip
-								effect="dark"
-								content="Number of users who logged into the product in one month"
-								placement="top"
-							>
-								<el-icon
-									style="margin-left: 4px"
-									:size="12"
-								>
-									<Warning />
-								</el-icon>
-							</el-tooltip>
-						</div>
-					</template>
-				</el-statistic>
-				<div class="statistic-footer">
-					<div class="footer-item">
-						<span>month on month</span>
-						<span class="red">
-							12%
-							<el-icon>
-								<CaretBottom />
-							</el-icon>
-						</span>
-					</div>
-				</div>
-			</div>
-		</el-col>
-		<el-col
-			:xs="24"
-			:sm="12"
-			:md="8"
-			class="mb-4"
-		>
-			<div class="statistic-card">
-				<el-statistic
-					:value="72000"
-					title="New transactions today"
-				>
-					<template #title>
-						<div style="display: inline-flex; align-items: center">
-							New transactions today
-						</div>
-					</template>
-				</el-statistic>
-				<div class="statistic-footer">
-					<div class="footer-item">
-						<span>than yesterday</span>
-						<span class="green">
-							16%
-							<el-icon>
-								<CaretTop />
-							</el-icon>
-						</span>
-					</div>
-					<div class="footer-item">
-						<el-icon :size="14">
-							<ArrowRight />
-						</el-icon>
-					</div>
-				</div>
-			</div>
-		</el-col>
-	</el-row>
+  <el-row :gutter="16">
+    <el-col :xs="24" :sm="12" :md="8" class="mb-4">
+      <div class="statistic-card">
+        <el-statistic :value="98500">
+          <template #title>
+            <div style="display: inline-flex; align-items: center">
+              Daily active users
+              <el-tooltip
+                effect="dark"
+                content="Number of users who logged into the product in one day"
+                placement="top"
+              >
+                <el-icon style="margin-left: 4px" :size="12">
+                  <Warning />
+                </el-icon>
+              </el-tooltip>
+            </div>
+          </template>
+        </el-statistic>
+        <div class="statistic-footer">
+          <div class="footer-item">
+            <span>than yesterday</span>
+            <span class="green">
+              24%
+              <el-icon>
+                <CaretTop />
+              </el-icon>
+            </span>
+          </div>
+        </div>
+      </div>
+    </el-col>
+    <el-col :xs="24" :sm="12" :md="8" class="mb-4">
+      <div class="statistic-card">
+        <el-statistic :value="693700">
+          <template #title>
+            <div style="display: inline-flex; align-items: center">
+              Monthly Active Users
+              <el-tooltip
+                effect="dark"
+                content="Number of users who logged into the product in one month"
+                placement="top"
+              >
+                <el-icon style="margin-left: 4px" :size="12">
+                  <Warning />
+                </el-icon>
+              </el-tooltip>
+            </div>
+          </template>
+        </el-statistic>
+        <div class="statistic-footer">
+          <div class="footer-item">
+            <span>month on month</span>
+            <span class="red">
+              12%
+              <el-icon>
+                <CaretBottom />
+              </el-icon>
+            </span>
+          </div>
+        </div>
+      </div>
+    </el-col>
+    <el-col :xs="24" :sm="12" :md="8" class="mb-4">
+      <div class="statistic-card">
+        <el-statistic :value="72000" title="New transactions today">
+          <template #title>
+            <div style="display: inline-flex; align-items: center">
+              New transactions today
+            </div>
+          </template>
+        </el-statistic>
+        <div class="statistic-footer">
+          <div class="footer-item">
+            <span>than yesterday</span>
+            <span class="green">
+              16%
+              <el-icon>
+                <CaretTop />
+              </el-icon>
+            </span>
+          </div>
+          <div class="footer-item">
+            <el-icon :size="14">
+              <ArrowRight />
+            </el-icon>
+          </div>
+        </div>
+      </div>
+    </el-col>
+  </el-row>
 </template>
 
 <script lang="ts" setup>
 import {
-	ArrowRight,
-	CaretBottom,
-	CaretTop,
-	Warning,
+  ArrowRight,
+  CaretBottom,
+  CaretTop,
+  Warning,
 } from '@element-plus/icons-vue'
 </script>
 
 <style scoped>
 :global(h2#card-usage ~ .example .example-showcase) {
-	background-color: var(--el-fill-color) !important;
+  background-color: var(--el-fill-color) !important;
 }
 
 .el-statistic {
-	--el-statistic-content-font-size: 28px;
+  --el-statistic-content-font-size: 28px;
 }
 
 .statistic-card {
-	height: 100%;
-	padding: 20px;
-	border-radius: 4px;
-	background-color: var(--el-bg-color-overlay);
+  height: 100%;
+  padding: 20px;
+  border-radius: 4px;
+  background-color: var(--el-bg-color-overlay);
 }
 
 .statistic-footer {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	flex-wrap: wrap;
-	font-size: 12px;
-	color: var(--el-text-color-regular);
-	margin-top: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 12px;
+  color: var(--el-text-color-regular);
+  margin-top: 16px;
 }
 
 .statistic-footer .footer-item {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .statistic-footer .footer-item span:last-child {
-	display: inline-flex;
-	align-items: center;
-	margin-left: 4px;
+  display: inline-flex;
+  align-items: center;
+  margin-left: 4px;
 }
 
 .green {
-	color: var(--el-color-success);
+  color: var(--el-color-success);
 }
 .red {
-	color: var(--el-color-error);
+  color: var(--el-color-error);
 }
 </style>
 ```
@@ -4065,53 +3807,44 @@ Demonstrates how to use the before-collapse property to intercept collapse actio
 
 ```vue
 <template>
-	<div
-		v-loading="loading"
-		class="demo-collapse"
-	>
-		<div class="flex items-center mb-4">
-			<span class="mr-4">before collapse return: </span>
-			<el-switch
-				v-model="before"
-				:inactive-value="false"
-				:active-value="true"
-				inactive-text="false"
-				active-text="true"
-			/>
-		</div>
+  <div v-loading="loading" class="demo-collapse">
+    <div class="flex items-center mb-4">
+      <span class="mr-4">before collapse return: </span>
+      <el-switch
+        v-model="before"
+        :inactive-value="false"
+        :active-value="true"
+        inactive-text="false"
+        active-text="true"
+      />
+    </div>
 
-		<el-collapse
-			v-model="activeNames"
-			:before-collapse="beforeCollapse"
-		>
-			<el-collapse-item
-				title="Consistency"
-				name="1"
-			>
-				<div>
-					Consistent with real life: in line with the process and logic of real
-					life, and comply with languages and habits that the users are used to;
-				</div>
-			</el-collapse-item>
-		</el-collapse>
-	</div>
+    <el-collapse v-model="activeNames" :before-collapse="beforeCollapse">
+      <el-collapse-item title="Consistency" name="1">
+        <div>
+          Consistent with real life: in line with the process and logic of real
+          life, and comply with languages and habits that the users are used to;
+        </div>
+      </el-collapse-item>
+    </el-collapse>
+  </div>
 </template>
 
 <script lang="ts" setup>
-import {ref} from 'vue'
+import { ref } from 'vue'
 
 const before = ref(true)
 const activeNames = ref(['1'])
 const loading = ref(false)
 
 const beforeCollapse = (): Promise<boolean> => {
-	loading.value = true
-	return new Promise(resolve => {
-		setTimeout(() => {
-			loading.value = false
-			return resolve(before.value)
-		}, 1000)
-	})
+  loading.value = true
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      loading.value = false
+      return resolve(before.value)
+    }, 1000)
+  })
 }
 </script>
 ```
@@ -4285,30 +4018,30 @@ Links two time pickers using max-time and min-time properties to ensure the end 
 
 ```vue
 <template>
-	<div class="demo-time-range flex flex-wrap gap-4">
-		<el-time-select
-			v-model="startTime"
-			style="width: 240px"
-			:max-time="endTime"
-			placeholder="Start time"
-			start="08:30"
-			step="00:15"
-			end="18:30"
-		/>
-		<el-time-select
-			v-model="endTime"
-			style="width: 240px"
-			:min-time="startTime"
-			placeholder="End time"
-			start="08:30"
-			step="00:15"
-			end="18:30"
-		/>
-	</div>
+  <div class="demo-time-range flex flex-wrap gap-4">
+    <el-time-select
+      v-model="startTime"
+      style="width: 240px"
+      :max-time="endTime"
+      placeholder="Start time"
+      start="08:30"
+      step="00:15"
+      end="18:30"
+    />
+    <el-time-select
+      v-model="endTime"
+      style="width: 240px"
+      :min-time="startTime"
+      placeholder="End time"
+      start="08:30"
+      step="00:15"
+      end="18:30"
+    />
+  </div>
 </template>
 
 <script lang="ts" setup>
-import {ref} from 'vue'
+import { ref } from 'vue'
 
 const startTime = ref('')
 const endTime = ref('')
@@ -4325,59 +4058,59 @@ The checkbox of a node can be set as disabled. In the example, 'disabled' proper
 
 ```vue
 <template>
-	<el-tree
-		style="max-width: 600px"
-		:data="data"
-		:props="defaultProps"
-		show-checkbox
-	/>
+  <el-tree
+    style="max-width: 600px"
+    :data="data"
+    :props="defaultProps"
+    show-checkbox
+  />
 </template>
 
 <script lang="ts" setup>
 const defaultProps = {
-	children: 'children',
-	label: 'label',
-	disabled: 'disabled',
+  children: 'children',
+  label: 'label',
+  disabled: 'disabled',
 }
 
 const data = [
-	{
-		id: 1,
-		label: 'Level one 1',
-		children: [
-			{
-				id: 3,
-				label: 'Level two 2-1',
-				children: [
-					{
-						id: 4,
-						label: 'Level three 3-1-1',
-					},
-					{
-						id: 5,
-						label: 'Level three 3-1-2',
-						disabled: true,
-					},
-				],
-			},
-			{
-				id: 2,
-				label: 'Level two 2-2',
-				disabled: true,
-				children: [
-					{
-						id: 6,
-						label: 'Level three 3-2-1',
-					},
-					{
-						id: 7,
-						label: 'Level three 3-2-2',
-						disabled: true,
-					},
-				],
-			},
-		],
-	},
+  {
+    id: 1,
+    label: 'Level one 1',
+    children: [
+      {
+        id: 3,
+        label: 'Level two 2-1',
+        children: [
+          {
+            id: 4,
+            label: 'Level three 3-1-1',
+          },
+          {
+            id: 5,
+            label: 'Level three 3-1-2',
+            disabled: true,
+          },
+        ],
+      },
+      {
+        id: 2,
+        label: 'Level two 2-2',
+        disabled: true,
+        children: [
+          {
+            id: 6,
+            label: 'Level three 3-2-1',
+          },
+          {
+            id: 7,
+            label: 'Level three 3-2-2',
+            disabled: true,
+          },
+        ],
+      },
+    ],
+  },
 ]
 </script>
 ```
@@ -4392,233 +4125,201 @@ Use a custom SVG to replace the default loading spinner. This example uses a cir
 
 ```vue
 <template>
-	<div class="demo-autocomplete">
-		<div class="demo-block">
-			<div class="demo-title">loading icon1</div>
-			<el-autocomplete
-				v-model="state"
-				:fetch-suggestions="querySearchAsync"
-				class="w-50"
-				placeholder="Please input"
-				@select="handleSelect"
-			>
-				<template #loading>
-					<svg
-						class="circular"
-						viewBox="0 0 50 50"
-					>
-						<circle
-							class="path"
-							cx="25"
-							cy="25"
-							r="20"
-							fill="none"
-						/>
-					</svg>
-				</template>
-			</el-autocomplete>
-		</div>
-		<div class="demo-block">
-			<div class="demo-title">loading icon2</div>
-			<el-autocomplete
-				v-model="state"
-				:fetch-suggestions="querySearchAsync"
-				class="w-50"
-				placeholder="Please input"
-				@select="handleSelect"
-			>
-				<template #loading>
-					<el-icon class="is-loading">
-						<svg
-							class="circular"
-							viewBox="0 0 20 20"
-						>
-							<g
-								class="path2 loading-path"
-								stroke-width="0"
-								style="animation: none; stroke: none"
-							>
-								<circle
-									r="3.375"
-									class="dot1"
-									rx="0"
-									ry="0"
-								/>
-								<circle
-									r="3.375"
-									class="dot2"
-									rx="0"
-									ry="0"
-								/>
-								<circle
-									r="3.375"
-									class="dot4"
-									rx="0"
-									ry="0"
-								/>
-								<circle
-									r="3.375"
-									class="dot3"
-									rx="0"
-									ry="0"
-								/>
-							</g>
-						</svg>
-					</el-icon>
-				</template>
-			</el-autocomplete>
-		</div>
-	</div>
+  <div class="demo-autocomplete">
+    <div class="demo-block">
+      <div class="demo-title">loading icon1</div>
+      <el-autocomplete
+        v-model="state"
+        :fetch-suggestions="querySearchAsync"
+        class="w-50"
+        placeholder="Please input"
+        @select="handleSelect"
+      >
+        <template #loading>
+          <svg class="circular" viewBox="0 0 50 50">
+            <circle class="path" cx="25" cy="25" r="20" fill="none" />
+          </svg>
+        </template>
+      </el-autocomplete>
+    </div>
+    <div class="demo-block">
+      <div class="demo-title">loading icon2</div>
+      <el-autocomplete
+        v-model="state"
+        :fetch-suggestions="querySearchAsync"
+        class="w-50"
+        placeholder="Please input"
+        @select="handleSelect"
+      >
+        <template #loading>
+          <el-icon class="is-loading">
+            <svg class="circular" viewBox="0 0 20 20">
+              <g
+                class="path2 loading-path"
+                stroke-width="0"
+                style="animation: none; stroke: none"
+              >
+                <circle r="3.375" class="dot1" rx="0" ry="0" />
+                <circle r="3.375" class="dot2" rx="0" ry="0" />
+                <circle r="3.375" class="dot4" rx="0" ry="0" />
+                <circle r="3.375" class="dot3" rx="0" ry="0" />
+              </g>
+            </svg>
+          </el-icon>
+        </template>
+      </el-autocomplete>
+    </div>
+  </div>
 </template>
 
 <script lang="ts" setup>
-import {onMounted, ref} from 'vue'
+import { onMounted, ref } from 'vue'
 
 const state = ref('')
 
 interface LinkItem {
-	value: string
-	link: string
+  value: string
+  link: string
 }
 
 const links = ref<LinkItem[]>([])
 
 const loadAll = () => {
-	return [
-		{value: 'vue', link: 'https://github.com/vuejs/vue'},
-		{value: 'element', link: 'https://github.com/ElemeFE/element'},
-		{value: 'cooking', link: 'https://github.com/ElemeFE/cooking'},
-		{value: 'mint-ui', link: 'https://github.com/ElemeFE/mint-ui'},
-		{value: 'vuex', link: 'https://github.com/vuejs/vuex'},
-		{value: 'vue-router', link: 'https://github.com/vuejs/vue-router'},
-		{value: 'babel', link: 'https://github.com/babel/babel'},
-	]
+  return [
+    { value: 'vue', link: 'https://github.com/vuejs/vue' },
+    { value: 'element', link: 'https://github.com/ElemeFE/element' },
+    { value: 'cooking', link: 'https://github.com/ElemeFE/cooking' },
+    { value: 'mint-ui', link: 'https://github.com/ElemeFE/mint-ui' },
+    { value: 'vuex', link: 'https://github.com/vuejs/vuex' },
+    { value: 'vue-router', link: 'https://github.com/vuejs/vue-router' },
+    { value: 'babel', link: 'https://github.com/babel/babel' },
+  ]
 }
 
 let timeout: ReturnType<typeof setTimeout>
 const querySearchAsync = (queryString: string, cb: (arg: any) => void) => {
-	const results = queryString
-		? links.value.filter(createFilter(queryString))
-		: links.value
+  const results = queryString
+    ? links.value.filter(createFilter(queryString))
+    : links.value
 
-	clearTimeout(timeout)
-	timeout = setTimeout(() => {
-		cb(results)
-	}, 5000 * Math.random())
+  clearTimeout(timeout)
+  timeout = setTimeout(() => {
+    cb(results)
+  }, 5000 * Math.random())
 }
 const createFilter = (queryString: string) => {
-	return (restaurant: LinkItem) => {
-		return (
-			restaurant.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0
-		)
-	}
+  return (restaurant: LinkItem) => {
+    return (
+      restaurant.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0
+    )
+  }
 }
 
 const handleSelect = (item: Record<string, any>) => {
-	console.log(item)
+  console.log(item)
 }
 
 onMounted(() => {
-	links.value = loadAll()
+  links.value = loadAll()
 })
 </script>
 
 <style scoped>
 .demo-autocomplete {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
 }
 
 .demo-block {
-	display: flex;
-	flex-direction: column;
-	gap: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .demo-title {
-	font-size: 0.875rem;
-	color: var(--el-text-color-secondary);
-	min-height: 2.5em;
-	display: flex;
-	align-items: center;
+  font-size: 0.875rem;
+  color: var(--el-text-color-secondary);
+  min-height: 2.5em;
+  display: flex;
+  align-items: center;
 }
 
 @media screen and (max-width: 768px) {
-	.demo-autocomplete {
-		gap: 1rem;
-	}
-	.demo-block {
-		width: 100%;
-	}
+  .demo-autocomplete {
+    gap: 1rem;
+  }
+  .demo-block {
+    width: 100%;
+  }
 }
 </style>
 
 <style>
 .circular {
-	display: inline;
-	height: 30px;
-	width: 30px;
-	animation: loading-rotate 2s linear infinite;
+  display: inline;
+  height: 30px;
+  width: 30px;
+  animation: loading-rotate 2s linear infinite;
 }
 .path {
-	animation: loading-dash 1.5s ease-in-out infinite;
-	stroke-dasharray: 90, 150;
-	stroke-dashoffset: 0;
-	stroke-width: 2;
-	stroke: var(--el-color-primary);
-	stroke-linecap: round;
+  animation: loading-dash 1.5s ease-in-out infinite;
+  stroke-dasharray: 90, 150;
+  stroke-dashoffset: 0;
+  stroke-width: 2;
+  stroke: var(--el-color-primary);
+  stroke-linecap: round;
 }
 .loading-path .dot1 {
-	transform: translate(3.75px, 3.75px);
-	fill: var(--el-color-primary);
-	animation: custom-spin-move 1s infinite linear alternate;
-	opacity: 0.3;
+  transform: translate(3.75px, 3.75px);
+  fill: var(--el-color-primary);
+  animation: custom-spin-move 1s infinite linear alternate;
+  opacity: 0.3;
 }
 .loading-path .dot2 {
-	transform: translate(calc(100% - 3.75px), 3.75px);
-	fill: var(--el-color-primary);
-	animation: custom-spin-move 1s infinite linear alternate;
-	opacity: 0.3;
-	animation-delay: 0.4s;
+  transform: translate(calc(100% - 3.75px), 3.75px);
+  fill: var(--el-color-primary);
+  animation: custom-spin-move 1s infinite linear alternate;
+  opacity: 0.3;
+  animation-delay: 0.4s;
 }
 .loading-path .dot3 {
-	transform: translate(3.75px, calc(100% - 3.75px));
-	fill: var(--el-color-primary);
-	animation: custom-spin-move 1s infinite linear alternate;
-	opacity: 0.3;
-	animation-delay: 1.2s;
+  transform: translate(3.75px, calc(100% - 3.75px));
+  fill: var(--el-color-primary);
+  animation: custom-spin-move 1s infinite linear alternate;
+  opacity: 0.3;
+  animation-delay: 1.2s;
 }
 .loading-path .dot4 {
-	transform: translate(calc(100% - 3.75px), calc(100% - 3.75px));
-	fill: var(--el-color-primary);
-	animation: custom-spin-move 1s infinite linear alternate;
-	opacity: 0.3;
-	animation-delay: 0.8s;
+  transform: translate(calc(100% - 3.75px), calc(100% - 3.75px));
+  fill: var(--el-color-primary);
+  animation: custom-spin-move 1s infinite linear alternate;
+  opacity: 0.3;
+  animation-delay: 0.8s;
 }
 @keyframes loading-rotate {
-	to {
-		transform: rotate(360deg);
-	}
+  to {
+    transform: rotate(360deg);
+  }
 }
 @keyframes loading-dash {
-	0% {
-		stroke-dasharray: 1, 200;
-		stroke-dashoffset: 0;
-	}
-	50% {
-		stroke-dasharray: 90, 150;
-		stroke-dashoffset: -40px;
-	}
-	100% {
-		stroke-dasharray: 90, 150;
-		stroke-dashoffset: -120px;
-	}
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -40px;
+  }
+  100% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -120px;
+  }
 }
 @keyframes custom-spin-move {
-	to {
-		opacity: 1;
-	}
+  to {
+    opacity: 1;
+  }
 }
 </style>
 ```
@@ -4633,46 +4334,46 @@ Configure the default time for the start and end dates in a daterange picker. Th
 
 ```vue
 <template>
-	<div class="demo-date-picker">
-		<div class="block">
-			<p>Component value：{{ value }}</p>
-			<el-date-picker
-				v-model="value"
-				type="daterange"
-				start-placeholder="Start date"
-				end-placeholder="End date"
-				value-format="YYYY-MM-DD HH:mm:ss"
-				:default-time="defaultTime"
-			/>
-		</div>
-	</div>
+  <div class="demo-date-picker">
+    <div class="block">
+      <p>Component value：{{ value }}</p>
+      <el-date-picker
+        v-model="value"
+        type="daterange"
+        start-placeholder="Start date"
+        end-placeholder="End date"
+        value-format="YYYY-MM-DD HH:mm:ss"
+        :default-time="defaultTime"
+      />
+    </div>
+  </div>
 </template>
 
 <script lang="ts" setup>
-import {ref} from 'vue'
+import { ref } from 'vue'
 
 const value = ref('')
 const defaultTime = ref<[Date, Date]>([
-	new Date(2000, 1, 1, 0, 0, 0),
-	new Date(2000, 2, 1, 23, 59, 59),
+  new Date(2000, 1, 1, 0, 0, 0),
+  new Date(2000, 2, 1, 23, 59, 59),
 ])
 </script>
 
 <style scoped>
 .demo-date-picker {
-	display: flex;
-	width: 100%;
-	padding: 0;
-	flex-wrap: wrap;
+  display: flex;
+  width: 100%;
+  padding: 0;
+  flex-wrap: wrap;
 }
 .demo-date-picker .block {
-	padding: 30px 0;
-	text-align: center;
-	border-right: solid 1px var(--el-border-color);
-	flex: 1;
+  padding: 30px 0;
+  text-align: center;
+  border-right: solid 1px var(--el-border-color);
+  flex: 1;
 }
 .demo-date-picker .block:last-child {
-	border-right: none;
+  border-right: none;
 }
 </style>
 ```
@@ -4690,7 +4391,7 @@ import zhCn from 'element-plus/es/locale/lang/zh-cn'
 import ElementPlus from 'element-plus'
 
 app.use(ElementPlus, {
-	locale: zhCn,
+  locale: zhCn,
 })
 ```
 
@@ -4704,23 +4405,23 @@ Demonstrates the simplest implementation of the virtualized select component. En
 
 ```vue
 <template>
-	<el-select-v2
-		v-model="value"
-		:options="options"
-		placeholder="Please select"
-		style="width: 240px"
-	/>
+  <el-select-v2
+    v-model="value"
+    :options="options"
+    placeholder="Please select"
+    style="width: 240px"
+  />
 </template>
 
 <script lang="ts" setup>
-import {ref} from 'vue'
+import { ref } from 'vue'
 
 const initials = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
 
 const value = ref()
-const options = Array.from({length: 1000}).map((_, idx) => ({
-	value: `Option ${idx + 1}`,
-	label: `${initials[idx % 10]}${idx}`,
+const options = Array.from({ length: 1000 }).map((_, idx) => ({
+  value: `Option ${idx + 1}`,
+  label: `${initials[idx % 10]}${idx}`,
 }))
 </script>
 ```
@@ -4735,39 +4436,39 @@ Controls the upload file list using the `on-change` hook. This example limits th
 
 ```vue
 <template>
-	<el-upload
-		v-model:file-list="fileList"
-		class="upload-demo"
-		action="https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15"
-		:on-change="handleChange"
-	>
-		<el-button type="primary">Click to upload</el-button>
-		<template #tip>
-			<div class="el-upload__tip">
-				jpg/png files with a size less than 500kb
-			</div>
-		</template>
-	</el-upload>
+  <el-upload
+    v-model:file-list="fileList"
+    class="upload-demo"
+    action="https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15"
+    :on-change="handleChange"
+  >
+    <el-button type="primary">Click to upload</el-button>
+    <template #tip>
+      <div class="el-upload__tip">
+        jpg/png files with a size less than 500kb
+      </div>
+    </template>
+  </el-upload>
 </template>
 
 <script lang="ts" setup>
-import {ref} from 'vue'
+import { ref } from 'vue'
 
-import type {UploadProps, UploadUserFile} from 'element-plus'
+import type { UploadProps, UploadUserFile } from 'element-plus'
 
 const fileList = ref<UploadUserFile[]>([
-	{
-		name: 'food.jpeg',
-		url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100',
-	},
-	{
-		name: 'food2.jpeg',
-		url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100',
-	},
+  {
+    name: 'food.jpeg',
+    url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100',
+  },
+  {
+    name: 'food2.jpeg',
+    url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100',
+  },
 ])
 
 const handleChange: UploadProps['onChange'] = (uploadFile, uploadFiles) => {
-	fileList.value = fileList.value.slice(-3)
+  fileList.value = fileList.value.slice(-3)
 }
 </script>
 ```
@@ -4782,28 +4483,22 @@ Demonstrates the basic usage of the ElPagination component in Vue. It shows how 
 
 ```vue
 <template>
-	<div class="example-pagination-block">
-		<div class="example-demonstration">When you have few pages</div>
-		<el-pagination
-			layout="prev, pager, next"
-			:total="50"
-		/>
-	</div>
-	<div class="example-pagination-block">
-		<div class="example-demonstration">When you have more than 7 pages</div>
-		<el-pagination
-			layout="prev, pager, next"
-			:total="1000"
-		/>
-	</div>
+  <div class="example-pagination-block">
+    <div class="example-demonstration">When you have few pages</div>
+    <el-pagination layout="prev, pager, next" :total="50" />
+  </div>
+  <div class="example-pagination-block">
+    <div class="example-demonstration">When you have more than 7 pages</div>
+    <el-pagination layout="prev, pager, next" :total="1000" />
+  </div>
 </template>
 
 <style scoped>
 .example-pagination-block + .example-pagination-block {
-	margin-top: 10px;
+  margin-top: 10px;
 }
 .example-pagination-block .example-demonstration {
-	margin-bottom: 16px;
+  margin-bottom: 16px;
 }
 </style>
 ```
@@ -4818,42 +4513,37 @@ Demonstrates how to trigger a full-screen loading state using the v-loading dire
 
 ```vue
 <template>
-	<el-button
-		v-loading.fullscreen.lock="fullscreenLoading"
-		type="primary"
-		@click="openFullScreen1"
-	>
-		As a directive
-	</el-button>
-	<el-button
-		type="primary"
-		@click="openFullScreen2"
-	>
-		As a service
-	</el-button>
+  <el-button
+    v-loading.fullscreen.lock="fullscreenLoading"
+    type="primary"
+    @click="openFullScreen1"
+  >
+    As a directive
+  </el-button>
+  <el-button type="primary" @click="openFullScreen2"> As a service </el-button>
 </template>
 
 <script lang="ts" setup>
-import {ElLoading} from 'element-plus'
-import {ref} from 'vue'
+import { ElLoading } from 'element-plus'
+import { ref } from 'vue'
 
 const fullscreenLoading = ref(false)
 const openFullScreen1 = () => {
-	fullscreenLoading.value = true
-	setTimeout(() => {
-		fullscreenLoading.value = false
-	}, 2000)
+  fullscreenLoading.value = true
+  setTimeout(() => {
+    fullscreenLoading.value = false
+  }, 2000)
 }
 
 const openFullScreen2 = () => {
-	const loading = ElLoading.service({
-		lock: true,
-		text: 'Loading',
-		background: 'rgba(0, 0, 0, 0.7)',
-	})
-	setTimeout(() => {
-		loading.close()
-	}, 2000)
+  const loading = ElLoading.service({
+    lock: true,
+    text: 'Loading',
+    background: 'rgba(0, 0, 0, 0.7)',
+  })
+  setTimeout(() => {
+    loading.close()
+  }, 2000)
 }
 </script>
 ```
@@ -4991,21 +4681,15 @@ Illustrates how to control the size of the Element Plus Rate component using the
 
 ```vue
 <template>
-	<el-rate
-		v-model="value"
-		size="large"
-	/>
-	<br />
-	<el-rate v-model="value" />
-	<br />
-	<el-rate
-		v-model="value"
-		size="small"
-	/>
+  <el-rate v-model="value" size="large" />
+  <br />
+  <el-rate v-model="value" />
+  <br />
+  <el-rate v-model="value" size="small" />
 </template>
 
 <script lang="ts" setup>
-import {ref} from 'vue'
+import { ref } from 'vue'
 
 const value = ref(0)
 </script>
@@ -5021,160 +4705,125 @@ Demonstrates how to use the span-method attribute to merge table cells. The exam
 
 ```vue
 <template>
-	<div>
-		<el-table
-			:data="tableData"
-			:span-method="arraySpanMethod"
-			border
-			style="width: 100%"
-		>
-			<el-table-column
-				prop="id"
-				label="ID"
-				width="180"
-			/>
-			<el-table-column
-				prop="name"
-				label="Name"
-			/>
-			<el-table-column
-				prop="amount1"
-				sortable
-				label="Amount 1"
-			/>
-			<el-table-column
-				prop="amount2"
-				sortable
-				label="Amount 2"
-			/>
-			<el-table-column
-				prop="amount3"
-				sortable
-				label="Amount 3"
-			/>
-		</el-table>
+  <div>
+    <el-table
+      :data="tableData"
+      :span-method="arraySpanMethod"
+      border
+      style="width: 100%"
+    >
+      <el-table-column prop="id" label="ID" width="180" />
+      <el-table-column prop="name" label="Name" />
+      <el-table-column prop="amount1" sortable label="Amount 1" />
+      <el-table-column prop="amount2" sortable label="Amount 2" />
+      <el-table-column prop="amount3" sortable label="Amount 3" />
+    </el-table>
 
-		<el-table
-			:data="tableData"
-			:span-method="objectSpanMethod"
-			border
-			style="width: 100%; margin-top: 20px"
-		>
-			<el-table-column
-				prop="id"
-				label="ID"
-				width="180"
-			/>
-			<el-table-column
-				prop="name"
-				label="Name"
-			/>
-			<el-table-column
-				prop="amount1"
-				label="Amount 1"
-			/>
-			<el-table-column
-				prop="amount2"
-				label="Amount 2"
-			/>
-			<el-table-column
-				prop="amount3"
-				label="Amount 3"
-			/>
-		</el-table>
-	</div>
+    <el-table
+      :data="tableData"
+      :span-method="objectSpanMethod"
+      border
+      style="width: 100%; margin-top: 20px"
+    >
+      <el-table-column prop="id" label="ID" width="180" />
+      <el-table-column prop="name" label="Name" />
+      <el-table-column prop="amount1" label="Amount 1" />
+      <el-table-column prop="amount2" label="Amount 2" />
+      <el-table-column prop="amount3" label="Amount 3" />
+    </el-table>
+  </div>
 </template>
 
 <script lang="ts" setup>
-import type {TableColumnCtx} from 'element-plus'
+import type { TableColumnCtx } from 'element-plus'
 
 interface User {
-	id: string
-	name: string
-	amount1: string
-	amount2: string
-	amount3: number
+  id: string
+  name: string
+  amount1: string
+  amount2: string
+  amount3: number
 }
 
 interface SpanMethodProps {
-	row: User
-	column: TableColumnCtx<User>
-	rowIndex: number
-	columnIndex: number
+  row: User
+  column: TableColumnCtx<User>
+  rowIndex: number
+  columnIndex: number
 }
 
 const arraySpanMethod = ({
-	row,
-	column,
-	rowIndex,
-	columnIndex,
+  row,
+  column,
+  rowIndex,
+  columnIndex,
 }: SpanMethodProps) => {
-	if (rowIndex % 2 === 0) {
-		if (columnIndex === 0) {
-			return [1, 2]
-		} else if (columnIndex === 1) {
-			return [0, 0]
-		}
-	}
+  if (rowIndex % 2 === 0) {
+    if (columnIndex === 0) {
+      return [1, 2]
+    } else if (columnIndex === 1) {
+      return [0, 0]
+    }
+  }
 }
 
 const objectSpanMethod = ({
-	row,
-	column,
-	rowIndex,
-	columnIndex,
+  row,
+  column,
+  rowIndex,
+  columnIndex,
 }: SpanMethodProps) => {
-	if (columnIndex === 0) {
-		if (rowIndex % 2 === 0) {
-			return {
-				rowspan: 2,
-				colspan: 1,
-			}
-		} else {
-			return {
-				rowspan: 0,
-				colspan: 0,
-			}
-		}
-	}
+  if (columnIndex === 0) {
+    if (rowIndex % 2 === 0) {
+      return {
+        rowspan: 2,
+        colspan: 1,
+      }
+    } else {
+      return {
+        rowspan: 0,
+        colspan: 0,
+      }
+    }
+  }
 }
 
 const tableData: User[] = [
-	{
-		id: '12987122',
-		name: 'Tom',
-		amount1: '234',
-		amount2: '3.2',
-		amount3: 10,
-	},
-	{
-		id: '12987123',
-		name: 'Tom',
-		amount1: '165',
-		amount2: '4.43',
-		amount3: 12,
-	},
-	{
-		id: '12987124',
-		name: 'Tom',
-		amount1: '324',
-		amount2: '1.9',
-		amount3: 9,
-	},
-	{
-		id: '12987125',
-		name: 'Tom',
-		amount1: '621',
-		amount2: '2.2',
-		amount3: 17,
-	},
-	{
-		id: '12987126',
-		name: 'Tom',
-		amount1: '539',
-		amount2: '4.1',
-		amount3: 15,
-	},
+  {
+    id: '12987122',
+    name: 'Tom',
+    amount1: '234',
+    amount2: '3.2',
+    amount3: 10,
+  },
+  {
+    id: '12987123',
+    name: 'Tom',
+    amount1: '165',
+    amount2: '4.43',
+    amount3: 12,
+  },
+  {
+    id: '12987124',
+    name: 'Tom',
+    amount1: '324',
+    amount2: '1.9',
+    amount3: 9,
+  },
+  {
+    id: '12987125',
+    name: 'Tom',
+    amount1: '621',
+    amount2: '2.2',
+    amount3: 17,
+  },
+  {
+    id: '12987126',
+    name: 'Tom',
+    amount1: '539',
+    amount2: '4.1',
+    amount3: 15,
+  },
 ]
 </script>
 ```
@@ -5189,64 +4838,40 @@ Shows how to use the el-check-tag component for toggleable selection states. It 
 
 ```vue
 <template>
-	<div class="flex gap-2">
-		<el-check-tag checked>Checked</el-check-tag>
-		<el-check-tag
-			:checked="checked"
-			@change="onChange"
-			>Toggle me</el-check-tag
-		>
-		<el-check-tag disabled>Disabled</el-check-tag>
-	</div>
-	<div class="flex gap-2 mt-4">
-		<el-check-tag
-			:checked="checked1"
-			type="primary"
-			@change="onChange1"
-		>
-			Tag 1
-		</el-check-tag>
-		<el-check-tag
-			:checked="checked2"
-			type="success"
-			@change="onChange2"
-		>
-			Tag 2
-		</el-check-tag>
-		<el-check-tag
-			:checked="checked3"
-			type="info"
-			@change="onChange3"
-		>
-			Tag 3
-		</el-check-tag>
-		<el-check-tag
-			:checked="checked4"
-			type="warning"
-			@change="onChange4"
-		>
-			Tag 4
-		</el-check-tag>
-		<el-check-tag
-			:checked="checked5"
-			type="danger"
-			@change="onChange5"
-		>
-			Tag 5
-		</el-check-tag>
-		<el-check-tag
-			:checked="checked6"
-			disabled
-			type="success"
-			@change="onChange6"
-		>
-			Tag 6
-		</el-check-tag>
-	</div>
+  <div class="flex gap-2">
+    <el-check-tag checked>Checked</el-check-tag>
+    <el-check-tag :checked="checked" @change="onChange">Toggle me</el-check-tag>
+    <el-check-tag disabled>Disabled</el-check-tag>
+  </div>
+  <div class="flex gap-2 mt-4">
+    <el-check-tag :checked="checked1" type="primary" @change="onChange1">
+      Tag 1
+    </el-check-tag>
+    <el-check-tag :checked="checked2" type="success" @change="onChange2">
+      Tag 2
+    </el-check-tag>
+    <el-check-tag :checked="checked3" type="info" @change="onChange3">
+      Tag 3
+    </el-check-tag>
+    <el-check-tag :checked="checked4" type="warning" @change="onChange4">
+      Tag 4
+    </el-check-tag>
+    <el-check-tag :checked="checked5" type="danger" @change="onChange5">
+      Tag 5
+    </el-check-tag>
+    <el-check-tag
+      :checked="checked6"
+      disabled
+      type="success"
+      @change="onChange6"
+    >
+      Tag 6
+    </el-check-tag>
+  </div>
 </template>
 
 <script lang="ts" setup>
-import {ref} from 'vue'
+import { ref } from 'vue'
 
 const checked = ref(false)
 const checked1 = ref(true)
@@ -5257,31 +4882,31 @@ const checked5 = ref(true)
 const checked6 = ref(true)
 
 const onChange = (status: boolean) => {
-	checked.value = status
+  checked.value = status
 }
 
 const onChange1 = (status: boolean) => {
-	checked1.value = status
+  checked1.value = status
 }
 
 const onChange2 = (status: boolean) => {
-	checked2.value = status
+  checked2.value = status
 }
 
 const onChange3 = (status: boolean) => {
-	checked3.value = status
+  checked3.value = status
 }
 
 const onChange4 = (status: boolean) => {
-	checked4.value = status
+  checked4.value = status
 }
 
 const onChange5 = (status: boolean) => {
-	checked5.value = status
+  checked5.value = status
 }
 
 const onChange6 = (status: boolean) => {
-	checked6.value = status
+  checked6.value = status
 }
 </script>
 ```
@@ -5296,51 +4921,35 @@ Illustrates how to group buttons using `<el-button-group>`. Supports horizontal 
 
 ```vue
 <template>
-	<el-button-group class="mb-4">
-		<el-button
-			type="primary"
-			:icon="ArrowLeft"
-			>Previous Page</el-button
-		>
-		<el-button type="primary">
-			Next Page<el-icon class="el-icon--right"><ArrowRight /></el-icon>
-		</el-button>
-	</el-button-group>
-	<br />
-	<el-radio-group
-		v-model="direction"
-		class="mb-2"
-	>
-		<el-radio value="horizontal">Horizontal</el-radio>
-		<el-radio value="vertical">Vertical</el-radio>
-	</el-radio-group>
-	<br />
+  <el-button-group class="mb-4">
+    <el-button type="primary" :icon="ArrowLeft">Previous Page</el-button>
+    <el-button type="primary">
+      Next Page<el-icon class="el-icon--right"><ArrowRight /></el-icon>
+    </el-button>
+  </el-button-group>
+  <br />
+  <el-radio-group v-model="direction" class="mb-2">
+    <el-radio value="horizontal">Horizontal</el-radio>
+    <el-radio value="vertical">Vertical</el-radio>
+  </el-radio-group>
+  <br />
 
-	<el-button-group :direction="direction">
-		<el-button
-			type="primary"
-			:icon="House"
-		/>
-		<el-button
-			type="primary"
-			:icon="Operation"
-		/>
-		<el-button
-			type="primary"
-			:icon="Notification"
-		/>
-	</el-button-group>
+  <el-button-group :direction="direction">
+    <el-button type="primary" :icon="House" />
+    <el-button type="primary" :icon="Operation" />
+    <el-button type="primary" :icon="Notification" />
+  </el-button-group>
 </template>
 
 <script setup lang="ts">
 import {
-	ArrowLeft,
-	ArrowRight,
-	House,
-	Notification,
-	Operation,
+  ArrowLeft,
+  ArrowRight,
+  House,
+  Notification,
+  Operation,
 } from '@element-plus/icons-vue'
-import {ref} from 'vue'
+import { ref } from 'vue'
 
 const direction = ref<'horizontal' | 'vertical'>('horizontal')
 </script>
@@ -5356,23 +4965,11 @@ Includes a description field for each step to provide additional context.
 
 ```vue
 <template>
-	<el-steps
-		style="max-width: 600px"
-		:active="1"
-	>
-		<el-step
-			title="Step 1"
-			description="Some description"
-		/>
-		<el-step
-			title="Step 2"
-			description="Some description"
-		/>
-		<el-step
-			title="Step 3"
-			description="Some description"
-		/>
-	</el-steps>
+  <el-steps style="max-width: 600px" :active="1">
+    <el-step title="Step 1" description="Some description" />
+    <el-step title="Step 2" description="Some description" />
+    <el-step title="Step 3" description="Some description" />
+  </el-steps>
 </template>
 ```
 
@@ -5386,28 +4983,21 @@ Demonstrates how to create a resizable drawer using the resizable attribute. It 
 
 ```vue
 <template>
-	<el-radio-group
-		v-model="direction"
-		@change="drawer = true"
-	>
-		<el-radio-button value="ttb">top</el-radio-button>
-		<el-radio-button value="rtl">right</el-radio-button>
-		<el-radio-button value="btt">bottom</el-radio-button>
-		<el-radio-button value="ltr">left</el-radio-button>
-	</el-radio-group>
+  <el-radio-group v-model="direction" @change="drawer = true">
+    <el-radio-button value="ttb">top</el-radio-button>
+    <el-radio-button value="rtl">right</el-radio-button>
+    <el-radio-button value="btt">bottom</el-radio-button>
+    <el-radio-button value="ltr">left</el-radio-button>
+  </el-radio-group>
 
-	<el-drawer
-		v-model="drawer"
-		:direction="direction"
-		resizable
-	>
-		This is drawer content.
-	</el-drawer>
+  <el-drawer v-model="drawer" :direction="direction" resizable>
+    This is drawer content.
+  </el-drawer>
 </template>
 
 <script lang="ts" setup>
-import type {DrawerProps} from 'element-plus'
-import {ref} from 'vue'
+import type { DrawerProps } from 'element-plus'
+import { ref } from 'vue'
 
 const direction = ref<DrawerProps['direction']>()
 const drawer = ref(false)
@@ -5424,83 +5014,67 @@ Shows how to incorporate the el-mention component within an el-form for data ent
 
 ```vue
 <template>
-	<el-form
-		ref="ruleFormRef"
-		style="max-width: 600px"
-		:model="ruleForm"
-		:rules="rules"
-	>
-		<el-form-item
-			label="name"
-			prop="name"
-		>
-			<el-mention
-				v-model="ruleForm.name"
-				:options="options"
-			/>
-		</el-form-item>
-		<el-form-item
-			label="desc"
-			prop="desc"
-		>
-			<el-mention
-				v-model="ruleForm.desc"
-				type="textarea"
-				:options="options"
-			/>
-		</el-form-item>
-		<el-form-item>
-			<el-button
-				type="primary"
-				@click="submitForm(ruleFormRef)"
-			>
-				Submit
-			</el-button>
-			<el-button @click="resetForm(ruleFormRef)">Reset</el-button>
-		</el-form-item>
-	</el-form>
+  <el-form
+    ref="ruleFormRef"
+    style="max-width: 600px"
+    :model="ruleForm"
+    :rules="rules"
+  >
+    <el-form-item label="name" prop="name">
+      <el-mention v-model="ruleForm.name" :options="options" />
+    </el-form-item>
+    <el-form-item label="desc" prop="desc">
+      <el-mention v-model="ruleForm.desc" type="textarea" :options="options" />
+    </el-form-item>
+    <el-form-item>
+      <el-button type="primary" @click="submitForm(ruleFormRef)">
+        Submit
+      </el-button>
+      <el-button @click="resetForm(ruleFormRef)">Reset</el-button>
+    </el-form-item>
+  </el-form>
 </template>
 
 <script lang="ts" setup>
-import type {FormInstance, FormRules} from 'element-plus'
-import {reactive, ref} from 'vue'
+import type { FormInstance, FormRules } from 'element-plus'
+import { reactive, ref } from 'vue'
 
 interface RuleForm {
-	name: string
-	desc: string
+  name: string
+  desc: string
 }
 const ruleFormRef = ref<FormInstance>()
 const ruleForm = reactive<RuleForm>({
-	name: '',
-	desc: '',
+  name: '',
+  desc: '',
 })
 
 const options = ref([
-	{label: 'Fuphoenixes', value: 'Fuphoenixes'},
-	{label: 'kooriookami', value: 'kooriookami'},
-	{label: 'Jeremy', value: 'Jeremy'},
-	{label: 'btea', value: 'btea'},
+  { label: 'Fuphoenixes', value: 'Fuphoenixes' },
+  { label: 'kooriookami', value: 'kooriookami' },
+  { label: 'Jeremy', value: 'Jeremy' },
+  { label: 'btea', value: 'btea' },
 ])
 
 const rules = reactive<FormRules<RuleForm>>({
-	name: [{required: true, message: 'Please input name', trigger: 'blur'}],
-	desc: [{required: true, message: 'Please input desc', trigger: 'blur'}],
+  name: [{ required: true, message: 'Please input name', trigger: 'blur' }],
+  desc: [{ required: true, message: 'Please input desc', trigger: 'blur' }],
 })
 
 const submitForm = async (formEl: FormInstance | undefined) => {
-	if (!formEl) return
-	await formEl.validate((valid, fields) => {
-		if (valid) {
-			console.log('submit!')
-		} else {
-			console.log('error submit!', fields)
-		}
-	})
+  if (!formEl) return
+  await formEl.validate((valid, fields) => {
+    if (valid) {
+      console.log('submit!')
+    } else {
+      console.log('error submit!', fields)
+    }
+  })
 }
 
 const resetForm = (formEl: FormInstance | undefined) => {
-	if (!formEl) return
-	formEl.resetFields()
+  if (!formEl) return
+  formEl.resetFields()
 }
 </script>
 ```
@@ -5515,54 +5089,54 @@ Demonstrates how to create rounded tags using the 'round' attribute. It showcase
 
 ```vue
 <template>
-	<div class="flex gap-2">
-		<el-tag
-			v-for="item in items"
-			:key="item.label"
-			:type="item.type"
-			effect="dark"
-			round
-		>
-			{{ item.label }}
-		</el-tag>
-	</div>
-	<div class="flex gap-2 mt-4">
-		<el-tag
-			v-for="item in items"
-			:key="item.label"
-			:type="item.type"
-			effect="light"
-			round
-		>
-			{{ item.label }}
-		</el-tag>
-	</div>
-	<div class="flex gap-2 mt-4">
-		<el-tag
-			v-for="item in items"
-			:key="item.label"
-			:type="item.type"
-			effect="plain"
-			round
-		>
-			{{ item.label }}
-		</el-tag>
-	</div>
+  <div class="flex gap-2">
+    <el-tag
+      v-for="item in items"
+      :key="item.label"
+      :type="item.type"
+      effect="dark"
+      round
+    >
+      {{ item.label }}
+    </el-tag>
+  </div>
+  <div class="flex gap-2 mt-4">
+    <el-tag
+      v-for="item in items"
+      :key="item.label"
+      :type="item.type"
+      effect="light"
+      round
+    >
+      {{ item.label }}
+    </el-tag>
+  </div>
+  <div class="flex gap-2 mt-4">
+    <el-tag
+      v-for="item in items"
+      :key="item.label"
+      :type="item.type"
+      effect="plain"
+      round
+    >
+      {{ item.label }}
+    </el-tag>
+  </div>
 </template>
 
 <script lang="ts" setup>
-import {ref} from 'vue'
+import { ref } from 'vue'
 
-import type {TagProps} from 'element-plus'
+import type { TagProps } from 'element-plus'
 
-type Item = {type: TagProps['type']; label: string}
+type Item = { type: TagProps['type']; label: string }
 
 const items = ref<Array<Item>>([
-	{type: 'primary', label: 'Tag 1'},
-	{type: 'success', label: 'Tag 2'},
-	{type: 'info', label: 'Tag 3'},
-	{type: 'warning', label: 'Tag 4'},
-	{type: 'danger', label: 'Tag 5'},
+  { type: 'primary', label: 'Tag 1' },
+  { type: 'success', label: 'Tag 2' },
+  { type: 'info', label: 'Tag 3' },
+  { type: 'warning', label: 'Tag 4' },
+  { type: 'danger', label: 'Tag 5' },
 ])
 </script>
 ```
@@ -5577,31 +5151,27 @@ Demonstrates the fundamental implementation of the Select component using v-mode
 
 ```vue
 <template>
-	<el-select
-		v-model="value"
-		placeholder="Select"
-		style="width: 240px"
-	>
-		<el-option
-			v-for="item in options"
-			:key="item.value"
-			:label="item.label"
-			:value="item.value"
-		/>
-	</el-select>
+  <el-select v-model="value" placeholder="Select" style="width: 240px">
+    <el-option
+      v-for="item in options"
+      :key="item.value"
+      :label="item.label"
+      :value="item.value"
+    />
+  </el-select>
 </template>
 
 <script lang="ts" setup>
-import {ref} from 'vue'
+import { ref } from 'vue'
 
 const value = ref('')
 
 const options = [
-	{value: 'Option1', label: 'Option1'},
-	{value: 'Option2', label: 'Option2'},
-	{value: 'Option3', label: 'Option3'},
-	{value: 'Option4', label: 'Option4'},
-	{value: 'Option5', label: 'Option5'},
+  { value: 'Option1', label: 'Option1' },
+  { value: 'Option2', label: 'Option2' },
+  { value: 'Option3', label: 'Option3' },
+  { value: 'Option4', label: 'Option4' },
+  { value: 'Option5', label: 'Option5' },
 ]
 </script>
 ```
@@ -5616,32 +5186,19 @@ Shows how to implement a vertical layout using the `el-space` component by setti
 
 ```vue
 <template>
-	<el-space direction="vertical">
-		<el-card
-			v-for="i in 2"
-			:key="i"
-			class="box-card"
-			style="width: 250px"
-		>
-			<template #header>
-				<div class="card-header">
-					<span>Card name</span>
-					<el-button
-						class="button"
-						text
-						>Operation button</el-button
-					>
-				</div>
-			</template>
-			<div
-				v-for="o in 4"
-				:key="o"
-				class="text item"
-			>
-				{{ 'List item ' + o }}
-			</div>
-		</el-card>
-	</el-space>
+  <el-space direction="vertical">
+    <el-card v-for="i in 2" :key="i" class="box-card" style="width: 250px">
+      <template #header>
+        <div class="card-header">
+          <span>Card name</span>
+          <el-button class="button" text>Operation button</el-button>
+        </div>
+      </template>
+      <div v-for="o in 4" :key="o" class="text item">
+        {{ 'List item ' + o }}
+      </div>
+    </el-card>
+  </el-space>
 </template>
 ```
 
@@ -5797,21 +5354,21 @@ Demonstrates how to add icons to the Element Plus Link component. It shows examp
 
 ```vue
 <template>
-	<div>
-		<el-link :icon="Edit">Edit</el-link>
-		<el-link>
-			Check<el-icon class="el-icon--right"><icon-view /></el-icon>
-		</el-link>
-	</div>
+  <div>
+    <el-link :icon="Edit">Edit</el-link>
+    <el-link>
+      Check<el-icon class="el-icon--right"><icon-view /></el-icon>
+    </el-link>
+  </div>
 </template>
 
 <script setup lang="ts">
-import {Edit, View as IconView} from '@element-plus/icons-vue'
+import { Edit, View as IconView } from '@element-plus/icons-vue'
 </script>
 
 <style scoped>
 .el-link {
-	margin-right: 8px;
+  margin-right: 8px;
 }
 </style>
 ```
@@ -5854,41 +5411,30 @@ Illustrates how to apply different sizes ('large', 'default', 'small') to the El
 
 ```vue
 <template>
-	<div class="slider-demo-block">
-		<el-slider
-			v-model="value"
-			show-input
-			size="large"
-		/>
-		<el-slider
-			v-model="value"
-			show-input
-		/>
-		<el-slider
-			v-model="value"
-			show-input
-			size="small"
-		/>
-	</div>
+  <div class="slider-demo-block">
+    <el-slider v-model="value" show-input size="large" />
+    <el-slider v-model="value" show-input />
+    <el-slider v-model="value" show-input size="small" />
+  </div>
 </template>
 
 <script lang="ts" setup>
-import {ref} from 'vue'
+import { ref } from 'vue'
 
 const value = ref(0)
 </script>
 
 <style scoped>
 .slider-demo-block {
-	max-width: 600px;
+  max-width: 600px;
 }
 
 .el-slider {
-	margin-top: 20px;
+  margin-top: 20px;
 }
 
 .el-slider:first-child {
-	margin-top: 0;
+  margin-top: 0;
 }
 </style>
 ```
@@ -5903,73 +5449,67 @@ Use a custom row renderer to implement colspan. This example shows how to dynami
 
 ```vue
 <template>
-	<el-table-v2
-		fixed
-		:columns="columns"
-		:data="data"
-		:width="700"
-		:height="400"
-	>
-		<template #row="props">
-			<Row v-bind="props" />
-		</template>
-	</el-table-v2>
+  <el-table-v2 fixed :columns="columns" :data="data" :width="700" :height="400">
+    <template #row="props">
+      <Row v-bind="props" />
+    </template>
+  </el-table-v2>
 </template>
 
 <script lang="ts" setup>
-import {cloneVNode} from 'vue'
+import { cloneVNode } from 'vue'
 
 const generateColumns = (length = 10, prefix = 'column-', props?: any) =>
-	Array.from({length}).map((_, columnIndex) => ({
-		...props,
-		key: `${prefix}${columnIndex}`,
-		dataKey: `${prefix}${columnIndex}`,
-		title: `Column ${columnIndex}`,
-		width: 150,
-	}))
+  Array.from({ length }).map((_, columnIndex) => ({
+    ...props,
+    key: `${prefix}${columnIndex}`,
+    dataKey: `${prefix}${columnIndex}`,
+    title: `Column ${columnIndex}`,
+    width: 150,
+  }))
 
 const generateData = (
-	columns: ReturnType<typeof generateColumns>,
-	length = 200,
-	prefix = 'row-',
+  columns: ReturnType<typeof generateColumns>,
+  length = 200,
+  prefix = 'row-',
 ) =>
-	Array.from({length}).map((_, rowIndex) => {
-		return columns.reduce(
-			(rowData, column, columnIndex) => {
-				rowData[column.dataKey] = `Row ${rowIndex} - Col ${columnIndex}`
-				return rowData
-			},
-			{
-				id: `${prefix}${rowIndex}`,
-				parentId: null,
-			},
-		)
-	})
+  Array.from({ length }).map((_, rowIndex) => {
+    return columns.reduce(
+      (rowData, column, columnIndex) => {
+        rowData[column.dataKey] = `Row ${rowIndex} - Col ${columnIndex}`
+        return rowData
+      },
+      {
+        id: `${prefix}${rowIndex}`,
+        parentId: null,
+      },
+    )
+  })
 
 const columns = generateColumns(10)
 const data = generateData(columns, 200)
 
 const colSpanIndex = 1
-columns[colSpanIndex].colSpan = ({rowIndex}) => (rowIndex % 4) + 1
+columns[colSpanIndex].colSpan = ({ rowIndex }) => (rowIndex % 4) + 1
 columns[colSpanIndex].align = 'center'
 
-const Row = ({rowData, rowIndex, cells, columns}) => {
-	const colSpan = columns[colSpanIndex].colSpan({rowData, rowIndex})
-	if (colSpan > 1) {
-		let width = Number.parseInt(cells[colSpanIndex].props.style.width)
-		for (let i = 1; i < colSpan; i++) {
-			width += Number.parseInt(cells[colSpanIndex + i].props.style.width)
-			cells[colSpanIndex + i] = null
-		}
-		const style = {
-			...cells[colSpanIndex].props.style,
-			width: `${width}px`,
-			backgroundColor: 'var(--el-color-primary-light-3)',
-		}
-		cells[colSpanIndex] = cloneVNode(cells[colSpanIndex], {style})
-	}
+const Row = ({ rowData, rowIndex, cells, columns }) => {
+  const colSpan = columns[colSpanIndex].colSpan({ rowData, rowIndex })
+  if (colSpan > 1) {
+    let width = Number.parseInt(cells[colSpanIndex].props.style.width)
+    for (let i = 1; i < colSpan; i++) {
+      width += Number.parseInt(cells[colSpanIndex + i].props.style.width)
+      cells[colSpanIndex + i] = null
+    }
+    const style = {
+      ...cells[colSpanIndex].props.style,
+      width: `${width}px`,
+      backgroundColor: 'var(--el-color-primary-light-3)',
+    }
+    cells[colSpanIndex] = cloneVNode(cells[colSpanIndex], { style })
+  }
 
-	return cells
+  return cells
 }
 </script>
 ```
@@ -5984,15 +5524,15 @@ Demonstrates the standard usage of the InputTag component where users can add ta
 
 ```vue
 <template>
-	<el-input-tag
-		v-model="input"
-		placeholder="Please input"
-		aria-label="Please click the Enter key after input"
-	/>
+  <el-input-tag
+    v-model="input"
+    placeholder="Please input"
+    aria-label="Please click the Enter key after input"
+  />
 </template>
 
 <script lang="ts" setup>
-import {ref} from 'vue'
+import { ref } from 'vue'
 
 const input = ref<string[]>()
 </script>
@@ -6008,76 +5548,64 @@ Use the scoped slot to customize the thumbnail template for uploaded files. This
 
 ```vue
 <template>
-	<el-upload
-		action="#"
-		list-type="picture-card"
-		:auto-upload="false"
-	>
-		<el-icon><Plus /></el-icon>
+  <el-upload action="#" list-type="picture-card" :auto-upload="false">
+    <el-icon><Plus /></el-icon>
 
-		<template #file="{file}">
-			<div>
-				<img
-					class="el-upload-list__item-thumbnail"
-					:src="file.url"
-					alt=""
-				/>
-				<span class="el-upload-list__item-actions">
-					<span
-						class="el-upload-list__item-preview"
-						@click="handlePictureCardPreview(file)"
-					>
-						<el-icon><zoom-in /></el-icon>
-					</span>
-					<span
-						v-if="!disabled"
-						class="el-upload-list__item-delete"
-						@click="handleDownload(file)"
-					>
-						<el-icon><Download /></el-icon>
-					</span>
-					<span
-						v-if="!disabled"
-						class="el-upload-list__item-delete"
-						@click="handleRemove(file)"
-					>
-						<el-icon><Delete /></el-icon>
-					</span>
-				</span>
-			</div>
-		</template>
-	</el-upload>
+    <template #file="{ file }">
+      <div>
+        <img class="el-upload-list__item-thumbnail" :src="file.url" alt="" />
+        <span class="el-upload-list__item-actions">
+          <span
+            class="el-upload-list__item-preview"
+            @click="handlePictureCardPreview(file)"
+          >
+            <el-icon><zoom-in /></el-icon>
+          </span>
+          <span
+            v-if="!disabled"
+            class="el-upload-list__item-delete"
+            @click="handleDownload(file)"
+          >
+            <el-icon><Download /></el-icon>
+          </span>
+          <span
+            v-if="!disabled"
+            class="el-upload-list__item-delete"
+            @click="handleRemove(file)"
+          >
+            <el-icon><Delete /></el-icon>
+          </span>
+        </span>
+      </div>
+    </template>
+  </el-upload>
 
-	<el-dialog v-model="dialogVisible">
-		<img
-			w-full
-			:src="dialogImageUrl"
-			alt="Preview Image"
-		/>
-	</el-dialog>
+  <el-dialog v-model="dialogVisible">
+    <img w-full :src="dialogImageUrl" alt="Preview Image" />
+  </el-dialog>
 </template>
 
 <script lang="ts" setup>
-import {Delete, Download, Plus, ZoomIn} from '@element-plus/icons-vue'
-import {ref} from 'vue'
+import { Delete, Download, Plus, ZoomIn } from '@element-plus/icons-vue'
+import { ref } from 'vue'
 
-import type {UploadFile} from 'element-plus'
+import type { UploadFile } from 'element-plus'
 
 const dialogImageUrl = ref('')
 const dialogVisible = ref(false)
 const disabled = ref(false)
 
 const handleRemove = (file: UploadFile) => {
-	console.log(file)
+  console.log(file)
 }
 
 const handlePictureCardPreview = (file: UploadFile) => {
-	dialogImageUrl.value = file.url!
-	dialogVisible.value = true
+  dialogImageUrl.value = file.url!
+  dialogVisible.value = true
 }
 
 const handleDownload = (file: UploadFile) => {
-	console.log(file)
+  console.log(file)
 }
 </script>
 ```
@@ -6092,55 +5620,47 @@ Demonstrates how to use the Element Plus Image component with different 'fit' mo
 
 ```vue
 <template>
-	<div class="demo-image">
-		<div
-			v-for="fit in fits"
-			:key="fit"
-			class="block"
-		>
-			<span class="demonstration">{{ fit }}</span>
-			<el-image
-				style="width: 100px; height: 100px"
-				:src="url"
-				:fit="fit"
-			/>
-		</div>
-	</div>
+  <div class="demo-image">
+    <div v-for="fit in fits" :key="fit" class="block">
+      <span class="demonstration">{{ fit }}</span>
+      <el-image style="width: 100px; height: 100px" :src="url" :fit="fit" />
+    </div>
+  </div>
 </template>
 
 <script lang="ts" setup>
-import type {ImageProps} from 'element-plus'
+import type { ImageProps } from 'element-plus'
 
 const fits = [
-	'fill',
-	'contain',
-	'cover',
-	'none',
-	'scale-down',
+  'fill',
+  'contain',
+  'cover',
+  'none',
+  'scale-down',
 ] as ImageProps['fit'][]
 const url =
-	'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
+  'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
 </script>
 
 <style scoped>
 .demo-image .block {
-	padding: 30px 0;
-	text-align: center;
-	border-right: solid 1px var(--el-border-color);
-	display: inline-block;
-	width: 20%;
-	min-width: 100px;
-	box-sizing: border-box;
-	vertical-align: top;
+  padding: 30px 0;
+  text-align: center;
+  border-right: solid 1px var(--el-border-color);
+  display: inline-block;
+  width: 20%;
+  min-width: 100px;
+  box-sizing: border-box;
+  vertical-align: top;
 }
 .demo-image .block:last-child {
-	border-right: none;
+  border-right: none;
 }
 .demo-image .demonstration {
-	display: block;
-	color: var(--el-text-color-secondary);
-	font-size: 14px;
-	margin-bottom: 20px;
+  display: block;
+  color: var(--el-text-color-secondary);
+  font-size: 14px;
+  margin-bottom: 20px;
 }
 </style>
 ```
@@ -6155,84 +5675,84 @@ This example shows how to use the tooltip-formatter property on el-table and el-
 
 ```vue
 <template>
-	<el-table
-		:data="tableData"
-		show-overflow-tooltip
-		:tooltip-formatter="tableRowFormatter"
-		style="width: 100%"
-	>
-		<el-table-column
-			prop="address"
-			label="extends table formatter"
-			width="240"
-		/>
-		<el-table-column
-			prop="tags"
-			label="formatter object"
-			width="240"
-			:tooltip-formatter="({row}) => row.tags.join(', ')"
-		>
-			<template #default="{row}">
-				<el-tag
-					v-for="tag in row.tags"
-					:key="tag"
-					class="tag-item"
-					type="primary"
-				>
-					{{ tag }}
-				</el-tag>
-			</template>
-		</el-table-column>
-		<el-table-column
-			prop="url"
-			label="with vnode"
-			width="240"
-			:tooltip-formatter="withVNode"
-		/>
-	</el-table>
+  <el-table
+    :data="tableData"
+    show-overflow-tooltip
+    :tooltip-formatter="tableRowFormatter"
+    style="width: 100%"
+  >
+    <el-table-column
+      prop="address"
+      label="extends table formatter"
+      width="240"
+    />
+    <el-table-column
+      prop="tags"
+      label="formatter object"
+      width="240"
+      :tooltip-formatter="({ row }) => row.tags.join(', ')"
+    >
+      <template #default="{ row }">
+        <el-tag
+          v-for="tag in row.tags"
+          :key="tag"
+          class="tag-item"
+          type="primary"
+        >
+          {{ tag }}
+        </el-tag>
+      </template>
+    </el-table-column>
+    <el-table-column
+      prop="url"
+      label="with vnode"
+      width="240"
+      :tooltip-formatter="withVNode"
+    />
+  </el-table>
 </template>
 
 <script lang="ts" setup>
-import {ElLink, type TableTooltipData} from 'element-plus'
-import {h} from 'vue'
+import { ElLink, type TableTooltipData } from 'element-plus'
+import { h } from 'vue'
 
 type TableData = {
-	address: string
-	tags: string[]
-	url: string
+  address: string
+  tags: string[]
+  url: string
 }
 
 const tableData: TableData[] = [
-	{
-		address: 'Lohrbergstr. 86c, Süd Lilli, Saarland',
-		tags: ['Office', 'Home', 'Park', 'Garden'],
-		url: 'https://github.com/element-plus/element-plus/issues',
-	},
-	{
-		address: '760 A Street, South Frankfield, Illinois',
-		tags: ['error', 'warning', 'success', 'info'],
-		url: 'https://github.com/element-plus/element-plus/pulls',
-	},
-	{
-		address: 'Arnold-Ohletz-Str. 41a, Alt Malinascheid, Thüringen',
-		tags: ['one', 'two', 'three', 'four', 'five'],
-		url: 'https://github.com/element-plus/element-plus/discussions',
-	},
-	{
-		address: '23618 Windsor Drive, West Ricardoview, Idaho',
-		tags: ['blue', 'white', 'dark', 'gray', 'red', 'bright'],
-		url: 'https://github.com/element-plus/element-plus/actions',
-	},
+  {
+    address: 'Lohrbergstr. 86c, Süd Lilli, Saarland',
+    tags: ['Office', 'Home', 'Park', 'Garden'],
+    url: 'https://github.com/element-plus/element-plus/issues',
+  },
+  {
+    address: '760 A Street, South Frankfield, Illinois',
+    tags: ['error', 'warning', 'success', 'info'],
+    url: 'https://github.com/element-plus/element-plus/pulls',
+  },
+  {
+    address: 'Arnold-Ohletz-Str. 41a, Alt Malinascheid, Thüringen',
+    tags: ['one', 'two', 'three', 'four', 'five'],
+    url: 'https://github.com/element-plus/element-plus/discussions',
+  },
+  {
+    address: '23618 Windsor Drive, West Ricardoview, Idaho',
+    tags: ['blue', 'white', 'dark', 'gray', 'red', 'bright'],
+    url: 'https://github.com/element-plus/element-plus/actions',
+  },
 ]
 
 const tableRowFormatter = (data: TableTooltipData<TableData>) => {
-	return `${data.cellValue}: table formatter`
+  return `${data.cellValue}: table formatter`
 }
 
 const withVNode = (data: TableTooltipData<TableData>) => {
-	return h(ElLink, {type: 'primary', href: data.cellValue}, () =>
-		h('span', null, data.cellValue),
-	)
+  return h(ElLink, { type: 'primary', href: data.cellValue }, () =>
+    h('span', null, data.cellValue),
+  )
 }
 </script>
 ```
@@ -6356,96 +5876,96 @@ This example uses the `parent` strategy, which only shows parent nodes when all 
 
 ```vue
 <template>
-	<div class="m-4">
-		<p>
-			Strategy: parent (show only parent nodes when all children are selected)
-		</p>
-		<el-cascader
-			v-model="value2"
-			:options="options"
-			:props="props"
-			show-checked-strategy="parent"
-			clearable
-			@change="handleChange2"
-		/>
-	</div>
+  <div class="m-4">
+    <p>
+      Strategy: parent (show only parent nodes when all children are selected)
+    </p>
+    <el-cascader
+      v-model="value2"
+      :options="options"
+      :props="props"
+      show-checked-strategy="parent"
+      clearable
+      @change="handleChange2"
+    />
+  </div>
 </template>
 
 <script lang="ts" setup>
-import {ref} from 'vue'
+import { ref } from 'vue'
 
 const value2 = ref([])
 const props = {
-	multiple: true,
+  multiple: true,
 }
 
-const handleChange2 = value => {
-	console.log('Parent strategy:', value)
+const handleChange2 = (value) => {
+  console.log('Parent strategy:', value)
 }
 
 const options = [
-	{
-		value: 'guide',
-		label: 'Guide',
-		children: [
-			{
-				value: 'disciplines',
-				label: 'Disciplines',
-				children: [
-					{
-						value: 'consistency',
-						label: 'Consistency',
-					},
-				],
-			},
-			{
-				value: 'navigation',
-				label: 'Navigation',
-				children: [
-					{
-						value: 'side nav',
-						label: 'Side Navigation',
-					},
-				],
-			},
-		],
-	},
-	{
-		value: 'component',
-		label: 'Component',
-		children: [
-			{
-				value: 'basic',
-				label: 'Basic',
-				children: [
-					{
-						value: 'layout',
-						label: 'Layout',
-					},
-				],
-			},
-			{
-				value: 'form',
-				label: 'Form',
-				children: [
-					{
-						value: 'radio',
-						label: 'Radio',
-					},
-				],
-			},
-		],
-	},
-	{
-		value: 'resource',
-		label: 'Resource',
-		children: [
-			{
-				value: 'axure',
-				label: 'Axure Components',
-			},
-		],
-	},
+  {
+    value: 'guide',
+    label: 'Guide',
+    children: [
+      {
+        value: 'disciplines',
+        label: 'Disciplines',
+        children: [
+          {
+            value: 'consistency',
+            label: 'Consistency',
+          },
+        ],
+      },
+      {
+        value: 'navigation',
+        label: 'Navigation',
+        children: [
+          {
+            value: 'side nav',
+            label: 'Side Navigation',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    value: 'component',
+    label: 'Component',
+    children: [
+      {
+        value: 'basic',
+        label: 'Basic',
+        children: [
+          {
+            value: 'layout',
+            label: 'Layout',
+          },
+        ],
+      },
+      {
+        value: 'form',
+        label: 'Form',
+        children: [
+          {
+            value: 'radio',
+            label: 'Radio',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    value: 'resource',
+    label: 'Resource',
+    children: [
+      {
+        value: 'axure',
+        label: 'Axure Components',
+      },
+    ],
+  },
 ]
 </script>
 ```
@@ -6534,137 +6054,137 @@ This example demonstrates how to implement various Popover placements using the 
 
 ```vue
 <template>
-	<div class="popover-base-box">
-		<div class="row center">
-			<el-popover
-				title="Title"
-				content="Top Left prompts info"
-				placement="top-start"
-			>
-				<template #reference>
-					<el-button>top-start</el-button>
-				</template>
-			</el-popover>
-			<el-popover
-				title="Title"
-				content="Top Center prompts info"
-				placement="top"
-			>
-				<template #reference>
-					<el-button>top</el-button>
-				</template>
-			</el-popover>
-			<el-popover
-				title="Title"
-				content="Top Right prompts info"
-				placement="top-end"
-			>
-				<template #reference>
-					<el-button>top-end</el-button>
-				</template>
-			</el-popover>
-		</div>
-		<div class="row">
-			<el-popover
-				title="Title"
-				content="Left Top prompts info"
-				placement="left-start"
-			>
-				<template #reference>
-					<el-button>left-start</el-button>
-				</template>
-			</el-popover>
-			<el-popover
-				title="Title"
-				content="Right Top prompts info"
-				placement="right-start"
-			>
-				<template #reference>
-					<el-button>right-start</el-button>
-				</template>
-			</el-popover>
-		</div>
-		<div class="row">
-			<el-popover
-				title="Title"
-				content="Left Center prompts info"
-				placement="left"
-			>
-				<template #reference>
-					<el-button class="mt-3 mb-3">left</el-button>
-				</template>
-			</el-popover>
-			<el-popover
-				title="Title"
-				content="Right Center prompts info"
-				placement="right"
-			>
-				<template #reference>
-					<el-button>right</el-button>
-				</template>
-			</el-popover>
-		</div>
-		<div class="row">
-			<el-popover
-				title="Title"
-				content="Left Bottom prompts info"
-				placement="left-end"
-			>
-				<template #reference>
-					<el-button>left-end</el-button>
-				</template>
-			</el-popover>
-			<el-popover
-				title="Title"
-				content="Right Bottom prompts info"
-				placement="right-end"
-			>
-				<template #reference>
-					<el-button>right-end</el-button>
-				</template>
-			</el-popover>
-		</div>
-		<div class="row center">
-			<el-popover
-				title="Title"
-				content="Bottom Left prompts info"
-				placement="bottom-start"
-			>
-				<template #reference> <el-button>bottom-start</el-button></template>
-			</el-popover>
-			<el-popover
-				title="Title"
-				content="Bottom Center prompts info"
-				placement="bottom"
-			>
-				<template #reference> <el-button>bottom</el-button></template>
-			</el-popover>
-			<el-popover
-				title="Title"
-				content="Bottom Right prompts info"
-				placement="bottom-end"
-			>
-				<template #reference>
-					<el-button>bottom-end</el-button>
-				</template>
-			</el-popover>
-		</div>
-	</div>
+  <div class="popover-base-box">
+    <div class="row center">
+      <el-popover
+        title="Title"
+        content="Top Left prompts info"
+        placement="top-start"
+      >
+        <template #reference>
+          <el-button>top-start</el-button>
+        </template>
+      </el-popover>
+      <el-popover
+        title="Title"
+        content="Top Center prompts info"
+        placement="top"
+      >
+        <template #reference>
+          <el-button>top</el-button>
+        </template>
+      </el-popover>
+      <el-popover
+        title="Title"
+        content="Top Right prompts info"
+        placement="top-end"
+      >
+        <template #reference>
+          <el-button>top-end</el-button>
+        </template>
+      </el-popover>
+    </div>
+    <div class="row">
+      <el-popover
+        title="Title"
+        content="Left Top prompts info"
+        placement="left-start"
+      >
+        <template #reference>
+          <el-button>left-start</el-button>
+        </template>
+      </el-popover>
+      <el-popover
+        title="Title"
+        content="Right Top prompts info"
+        placement="right-start"
+      >
+        <template #reference>
+          <el-button>right-start</el-button>
+        </template>
+      </el-popover>
+    </div>
+    <div class="row">
+      <el-popover
+        title="Title"
+        content="Left Center prompts info"
+        placement="left"
+      >
+        <template #reference>
+          <el-button class="mt-3 mb-3">left</el-button>
+        </template>
+      </el-popover>
+      <el-popover
+        title="Title"
+        content="Right Center prompts info"
+        placement="right"
+      >
+        <template #reference>
+          <el-button>right</el-button>
+        </template>
+      </el-popover>
+    </div>
+    <div class="row">
+      <el-popover
+        title="Title"
+        content="Left Bottom prompts info"
+        placement="left-end"
+      >
+        <template #reference>
+          <el-button>left-end</el-button>
+        </template>
+      </el-popover>
+      <el-popover
+        title="Title"
+        content="Right Bottom prompts info"
+        placement="right-end"
+      >
+        <template #reference>
+          <el-button>right-end</el-button>
+        </template>
+      </el-popover>
+    </div>
+    <div class="row center">
+      <el-popover
+        title="Title"
+        content="Bottom Left prompts info"
+        placement="bottom-start"
+      >
+        <template #reference> <el-button>bottom-start</el-button></template>
+      </el-popover>
+      <el-popover
+        title="Title"
+        content="Bottom Center prompts info"
+        placement="bottom"
+      >
+        <template #reference> <el-button>bottom</el-button></template>
+      </el-popover>
+      <el-popover
+        title="Title"
+        content="Bottom Right prompts info"
+        placement="bottom-end"
+      >
+        <template #reference>
+          <el-button>bottom-end</el-button>
+        </template>
+      </el-popover>
+    </div>
+  </div>
 </template>
 
 <style>
 .popover-base-box {
-	width: 600px;
+  width: 600px;
 }
 
 .popover-base-box .row {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .popover-base-box .center {
-	justify-content: center;
+  justify-content: center;
 }
 </style>
 ```
@@ -6679,32 +6199,19 @@ Demonstrates the basic usage of the `el-space` component to provide unified spac
 
 ```vue
 <template>
-	<el-space wrap>
-		<el-card
-			v-for="i in 3"
-			:key="i"
-			class="box-card"
-			style="width: 250px"
-		>
-			<template #header>
-				<div class="card-header">
-					<span>Card name</span>
-					<el-button
-						class="button"
-						text
-						>Operation button</el-button
-					>
-				</div>
-			</template>
-			<div
-				v-for="o in 4"
-				:key="o"
-				class="text item"
-			>
-				{{ 'List item ' + o }}
-			</div>
-		</el-card>
-	</el-space>
+  <el-space wrap>
+    <el-card v-for="i in 3" :key="i" class="box-card" style="width: 250px">
+      <template #header>
+        <div class="card-header">
+          <span>Card name</span>
+          <el-button class="button" text>Operation button</el-button>
+        </div>
+      </template>
+      <div v-for="o in 4" :key="o" class="text item">
+        {{ 'List item ' + o }}
+      </div>
+    </el-card>
+  </el-space>
 </template>
 ```
 
@@ -6742,36 +6249,18 @@ Set the `type` attribute to `circle` for a circular progress bar. The `width` at
 
 ```vue
 <template>
-	<div class="demo-progress">
-		<el-progress
-			type="circle"
-			:percentage="0"
-		/>
-		<el-progress
-			type="circle"
-			:percentage="25"
-		/>
-		<el-progress
-			type="circle"
-			:percentage="100"
-			status="success"
-		/>
-		<el-progress
-			type="circle"
-			:percentage="70"
-			status="warning"
-		/>
-		<el-progress
-			type="circle"
-			:percentage="50"
-			status="exception"
-		/>
-	</div>
+  <div class="demo-progress">
+    <el-progress type="circle" :percentage="0" />
+    <el-progress type="circle" :percentage="25" />
+    <el-progress type="circle" :percentage="100" status="success" />
+    <el-progress type="circle" :percentage="70" status="warning" />
+    <el-progress type="circle" :percentage="50" status="exception" />
+  </div>
 </template>
 
 <style scoped>
 .demo-progress .el-progress--circle {
-	margin-right: 15px;
+  margin-right: 15px;
 }
 </style>
 ```
@@ -6786,103 +6275,91 @@ Use the `render-content` prop to customize how data items are rendered in the tr
 
 ```vue
 <template>
-	<p style="text-align: center; margin: 0 0 20px">
-		Customize data items using render-content
-	</p>
-	<div style="text-align: center">
-		<el-transfer
-			v-model="leftValue"
-			style="text-align: left; display: inline-block"
-			filterable
-			:left-default-checked="[2, 3]"
-			:right-default-checked="[1]"
-			:render-content="renderFunc"
-			:titles="['Source', 'Target']"
-			:button-texts="['To left', 'To right']"
-			:format="{
-				noChecked: '${total}',
-				hasChecked: '${checked}/${total}',
-			}"
-			:data="data"
-			@change="handleChange"
-		>
-			<template #left-footer>
-				<el-button
-					class="transfer-footer"
-					size="small"
-					>Operation</el-button
-				>
-			</template>
-			<template #right-footer>
-				<el-button
-					class="transfer-footer"
-					size="small"
-					>Operation</el-button
-				>
-			</template>
-		</el-transfer>
-		<p style="text-align: center; margin: 50px 0 20px">
-			Customize data items using scoped slot
-		</p>
-		<div style="text-align: center">
-			<el-transfer
-				v-model="rightValue"
-				style="text-align: left; display: inline-block"
-				filterable
-				:left-default-checked="[2, 3]"
-				:right-default-checked="[1]"
-				:titles="['Source', 'Target']"
-				:button-texts="['To left', 'To right']"
-				:format="{
-					noChecked: '${total}',
-					hasChecked: '${checked}/${total}',
-				}"
-				:data="data"
-				@change="handleChange"
-			>
-				<template #default="{option}">
-					<span>{{ option.key }} - {{ option.label }}</span>
-				</template>
-				<template #left-footer>
-					<el-button
-						class="transfer-footer"
-						size="small"
-						>Operation</el-button
-					>
-				</template>
-				<template #right-footer>
-					<el-button
-						class="transfer-footer"
-						size="small"
-						>Operation</el-button
-					>
-				</template>
-			</el-transfer>
-		</div>
-	</div>
+  <p style="text-align: center; margin: 0 0 20px">
+    Customize data items using render-content
+  </p>
+  <div style="text-align: center">
+    <el-transfer
+      v-model="leftValue"
+      style="text-align: left; display: inline-block"
+      filterable
+      :left-default-checked="[2, 3]"
+      :right-default-checked="[1]"
+      :render-content="renderFunc"
+      :titles="['Source', 'Target']"
+      :button-texts="['To left', 'To right']"
+      :format="{
+        noChecked: '${total}',
+        hasChecked: '${checked}/${total}',
+      }"
+      :data="data"
+      @change="handleChange"
+    >
+      <template #left-footer>
+        <el-button class="transfer-footer" size="small">Operation</el-button>
+      </template>
+      <template #right-footer>
+        <el-button class="transfer-footer" size="small">Operation</el-button>
+      </template>
+    </el-transfer>
+    <p style="text-align: center; margin: 50px 0 20px">
+      Customize data items using scoped slot
+    </p>
+    <div style="text-align: center">
+      <el-transfer
+        v-model="rightValue"
+        style="text-align: left; display: inline-block"
+        filterable
+        :left-default-checked="[2, 3]"
+        :right-default-checked="[1]"
+        :titles="['Source', 'Target']"
+        :button-texts="['To left', 'To right']"
+        :format="{
+          noChecked: '${total}',
+          hasChecked: '${checked}/${total}',
+        }"
+        :data="data"
+        @change="handleChange"
+      >
+        <template #default="{ option }">
+          <span>{{ option.key }} - {{ option.label }}</span>
+        </template>
+        <template #left-footer>
+          <el-button class="transfer-footer" size="small">Operation</el-button>
+        </template>
+        <template #right-footer>
+          <el-button class="transfer-footer" size="small">Operation</el-button>
+        </template>
+      </el-transfer>
+    </div>
+  </div>
 </template>
 
 <script lang="ts" setup>
-import {ref} from 'vue'
+import { ref } from 'vue'
 
-import type {TransferDirection, TransferKey, renderContent} from 'element-plus'
+import type {
+  TransferDirection,
+  TransferKey,
+  renderContent,
+} from 'element-plus'
 
 interface Option {
-	key: number
-	label: string
-	disabled: boolean
+  key: number
+  label: string
+  disabled: boolean
 }
 
 const generateData = (): Option[] => {
-	const data: Option[] = []
-	for (let i = 1; i <= 15; i++) {
-		data.push({
-			key: i,
-			label: `Option ${i}`,
-			disabled: i % 4 === 0,
-		})
-	}
-	return data
+  const data: Option[] = []
+  for (let i = 1; i <= 15; i++) {
+    data.push({
+      key: i,
+      label: `Option ${i}`,
+      disabled: i % 4 === 0,
+    })
+  }
+  return data
 }
 
 const data = ref(generateData())
@@ -6892,18 +6369,18 @@ const leftValue = ref([1])
 const renderFunc: renderContent = (h, option) => h('span', null, option.label)
 
 const handleChange = (
-	value: TransferKey[],
-	direction: TransferDirection,
-	movedKeys: TransferKey[],
+  value: TransferKey[],
+  direction: TransferDirection,
+  movedKeys: TransferKey[],
 ) => {
-	console.log(value, direction, movedKeys)
+  console.log(value, direction, movedKeys)
 }
 </script>
 
 <style>
 .transfer-footer {
-	margin-left: 15px;
-	padding: 6px 5px;
+  margin-left: 15px;
+  padding: 6px 5px;
 }
 </style>
 ```
@@ -6918,86 +6395,83 @@ Demonstrates how to dynamically add and remove tabs in the Element Plus Tabs com
 
 ```vue
 <template>
-	<div style="margin-bottom: 20px">
-		<el-button
-			size="small"
-			@click="addTab(editableTabsValue)"
-		>
-			add tab
-		</el-button>
-	</div>
-	<el-tabs
-		v-model="editableTabsValue"
-		type="card"
-		class="demo-tabs"
-		closable
-		@tab-remove="removeTab"
-	>
-		<el-tab-pane
-			v-for="item in editableTabs"
-			:key="item.name"
-			:label="item.title"
-			:name="item.name"
-		>
-			{{ item.content }}
-		</el-tab-pane>
-	</el-tabs>
+  <div style="margin-bottom: 20px">
+    <el-button size="small" @click="addTab(editableTabsValue)">
+      add tab
+    </el-button>
+  </div>
+  <el-tabs
+    v-model="editableTabsValue"
+    type="card"
+    class="demo-tabs"
+    closable
+    @tab-remove="removeTab"
+  >
+    <el-tab-pane
+      v-for="item in editableTabs"
+      :key="item.name"
+      :label="item.title"
+      :name="item.name"
+    >
+      {{ item.content }}
+    </el-tab-pane>
+  </el-tabs>
 </template>
 
 <script lang="ts" setup>
-import {ref} from 'vue'
+import { ref } from 'vue'
 
-import type {TabPaneName} from 'element-plus'
+import type { TabPaneName } from 'element-plus'
 
 let tabIndex = 2
 const editableTabsValue = ref('2')
 const editableTabs = ref([
-	{
-		title: 'Tab 1',
-		name: '1',
-		content: 'Tab 1 content',
-	},
-	{
-		title: 'Tab 2',
-		name: '2',
-		content: 'Tab 2 content',
-	},
+  {
+    title: 'Tab 1',
+    name: '1',
+    content: 'Tab 1 content',
+  },
+  {
+    title: 'Tab 2',
+    name: '2',
+    content: 'Tab 2 content',
+  },
 ])
 
 const addTab = (targetName: string) => {
-	const newTabName = `${++tabIndex}`
-	editableTabs.value.push({
-		title: 'New Tab',
-		name: newTabName,
-		content: 'New Tab content',
-	})
-	editableTabsValue.value = newTabName
+  const newTabName = `${++tabIndex}`
+  editableTabs.value.push({
+    title: 'New Tab',
+    name: newTabName,
+    content: 'New Tab content',
+  })
+  editableTabsValue.value = newTabName
 }
 const removeTab = (targetName: TabPaneName) => {
-	const tabs = editableTabs.value
-	let activeName = editableTabsValue.value
-	if (activeName === targetName) {
-		tabs.forEach((tab, index) => {
-			if (tab.name === targetName) {
-				const nextTab = tabs[index + 1] || tabs[index - 1]
-				if (nextTab) {
-					activeName = nextTab.name
-				}
-			}
-		})
-	}
+  const tabs = editableTabs.value
+  let activeName = editableTabsValue.value
+  if (activeName === targetName) {
+    tabs.forEach((tab, index) => {
+      if (tab.name === targetName) {
+        const nextTab = tabs[index + 1] || tabs[index - 1]
+        if (nextTab) {
+          activeName = nextTab.name
+        }
+      }
+    })
+  }
 
-	editableTabsValue.value = activeName
-	editableTabs.value = tabs.filter(tab => tab.name !== targetName)
+  editableTabsValue.value = activeName
+  editableTabs.value = tabs.filter((tab) => tab.name !== targetName)
 }
 </script>
 
 <style>
 .demo-tabs > .el-tabs__content {
-	padding: 32px;
-	color: #6b778c;
-	font-size: 32px;
-	font-weight: 600;
+  padding: 32px;
+  color: #6b778c;
+  font-size: 32px;
+  font-weight: 600;
 }
 </style>
 ```
@@ -7012,86 +6486,86 @@ This example demonstrates how to use the virtual-triggering property to display 
 
 ```vue
 <template>
-	<el-card
-		class="content"
-		body-class="card-body"
-		@click="handleClick"
-		@contextmenu="handleContextmenu"
-	>
-		Right click
-	</el-card>
-	<el-dropdown
-		ref="dropdownRef"
-		:virtual-ref="triggerRef"
-		:show-arrow="false"
-		:popper-options="{
-			modifiers: [{name: 'offset', options: {offset: [0, 0]}}],
-		}"
-		virtual-triggering
-		trigger="contextmenu"
-		placement="bottom-start"
-	>
-		<template #dropdown>
-			<el-dropdown-menu>
-				<el-dropdown-item :icon="Plus">Action 1</el-dropdown-item>
-				<el-dropdown-item :icon="CirclePlusFilled"> Action 2 </el-dropdown-item>
-				<el-dropdown-item :icon="CirclePlus">Action 3</el-dropdown-item>
-				<el-dropdown-item :icon="Check">Action 4</el-dropdown-item>
-				<el-dropdown-item :icon="CircleCheck">Action 5</el-dropdown-item>
-			</el-dropdown-menu>
-		</template>
-	</el-dropdown>
+  <el-card
+    class="content"
+    body-class="card-body"
+    @click="handleClick"
+    @contextmenu="handleContextmenu"
+  >
+    Right click
+  </el-card>
+  <el-dropdown
+    ref="dropdownRef"
+    :virtual-ref="triggerRef"
+    :show-arrow="false"
+    :popper-options="{
+      modifiers: [{ name: 'offset', options: { offset: [0, 0] } }],
+    }"
+    virtual-triggering
+    trigger="contextmenu"
+    placement="bottom-start"
+  >
+    <template #dropdown>
+      <el-dropdown-menu>
+        <el-dropdown-item :icon="Plus">Action 1</el-dropdown-item>
+        <el-dropdown-item :icon="CirclePlusFilled"> Action 2 </el-dropdown-item>
+        <el-dropdown-item :icon="CirclePlus">Action 3</el-dropdown-item>
+        <el-dropdown-item :icon="Check">Action 4</el-dropdown-item>
+        <el-dropdown-item :icon="CircleCheck">Action 5</el-dropdown-item>
+      </el-dropdown-menu>
+    </template>
+  </el-dropdown>
 </template>
 
 <script lang="ts" setup>
 import {
-	Check,
-	CircleCheck,
-	CirclePlus,
-	CirclePlusFilled,
-	Plus,
+  Check,
+  CircleCheck,
+  CirclePlus,
+  CirclePlusFilled,
+  Plus,
 } from '@element-plus/icons-vue'
-import {ref} from 'vue'
+import { ref } from 'vue'
 
-import type {DropdownInstance} from 'element-plus'
+import type { DropdownInstance } from 'element-plus'
 
 const dropdownRef = ref<DropdownInstance>()
 const position = ref({
-	top: 0,
-	left: 0,
-	bottom: 0,
-	right: 0,
+  top: 0,
+  left: 0,
+  bottom: 0,
+  right: 0,
 } as DOMRect)
 
 const triggerRef = ref({
-	getBoundingClientRect: () => position.value,
+  getBoundingClientRect: () => position.value,
 })
 
 const handleClick = () => {
-	dropdownRef.value?.handleClose()
+  dropdownRef.value?.handleClose()
 }
 
 const handleContextmenu = (event: MouseEvent) => {
-	const {clientX, clientY} = event
-	position.value = DOMRect.fromRect({
-		x: clientX,
-		y: clientY,
-	})
-	event.preventDefault()
-	dropdownRef.value?.handleOpen()
+  const { clientX, clientY } = event
+  position.value = DOMRect.fromRect({
+    x: clientX,
+    y: clientY,
+  })
+  event.preventDefault()
+  dropdownRef.value?.handleOpen()
 }
 </script>
 
 <style scoped>
 .content {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
 }
 
 .content :deep(.card-body) {
-	flex-grow: 0;
+  flex-grow: 0;
 }
 </style>
 ```
@@ -7106,29 +6580,26 @@ Include Element Plus directly in HTML using unpkg or jsDelivr.
 
 ```html
 <head>
-	<!-- Import style -->
-	<link
-		rel="stylesheet"
-		href="//unpkg.com/element-plus/dist/index.css"
-	/>
-	<!-- Import Vue 3 -->
-	<script src="//unpkg.com/vue@3"></script>
-	<!-- Import component library -->
-	<script src="//unpkg.com/element-plus"></script>
+  <!-- Import style -->
+  <link rel="stylesheet" href="//unpkg.com/element-plus/dist/index.css" />
+  <!-- Import Vue 3 -->
+  <script src="//unpkg.com/vue@3"></script>
+  <!-- Import component library -->
+  <script src="//unpkg.com/element-plus"></script>
 </head>
 ```
 
 ```html
 <head>
-	<!-- Import style -->
-	<link
-		rel="stylesheet"
-		href="//cdn.jsdelivr.net/npm/element-plus/dist/index.css"
-	/>
-	<!-- Import Vue 3 -->
-	<script src="//cdn.jsdelivr.net/npm/vue@3"></script>
-	<!-- Import component library -->
-	<script src="//cdn.jsdelivr.net/npm/element-plus"></script>
+  <!-- Import style -->
+  <link
+    rel="stylesheet"
+    href="//cdn.jsdelivr.net/npm/element-plus/dist/index.css"
+  />
+  <!-- Import Vue 3 -->
+  <script src="//cdn.jsdelivr.net/npm/vue@3"></script>
+  <!-- Import component library -->
+  <script src="//cdn.jsdelivr.net/npm/element-plus"></script>
 </head>
 ```
 
@@ -7275,68 +6746,68 @@ Illustrates how to control the placement of an Element Plus dropdown menu using 
 
 ```vue
 <template>
-	<div class="flex flex-wrap items-center gap-4">
-		<el-dropdown placement="top-start">
-			<el-button> topStart </el-button>
-			<template #dropdown>
-				<el-dropdown-menu>
-					<el-dropdown-item>The Action 1st</el-dropdown-item>
-					<el-dropdown-item>The Action 2nd</el-dropdown-item>
-					<el-dropdown-item>The Action 3rd</el-dropdown-item>
-				</el-dropdown-menu>
-			</template>
-		</el-dropdown>
-		<el-dropdown placement="top">
-			<el-button> top </el-button>
-			<template #dropdown>
-				<el-dropdown-menu>
-					<el-dropdown-item>The Action 1st</el-dropdown-item>
-					<el-dropdown-item>The Action 2nd</el-dropdown-item>
-					<el-dropdown-item>The Action 3rd</el-dropdown-item>
-				</el-dropdown-menu>
-			</template>
-		</el-dropdown>
-		<el-dropdown placement="top-end">
-			<el-button> topEnd </el-button>
-			<template #dropdown>
-				<el-dropdown-menu>
-					<el-dropdown-item>The Action 1st</el-dropdown-item>
-					<el-dropdown-item>The Action 2nd</el-dropdown-item>
-					<el-dropdown-item>The Action 3rd</el-dropdown-item>
-				</el-dropdown-menu>
-			</template>
-		</el-dropdown>
-		<el-dropdown placement="bottom-start">
-			<el-button> bottomStart </el-button>
-			<template #dropdown>
-				<el-dropdown-menu>
-					<el-dropdown-item>The Action 1st</el-dropdown-item>
-					<el-dropdown-item>The Action 2nd</el-dropdown-item>
-					<el-dropdown-item>The Action 3rd</el-dropdown-item>
-				</el-dropdown-menu>
-			</template>
-		</el-dropdown>
-		<el-dropdown placement="bottom">
-			<el-button> bottom </el-button>
-			<template #dropdown>
-				<el-dropdown-menu>
-					<el-dropdown-item>The Action 1st</el-dropdown-item>
-					<el-dropdown-item>The Action 2nd</el-dropdown-item>
-					<el-dropdown-item>The Action 3rd</el-dropdown-item>
-				</el-dropdown-menu>
-			</template>
-		</el-dropdown>
-		<el-dropdown placement="bottom-end">
-			<el-button> bottomEnd </el-button>
-			<template #dropdown>
-				<el-dropdown-menu>
-					<el-dropdown-item>The Action 1st</el-dropdown-item>
-					<el-dropdown-item>The Action 2nd</el-dropdown-item>
-					<el-dropdown-item>The Action 3rd</el-dropdown-item>
-				</el-dropdown-menu>
-			</template>
-		</el-dropdown>
-	</div>
+  <div class="flex flex-wrap items-center gap-4">
+    <el-dropdown placement="top-start">
+      <el-button> topStart </el-button>
+      <template #dropdown>
+        <el-dropdown-menu>
+          <el-dropdown-item>The Action 1st</el-dropdown-item>
+          <el-dropdown-item>The Action 2nd</el-dropdown-item>
+          <el-dropdown-item>The Action 3rd</el-dropdown-item>
+        </el-dropdown-menu>
+      </template>
+    </el-dropdown>
+    <el-dropdown placement="top">
+      <el-button> top </el-button>
+      <template #dropdown>
+        <el-dropdown-menu>
+          <el-dropdown-item>The Action 1st</el-dropdown-item>
+          <el-dropdown-item>The Action 2nd</el-dropdown-item>
+          <el-dropdown-item>The Action 3rd</el-dropdown-item>
+        </el-dropdown-menu>
+      </template>
+    </el-dropdown>
+    <el-dropdown placement="top-end">
+      <el-button> topEnd </el-button>
+      <template #dropdown>
+        <el-dropdown-menu>
+          <el-dropdown-item>The Action 1st</el-dropdown-item>
+          <el-dropdown-item>The Action 2nd</el-dropdown-item>
+          <el-dropdown-item>The Action 3rd</el-dropdown-item>
+        </el-dropdown-menu>
+      </template>
+    </el-dropdown>
+    <el-dropdown placement="bottom-start">
+      <el-button> bottomStart </el-button>
+      <template #dropdown>
+        <el-dropdown-menu>
+          <el-dropdown-item>The Action 1st</el-dropdown-item>
+          <el-dropdown-item>The Action 2nd</el-dropdown-item>
+          <el-dropdown-item>The Action 3rd</el-dropdown-item>
+        </el-dropdown-menu>
+      </template>
+    </el-dropdown>
+    <el-dropdown placement="bottom">
+      <el-button> bottom </el-button>
+      <template #dropdown>
+        <el-dropdown-menu>
+          <el-dropdown-item>The Action 1st</el-dropdown-item>
+          <el-dropdown-item>The Action 2nd</el-dropdown-item>
+          <el-dropdown-item>The Action 3rd</el-dropdown-item>
+        </el-dropdown-menu>
+      </template>
+    </el-dropdown>
+    <el-dropdown placement="bottom-end">
+      <el-button> bottomEnd </el-button>
+      <template #dropdown>
+        <el-dropdown-menu>
+          <el-dropdown-item>The Action 1st</el-dropdown-item>
+          <el-dropdown-item>The Action 2nd</el-dropdown-item>
+          <el-dropdown-item>The Action 3rd</el-dropdown-item>
+        </el-dropdown-menu>
+      </template>
+    </el-dropdown>
+  </div>
 </template>
 ```
 
@@ -7377,156 +6848,135 @@ This example demonstrates two table configurations: one with static nested tree 
 
 ```vue
 <template>
-	<div>
-		<el-table
-			:data="tableData"
-			style="width: 100%; margin-bottom: 20px"
-			row-key="id"
-			border
-			default-expand-all
-		>
-			<el-table-column
-				prop="date"
-				label="Date"
-				sortable
-			/>
-			<el-table-column
-				prop="name"
-				label="Name"
-				sortable
-			/>
-			<el-table-column
-				prop="address"
-				label="Address"
-				sortable
-			/>
-		</el-table>
+  <div>
+    <el-table
+      :data="tableData"
+      style="width: 100%; margin-bottom: 20px"
+      row-key="id"
+      border
+      default-expand-all
+    >
+      <el-table-column prop="date" label="Date" sortable />
+      <el-table-column prop="name" label="Name" sortable />
+      <el-table-column prop="address" label="Address" sortable />
+    </el-table>
 
-		<el-table
-			:data="tableData1"
-			style="width: 100%"
-			row-key="id"
-			border
-			lazy
-			:load="load"
-			:tree-props="{children: 'children', hasChildren: 'hasChildren'}"
-		>
-			<el-table-column
-				prop="date"
-				label="Date"
-			/>
-			<el-table-column
-				prop="name"
-				label="Name"
-			/>
-			<el-table-column
-				prop="address"
-				label="Address"
-			/>
-		</el-table>
-	</div>
+    <el-table
+      :data="tableData1"
+      style="width: 100%"
+      row-key="id"
+      border
+      lazy
+      :load="load"
+      :tree-props="{ children: 'children', hasChildren: 'hasChildren' }"
+    >
+      <el-table-column prop="date" label="Date" />
+      <el-table-column prop="name" label="Name" />
+      <el-table-column prop="address" label="Address" />
+    </el-table>
+  </div>
 </template>
 
 <script lang="ts" setup>
 interface User {
-	id: number
-	date: string
-	name: string
-	address: string
-	hasChildren?: boolean
-	children?: User[]
+  id: number
+  date: string
+  name: string
+  address: string
+  hasChildren?: boolean
+  children?: User[]
 }
 
 const load = (
-	row: User,
-	treeNode: unknown,
-	resolve: (data: User[]) => void,
+  row: User,
+  treeNode: unknown,
+  resolve: (data: User[]) => void,
 ) => {
-	setTimeout(() => {
-		resolve([
-			{
-				id: 31,
-				date: '2016-05-01',
-				name: 'wangxiaohu',
-				address: 'No. 189, Grove St, Los Angeles',
-			},
-			{
-				id: 32,
-				date: '2016-05-01',
-				name: 'wangxiaohu',
-				address: 'No. 189, Grove St, Los Angeles',
-			},
-		])
-	}, 1000)
+  setTimeout(() => {
+    resolve([
+      {
+        id: 31,
+        date: '2016-05-01',
+        name: 'wangxiaohu',
+        address: 'No. 189, Grove St, Los Angeles',
+      },
+      {
+        id: 32,
+        date: '2016-05-01',
+        name: 'wangxiaohu',
+        address: 'No. 189, Grove St, Los Angeles',
+      },
+    ])
+  }, 1000)
 }
 
 const tableData: User[] = [
-	{
-		id: 1,
-		date: '2016-05-02',
-		name: 'wangxiaohu',
-		address: 'No. 189, Grove St, Los Angeles',
-	},
-	{
-		id: 2,
-		date: '2016-05-04',
-		name: 'wangxiaohu',
-		address: 'No. 189, Grove St, Los Angeles',
-	},
-	{
-		id: 3,
-		date: '2016-05-01',
-		name: 'wangxiaohu',
-		address: 'No. 189, Grove St, Los Angeles',
-		children: [
-			{
-				id: 31,
-				date: '2016-05-01',
-				name: 'wangxiaohu',
-				address: 'No. 189, Grove St, Los Angeles',
-			},
-			{
-				id: 32,
-				date: '2016-05-01',
-				name: 'wangxiaohu',
-				address: 'No. 189, Grove St, Los Angeles',
-			},
-		],
-	},
-	{
-		id: 4,
-		date: '2016-05-03',
-		name: 'wangxiaohu',
-		address: 'No. 189, Grove St, Los Angeles',
-	},
+  {
+    id: 1,
+    date: '2016-05-02',
+    name: 'wangxiaohu',
+    address: 'No. 189, Grove St, Los Angeles',
+  },
+  {
+    id: 2,
+    date: '2016-05-04',
+    name: 'wangxiaohu',
+    address: 'No. 189, Grove St, Los Angeles',
+  },
+  {
+    id: 3,
+    date: '2016-05-01',
+    name: 'wangxiaohu',
+    address: 'No. 189, Grove St, Los Angeles',
+    children: [
+      {
+        id: 31,
+        date: '2016-05-01',
+        name: 'wangxiaohu',
+        address: 'No. 189, Grove St, Los Angeles',
+      },
+      {
+        id: 32,
+        date: '2016-05-01',
+        name: 'wangxiaohu',
+        address: 'No. 189, Grove St, Los Angeles',
+      },
+    ],
+  },
+  {
+    id: 4,
+    date: '2016-05-03',
+    name: 'wangxiaohu',
+    address: 'No. 189, Grove St, Los Angeles',
+  },
 ]
 
 const tableData1: User[] = [
-	{
-		id: 1,
-		date: '2016-05-02',
-		name: 'wangxiaohu',
-		address: 'No. 189, Grove St, Los Angeles',
-	},
-	{
-		id: 2,
-		date: '2016-05-04',
-		name: 'wangxiaohu',
-		address: 'No. 189, Grove St, Los Angeles',
-	},
-	{
-		id: 3,
-		date: '2016-05-01',
-		name: 'wangxiaohu',
-		hasChildren: true,
-		address: 'No. 189, Grove St, Los Angeles',
-	},
-	{
-		id: 4,
-		date: '2016-05-03',
-		name: 'wangxiaohu',
-		address: 'No. 189, Grove St, Los Angeles',
-	},
+  {
+    id: 1,
+    date: '2016-05-02',
+    name: 'wangxiaohu',
+    address: 'No. 189, Grove St, Los Angeles',
+  },
+  {
+    id: 2,
+    date: '2016-05-04',
+    name: 'wangxiaohu',
+    address: 'No. 189, Grove St, Los Angeles',
+  },
+  {
+    id: 3,
+    date: '2016-05-01',
+    name: 'wangxiaohu',
+    hasChildren: true,
+    address: 'No. 189, Grove St, Los Angeles',
+  },
+  {
+    id: 4,
+    date: '2016-05-03',
+    name: 'wangxiaohu',
+    address: 'No. 189, Grove St, Los Angeles',
+  },
 ]
 </script>
 ```
@@ -7541,101 +6991,69 @@ Use the #loading slot to replace the default loading indicator with a custom SVG
 
 ```vue
 <template>
-	<div class="flex flex-wrap">
-		<div class="m-4">
-			<p>loading icon1</p>
-			<el-select-v2
-				v-model="value"
-				multiple
-				filterable
-				remote
-				reserve-keyword
-				placeholder="Please enter a keyword"
-				:remote-method="remoteMethod"
-				:loading="loading"
-				:options="options"
-				style="width: 240px"
-			>
-				<template #loading>
-					<svg
-						class="circular"
-						viewBox="0 0 50 50"
-					>
-						<circle
-							class="path"
-							cx="25"
-							cy="25"
-							r="20"
-							fill="none"
-						/>
-					</svg>
-				</template>
-			</el-select-v2>
-		</div>
-		<div class="m-4">
-			<p>loading icon2</p>
-			<el-select-v2
-				v-model="value"
-				multiple
-				filterable
-				remote
-				reserve-keyword
-				placeholder="Please enter a keyword"
-				:remote-method="remoteMethod"
-				:loading="loading"
-				:options="options"
-				style="width: 240px"
-			>
-				<template #loading>
-					<el-icon class="is-loading">
-						<svg
-							class="circular"
-							viewBox="0 0 20 20"
-						>
-							<g
-								class="path2 loading-path"
-								stroke-width="0"
-								style="animation: none; stroke: none"
-							>
-								<circle
-									r="3.375"
-									class="dot1"
-									rx="0"
-									ry="0"
-								/>
-								<circle
-									r="3.375"
-									class="dot2"
-									rx="0"
-									ry="0"
-								/>
-								<circle
-									r="3.375"
-									class="dot4"
-									rx="0"
-									ry="0"
-								/>
-								<circle
-									r="3.375"
-									class="dot3"
-									rx="0"
-									ry="0"
-								/>
-							</g>
-						</svg>
-					</el-icon>
-				</template>
-			</el-select-v2>
-		</div>
-	</div>
+  <div class="flex flex-wrap">
+    <div class="m-4">
+      <p>loading icon1</p>
+      <el-select-v2
+        v-model="value"
+        multiple
+        filterable
+        remote
+        reserve-keyword
+        placeholder="Please enter a keyword"
+        :remote-method="remoteMethod"
+        :loading="loading"
+        :options="options"
+        style="width: 240px"
+      >
+        <template #loading>
+          <svg class="circular" viewBox="0 0 50 50">
+            <circle class="path" cx="25" cy="25" r="20" fill="none" />
+          </svg>
+        </template>
+      </el-select-v2>
+    </div>
+    <div class="m-4">
+      <p>loading icon2</p>
+      <el-select-v2
+        v-model="value"
+        multiple
+        filterable
+        remote
+        reserve-keyword
+        placeholder="Please enter a keyword"
+        :remote-method="remoteMethod"
+        :loading="loading"
+        :options="options"
+        style="width: 240px"
+      >
+        <template #loading>
+          <el-icon class="is-loading">
+            <svg class="circular" viewBox="0 0 20 20">
+              <g
+                class="path2 loading-path"
+                stroke-width="0"
+                style="animation: none; stroke: none"
+              >
+                <circle r="3.375" class="dot1" rx="0" ry="0" />
+                <circle r="3.375" class="dot2" rx="0" ry="0" />
+                <circle r="3.375" class="dot4" rx="0" ry="0" />
+                <circle r="3.375" class="dot3" rx="0" ry="0" />
+              </g>
+            </svg>
+          </el-icon>
+        </template>
+      </el-select-v2>
+    </div>
+  </div>
 </template>
 
 <script lang="ts" setup>
-import {onMounted, ref} from 'vue'
+import { onMounted, ref } from 'vue'
 
 interface ListItem {
-	value: string
-	label: string
+  value: string
+  label: string
 }
 
 const list = ref<ListItem[]>([])
@@ -7644,152 +7062,152 @@ const value = ref<string[]>([])
 const loading = ref(false)
 
 onMounted(() => {
-	list.value = states.map(item => {
-		return {value: `value:${item}`, label: `label:${item}`}
-	})
+  list.value = states.map((item) => {
+    return { value: `value:${item}`, label: `label:${item}` }
+  })
 })
 
 const remoteMethod = (query: string) => {
-	if (query) {
-		loading.value = true
-		setTimeout(() => {
-			loading.value = false
-			options.value = list.value.filter(item => {
-				return item.label.toLowerCase().includes(query.toLowerCase())
-			})
-		}, 3000)
-	} else {
-		options.value = []
-	}
+  if (query) {
+    loading.value = true
+    setTimeout(() => {
+      loading.value = false
+      options.value = list.value.filter((item) => {
+        return item.label.toLowerCase().includes(query.toLowerCase())
+      })
+    }, 3000)
+  } else {
+    options.value = []
+  }
 }
 
 const states = [
-	'Alabama',
-	'Alaska',
-	'Arizona',
-	'Arkansas',
-	'California',
-	'Colorado',
-	'Connecticut',
-	'Delaware',
-	'Florida',
-	'Georgia',
-	'Hawaii',
-	'Idaho',
-	'Illinois',
-	'Indiana',
-	'Iowa',
-	'Kansas',
-	'Kentucky',
-	'Louisiana',
-	'Maine',
-	'Maryland',
-	'Massachusetts',
-	'Michigan',
-	'Minnesota',
-	'Mississippi',
-	'Missouri',
-	'Montana',
-	'Nebraska',
-	'Nevada',
-	'New Hampshire',
-	'New Jersey',
-	'New Mexico',
-	'New York',
-	'North Carolina',
-	'North Dakota',
-	'Ohio',
-	'Oklahoma',
-	'Oregon',
-	'Pennsylvania',
-	'Rhode Island',
-	'South Carolina',
-	'South Dakota',
-	'Tennessee',
-	'Texas',
-	'Utah',
-	'Vermont',
-	'Virginia',
-	'Washington',
-	'West Virginia',
-	'Wisconsin',
-	'Wyoming',
+  'Alabama',
+  'Alaska',
+  'Arizona',
+  'Arkansas',
+  'California',
+  'Colorado',
+  'Connecticut',
+  'Delaware',
+  'Florida',
+  'Georgia',
+  'Hawaii',
+  'Idaho',
+  'Illinois',
+  'Indiana',
+  'Iowa',
+  'Kansas',
+  'Kentucky',
+  'Louisiana',
+  'Maine',
+  'Maryland',
+  'Massachusetts',
+  'Michigan',
+  'Minnesota',
+  'Mississippi',
+  'Missouri',
+  'Montana',
+  'Nebraska',
+  'Nevada',
+  'New Hampshire',
+  'New Jersey',
+  'New Mexico',
+  'New York',
+  'North Carolina',
+  'North Dakota',
+  'Ohio',
+  'Oklahoma',
+  'Oregon',
+  'Pennsylvania',
+  'Rhode Island',
+  'South Carolina',
+  'South Dakota',
+  'Tennessee',
+  'Texas',
+  'Utah',
+  'Vermont',
+  'Virginia',
+  'Washington',
+  'West Virginia',
+  'Wisconsin',
+  'Wyoming',
 ]
 </script>
 
 <style>
 .el-select-dropdown__loading {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 100px;
-	font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  font-size: 20px;
 }
 
 .circular {
-	display: inline;
-	height: 30px;
-	width: 30px;
-	animation: loading-rotate 2s linear infinite;
+  display: inline;
+  height: 30px;
+  width: 30px;
+  animation: loading-rotate 2s linear infinite;
 }
 .path {
-	animation: loading-dash 1.5s ease-in-out infinite;
-	stroke-dasharray: 90, 150;
-	stroke-dashoffset: 0;
-	stroke-width: 2;
-	stroke: var(--el-color-primary);
-	stroke-linecap: round;
+  animation: loading-dash 1.5s ease-in-out infinite;
+  stroke-dasharray: 90, 150;
+  stroke-dashoffset: 0;
+  stroke-width: 2;
+  stroke: var(--el-color-primary);
+  stroke-linecap: round;
 }
 .loading-path .dot1 {
-	transform: translate(3.75px, 3.75px);
-	fill: var(--el-color-primary);
-	animation: custom-spin-move 1s infinite linear alternate;
-	opacity: 0.3;
+  transform: translate(3.75px, 3.75px);
+  fill: var(--el-color-primary);
+  animation: custom-spin-move 1s infinite linear alternate;
+  opacity: 0.3;
 }
 .loading-path .dot2 {
-	transform: translate(calc(100% - 3.75px), 3.75px);
-	fill: var(--el-color-primary);
-	animation: custom-spin-move 1s infinite linear alternate;
-	opacity: 0.3;
-	animation-delay: 0.4s;
+  transform: translate(calc(100% - 3.75px), 3.75px);
+  fill: var(--el-color-primary);
+  animation: custom-spin-move 1s infinite linear alternate;
+  opacity: 0.3;
+  animation-delay: 0.4s;
 }
 .loading-path .dot3 {
-	transform: translate(3.75px, calc(100% - 3.75px));
-	fill: var(--el-color-primary);
-	animation: custom-spin-move 1s infinite linear alternate;
-	opacity: 0.3;
-	animation-delay: 1.2s;
+  transform: translate(3.75px, calc(100% - 3.75px));
+  fill: var(--el-color-primary);
+  animation: custom-spin-move 1s infinite linear alternate;
+  opacity: 0.3;
+  animation-delay: 1.2s;
 }
 .loading-path .dot4 {
-	transform: translate(calc(100% - 3.75px), calc(100% - 3.75px));
-	fill: var(--el-color-primary);
-	animation: custom-spin-move 1s infinite linear alternate;
-	opacity: 0.3;
-	animation-delay: 0.8s;
+  transform: translate(calc(100% - 3.75px), calc(100% - 3.75px));
+  fill: var(--el-color-primary);
+  animation: custom-spin-move 1s infinite linear alternate;
+  opacity: 0.3;
+  animation-delay: 0.8s;
 }
 @keyframes loading-rotate {
-	to {
-		transform: rotate(360deg);
-	}
+  to {
+    transform: rotate(360deg);
+  }
 }
 @keyframes loading-dash {
-	0% {
-		stroke-dasharray: 1, 200;
-		stroke-dashoffset: 0;
-	}
-	50% {
-		stroke-dasharray: 90, 150;
-		stroke-dashoffset: -40px;
-	}
-	100% {
-		stroke-dasharray: 90, 150;
-		stroke-dashoffset: -120px;
-	}
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -40px;
+  }
+  100% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -120px;
+  }
 }
 @keyframes custom-spin-move {
-	to {
-		opacity: 1;
-	}
+  to {
+    opacity: 1;
+  }
 }
 </style>
 ```
@@ -7805,9 +7223,9 @@ When using Element Plus via CDN, load the locale file separately and then config
 ```html
 <script src="//unpkg.com/element-plus/dist/locale/zh-cn"></script>
 <script>
-	app.use(ElementPlus, {
-		locale: ElementPlusLocaleZhCn,
-	})
+  app.use(ElementPlus, {
+    locale: ElementPlusLocaleZhCn,
+  })
 </script>
 ```
 
@@ -7821,11 +7239,11 @@ Configure global settings like size and zIndex when using the full import method
 
 ```typescript
 import ElementPlus from 'element-plus'
-import {createApp} from 'vue'
+import { createApp } from 'vue'
 import App from './App.vue'
 
 const app = createApp(App)
-app.use(ElementPlus, {size: 'small', zIndex: 3000})
+app.use(ElementPlus, { size: 'small', zIndex: 3000 })
 ```
 
 ---
@@ -7838,110 +7256,104 @@ This example demonstrates a vertical navigation menu with nested sub-menus and i
 
 ```vue
 <template>
-	<el-row class="tac">
-		<el-col :span="12">
-			<h5 class="mb-2">Default colors</h5>
-			<el-menu
-				default-active="2"
-				class="el-menu-vertical-demo"
-				@open="handleOpen"
-				@close="handleClose"
-			>
-				<el-sub-menu index="1">
-					<template #title>
-						<el-icon><location /></el-icon>
-						<span>Navigator One</span>
-					</template>
-					<el-menu-item-group title="Group One">
-						<el-menu-item index="1-1">item one</el-menu-item>
-						<el-menu-item index="1-2">item two</el-menu-item>
-					</el-menu-item-group>
-					<el-menu-item-group title="Group Two">
-						<el-menu-item index="1-3">item three</el-menu-item>
-					</el-menu-item-group>
-					<el-sub-menu index="1-4">
-						<template #title>item four</template>
-						<el-menu-item index="1-4-1">item one</el-menu-item>
-					</el-sub-menu>
-				</el-sub-menu>
-				<el-menu-item index="2">
-					<el-icon><icon-menu /></el-icon>
-					<span>Navigator Two</span>
-				</el-menu-item>
-				<el-menu-item
-					index="3"
-					disabled
-				>
-					<el-icon><document /></el-icon>
-					<span>Navigator Three</span>
-				</el-menu-item>
-				<el-menu-item index="4">
-					<el-icon><setting /></el-icon>
-					<span>Navigator Four</span>
-				</el-menu-item>
-			</el-menu>
-		</el-col>
-		<el-col :span="12">
-			<h5 class="mb-2">Custom colors</h5>
-			<el-menu
-				active-text-color="#ffd04b"
-				background-color="#545c64"
-				class="el-menu-vertical-demo"
-				default-active="2"
-				text-color="#fff"
-				@open="handleOpen"
-				@close="handleClose"
-			>
-				<el-sub-menu index="1">
-					<template #title>
-						<el-icon><location /></el-icon>
-						<span>Navigator One</span>
-					</template>
-					<el-menu-item-group title="Group One">
-						<el-menu-item index="1-1">item one</el-menu-item>
-						<el-menu-item index="1-2">item two</el-menu-item>
-					</el-menu-item-group>
-					<el-menu-item-group title="Group Two">
-						<el-menu-item index="1-3">item three</el-menu-item>
-					</el-menu-item-group>
-					<el-sub-menu index="1-4">
-						<template #title>item four</template>
-						<el-menu-item index="1-4-1">item one</el-menu-item>
-					</el-sub-menu>
-				</el-sub-menu>
-				<el-menu-item index="2">
-					<el-icon><icon-menu /></el-icon>
-					<span>Navigator Two</span>
-				</el-menu-item>
-				<el-menu-item
-					index="3"
-					disabled
-				>
-					<el-icon><document /></el-icon>
-					<span>Navigator Three</span>
-				</el-menu-item>
-				<el-menu-item index="4">
-					<el-icon><setting /></el-icon>
-					<span>Navigator Four</span>
-				</el-menu-item>
-			</el-menu>
-		</el-col>
-	</el-row>
+  <el-row class="tac">
+    <el-col :span="12">
+      <h5 class="mb-2">Default colors</h5>
+      <el-menu
+        default-active="2"
+        class="el-menu-vertical-demo"
+        @open="handleOpen"
+        @close="handleClose"
+      >
+        <el-sub-menu index="1">
+          <template #title>
+            <el-icon><location /></el-icon>
+            <span>Navigator One</span>
+          </template>
+          <el-menu-item-group title="Group One">
+            <el-menu-item index="1-1">item one</el-menu-item>
+            <el-menu-item index="1-2">item two</el-menu-item>
+          </el-menu-item-group>
+          <el-menu-item-group title="Group Two">
+            <el-menu-item index="1-3">item three</el-menu-item>
+          </el-menu-item-group>
+          <el-sub-menu index="1-4">
+            <template #title>item four</template>
+            <el-menu-item index="1-4-1">item one</el-menu-item>
+          </el-sub-menu>
+        </el-sub-menu>
+        <el-menu-item index="2">
+          <el-icon><icon-menu /></el-icon>
+          <span>Navigator Two</span>
+        </el-menu-item>
+        <el-menu-item index="3" disabled>
+          <el-icon><document /></el-icon>
+          <span>Navigator Three</span>
+        </el-menu-item>
+        <el-menu-item index="4">
+          <el-icon><setting /></el-icon>
+          <span>Navigator Four</span>
+        </el-menu-item>
+      </el-menu>
+    </el-col>
+    <el-col :span="12">
+      <h5 class="mb-2">Custom colors</h5>
+      <el-menu
+        active-text-color="#ffd04b"
+        background-color="#545c64"
+        class="el-menu-vertical-demo"
+        default-active="2"
+        text-color="#fff"
+        @open="handleOpen"
+        @close="handleClose"
+      >
+        <el-sub-menu index="1">
+          <template #title>
+            <el-icon><location /></el-icon>
+            <span>Navigator One</span>
+          </template>
+          <el-menu-item-group title="Group One">
+            <el-menu-item index="1-1">item one</el-menu-item>
+            <el-menu-item index="1-2">item two</el-menu-item>
+          </el-menu-item-group>
+          <el-menu-item-group title="Group Two">
+            <el-menu-item index="1-3">item three</el-menu-item>
+          </el-menu-item-group>
+          <el-sub-menu index="1-4">
+            <template #title>item four</template>
+            <el-menu-item index="1-4-1">item one</el-menu-item>
+          </el-sub-menu>
+        </el-sub-menu>
+        <el-menu-item index="2">
+          <el-icon><icon-menu /></el-icon>
+          <span>Navigator Two</span>
+        </el-menu-item>
+        <el-menu-item index="3" disabled>
+          <el-icon><document /></el-icon>
+          <span>Navigator Three</span>
+        </el-menu-item>
+        <el-menu-item index="4">
+          <el-icon><setting /></el-icon>
+          <span>Navigator Four</span>
+        </el-menu-item>
+      </el-menu>
+    </el-col>
+  </el-row>
 </template>
 
 <script lang="ts" setup>
 import {
-	Document,
-	Menu as IconMenu,
-	Location,
-	Setting,
+  Document,
+  Menu as IconMenu,
+  Location,
+  Setting,
 } from '@element-plus/icons-vue'
 
 const handleOpen = (key: string, keyPath: string[]) => {
-	console.log(key, keyPath)
+  console.log(key, keyPath)
 }
 const handleClose = (key: string, keyPath: string[]) => {
-	console.log(key, keyPath)
+  console.log(key, keyPath)
 }
 </script>
 ```
@@ -7956,53 +7368,53 @@ Showcases basic, background-on, and disabled text buttons. The `text` prop is us
 
 ```vue
 <template>
-	<p>Basic text button</p>
-	<div class="mb-4">
-		<el-button
-			v-for="button in buttons"
-			:key="button.text"
-			:type="button.type"
-			text
-		>
-			{{ button.text }}
-		</el-button>
-	</div>
+  <p>Basic text button</p>
+  <div class="mb-4">
+    <el-button
+      v-for="button in buttons"
+      :key="button.text"
+      :type="button.type"
+      text
+    >
+      {{ button.text }}
+    </el-button>
+  </div>
 
-	<p>Background color always on</p>
-	<div class="mb-4">
-		<el-button
-			v-for="button in buttons"
-			:key="button.text"
-			:type="button.type"
-			text
-			bg
-		>
-			{{ button.text }}
-		</el-button>
-	</div>
+  <p>Background color always on</p>
+  <div class="mb-4">
+    <el-button
+      v-for="button in buttons"
+      :key="button.text"
+      :type="button.type"
+      text
+      bg
+    >
+      {{ button.text }}
+    </el-button>
+  </div>
 
-	<p>Disabled text button</p>
-	<div>
-		<el-button
-			v-for="button in buttons"
-			:key="button.text"
-			:type="button.type"
-			text
-			disabled
-		>
-			{{ button.text }}
-		</el-button>
-	</div>
+  <p>Disabled text button</p>
+  <div>
+    <el-button
+      v-for="button in buttons"
+      :key="button.text"
+      :type="button.type"
+      text
+      disabled
+    >
+      {{ button.text }}
+    </el-button>
+  </div>
 </template>
 
 <script setup lang="ts">
 const buttons = [
-	{type: '', text: 'plain'},
-	{type: 'primary', text: 'primary'},
-	{type: 'success', text: 'success'},
-	{type: 'info', text: 'info'},
-	{type: 'warning', text: 'warning'},
-	{type: 'danger', text: 'danger'},
+  { type: '', text: 'plain' },
+  { type: 'primary', text: 'primary' },
+  { type: 'success', text: 'success' },
+  { type: 'info', text: 'info' },
+  { type: 'warning', text: 'warning' },
+  { type: 'danger', text: 'danger' },
 ] as const
 </script>
 ```
@@ -8017,134 +7429,123 @@ This example shows how to use the #header and #footer slots in an Element Plus C
 
 ```vue
 <template>
-	<div class="cascader-custom-header-footer">
-		<div>
-			<p>Custom header content</p>
-			<el-cascader
-				v-model="value"
-				popper-class="cascader-custom-header"
-				:options="options"
-				:props="props"
-				clearable
-			>
-				<template #header>
-					<el-checkbox
-						v-model="checkAll"
-						:indeterminate="indeterminate"
-						@change="handleCheckAll"
-					>
-						All
-					</el-checkbox>
-				</template>
-			</el-cascader>
-		</div>
-		<div>
-			<p>Custom footer content</p>
-			<el-cascader
-				v-model="value"
-				:options="options"
-				:props="props"
-				clearable
-			>
-				<template #footer>
-					<el-button
-						link
-						size="small"
-						@click="handleClear"
-					>
-						Clear
-					</el-button>
-				</template>
-			</el-cascader>
-		</div>
-	</div>
+  <div class="cascader-custom-header-footer">
+    <div>
+      <p>Custom header content</p>
+      <el-cascader
+        v-model="value"
+        popper-class="cascader-custom-header"
+        :options="options"
+        :props="props"
+        clearable
+      >
+        <template #header>
+          <el-checkbox
+            v-model="checkAll"
+            :indeterminate="indeterminate"
+            @change="handleCheckAll"
+          >
+            All
+          </el-checkbox>
+        </template>
+      </el-cascader>
+    </div>
+    <div>
+      <p>Custom footer content</p>
+      <el-cascader v-model="value" :options="options" :props="props" clearable>
+        <template #footer>
+          <el-button link size="small" @click="handleClear"> Clear </el-button>
+        </template>
+      </el-cascader>
+    </div>
+  </div>
 </template>
 
 <script lang="ts" setup>
-import type {CascaderOption, CheckboxValueType} from 'element-plus'
-import {computed, ref, watch} from 'vue'
+import type { CascaderOption, CheckboxValueType } from 'element-plus'
+import { computed, ref, watch } from 'vue'
 
-const props = {multiple: true}
+const props = { multiple: true }
 const checkAll = ref(false)
 const indeterminate = ref(false)
 const value = ref<string[][]>([])
 const options = ref([
-	{
-		value: 'guide',
-		label: 'Guide',
-		children: [
-			{
-				value: 'disciplines',
-				label: 'Disciplines',
-				children: [
-					{value: 'consistency', label: 'Consistency'},
-					{value: 'feedback', label: 'Feedback'},
-					{value: 'efficiency', label: 'Efficiency'},
-					{value: 'controllability', label: 'Controllability'},
-				],
-			},
-		],
-	},
+  {
+    value: 'guide',
+    label: 'Guide',
+    children: [
+      {
+        value: 'disciplines',
+        label: 'Disciplines',
+        children: [
+          { value: 'consistency', label: 'Consistency' },
+          { value: 'feedback', label: 'Feedback' },
+          { value: 'efficiency', label: 'Efficiency' },
+          { value: 'controllability', label: 'Controllability' },
+        ],
+      },
+    ],
+  },
 ])
 
 const getAllValuePaths = computed(() => {
-	const result: string[][] = []
-	const queue: {node: CascaderOption; path: string[]}[] = options.value.map(
-		node => ({node, path: [node.value]}),
-	)
+  const result: string[][] = []
+  const queue: { node: CascaderOption; path: string[] }[] = options.value.map(
+    (node) => ({ node, path: [node.value] }),
+  )
 
-	while (queue.length > 0) {
-		const {node, path} = queue.shift()!
-		if (node.children?.length) {
-			node.children.forEach(child => {
-				queue.push({node: child, path: [...path, child.value as string]})
-			})
-		} else {
-			result.push(path)
-		}
-	}
-	return result
+  while (queue.length > 0) {
+    const { node, path } = queue.shift()!
+    if (node.children?.length) {
+      node.children.forEach((child) => {
+        queue.push({ node: child, path: [...path, child.value as string] })
+      })
+    } else {
+      result.push(path)
+    }
+  }
+  return result
 })
 
-watch(value, val => {
-	if (val.length === 0) {
-		checkAll.value = false
-		indeterminate.value = false
-	} else if (val.length === getAllValuePaths.value.length) {
-		checkAll.value = true
-		indeterminate.value = false
-	} else {
-		indeterminate.value = true
-	}
+watch(value, (val) => {
+  if (val.length === 0) {
+    checkAll.value = false
+    indeterminate.value = false
+  } else if (val.length === getAllValuePaths.value.length) {
+    checkAll.value = true
+    indeterminate.value = false
+  } else {
+    indeterminate.value = true
+  }
 })
 
 const handleCheckAll = (val: CheckboxValueType) => {
-	indeterminate.value = false
-	value.value = val ? getAllValuePaths.value : []
+  indeterminate.value = false
+  value.value = val ? getAllValuePaths.value : []
 }
 
 const handleClear = () => {
-	value.value = []
+  value.value = []
 }
 </script>
 
 <style scoped>
 .cascader-custom-header-footer {
-	display: flex;
+  display: flex;
 }
 
 .cascader-custom-header-footer > div {
-	flex: 1;
-	text-align: center;
+  flex: 1;
+  text-align: center;
 }
 
 .cascader-custom-header-footer > div:not(:last-child) {
-	border-right: 1px solid var(--el-border-color);
+  border-right: 1px solid var(--el-border-color);
 }
 
 .cascader-custom-header .el-checkbox {
-	display: flex;
-	height: unset;
+  display: flex;
+  height: unset;
 }
 </style>
 ```
@@ -8159,45 +7560,39 @@ Demonstrates how to hook into various Dialog lifecycle events like open, opened,
 
 ```vue
 <template>
-	<el-button
-		plain
-		@click="dialogVisible = true"
-	>
-		Open the event Dialog
-	</el-button>
+  <el-button plain @click="dialogVisible = true">
+    Open the event Dialog
+  </el-button>
 
-	<el-dialog
-		v-model="dialogVisible"
-		modal-class="overide-animation"
-		:before-close="
-			doneFn => {
-				;(console.log('before-close'), doneFn())
-			}
-		"
-		@open="console.log('open')"
-		@open-auto-focus="console.log('open-auto-focus')"
-		@opened="console.log('opened')"
-		@close="console.log('close')"
-		@close-auto-focus="console.log('close-auto-focus')"
-		@closed="console.log('closed')"
-	>
-		<span>It's a event Dialog</span>
-		<template #footer>
-			<div class="dialog-footer">
-				<el-button @click="dialogVisible = false">Cancel</el-button>
-				<el-button
-					type="primary"
-					@click="dialogVisible = false"
-				>
-					Confirm
-				</el-button>
-			</div>
-		</template>
-	</el-dialog>
+  <el-dialog
+    v-model="dialogVisible"
+    modal-class="overide-animation"
+    :before-close="
+      (doneFn) => {
+        ;(console.log('before-close'), doneFn())
+      }
+    "
+    @open="console.log('open')"
+    @open-auto-focus="console.log('open-auto-focus')"
+    @opened="console.log('opened')"
+    @close="console.log('close')"
+    @close-auto-focus="console.log('close-auto-focus')"
+    @closed="console.log('closed')"
+  >
+    <span>It's a event Dialog</span>
+    <template #footer>
+      <div class="dialog-footer">
+        <el-button @click="dialogVisible = false">Cancel</el-button>
+        <el-button type="primary" @click="dialogVisible = false">
+          Confirm
+        </el-button>
+      </div>
+    </template>
+  </el-dialog>
 </template>
 
 <script lang="ts" setup>
-import {ref} from 'vue'
+import { ref } from 'vue'
 
 const dialogVisible = ref(false)
 </script>
@@ -8288,47 +7683,43 @@ Shows how to apply global button configurations like auto-insert space, plain, r
 
 ```vue
 <template>
-	<div>
-		<div>
-			<el-checkbox v-model="config.autoInsertSpace">
-				autoInsertSpace
-			</el-checkbox>
-			<el-checkbox v-model="config.plain"> plain </el-checkbox>
-			<el-checkbox v-model="config.round"> round </el-checkbox>
-			<el-checkbox v-model="config.dashed"> dashed </el-checkbox>
-			<el-checkbox v-model="config.text"> text </el-checkbox>
-			<el-select
-				v-model="config.type"
-				class="ml-5"
-				style="max-width: 150px"
-			>
-				<el-option
-					v-for="type in buttonTypes.filter(Boolean)"
-					:key="type"
-					:value="type"
-				/>
-			</el-select>
-		</div>
-		<el-divider />
-		<el-config-provider :button="config">
-			<el-button>中文</el-button>
-		</el-config-provider>
-	</div>
+  <div>
+    <div>
+      <el-checkbox v-model="config.autoInsertSpace">
+        autoInsertSpace
+      </el-checkbox>
+      <el-checkbox v-model="config.plain"> plain </el-checkbox>
+      <el-checkbox v-model="config.round"> round </el-checkbox>
+      <el-checkbox v-model="config.dashed"> dashed </el-checkbox>
+      <el-checkbox v-model="config.text"> text </el-checkbox>
+      <el-select v-model="config.type" class="ml-5" style="max-width: 150px">
+        <el-option
+          v-for="type in buttonTypes.filter(Boolean)"
+          :key="type"
+          :value="type"
+        />
+      </el-select>
+    </div>
+    <el-divider />
+    <el-config-provider :button="config">
+      <el-button>中文</el-button>
+    </el-config-provider>
+  </div>
 </template>
 
 <script lang="ts" setup>
-import {buttonTypes} from 'element-plus'
-import {reactive} from 'vue'
+import { buttonTypes } from 'element-plus'
+import { reactive } from 'vue'
 
-import type {ButtonConfigContext} from 'element-plus'
+import type { ButtonConfigContext } from 'element-plus'
 
 const config = reactive<ButtonConfigContext>({
-	autoInsertSpace: true,
-	type: 'default',
-	plain: true,
-	round: true,
-	text: false,
-	dashed: false,
+  autoInsertSpace: true,
+  type: 'default',
+  plain: true,
+  round: true,
+  text: false,
+  dashed: false,
 })
 </script>
 ```
@@ -8342,7 +7733,7 @@ Source: https://element-plus.org/en-US/guide/transitions
 Shows how to import the CollapseTransition component and base CSS styles for transitions in a main entry file.
 
 ```typescript
-import {ElCollapseTransition} from 'element-plus'
+import { ElCollapseTransition } from 'element-plus'
 import 'element-plus/theme-chalk/base.css'
 import App from './App.vue'
 
@@ -8360,21 +7751,18 @@ Control the tooltip's visibility from the parent component using the `:visible` 
 
 ```vue
 <template>
-	<el-tooltip :visible="visible">
-		<template #content>
-			<span>Content</span>
-		</template>
-		<el-button
-			@mouseenter="visible = true"
-			@mouseleave="visible = false"
-		>
-			Hover me
-		</el-button>
-	</el-tooltip>
+  <el-tooltip :visible="visible">
+    <template #content>
+      <span>Content</span>
+    </template>
+    <el-button @mouseenter="visible = true" @mouseleave="visible = false">
+      Hover me
+    </el-button>
+  </el-tooltip>
 </template>
 
 <script setup lang="ts">
-import {ref} from 'vue'
+import { ref } from 'vue'
 
 const visible = ref(false)
 </script>
@@ -8466,38 +7854,32 @@ Shows how to remove the default border from the ColorPickerPanel by setting the 
 
 ```vue
 <template>
-	<div ref="containerRef">
-		<div class="text-center">No border:</div>
-		<el-divider />
-		<div class="flex flex-wrap justify-center gap-4">
-			<div class="p-5">
-				<el-color-picker-panel
-					v-model="value"
-					:border="false"
-				/>
-			</div>
-			<el-divider
-				class="h-auto"
-				:direction="isNarrow ? 'horizontal' : 'vertical'"
-			/>
-			<el-card>
-				<el-color-picker-panel
-					v-model="value"
-					:border="false"
-				/>
-			</el-card>
-		</div>
-	</div>
+  <div ref="containerRef">
+    <div class="text-center">No border:</div>
+    <el-divider />
+    <div class="flex flex-wrap justify-center gap-4">
+      <div class="p-5">
+        <el-color-picker-panel v-model="value" :border="false" />
+      </div>
+      <el-divider
+        class="h-auto"
+        :direction="isNarrow ? 'horizontal' : 'vertical'"
+      />
+      <el-card>
+        <el-color-picker-panel v-model="value" :border="false" />
+      </el-card>
+    </div>
+  </div>
 </template>
 
 <script lang="ts" setup>
-import {useElementSize} from '@vueuse/core'
-import {computed, ref} from 'vue'
+import { useElementSize } from '@vueuse/core'
+import { computed, ref } from 'vue'
 
 const value = ref('#ff6900')
 const containerRef = ref<HTMLElement>()
 
-const {width} = useElementSize(containerRef)
+const { width } = useElementSize(containerRef)
 
 const isNarrow = computed(() => width.value < 815)
 </script>
@@ -8525,49 +7907,49 @@ Use this Vue component to create a table with fixed columns on the left and righ
 
 ```vue
 <template>
-	<el-table-v2
-		:columns="columns"
-		:data="data"
-		:sort-by="sortBy"
-		:width="700"
-		:height="400"
-		fixed
-		@column-sort="onSort"
-	/>
+  <el-table-v2
+    :columns="columns"
+    :data="data"
+    :sort-by="sortBy"
+    :width="700"
+    :height="400"
+    fixed
+    @column-sort="onSort"
+  />
 </template>
 
 <script lang="ts" setup>
-import {TableV2FixedDir, TableV2SortOrder} from 'element-plus'
-import {ref} from 'vue'
+import { TableV2FixedDir, TableV2SortOrder } from 'element-plus'
+import { ref } from 'vue'
 
-import type {SortBy} from 'element-plus'
+import type { SortBy } from 'element-plus'
 
 const generateColumns = (length = 10, prefix = 'column-', props?: any) =>
-	Array.from({length}).map((_, columnIndex) => ({
-		...props,
-		key: `${prefix}${columnIndex}`,
-		dataKey: `${prefix}${columnIndex}`,
-		title: `Column ${columnIndex}`,
-		width: 150,
-	}))
+  Array.from({ length }).map((_, columnIndex) => ({
+    ...props,
+    key: `${prefix}${columnIndex}`,
+    dataKey: `${prefix}${columnIndex}`,
+    title: `Column ${columnIndex}`,
+    width: 150,
+  }))
 
 const generateData = (
-	columns: ReturnType<typeof generateColumns>,
-	length = 200,
-	prefix = 'row-',
+  columns: ReturnType<typeof generateColumns>,
+  length = 200,
+  prefix = 'row-',
 ) =>
-	Array.from({length}).map((_, rowIndex) => {
-		return columns.reduce(
-			(rowData, column, columnIndex) => {
-				rowData[column.dataKey] = `Row ${rowIndex} - Col ${columnIndex}`
-				return rowData
-			},
-			{
-				id: `${prefix}${rowIndex}`,
-				parentId: null,
-			},
-		)
-	})
+  Array.from({ length }).map((_, rowIndex) => {
+    return columns.reduce(
+      (rowData, column, columnIndex) => {
+        rowData[column.dataKey] = `Row ${rowIndex} - Col ${columnIndex}`
+        return rowData
+      },
+      {
+        id: `${prefix}${rowIndex}`,
+        parentId: null,
+      },
+    )
+  })
 
 const columns = generateColumns(10)
 let data = generateData(columns, 200)
@@ -8579,13 +7961,13 @@ columns[9].fixed = TableV2FixedDir.RIGHT
 for (let i = 0; i < 3; i++) columns[i].sortable = true
 
 const sortBy = ref<SortBy>({
-	key: 'column-0',
-	order: TableV2SortOrder.ASC,
+  key: 'column-0',
+  order: TableV2SortOrder.ASC,
 })
 
 const onSort = (_sortBy: SortBy) => {
-	data = data.reverse()
-	sortBy.value = _sortBy
+  data = data.reverse()
+  sortBy.value = _sortBy
 }
 </script>
 ```
@@ -8622,12 +8004,8 @@ This example shows two equivalent ways to use the `el-button` component in a Vue
 
 ```vue
 <template>
-	<el-button>Hello</el-button>
-	<el-button
-		type="primary"
-		size="small"
-		>Hello</el-button
-	>
+  <el-button>Hello</el-button>
+  <el-button type="primary" size="small">Hello</el-button>
 </template>
 ```
 
@@ -8957,34 +8335,34 @@ Demonstrates the fundamental implementation of the Element Plus Anchor component
 
 ```vue
 <template>
-	<el-anchor :offset="70">
-		<el-anchor-link :href="`#${locale['basic-usage']}`">
-			{{ locale['Basic Usage'] }}
-		</el-anchor-link>
-		<el-anchor-link :href="`#${locale['horizontal-mode']}`">
-			{{ locale['Horizontal Mode'] }}
-		</el-anchor-link>
-		<el-anchor-link :href="`#${locale['scroll-container']}`">
-			{{ locale['Scroll Container'] }}
-		</el-anchor-link>
-		<el-anchor-link :href="`#${locale['anchor-api']}`">
-			{{ locale['Anchor API'] }}
-			<template #sub-link>
-				<el-anchor-link :href="`#${locale['anchor-attributes']}`">
-					{{ locale['Anchor Attributes'] }}
-				</el-anchor-link>
-				<el-anchor-link :href="`#${locale['anchor-events']}`">
-					{{ locale['Anchor Events'] }}
-				</el-anchor-link>
-			</template>
-		</el-anchor-link>
-	</el-anchor>
+  <el-anchor :offset="70">
+    <el-anchor-link :href="`#${locale['basic-usage']}`">
+      {{ locale['Basic Usage'] }}
+    </el-anchor-link>
+    <el-anchor-link :href="`#${locale['horizontal-mode']}`">
+      {{ locale['Horizontal Mode'] }}
+    </el-anchor-link>
+    <el-anchor-link :href="`#${locale['scroll-container']}`">
+      {{ locale['Scroll Container'] }}
+    </el-anchor-link>
+    <el-anchor-link :href="`#${locale['anchor-api']}`">
+      {{ locale['Anchor API'] }}
+      <template #sub-link>
+        <el-anchor-link :href="`#${locale['anchor-attributes']}`">
+          {{ locale['Anchor Attributes'] }}
+        </el-anchor-link>
+        <el-anchor-link :href="`#${locale['anchor-events']}`">
+          {{ locale['Anchor Events'] }}
+        </el-anchor-link>
+      </template>
+    </el-anchor-link>
+  </el-anchor>
 </template>
 
 <script lang="ts" setup>
 import anchorLocale from '../../.vitepress/i18n/component/anchor.json'
-import {useLang} from '~/composables/lang'
-import {computed} from 'vue'
+import { useLang } from '~/composables/lang'
+import { computed } from 'vue'
 
 const lang = useLang()
 const locale = computed(() => anchorLocale[lang.value])
@@ -9035,120 +8413,107 @@ This example demonstrates how to add filterable columns to an el-table. It uses 
 
 ```vue
 <template>
-	<el-button @click="resetDateFilter">reset date filter</el-button>
-	<el-button @click="clearFilter">reset all filters</el-button>
-	<el-table
-		ref="tableRef"
-		row-key="date"
-		:data="tableData"
-		style="width: 100%"
-	>
-		<el-table-column
-			prop="date"
-			label="Date"
-			sortable
-			width="180"
-			column-key="date"
-			:filters="[
-				{text: '2016-05-01', value: '2016-05-01'},
-				{text: '2016-05-02', value: '2016-05-02'},
-				{text: '2016-05-03', value: '2016-05-03'},
-				{text: '2016-05-04', value: '2016-05-04'},
-			]"
-			:filter-method="filterHandler"
-		/>
-		<el-table-column
-			prop="name"
-			label="Name"
-			width="180"
-		/>
-		<el-table-column
-			prop="address"
-			label="Address"
-			:formatter="formatter"
-		/>
+  <el-button @click="resetDateFilter">reset date filter</el-button>
+  <el-button @click="clearFilter">reset all filters</el-button>
+  <el-table ref="tableRef" row-key="date" :data="tableData" style="width: 100%">
+    <el-table-column
+      prop="date"
+      label="Date"
+      sortable
+      width="180"
+      column-key="date"
+      :filters="[
+        { text: '2016-05-01', value: '2016-05-01' },
+        { text: '2016-05-02', value: '2016-05-02' },
+        { text: '2016-05-03', value: '2016-05-03' },
+        { text: '2016-05-04', value: '2016-05-04' },
+      ]"
+      :filter-method="filterHandler"
+    />
+    <el-table-column prop="name" label="Name" width="180" />
+    <el-table-column prop="address" label="Address" :formatter="formatter" />
 
-		<el-table-column
-			prop="tag"
-			label="Tag"
-			width="100"
-			:filters="[
-				{text: 'Home', value: 'Home'},
-				{text: 'Office', value: 'Office'},
-			]"
-			:filter-method="filterTag"
-			filter-placement="bottom-end"
-		>
-			<template #default="scope">
-				<el-tag
-					:type="scope.row.tag === 'Home' ? 'primary' : 'success'"
-					disable-transitions
-					>{{ scope.row.tag }}</el-tag
-				>
-			</template>
-		</el-table-column>
-	</el-table>
+    <el-table-column
+      prop="tag"
+      label="Tag"
+      width="100"
+      :filters="[
+        { text: 'Home', value: 'Home' },
+        { text: 'Office', value: 'Office' },
+      ]"
+      :filter-method="filterTag"
+      filter-placement="bottom-end"
+    >
+      <template #default="scope">
+        <el-tag
+          :type="scope.row.tag === 'Home' ? 'primary' : 'success'"
+          disable-transitions
+          >{{ scope.row.tag }}</el-tag
+        >
+      </template>
+    </el-table-column>
+  </el-table>
 </template>
 
 <script lang="ts" setup>
-import type {TableColumnCtx, TableInstance} from 'element-plus'
-import {ref} from 'vue'
+import type { TableColumnCtx, TableInstance } from 'element-plus'
+import { ref } from 'vue'
 
 interface User {
-	date: string
-	name: string
-	address: string
-	tag: string
+  date: string
+  name: string
+  address: string
+  tag: string
 }
 
 const tableRef = ref<TableInstance>()
 
 const resetDateFilter = () => {
-	tableRef.value!.clearFilter(['date'])
+  tableRef.value!.clearFilter(['date'])
 }
 const clearFilter = () => {
-	tableRef.value!.clearFilter()
+  tableRef.value!.clearFilter()
 }
 const formatter = (row: User, column: TableColumnCtx<User>) => {
-	return row.address
+  return row.address
 }
 const filterTag = (value: string, row: User) => {
-	return row.tag === value
+  return row.tag === value
 }
 const filterHandler = (
-	value: string,
-	row: User,
-	column: TableColumnCtx<User>,
+  value: string,
+  row: User,
+  column: TableColumnCtx<User>,
 ) => {
-	const property = column['property']
-	return row[property] === value
+  const property = column['property']
+  return row[property] === value
 }
 
 const tableData: User[] = [
-	{
-		date: '2016-05-03',
-		name: 'Tom',
-		address: 'No. 189, Grove St, Los Angeles',
-		tag: 'Home',
-	},
-	{
-		date: '2016-05-02',
-		name: 'Tom',
-		address: 'No. 189, Grove St, Los Angeles',
-		tag: 'Office',
-	},
-	{
-		date: '2016-05-04',
-		name: 'Tom',
-		address: 'No. 189, Grove St, Los Angeles',
-		tag: 'Home',
-	},
-	{
-		date: '2016-05-01',
-		name: 'Tom',
-		address: 'No. 189, Grove St, Los Angeles',
-		tag: 'Office',
-	},
+  {
+    date: '2016-05-03',
+    name: 'Tom',
+    address: 'No. 189, Grove St, Los Angeles',
+    tag: 'Home',
+  },
+  {
+    date: '2016-05-02',
+    name: 'Tom',
+    address: 'No. 189, Grove St, Los Angeles',
+    tag: 'Office',
+  },
+  {
+    date: '2016-05-04',
+    name: 'Tom',
+    address: 'No. 189, Grove St, Los Angeles',
+    tag: 'Home',
+  },
+  {
+    date: '2016-05-01',
+    name: 'Tom',
+    address: 'No. 189, Grove St, Los Angeles',
+    tag: 'Office',
+  },
 ]
 </script>
 ```
@@ -9163,67 +8528,52 @@ Shows how to align columns within an `el-row` using the `justify` attribute. Sup
 
 ```vue
 <template>
-	<el-row class="row-bg">
-		<el-col :span="6"><div class="grid-content ep-bg-purple" /></el-col>
-		<el-col :span="6"><div class="grid-content ep-bg-purple-light" /></el-col>
-		<el-col :span="6"><div class="grid-content ep-bg-purple" /></el-col>
-	</el-row>
-	<el-row
-		class="row-bg"
-		justify="center"
-	>
-		<el-col :span="6"><div class="grid-content ep-bg-purple" /></el-col>
-		<el-col :span="6"><div class="grid-content ep-bg-purple-light" /></el-col>
-		<el-col :span="6"><div class="grid-content ep-bg-purple" /></el-col>
-	</el-row>
-	<el-row
-		class="row-bg"
-		justify="end"
-	>
-		<el-col :span="6"><div class="grid-content ep-bg-purple" /></el-col>
-		<el-col :span="6"><div class="grid-content ep-bg-purple-light" /></el-col>
-		<el-col :span="6"><div class="grid-content ep-bg-purple" /></el-col>
-	</el-row>
-	<el-row
-		class="row-bg"
-		justify="space-between"
-	>
-		<el-col :span="6"><div class="grid-content ep-bg-purple" /></el-col>
-		<el-col :span="6"><div class="grid-content ep-bg-purple-light" /></el-col>
-		<el-col :span="6"><div class="grid-content ep-bg-purple" /></el-col>
-	</el-row>
-	<el-row
-		class="row-bg"
-		justify="space-around"
-	>
-		<el-col :span="6"><div class="grid-content ep-bg-purple" /></el-col>
-		<el-col :span="6"><div class="grid-content ep-bg-purple-light" /></el-col>
-		<el-col :span="6"><div class="grid-content ep-bg-purple" /></el-col>
-	</el-row>
-	<el-row
-		class="row-bg"
-		justify="space-evenly"
-	>
-		<el-col :span="6"><div class="grid-content ep-bg-purple" /></el-col>
-		<el-col :span="6"><div class="grid-content ep-bg-purple-light" /></el-col>
-		<el-col :span="6"><div class="grid-content ep-bg-purple" /></el-col>
-	</el-row>
+  <el-row class="row-bg">
+    <el-col :span="6"><div class="grid-content ep-bg-purple" /></el-col>
+    <el-col :span="6"><div class="grid-content ep-bg-purple-light" /></el-col>
+    <el-col :span="6"><div class="grid-content ep-bg-purple" /></el-col>
+  </el-row>
+  <el-row class="row-bg" justify="center">
+    <el-col :span="6"><div class="grid-content ep-bg-purple" /></el-col>
+    <el-col :span="6"><div class="grid-content ep-bg-purple-light" /></el-col>
+    <el-col :span="6"><div class="grid-content ep-bg-purple" /></el-col>
+  </el-row>
+  <el-row class="row-bg" justify="end">
+    <el-col :span="6"><div class="grid-content ep-bg-purple" /></el-col>
+    <el-col :span="6"><div class="grid-content ep-bg-purple-light" /></el-col>
+    <el-col :span="6"><div class="grid-content ep-bg-purple" /></el-col>
+  </el-row>
+  <el-row class="row-bg" justify="space-between">
+    <el-col :span="6"><div class="grid-content ep-bg-purple" /></el-col>
+    <el-col :span="6"><div class="grid-content ep-bg-purple-light" /></el-col>
+    <el-col :span="6"><div class="grid-content ep-bg-purple" /></el-col>
+  </el-row>
+  <el-row class="row-bg" justify="space-around">
+    <el-col :span="6"><div class="grid-content ep-bg-purple" /></el-col>
+    <el-col :span="6"><div class="grid-content ep-bg-purple-light" /></el-col>
+    <el-col :span="6"><div class="grid-content ep-bg-purple" /></el-col>
+  </el-row>
+  <el-row class="row-bg" justify="space-evenly">
+    <el-col :span="6"><div class="grid-content ep-bg-purple" /></el-col>
+    <el-col :span="6"><div class="grid-content ep-bg-purple-light" /></el-col>
+    <el-col :span="6"><div class="grid-content ep-bg-purple" /></el-col>
+  </el-row>
 </template>
 
 <style>
 .el-row {
-	margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 .el-row:last-child {
-	margin-bottom: 0;
+  margin-bottom: 0;
 }
 .el-col {
-	border-radius: 4px;
+  border-radius: 4px;
 }
 
 .grid-content {
-	border-radius: 4px;
-	min-height: 36px;
+  border-radius: 4px;
+  min-height: 36px;
 }
 </style>
 ```
@@ -9238,54 +8588,40 @@ This example demonstrates how to configure an el-table for multiple selection. I
 
 ```vue
 <template>
-	<el-table
-		ref="multipleTableRef"
-		:data="tableData"
-		row-key="id"
-		style="width: 100%"
-		@selection-change="handleSelectionChange"
-	>
-		<el-table-column
-			type="selection"
-			:selectable="selectable"
-			width="55"
-		/>
-		<el-table-column
-			label="Date"
-			width="120"
-		>
-			<template #default="scope">{{ scope.row.date }}</template>
-		</el-table-column>
-		<el-table-column
-			property="name"
-			label="Name"
-			width="120"
-		/>
-		<el-table-column
-			property="address"
-			label="Address"
-		/>
-	</el-table>
-	<div style="margin-top: 20px">
-		<el-button @click="toggleSelection([tableData[1], tableData[2]])">
-			Toggle selection status of second and third rows
-		</el-button>
-		<el-button @click="toggleSelection([tableData[1], tableData[2]], false)">
-			Toggle selection status based on selectable
-		</el-button>
-		<el-button @click="toggleSelection()">Clear selection</el-button>
-	</div>
+  <el-table
+    ref="multipleTableRef"
+    :data="tableData"
+    row-key="id"
+    style="width: 100%"
+    @selection-change="handleSelectionChange"
+  >
+    <el-table-column type="selection" :selectable="selectable" width="55" />
+    <el-table-column label="Date" width="120">
+      <template #default="scope">{{ scope.row.date }}</template>
+    </el-table-column>
+    <el-table-column property="name" label="Name" width="120" />
+    <el-table-column property="address" label="Address" />
+  </el-table>
+  <div style="margin-top: 20px">
+    <el-button @click="toggleSelection([tableData[1], tableData[2]])">
+      Toggle selection status of second and third rows
+    </el-button>
+    <el-button @click="toggleSelection([tableData[1], tableData[2]], false)">
+      Toggle selection status based on selectable
+    </el-button>
+    <el-button @click="toggleSelection()">Clear selection</el-button>
+  </div>
 </template>
 
 <script lang="ts" setup>
-import type {TableInstance} from 'element-plus'
-import {ref} from 'vue'
+import type { TableInstance } from 'element-plus'
+import { ref } from 'vue'
 
 interface User {
-	id: number
-	date: string
-	name: string
-	address: string
+  id: number
+  date: string
+  name: string
+  address: string
 }
 
 const multipleTableRef = ref<TableInstance>()
@@ -9293,65 +8629,65 @@ const multipleSelection = ref<User[]>([])
 
 const selectable = (row: User) => ![1, 2].includes(row.id)
 const toggleSelection = (rows?: User[], ignoreSelectable?: boolean) => {
-	if (rows) {
-		rows.forEach(row => {
-			multipleTableRef.value!.toggleRowSelection(
-				row,
-				undefined,
-				ignoreSelectable,
-			)
-		})
-	} else {
-		multipleTableRef.value!.clearSelection()
-	}
+  if (rows) {
+    rows.forEach((row) => {
+      multipleTableRef.value!.toggleRowSelection(
+        row,
+        undefined,
+        ignoreSelectable,
+      )
+    })
+  } else {
+    multipleTableRef.value!.clearSelection()
+  }
 }
 const handleSelectionChange = (val: User[]) => {
-	multipleSelection.value = val
+  multipleSelection.value = val
 }
 
 const tableData: User[] = [
-	{
-		id: 1,
-		date: '2016-05-03',
-		name: 'Tom',
-		address: 'No. 189, Grove St, Los Angeles',
-	},
-	{
-		id: 2,
-		date: '2016-05-02',
-		name: 'Tom',
-		address: 'No. 189, Grove St, Los Angeles',
-	},
-	{
-		id: 3,
-		date: '2016-05-04',
-		name: 'Tom',
-		address: 'No. 189, Grove St, Los Angeles',
-	},
-	{
-		id: 4,
-		date: '2016-05-01',
-		name: 'Tom',
-		address: 'No. 189, Grove St, Los Angeles',
-	},
-	{
-		id: 5,
-		date: '2016-05-08',
-		name: 'Tom',
-		address: 'No. 189, Grove St, Los Angeles',
-	},
-	{
-		id: 6,
-		date: '2016-05-06',
-		name: 'Tom',
-		address: 'No. 189, Grove St, Los Angeles',
-	},
-	{
-		id: 7,
-		date: '2016-05-07',
-		name: 'Tom',
-		address: 'No. 189, Grove St, Los Angeles',
-	},
+  {
+    id: 1,
+    date: '2016-05-03',
+    name: 'Tom',
+    address: 'No. 189, Grove St, Los Angeles',
+  },
+  {
+    id: 2,
+    date: '2016-05-02',
+    name: 'Tom',
+    address: 'No. 189, Grove St, Los Angeles',
+  },
+  {
+    id: 3,
+    date: '2016-05-04',
+    name: 'Tom',
+    address: 'No. 189, Grove St, Los Angeles',
+  },
+  {
+    id: 4,
+    date: '2016-05-01',
+    name: 'Tom',
+    address: 'No. 189, Grove St, Los Angeles',
+  },
+  {
+    id: 5,
+    date: '2016-05-08',
+    name: 'Tom',
+    address: 'No. 189, Grove St, Los Angeles',
+  },
+  {
+    id: 6,
+    date: '2016-05-06',
+    name: 'Tom',
+    address: 'No. 189, Grove St, Los Angeles',
+  },
+  {
+    id: 7,
+    date: '2016-05-07',
+    name: 'Tom',
+    address: 'No. 189, Grove St, Los Angeles',
+  },
 ]
 </script>
 ```
@@ -9366,79 +8702,82 @@ Customize table cell content using the cellRenderer prop. This example demonstra
 
 ```vue
 <template>
-	<el-table-v2
-		:columns="columns"
-		:data="data"
-		:width="700"
-		:height="400"
-		fixed
-	/>
+  <el-table-v2
+    :columns="columns"
+    :data="data"
+    :width="700"
+    :height="400"
+    fixed
+  />
 </template>
 
 <script lang="tsx" setup>
-import {ElButton, ElIcon, ElTag, ElTooltip, TableV2FixedDir} from 'element-plus'
-import {Timer} from '@element-plus/icons-vue'
+import {
+  ElButton,
+  ElIcon,
+  ElTag,
+  ElTooltip,
+  TableV2FixedDir,
+} from 'element-plus'
+import { Timer } from '@element-plus/icons-vue'
 import dayjs from 'dayjs'
-import {ref} from 'vue'
+import { ref } from 'vue'
 
-import type {Column} from 'element-plus'
+import type { Column } from 'element-plus'
 
 let id = 0
 
 const dataGenerator = () => ({
-	id: `random-id-${++id}`,
-	name: 'Tom',
-	date: '2020-10-1',
+  id: `random-id-${++id}`,
+  name: 'Tom',
+  date: '2020-10-1',
 })
 
 const columns: Column<any>[] = [
-	{
-		key: 'date',
-		title: 'Date',
-		dataKey: 'date',
-		width: 150,
-		fixed: TableV2FixedDir.LEFT,
-		cellRenderer: ({cellData: date}) => (
-			<ElTooltip content={dayjs(date).format('YYYY/MM/DD')}>
-				{
-					<span class="flex items-center">
-						<ElIcon class="mr-3">
-							<Timer />
-						</ElIcon>
-						{dayjs(date).format('YYYY/MM/DD')}
-					</span>
-				}
-			</ElTooltip>
-		),
-	},
-	{
-		key: 'name',
-		title: 'Name',
-		dataKey: 'name',
-		width: 150,
-		align: 'center',
-		cellRenderer: ({cellData: name}) => <ElTag>{name}</ElTag>,
-	},
-	{
-		key: 'operations',
-		title: 'Operations',
-		cellRenderer: () => (
-			<>
-				<ElButton size="small">Edit</ElButton>
-				<ElButton
-					size="small"
-					type="danger"
-				>
-					Delete
-				</ElButton>
-			</>
-		),
-		width: 150,
-		align: 'center',
-	},
+  {
+    key: 'date',
+    title: 'Date',
+    dataKey: 'date',
+    width: 150,
+    fixed: TableV2FixedDir.LEFT,
+    cellRenderer: ({ cellData: date }) => (
+      <ElTooltip content={dayjs(date).format('YYYY/MM/DD')}>
+        {
+          <span class="flex items-center">
+            <ElIcon class="mr-3">
+              <Timer />
+            </ElIcon>
+            {dayjs(date).format('YYYY/MM/DD')}
+          </span>
+        }
+      </ElTooltip>
+    ),
+  },
+  {
+    key: 'name',
+    title: 'Name',
+    dataKey: 'name',
+    width: 150,
+    align: 'center',
+    cellRenderer: ({ cellData: name }) => <ElTag>{name}</ElTag>,
+  },
+  {
+    key: 'operations',
+    title: 'Operations',
+    cellRenderer: () => (
+      <>
+        <ElButton size="small">Edit</ElButton>
+        <ElButton size="small" type="danger">
+          Delete
+        </ElButton>
+      </>
+    ),
+    width: 150,
+    align: 'center',
+  },
 ]
 
-const data = ref(Array.from({length: 200}).map(dataGenerator))
+const data = ref(Array.from({ length: 200 }).map(dataGenerator))
 </script>
 ```
 
@@ -9452,164 +8791,81 @@ Demonstrates how to use type, plain, round, dashed, and circle attributes to sty
 
 ```vue
 <template>
-	<div class="button-example">
-		<div class="button-row">
-			<el-button>Default</el-button>
-			<el-button type="primary">Primary</el-button>
-			<el-button type="success">Success</el-button>
-			<el-button type="info">Info</el-button>
-			<el-button type="warning">Warning</el-button>
-			<el-button type="danger">Danger</el-button>
-		</div>
+  <div class="button-example">
+    <div class="button-row">
+      <el-button>Default</el-button>
+      <el-button type="primary">Primary</el-button>
+      <el-button type="success">Success</el-button>
+      <el-button type="info">Info</el-button>
+      <el-button type="warning">Warning</el-button>
+      <el-button type="danger">Danger</el-button>
+    </div>
 
-		<div class="button-row">
-			<el-button plain>Plain</el-button>
-			<el-button
-				type="primary"
-				plain
-				>Primary</el-button
-			>
-			<el-button
-				type="success"
-				plain
-				>Success</el-button
-			>
-			<el-button
-				type="info"
-				plain
-				>Info</el-button
-			>
-			<el-button
-				type="warning"
-				plain
-				>Warning</el-button
-			>
-			<el-button
-				type="danger"
-				plain
-				>Danger</el-button
-			>
-		</div>
+    <div class="button-row">
+      <el-button plain>Plain</el-button>
+      <el-button type="primary" plain>Primary</el-button>
+      <el-button type="success" plain>Success</el-button>
+      <el-button type="info" plain>Info</el-button>
+      <el-button type="warning" plain>Warning</el-button>
+      <el-button type="danger" plain>Danger</el-button>
+    </div>
 
-		<div class="button-row">
-			<el-button round>Round</el-button>
-			<el-button
-				type="primary"
-				round
-				>Primary</el-button
-			>
-			<el-button
-				type="success"
-				round
-				>Success</el-button
-			>
-			<el-button
-				type="info"
-				round
-				>Info</el-button
-			>
-			<el-button
-				type="warning"
-				round
-				>Warning</el-button
-			>
-			<el-button
-				type="danger"
-				round
-				>Danger</el-button
-			>
-		</div>
+    <div class="button-row">
+      <el-button round>Round</el-button>
+      <el-button type="primary" round>Primary</el-button>
+      <el-button type="success" round>Success</el-button>
+      <el-button type="info" round>Info</el-button>
+      <el-button type="warning" round>Warning</el-button>
+      <el-button type="danger" round>Danger</el-button>
+    </div>
 
-		<div class="button-row">
-			<el-button dashed>Dashed</el-button>
-			<el-button
-				type="primary"
-				dashed
-				>Primary</el-button
-			>
-			<el-button
-				type="success"
-				dashed
-				>Success</el-button
-			>
-			<el-button
-				type="info"
-				dashed
-				>Info</el-button
-			>
-			<el-button
-				type="warning"
-				dashed
-				>Warning</el-button
-			>
-			<el-button
-				type="danger"
-				dashed
-				>Danger</el-button
-			>
-		</div>
+    <div class="button-row">
+      <el-button dashed>Dashed</el-button>
+      <el-button type="primary" dashed>Primary</el-button>
+      <el-button type="success" dashed>Success</el-button>
+      <el-button type="info" dashed>Info</el-button>
+      <el-button type="warning" dashed>Warning</el-button>
+      <el-button type="danger" dashed>Danger</el-button>
+    </div>
 
-		<div class="button-row">
-			<el-button
-				:icon="Search"
-				circle
-			/>
-			<el-button
-				type="primary"
-				:icon="Edit"
-				circle
-			/>
-			<el-button
-				type="success"
-				:icon="Check"
-				circle
-			/>
-			<el-button
-				type="info"
-				:icon="Message"
-				circle
-			/>
-			<el-button
-				type="warning"
-				:icon="Star"
-				circle
-			/>
-			<el-button
-				type="danger"
-				:icon="Delete"
-				circle
-			/>
-		</div>
-	</div>
+    <div class="button-row">
+      <el-button :icon="Search" circle />
+      <el-button type="primary" :icon="Edit" circle />
+      <el-button type="success" :icon="Check" circle />
+      <el-button type="info" :icon="Message" circle />
+      <el-button type="warning" :icon="Star" circle />
+      <el-button type="danger" :icon="Delete" circle />
+    </div>
+  </div>
 </template>
 
 <script lang="ts" setup>
 import {
-	Check,
-	Delete,
-	Edit,
-	Message,
-	Search,
-	Star,
+  Check,
+  Delete,
+  Edit,
+  Message,
+  Search,
+  Star,
 } from '@element-plus/icons-vue'
 </script>
 
 <style scoped>
 .button-example {
-	display: flex;
-	flex-direction: column;
-	gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .button-row {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 1rem;
-	align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
 }
 
 .button-row > * {
-	margin: 0;
+  margin: 0;
 }
 </style>
 ```
@@ -9624,18 +8880,18 @@ Demonstrates the fundamental implementation of the ColorPicker component using v
 
 ```vue
 <template>
-	<div class="demo-color-block">
-		<span class="demonstration">With default value</span>
-		<el-color-picker v-model="color1" />
-	</div>
-	<div class="demo-color-block">
-		<span class="demonstration">With no default value</span>
-		<el-color-picker v-model="color2" />
-	</div>
+  <div class="demo-color-block">
+    <span class="demonstration">With default value</span>
+    <el-color-picker v-model="color1" />
+  </div>
+  <div class="demo-color-block">
+    <span class="demonstration">With no default value</span>
+    <el-color-picker v-model="color2" />
+  </div>
 </template>
 
 <script lang="ts" setup>
-import {ref} from 'vue'
+import { ref } from 'vue'
 
 const color1 = ref('#409EFF')
 const color2 = ref()
@@ -9643,12 +8899,12 @@ const color2 = ref()
 
 <style>
 .demo-color-block {
-	display: flex;
-	align-items: center;
-	margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
 }
 .demo-color-block .demonstration {
-	margin-right: 16px;
+  margin-right: 16px;
 }
 </style>
 ```
@@ -9663,31 +8919,22 @@ Demonstrates how to customize the placement of the tooltip in the Element Plus s
 
 ```vue
 <template>
-	<div class="slider-demo-block">
-		<el-slider v-model="value1" />
-	</div>
-	<div class="slider-demo-block">
-		<el-slider
-			v-model="value2"
-			placement="bottom"
-		/>
-	</div>
-	<div class="slider-demo-block">
-		<el-slider
-			v-model="value3"
-			placement="right"
-		/>
-	</div>
-	<div class="slider-demo-block">
-		<el-slider
-			v-model="value4"
-			placement="left"
-		/>
-	</div>
+  <div class="slider-demo-block">
+    <el-slider v-model="value1" />
+  </div>
+  <div class="slider-demo-block">
+    <el-slider v-model="value2" placement="bottom" />
+  </div>
+  <div class="slider-demo-block">
+    <el-slider v-model="value3" placement="right" />
+  </div>
+  <div class="slider-demo-block">
+    <el-slider v-model="value4" placement="left" />
+  </div>
 </template>
 
 <script lang="ts" setup>
-import {ref} from 'vue'
+import { ref } from 'vue'
 
 const value1 = ref(0)
 const value2 = ref(0)
@@ -9697,13 +8944,13 @@ const value4 = ref(0)
 
 <style scoped>
 .slider-demo-block {
-	max-width: 600px;
-	display: flex;
-	align-items: center;
+  max-width: 600px;
+  display: flex;
+  align-items: center;
 }
 .slider-demo-block .el-slider {
-	margin-top: 0;
-	margin-left: 12px;
+  margin-top: 0;
+  margin-left: 12px;
 }
 </style>
 ```
@@ -9717,19 +8964,19 @@ Source: https://element-plus.org/en-US/component/loading
 Shows how to invoke the Loading service, manage instances, and ensure proper asynchronous closing of the loading overlay.
 
 ```typescript
-import {ElLoading} from 'element-plus'
+import { ElLoading } from 'element-plus'
 
 // Basic invocation
 const loadingInstance = ElLoading.service(options)
 
 // Closing the instance
 nextTick(() => {
-	loadingInstance.close()
+  loadingInstance.close()
 })
 
 // Singleton behavior check
-const loadingInstance1 = ElLoading.service({fullscreen: true})
-const loadingInstance2 = ElLoading.service({fullscreen: true})
+const loadingInstance1 = ElLoading.service({ fullscreen: true })
+const loadingInstance2 = ElLoading.service({ fullscreen: true })
 console.log(loadingInstance1 === loadingInstance2) // true
 ```
 
@@ -9743,101 +8990,101 @@ Use `props.class` to define custom class names for tree nodes. This example demo
 
 ```vue
 <template>
-	<div class="custom-tree-node-container">
-		<el-tree
-			style="max-width: 600px"
-			:data="data"
-			show-checkbox
-			node-key="id"
-			default-expand-all
-			:expand-on-click-node="false"
-			:props="{class: customNodeClass}"
-		/>
-	</div>
+  <div class="custom-tree-node-container">
+    <el-tree
+      style="max-width: 600px"
+      :data="data"
+      show-checkbox
+      node-key="id"
+      default-expand-all
+      :expand-on-click-node="false"
+      :props="{ class: customNodeClass }"
+    />
+  </div>
 </template>
 
 <script lang="ts" setup>
-import type {TreeNodeData} from 'element-plus'
+import type { TreeNodeData } from 'element-plus'
 
 interface Tree {
-	id: number
-	label: string
-	isPenultimate?: boolean
-	children?: Tree[]
+  id: number
+  label: string
+  isPenultimate?: boolean
+  children?: Tree[]
 }
 
-const customNodeClass = ({isPenultimate}: TreeNodeData) =>
-	isPenultimate ? 'is-penultimate' : ''
+const customNodeClass = ({ isPenultimate }: TreeNodeData) =>
+  isPenultimate ? 'is-penultimate' : ''
 
 const data: Tree[] = [
-	{
-		id: 1,
-		label: 'Level one 1',
-		children: [
-			{
-				id: 4,
-				label: 'Level two 1-1',
-				isPenultimate: true,
-				children: [
-					{
-						id: 9,
-						label: 'Level three 1-1-1',
-					},
-					{
-						id: 10,
-						label: 'Level three 1-1-2',
-					},
-				],
-			},
-		],
-	},
-	{
-		id: 2,
-		label: 'Level one 2',
-		isPenultimate: true,
-		children: [
-			{
-				id: 5,
-				label: 'Level two 2-1',
-			},
-			{
-				id: 6,
-				label: 'Level two 2-2',
-			},
-		],
-	},
-	{
-		id: 3,
-		label: 'Level one 3',
-		isPenultimate: true,
-		children: [
-			{
-				id: 7,
-				label: 'Level two 3-1',
-			},
-			{
-				id: 8,
-				label: 'Level two 3-2',
-			},
-		],
-	},
+  {
+    id: 1,
+    label: 'Level one 1',
+    children: [
+      {
+        id: 4,
+        label: 'Level two 1-1',
+        isPenultimate: true,
+        children: [
+          {
+            id: 9,
+            label: 'Level three 1-1-1',
+          },
+          {
+            id: 10,
+            label: 'Level three 1-1-2',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: 2,
+    label: 'Level one 2',
+    isPenultimate: true,
+    children: [
+      {
+        id: 5,
+        label: 'Level two 2-1',
+      },
+      {
+        id: 6,
+        label: 'Level two 2-2',
+      },
+    ],
+  },
+  {
+    id: 3,
+    label: 'Level one 3',
+    isPenultimate: true,
+    children: [
+      {
+        id: 7,
+        label: 'Level two 3-1',
+      },
+      {
+        id: 8,
+        label: 'Level two 3-2',
+      },
+    ],
+  },
 ]
 </script>
 
 <style>
 .is-penultimate > .el-tree-node__content .el-tree-node__label {
-	color: #626aef;
+  color: #626aef;
 }
 .is-penultimate > .el-tree-node__children > div {
-	display: inline-block;
-	margin-right: 4px;
+  display: inline-block;
+  margin-right: 4px;
 
-	&:not(:first-child) .el-tree-node__content {
-		padding-left: 0px !important;
-	}
-	.el-tree-node__content {
-		padding-right: 16px;
-	}
+  &:not(:first-child) .el-tree-node__content {
+    padding-left: 0px !important;
+  }
+  .el-tree-node__content {
+    padding-right: 16px;
+  }
 }
 </style>
 ```
@@ -9852,30 +9099,22 @@ Demonstrates how to use the prefix and suffix named slots in the ElInputNumber c
 
 ```vue
 <template>
-	<el-space>
-		<el-input-number
-			v-model="num"
-			:min="1"
-			:max="10"
-		>
-			<template #prefix>
-				<span>￥</span>
-			</template>
-		</el-input-number>
-		<el-input-number
-			v-model="num"
-			:min="1"
-			:max="10"
-		>
-			<template #suffix>
-				<span>RMB</span>
-			</template>
-		</el-input-number>
-	</el-space>
+  <el-space>
+    <el-input-number v-model="num" :min="1" :max="10">
+      <template #prefix>
+        <span>￥</span>
+      </template>
+    </el-input-number>
+    <el-input-number v-model="num" :min="1" :max="10">
+      <template #suffix>
+        <span>RMB</span>
+      </template>
+    </el-input-number>
+  </el-space>
 </template>
 
 <script lang="ts" setup>
-import {ref} from 'vue'
+import { ref } from 'vue'
 
 const num = ref(1)
 </script>
@@ -10007,53 +9246,53 @@ Demonstrates adding icons to the Input component using either the `prefix-icon` 
 
 ```vue
 <template>
-	<div class="demo-input-with-icon">
-		<div class="input-group">
-			<span class="label">Using attributes</span>
-			<div class="input-container">
-				<el-input
-					v-model="input1"
-					class="responsive-input"
-					placeholder="Pick a date"
-					:suffix-icon="Calendar"
-				/>
-				<el-input
-					v-model="input2"
-					class="responsive-input"
-					placeholder="Type something"
-					:prefix-icon="Search"
-				/>
-			</div>
-		</div>
-		<div class="input-group">
-			<span class="label">Using slots</span>
-			<div class="input-container">
-				<el-input
-					v-model="input3"
-					class="responsive-input"
-					placeholder="Pick a date"
-				>
-					<template #suffix>
-						<el-icon class="el-input__icon"><calendar /></el-icon>
-					</template>
-				</el-input>
-				<el-input
-					v-model="input4"
-					class="responsive-input"
-					placeholder="Type something"
-				>
-					<template #prefix>
-						<el-icon class="el-input__icon"><search /></el-icon>
-					</template>
-				</el-input>
-			</div>
-		</div>
-	</div>
+  <div class="demo-input-with-icon">
+    <div class="input-group">
+      <span class="label">Using attributes</span>
+      <div class="input-container">
+        <el-input
+          v-model="input1"
+          class="responsive-input"
+          placeholder="Pick a date"
+          :suffix-icon="Calendar"
+        />
+        <el-input
+          v-model="input2"
+          class="responsive-input"
+          placeholder="Type something"
+          :prefix-icon="Search"
+        />
+      </div>
+    </div>
+    <div class="input-group">
+      <span class="label">Using slots</span>
+      <div class="input-container">
+        <el-input
+          v-model="input3"
+          class="responsive-input"
+          placeholder="Pick a date"
+        >
+          <template #suffix>
+            <el-icon class="el-input__icon"><calendar /></el-icon>
+          </template>
+        </el-input>
+        <el-input
+          v-model="input4"
+          class="responsive-input"
+          placeholder="Type something"
+        >
+          <template #prefix>
+            <el-icon class="el-input__icon"><search /></el-icon>
+          </template>
+        </el-input>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
-import {Calendar, Search} from '@element-plus/icons-vue'
-import {ref} from 'vue'
+import { Calendar, Search } from '@element-plus/icons-vue'
+import { ref } from 'vue'
 
 const input1 = ref('')
 const input2 = ref('')
@@ -10063,38 +9302,38 @@ const input4 = ref('')
 
 <style scoped>
 .demo-input-with-icon {
-	width: 100%;
+  width: 100%;
 }
 
 .input-group {
-	margin-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .label {
-	display: block;
-	margin-bottom: 1rem;
-	color: var(--el-text-color-regular);
+  display: block;
+  margin-bottom: 1rem;
+  color: var(--el-text-color-regular);
 }
 
 .input-container {
-	display: flex;
-	gap: 1rem;
-	flex-wrap: wrap;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .responsive-input {
-	width: 240px;
+  width: 240px;
 }
 
 @media (max-width: 768px) {
-	.input-container {
-		flex-direction: column;
-		gap: 1rem;
-	}
+  .input-container {
+    flex-direction: column;
+    gap: 1rem;
+  }
 
-	.responsive-input {
-		width: 100%;
-	}
+  .responsive-input {
+    width: 100%;
+  }
 }
 </style>
 ```
@@ -10109,55 +9348,51 @@ Demonstrates how to control the size of an Element Plus splitter panel using the
 
 ```vue
 <template>
-	<div
-		style="height: 250px; box-shadow: var(--el-border-color-light) 0px 0px 10px"
-	>
-		<el-splitter
-			@resize-start="handleResizeStart"
-			@resize-end="handleResizeEnd"
-			@resize="handleResize"
-		>
-			<el-splitter-panel>
-				<div class="demo-panel">1</div>
-			</el-splitter-panel>
-			<el-splitter-panel
-				v-model:size="size"
-				:max="200"
-				:min="50"
-			>
-				<div class="demo-panel">{{ size }}px</div>
-			</el-splitter-panel>
-			<el-splitter-panel>
-				<div class="demo-panel">3</div>
-			</el-splitter-panel>
-		</el-splitter>
-	</div>
+  <div
+    style="height: 250px; box-shadow: var(--el-border-color-light) 0px 0px 10px"
+  >
+    <el-splitter
+      @resize-start="handleResizeStart"
+      @resize-end="handleResizeEnd"
+      @resize="handleResize"
+    >
+      <el-splitter-panel>
+        <div class="demo-panel">1</div>
+      </el-splitter-panel>
+      <el-splitter-panel v-model:size="size" :max="200" :min="50">
+        <div class="demo-panel">{{ size }}px</div>
+      </el-splitter-panel>
+      <el-splitter-panel>
+        <div class="demo-panel">3</div>
+      </el-splitter-panel>
+    </el-splitter>
+  </div>
 </template>
 
 <script setup lang="ts">
-import {ref} from 'vue'
+import { ref } from 'vue'
 
 const size = ref(100)
 
 const handleResizeStart = (index: number, sizes: number[]) => {
-	console.log('resizeStart', index, sizes)
+  console.log('resizeStart', index, sizes)
 }
 
 const handleResize = (index: number, sizes: number[]) => {
-	console.log('resize', index, sizes)
+  console.log('resize', index, sizes)
 }
 
 const handleResizeEnd = (index: number, sizes: number[]) => {
-	console.log('resizeEnd', index, sizes)
+  console.log('resizeEnd', index, sizes)
 }
 </script>
 
 <style scoped>
 .demo-panel {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 }
 </style>
 ```
@@ -10172,29 +9407,29 @@ This example shows how to trigger and handle confirm and cancel events from the 
 
 ```vue
 <template>
-	<el-popconfirm
-		confirm-button-text="Yes"
-		cancel-button-text="No"
-		:icon="InfoFilled"
-		icon-color="#626AEF"
-		title="Are you sure to delete this?"
-		@confirm="confirmEvent"
-		@cancel="cancelEvent"
-	>
-		<template #reference>
-			<el-button>Delete</el-button>
-		</template>
-	</el-popconfirm>
+  <el-popconfirm
+    confirm-button-text="Yes"
+    cancel-button-text="No"
+    :icon="InfoFilled"
+    icon-color="#626AEF"
+    title="Are you sure to delete this?"
+    @confirm="confirmEvent"
+    @cancel="cancelEvent"
+  >
+    <template #reference>
+      <el-button>Delete</el-button>
+    </template>
+  </el-popconfirm>
 </template>
 
 <script setup lang="ts">
-import {InfoFilled} from '@element-plus/icons-vue'
+import { InfoFilled } from '@element-plus/icons-vue'
 
 const confirmEvent = () => {
-	console.log('confirm!')
+  console.log('confirm!')
 }
 const cancelEvent = () => {
-	console.log('cancel!')
+  console.log('cancel!')
 }
 </script>
 ```
@@ -10227,44 +9462,37 @@ This example demonstrates how to use the el-scrollbar component with the @end-re
 
 ```vue
 <template>
-	<el-scrollbar
-		height="400px"
-		@end-reached="loadMore"
-	>
-		<p
-			v-for="item in num"
-			:key="item"
-			class="scrollbar-demo-item"
-		>
-			{{ item }}
-		</p>
-	</el-scrollbar>
+  <el-scrollbar height="400px" @end-reached="loadMore">
+    <p v-for="item in num" :key="item" class="scrollbar-demo-item">
+      {{ item }}
+    </p>
+  </el-scrollbar>
 </template>
 
 <script lang="ts" setup>
-import type {ScrollbarDirection} from 'element-plus'
-import {ref} from 'vue'
+import type { ScrollbarDirection } from 'element-plus'
+import { ref } from 'vue'
 
 const num = ref(30)
 
 const loadMore = (direction: ScrollbarDirection) => {
-	if (direction === 'bottom') {
-		num.value += 5
-	}
+  if (direction === 'bottom') {
+    num.value += 5
+  }
 }
 </script>
 
 <style scoped>
 .scrollbar-demo-item {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	height: 50px;
-	margin: 10px;
-	text-align: center;
-	border-radius: 4px;
-	background: var(--el-color-primary-light-9);
-	color: var(--el-color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  margin: 10px;
+  text-align: center;
+  border-radius: 4px;
+  background: var(--el-color-primary-light-9);
+  color: var(--el-color-primary);
 }
 </style>
 ```
@@ -10291,64 +9519,58 @@ Configure a year range picker with custom placeholders and a range separator. Th
 
 ```vue
 <template>
-	<div class="container">
-		<div class="line" />
-		<div class="block">
-			<div class="demonstration">year range</div>
-			<el-date-picker
-				v-model="value4"
-				type="yearrange"
-				range-separator="To"
-				start-placeholder="Start Year"
-				end-placeholder="End Year"
-			>
-				<template #prev-year>
-					<el-icon>
-						<svg
-							viewBox="0 0 20 20"
-							version="1.1"
-							xmlns="http://www.w3.org/2000/svg"
-						>
-							<g
-								stroke-width="1"
-								fill-rule="evenodd"
-							>
-								<g fill="currentColor">
-									<path
-										d="M8.73171,16.7949 C9.03264,17.0795 9.50733,17.0663 9.79196,16.7654 C10.0766,16.4644 10.0634,15.9897 9.76243,15.7051 L4.52339,10.75 L17.2471,10.75 C17.6613,10.75 17.9971,10.4142 17.9971,10 C17.9971,9.58579 17.6613,9.25 17.2471,9.25 L4.52112,9.25 L9.76243,4.29275 C10.0634,4.00812 10.0766,3.53343 9.79196,3.2325 C9.50733,2.93156 9.03264,2.91834 8.73171,3.20297 L2.31449,9.27241 C2.14819,9.4297 2.04819,9.62981 2.01448,9.8386 C2.00308,9.89058 1.99707,9.94459 1.99707,10 C1.99707,10.0576 2.00356,10.1137 2.01585,10.1675 C2.05084,10.3733 2.15039,10.5702 2.31449,10.7254 L8.73171,16.7949 Z"
-									/>
-								</g>
-							</g>
-						</svg>
-					</el-icon>
-				</template>
-				<template #next-year>
-					<el-icon>
-						<svg
-							viewBox="0 0 20 20"
-							version="1.1"
-							xmlns="http://www.w3.org/2000/svg"
-						>
-							<g
-								stroke-width="1"
-								fill-rule="evenodd"
-							>
-								<g fill="currentColor">
-									<path
-										d="M11.2654,3.20511 C10.9644,2.92049 10.4897,2.93371 10.2051,3.23464 C9.92049,3.53558 9.93371,4.01027 10.2346,4.29489 L15.4737,9.25 L2.75,9.25 C2.33579,9.25 2,9.58579 2,10.0000012 C2,10.4142 2.33579,10.75 2.75,10.75 L15.476,10.75 L10.2346,15.7073 C9.93371,15.9919 9.92049,16.4666 10.2051,16.7675 C10.4897,17.0684 10.9644,17.0817 11.2654,16.797 L17.6826,10.7276 C17.8489,10.5703 17.9489,10.3702 17.9826,10.1614 C17.994,10.1094 18,10.0554 18,10.0000012 C18,9.94241 17.9935,9.88633 17.9812,9.83246 C17.9462,9.62667 17.8467,9.42976 17.6826,9.27455 L11.2654,3.20511 Z"
-									/>
-								</g>
-							</g>
-						</svg>
-					</el-icon>
-				</template>
-			</el-date-picker>
-		</div>
-	</div>
+  <div class="container">
+    <div class="line" />
+    <div class="block">
+      <div class="demonstration">year range</div>
+      <el-date-picker
+        v-model="value4"
+        type="yearrange"
+        range-separator="To"
+        start-placeholder="Start Year"
+        end-placeholder="End Year"
+      >
+        <template #prev-year>
+          <el-icon>
+            <svg
+              viewBox="0 0 20 20"
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g stroke-width="1" fill-rule="evenodd">
+                <g fill="currentColor">
+                  <path
+                    d="M8.73171,16.7949 C9.03264,17.0795 9.50733,17.0663 9.79196,16.7654 C10.0766,16.4644 10.0634,15.9897 9.76243,15.7051 L4.52339,10.75 L17.2471,10.75 C17.6613,10.75 17.9971,10.4142 17.9971,10 C17.9971,9.58579 17.6613,9.25 17.2471,9.25 L4.52112,9.25 L9.76243,4.29275 C10.0634,4.00812 10.0766,3.53343 9.79196,3.2325 C9.50733,2.93156 9.03264,2.91834 8.73171,3.20297 L2.31449,9.27241 C2.14819,9.4297 2.04819,9.62981 2.01448,9.8386 C2.00308,9.89058 1.99707,9.94459 1.99707,10 C1.99707,10.0576 2.00356,10.1137 2.01585,10.1675 C2.05084,10.3733 2.15039,10.5702 2.31449,10.7254 L8.73171,16.7949 Z"
+                  />
+                </g>
+              </g>
+            </svg>
+          </el-icon>
+        </template>
+        <template #next-year>
+          <el-icon>
+            <svg
+              viewBox="0 0 20 20"
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g stroke-width="1" fill-rule="evenodd">
+                <g fill="currentColor">
+                  <path
+                    d="M11.2654,3.20511 C10.9644,2.92049 10.4897,2.93371 10.2051,3.23464 C9.92049,3.53558 9.93371,4.01027 10.2346,4.29489 L15.4737,9.25 L2.75,9.25 C2.33579,9.25 2,9.58579 2,10.0000012 C2,10.4142 2.33579,10.75 2.75,10.75 L15.476,10.75 L10.2346,15.7073 C9.93371,15.9919 9.92049,16.4666 10.2051,16.7675 C10.4897,17.0684 10.9644,17.0817 11.2654,16.797 L17.6826,10.7276 C17.8489,10.5703 17.9489,10.3702 17.9826,10.1614 C17.994,10.1094 18,10.0554 18,10.0000012 C18,9.94241 17.9935,9.88633 17.9812,9.83246 C17.9462,9.62667 17.8467,9.42976 17.6826,9.27455 L11.2654,3.20511 Z"
+                  />
+                </g>
+              </g>
+            </svg>
+          </el-icon>
+        </template>
+      </el-date-picker>
+    </div>
+  </div>
 </template>
 
 <script lang="ts" setup>
-import {ref} from 'vue'
+import { ref } from 'vue'
 
 const value4 = ref('')
 </script>
@@ -10534,41 +9756,27 @@ A simplified version of the step bar where certain layout attributes are ignored
 
 ```vue
 <template>
-	<el-steps
-		class="mb-4"
-		style="max-width: 600px"
-		:space="200"
-		:active="1"
-		simple
-	>
-		<el-step
-			title="Step 1"
-			:icon="Edit"
-		/>
-		<el-step
-			title="Step 2"
-			:icon="UploadFilled"
-		/>
-		<el-step
-			title="Step 3"
-			:icon="Picture"
-		/>
-	</el-steps>
+  <el-steps
+    class="mb-4"
+    style="max-width: 600px"
+    :space="200"
+    :active="1"
+    simple
+  >
+    <el-step title="Step 1" :icon="Edit" />
+    <el-step title="Step 2" :icon="UploadFilled" />
+    <el-step title="Step 3" :icon="Picture" />
+  </el-steps>
 
-	<el-steps
-		style="max-width: 600px"
-		:active="1"
-		finish-status="success"
-		simple
-	>
-		<el-step title="Step 1" />
-		<el-step title="Step 2" />
-		<el-step title="Step 3" />
-	</el-steps>
+  <el-steps style="max-width: 600px" :active="1" finish-status="success" simple>
+    <el-step title="Step 1" />
+    <el-step title="Step 2" />
+    <el-step title="Step 3" />
+  </el-steps>
 </template>
 
 <script lang="ts" setup>
-import {Edit, Picture, UploadFilled} from '@element-plus/icons-vue'
+import { Edit, Picture, UploadFilled } from '@element-plus/icons-vue'
 </script>
 ```
 
@@ -10582,78 +9790,78 @@ Demonstrates how to add a custom header to an Element Plus Select component usin
 
 ```vue
 <template>
-	<el-select
-		v-model="value"
-		multiple
-		clearable
-		collapse-tags
-		placeholder="Select"
-		popper-class="custom-header"
-		:max-collapse-tags="1"
-		style="width: 240px"
-	>
-		<template #header>
-			<el-checkbox
-				v-model="checkAll"
-				:indeterminate="indeterminate"
-				@change="handleCheckAll"
-			>
-				All
-			</el-checkbox>
-		</template>
-		<el-option
-			v-for="item in cities"
-			:key="item.value"
-			:label="item.label"
-			:value="item.value"
-		/>
-	</el-select>
+  <el-select
+    v-model="value"
+    multiple
+    clearable
+    collapse-tags
+    placeholder="Select"
+    popper-class="custom-header"
+    :max-collapse-tags="1"
+    style="width: 240px"
+  >
+    <template #header>
+      <el-checkbox
+        v-model="checkAll"
+        :indeterminate="indeterminate"
+        @change="handleCheckAll"
+      >
+        All
+      </el-checkbox>
+    </template>
+    <el-option
+      v-for="item in cities"
+      :key="item.value"
+      :label="item.label"
+      :value="item.value"
+    />
+  </el-select>
 </template>
 
 <script lang="ts" setup>
-import type {CheckboxValueType} from 'element-plus'
-import {ref, watch} from 'vue'
+import type { CheckboxValueType } from 'element-plus'
+import { ref, watch } from 'vue'
 
 const checkAll = ref(false)
 const indeterminate = ref(false)
 const value = ref<CheckboxValueType[]>([])
 const cities = ref([
-	{value: 'Beijing', label: 'Beijing'},
-	{value: 'Shanghai', label: 'Shanghai'},
-	{value: 'Nanjing', label: 'Nanjing'},
-	{value: 'Chengdu', label: 'Chengdu'},
-	{value: 'Shenzhen', label: 'Shenzhen'},
-	{value: 'Guangzhou', label: 'Guangzhou'},
+  { value: 'Beijing', label: 'Beijing' },
+  { value: 'Shanghai', label: 'Shanghai' },
+  { value: 'Nanjing', label: 'Nanjing' },
+  { value: 'Chengdu', label: 'Chengdu' },
+  { value: 'Shenzhen', label: 'Shenzhen' },
+  { value: 'Guangzhou', label: 'Guangzhou' },
 ])
 
-watch(value, val => {
-	if (val.length === 0) {
-		checkAll.value = false
-		indeterminate.value = false
-	} else if (val.length === cities.value.length) {
-		checkAll.value = true
-		indeterminate.value = false
-	} else {
-		indeterminate.value = true
-	}
+watch(value, (val) => {
+  if (val.length === 0) {
+    checkAll.value = false
+    indeterminate.value = false
+  } else if (val.length === cities.value.length) {
+    checkAll.value = true
+    indeterminate.value = false
+  } else {
+    indeterminate.value = true
+  }
 })
 
 const handleCheckAll = (val: CheckboxValueType) => {
-	indeterminate.value = false
-	if (val) {
-		value.value = cities.value.map(_ => _.value)
-	} else {
-		value.value = []
-	}
+  indeterminate.value = false
+  if (val) {
+    value.value = cities.value.map((_) => _.value)
+  } else {
+    value.value = []
+  }
 }
 </script>
 
 <style>
 .custom-header {
-	.el-checkbox {
-		display: flex;
-		height: unset;
-	}
+  .el-checkbox {
+    display: flex;
+    height: unset;
+  }
 }
 </style>
 ```
@@ -10668,16 +9876,13 @@ Apply global configuration for size and zIndex using ElConfigProvider when using
 
 ```vue
 <template>
-	<el-config-provider
-		:size="size"
-		:z-index="zIndex"
-	>
-		<app />
-	</el-config-provider>
+  <el-config-provider :size="size" :z-index="zIndex">
+    <app />
+  </el-config-provider>
 </template>
 
 <script setup lang="ts">
-import {ElConfigProvider} from 'element-plus'
+import { ElConfigProvider } from 'element-plus'
 
 const zIndex = 3000
 const size = 'small'
@@ -10694,44 +9899,44 @@ Demonstrates using 'format' for display and 'value-format' for binding data, inc
 
 ```vue
 <template>
-	<div class="demo-datetime-picker">
-		<div class="block">
-			<span class="demonstration">Emits Date object</span>
-			<div class="demonstration">Value: {{ value1 }}</div>
-			<el-date-picker
-				v-model="value1"
-				type="datetime"
-				placeholder="Pick a Date"
-				format="YYYY/MM/DD HH:mm:ss"
-			/>
-		</div>
-		<div class="block">
-			<span class="demonstration">Use value-format</span>
-			<div class="demonstration">Value：{{ value2 }}</div>
-			<el-date-picker
-				v-model="value2"
-				type="datetime"
-				placeholder="Pick a Date"
-				format="YYYY/MM/DD hh:mm:ss"
-				value-format="YYYY-MM-DD h:m:s a"
-			/>
-		</div>
-		<div class="block">
-			<span class="demonstration">Timestamp</span>
-			<div class="demonstration">Value：{{ value3 }}</div>
-			<el-date-picker
-				v-model="value3"
-				type="datetime"
-				placeholder="Pick a Date"
-				format="YYYY/MM/DD hh:mm:ss"
-				value-format="x"
-			/>
-		</div>
-	</div>
+  <div class="demo-datetime-picker">
+    <div class="block">
+      <span class="demonstration">Emits Date object</span>
+      <div class="demonstration">Value: {{ value1 }}</div>
+      <el-date-picker
+        v-model="value1"
+        type="datetime"
+        placeholder="Pick a Date"
+        format="YYYY/MM/DD HH:mm:ss"
+      />
+    </div>
+    <div class="block">
+      <span class="demonstration">Use value-format</span>
+      <div class="demonstration">Value：{{ value2 }}</div>
+      <el-date-picker
+        v-model="value2"
+        type="datetime"
+        placeholder="Pick a Date"
+        format="YYYY/MM/DD hh:mm:ss"
+        value-format="YYYY-MM-DD h:m:s a"
+      />
+    </div>
+    <div class="block">
+      <span class="demonstration">Timestamp</span>
+      <div class="demonstration">Value：{{ value3 }}</div>
+      <el-date-picker
+        v-model="value3"
+        type="datetime"
+        placeholder="Pick a Date"
+        format="YYYY/MM/DD hh:mm:ss"
+        value-format="x"
+      />
+    </div>
+  </div>
 </template>
 
 <script lang="ts" setup>
-import {ref} from 'vue'
+import { ref } from 'vue'
 
 const value1 = ref('')
 const value2 = ref('')
@@ -10740,47 +9945,47 @@ const value3 = ref('')
 
 <style scoped>
 .demo-datetime-picker {
-	display: flex;
-	width: 100%;
-	padding: 0;
-	flex-wrap: wrap;
+  display: flex;
+  width: 100%;
+  padding: 0;
+  flex-wrap: wrap;
 }
 .demo-datetime-picker .block {
-	padding: 30px 0;
-	text-align: center;
-	border-right: solid 1px var(--el-border-color);
-	flex: 1;
-	min-width: 300px;
+  padding: 30px 0;
+  text-align: center;
+  border-right: solid 1px var(--el-border-color);
+  flex: 1;
+  min-width: 300px;
 }
 .demo-datetime-picker .block:last-child {
-	border-right: none;
+  border-right: none;
 }
 .demo-datetime-picker .demonstration {
-	display: block;
-	color: var(--el-text-color-secondary);
-	font-size: 14px;
-	margin-bottom: 20px;
+  display: block;
+  color: var(--el-text-color-secondary);
+  font-size: 14px;
+  margin-bottom: 20px;
 }
 
 @media (max-width: 768px) {
-	.demo-datetime-picker .block {
-		flex: 100%;
-		border-right: none;
-		border-bottom: solid 1px var(--el-border-color);
-	}
+  .demo-datetime-picker .block {
+    flex: 100%;
+    border-right: none;
+    border-bottom: solid 1px var(--el-border-color);
+  }
 
-	.demo-datetime-picker .block:last-child {
-		border-bottom: none;
-	}
+  .demo-datetime-picker .block:last-child {
+    border-bottom: none;
+  }
 
-	:deep(.el-date-editor.el-input) {
-		width: 100%;
-	}
+  :deep(.el-date-editor.el-input) {
+    width: 100%;
+  }
 
-	:deep(.el-date-editor.el-input__wrapper) {
-		width: 100%;
-		max-width: 300px;
-	}
+  :deep(.el-date-editor.el-input__wrapper) {
+    width: 100%;
+    max-width: 300px;
+  }
 }
 </style>
 ```
@@ -10795,70 +10000,64 @@ This example shows how to use the `rowSpan` property on columns and a custom `Ro
 
 ```vue
 <template>
-	<el-table-v2
-		fixed
-		:columns="columns"
-		:data="data"
-		:width="700"
-		:height="400"
-	>
-		<template #row="props">
-			<Row v-bind="props" />
-		</template>
-	</el-table-v2>
+  <el-table-v2 fixed :columns="columns" :data="data" :width="700" :height="400">
+    <template #row="props">
+      <Row v-bind="props" />
+    </template>
+  </el-table-v2>
 </template>
 
 <script lang="ts" setup>
-import {cloneVNode} from 'vue'
+import { cloneVNode } from 'vue'
 
 const generateColumns = (length = 10, prefix = 'column-', props?: any) =>
-	Array.from({length}).map((_, columnIndex) => ({
-		...props,
-		key: `${prefix}${columnIndex}`,
-		dataKey: `${prefix}${columnIndex}`,
-		title: `Column ${columnIndex}`,
-		width: 150,
-	}))
+  Array.from({ length }).map((_, columnIndex) => ({
+    ...props,
+    key: `${prefix}${columnIndex}`,
+    dataKey: `${prefix}${columnIndex}`,
+    title: `Column ${columnIndex}`,
+    width: 150,
+  }))
 
 const generateData = (
-	columns: ReturnType<typeof generateColumns>,
-	length = 200,
-	prefix = 'row-',
+  columns: ReturnType<typeof generateColumns>,
+  length = 200,
+  prefix = 'row-',
 ) =>
-	Array.from({length}).map((_, rowIndex) => {
-		return columns.reduce(
-			(rowData, column, columnIndex) => {
-				rowData[column.dataKey] = `Row ${rowIndex} - Col ${columnIndex}`
-				return rowData
-			},
-			{
-				id: `${prefix}${rowIndex}`,
-				parentId: null,
-			},
-		)
-	})
+  Array.from({ length }).map((_, rowIndex) => {
+    return columns.reduce(
+      (rowData, column, columnIndex) => {
+        rowData[column.dataKey] = `Row ${rowIndex} - Col ${columnIndex}`
+        return rowData
+      },
+      {
+        id: `${prefix}${rowIndex}`,
+        parentId: null,
+      },
+    )
+  })
 
 const columns = generateColumns(10)
 const data = generateData(columns, 200)
 
 const rowSpanIndex = 0
-columns[rowSpanIndex].rowSpan = ({rowIndex}) =>
-	rowIndex % 2 === 0 && rowIndex <= data.length - 2 ? 2 : 1
+columns[rowSpanIndex].rowSpan = ({ rowIndex }) =>
+  rowIndex % 2 === 0 && rowIndex <= data.length - 2 ? 2 : 1
 
-const Row = ({rowData, rowIndex, cells, columns}) => {
-	const rowSpan = columns[rowSpanIndex].rowSpan({rowData, rowIndex})
-	if (rowSpan > 1) {
-		const cell = cells[rowSpanIndex]
-		const style = {
-			...cell.props.style,
-			backgroundColor: 'var(--el-color-primary-light-3)',
-			height: `${rowSpan * 50 - 1}px`,
-			alignSelf: 'flex-start',
-			zIndex: 1,
-		}
-		cells[rowSpanIndex] = cloneVNode(cell, {style})
-	}
-	return cells
+const Row = ({ rowData, rowIndex, cells, columns }) => {
+  const rowSpan = columns[rowSpanIndex].rowSpan({ rowData, rowIndex })
+  if (rowSpan > 1) {
+    const cell = cells[rowSpanIndex]
+    const style = {
+      ...cell.props.style,
+      backgroundColor: 'var(--el-color-primary-light-3)',
+      height: `${rowSpan * 50 - 1}px`,
+      alignSelf: 'flex-start',
+      zIndex: 1,
+    }
+    cells[rowSpanIndex] = cloneVNode(cell, { style })
+  }
+  return cells
 }
 </script>
 ```
@@ -10961,27 +10160,15 @@ Uses the icon property to display custom icons for each step.
 
 ```vue
 <template>
-	<el-steps
-		style="max-width: 600px"
-		:active="1"
-	>
-		<el-step
-			title="Step 1"
-			:icon="Edit"
-		/>
-		<el-step
-			title="Step 2"
-			:icon="Upload"
-		/>
-		<el-step
-			title="Step 3"
-			:icon="Picture"
-		/>
-	</el-steps>
+  <el-steps style="max-width: 600px" :active="1">
+    <el-step title="Step 1" :icon="Edit" />
+    <el-step title="Step 2" :icon="Upload" />
+    <el-step title="Step 3" :icon="Picture" />
+  </el-steps>
 </template>
 
 <script lang="ts" setup>
-import {Edit, Picture, Upload} from '@element-plus/icons-vue'
+import { Edit, Picture, Upload } from '@element-plus/icons-vue'
 </script>
 ```
 
@@ -10995,48 +10182,48 @@ Shows how to combine the 'show-icon' attribute with the 'description' attribute 
 
 ```vue
 <template>
-	<div style="max-width: 600px">
-		<el-alert
-			title="Primary alert"
-			type="primary"
-			description="More text description"
-			show-icon
-		/>
-		<el-alert
-			title="Success alert"
-			type="success"
-			description="More text description"
-			show-icon
-		/>
-		<el-alert
-			title="Info alert"
-			type="info"
-			description="More text description"
-			show-icon
-		/>
-		<el-alert
-			title="Warning alert"
-			type="warning"
-			description="More text description"
-			show-icon
-		/>
-		<el-alert
-			title="Error alert"
-			type="error"
-			description="More text description"
-			show-icon
-		/>
-	</div>
+  <div style="max-width: 600px">
+    <el-alert
+      title="Primary alert"
+      type="primary"
+      description="More text description"
+      show-icon
+    />
+    <el-alert
+      title="Success alert"
+      type="success"
+      description="More text description"
+      show-icon
+    />
+    <el-alert
+      title="Info alert"
+      type="info"
+      description="More text description"
+      show-icon
+    />
+    <el-alert
+      title="Warning alert"
+      type="warning"
+      description="More text description"
+      show-icon
+    />
+    <el-alert
+      title="Error alert"
+      type="error"
+      description="More text description"
+      show-icon
+    />
+  </div>
 </template>
 
 <script setup lang="ts"></script>
 
 <style scoped>
 .el-alert {
-	margin: 20px 0 0;
+  margin: 20px 0 0;
 }
 .el-alert:first-child {
-	margin: 0;
+  margin: 0;
 }
 </style>
 ```
@@ -11051,75 +10238,56 @@ Use the `throttle` attribute with an object including `initVal: true` to display
 
 ```vue
 <template>
-	<el-space
-		direction="vertical"
-		alignment="flex-start"
-	>
-		<div>
-			<label style="margin-right: 16px">Switch Loading</label>
-			<el-switch v-model="loading" />
-		</div>
-		<el-skeleton
-			style="width: 240px"
-			:loading="loading"
-			animated
-			:throttle="{leading: 500, initVal: true}"
-		>
-			<template #template>
-				<el-skeleton-item
-					variant="image"
-					style="width: 240px; height: 265px"
-				/>
-				<div style="padding: 14px">
-					<el-skeleton-item
-						variant="h3"
-						style="width: 50%"
-					/>
-					<div
-						style="
+  <el-space direction="vertical" alignment="flex-start">
+    <div>
+      <label style="margin-right: 16px">Switch Loading</label>
+      <el-switch v-model="loading" />
+    </div>
+    <el-skeleton
+      style="width: 240px"
+      :loading="loading"
+      animated
+      :throttle="{ leading: 500, initVal: true }"
+    >
+      <template #template>
+        <el-skeleton-item variant="image" style="width: 240px; height: 265px" />
+        <div style="padding: 14px">
+          <el-skeleton-item variant="h3" style="width: 50%" />
+          <div
+            style="
               display: flex;
               align-items: center;
               justify-items: space-between;
               margin-top: 16px;
               height: 16px;
             "
-					>
-						<el-skeleton-item
-							variant="text"
-							style="margin-right: 16px"
-						/>
-						<el-skeleton-item
-							variant="text"
-							style="width: 30%"
-						/>
-					</div>
-				</div>
-			</template>
-			<template #default>
-				<el-card :body-style="{padding: '0px', marginBottom: '1px'}">
-					<img
-						src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
-						class="image"
-					/>
-					<div style="padding: 14px">
-						<span>Delicious hamburger</span>
-						<div class="bottom card-header">
-							<div class="time">{{ currentDate }}</div>
-							<el-button
-								text
-								class="button"
-								>operation button</el-button
-							>
-						</div>
-					</div>
-				</el-card>
-			</template>
-		</el-skeleton>
-	</el-space>
+          >
+            <el-skeleton-item variant="text" style="margin-right: 16px" />
+            <el-skeleton-item variant="text" style="width: 30%" />
+          </div>
+        </div>
+      </template>
+      <template #default>
+        <el-card :body-style="{ padding: '0px', marginBottom: '1px' }">
+          <img
+            src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
+            class="image"
+          />
+          <div style="padding: 14px">
+            <span>Delicious hamburger</span>
+            <div class="bottom card-header">
+              <div class="time">{{ currentDate }}</div>
+              <el-button text class="button">operation button</el-button>
+            </div>
+          </div>
+        </el-card>
+      </template>
+    </el-skeleton>
+  </el-space>
 </template>
 
 <script lang="ts" setup>
-import {ref} from 'vue'
+import { ref } from 'vue'
 
 const loading = ref(true)
 const currentDate = new Date().toDateString()
@@ -11136,75 +10304,72 @@ This snippet illustrates how to configure empty value handling for ElSelect and 
 
 ```vue
 <template>
-	<el-config-provider
-		:value-on-clear="null"
-		:empty-values="[undefined, null]"
-	>
-		<div class="flex flex-wrap gap-4 items-center">
-			<el-select
-				v-model="value1"
-				clearable
-				placeholder="Select"
-				style="width: 240px"
-				@change="handleChange"
-			>
-				<el-option
-					v-for="item in options"
-					:key="item.value"
-					:label="item.label"
-					:value="item.value"
-				/>
-			</el-select>
-			<el-select-v2
-				v-model="value2"
-				clearable
-				placeholder="Select"
-				style="width: 240px"
-				:options="options"
-				:value-on-clear="() => undefined"
-				@change="handleChange"
-			/>
-		</div>
-	</el-config-provider>
+  <el-config-provider :value-on-clear="null" :empty-values="[undefined, null]">
+    <div class="flex flex-wrap gap-4 items-center">
+      <el-select
+        v-model="value1"
+        clearable
+        placeholder="Select"
+        style="width: 240px"
+        @change="handleChange"
+      >
+        <el-option
+          v-for="item in options"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value"
+        />
+      </el-select>
+      <el-select-v2
+        v-model="value2"
+        clearable
+        placeholder="Select"
+        style="width: 240px"
+        :options="options"
+        :value-on-clear="() => undefined"
+        @change="handleChange"
+      />
+    </div>
+  </el-config-provider>
 </template>
 
 <script lang="ts" setup>
-import {ElMessage} from 'element-plus'
-import {ref} from 'vue'
+import { ElMessage } from 'element-plus'
+import { ref } from 'vue'
 
 const value1 = ref('')
 const value2 = ref('')
 const options = [
-	{
-		value: '',
-		label: 'All',
-	},
-	{
-		value: 'Option1',
-		label: 'Option1',
-	},
-	{
-		value: 'Option2',
-		label: 'Option2',
-	},
-	{
-		value: 'Option3',
-		label: 'Option3',
-	},
-	{
-		value: 'Option4',
-		label: 'Option4',
-	},
-	{
-		value: 'Option5',
-		label: 'Option5',
-	},
+  {
+    value: '',
+    label: 'All',
+  },
+  {
+    value: 'Option1',
+    label: 'Option1',
+  },
+  {
+    value: 'Option2',
+    label: 'Option2',
+  },
+  {
+    value: 'Option3',
+    label: 'Option3',
+  },
+  {
+    value: 'Option4',
+    label: 'Option4',
+  },
+  {
+    value: 'Option5',
+    label: 'Option5',
+  },
 ]
 
-const handleChange = value => {
-	if ([undefined, null].includes(value)) {
-		ElMessage.info(`The clear value is: ${value}`)
-	}
+const handleChange = (value) => {
+  if ([undefined, null].includes(value)) {
+    ElMessage.info(`The clear value is: ${value}`)
+  }
 }
 </script>
 ```
@@ -11219,73 +10384,63 @@ Use the `striped` attribute for a striped effect and `striped-flow` for animatin
 
 ```vue
 <template>
-	<div class="demo-progress">
-		<el-progress
-			:percentage="50"
-			:stroke-width="15"
-			striped
-		/>
-		<el-progress
-			:percentage="30"
-			:stroke-width="15"
-			status="warning"
-			striped
-			striped-flow
-		/>
-		<el-progress
-			:percentage="100"
-			:stroke-width="15"
-			status="success"
-			striped
-			striped-flow
-			:duration="10"
-		/>
-		<el-progress
-			:percentage="percentage"
-			:stroke-width="15"
-			status="exception"
-			striped
-			striped-flow
-			:duration="duration"
-		/>
-		<el-button-group>
-			<el-button
-				:icon="Minus"
-				@click="decrease"
-			/>
-			<el-button
-				:icon="Plus"
-				@click="increase"
-			/>
-		</el-button-group>
-	</div>
+  <div class="demo-progress">
+    <el-progress :percentage="50" :stroke-width="15" striped />
+    <el-progress
+      :percentage="30"
+      :stroke-width="15"
+      status="warning"
+      striped
+      striped-flow
+    />
+    <el-progress
+      :percentage="100"
+      :stroke-width="15"
+      status="success"
+      striped
+      striped-flow
+      :duration="10"
+    />
+    <el-progress
+      :percentage="percentage"
+      :stroke-width="15"
+      status="exception"
+      striped
+      striped-flow
+      :duration="duration"
+    />
+    <el-button-group>
+      <el-button :icon="Minus" @click="decrease" />
+      <el-button :icon="Plus" @click="increase" />
+    </el-button-group>
+  </div>
 </template>
 
 <script lang="ts" setup>
-import {Minus, Plus} from '@element-plus/icons-vue'
-import {computed, ref} from 'vue'
+import { Minus, Plus } from '@element-plus/icons-vue'
+import { computed, ref } from 'vue'
 
 const percentage = ref<number>(70)
 const duration = computed(() => Math.floor(percentage.value / 10))
 
 const increase = () => {
-	percentage.value += 10
-	if (percentage.value > 100) {
-		percentage.value = 100
-	}
+  percentage.value += 10
+  if (percentage.value > 100) {
+    percentage.value = 100
+  }
 }
 const decrease = () => {
-	percentage.value -= 10
-	if (percentage.value < 0) {
-		percentage.value = 0
-	}
+  percentage.value -= 10
+  if (percentage.value < 0) {
+    percentage.value = 0
+  }
 }
 </script>
 
 <style scoped>
 .demo-progress .el-progress--line {
-	margin-bottom: 15px;
-	max-width: 600px;
+  margin-bottom: 15px;
+  max-width: 600px;
 }
 </style>
 ```
@@ -11515,19 +10670,19 @@ Explains how to automatically hide the pagination component when there is only o
 
 ```vue
 <template>
-	<div>
-		<el-switch v-model="value" />
-		<hr class="my-4" />
-		<el-pagination
-			:hide-on-single-page="value"
-			:total="5"
-			layout="prev, pager, next"
-		/>
-	</div>
+  <div>
+    <el-switch v-model="value" />
+    <hr class="my-4" />
+    <el-pagination
+      :hide-on-single-page="value"
+      :total="5"
+      layout="prev, pager, next"
+    />
+  </div>
 </template>
 
 <script lang="ts" setup>
-import {ref} from 'vue'
+import { ref } from 'vue'
 
 const value = ref(false)
 </script>
@@ -11867,142 +11022,131 @@ This snippet shows how to use the #tag slot in ElCascader to customize the appea
 
 ```vue
 <template>
-	<div class="m-4">
-		<p>Using slots allows for more flexible control over the display.</p>
-		<el-cascader
-			:options="options"
-			:props="props"
-			clearable
-		>
-			<template #tag="{data}">
-				<el-tag
-					v-for="(item, index) in getTags(data)"
-					:key="item"
-					:color="index % 2 === 0 ? '#FFDE0A' : ''"
-				>
-					{{ item }}
-				</el-tag>
-			</template>
-		</el-cascader>
-		<p>Display top-level tags only</p>
-		<el-cascader
-			:options="options"
-			:props="props"
-			clearable
-		>
-			<template #tag="{data}">
-				<el-tag
-					v-for="item in getTopLevelTags(data)"
-					:key="item"
-				>
-					{{ item }}
-				</el-tag>
-			</template>
-		</el-cascader>
-	</div>
+  <div class="m-4">
+    <p>Using slots allows for more flexible control over the display.</p>
+    <el-cascader :options="options" :props="props" clearable>
+      <template #tag="{ data }">
+        <el-tag
+          v-for="(item, index) in getTags(data)"
+          :key="item"
+          :color="index % 2 === 0 ? '#FFDE0A' : ''"
+        >
+          {{ item }}
+        </el-tag>
+      </template>
+    </el-cascader>
+    <p>Display top-level tags only</p>
+    <el-cascader :options="options" :props="props" clearable>
+      <template #tag="{ data }">
+        <el-tag v-for="item in getTopLevelTags(data)" :key="item">
+          {{ item }}
+        </el-tag>
+      </template>
+    </el-cascader>
+  </div>
 </template>
 
 <script lang="ts" setup>
-import type {Tag} from 'element-plus'
+import type { Tag } from 'element-plus'
 
-const props = {multiple: true}
+const props = { multiple: true }
 const options = [
-	{
-		value: 1,
-		label: 'Asia',
-		children: [
-			{
-				value: 2,
-				label: 'China',
-				children: [
-					{value: 3, label: 'Beijing'},
-					{value: 4, label: 'Shanghai'},
-					{value: 5, label: 'Hangzhou'},
-				],
-			},
-			{
-				value: 6,
-				label: 'Japan',
-				children: [
-					{value: 7, label: 'Tokyo'},
-					{value: 8, label: 'Osaka'},
-					{value: 9, label: 'Kyoto'},
-				],
-			},
-			{
-				value: 10,
-				label: 'Korea',
-				children: [
-					{value: 11, label: 'Seoul'},
-					{value: 12, label: 'Busan'},
-					{value: 13, label: 'Taegu'},
-				],
-			},
-		],
-	},
-	{
-		value: 14,
-		label: 'Europe',
-		children: [
-			{
-				value: 15,
-				label: 'France',
-				children: [
-					{value: 16, label: 'Paris'},
-					{value: 17, label: 'Marseille'},
-					{value: 18, label: 'Lyon'},
-				],
-			},
-			{
-				value: 19,
-				label: 'UK',
-				children: [
-					{value: 20, label: 'London'},
-					{value: 21, label: 'Birmingham'},
-					{value: 22, label: 'Manchester'},
-				],
-			},
-		],
-	},
-	{
-		value: 23,
-		label: 'North America',
-		children: [
-			{
-				value: 24,
-				label: 'US',
-				children: [
-					{value: 25, label: 'New York'},
-					{value: 26, label: 'Los Angeles'},
-					{value: 27, label: 'Washington'},
-				],
-			},
-			{
-				value: 28,
-				label: 'Canada',
-				children: [
-					{value: 29, label: 'Toronto'},
-					{value: 30, label: 'Montreal'},
-					{value: 31, label: 'Ottawa'},
-				],
-			},
-		],
-	},
+  {
+    value: 1,
+    label: 'Asia',
+    children: [
+      {
+        value: 2,
+        label: 'China',
+        children: [
+          { value: 3, label: 'Beijing' },
+          { value: 4, label: 'Shanghai' },
+          { value: 5, label: 'Hangzhou' },
+        ],
+      },
+      {
+        value: 6,
+        label: 'Japan',
+        children: [
+          { value: 7, label: 'Tokyo' },
+          { value: 8, label: 'Osaka' },
+          { value: 9, label: 'Kyoto' },
+        ],
+      },
+      {
+        value: 10,
+        label: 'Korea',
+        children: [
+          { value: 11, label: 'Seoul' },
+          { value: 12, label: 'Busan' },
+          { value: 13, label: 'Taegu' },
+        ],
+      },
+    ],
+  },
+  {
+    value: 14,
+    label: 'Europe',
+    children: [
+      {
+        value: 15,
+        label: 'France',
+        children: [
+          { value: 16, label: 'Paris' },
+          { value: 17, label: 'Marseille' },
+          { value: 18, label: 'Lyon' },
+        ],
+      },
+      {
+        value: 19,
+        label: 'UK',
+        children: [
+          { value: 20, label: 'London' },
+          { value: 21, label: 'Birmingham' },
+          { value: 22, label: 'Manchester' },
+        ],
+      },
+    ],
+  },
+  {
+    value: 23,
+    label: 'North America',
+    children: [
+      {
+        value: 24,
+        label: 'US',
+        children: [
+          { value: 25, label: 'New York' },
+          { value: 26, label: 'Los Angeles' },
+          { value: 27, label: 'Washington' },
+        ],
+      },
+      {
+        value: 28,
+        label: 'Canada',
+        children: [
+          { value: 29, label: 'Toronto' },
+          { value: 30, label: 'Montreal' },
+          { value: 31, label: 'Ottawa' },
+        ],
+      },
+    ],
+  },
 ]
 const getTags = (data: Tag[]) => {
-	return data.map(item => item.text)
+  return data.map((item) => item.text)
 }
 const getTopLevelTags = (data: Tag[]) => {
-	const set: Set<string> = new Set()
-	for (const datum of data) {
-		let parent = datum.node?.parent
-		while (parent && parent.level !== 1) {
-			parent = parent.parent
-		}
-		const label = parent?.data?.label
-		label && set.add(label)
-	}
-	return [...set]
+  const set: Set<string> = new Set()
+  for (const datum of data) {
+    let parent = datum.node?.parent
+    while (parent && parent.level !== 1) {
+      parent = parent.parent
+    }
+    const label = parent?.data?.label
+    label && set.add(label)
+  }
+  return [...set]
 }
 </script>
 ```
@@ -12106,36 +11250,36 @@ Demonstrates the fundamental implementation of the Element Plus Mention componen
 
 ```vue
 <template>
-	<el-mention
-		v-model="value"
-		:options="options"
-		style="width: 320px"
-		placeholder="Please input"
-	/>
+  <el-mention
+    v-model="value"
+    :options="options"
+    style="width: 320px"
+    placeholder="Please input"
+  />
 </template>
 
 <script setup lang="ts">
-import {ref} from 'vue'
+import { ref } from 'vue'
 
 const value = ref('@')
 
 const options = ref([
-	{
-		label: 'Fuphoenixes',
-		value: 'Fuphoenixes',
-	},
-	{
-		label: 'kooriookami',
-		value: 'kooriookami',
-	},
-	{
-		label: 'Jeremy',
-		value: 'Jeremy',
-	},
-	{
-		label: 'btea',
-		value: 'btea',
-	},
+  {
+    label: 'Fuphoenixes',
+    value: 'Fuphoenixes',
+  },
+  {
+    label: 'kooriookami',
+    value: 'kooriookami',
+  },
+  {
+    label: 'Jeremy',
+    value: 'Jeremy',
+  },
+  {
+    label: 'btea',
+    value: 'btea',
+  },
 ])
 </script>
 ```
@@ -12150,73 +11294,67 @@ Use this snippet to configure a month range picker. It supports custom placehold
 
 ```vue
 <template>
-	<div class="container">
-		<div class="line" />
-		<div class="block">
-			<div class="demonstration">month range</div>
-			<el-date-picker
-				v-model="value3"
-				type="monthrange"
-				start-placeholder="Start date"
-				end-placeholder="End date"
-				format="YYYY/MM/DD"
-				value-format="YYYY-MM-DD"
-				unlink-panels
-			>
-				<template #prev-month>
-					<el-icon><CaretLeft /></el-icon>
-				</template>
-				<template #next-month>
-					<el-icon><CaretRight /></el-icon>
-				</template>
-				<template #prev-year>
-					<el-icon>
-						<svg
-							viewBox="0 0 20 20"
-							version="1.1"
-							xmlns="http://www.w3.org/2000/svg"
-						>
-							<g
-								stroke-width="1"
-								fill-rule="evenodd"
-							>
-								<g fill="currentColor">
-									<path
-										d="M8.73171,16.7949 C9.03264,17.0795 9.50733,17.0663 9.79196,16.7654 C10.0766,16.4644 10.0634,15.9897 9.76243,15.7051 L4.52339,10.75 L17.2471,10.75 C17.6613,10.75 17.9971,10.4142 17.9971,10 C17.9971,9.58579 17.6613,9.25 17.2471,9.25 L4.52112,9.25 L9.76243,4.29275 C10.0634,4.00812 10.0766,3.53343 9.79196,3.2325 C9.50733,2.93156 9.03264,2.91834 8.73171,3.20297 L2.31449,9.27241 C2.14819,9.4297 2.04819,9.62981 2.01448,9.8386 C2.00308,9.89058 1.99707,9.94459 1.99707,10 C1.99707,10.0576 2.00356,10.1137 2.01585,10.1675 C2.05084,10.3733 2.15039,10.5702 2.31449,10.7254 L8.73171,16.7949 Z"
-									/>
-								</g>
-							</g>
-						</svg>
-					</el-icon>
-				</template>
-				<template #next-year>
-					<el-icon>
-						<svg
-							viewBox="0 0 20 20"
-							version="1.1"
-							xmlns="http://www.w3.org/2000/svg"
-						>
-							<g
-								stroke-width="1"
-								fill-rule="evenodd"
-							>
-								<g fill="currentColor">
-									<path
-										d="M11.2654,3.20511 C10.9644,2.92049 10.4897,2.93371 10.2051,3.23464 C9.92049,3.53558 9.93371,4.01027 10.2346,4.29489 L15.4737,9.25 L2.75,9.25 C2.33579,9.25 2,9.58579 2,10.0000012 C2,10.4142 2.33579,10.75 2.75,10.75 L15.476,10.75 L10.2346,15.7073 C9.93371,15.9919 9.92049,16.4666 10.2051,16.7675 C10.4897,17.0684 10.9644,17.0817 11.2654,16.797 L17.6826,10.7276 C17.8489,10.5703 17.9489,10.3702 17.9826,10.1614 C17.994,10.1094 18,10.0554 18,10.0000012 C18,9.94241 17.9935,9.88633 17.9812,9.83246 C17.9462,9.62667 17.8467,9.42976 17.6826,9.27455 L11.2654,3.20511 Z"
-									/>
-								</g>
-							</g>
-						</svg>
-					</el-icon>
-				</template>
-			</el-date-picker>
-		</div>
-	</div>
+  <div class="container">
+    <div class="line" />
+    <div class="block">
+      <div class="demonstration">month range</div>
+      <el-date-picker
+        v-model="value3"
+        type="monthrange"
+        start-placeholder="Start date"
+        end-placeholder="End date"
+        format="YYYY/MM/DD"
+        value-format="YYYY-MM-DD"
+        unlink-panels
+      >
+        <template #prev-month>
+          <el-icon><CaretLeft /></el-icon>
+        </template>
+        <template #next-month>
+          <el-icon><CaretRight /></el-icon>
+        </template>
+        <template #prev-year>
+          <el-icon>
+            <svg
+              viewBox="0 0 20 20"
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g stroke-width="1" fill-rule="evenodd">
+                <g fill="currentColor">
+                  <path
+                    d="M8.73171,16.7949 C9.03264,17.0795 9.50733,17.0663 9.79196,16.7654 C10.0766,16.4644 10.0634,15.9897 9.76243,15.7051 L4.52339,10.75 L17.2471,10.75 C17.6613,10.75 17.9971,10.4142 17.9971,10 C17.9971,9.58579 17.6613,9.25 17.2471,9.25 L4.52112,9.25 L9.76243,4.29275 C10.0634,4.00812 10.0766,3.53343 9.79196,3.2325 C9.50733,2.93156 9.03264,2.91834 8.73171,3.20297 L2.31449,9.27241 C2.14819,9.4297 2.04819,9.62981 2.01448,9.8386 C2.00308,9.89058 1.99707,9.94459 1.99707,10 C1.99707,10.0576 2.00356,10.1137 2.01585,10.1675 C2.05084,10.3733 2.15039,10.5702 2.31449,10.7254 L8.73171,16.7949 Z"
+                  />
+                </g>
+              </g>
+            </svg>
+          </el-icon>
+        </template>
+        <template #next-year>
+          <el-icon>
+            <svg
+              viewBox="0 0 20 20"
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g stroke-width="1" fill-rule="evenodd">
+                <g fill="currentColor">
+                  <path
+                    d="M11.2654,3.20511 C10.9644,2.92049 10.4897,2.93371 10.2051,3.23464 C9.92049,3.53558 9.93371,4.01027 10.2346,4.29489 L15.4737,9.25 L2.75,9.25 C2.33579,9.25 2,9.58579 2,10.0000012 C2,10.4142 2.33579,10.75 2.75,10.75 L15.476,10.75 L10.2346,15.7073 C9.93371,15.9919 9.92049,16.4666 10.2051,16.7675 C10.4897,17.0684 10.9644,17.0817 11.2654,16.797 L17.6826,10.7276 C17.8489,10.5703 17.9489,10.3702 17.9826,10.1614 C17.994,10.1094 18,10.0554 18,10.0000012 C18,9.94241 17.9935,9.88633 17.9812,9.83246 C17.9462,9.62667 17.8467,9.42976 17.6826,9.27455 L11.2654,3.20511 Z"
+                  />
+                </g>
+              </g>
+            </svg>
+          </el-icon>
+        </template>
+      </el-date-picker>
+    </div>
+  </div>
 </template>
 
 <script lang="ts" setup>
-import {CaretLeft, CaretRight} from '@element-plus/icons-vue'
-import {ref} from 'vue'
+import { CaretLeft, CaretRight } from '@element-plus/icons-vue'
+import { ref } from 'vue'
 
 const value3 = ref('')
 </script>
@@ -12370,82 +11508,64 @@ The `color` attribute accepts a string, function, or array to define custom prog
 
 ```vue
 <template>
-	<div class="demo-progress">
-		<el-progress
-			:percentage="percentage"
-			:color="customColor"
-		/>
+  <div class="demo-progress">
+    <el-progress :percentage="percentage" :color="customColor" />
 
-		<el-progress
-			:percentage="percentage"
-			:color="customColorMethod"
-		/>
+    <el-progress :percentage="percentage" :color="customColorMethod" />
 
-		<el-progress
-			:percentage="percentage"
-			:color="customColors"
-		/>
-		<el-progress
-			:percentage="percentage"
-			:color="customColors"
-		/>
-		<div>
-			<el-button-group>
-				<el-button
-					:icon="Minus"
-					@click="decrease"
-				/>
-				<el-button
-					:icon="Plus"
-					@click="increase"
-				/>
-			</el-button-group>
-		</div>
-	</div>
+    <el-progress :percentage="percentage" :color="customColors" />
+    <el-progress :percentage="percentage" :color="customColors" />
+    <div>
+      <el-button-group>
+        <el-button :icon="Minus" @click="decrease" />
+        <el-button :icon="Plus" @click="increase" />
+      </el-button-group>
+    </div>
+  </div>
 </template>
 
 <script lang="ts" setup>
-import {Minus, Plus} from '@element-plus/icons-vue'
-import {ref} from 'vue'
+import { Minus, Plus } from '@element-plus/icons-vue'
+import { ref } from 'vue'
 
 const percentage = ref(20)
 const customColor = ref('#409eff')
 
 const customColors = [
-	{color: '#f56c6c', percentage: 20},
-	{color: '#e6a23c', percentage: 40},
-	{color: '#5cb87a', percentage: 60},
-	{color: '#1989fa', percentage: 80},
-	{color: '#6f7ad3', percentage: 100},
+  { color: '#f56c6c', percentage: 20 },
+  { color: '#e6a23c', percentage: 40 },
+  { color: '#5cb87a', percentage: 60 },
+  { color: '#1989fa', percentage: 80 },
+  { color: '#6f7ad3', percentage: 100 },
 ]
 
 const customColorMethod = (percentage: number) => {
-	if (percentage < 30) {
-		return '#909399'
-	}
-	if (percentage < 70) {
-		return '#e6a23c'
-	}
-	return '#67c23a'
+  if (percentage < 30) {
+    return '#909399'
+  }
+  if (percentage < 70) {
+    return '#e6a23c'
+  }
+  return '#67c23a'
 }
 const increase = () => {
-	percentage.value += 10
-	if (percentage.value > 100) {
-		percentage.value = 100
-	}
+  percentage.value += 10
+  if (percentage.value > 100) {
+    percentage.value = 100
+  }
 }
 const decrease = () => {
-	percentage.value -= 10
-	if (percentage.value < 0) {
-		percentage.value = 0
-	}
+  percentage.value -= 10
+  if (percentage.value < 0) {
+    percentage.value = 0
+  }
 }
 </script>
 
 <style scoped>
 .demo-progress .el-progress--line {
-	margin-bottom: 15px;
-	max-width: 600px;
+  margin-bottom: 15px;
+  max-width: 600px;
 }
 </style>
 ```
@@ -12460,21 +11580,18 @@ Displays standard time pickers with optional arrow controls for navigation.
 
 ```vue
 <template>
-	<div class="example-basic">
-		<el-time-picker
-			v-model="value1"
-			placeholder="Arbitrary time"
-		/>
-		<el-time-picker
-			v-model="value2"
-			arrow-control
-			placeholder="Arbitrary time"
-		/>
-	</div>
+  <div class="example-basic">
+    <el-time-picker v-model="value1" placeholder="Arbitrary time" />
+    <el-time-picker
+      v-model="value2"
+      arrow-control
+      placeholder="Arbitrary time"
+    />
+  </div>
 </template>
 
 <script lang="ts" setup>
-import {ref} from 'vue'
+import { ref } from 'vue'
 
 const value1 = ref()
 const value2 = ref()
@@ -12482,7 +11599,7 @@ const value2 = ref()
 
 <style>
 .example-basic .el-date-editor {
-	margin: 8px;
+  margin: 8px;
 }
 </style>
 ```
@@ -12497,17 +11614,17 @@ Demonstrates how to use custom icons for the Element Plus Rate component with th
 
 ```vue
 <template>
-	<el-rate
-		v-model="value"
-		:icons="icons"
-		:void-icon="ChatRound"
-		:colors="['#409eff', '#67c23a', '#FF9900']"
-	/>
+  <el-rate
+    v-model="value"
+    :icons="icons"
+    :void-icon="ChatRound"
+    :colors="['#409eff', '#67c23a', '#FF9900']"
+  />
 </template>
 
 <script lang="ts" setup>
-import {ChatDotRound, ChatLineRound, ChatRound} from '@element-plus/icons-vue'
-import {ref} from 'vue'
+import { ChatDotRound, ChatLineRound, ChatRound } from '@element-plus/icons-vue'
+import { ref } from 'vue'
 
 const value = ref()
 const icons = [ChatRound, ChatLineRound, ChatDotRound] // same as { 2: ChatRound, 4: { value: ChatLineRound, excluded: true }, 5: ChatDotRound }
@@ -12524,16 +11641,16 @@ Illustrates how to combine columns of different spans to create complex, non-uni
 
 ```vue
 <template>
-	<el-row :gutter="20">
-		<el-col :span="16"><div class="grid-content ep-bg-purple" /></el-col>
-		<el-col :span="8"><div class="grid-content ep-bg-purple" /></el-col>
-	</el-row>
-	<el-row :gutter="20">
-		<el-col :span="8"><div class="grid-content ep-bg-purple" /></el-col>
-		<el-col :span="8"><div class="grid-content ep-bg-purple" /></el-col>
-		<el-col :span="4"><div class="grid-content ep-bg-purple" /></el-col>
-		<el-col :span="4"><div class="grid-content ep-bg-purple" /></el-col>
-	</el-row>
+  <el-row :gutter="20">
+    <el-col :span="16"><div class="grid-content ep-bg-purple" /></el-col>
+    <el-col :span="8"><div class="grid-content ep-bg-purple" /></el-col>
+  </el-row>
+  <el-row :gutter="20">
+    <el-col :span="8"><div class="grid-content ep-bg-purple" /></el-col>
+    <el-col :span="8"><div class="grid-content ep-bg-purple" /></el-col>
+    <el-col :span="4"><div class="grid-content ep-bg-purple" /></el-col>
+    <el-col :span="4"><div class="grid-content ep-bg-purple" /></el-col>
+  </el-row>
 </template>
 ```
 
@@ -12547,102 +11664,80 @@ This example demonstrates how to toggle the checkStrictly property to control no
 
 ```vue
 <template>
-	<el-radio-group
-		v-model="treeProps.checkStrictly"
-		class="mb-2"
-	>
-		<el-radio-button
-			:value="true"
-			label="true"
-		/>
-		<el-radio-button
-			:value="false"
-			label="false"
-		/>
-	</el-radio-group>
-	<el-table
-		:data="tableData"
-		:tree-props="treeProps"
-		row-key="id"
-		default-expand-all
-	>
-		<el-table-column
-			type="selection"
-			width="55"
-			:selectable="selectable"
-		/>
-		<el-table-column
-			prop="date"
-			label="Date"
-		/>
-		<el-table-column
-			prop="name"
-			label="Name"
-		/>
-		<el-table-column
-			prop="address"
-			label="Address"
-		/>
-	</el-table>
+  <el-radio-group v-model="treeProps.checkStrictly" class="mb-2">
+    <el-radio-button :value="true" label="true" />
+    <el-radio-button :value="false" label="false" />
+  </el-radio-group>
+  <el-table
+    :data="tableData"
+    :tree-props="treeProps"
+    row-key="id"
+    default-expand-all
+  >
+    <el-table-column type="selection" width="55" :selectable="selectable" />
+    <el-table-column prop="date" label="Date" />
+    <el-table-column prop="name" label="Name" />
+    <el-table-column prop="address" label="Address" />
+  </el-table>
 </template>
 
 <script lang="ts" setup>
-import {reactive} from 'vue'
+import { reactive } from 'vue'
 
 interface User {
-	id: number
-	date: string
-	name: string
-	address: string
-	hasChildren?: boolean
-	children?: User[]
+  id: number
+  date: string
+  name: string
+  address: string
+  hasChildren?: boolean
+  children?: User[]
 }
 
 const treeProps = reactive({
-	checkStrictly: false,
+  checkStrictly: false,
 })
 
 const selectable = (row: User) => ![1, 31].includes(row.id)
 
 const tableData: User[] = [
-	{
-		id: 1,
-		date: '2016-05-02',
-		name: 'wangxiaohu',
-		address: 'No. 189, Grove St, Los Angeles',
-	},
-	{
-		id: 2,
-		date: '2016-05-04',
-		name: 'wangxiaohu',
-		address: 'No. 189, Grove St, Los Angeles',
-	},
-	{
-		id: 3,
-		date: '2016-05-01',
-		name: 'wangxiaohu',
-		address: 'No. 189, Grove St, Los Angeles',
-		children: [
-			{
-				id: 31,
-				date: '2016-05-01',
-				name: 'wangxiaohu',
-				address: 'No. 189, Grove St, Los Angeles',
-			},
-			{
-				id: 32,
-				date: '2016-05-01',
-				name: 'wangxiaohu',
-				address: 'No. 189, Grove St, Los Angeles',
-			},
-		],
-	},
-	{
-		id: 4,
-		date: '2016-05-03',
-		name: 'wangxiaohu',
-		address: 'No. 189, Grove St, Los Angeles',
-	},
+  {
+    id: 1,
+    date: '2016-05-02',
+    name: 'wangxiaohu',
+    address: 'No. 189, Grove St, Los Angeles',
+  },
+  {
+    id: 2,
+    date: '2016-05-04',
+    name: 'wangxiaohu',
+    address: 'No. 189, Grove St, Los Angeles',
+  },
+  {
+    id: 3,
+    date: '2016-05-01',
+    name: 'wangxiaohu',
+    address: 'No. 189, Grove St, Los Angeles',
+    children: [
+      {
+        id: 31,
+        date: '2016-05-01',
+        name: 'wangxiaohu',
+        address: 'No. 189, Grove St, Los Angeles',
+      },
+      {
+        id: 32,
+        date: '2016-05-01',
+        name: 'wangxiaohu',
+        address: 'No. 189, Grove St, Los Angeles',
+      },
+    ],
+  },
+  {
+    id: 4,
+    date: '2016-05-03',
+    name: 'wangxiaohu',
+    address: 'No. 189, Grove St, Los Angeles',
+  },
 ]
 </script>
 ```
@@ -12887,35 +11982,31 @@ This example demonstrates how to use the #suggestion-item slot in an Element Plu
 
 ```vue
 <template>
-	<el-cascader
-		:options="options"
-		filterable
-		placeholder="Try searching: Guide"
-	>
-		<template #suggestion-item="{item}">
-			<span>🔍 {{ item.pathLabels.join(' > ') }}</span>
-		</template>
-	</el-cascader>
+  <el-cascader :options="options" filterable placeholder="Try searching: Guide">
+    <template #suggestion-item="{ item }">
+      <span>🔍 {{ item.pathLabels.join(' > ') }}</span>
+    </template>
+  </el-cascader>
 </template>
 
 <script lang="ts" setup>
 const options = [
-	{
-		value: 'guide',
-		label: 'Guide',
-		children: [
-			{
-				value: 'disciplines',
-				label: 'Disciplines',
-				children: [
-					{value: 'consistency', label: 'Consistency'},
-					{value: 'feedback', label: 'Feedback'},
-					{value: 'efficiency', label: 'Efficiency'},
-					{value: 'controllability', label: 'Controllability'},
-				],
-			},
-		],
-	},
+  {
+    value: 'guide',
+    label: 'Guide',
+    children: [
+      {
+        value: 'disciplines',
+        label: 'Disciplines',
+        children: [
+          { value: 'consistency', label: 'Consistency' },
+          { value: 'feedback', label: 'Feedback' },
+          { value: 'efficiency', label: 'Efficiency' },
+          { value: 'controllability', label: 'Controllability' },
+        ],
+      },
+    ],
+  },
 ]
 </script>
 ```
@@ -12930,9 +12021,9 @@ Demonstrates how to use the Affix component to fix an element at a specified off
 
 ```vue
 <template>
-	<el-affix :offset="120">
-		<el-button type="primary">Offset top 120px</el-button>
-	</el-affix>
+  <el-affix :offset="120">
+    <el-button type="primary">Offset top 120px</el-button>
+  </el-affix>
 </template>
 ```
 
@@ -12946,20 +12037,15 @@ Demonstrates the basic implementation of the Input Number component with min/max
 
 ```vue
 <template>
-	<el-input-number
-		v-model="num"
-		:min="1"
-		:max="10"
-		@change="handleChange"
-	/>
+  <el-input-number v-model="num" :min="1" :max="10" @change="handleChange" />
 </template>
 
 <script lang="ts" setup>
-import {ref} from 'vue'
+import { ref } from 'vue'
 
 const num = ref(1)
 const handleChange = (value: number | undefined) => {
-	console.log(value)
+  console.log(value)
 }
 </script>
 ```
@@ -12974,68 +12060,65 @@ Use `scrollToTop` to scroll by pixels or `scrollToRow` to scroll by row count. T
 
 ```vue
 <template>
-	<div class="mb-4 flex items-center">
-		<el-form-item
-			label="Scroll pixels"
-			class="mr-4"
-		>
-			<el-input v-model="scrollDelta" />
-		</el-form-item>
-		<el-form-item label="Scroll rows">
-			<el-input v-model="scrollRows" />
-		</el-form-item>
-	</div>
-	<div class="mb-4 flex items-center">
-		<el-button @click="scrollByPixels"> Scroll by pixels </el-button>
-		<el-button @click="scrollByRows"> Scroll by rows </el-button>
-	</div>
-	<div style="height: 400px">
-		<el-auto-resizer>
-			<template #default="{height, width}">
-				<el-table-v2
-					ref="tableRef"
-					:columns="columns"
-					:data="data"
-					:width="width"
-					:height="height"
-					fixed
-				/>
-			</template>
-		</el-auto-resizer>
-	</div>
+  <div class="mb-4 flex items-center">
+    <el-form-item label="Scroll pixels" class="mr-4">
+      <el-input v-model="scrollDelta" />
+    </el-form-item>
+    <el-form-item label="Scroll rows">
+      <el-input v-model="scrollRows" />
+    </el-form-item>
+  </div>
+  <div class="mb-4 flex items-center">
+    <el-button @click="scrollByPixels"> Scroll by pixels </el-button>
+    <el-button @click="scrollByRows"> Scroll by rows </el-button>
+  </div>
+  <div style="height: 400px">
+    <el-auto-resizer>
+      <template #default="{ height, width }">
+        <el-table-v2
+          ref="tableRef"
+          :columns="columns"
+          :data="data"
+          :width="width"
+          :height="height"
+          fixed
+        />
+      </template>
+    </el-auto-resizer>
+  </div>
 </template>
 
 <script lang="ts" setup>
-import {ref} from 'vue'
+import { ref } from 'vue'
 
-import type {TableV2Instance} from 'element-plus'
+import type { TableV2Instance } from 'element-plus'
 
 const generateColumns = (length = 10, prefix = 'column-', props?: any) =>
-	Array.from({length}).map((_, columnIndex) => ({
-		...props,
-		key: `${prefix}${columnIndex}`,
-		dataKey: `${prefix}${columnIndex}`,
-		title: `Column ${columnIndex}`,
-		width: 150,
-	}))
+  Array.from({ length }).map((_, columnIndex) => ({
+    ...props,
+    key: `${prefix}${columnIndex}`,
+    dataKey: `${prefix}${columnIndex}`,
+    title: `Column ${columnIndex}`,
+    width: 150,
+  }))
 
 const generateData = (
-	columns: ReturnType<typeof generateColumns>,
-	length = 200,
-	prefix = 'row-',
+  columns: ReturnType<typeof generateColumns>,
+  length = 200,
+  prefix = 'row-',
 ) =>
-	Array.from({length}).map((_, rowIndex) => {
-		return columns.reduce(
-			(rowData, column, columnIndex) => {
-				rowData[column.dataKey] = `Row ${rowIndex} - Col ${columnIndex}`
-				return rowData
-			},
-			{
-				id: `${prefix}${rowIndex}`,
-				parentId: null,
-			},
-		)
-	})
+  Array.from({ length }).map((_, rowIndex) => {
+    return columns.reduce(
+      (rowData, column, columnIndex) => {
+        rowData[column.dataKey] = `Row ${rowIndex} - Col ${columnIndex}`
+        return rowData
+      },
+      {
+        id: `${prefix}${rowIndex}`,
+        parentId: null,
+      },
+    )
+  })
 
 const columns = generateColumns(10)
 const data = generateData(columns, 200)
@@ -13044,11 +12127,11 @@ const scrollDelta = ref(200)
 const scrollRows = ref(10)
 
 function scrollByPixels() {
-	tableRef.value?.scrollToTop(scrollDelta.value)
+  tableRef.value?.scrollToTop(scrollDelta.value)
 }
 
 function scrollByRows() {
-	tableRef.value?.scrollToRow(scrollRows.value)
+  tableRef.value?.scrollToRow(scrollRows.value)
 }
 </script>
 ```
@@ -13063,31 +12146,31 @@ Displays a simple list of activities with timestamps using the el-timeline compo
 
 ```vue
 <template>
-	<el-timeline>
-		<el-timeline-item
-			v-for="(activity, index) in activities"
-			:key="index"
-			:timestamp="activity.timestamp"
-		>
-			{{ activity.content }}
-		</el-timeline-item>
-	</el-timeline>
+  <el-timeline>
+    <el-timeline-item
+      v-for="(activity, index) in activities"
+      :key="index"
+      :timestamp="activity.timestamp"
+    >
+      {{ activity.content }}
+    </el-timeline-item>
+  </el-timeline>
 </template>
 
 <script lang="ts" setup>
 const activities = [
-	{
-		content: 'Event start',
-		timestamp: '2018-04-15',
-	},
-	{
-		content: 'Approved',
-		timestamp: '2018-04-13',
-	},
-	{
-		content: 'Success',
-		timestamp: '2018-04-11',
-	},
+  {
+    content: 'Event start',
+    timestamp: '2018-04-15',
+  },
+  {
+    content: 'Approved',
+    timestamp: '2018-04-13',
+  },
+  {
+    content: 'Success',
+    timestamp: '2018-04-11',
+  },
 ]
 </script>
 ```
@@ -13102,60 +12185,45 @@ Explains how to control the table layout algorithm using the `table-layout` prop
 
 ```vue
 <template>
-	<el-radio-group
-		v-model="tableLayout"
-		class="mb-2"
-	>
-		<el-radio-button value="fixed">fixed</el-radio-button>
-		<el-radio-button value="auto">auto</el-radio-button>
-	</el-radio-group>
-	<el-table
-		:data="tableData"
-		:table-layout="tableLayout"
-	>
-		<el-table-column
-			prop="date"
-			label="Date"
-		/>
-		<el-table-column
-			prop="name"
-			label="Name"
-		/>
-		<el-table-column
-			prop="address"
-			label="Address"
-		/>
-	</el-table>
+  <el-radio-group v-model="tableLayout" class="mb-2">
+    <el-radio-button value="fixed">fixed</el-radio-button>
+    <el-radio-button value="auto">auto</el-radio-button>
+  </el-radio-group>
+  <el-table :data="tableData" :table-layout="tableLayout">
+    <el-table-column prop="date" label="Date" />
+    <el-table-column prop="name" label="Name" />
+    <el-table-column prop="address" label="Address" />
+  </el-table>
 </template>
 
 <script lang="ts" setup>
-import {ref} from 'vue'
+import { ref } from 'vue'
 
-import type {TableInstance} from 'element-plus'
+import type { TableInstance } from 'element-plus'
 
 const tableLayout = ref<TableInstance['tableLayout']>('fixed')
 
 const tableData = [
-	{
-		date: '2016-05-03',
-		name: 'Tom',
-		address: 'No. 189, Grove St, Los Angeles',
-	},
-	{
-		date: '2016-05-02',
-		name: 'Tom',
-		address: 'No. 189, Grove St, Los Angeles',
-	},
-	{
-		date: '2016-05-04',
-		name: 'Tom',
-		address: 'No. 189, Grove St, Los Angeles',
-	},
-	{
-		date: '2016-05-01',
-		name: 'Tom',
-		address: 'No. 189, Grove St, Los Angeles',
-	},
+  {
+    date: '2016-05-03',
+    name: 'Tom',
+    address: 'No. 189, Grove St, Los Angeles',
+  },
+  {
+    date: '2016-05-02',
+    name: 'Tom',
+    address: 'No. 189, Grove St, Los Angeles',
+  },
+  {
+    date: '2016-05-04',
+    name: 'Tom',
+    address: 'No. 189, Grove St, Los Angeles',
+  },
+  {
+    date: '2016-05-01',
+    name: 'Tom',
+    address: 'No. 189, Grove St, Los Angeles',
+  },
 ]
 </script>
 ```
@@ -13170,47 +12238,43 @@ Demonstrates setting global link properties such as type and underline behavior 
 
 ```vue
 <template>
-	<div>
-		<div class="flex gap-4">
-			<div class="flex flex-col basis-150px gap-1">
-				<span>Type:</span>
-				<el-select v-model="config.type">
-					<el-option
-						v-for="type in linkTypes"
-						:key="type"
-						:value="type"
-					/>
-				</el-select>
-			</div>
-			<div class="flex flex-col basis-150px gap-1">
-				<span>Underline:</span>
-				<el-select v-model="config.underline">
-					<el-option
-						v-for="type in underlineOptions"
-						:key="type"
-						:value="type"
-					/>
-				</el-select>
-			</div>
-		</div>
-		<el-divider />
-		<el-config-provider :link="config">
-			<el-link>Link desu!</el-link>
-		</el-config-provider>
-	</div>
+  <div>
+    <div class="flex gap-4">
+      <div class="flex flex-col basis-150px gap-1">
+        <span>Type:</span>
+        <el-select v-model="config.type">
+          <el-option v-for="type in linkTypes" :key="type" :value="type" />
+        </el-select>
+      </div>
+      <div class="flex flex-col basis-150px gap-1">
+        <span>Underline:</span>
+        <el-select v-model="config.underline">
+          <el-option
+            v-for="type in underlineOptions"
+            :key="type"
+            :value="type"
+          />
+        </el-select>
+      </div>
+    </div>
+    <el-divider />
+    <el-config-provider :link="config">
+      <el-link>Link desu!</el-link>
+    </el-config-provider>
+  </div>
 </template>
 
 <script lang="ts" setup>
-import {reactive} from 'vue'
+import { reactive } from 'vue'
 
-import type {LinkConfigContext} from 'element-plus'
+import type { LinkConfigContext } from 'element-plus'
 
 const linkTypes = ['primary', 'success', 'warning', 'info', 'danger', 'default']
 const underlineOptions = ['always', 'never', 'hover']
 
 const config = reactive<LinkConfigContext>({
-	type: 'success',
-	underline: 'always',
+  type: 'success',
+  underline: 'always',
 })
 </script>
 ```
@@ -13674,26 +12738,26 @@ Demonstrates the fundamental implementation of the ElSplitter component. When no
 
 ```vue
 <template>
-	<div
-		style="height: 250px; box-shadow: var(--el-border-color-light) 0px 0px 10px"
-	>
-		<el-splitter>
-			<el-splitter-panel size="30%">
-				<div class="demo-panel">1</div>
-			</el-splitter-panel>
-			<el-splitter-panel :min="200">
-				<div class="demo-panel">2</div>
-			</el-splitter-panel>
-		</el-splitter>
-	</div>
+  <div
+    style="height: 250px; box-shadow: var(--el-border-color-light) 0px 0px 10px"
+  >
+    <el-splitter>
+      <el-splitter-panel size="30%">
+        <div class="demo-panel">1</div>
+      </el-splitter-panel>
+      <el-splitter-panel :min="200">
+        <div class="demo-panel">2</div>
+      </el-splitter-panel>
+    </el-splitter>
+  </div>
 </template>
 
 <style scoped>
 .demo-panel {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 }
 </style>
 ```
@@ -13708,60 +12772,44 @@ Demonstrates how to display the Element Plus carousel in a vertical direction by
 
 ```vue
 <template>
-	<p class="text-center demonstration">normal vertical layout</p>
-	<el-carousel
-		height="200px"
-		direction="vertical"
-		:autoplay="false"
-	>
-		<el-carousel-item
-			v-for="item in 4"
-			:key="item"
-		>
-			<h3
-				text="2xl"
-				justify="center"
-			>
-				{{ item }}
-			</h3>
-		</el-carousel-item>
-	</el-carousel>
-	<p class="text-center demonstration">card vertical layout</p>
-	<el-carousel
-		height="400px"
-		direction="vertical"
-		type="card"
-		:autoplay="false"
-	>
-		<el-carousel-item
-			v-for="item in 4"
-			:key="item"
-		>
-			<h3
-				text="2xl"
-				justify="center"
-			>
-				{{ item }}
-			</h3>
-		</el-carousel-item>
-	</el-carousel>
+  <p class="text-center demonstration">normal vertical layout</p>
+  <el-carousel height="200px" direction="vertical" :autoplay="false">
+    <el-carousel-item v-for="item in 4" :key="item">
+      <h3 text="2xl" justify="center">
+        {{ item }}
+      </h3>
+    </el-carousel-item>
+  </el-carousel>
+  <p class="text-center demonstration">card vertical layout</p>
+  <el-carousel
+    height="400px"
+    direction="vertical"
+    type="card"
+    :autoplay="false"
+  >
+    <el-carousel-item v-for="item in 4" :key="item">
+      <h3 text="2xl" justify="center">
+        {{ item }}
+      </h3>
+    </el-carousel-item>
+  </el-carousel>
 </template>
 
 <style scoped>
 .el-carousel__item h3 {
-	color: #475669;
-	opacity: 0.75;
-	line-height: 200px;
-	margin: 0;
-	text-align: center;
+  color: #475669;
+  opacity: 0.75;
+  line-height: 200px;
+  margin: 0;
+  text-align: center;
 }
 
 .el-carousel__item:nth-child(2n) {
-	background-color: #99a9bf;
+  background-color: #99a9bf;
 }
 
 .el-carousel__item:nth-child(2n + 1) {
-	background-color: #d3dce6;
+  background-color: #d3dce6;
 }
 </style>
 ```
@@ -13802,39 +12850,39 @@ Demonstrates how to use 'el-row' and 'el-col' components to create basic grid st
 
 ```vue
 <template>
-	<el-row>
-		<el-col :span="24">
-			<div class="grid-content ep-bg-purple-dark" />
-		</el-col>
-	</el-row>
-	<el-row>
-		<el-col :span="12">
-			<div class="grid-content ep-bg-purple" />
-		</el-col>
-		<el-col :span="12">
-			<div class="grid-content ep-bg-purple-light" />
-		</el-col>
-	</el-row>
-	<el-row>
-		<el-col :span="8">
-			<div class="grid-content ep-bg-purple" />
-		</el-col>
-		<el-col :span="8">
-			<div class="grid-content ep-bg-purple-light" />
-		</el-col>
-		<el-col :span="8">
-			<div class="grid-content ep-bg-purple" />
-		</el-col>
-	</el-row>
+  <el-row>
+    <el-col :span="24">
+      <div class="grid-content ep-bg-purple-dark" />
+    </el-col>
+  </el-row>
+  <el-row>
+    <el-col :span="12">
+      <div class="grid-content ep-bg-purple" />
+    </el-col>
+    <el-col :span="12">
+      <div class="grid-content ep-bg-purple-light" />
+    </el-col>
+  </el-row>
+  <el-row>
+    <el-col :span="8">
+      <div class="grid-content ep-bg-purple" />
+    </el-col>
+    <el-col :span="8">
+      <div class="grid-content ep-bg-purple-light" />
+    </el-col>
+    <el-col :span="8">
+      <div class="grid-content ep-bg-purple" />
+    </el-col>
+  </el-row>
 </template>
 
 <style>
 .el-row {
-	margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 .grid-content {
-	border-radius: 4px;
-	min-height: 36px;
+  border-radius: 4px;
+  min-height: 36px;
 }
 </style>
 ```
@@ -13849,50 +12897,50 @@ Configures the Element Plus Tabs component to display a specific tab as active o
 
 ```vue
 <template>
-	<el-tabs
-		v-model="activeName"
-		class="demo-tabs"
-		default-value="third"
-		@tab-click="handleClick"
-	>
-		<el-tab-pane
-			v-for="tab in tabs"
-			:key="tab.name"
-			:label="tab.label"
-			:name="tab.name"
-		>
-			default-value: third
-			<br />
-			active: {{ activeName }}
-		</el-tab-pane>
-	</el-tabs>
+  <el-tabs
+    v-model="activeName"
+    class="demo-tabs"
+    default-value="third"
+    @tab-click="handleClick"
+  >
+    <el-tab-pane
+      v-for="tab in tabs"
+      :key="tab.name"
+      :label="tab.label"
+      :name="tab.name"
+    >
+      default-value: third
+      <br />
+      active: {{ activeName }}
+    </el-tab-pane>
+  </el-tabs>
 </template>
 
 <script lang="ts" setup>
-import {ref} from 'vue'
+import { ref } from 'vue'
 
-import type {TabsPaneContext} from 'element-plus'
+import type { TabsPaneContext } from 'element-plus'
 
 const tabs = ref([
-	{label: 'User', name: 'first'},
-	{label: 'Config', name: 'second'},
-	{label: 'Role', name: 'third'},
-	{label: 'Task', name: 'fourth'},
+  { label: 'User', name: 'first' },
+  { label: 'Config', name: 'second' },
+  { label: 'Role', name: 'third' },
+  { label: 'Task', name: 'fourth' },
 ])
 
 const activeName = ref()
 
 const handleClick = (tab: TabsPaneContext, event: Event) => {
-	console.log(tab, event)
+  console.log(tab, event)
 }
 </script>
 
 <style>
 .demo-tabs > .el-tabs__content {
-	padding: 32px;
-	color: #6b778c;
-	font-size: 32px;
-	font-weight: 600;
+  padding: 32px;
+  color: #6b778c;
+  font-size: 32px;
+  font-weight: 600;
 }
 </style>
 ```
@@ -13907,93 +12955,90 @@ Use the scoped slot to customize how suggestion items are displayed. Access sugg
 
 ```vue
 <template>
-	<el-autocomplete
-		v-model="state"
-		:fetch-suggestions="querySearch"
-		popper-class="my-autocomplete"
-		placeholder="Please input"
-		@select="handleSelect"
-	>
-		<template #suffix>
-			<el-icon
-				class="el-input__icon"
-				@click="handleIconClick"
-			>
-				<edit />
-			</el-icon>
-		</template>
-		<template #default="{item}">
-			<div class="value">{{ item.value }}</div>
-			<span class="link">{{ item.link }}</span>
-		</template>
-	</el-autocomplete>
+  <el-autocomplete
+    v-model="state"
+    :fetch-suggestions="querySearch"
+    popper-class="my-autocomplete"
+    placeholder="Please input"
+    @select="handleSelect"
+  >
+    <template #suffix>
+      <el-icon class="el-input__icon" @click="handleIconClick">
+        <edit />
+      </el-icon>
+    </template>
+    <template #default="{ item }">
+      <div class="value">{{ item.value }}</div>
+      <span class="link">{{ item.link }}</span>
+    </template>
+  </el-autocomplete>
 </template>
 
 <script lang="ts" setup>
-import {Edit} from '@element-plus/icons-vue'
-import {onMounted, ref} from 'vue'
+import { Edit } from '@element-plus/icons-vue'
+import { onMounted, ref } from 'vue'
 
 interface LinkItem {
-	value: string
-	link: string
+  value: string
+  link: string
 }
 
 const state = ref('')
 const links = ref<LinkItem[]>([])
 
 const querySearch = (queryString: string, cb) => {
-	const results = queryString
-		? links.value.filter(createFilter(queryString))
-		: links.value
-	// call callback function to return suggestion objects
-	cb(results)
+  const results = queryString
+    ? links.value.filter(createFilter(queryString))
+    : links.value
+  // call callback function to return suggestion objects
+  cb(results)
 }
 const createFilter = (queryString: string) => {
-	return (restaurant: LinkItem) => {
-		return (
-			restaurant.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0
-		)
-	}
+  return (restaurant: LinkItem) => {
+    return (
+      restaurant.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0
+    )
+  }
 }
 const loadAll = () => {
-	return [
-		{value: 'vue', link: 'https://github.com/vuejs/vue'},
-		{value: 'element', link: 'https://github.com/ElemeFE/element'},
-		{value: 'cooking', link: 'https://github.com/ElemeFE/cooking'},
-		{value: 'mint-ui', link: 'https://github.com/ElemeFE/mint-ui'},
-		{value: 'vuex', link: 'https://github.com/vuejs/vuex'},
-		{value: 'vue-router', link: 'https://github.com/vuejs/vue-router'},
-		{value: 'babel', link: 'https://github.com/babel/babel'},
-	]
+  return [
+    { value: 'vue', link: 'https://github.com/vuejs/vue' },
+    { value: 'element', link: 'https://github.com/ElemeFE/element' },
+    { value: 'cooking', link: 'https://github.com/ElemeFE/cooking' },
+    { value: 'mint-ui', link: 'https://github.com/ElemeFE/mint-ui' },
+    { value: 'vuex', link: 'https://github.com/vuejs/vuex' },
+    { value: 'vue-router', link: 'https://github.com/vuejs/vue-router' },
+    { value: 'babel', link: 'https://github.com/babel/babel' },
+  ]
 }
 const handleSelect = (item: Record<string, any>) => {
-	console.log(item)
+  console.log(item)
 }
 
 const handleIconClick = (ev: Event) => {
-	console.log(ev)
+  console.log(ev)
 }
 
 onMounted(() => {
-	links.value = loadAll()
+  links.value = loadAll()
 })
 </script>
 
 <style>
 .my-autocomplete li {
-	line-height: normal;
-	padding: 7px;
+  line-height: normal;
+  padding: 7px;
 }
 .my-autocomplete li .name {
-	text-overflow: ellipsis;
-	overflow: hidden;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 .my-autocomplete li .addr {
-	font-size: 12px;
-	color: #b4b4b4;
+  font-size: 12px;
+  color: #b4b4b4;
 }
 .my-autocomplete li .highlighted .addr {
-	color: #ddd;
+  color: #ddd;
 }
 </style>
 ```
@@ -14008,32 +13053,32 @@ Demonstrates how to provide a list of predefined color options to the ColorPicke
 
 ```vue
 <template>
-	<el-color-picker-panel
-		v-model="color"
-		show-alpha
-		:predefine="predefineColors"
-	/>
+  <el-color-picker-panel
+    v-model="color"
+    show-alpha
+    :predefine="predefineColors"
+  />
 </template>
 
 <script lang="ts" setup>
-import {ref} from 'vue'
+import { ref } from 'vue'
 
 const color = ref('rgba(255, 69, 0, 0.68)')
 const predefineColors = [
-	'#ff4500',
-	'#ff8c00',
-	'#ffd700',
-	'#90ee90',
-	'#00ced1',
-	'#1e90ff',
-	'#c71585',
-	'rgba(255, 69, 0, 0.68)',
-	'rgb(255, 120, 0)',
-	'hsv(51, 100, 98)',
-	'hsva(120, 40, 94, 0.5)',
-	'hsl(181, 100%, 37%)',
-	'hsla(209, 100%, 56%, 0.73)',
-	'#c7158577',
+  '#ff4500',
+  '#ff8c00',
+  '#ffd700',
+  '#90ee90',
+  '#00ced1',
+  '#1e90ff',
+  '#c71585',
+  'rgba(255, 69, 0, 0.68)',
+  'rgb(255, 120, 0)',
+  'hsv(51, 100, 98)',
+  'hsva(120, 40, 94, 0.5)',
+  'hsl(181, 100%, 37%)',
+  'hsla(209, 100%, 56%, 0.73)',
+  '#c7158577',
 ]
 </script>
 ```
@@ -14048,56 +13093,39 @@ Use the `#footer` slot to add custom content, such as buttons for adding options
 
 ```vue
 <template>
-	<el-select-v2
-		ref="select"
-		v-model="value"
-		:options="options"
-		placeholder="Select"
-		style="width: 240px"
-	>
-		<template #footer>
-			<el-button
-				v-if="!isAdding"
-				text
-				bg
-				size="small"
-				@click="onAddOption"
-			>
-				Add an option
-			</el-button>
-			<div
-				v-else
-				class="select-footer"
-			>
-				<el-input
-					v-model="optionName"
-					class="option-input"
-					placeholder="input option name"
-					size="small"
-				/>
-				<div>
-					<el-button
-						type="primary"
-						size="small"
-						@click="onConfirm"
-					>
-						confirm
-					</el-button>
-					<el-button
-						size="small"
-						@click="clear"
-						>cancel</el-button
-					>
-				</div>
-			</div>
-		</template>
-	</el-select-v2>
+  <el-select-v2
+    ref="select"
+    v-model="value"
+    :options="options"
+    placeholder="Select"
+    style="width: 240px"
+  >
+    <template #footer>
+      <el-button v-if="!isAdding" text bg size="small" @click="onAddOption">
+        Add an option
+      </el-button>
+      <div v-else class="select-footer">
+        <el-input
+          v-model="optionName"
+          class="option-input"
+          placeholder="input option name"
+          size="small"
+        />
+        <div>
+          <el-button type="primary" size="small" @click="onConfirm">
+            confirm
+          </el-button>
+          <el-button size="small" @click="clear">cancel</el-button>
+        </div>
+      </div>
+    </template>
+  </el-select-v2>
 </template>
 
 <script lang="ts" setup>
-import {nextTick, ref} from 'vue'
+import { nextTick, ref } from 'vue'
 
-import type {CheckboxValueType, SelectV2Instance} from 'element-plus'
+import type { CheckboxValueType, SelectV2Instance } from 'element-plus'
 
 const initials = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
 const select = ref<SelectV2Instance>()
@@ -14105,44 +13133,44 @@ const isAdding = ref(false)
 const value = ref<CheckboxValueType[]>([])
 const optionName = ref('')
 const options = ref(
-	Array.from({length: 1000}).map((_, idx) => ({
-		value: `Option ${idx + 1}`,
-		label: `${initials[idx % 10]}${idx}`,
-	})),
+  Array.from({ length: 1000 }).map((_, idx) => ({
+    value: `Option ${idx + 1}`,
+    label: `${initials[idx % 10]}${idx}`,
+  })),
 )
 
 const onAddOption = () => {
-	isAdding.value = true
+  isAdding.value = true
 }
 
 const onConfirm = () => {
-	if (optionName.value) {
-		options.value.push({
-			label: optionName.value,
-			value: optionName.value,
-		})
-		clear()
-		nextTick(() => {
-			select.value?.scrollTo(options.value.length - 1)
-		})
-	}
+  if (optionName.value) {
+    options.value.push({
+      label: optionName.value,
+      value: optionName.value,
+    })
+    clear()
+    nextTick(() => {
+      select.value?.scrollTo(options.value.length - 1)
+    })
+  }
 }
 
 const clear = () => {
-	optionName.value = ''
-	isAdding.value = false
+  optionName.value = ''
+  isAdding.value = false
 }
 </script>
 
 <style>
 .select-footer {
-	display: flex;
-	flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
-	.option-input {
-		width: 100%;
-		margin-bottom: 8px;
-	}
+  .option-input {
+    width: 100%;
+    margin-bottom: 8px;
+  }
 }
 </style>
 ```
@@ -14157,7 +13185,7 @@ Displays a standard empty state with a custom description text. This is the simp
 
 ```vue
 <template>
-	<el-empty description="description" />
+  <el-empty description="description" />
 </template>
 ```
 
@@ -14233,11 +13261,11 @@ Source: https://element-plus.org/en-US/component/loading
 Demonstrates how to inject the current application context into the Loading service to ensure access to global properties and plugins.
 
 ```typescript
-import {ElLoading} from 'element-plus'
-import {getCurrentInstance} from 'vue'
+import { ElLoading } from 'element-plus'
+import { getCurrentInstance } from 'vue'
 
 // in your setup method
-const {appContext} = getCurrentInstance()!
+const { appContext } = getCurrentInstance()!
 ElLoading.service({}, appContext)
 ```
 
@@ -14251,28 +13279,25 @@ Shows how to manually open or close a dropdown menu using the handleOpen and han
 
 ```vue
 <template>
-	<el-button @click="showClick">show</el-button>
-	<el-dropdown
-		ref="dropdown1"
-		trigger="contextmenu"
-	>
-		<span class="el-dropdown-link"> Dropdown List1 </span>
-		<template #dropdown>
-			<el-dropdown-menu>
-				<el-dropdown-item>Action 1</el-dropdown-item>
-			</el-dropdown-menu>
-		</template>
-	</el-dropdown>
+  <el-button @click="showClick">show</el-button>
+  <el-dropdown ref="dropdown1" trigger="contextmenu">
+    <span class="el-dropdown-link"> Dropdown List1 </span>
+    <template #dropdown>
+      <el-dropdown-menu>
+        <el-dropdown-item>Action 1</el-dropdown-item>
+      </el-dropdown-menu>
+    </template>
+  </el-dropdown>
 </template>
 
 <script setup lang="ts">
-import type {DropdownInstance} from 'element-plus'
-import {ref} from 'vue'
+import type { DropdownInstance } from 'element-plus'
+import { ref } from 'vue'
 
 const dropdown1 = ref<DropdownInstance>()
 function showClick() {
-	if (!dropdown1.value) return
-	dropdown1.value.handleOpen()
+  if (!dropdown1.value) return
+  dropdown1.value.handleOpen()
 }
 </script>
 ```
@@ -14287,128 +13312,108 @@ Use the default scoped slot to access cell data and customize the appearance of 
 
 ```vue
 <template>
-	<div class="demo-date-picker">
-		<el-date-picker
-			v-model="value"
-			type="date"
-			placeholder="Pick a day"
-			format="YYYY/MM/DD"
-			value-format="YYYY-MM-DD"
-		>
-			<template #default="cell">
-				<div
-					class="cell"
-					:class="{current: cell.isCurrent}"
-				>
-					<span class="text">{{ cell.text }}</span>
-					<span
-						v-if="isHoliday(cell)"
-						class="holiday"
-					/>
-				</div>
-			</template>
-		</el-date-picker>
-		<el-date-picker
-			v-model="month"
-			type="month"
-			placeholder="Pick a month"
-		>
-			<template #default="cell">
-				<div
-					class="el-date-table-cell"
-					:class="{current: cell.isCurrent}"
-				>
-					<span class="el-date-table-cell__text">{{ cell.text + 1 }}期</span>
-				</div>
-			</template>
-		</el-date-picker>
-		<el-date-picker
-			v-model="year"
-			type="year"
-			placeholder="Pick a year"
-		>
-			<template #default="cell">
-				<div
-					class="el-date-table-cell"
-					:class="{current: cell.isCurrent}"
-				>
-					<span class="el-date-table-cell__text">{{ cell.text + 1 }}y</span>
-				</div>
-			</template>
-		</el-date-picker>
-	</div>
+  <div class="demo-date-picker">
+    <el-date-picker
+      v-model="value"
+      type="date"
+      placeholder="Pick a day"
+      format="YYYY/MM/DD"
+      value-format="YYYY-MM-DD"
+    >
+      <template #default="cell">
+        <div class="cell" :class="{ current: cell.isCurrent }">
+          <span class="text">{{ cell.text }}</span>
+          <span v-if="isHoliday(cell)" class="holiday" />
+        </div>
+      </template>
+    </el-date-picker>
+    <el-date-picker v-model="month" type="month" placeholder="Pick a month">
+      <template #default="cell">
+        <div class="el-date-table-cell" :class="{ current: cell.isCurrent }">
+          <span class="el-date-table-cell__text">{{ cell.text + 1 }}期</span>
+        </div>
+      </template>
+    </el-date-picker>
+    <el-date-picker v-model="year" type="year" placeholder="Pick a year">
+      <template #default="cell">
+        <div class="el-date-table-cell" :class="{ current: cell.isCurrent }">
+          <span class="el-date-table-cell__text">{{ cell.text + 1 }}y</span>
+        </div>
+      </template>
+    </el-date-picker>
+  </div>
 </template>
 
 <script lang="ts" setup>
-import {ref} from 'vue'
+import { ref } from 'vue'
 
 const value = ref('2021-10-29')
 const month = ref('')
 const year = ref('')
 const holidays = [
-	'2021-10-01',
-	'2021-10-02',
-	'2021-10-03',
-	'2021-10-04',
-	'2021-10-05',
-	'2021-10-06',
-	'2021-10-07',
+  '2021-10-01',
+  '2021-10-02',
+  '2021-10-03',
+  '2021-10-04',
+  '2021-10-05',
+  '2021-10-06',
+  '2021-10-07',
 ]
 
-const isHoliday = ({dayjs}) => {
-	return holidays.includes(dayjs.format('YYYY-MM-DD'))
+const isHoliday = ({ dayjs }) => {
+  return holidays.includes(dayjs.format('YYYY-MM-DD'))
 }
 </script>
 
 <style scoped>
 .demo-date-picker {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .demo-date-picker > * {
-	margin: 0 !important;
+  margin: 0 !important;
 }
 
 .cell {
-	height: 30px;
-	padding: 3px 0;
-	box-sizing: border-box;
+  height: 30px;
+  padding: 3px 0;
+  box-sizing: border-box;
 }
 
 .cell .text {
-	width: 24px;
-	height: 24px;
-	display: block;
-	margin: 0 auto;
-	line-height: 24px;
-	position: absolute;
-	left: 50%;
-	transform: translateX(-50%);
-	border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: block;
+  margin: 0 auto;
+  line-height: 24px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 50%;
 }
 
 .cell.current .text {
-	background: #626aef;
-	color: #fff;
+  background: #626aef;
+  color: #fff;
 }
 
 .cell .holiday {
-	position: absolute;
-	width: 6px;
-	height: 6px;
-	background: var(--el-color-danger);
-	border-radius: 50%;
-	bottom: 0px;
-	left: 50%;
-	transform: translateX(-50%);
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: var(--el-color-danger);
+  border-radius: 50%;
+  bottom: 0px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 @media screen and (max-width: 768px) {
-	.demo-date-picker {
-		gap: 1.5rem;
-	}
+  .demo-date-picker {
+    gap: 1.5rem;
+  }
 }
 </style>
 ```
@@ -14423,88 +13428,91 @@ Use the `row-class` prop to dynamically assign CSS classes to table rows. This e
 
 ```vue
 <template>
-	<el-table-v2
-		:columns="columns"
-		:data="data"
-		:row-class="rowClass"
-		:width="700"
-		:height="400"
-	/>
+  <el-table-v2
+    :columns="columns"
+    :data="data"
+    :row-class="rowClass"
+    :width="700"
+    :height="400"
+  />
 </template>
 
 <script lang="tsx" setup>
-import {ElButton, ElIcon, ElTag, ElTooltip, TableV2FixedDir} from 'element-plus'
-import {Timer} from '@element-plus/icons-vue'
+import {
+  ElButton,
+  ElIcon,
+  ElTag,
+  ElTooltip,
+  TableV2FixedDir,
+} from 'element-plus'
+import { Timer } from '@element-plus/icons-vue'
 import dayjs from 'dayjs'
-import {ref} from 'vue'
+import { ref } from 'vue'
 
-import type {Column, RowClassNameGetter} from 'element-plus'
+import type { Column, RowClassNameGetter } from 'element-plus'
 
 let id = 0
 
 const dataGenerator = () => ({
-	id: `random-id-${++id}`,
-	name: 'Tom',
-	date: '2020-10-1',
+  id: `random-id-${++id}`,
+  name: 'Tom',
+  date: '2020-10-1',
 })
 
 const columns: Column<any>[] = [
-	{
-		key: 'date',
-		title: 'Date',
-		dataKey: 'date',
-		width: 150,
-		fixed: TableV2FixedDir.LEFT,
-		cellRenderer: ({cellData: date}) => (
-			<ElTooltip content={dayjs(date).format('YYYY/MM/DD')}>
-				{
-					<span class="flex items-center">
-						<ElIcon class="mr-3">
-							<Timer />
-						</ElIcon>
-						{dayjs(date).format('YYYY/MM/DD')}
-					</span>
-				}
-			</ElTooltip>
-		),
-	},
-	{
-		key: 'name',
-		title: 'Name',
-		dataKey: 'name',
-		width: 150,
-		align: 'center',
-		cellRenderer: ({cellData: name}) => <ElTag>{name}</ElTag>,
-	},
-	{
-		key: 'operations',
-		title: 'Operations',
-		cellRenderer: () => (
-			<>
-				<ElButton size="small">Edit</ElButton>
-				<ElButton
-					size="small"
-					type="danger"
-				>
-					Delete
-				</ElButton>
-			</>
-		),
-		width: 150,
-		align: 'center',
-		flexGrow: 1,
-	},
+  {
+    key: 'date',
+    title: 'Date',
+    dataKey: 'date',
+    width: 150,
+    fixed: TableV2FixedDir.LEFT,
+    cellRenderer: ({ cellData: date }) => (
+      <ElTooltip content={dayjs(date).format('YYYY/MM/DD')}>
+        {
+          <span class="flex items-center">
+            <ElIcon class="mr-3">
+              <Timer />
+            </ElIcon>
+            {dayjs(date).format('YYYY/MM/DD')}
+          </span>
+        }
+      </ElTooltip>
+    ),
+  },
+  {
+    key: 'name',
+    title: 'Name',
+    dataKey: 'name',
+    width: 150,
+    align: 'center',
+    cellRenderer: ({ cellData: name }) => <ElTag>{name}</ElTag>,
+  },
+  {
+    key: 'operations',
+    title: 'Operations',
+    cellRenderer: () => (
+      <>
+        <ElButton size="small">Edit</ElButton>
+        <ElButton size="small" type="danger">
+          Delete
+        </ElButton>
+      </>
+    ),
+    width: 150,
+    align: 'center',
+    flexGrow: 1,
+  },
 ]
 
-const data = ref(Array.from({length: 200}).map(dataGenerator))
+const data = ref(Array.from({ length: 200 }).map(dataGenerator))
 
-const rowClass = ({rowIndex}: Parameters<RowClassNameGetter<any>>[0]) => {
-	if (rowIndex % 10 === 5) {
-		return 'bg-red-100'
-	} else if (rowIndex % 10 === 0) {
-		return 'bg-blue-200'
-	}
-	return ''
+const rowClass = ({ rowIndex }: Parameters<RowClassNameGetter<any>>[0]) => {
+  if (rowIndex % 10 === 5) {
+    return 'bg-red-100'
+  } else if (rowIndex % 10 === 0) {
+    return 'bg-blue-200'
+  }
+  return ''
 }
 </script>
 ```
@@ -14633,10 +13641,10 @@ Demonstrates the basic implementation of the Radio component and highlights the 
 
 ```vue
 <template>
-	<el-radio-group v-model="radio1">
-		<el-radio value="Value 1">Option 1</el-radio>
-		<el-radio label="Label 2 & Value 2">Option 2</el-radio>
-	</el-radio-group>
+  <el-radio-group v-model="radio1">
+    <el-radio value="Value 1">Option 1</el-radio>
+    <el-radio label="Label 2 & Value 2">Option 2</el-radio>
+  </el-radio-group>
 </template>
 ```
 
@@ -14777,18 +13785,15 @@ Prepare your final HTML structure to include a placeholder for teleported conten
 ```html
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<title>Element Plus</title>
-		<!--preload-links-->
-	</head>
-	<body>
-		<!--app-teleports-->
-		<div id="app"><!--app-html--></div>
-		<script
-			type="module"
-			src="/src/entry-client.js"
-		></script>
-	</body>
+  <head>
+    <title>Element Plus</title>
+    <!--preload-links-->
+  </head>
+  <body>
+    <!--app-teleports-->
+    <div id="app"><!--app-html--></div>
+    <script type="module" src="/src/entry-client.js"></script>
+  </body>
 </html>
 ```
 
@@ -14802,80 +13807,67 @@ Allows for custom rendering of selected tags within the Element Plus Select comp
 
 ```vue
 <template>
-	<el-select
-		v-model="value"
-		multiple
-		placeholder="Select"
-		style="width: 240px"
-	>
-		<el-option
-			v-for="item in colors"
-			:key="item.value"
-			:label="item.label"
-			:value="item.value"
-		>
-			<div class="flex items-center">
-				<el-tag
-					:color="item.value"
-					style="margin-right: 8px"
-					size="small"
-				/>
-				<span :style="{color: item.value}">{{ item.label }}</span>
-			</div>
-		</el-option>
-		<template #tag>
-			<el-tag
-				v-for="color in value"
-				:key="color"
-				:color="color"
-			/>
-		</template>
-	</el-select>
+  <el-select v-model="value" multiple placeholder="Select" style="width: 240px">
+    <el-option
+      v-for="item in colors"
+      :key="item.value"
+      :label="item.label"
+      :value="item.value"
+    >
+      <div class="flex items-center">
+        <el-tag :color="item.value" style="margin-right: 8px" size="small" />
+        <span :style="{ color: item.value }">{{ item.label }}</span>
+      </div>
+    </el-option>
+    <template #tag>
+      <el-tag v-for="color in value" :key="color" :color="color" />
+    </template>
+  </el-select>
 </template>
 
 <script lang="ts" setup>
-import {ref} from 'vue'
+import { ref } from 'vue'
 
 const value = ref<string[]>([])
 const colors = [
-	{
-		value: '#E63415',
-		label: 'red',
-	},
-	{
-		value: '#FF6600',
-		label: 'orange',
-	},
-	{
-		value: '#FFDE0A',
-		label: 'yellow',
-	},
-	{
-		value: '#1EC79D',
-		label: 'green',
-	},
-	{
-		value: '#14CCCC',
-		label: 'cyan',
-	},
-	{
-		value: '#4167F0',
-		label: 'blue',
-	},
-	{
-		value: '#6222C9',
-		label: 'purple',
-	},
+  {
+    value: '#E63415',
+    label: 'red',
+  },
+  {
+    value: '#FF6600',
+    label: 'orange',
+  },
+  {
+    value: '#FFDE0A',
+    label: 'yellow',
+  },
+  {
+    value: '#1EC79D',
+    label: 'green',
+  },
+  {
+    value: '#14CCCC',
+    label: 'cyan',
+  },
+  {
+    value: '#4167F0',
+    label: 'blue',
+  },
+  {
+    value: '#6222C9',
+    label: 'purple',
+  },
 ]
-colors.forEach(color => {
-	value.value.push(color.value)
+colors.forEach((color) => {
+  value.value.push(color.value)
 })
 </script>
 
 <style scoped>
 .el-tag {
-	border: none;
-	aspect-ratio: 1;
+  border: none;
+  aspect-ratio: 1;
 }
 </style>
 ```
@@ -14909,31 +13901,26 @@ Demonstrates how to use the `el-slider` component in range mode. The `range` att
 
 ```vue
 <template>
-	<div class="slider-demo-block">
-		<el-slider
-			v-model="value"
-			range
-			show-stops
-			:max="10"
-		/>
-	</div>
+  <div class="slider-demo-block">
+    <el-slider v-model="value" range show-stops :max="10" />
+  </div>
 </template>
 
 <script lang="ts" setup>
-import {ref} from 'vue'
+import { ref } from 'vue'
 
 const value = ref([4, 8])
 </script>
 
 <style scoped>
 .slider-demo-block {
-	max-width: 600px;
-	display: flex;
-	align-items: center;
+  max-width: 600px;
+  display: flex;
+  align-items: center;
 }
 .slider-demo-block .el-slider {
-	margin-top: 0;
-	margin-left: 12px;
+  margin-top: 0;
+  margin-left: 12px;
 }
 </style>
 ```
@@ -14948,61 +13935,41 @@ Illustrates how to use the `fillRatio` attribute in the `el-space` component to 
 
 ```vue
 <template>
-	<div>
-		<div style="margin-bottom: 15px">
-			direction:
-			<el-radio
-				v-model="direction"
-				value="horizontal"
-				>horizontal</el-radio
-			>
-			<el-radio
-				v-model="direction"
-				value="vertical"
-				>vertical</el-radio
-			>
-		</div>
-		<div style="margin-bottom: 15px">
-			fillRatio:<el-slider v-model="fillRatio" />
-		</div>
-		<el-space
-			fill
-			wrap
-			:fill-ratio="fillRatio"
-			:direction="direction"
-			style="width: 100%"
-		>
-			<el-card
-				v-for="i in 5"
-				:key="i"
-				class="box-card"
-			>
-				<template #header>
-					<div class="card-header">
-						<span>Card name</span>
-						<el-button
-							class="button"
-							text
-							>Operation button</el-button
-						>
-					</div>
-				</template>
-				<div
-					v-for="o in 4"
-					:key="o"
-					class="text item"
-				>
-					{{ 'List item ' + o }}
-				</div>
-			</el-card>
-		</el-space>
-	</div>
+  <div>
+    <div style="margin-bottom: 15px">
+      direction:
+      <el-radio v-model="direction" value="horizontal">horizontal</el-radio>
+      <el-radio v-model="direction" value="vertical">vertical</el-radio>
+    </div>
+    <div style="margin-bottom: 15px">
+      fillRatio:<el-slider v-model="fillRatio" />
+    </div>
+    <el-space
+      fill
+      wrap
+      :fill-ratio="fillRatio"
+      :direction="direction"
+      style="width: 100%"
+    >
+      <el-card v-for="i in 5" :key="i" class="box-card">
+        <template #header>
+          <div class="card-header">
+            <span>Card name</span>
+            <el-button class="button" text>Operation button</el-button>
+          </div>
+        </template>
+        <div v-for="o in 4" :key="o" class="text item">
+          {{ 'List item ' + o }}
+        </div>
+      </el-card>
+    </el-space>
+  </div>
 </template>
 
 <script lang="ts" setup>
-import {ref} from 'vue'
+import { ref } from 'vue'
 
-import type {SpaceInstance} from 'element-plus'
+import type { SpaceInstance } from 'element-plus'
 
 const direction = ref<SpaceInstance['direction']>('horizontal')
 const fillRatio = ref(30)
@@ -15119,7 +14086,7 @@ Source: https://element-plus.org/en-US/component/message-box
 Demonstrates the on-demand import syntax for the MessageBox component and its variants.
 
 ```typescript
-import {ElMessageBox} from 'element-plus'
+import { ElMessageBox } from 'element-plus'
 ```
 
 ---
@@ -15150,35 +14117,22 @@ Illustrates how to use the Element Plus Popover component to create a nested con
 
 ```vue
 <template>
-	<el-popover
-		:visible="visible"
-		placement="top"
-		:width="180"
-	>
-		<p>Are you sure to delete this?</p>
-		<div style="text-align: right; margin: 0">
-			<el-button
-				size="small"
-				text
-				@click="visible = false"
-				>cancel</el-button
-			>
-			<el-button
-				size="small"
-				type="primary"
-				@click="visible = false"
-			>
-				confirm
-			</el-button>
-		</div>
-		<template #reference>
-			<el-button @click="visible = true">Delete</el-button>
-		</template>
-	</el-popover>
+  <el-popover :visible="visible" placement="top" :width="180">
+    <p>Are you sure to delete this?</p>
+    <div style="text-align: right; margin: 0">
+      <el-button size="small" text @click="visible = false">cancel</el-button>
+      <el-button size="small" type="primary" @click="visible = false">
+        confirm
+      </el-button>
+    </div>
+    <template #reference>
+      <el-button @click="visible = true">Delete</el-button>
+    </template>
+  </el-popover>
 </template>
 
 <script lang="ts" setup>
-import {ref} from 'vue'
+import { ref } from 'vue'
 
 const visible = ref(false)
 </script>
@@ -15194,101 +14148,82 @@ Demonstrates using the Element Plus Popover component to display a nested table 
 
 ```vue
 <template>
-	<div style="display: flex; align-items: center">
-		<el-popover
-			placement="right"
-			:width="400"
-			trigger="click"
-		>
-			<template #reference>
-				<el-button style="margin-right: 16px">Click to activate</el-button>
-			</template>
-			<el-table :data="gridData">
-				<el-table-column
-					width="150"
-					property="date"
-					label="date"
-				/>
-				<el-table-column
-					width="100"
-					property="name"
-					label="name"
-				/>
-				<el-table-column
-					width="300"
-					property="address"
-					label="address"
-				/>
-			</el-table>
-		</el-popover>
+  <div style="display: flex; align-items: center">
+    <el-popover placement="right" :width="400" trigger="click">
+      <template #reference>
+        <el-button style="margin-right: 16px">Click to activate</el-button>
+      </template>
+      <el-table :data="gridData">
+        <el-table-column width="150" property="date" label="date" />
+        <el-table-column width="100" property="name" label="name" />
+        <el-table-column width="300" property="address" label="address" />
+      </el-table>
+    </el-popover>
 
-		<el-popover
-			:width="300"
-			popper-style="box-shadow: rgb(14 18 22 / 35%) 0px 10px 38px -10px, rgb(14 18 22 / 20%) 0px 10px 20px -15px; padding: 20px;"
-		>
-			<template #reference>
-				<el-avatar src="https://avatars.githubusercontent.com/u/72015883?v=4" />
-			</template>
-			<template #default>
-				<div
-					class="demo-rich-conent"
-					style="display: flex; gap: 16px; flex-direction: column"
-				>
-					<el-avatar
-						:size="60"
-						src="https://avatars.githubusercontent.com/u/72015883?v=4"
-						style="margin-bottom: 8px"
-					/>
-					<div>
-						<p
-							class="demo-rich-content__name"
-							style="margin: 0; font-weight: 500"
-						>
-							Element Plus
-						</p>
-						<p
-							class="demo-rich-content__mention"
-							style="margin: 0; font-size: 14px; color: var(--el-color-info)"
-						>
-							@element-plus
-						</p>
-					</div>
+    <el-popover
+      :width="300"
+      popper-style="box-shadow: rgb(14 18 22 / 35%) 0px 10px 38px -10px, rgb(14 18 22 / 20%) 0px 10px 20px -15px; padding: 20px;"
+    >
+      <template #reference>
+        <el-avatar src="https://avatars.githubusercontent.com/u/72015883?v=4" />
+      </template>
+      <template #default>
+        <div
+          class="demo-rich-conent"
+          style="display: flex; gap: 16px; flex-direction: column"
+        >
+          <el-avatar
+            :size="60"
+            src="https://avatars.githubusercontent.com/u/72015883?v=4"
+            style="margin-bottom: 8px"
+          />
+          <div>
+            <p
+              class="demo-rich-content__name"
+              style="margin: 0; font-weight: 500"
+            >
+              Element Plus
+            </p>
+            <p
+              class="demo-rich-content__mention"
+              style="margin: 0; font-size: 14px; color: var(--el-color-info)"
+            >
+              @element-plus
+            </p>
+          </div>
 
-					<p
-						class="demo-rich-content__desc"
-						style="margin: 0"
-					>
-						Element Plus, a Vue 3 based component library for developers,
-						designers and product managers
-					</p>
-				</div>
-			</template>
-		</el-popover>
-	</div>
+          <p class="demo-rich-content__desc" style="margin: 0">
+            Element Plus, a Vue 3 based component library for developers,
+            designers and product managers
+          </p>
+        </div>
+      </template>
+    </el-popover>
+  </div>
 </template>
 
 <script lang="ts" setup>
 const gridData = [
-	{
-		date: '2016-05-02',
-		name: 'Jack',
-		address: 'New York City',
-	},
-	{
-		date: '2016-05-04',
-		name: 'Jack',
-		address: 'New York City',
-	},
-	{
-		date: '2016-05-01',
-		name: 'Jack',
-		address: 'New York City',
-	},
-	{
-		date: '2016-05-03',
-		name: 'Jack',
-		address: 'New York City',
-	},
+  {
+    date: '2016-05-02',
+    name: 'Jack',
+    address: 'New York City',
+  },
+  {
+    date: '2016-05-04',
+    name: 'Jack',
+    address: 'New York City',
+  },
+  {
+    date: '2016-05-01',
+    name: 'Jack',
+    address: 'New York City',
+  },
+  {
+    date: '2016-05-03',
+    name: 'Jack',
+    address: 'New York City',
+  },
 ]
 </script>
 ```
@@ -15303,11 +14238,11 @@ Demonstrates the basic usage of the ColorPickerPanel component by binding a stri
 
 ```vue
 <template>
-	<el-color-picker-panel v-model="color" />
+  <el-color-picker-panel v-model="color" />
 </template>
 
 <script lang="ts" setup>
-import {ref} from 'vue'
+import { ref } from 'vue'
 
 const color = ref('#409EFF')
 </script>
@@ -15323,12 +14258,12 @@ Shows how to customize the number of visible pager buttons in the Element Plus P
 
 ```vue
 <template>
-	<el-pagination
-		:page-size="20"
-		:pager-count="11"
-		layout="prev, pager, next"
-		:total="1000"
-	/>
+  <el-pagination
+    :page-size="20"
+    :pager-count="11"
+    layout="prev, pager, next"
+    :total="1000"
+  />
 </template>
 ```
 
@@ -15553,36 +14488,28 @@ Demonstrates how to capture selection events from dropdown items using the @comm
 
 ```vue
 <template>
-	<el-dropdown @command="handleCommand">
-		<span class="el-dropdown-link">
-			Dropdown List<el-icon class="el-icon--right"><arrow-down /></el-icon>
-		</span>
-		<template #dropdown>
-			<el-dropdown-menu>
-				<el-dropdown-item command="a">Action 1</el-dropdown-item>
-				<el-dropdown-item command="b">Action 2</el-dropdown-item>
-				<el-dropdown-item command="c">Action 3</el-dropdown-item>
-				<el-dropdown-item
-					command="d"
-					disabled
-					>Action 4</el-dropdown-item
-				>
-				<el-dropdown-item
-					command="e"
-					divided
-					>Action 5</el-dropdown-item
-				>
-			</el-dropdown-menu>
-		</template>
-	</el-dropdown>
+  <el-dropdown @command="handleCommand">
+    <span class="el-dropdown-link">
+      Dropdown List<el-icon class="el-icon--right"><arrow-down /></el-icon>
+    </span>
+    <template #dropdown>
+      <el-dropdown-menu>
+        <el-dropdown-item command="a">Action 1</el-dropdown-item>
+        <el-dropdown-item command="b">Action 2</el-dropdown-item>
+        <el-dropdown-item command="c">Action 3</el-dropdown-item>
+        <el-dropdown-item command="d" disabled>Action 4</el-dropdown-item>
+        <el-dropdown-item command="e" divided>Action 5</el-dropdown-item>
+      </el-dropdown-menu>
+    </template>
+  </el-dropdown>
 </template>
 
 <script lang="ts" setup>
-import {ArrowDown} from '@element-plus/icons-vue'
-import {ElMessage} from 'element-plus'
+import { ArrowDown } from '@element-plus/icons-vue'
+import { ElMessage } from 'element-plus'
 
 const handleCommand = (command: string | number | object) => {
-	ElMessage(`click on item ${command}`)
+  ElMessage(`click on item ${command}`)
 }
 </script>
 ```
@@ -15597,115 +14524,115 @@ This component renders a table with selectable rows using Element Plus's `el-aut
 
 ```vue
 <template>
-	<div style="height: 400px">
-		<el-auto-resizer>
-			<template #default="{height, width}">
-				<el-table-v2
-					:columns="columns"
-					:data="data"
-					:width="width"
-					:height="height"
-					fixed
-				/>
-			</template>
-		</el-auto-resizer>
-	</div>
+  <div style="height: 400px">
+    <el-auto-resizer>
+      <template #default="{ height, width }">
+        <el-table-v2
+          :columns="columns"
+          :data="data"
+          :width="width"
+          :height="height"
+          fixed
+        />
+      </template>
+    </el-auto-resizer>
+  </div>
 </template>
 
 <script lang="tsx" setup>
-import {ElCheckbox, useLocale} from 'element-plus'
-import {ref, unref} from 'vue'
+import { ElCheckbox, useLocale } from 'element-plus'
+import { ref, unref } from 'vue'
 
-import type {CheckboxValueType, Column} from 'element-plus'
-import type {FunctionalComponent} from 'vue'
+import type { CheckboxValueType, Column } from 'element-plus'
+import type { FunctionalComponent } from 'vue'
 
 type SelectionCellProps = {
-	value: boolean
-	intermediate?: boolean
-	ariaLabel?: string
-	onChange: (value: CheckboxValueType) => void
+  value: boolean
+  intermediate?: boolean
+  ariaLabel?: string
+  onChange: (value: CheckboxValueType) => void
 }
 
-const {t} = useLocale()
+const { t } = useLocale()
 
 const SelectionCell: FunctionalComponent<SelectionCellProps> = ({
-	value,
-	intermediate = false,
-	ariaLabel,
-	onChange,
+  value,
+  intermediate = false,
+  ariaLabel,
+  onChange,
 }) => {
-	return (
-		<ElCheckbox
-			onChange={onChange}
-			modelValue={value}
-			ariaLabel={ariaLabel}
-			indeterminate={intermediate}
-		/>
-	)
+  return (
+    <ElCheckbox
+      onChange={onChange}
+      modelValue={value}
+      ariaLabel={ariaLabel}
+      indeterminate={intermediate}
+    />
+  )
 }
 
 const generateColumns = (length = 10, prefix = 'column-', props?: any) =>
-	Array.from({length}).map((_, columnIndex) => ({
-		...props,
-		key: `${prefix}${columnIndex}`,
-		dataKey: `${prefix}${columnIndex}`,
-		title: `Column ${columnIndex}`,
-		width: 150,
-	}))
+  Array.from({ length }).map((_, columnIndex) => ({
+    ...props,
+    key: `${prefix}${columnIndex}`,
+    dataKey: `${prefix}${columnIndex}`,
+    title: `Column ${columnIndex}`,
+    width: 150,
+  }))
 
 const generateData = (
-	columns: ReturnType<typeof generateColumns>,
-	length = 200,
-	prefix = 'row-',
+  columns: ReturnType<typeof generateColumns>,
+  length = 200,
+  prefix = 'row-',
 ) =>
-	Array.from({length}).map((_, rowIndex) => {
-		return columns.reduce(
-			(rowData, column, columnIndex) => {
-				rowData[column.dataKey] = `Row ${rowIndex} - Col ${columnIndex}`
-				return rowData
-			},
-			{
-				id: `${prefix}${rowIndex}`,
-				checked: false,
-				parentId: null,
-			},
-		)
-	})
+  Array.from({ length }).map((_, rowIndex) => {
+    return columns.reduce(
+      (rowData, column, columnIndex) => {
+        rowData[column.dataKey] = `Row ${rowIndex} - Col ${columnIndex}`
+        return rowData
+      },
+      {
+        id: `${prefix}${rowIndex}`,
+        checked: false,
+        parentId: null,
+      },
+    )
+  })
 
 const columns: Column<any>[] = generateColumns(10)
 columns.unshift({
-	key: 'selection',
-	width: 50,
-	cellRenderer: ({rowData}) => {
-		const onChange = (value: CheckboxValueType) => (rowData.checked = value)
-		return (
-			<SelectionCell
-				value={rowData.checked}
-				ariaLabel={t('el.table.selectRowLabel')}
-				onChange={onChange}
-			/>
-		)
-	},
+  key: 'selection',
+  width: 50,
+  cellRenderer: ({ rowData }) => {
+    const onChange = (value: CheckboxValueType) => (rowData.checked = value)
+    return (
+      <SelectionCell
+        value={rowData.checked}
+        ariaLabel={t('el.table.selectRowLabel')}
+        onChange={onChange}
+      />
+    )
+  },
 
-	headerCellRenderer: () => {
-		const _data = unref(data)
-		const onChange = (value: CheckboxValueType) =>
-			(data.value = _data.map(row => {
-				row.checked = value
-				return row
-			}))
-		const allSelected = _data.every(row => row.checked)
-		const containsChecked = _data.some(row => row.checked)
+  headerCellRenderer: () => {
+    const _data = unref(data)
+    const onChange = (value: CheckboxValueType) =>
+      (data.value = _data.map((row) => {
+        row.checked = value
+        return row
+      }))
+    const allSelected = _data.every((row) => row.checked)
+    const containsChecked = _data.some((row) => row.checked)
 
-		return (
-			<SelectionCell
-				value={allSelected}
-				intermediate={containsChecked && !allSelected}
-				ariaLabel={t('el.table.selectAllLabel')}
-				onChange={onChange}
-			/>
-		)
-	},
+    return (
+      <SelectionCell
+        value={allSelected}
+        intermediate={containsChecked && !allSelected}
+        ariaLabel={t('el.table.selectAllLabel')}
+        onChange={onChange}
+      />
+    )
+  },
 })
 
 const data = ref(generateData(columns, 200))
@@ -15722,54 +14649,54 @@ Shows how to trigger the image preview programmatically using the showPreview me
 
 ```vue
 <template>
-	<div class="flex gap-12">
-		<div class="grid gap-3">
-			<el-button @click="handleClick">
-				openPreview with showPreview method
-			</el-button>
-			<el-image
-				ref="imageRef"
-				style="width: 100px; height: 100px"
-				:src="url"
-				show-progress
-				:preview-src-list="srcList"
-				fit="cover"
-			/>
-		</div>
-		<div>
-			<el-button @click="showPreview = true"> preview controlled </el-button>
-			<el-image-viewer
-				v-if="showPreview"
-				:url-list="srcList"
-				show-progress
-				:initial-index="4"
-				@close="showPreview = false"
-			/>
-		</div>
-	</div>
+  <div class="flex gap-12">
+    <div class="grid gap-3">
+      <el-button @click="handleClick">
+        openPreview with showPreview method
+      </el-button>
+      <el-image
+        ref="imageRef"
+        style="width: 100px; height: 100px"
+        :src="url"
+        show-progress
+        :preview-src-list="srcList"
+        fit="cover"
+      />
+    </div>
+    <div>
+      <el-button @click="showPreview = true"> preview controlled </el-button>
+      <el-image-viewer
+        v-if="showPreview"
+        :url-list="srcList"
+        show-progress
+        :initial-index="4"
+        @close="showPreview = false"
+      />
+    </div>
+  </div>
 </template>
 
 <script lang="ts" setup>
-import type {ImageInstance} from 'element-plus'
-import {ref} from 'vue'
+import type { ImageInstance } from 'element-plus'
+import { ref } from 'vue'
 
 const url =
-	'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg'
+  'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg'
 const srcList = [
-	'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg',
-	'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg',
-	'https://fuss10.elemecdn.com/0/6f/e35ff375812e6b0020b6b4e8f9583jpeg.jpeg',
-	'https://fuss10.elemecdn.com/9/bb/e27858e973f5d7d3904835f46abbdjpeg.jpeg',
-	'https://fuss10.elemecdn.com/d/e6/c4d93a3805b3ce3f323f7974e6f78jpeg.jpeg',
-	'https://fuss10.elemecdn.com/3/28/bbf893f792f03a54408b3b7a7ebf0jpeg.jpeg',
-	'https://fuss10.elemecdn.com/2/11/6535bcfb26e4c79b48ddde44f4b6fjpeg.jpeg',
+  'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg',
+  'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg',
+  'https://fuss10.elemecdn.com/0/6f/e35ff375812e6b0020b6b4e8f9583jpeg.jpeg',
+  'https://fuss10.elemecdn.com/9/bb/e27858e973f5d7d3904835f46abbdjpeg.jpeg',
+  'https://fuss10.elemecdn.com/d/e6/c4d93a3805b3ce3f323f7974e6f78jpeg.jpeg',
+  'https://fuss10.elemecdn.com/3/28/bbf893f792f03a54408b3b7a7ebf0jpeg.jpeg',
+  'https://fuss10.elemecdn.com/2/11/6535bcfb26e4c79b48ddde44f4b6fjpeg.jpeg',
 ]
 
 const imageRef = ref<ImageInstance>()
 const showPreview = ref(false)
 
 const handleClick = () => {
-	imageRef.value!.showPreview()
+  imageRef.value!.showPreview()
 }
 </script>
 ```
@@ -15783,22 +14710,22 @@ Source: https://element-plus.org/en-US/guide/quickstart
 Set up Vite configuration to enable automatic importing of Element Plus components and APIs using ElementPlusResolver.
 
 ```typescript
-import {ElementPlusResolver} from 'unplugin-vue-components/resolvers'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import Components from 'unplugin-vue-components/vite'
 import AutoImport from 'unplugin-auto-import/vite'
-import {defineConfig} from 'vite'
+import { defineConfig } from 'vite'
 
 export default defineConfig({
-	// ...
-	plugins: [
-		// ...
-		AutoImport({
-			resolvers: [ElementPlusResolver()],
-		}),
-		Components({
-			resolvers: [ElementPlusResolver()],
-		}),
-	],
+  // ...
+  plugins: [
+    // ...
+    AutoImport({
+      resolvers: [ElementPlusResolver()],
+    }),
+    Components({
+      resolvers: [ElementPlusResolver()],
+    }),
+  ],
 })
 ```
 
@@ -15812,42 +14739,37 @@ When lazily loading node data remotely, lazy loading may sometimes fail. In this
 
 ```vue
 <template>
-	<el-tree
-		style="max-width: 600px"
-		:props="props"
-		:load="loadNode"
-		lazy
-	/>
+  <el-tree style="max-width: 600px" :props="props" :load="loadNode" lazy />
 </template>
 
 <script lang="ts" setup>
-import type {LoadFunction} from 'element-plus'
+import type { LoadFunction } from 'element-plus'
 
 const props = {
-	label: 'name',
-	children: 'zones',
-	isLeaf: 'leaf',
+  label: 'name',
+  children: 'zones',
+  isLeaf: 'leaf',
 }
 
 let time = 0
 const loadNode: LoadFunction = (node, resolve, reject) => {
-	if (node.level === 0) {
-		return resolve([{name: 'region'}])
-	}
-	time++
-	if (node.level >= 1) {
-		setTimeout(() => {
-			if (time > 3) {
-				return resolve([
-					{name: 'zone1', leaf: true},
-					{name: 'zone2', leaf: true},
-					{name: 'zone3', leaf: true},
-				])
-			} else {
-				return reject()
-			}
-		}, 3000)
-	}
+  if (node.level === 0) {
+    return resolve([{ name: 'region' }])
+  }
+  time++
+  if (node.level >= 1) {
+    setTimeout(() => {
+      if (time > 3) {
+        return resolve([
+          { name: 'zone1', leaf: true },
+          { name: 'zone2', leaf: true },
+          { name: 'zone3', leaf: true },
+        ])
+      } else {
+        return reject()
+      }
+    }, 3000)
+  }
 }
 </script>
 ```
@@ -15862,65 +14784,49 @@ This snippet demonstrates how to enable tooltips for overflowing content in `el-
 
 ```vue
 <template>
-	<el-table
-		:data="tableData"
-		style="width: 100%"
-	>
-		<el-table-column
-			type="selection"
-			width="55"
-		/>
-		<el-table-column
-			label="Date"
-			width="120"
-		>
-			<template #default="scope">{{ scope.row.date }}</template>
-		</el-table-column>
-		<el-table-column
-			property="name"
-			label="Name"
-			width="120"
-		/>
-		<el-table-column
-			property="address"
-			label="use show-overflow-tooltip"
-			width="240"
-			show-overflow-tooltip
-		/>
-		<el-table-column
-			property="address"
-			label="address"
-		/>
-	</el-table>
+  <el-table :data="tableData" style="width: 100%">
+    <el-table-column type="selection" width="55" />
+    <el-table-column label="Date" width="120">
+      <template #default="scope">{{ scope.row.date }}</template>
+    </el-table-column>
+    <el-table-column property="name" label="Name" width="120" />
+    <el-table-column
+      property="address"
+      label="use show-overflow-tooltip"
+      width="240"
+      show-overflow-tooltip
+    />
+    <el-table-column property="address" label="address" />
+  </el-table>
 </template>
 
 <script lang="ts" setup>
 interface User {
-	date: string
-	name: string
-	address: string
+  date: string
+  name: string
+  address: string
 }
 const tableData: User[] = [
-	{
-		date: '2016-05-04',
-		name: 'Aleyna Kutzner',
-		address: 'Lohrbergstr. 86c, Süd Lilli, Saarland',
-	},
-	{
-		date: '2016-05-03',
-		name: 'Helen Jacobi',
-		address: '760 A Street, South Frankfield, Illinois',
-	},
-	{
-		date: '2016-05-02',
-		name: 'Brandon Deckert',
-		address: 'Arnold-Ohletz-Str. 41a, Alt Malinascheid, Thüringen',
-	},
-	{
-		date: '2016-05-01',
-		name: 'Margie Smith',
-		address: '23618 Windsor Drive, West Ricardoview, Idaho',
-	},
+  {
+    date: '2016-05-04',
+    name: 'Aleyna Kutzner',
+    address: 'Lohrbergstr. 86c, Süd Lilli, Saarland',
+  },
+  {
+    date: '2016-05-03',
+    name: 'Helen Jacobi',
+    address: '760 A Street, South Frankfield, Illinois',
+  },
+  {
+    date: '2016-05-02',
+    name: 'Brandon Deckert',
+    address: 'Arnold-Ohletz-Str. 41a, Alt Malinascheid, Thüringen',
+  },
+  {
+    date: '2016-05-01',
+    name: 'Margie Smith',
+    address: '23618 Windsor Drive, West Ricardoview, Idaho',
+  },
 ]
 </script>
 ```
@@ -15935,99 +14841,80 @@ This Vue.js snippet demonstrates how to configure the `showOverflowTooltip` prop
 
 ```vue
 <template>
-	<div>
-		<div>
-			<el-checkbox v-model="config.showOverflowTooltip">
-				showOverflowTooltip
-			</el-checkbox>
-			<el-select
-				v-model="config.tooltipEffect"
-				class="ml-5"
-				style="max-width: 150px"
-			>
-				<el-option
-					value="dark"
-					label="dark"
-				/>
-				<el-option
-					value="light"
-					label="light"
-				/>
-			</el-select>
-		</div>
-		<el-divider />
-		<el-config-provider :table="config">
-			<el-table
-				:data="tableData"
-				style="width: 100%"
-			>
-				<el-table-column
-					type="selection"
-					width="55"
-				/>
-				<el-table-column
-					label="Date"
-					width="120"
-				>
-					<template #default="scope">{{ scope.row.date }}</template>
-				</el-table-column>
-				<el-table-column
-					property="name"
-					label="Name"
-					width="120"
-				/>
-				<el-table-column
-					property="address"
-					label="Address (inherited from config-provider)"
-					width="300"
-				/>
-				<el-table-column
-					property="address"
-					label="Address (explicit false)"
-					:show-overflow-tooltip="false"
-				/>
-			</el-table>
-		</el-config-provider>
-	</div>
+  <div>
+    <div>
+      <el-checkbox v-model="config.showOverflowTooltip">
+        showOverflowTooltip
+      </el-checkbox>
+      <el-select
+        v-model="config.tooltipEffect"
+        class="ml-5"
+        style="max-width: 150px"
+      >
+        <el-option value="dark" label="dark" />
+        <el-option value="light" label="light" />
+      </el-select>
+    </div>
+    <el-divider />
+    <el-config-provider :table="config">
+      <el-table :data="tableData" style="width: 100%">
+        <el-table-column type="selection" width="55" />
+        <el-table-column label="Date" width="120">
+          <template #default="scope">{{ scope.row.date }}</template>
+        </el-table-column>
+        <el-table-column property="name" label="Name" width="120" />
+        <el-table-column
+          property="address"
+          label="Address (inherited from config-provider)"
+          width="300"
+        />
+        <el-table-column
+          property="address"
+          label="Address (explicit false)"
+          :show-overflow-tooltip="false"
+        />
+      </el-table>
+    </el-config-provider>
+  </div>
 </template>
 
 <script lang="ts" setup>
-import {reactive} from 'vue'
+import { reactive } from 'vue'
 
-import type {TableConfigContext} from 'element-plus'
+import type { TableConfigContext } from 'element-plus'
 
 const config = reactive<TableConfigContext>({
-	showOverflowTooltip: true,
-	tooltipEffect: 'dark',
+  showOverflowTooltip: true,
+  tooltipEffect: 'dark',
 })
 
 interface User {
-	date: string
-	name: string
-	address: string
+  date: string
+  name: string
+  address: string
 }
 
 const tableData: User[] = [
-	{
-		date: '2016-05-04',
-		name: 'Aleyna Kutzner',
-		address: 'Lohrbergstr. 86c, Süd Lilli, Saarland',
-	},
-	{
-		date: '2016-05-03',
-		name: 'Helen Jacobi',
-		address: '760 A Street, South Frankfield, Illinois',
-	},
-	{
-		date: '2016-05-02',
-		name: 'Brandon Deckert',
-		address: 'Arnold-Ohletz-Str. 41a, Alt Malinascheid, Thüringen',
-	},
-	{
-		date: '2016-05-01',
-		name: 'Margie Smith',
-		address: '23618 Windsor Drive, West Ricardoview, Idaho',
-	},
+  {
+    date: '2016-05-04',
+    name: 'Aleyna Kutzner',
+    address: 'Lohrbergstr. 86c, Süd Lilli, Saarland',
+  },
+  {
+    date: '2016-05-03',
+    name: 'Helen Jacobi',
+    address: '760 A Street, South Frankfield, Illinois',
+  },
+  {
+    date: '2016-05-02',
+    name: 'Brandon Deckert',
+    address: 'Arnold-Ohletz-Str. 41a, Alt Malinascheid, Thüringen',
+  },
+  {
+    date: '2016-05-01',
+    name: 'Margie Smith',
+    address: '23618 Windsor Drive, West Ricardoview, Idaho',
+  },
 ]
 </script>
 ```
@@ -16133,79 +15020,64 @@ Demonstrates the basic implementation of the Element Plus Collapse component in 
 
 ```vue
 <template>
-	<div class="demo-collapse">
-		<el-collapse
-			v-model="activeNames"
-			@change="handleChange"
-		>
-			<el-collapse-item
-				title="Consistency"
-				name="1"
-			>
-				<div>
-					Consistent with real life: in line with the process and logic of real
-					life, and comply with languages and habits that the users are used to;
-				</div>
-				<div>
-					Consistent within interface: all elements should be consistent, such
-					as: design style, icons and texts, position of elements, etc.
-				</div>
-			</el-collapse-item>
-			<el-collapse-item
-				title="Feedback"
-				name="2"
-			>
-				<div>
-					Operation feedback: enable the users to clearly perceive their
-					operations by style updates and interactive effects;
-				</div>
-				<div>
-					Visual feedback: reflect current state by updating or rearranging
-					elements of the page.
-				</div>
-			</el-collapse-item>
-			<el-collapse-item
-				title="Efficiency"
-				name="3"
-			>
-				<div>
-					Simplify the process: keep operating process simple and intuitive;
-				</div>
-				<div>
-					Definite and clear: enunciate your intentions clearly so that the
-					users can quickly understand and make decisions;
-				</div>
-				<div>
-					Easy to identify: the interface should be straightforward, which helps
-					the users to identify and frees them from memorizing and recalling.
-				</div>
-			</el-collapse-item>
-			<el-collapse-item
-				title="Controllability"
-				name="4"
-			>
-				<div>
-					Decision making: giving advice about operations is acceptable, but do
-					not make decisions for the users;
-				</div>
-				<div>
-					Controlled consequences: users should be granted the freedom to
-					operate, including canceling, aborting or terminating current
-					operation.
-				</div>
-			</el-collapse-item>
-		</el-collapse>
-	</div>
+  <div class="demo-collapse">
+    <el-collapse v-model="activeNames" @change="handleChange">
+      <el-collapse-item title="Consistency" name="1">
+        <div>
+          Consistent with real life: in line with the process and logic of real
+          life, and comply with languages and habits that the users are used to;
+        </div>
+        <div>
+          Consistent within interface: all elements should be consistent, such
+          as: design style, icons and texts, position of elements, etc.
+        </div>
+      </el-collapse-item>
+      <el-collapse-item title="Feedback" name="2">
+        <div>
+          Operation feedback: enable the users to clearly perceive their
+          operations by style updates and interactive effects;
+        </div>
+        <div>
+          Visual feedback: reflect current state by updating or rearranging
+          elements of the page.
+        </div>
+      </el-collapse-item>
+      <el-collapse-item title="Efficiency" name="3">
+        <div>
+          Simplify the process: keep operating process simple and intuitive;
+        </div>
+        <div>
+          Definite and clear: enunciate your intentions clearly so that the
+          users can quickly understand and make decisions;
+        </div>
+        <div>
+          Easy to identify: the interface should be straightforward, which helps
+          the users to identify and frees them from memorizing and recalling.
+        </div>
+      </el-collapse-item>
+      <el-collapse-item title="Controllability" name="4">
+        <div>
+          Decision making: giving advice about operations is acceptable, but do
+          not make decisions for the users;
+        </div>
+        <div>
+          Controlled consequences: users should be granted the freedom to
+          operate, including canceling, aborting or terminating current
+          operation.
+        </div>
+      </el-collapse-item>
+    </el-collapse>
+  </div>
 </template>
 
 <script lang="ts" setup>
-import {ref} from 'vue'
+import { ref } from 'vue'
 
-import type {CollapseModelValue} from 'element-plus'
+import type { CollapseModelValue } from 'element-plus'
 
 const activeNames = ref(['1'])
 const handleChange = (val: CollapseModelValue) => {
-	console.log(val)
+  console.log(val)
 }
 </script>
 ```
@@ -16220,104 +15092,104 @@ This Vue component demonstrates how to implement grouped headers in Element Plus
 
 ```vue
 <template>
-	<el-table-v2
-		fixed
-		:columns="fixedColumns"
-		:data="data"
-		:header-height="[50, 40, 50]"
-		:header-class="headerClass"
-		:width="700"
-		:height="400"
-	>
-		<template #header="props">
-			<customized-header v-bind="props" />
-		</template>
-	</el-table-v2>
+  <el-table-v2
+    fixed
+    :columns="fixedColumns"
+    :data="data"
+    :header-height="[50, 40, 50]"
+    :header-class="headerClass"
+    :width="700"
+    :height="400"
+  >
+    <template #header="props">
+      <customized-header v-bind="props" />
+    </template>
+  </el-table-v2>
 </template>
 
 <script lang="tsx" setup>
-import {TableV2FixedDir, TableV2Placeholder} from 'element-plus'
+import { TableV2FixedDir, TableV2Placeholder } from 'element-plus'
 
 import type {
-	HeaderClassNameGetter,
-	TableV2CustomizedHeaderSlotParam,
+  HeaderClassNameGetter,
+  TableV2CustomizedHeaderSlotParam,
 } from 'element-plus'
-import type {FunctionalComponent} from 'vue'
+import type { FunctionalComponent } from 'vue'
 
 const generateColumns = (length = 10, prefix = 'column-', props?: any) =>
-	Array.from({length}).map((_, columnIndex) => ({
-		...props,
-		key: `${prefix}${columnIndex}`,
-		dataKey: `${prefix}${columnIndex}`,
-		title: `Column ${columnIndex}`,
-		width: 150,
-	}))
+  Array.from({ length }).map((_, columnIndex) => ({
+    ...props,
+    key: `${prefix}${columnIndex}`,
+    dataKey: `${prefix}${columnIndex}`,
+    title: `Column ${columnIndex}`,
+    width: 150,
+  }))
 
 const generateData = (
-	columns: ReturnType<typeof generateColumns>,
-	length = 200,
-	prefix = 'row-',
+  columns: ReturnType<typeof generateColumns>,
+  length = 200,
+  prefix = 'row-',
 ) =>
-	Array.from({length}).map((_, rowIndex) => {
-		return columns.reduce(
-			(rowData, column, columnIndex) => {
-				rowData[column.dataKey] = `Row ${rowIndex} - Col ${columnIndex}`
-				return rowData
-			},
-			{
-				id: `${prefix}${rowIndex}`,
-				parentId: null,
-			},
-		)
-	})
+  Array.from({ length }).map((_, rowIndex) => {
+    return columns.reduce(
+      (rowData, column, columnIndex) => {
+        rowData[column.dataKey] = `Row ${rowIndex} - Col ${columnIndex}`
+        return rowData
+      },
+      {
+        id: `${prefix}${rowIndex}`,
+        parentId: null,
+      },
+    )
+  })
 const columns = generateColumns(15)
 const data = generateData(columns, 200)
 
 const fixedColumns = columns.map((column, columnIndex) => {
-	let fixed: TableV2FixedDir | undefined = undefined
-	if (columnIndex < 3) fixed = TableV2FixedDir.LEFT
-	if (columnIndex > 12) fixed = TableV2FixedDir.RIGHT
-	return {...column, fixed, width: 100}
+  let fixed: TableV2FixedDir | undefined = undefined
+  if (columnIndex < 3) fixed = TableV2FixedDir.LEFT
+  if (columnIndex > 12) fixed = TableV2FixedDir.RIGHT
+  return { ...column, fixed, width: 100 }
 })
 
 const CustomizedHeader: FunctionalComponent<
-	TableV2CustomizedHeaderSlotParam
-> = ({cells, columns, headerIndex}) => {
-	if (headerIndex === 2) return cells
+  TableV2CustomizedHeaderSlotParam
+> = ({ cells, columns, headerIndex }) => {
+  if (headerIndex === 2) return cells
 
-	const groupCells = [] as typeof cells
-	let width = 0
-	let idx = 0
+  const groupCells = [] as typeof cells
+  let width = 0
+  let idx = 0
 
-	columns.forEach((column, columnIndex) => {
-		if (column.placeholderSign === TableV2Placeholder)
-			groupCells.push(cells[columnIndex])
-		else {
-			width += cells[columnIndex].props!.column.width
-			idx++
+  columns.forEach((column, columnIndex) => {
+    if (column.placeholderSign === TableV2Placeholder)
+      groupCells.push(cells[columnIndex])
+    else {
+      width += cells[columnIndex].props!.column.width
+      idx++
 
-			const nextColumn = columns[columnIndex + 1]
-			if (
-				columnIndex === columns.length - 1 ||
-				nextColumn.placeholderSign === TableV2Placeholder ||
-				idx === (headerIndex === 0 ? 4 : 2)
-			) {
-				groupCells.push(
-					<div
-						class="flex items-center justify-center custom-header-cell"
-						role="columnheader"
-						style={{...cells[columnIndex].props!.style, width: `${width}px`}}
-					>
-						{cells[columnIndex].children}
-					</div>,
-				)
-				width = 0
-				idx = 0
-			}
-		}
-	})
+      const nextColumn = columns[columnIndex + 1]
+      if (
+        columnIndex === columns.length - 1 ||
+        nextColumn.placeholderSign === TableV2Placeholder ||
+        idx === (headerIndex === 0 ? 4 : 2)
+      ) {
+        groupCells.push(
+          <div
+            class="flex items-center justify-center custom-header-cell"
+            role="columnheader"
+            style={{ ...cells[columnIndex].props!.style, width: `${width}px` }}
+          >
+            {cells[columnIndex].children}
+          </div>,
+        )
+        width = 0
+        idx = 0
+      }
+    }
+  })
 
-	return groupCells
+  return groupCells
 }
 </script>
 ```
@@ -16332,32 +15204,29 @@ Illustrates the 'lazy' mode for the Element Plus splitter component. When enable
 
 ```vue
 <template>
-	<div
-		style="height: 250px; box-shadow: var(--el-border-color-light) 0px 0px 10px"
-	>
-		<el-splitter lazy>
-			<el-splitter-panel
-				collapsible
-				min="50"
-			>
-				<div class="demo-panel">1</div>
-			</el-splitter-panel>
-			<el-splitter-panel collapsible>
-				<div class="demo-panel">2</div>
-			</el-splitter-panel>
-			<el-splitter-panel collapsible>
-				<div class="demo-panel">3</div>
-			</el-splitter-panel>
-		</el-splitter>
-	</div>
+  <div
+    style="height: 250px; box-shadow: var(--el-border-color-light) 0px 0px 10px"
+  >
+    <el-splitter lazy>
+      <el-splitter-panel collapsible min="50">
+        <div class="demo-panel">1</div>
+      </el-splitter-panel>
+      <el-splitter-panel collapsible>
+        <div class="demo-panel">2</div>
+      </el-splitter-panel>
+      <el-splitter-panel collapsible>
+        <div class="demo-panel">3</div>
+      </el-splitter-panel>
+    </el-splitter>
+  </div>
 </template>
 
 <style scoped>
 .demo-panel {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 }
 </style>
 ```
@@ -16372,74 +15241,69 @@ This snippet demonstrates how to dynamically assign CSS classes to table rows ba
 
 ```vue
 <template>
-	<el-table
-		:data="tableData"
-		style="width: 100%"
-		:row-class-name="tableRowClassName"
-	>
-		<el-table-column
-			prop="date"
-			label="Date"
-			width="180"
-		/>
-		<el-table-column
-			prop="name"
-			label="Name"
-			width="180"
-		/>
-		<el-table-column
-			prop="address"
-			label="Address"
-		/>
-	</el-table>
+  <el-table
+    :data="tableData"
+    style="width: 100%"
+    :row-class-name="tableRowClassName"
+  >
+    <el-table-column prop="date" label="Date" width="180" />
+    <el-table-column prop="name" label="Name" width="180" />
+    <el-table-column prop="address" label="Address" />
+  </el-table>
 </template>
 
 <script lang="ts" setup>
 interface User {
-	date: string
-	name: string
-	address: string
+  date: string
+  name: string
+  address: string
 }
 
-const tableRowClassName = ({row, rowIndex}: {row: User; rowIndex: number}) => {
-	if (rowIndex === 1) {
-		return 'warning-row'
-	} else if (rowIndex === 3) {
-		return 'success-row'
-	}
-	return ''
+const tableRowClassName = ({
+  row,
+  rowIndex,
+}: {
+  row: User
+  rowIndex: number
+}) => {
+  if (rowIndex === 1) {
+    return 'warning-row'
+  } else if (rowIndex === 3) {
+    return 'success-row'
+  }
+  return ''
 }
 
 const tableData: User[] = [
-	{
-		date: '2016-05-03',
-		name: 'Tom',
-		address: 'No. 189, Grove St, Los Angeles',
-	},
-	{
-		date: '2016-05-02',
-		name: 'Tom',
-		address: 'No. 189, Grove St, Los Angeles',
-	},
-	{
-		date: '2016-05-04',
-		name: 'Tom',
-		address: 'No. 189, Grove St, Los Angeles',
-	},
-	{
-		date: '2016-05-01',
-		name: 'Tom',
-		address: 'No. 189, Grove St, Los Angeles',
-	},
+  {
+    date: '2016-05-03',
+    name: 'Tom',
+    address: 'No. 189, Grove St, Los Angeles',
+  },
+  {
+    date: '2016-05-02',
+    name: 'Tom',
+    address: 'No. 189, Grove St, Los Angeles',
+  },
+  {
+    date: '2016-05-04',
+    name: 'Tom',
+    address: 'No. 189, Grove St, Los Angeles',
+  },
+  {
+    date: '2016-05-01',
+    name: 'Tom',
+    address: 'No. 189, Grove St, Los Angeles',
+  },
 ]
 </script>
 
 <style>
 .el-table .warning-row {
-	--el-table-tr-bg-color: var(--el-color-warning-light-9);
+  --el-table-tr-bg-color: var(--el-color-warning-light-9);
 }
 .el-table .success-row {
-	--el-table-tr-bg-color: var(--el-color-success-light-9);
+  --el-table-tr-bg-color: var(--el-color-success-light-9);
 }
 </style>
 ```
@@ -16963,70 +15827,61 @@ This snippet shows how to dynamically change the expand icon's position in an El
 
 ```vue
 <template>
-	<div class="demo-collapse-position">
-		<div class="flex items-center mb-4">
-			<span class="mr-4">expand icon position: </span>
-			<el-switch
-				v-model="position"
-				inactive-value="left"
-				active-value="right"
-				inactive-text="left"
-				active-text="right"
-				style="--el-switch-off-color: #88b8fe"
-			/>
-		</div>
+  <div class="demo-collapse-position">
+    <div class="flex items-center mb-4">
+      <span class="mr-4">expand icon position: </span>
+      <el-switch
+        v-model="position"
+        inactive-value="left"
+        active-value="right"
+        inactive-text="left"
+        active-text="right"
+        style="--el-switch-off-color: #88b8fe"
+      />
+    </div>
 
-		<el-collapse :expand-icon-position="position">
-			<el-collapse-item
-				title="Consistency"
-				name="1"
-			>
-				<div>
-					Consistent with real life: in line with the process and logic of real
-					life, and comply with languages and habits that the users are used to;
-				</div>
-				<div>
-					Consistent within interface: all elements should be consistent, such
-					as: design style, icons and texts, position of elements, etc.
-				</div>
-			</el-collapse-item>
-			<el-collapse-item
-				title="Feedback"
-				name="2"
-			>
-				<div>
-					Operation feedback: enable the users to clearly perceive their
-					operations by style updates and interactive effects;
-				</div>
-				<div>
-					Visual feedback: reflect current state by updating or rearranging
-					elements of the page.
-				</div>
-			</el-collapse-item>
-			<el-collapse-item
-				title="Efficiency"
-				name="3"
-			>
-				<div>
-					Simplify the process: keep operating process simple and intuitive;
-				</div>
-				<div>
-					Definite and clear: enunciate your intentions clearly so that the
-					users can quickly understand and make decisions;
-				</div>
-				<div>
-					Easy to identify: the interface should be straightforward, which helps
-					the users to identify and frees them from memorizing and recalling.
-				</div>
-			</el-collapse-item>
-		</el-collapse>
-	</div>
+    <el-collapse :expand-icon-position="position">
+      <el-collapse-item title="Consistency" name="1">
+        <div>
+          Consistent with real life: in line with the process and logic of real
+          life, and comply with languages and habits that the users are used to;
+        </div>
+        <div>
+          Consistent within interface: all elements should be consistent, such
+          as: design style, icons and texts, position of elements, etc.
+        </div>
+      </el-collapse-item>
+      <el-collapse-item title="Feedback" name="2">
+        <div>
+          Operation feedback: enable the users to clearly perceive their
+          operations by style updates and interactive effects;
+        </div>
+        <div>
+          Visual feedback: reflect current state by updating or rearranging
+          elements of the page.
+        </div>
+      </el-collapse-item>
+      <el-collapse-item title="Efficiency" name="3">
+        <div>
+          Simplify the process: keep operating process simple and intuitive;
+        </div>
+        <div>
+          Definite and clear: enunciate your intentions clearly so that the
+          users can quickly understand and make decisions;
+        </div>
+        <div>
+          Easy to identify: the interface should be straightforward, which helps
+          the users to identify and frees them from memorizing and recalling.
+        </div>
+      </el-collapse-item>
+    </el-collapse>
+  </div>
 </template>
 
 <script lang="ts" setup>
-import {ref} from 'vue'
+import { ref } from 'vue'
 
-import type {CollapseIconPositionType} from 'element-plus'
+import type { CollapseIconPositionType } from 'element-plus'
 
 const position = ref<CollapseIconPositionType>('left')
 </script>
@@ -17042,75 +15897,56 @@ Demonstrates how to use the `el-skeleton` component with throttle options to con
 
 ```vue
 <template>
-	<el-space
-		direction="vertical"
-		alignment="flex-start"
-	>
-		<div>
-			<label style="margin-right: 16px">Switch Loading</label>
-			<el-switch v-model="loading" />
-		</div>
-		<el-skeleton
-			style="width: 240px"
-			:loading="loading"
-			animated
-			:throttle="{leading: 500, trailing: 500, initVal: true}"
-		>
-			<template #template>
-				<el-skeleton-item
-					variant="image"
-					style="width: 240px; height: 265px"
-				/>
-				<div style="padding: 14px">
-					<el-skeleton-item
-						variant="h3"
-						style="width: 50%"
-					/>
-					<div
-						style="
+  <el-space direction="vertical" alignment="flex-start">
+    <div>
+      <label style="margin-right: 16px">Switch Loading</label>
+      <el-switch v-model="loading" />
+    </div>
+    <el-skeleton
+      style="width: 240px"
+      :loading="loading"
+      animated
+      :throttle="{ leading: 500, trailing: 500, initVal: true }"
+    >
+      <template #template>
+        <el-skeleton-item variant="image" style="width: 240px; height: 265px" />
+        <div style="padding: 14px">
+          <el-skeleton-item variant="h3" style="width: 50%" />
+          <div
+            style="
               display: flex;
               align-items: center;
               justify-items: space-between;
               margin-top: 16px;
               height: 16px;
             "
-					>
-						<el-skeleton-item
-							variant="text"
-							style="margin-right: 16px"
-						/>
-						<el-skeleton-item
-							variant="text"
-							style="width: 30%"
-						/>
-					</div>
-				</div>
-			</template>
-			<template #default>
-				<el-card :body-style="{padding: '0px', marginBottom: '1px'}">
-					<img
-						src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
-						class="image"
-					/>
-					<div style="padding: 14px">
-						<span>Delicious hamburger</span>
-						<div class="bottom card-header">
-							<div class="time">{{ currentDate }}</div>
-							<el-button
-								text
-								class="button"
-								>operation button</el-button
-							>
-						</div>
-					</div>
-				</el-card>
-			</template>
-		</el-skeleton>
-	</el-space>
+          >
+            <el-skeleton-item variant="text" style="margin-right: 16px" />
+            <el-skeleton-item variant="text" style="width: 30%" />
+          </div>
+        </div>
+      </template>
+      <template #default>
+        <el-card :body-style="{ padding: '0px', marginBottom: '1px' }">
+          <img
+            src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
+            class="image"
+          />
+          <div style="padding: 14px">
+            <span>Delicious hamburger</span>
+            <div class="bottom card-header">
+              <div class="time">{{ currentDate }}</div>
+              <el-button text class="button">operation button</el-button>
+            </div>
+          </div>
+        </el-card>
+      </template>
+    </el-skeleton>
+  </el-space>
 </template>
 
 <script lang="ts" setup>
-import {ref} from 'vue'
+import { ref } from 'vue'
 
 const loading = ref(false)
 const currentDate = new Date().toDateString()
@@ -17127,35 +15963,25 @@ Configures a drawer without a modal overlay using the modal attribute and enable
 
 ```vue
 <template>
-	<el-button
-		plain
-		@click="drawerVisible = true"
-	>
-		Open the modal Drawer
-	</el-button>
+  <el-button plain @click="drawerVisible = true">
+    Open the modal Drawer
+  </el-button>
 
-	<el-drawer
-		v-model="drawerVisible"
-		:modal="false"
-		modal-penetrable
-	>
-		<span>It's a modal Drawer</span>
-		<template #footer>
-			<div class="drawer-footer">
-				<el-button @click="drawerVisible = false">Cancel</el-button>
-				<el-button
-					type="primary"
-					@click="drawerVisible = false"
-				>
-					Confirm
-				</el-button>
-			</div>
-		</template>
-	</el-drawer>
+  <el-drawer v-model="drawerVisible" :modal="false" modal-penetrable>
+    <span>It's a modal Drawer</span>
+    <template #footer>
+      <div class="drawer-footer">
+        <el-button @click="drawerVisible = false">Cancel</el-button>
+        <el-button type="primary" @click="drawerVisible = false">
+          Confirm
+        </el-button>
+      </div>
+    </template>
+  </el-drawer>
 </template>
 
 <script lang="ts" setup>
-import {ref} from 'vue'
+import { ref } from 'vue'
 
 const drawerVisible = ref(false)
 </script>
@@ -17171,73 +15997,73 @@ Use el-auto-resizer to get table dimensions and el-table-v2 for rendering. The c
 
 ```vue
 <template>
-	<div style="height: 400px">
-		<el-auto-resizer>
-			<template #default="{height, width}">
-				<el-table-v2
-					:columns="columns"
-					:cell-props="cellProps"
-					:class="kls"
-					:data="data"
-					:width="width"
-					:height="height"
-				/>
-			</template>
-		</el-auto-resizer>
-	</div>
+  <div style="height: 400px">
+    <el-auto-resizer>
+      <template #default="{ height, width }">
+        <el-table-v2
+          :columns="columns"
+          :cell-props="cellProps"
+          :class="kls"
+          :data="data"
+          :width="width"
+          :height="height"
+        />
+      </template>
+    </el-auto-resizer>
+  </div>
 </template>
 
 <script lang="ts" setup>
-import {ref} from 'vue'
+import { ref } from 'vue'
 
 const generateColumns = (length = 10, prefix = 'column-', props?: any) =>
-	Array.from({length}).map((_, columnIndex) => ({
-		...props,
-		key: `${prefix}${columnIndex}`,
-		dataKey: `${prefix}${columnIndex}`,
-		title: `Column ${columnIndex}`,
-		width: 150,
-	}))
+  Array.from({ length }).map((_, columnIndex) => ({
+    ...props,
+    key: `${prefix}${columnIndex}`,
+    dataKey: `${prefix}${columnIndex}`,
+    title: `Column ${columnIndex}`,
+    width: 150,
+  }))
 
 const generateData = (
-	columns: ReturnType<typeof generateColumns>,
-	length = 200,
-	prefix = 'row-',
+  columns: ReturnType<typeof generateColumns>,
+  length = 200,
+  prefix = 'row-',
 ) =>
-	Array.from({length}).map((_, rowIndex) => {
-		return columns.reduce(
-			(rowData, column, columnIndex) => {
-				rowData[column.dataKey] = `Row ${rowIndex} - Col ${columnIndex}`
-				return rowData
-			},
-			{
-				id: `${prefix}${rowIndex}`,
-				parentId: null,
-			},
-		)
-	})
+  Array.from({ length }).map((_, rowIndex) => {
+    return columns.reduce(
+      (rowData, column, columnIndex) => {
+        rowData[column.dataKey] = `Row ${rowIndex} - Col ${columnIndex}`
+        return rowData
+      },
+      {
+        id: `${prefix}${rowIndex}`,
+        parentId: null,
+      },
+    )
+  })
 
 const columns = generateColumns(10)
 columns.unshift({
-	key: 'column-n-1',
-	width: 50,
-	title: 'Row No.',
-	cellRenderer: ({rowIndex}) => `${rowIndex + 1}`,
-	align: 'center',
+  key: 'column-n-1',
+  width: 50,
+  title: 'Row No.',
+  cellRenderer: ({ rowIndex }) => `${rowIndex + 1}`,
+  align: 'center',
 })
 const data = generateData(columns, 200)
 
-const cellProps = ({columnIndex}) => {
-	const key = `hovering-col-${columnIndex}`
-	return {
-		['data-key']: key,
-		onMouseenter: () => {
-			kls.value = key
-		},
-		onMouseleave: () => {
-			kls.value = ''
-		},
-	}
+const cellProps = ({ columnIndex }) => {
+  const key = `hovering-col-${columnIndex}`
+  return {
+    ['data-key']: key,
+    onMouseenter: () => {
+      kls.value = key
+    },
+    onMouseleave: () => {
+      kls.value = ''
+    },
+  }
 }
 
 const kls = ref<string>('')
@@ -17255,13 +16081,13 @@ const kls = ref<string>('')
 .hovering-col-8 [data-key='hovering-col-8'],
 .hovering-col-9 [data-key='hovering-col-9'],
 .hovering-col-10 [data-key='hovering-col-10'] {
-	background: var(--el-table-row-hover-bg-color);
+  background: var(--el-table-row-hover-bg-color);
 }
 
 [data-key='hovering-col-0'] {
-	font-weight: bold;
-	user-select: none;
-	pointer-events: none;
+  font-weight: bold;
+  user-select: none;
+  pointer-events: none;
 }
 </style>
 ```

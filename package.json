@@ -1,76 +1,74 @@
 {
-	"name": "@escrcpy/workspace",
-	"version": "2.11.1",
-	"private": true,
-	"description": "Scrcpy Powered by Electron",
-	"funding": {
-		"url": "https://github.com/sponsors/involvex"
-	},
-	"author": "involvex",
-	"type": "module",
-	"main": "desktop/dist-electron/main.js",
-	"bin": {
-		"escrcpy": "bin/cli.js"
-	},
-	"workspaces": [
-		"packages/*",
-		"desktop"
-	],
-	"scripts": {
-		"prebuild": "bun run format",
-		"build": "turbo build:electron",
-		"build:linux": "turbo build:electron -- --linux",
-		"build:mac": "turbo build:electron -- --mac",
-		"build:win": "turbo build:electron -- --win",
-		"clean": "bunx rimraf --glob \"**/node_modules\" \"**/dist*\" \"**/.turbo\" || $true",
-		"dev": "turbo dev",
-		"docs:build": "vitepress build docs",
-		"docs:dev": "vitepress dev docs",
-		"docs:preview": "vitepress preview docs",
-		"electron-fix": "bunx --filter escrcpy electron-fix",
-		"format": "prettier --write .",
-		"lang-sync": "node ./scripts/lang-sync.js",
-		"lint": "eslint .",
-		"lint:fix": "eslint . --fix",
-		"prepare": "husky",
-		"test": "turbo run test"
-	},
-	"prettier": "@involvex/prettier-config",
-	"overrides": {
-		"electron": "43.0.0",
-		"sharp": "^0.35.3",
-		"tsdown": "0.22.3",
-		"typescript": "6.0.3",
-		"vite": "5.4.21"
-	},
-	"dependencies": {
-		"i18next-json-sync": "^3.1.2",
-		"sharp": "^0.35.3"
-	},
-	"devDependencies": {
-		"@antfu/eslint-config": "9.1.0",
-		"@involvex/prettier-config": "^0.0.6",
-		"eslint": "10.6.0",
-		"eslint-plugin-format": "2.0.1",
-		"ga-gtag": "1.2.0",
-		"husky": "9.1.7",
-		"prettier": "^3.9.6",
-		"prettier-plugin-markdown-html": "^1.4.1",
-		"prettier-plugin-organize-imports": "^4.3.0",
-		"prettier-plugin-packagejson": "^3.0.2",
-		"prettier-plugin-prisma": "^5.0.0",
-		"prettier-plugin-properties": "^0.3.1",
-		"prettier-plugin-sort-imports": "^1.8.11",
-		"prettier-plugin-toml": "^2.0.6",
-		"prettier-plugin-yaml": "^1.2.0",
-		"publint": "0.3.21",
-		"turbo": "^2.10.13",
-		"vitepress": "1.6.4",
-		"vitepress-i18n": "1.3.5",
-		"vitepress-sidebar": "1.36.1"
-	},
-	"packageManager": "bun@1.3.14",
-	"sponsor": {
-		"url": "https://github.com/sponsors/involvex"
-	}
+  "name": "@escrcpy/workspace",
+  "type": "module",
+  "version": "2.11.1",
+  "private": true,
+  "packageManager": "bun@1.3.14",
+  "description": "Scrcpy Powered by Electron",
+  "author": "involvex",
+  "funding": {
+    "url": "https://github.com/sponsors/involvex"
+  },
+  "main": "desktop/dist-electron/main.js",
+  "bin": {
+    "escrcpy": "bin/cli.js"
+  },
+  "workspaces": [
+    "packages/*",
+    "desktop"
+  ],
+  "scripts": {
+    "prebuild": "bun run format",
+    "build": "turbo build:electron",
+    "build:linux": "turbo build:electron -- --linux",
+    "build:mac": "turbo build:electron -- --mac",
+    "build:win": "turbo build:electron -- --win",
+    "clean": "bunx rimraf --glob \"**/node_modules\" \"**/dist*\" \"**/.turbo\" || $true",
+    "dev": "turbo dev",
+    "docs:build": "vitepress build docs",
+    "docs:dev": "vitepress dev docs",
+    "docs:preview": "vitepress preview docs",
+    "electron-fix": "bunx --filter escrcpy electron-fix",
+    "format": "prettier --write .",
+    "lang-sync": "node ./scripts/lang-sync.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "prepare": "husky",
+    "test": "turbo run test"
+  },
+  "dependencies": {
+    "i18next-json-sync": "^3.1.2",
+    "sharp": "^0.35.3"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "9.1.0",
+    "eslint": "10.6.0",
+    "eslint-plugin-format": "2.0.1",
+    "ga-gtag": "1.2.0",
+    "husky": "9.1.7",
+    "prettier": "^3.9.6",
+    "prettier-plugin-markdown-html": "^1.4.1",
+    "prettier-plugin-organize-imports": "^4.3.0",
+    "prettier-plugin-packagejson": "^3.0.2",
+    "prettier-plugin-prisma": "^5.0.0",
+    "prettier-plugin-properties": "^0.3.1",
+    "prettier-plugin-sort-imports": "^1.8.11",
+    "prettier-plugin-toml": "^2.0.6",
+    "prettier-plugin-yaml": "^1.2.0",
+    "publint": "0.3.21",
+    "turbo": "^2.10.13",
+    "vitepress": "1.6.4",
+    "vitepress-i18n": "1.3.5",
+    "vitepress-sidebar": "1.36.1"
+  },
+  "overrides": {
+    "electron": "43.0.0",
+    "sharp": "^0.35.3",
+    "tsdown": "0.22.3",
+    "typescript": "6.0.3",
+    "vite": "5.4.21"
+  },
+  "sponsor": {
+    "url": "https://github.com/sponsors/involvex"
+  }
 }

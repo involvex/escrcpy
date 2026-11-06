@@ -27,20 +27,20 @@ Main process uses **plugin-based architecture** via `@escrcpy/electron-setup`:
 ```javascript
 // desktop/electron/main.js
 const mainApp = createElectronApp({
-	preloadDir: __dirname,
-	plugins: [clipboardPlugin, sandboxPlugin, themePlugin, windowIPCPlugin],
-	modules: [main, control, copilot, explorer], // Window modules
-	services: [
-		contextMenu,
-		edger,
-		handles,
-		launch,
-		lifecycle,
-		listeners,
-		shortcuts,
-		tray,
-		updater,
-	],
+  preloadDir: __dirname,
+  plugins: [clipboardPlugin, sandboxPlugin, themePlugin, windowIPCPlugin],
+  modules: [main, control, copilot, explorer], // Window modules
+  services: [
+    contextMenu,
+    edger,
+    handles,
+    launch,
+    lifecycle,
+    listeners,
+    shortcuts,
+    tray,
+    updater,
+  ],
 })
 ```
 

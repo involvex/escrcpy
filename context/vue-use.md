@@ -22,22 +22,22 @@ Demonstrates how to initialize Firebase, get the auth instance, and use the useA
 
 ```vue
 <script setup lang="ts">
-import {getAuth, GoogleAuthProvider, signInWithPopup} from 'firebase/auth'
-import {useAuth} from '@vueuse/firebase/useAuth'
-import {initializeApp} from 'firebase/app'
+import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
+import { useAuth } from '@vueuse/firebase/useAuth'
+import { initializeApp } from 'firebase/app'
 
 const app = initializeApp({/* config */})
 const auth = getAuth(app)
-const {isAuthenticated, user} = useAuth(auth)
+const { isAuthenticated, user } = useAuth(auth)
 
 const signIn = () => signInWithPopup(auth, new GoogleAuthProvider())
 </script>
 
 <template>
-	<pre v-if="isAuthenticated">{{ user }}</pre>
-	<div v-else>
-		<button @click="signIn">Sign In with Google</button>
-	</div>
+  <pre v-if="isAuthenticated">{{ user }}</pre>
+  <div v-else>
+    <button @click="signIn">Sign In with Google</button>
+  </div>
 </template>
 ```
 
@@ -414,10 +414,10 @@ Demonstrates how to use useDisplayMedia to start a screen share stream and previ
 
 ```vue
 <script setup lang="ts">
-import {useDisplayMedia} from '@vueuse/core'
-import {useTemplateRef} from 'vue'
+import { useDisplayMedia } from '@vueuse/core'
+import { useTemplateRef } from 'vue'
 
-const {stream, start} = useDisplayMedia()
+const { stream, start } = useDisplayMedia()
 
 // start streaming
 
@@ -426,18 +426,18 @@ start()
 const videoRef = useTemplateRef('video')
 
 watchEffect(() => {
-	// preview on a video element
+  // preview on a video element
 
-	videoRef.value.srcObject = stream.value
+  videoRef.value.srcObject = stream.value
 })
 </script>
 
 <template>
-	<video
-		ref="
+  <video
+    ref="
 video
 "
-	/>
+  />
 </template>
 ```
 
@@ -476,16 +476,16 @@ Shows the resulting HTML structure when using the custom configuration example.
 ```html
 <!--light-->
 <html>
-	<body color-scheme="light">
-		...
-	</body>
+  <body color-scheme="light">
+    ...
+  </body>
 </html>
 
 <!--dark-->
 <html>
-	<body color-scheme="dark">
-		...
-	</body>
+  <body color-scheme="dark">
+    ...
+  </body>
 </html>
 ```
 
@@ -498,11 +498,11 @@ Source: https://vueuse.org/core/useManualRefHistory
 Demonstrates basic setup using shallowRef and manual commit to record snapshots.
 
 ```typescript
-import {useManualRefHistory} from '@vueuse/core'
-import {shallowRef} from 'vue'
+import { useManualRefHistory } from '@vueuse/core'
+import { shallowRef } from 'vue'
 
 const counter = shallowRef(0)
-const {history, commit, undo, redo} = useManualRefHistory(counter)
+const { history, commit, undo, redo } = useManualRefHistory(counter)
 
 counter.value += 1
 
@@ -585,8 +585,8 @@ Provides reactive references for props that can be manipulated within the Option
 
 ```json
 {
-	"foo": "",
-	"bar": 0
+  "foo": "",
+  "bar": 0
 }
 ```
 
@@ -712,7 +712,7 @@ function done() {
 
 ```json
 {
-	"progress": 1.0
+  "progress": 1.0
 }
 ```
 
@@ -762,7 +762,7 @@ JavaScript example illustrating how to use the `start`, `stop`, and `option` fun
 
 ```javascript
 'use strict'
-const {start, stop, option} = useSortable(el, list)
+const { start, stop, option } = useSortable(el, list)
 // Stop sorting
 stop()
 // Start sorting again
@@ -874,8 +874,8 @@ start()
 
 ```json
 {
-	"ready": false,
-	"isPending": true
+  "ready": false,
+  "isPending": true
 }
 ```
 
@@ -957,9 +957,9 @@ Source: https://vueuse.org/core/usePointer
 Import and use the `usePointer` function to get reactive references for pointer coordinates and pressure. No additional setup is required.
 
 ```typescript
-import {usePointer} from '@vueuse/core'
+import { usePointer } from '@vueuse/core'
 
-const {x, y, pressure, pointerType} = usePointer()
+const { x, y, pressure, pointerType } = usePointer()
 ```
 
 ---
@@ -1060,19 +1060,19 @@ npm i universal-cookie@^7
 
 ```vue
 <script setup lang="ts">
-import {useCookies} from '@vueuse/integrations/useCookies'
+import { useCookies } from '@vueuse/integrations/useCookies'
 
 const cookies = useCookies(['locale'])
 </script>
 
 <template>
-	<div>
-		<strong>locale</strong>: {{ cookies.get('locale') }}
-		<hr />
-		<pre>{{ cookies.getAll() }}</pre>
-		<button @click="cookies.set('locale', 'ru-RU')">Russian</button>
-		<button @click="cookies.set('locale', 'en-US')">English</button>
-	</div>
+  <div>
+    <strong>locale</strong>: {{ cookies.get('locale') }}
+    <hr />
+    <pre>{{ cookies.getAll() }}</pre>
+    <button @click="cookies.set('locale', 'ru-RU')">Russian</button>
+    <button @click="cookies.set('locale', 'en-US')">English</button>
+  </div>
 </template>
 ```
 
@@ -1081,11 +1081,11 @@ const cookies = useCookies(['locale'])
 Access and modify cookies using vue composition-api.
 
 ```typescript
-const {get, getAll, set, remove, addChangeListener, removeChangeListener} =
-	useCookies(['cookie-name'], {
-		doNotParse: false,
-		autoUpdateDependencies: false,
-	})
+const { get, getAll, set, remove, addChangeListener, removeChangeListener } =
+  useCookies(['cookie-name'], {
+    doNotParse: false,
+    autoUpdateDependencies: false,
+  })
 ```
 
 #### `dependencies` (optional)
@@ -1176,25 +1176,25 @@ error
 
 ```js
 'use strict'
-const {state} = useAsyncState(promise, initialState, {
-	// Execute immediately on creation (default: true)
-	immediate: true,
-	// Delay before first execution in ms (default: 0)
-	delay: 0,
-	// Reset state to initial before each execution (default: true)
-	resetOnExecute: true,
-	// Use shallowRef for state (default: true)
-	shallow: true,
-	// Throw errors instead of catching them (default: false)
-	throwError: false,
-	// Called when promise resolves
-	onSuccess(data) {
-		console.log('Success:', data)
-	},
-	// Called when promise rejects
-	onError(error) {
-		console.error('Error:', error)
-	},
+const { state } = useAsyncState(promise, initialState, {
+  // Execute immediately on creation (default: true)
+  immediate: true,
+  // Delay before first execution in ms (default: 0)
+  delay: 0,
+  // Reset state to initial before each execution (default: true)
+  resetOnExecute: true,
+  // Use shallowRef for state (default: true)
+  shallow: true,
+  // Throw errors instead of catching them (default: false)
+  throwError: false,
+  // Called when promise resolves
+  onSuccess(data) {
+    console.log('Success:', data)
+  },
+  // Called when promise rejects
+  onError(error) {
+    console.error('Error:', error)
+  },
 })
 ```
 
@@ -1307,7 +1307,7 @@ Source: https://vueuse.org/core/usenow
 Import and use the useNow function to get a reactive Date instance. No additional setup is required.
 
 ```typescript
-import {useNow} from '@vueuse/core'
+import { useNow } from '@vueuse/core'
 
 const now = useNow()
 ```
@@ -1358,10 +1358,10 @@ const { data, isFinished } = useAxios('/api/posts')
 
 ```json
 {
-	"userId": 1,
-	"id": 1,
-	"title": "delectus aut autem",
-	"completed": false
+  "userId": 1,
+  "id": 1,
+  "title": "delectus aut autem",
+  "completed": false
 }
 ```
 
@@ -1455,7 +1455,7 @@ const { stop } = watchPausable(isConnected, (newIsConnected) => {
 
 ```json
 {
-	"batteryPercent": 85
+  "batteryPercent": 85
 }
 ```
 
@@ -1502,28 +1502,28 @@ Example of the internal state object managed by useStepper.
 
 ```json
 {
-	"steps": {
-		"user-information": {
-			"title": "User information"
-		},
-		"billing-address": {
-			"title": "Billing address"
-		},
-		"terms": {
-			"title": "Terms"
-		},
-		"payment": {
-			"title": "Payment"
-		}
-	},
-	"stepNames": ["user-information", "billing-address", "terms", "payment"],
-	"index": 0,
-	"current": {
-		"title": "User information"
-	},
-	"next": "billing-address",
-	"isFirst": true,
-	"isLast": false
+  "steps": {
+    "user-information": {
+      "title": "User information"
+    },
+    "billing-address": {
+      "title": "Billing address"
+    },
+    "terms": {
+      "title": "Terms"
+    },
+    "payment": {
+      "title": "Payment"
+    }
+  },
+  "stepNames": ["user-information", "billing-address", "terms", "payment"],
+  "index": 0,
+  "current": {
+    "title": "User information"
+  },
+  "next": "billing-address",
+  "isFirst": true,
+  "isLast": false
 }
 ```
 
@@ -1536,9 +1536,9 @@ Source: https://vueuse.org/core/useMousePressed
 Import and use the `useMousePressed` function to get the reactive `pressed` state. No additional setup is required for basic mouse tracking.
 
 ```typescript
-import {useMousePressed} from '@vueuse/core'
+import { useMousePressed } from '@vueuse/core'
 
-const {pressed} = useMousePressed()
+const { pressed } = useMousePressed()
 ```
 
 ---
@@ -1550,7 +1550,7 @@ Source: https://vueuse.org/core/usepageleave
 Import and use the `usePageLeave` function to get a reactive boolean indicating if the mouse has left the page. No additional setup is required.
 
 ```typescript
-import {usePageLeave} from '@vueuse/core'
+import { usePageLeave } from '@vueuse/core'
 
 const isLeft = usePageLeave()
 ```
@@ -1583,8 +1583,8 @@ isShallow(deepData) // false
 ### JavaScript
 
 ```javascript
-import {createRef} from '@vueuse/core'
-import {isShallow} from 'vue'
+import { createRef } from '@vueuse/core'
+import { isShallow } from 'vue'
 
 const initialData = 1
 const shallowData = createRef(initialData)
@@ -1688,8 +1688,8 @@ const { width, height } = useWindowSize()
 
 ```json
 {
-	"width": 1280,
-	"height": 800
+  "width": 1280,
+  "height": 800
 }
 ```
 
@@ -1794,7 +1794,7 @@ const min = useMin(a, b, c)
 
 ```json
 {
-	"min": 1
+  "min": 1
 }
 ```
 
@@ -1875,12 +1875,12 @@ const { status, data, send, open, close, ws } = useWebSocket('ws://websocketurl'
 
 ```json
 {
-	"data": "Received message content",
-	"status": "OPEN",
-	"ws": "WebSocket object",
-	"send": "function",
-	"open": "function",
-	"close": "function"
+  "data": "Received message content",
+  "status": "OPEN",
+  "ws": "WebSocket object",
+  "send": "function",
+  "open": "function",
+  "close": "function"
 }
 ```
 
@@ -2021,7 +2021,7 @@ Source: https://vueuse.org/core/usePreferredDark
 Import the `usePreferredDark` composable and use it to get a reactive boolean indicating the user's dark theme preference. No additional setup is required.
 
 ```typescript
-import {usePreferredDark} from '@vueuse/core'
+import { usePreferredDark } from '@vueuse/core'
 
 const isDark = usePreferredDark()
 ```
@@ -2036,19 +2036,19 @@ Import and use useElementBounding with useTemplateRef to get reactive bounding b
 
 ```vue
 <script setup lang="ts">
-import {useElementBounding} from '@vueuse/core'
-import {useTemplateRef} from 'vue'
+import { useElementBounding } from '@vueuse/core'
+import { useTemplateRef } from 'vue'
 
 const el = useTemplateRef('el')
-const {x, y, top, right, bottom, left, width, height} = useElementBounding(el)
+const { x, y, top, right, bottom, left, width, height } = useElementBounding(el)
 </script>
 
 <template>
-	<div
-		ref="
+  <div
+    ref="
 el
 "
-	/>
+  />
 </template>
 ```
 
@@ -2061,7 +2061,7 @@ Source: https://vueuse.org/math/useTrunc
 Import and use the useTrunc function with refs to get reactive truncated numbers. Ensure you have '@vueuse/math' installed.
 
 ```typescript
-import {useTrunc} from '@vueuse/math'
+import { useTrunc } from '@vueuse/math'
 
 const value1 = ref(0.95)
 const value2 = ref(-2.34)
@@ -2078,11 +2078,11 @@ Source: https://vueuse.org/core/userefhistory
 Basic setup for tracking a ref's history.
 
 ```typescript
-import {useRefHistory} from '@vueuse/core'
-import {shallowRef} from 'vue'
+import { useRefHistory } from '@vueuse/core'
+import { shallowRef } from 'vue'
 
 const counter = shallowRef(0)
-const {history, undo, redo} = useRefHistory(counter)
+const { history, undo, redo } = useRefHistory(counter)
 ```
 
 ---
@@ -2094,21 +2094,21 @@ Source: https://vueuse.org/core/usefilesystemaccess
 Demonstrates the import and destructuring of the composable's state and methods.
 
 ```ts
-import {useFileSystemAccess} from '@vueuse/core'
+import { useFileSystemAccess } from '@vueuse/core'
 
 const {
-	isSupported,
-	data,
-	file,
-	fileName,
-	fileMIME,
-	fileSize,
-	fileLastModified,
-	create,
-	open,
-	save,
-	saveAs,
-	updateData,
+  isSupported,
+  data,
+  file,
+  fileName,
+  fileMIME,
+  fileSize,
+  fileLastModified,
+  create,
+  open,
+  save,
+  saveAs,
+  updateData,
 } = useFileSystemAccess()
 ```
 
@@ -2122,7 +2122,7 @@ When using <script setup>, native Vue ref is preferred as variables are automati
 
 ```vue
 <script setup lang="ts">
-import {ref} from 'vue'
+import { ref } from 'vue'
 
 const target = ref<HTMLElement | null>(null)
 </script>
@@ -2151,14 +2151,14 @@ Source: https://vueuse.org/math/usemin
 Examples demonstrating how to use useMin with arrays or multiple reactive arguments.
 
 ```typescript
-import {useMin} from '@vueuse/math'
+import { useMin } from '@vueuse/math'
 
 const array = ref([1, 2, 3, 4])
 const min = useMin(array) // Ref<1>
 ```
 
 ```typescript
-import {useMin} from '@vueuse/math'
+import { useMin } from '@vueuse/math'
 
 const a = ref(1)
 const b = ref(3)
@@ -2456,7 +2456,7 @@ const min = useMin(array)
 
 ```json
 {
-	"min": 1
+  "min": 1
 }
 ```
 
@@ -2517,12 +2517,12 @@ Demonstrates the expected HTML structure for Tailwind CSS dark mode.
 ```html
 <!--light-->
 <html>
-	...
+  ...
 </html>
 
 <!--dark-->
 <html class="dark">
-	...
+  ...
 </html>
 ```
 
@@ -2641,7 +2641,7 @@ Returns a computed ref that clamps the input value.
 
 ```json
 {
-	"clampedValue": 5
+  "clampedValue": 5
 }
 ```
 
@@ -2736,14 +2736,14 @@ This composable does not have a direct success response in the traditional API s
 
 ```json
 {
-	"steps": ["billing-address", "terms", "payment"],
-	"stepNames": ["billing-address", "terms", "payment"],
-	"index": 0,
-	"current": "billing-address",
-	"next": "terms",
-	"previous": undefined,
-	"isFirst": true,
-	"isLast": false
+  "steps": ["billing-address", "terms", "payment"],
+  "stepNames": ["billing-address", "terms", "payment"],
+  "index": 0,
+  "current": "billing-address",
+  "next": "terms",
+  "previous": undefined,
+  "isFirst": true,
+  "isLast": false
 }
 ```
 
@@ -2858,7 +2858,7 @@ changeCase.value // vue-Use
 
 ```json
 {
-	"example": "hello-World"
+  "example": "hello-World"
 }
 ```
 
@@ -3010,9 +3010,9 @@ const { base64, promise, execute } = useBase64(text)
 
 ```json
 {
-	"base64": "data:text/plain;base64,SGVsbG8sIFdvcmxkIQ==",
-	"promise": "Promise<string>",
-	"execute": "function"
+  "base64": "data:text/plain;base64,SGVsbG8sIFdvcmxkIQ==",
+  "promise": "Promise<string>",
+  "execute": "function"
 }
 ```
 
@@ -3093,16 +3093,16 @@ Source: https://vueuse.org/core/usevmodel
 Implementation within the setup function of an Options API component.
 
 ```ts
-import {useVModel} from '@vueuse/core'
+import { useVModel } from '@vueuse/core'
 
 export default {
-	setup(props, {emit}) {
-		const data = useVModel(props, 'data', emit)
+  setup(props, { emit }) {
+    const data = useVModel(props, 'data', emit)
 
-		console.log(data.value) // props.data
+    console.log(data.value) // props.data
 
-		data.value = 'foo' // emit('update:data', 'foo')
-	},
+    data.value = 'foo' // emit('update:data', 'foo')
+  },
 }
 ```
 
@@ -3116,7 +3116,7 @@ Demonstrates how to provide a value locally and immediately inject it within the
 
 ```vue
 <script setup>
-import {injectLocal, provideLocal} from '@vueuse/core'
+import { injectLocal, provideLocal } from '@vueuse/core'
 
 provideLocal('MyInjectionKey', 1)
 const injectedValue = injectLocal('MyInjectionKey') // injectedValue === 1
@@ -3173,7 +3173,7 @@ Returns a `Ref` that controls the favicon.
 
 ```json
 {
-	"icon": "dark.png"
+  "icon": "dark.png"
 }
 ```
 
@@ -3220,7 +3220,7 @@ const preferredColor = usePreferredColorScheme()
 
 ```json
 {
-	"preferredColor": "dark"
+  "preferredColor": "dark"
 }
 ```
 
@@ -3271,39 +3271,39 @@ const { devices, videoInputs: cameras, audioInputs: microphones, audioOutputs: s
 
 ```json
 {
-	"devices": [
-		{
-			"deviceId": "device-id-1",
-			"kind": "videoinput",
-			"label": "Camera 1",
-			"groupId": "group-id-1"
-		},
-		{
-			"deviceId": "device-id-2",
-			"kind": "audioinput",
-			"label": "Microphone 1",
-			"groupId": "group-id-2"
-		}
-	],
-	"videoInputs": [
-		{
-			"deviceId": "device-id-1",
-			"kind": "videoinput",
-			"label": "Camera 1",
-			"groupId": "group-id-1"
-		}
-	],
-	"audioInputs": [
-		{
-			"deviceId": "device-id-2",
-			"kind": "audioinput",
-			"label": "Microphone 1",
-			"groupId": "group-id-2"
-		}
-	],
-	"audioOutputs": [],
-	"permissionGranted": true,
-	"ensurePermissions": "[Function: ensurePermissions]"
+  "devices": [
+    {
+      "deviceId": "device-id-1",
+      "kind": "videoinput",
+      "label": "Camera 1",
+      "groupId": "group-id-1"
+    },
+    {
+      "deviceId": "device-id-2",
+      "kind": "audioinput",
+      "label": "Microphone 1",
+      "groupId": "group-id-2"
+    }
+  ],
+  "videoInputs": [
+    {
+      "deviceId": "device-id-1",
+      "kind": "videoinput",
+      "label": "Camera 1",
+      "groupId": "group-id-1"
+    }
+  ],
+  "audioInputs": [
+    {
+      "deviceId": "device-id-2",
+      "kind": "audioinput",
+      "label": "Microphone 1",
+      "groupId": "group-id-2"
+    }
+  ],
+  "audioOutputs": [],
+  "permissionGranted": true,
+  "ensurePermissions": "[Function: ensurePermissions]"
 }
 ```
 
@@ -3399,7 +3399,7 @@ const max = useMax(array)
 
 ```json
 {
-	"max": 4
+  "max": 4
 }
 ```
 
@@ -3428,13 +3428,13 @@ useTransition(source, {
 ```javascript
 'use strict'
 useTransition(source, {
-	delay: 1000,
-	onStarted() {
-		// called after the transition starts
-	},
-	onFinished() {
-		// called after the transition ends
-	},
+  delay: 1000,
+  onStarted() {
+    // called after the transition starts
+  },
+  onFinished() {
+    // called after the transition ends
+  },
 })
 ```
 
@@ -3453,8 +3453,8 @@ These are the type declarations for the get() utility, showing how it handles re
 export declare function get<T>(ref: MaybeRef<T>): T
 
 export declare function get<T, K extends keyof T>(
-	ref: MaybeRef<T>,
-	key: K,
+  ref: MaybeRef<T>,
+  key: K,
 ): T[K]
 ```
 
@@ -3467,7 +3467,7 @@ Source: https://vueuse.org/shared/tryOnBeforeUnmount
 Import and execute the function within a component setup context.
 
 ```typescript
-import {tryOnBeforeUnmount} from '@vueuse/core'
+import { tryOnBeforeUnmount } from '@vueuse/core'
 
 tryOnBeforeUnmount(() => {})
 ```
@@ -3522,10 +3522,10 @@ const { data, isFinished } = useAxios('/posts', instance)
 
 ```json
 {
-	"userId": 1,
-	"id": 1,
-	"title": "delectus aut autem",
-	"completed": false
+  "userId": 1,
+  "id": 1,
+  "title": "delectus aut autem",
+  "completed": false
 }
 ```
 
@@ -3600,13 +3600,13 @@ Source: https://vueuse.org/core/useDevicesList
 Import and destructure the useDevicesList composable to get reactive lists of devices. Aliases can be used for clarity.
 
 ```typescript
-import {useDevicesList} from '@vueuse/core'
+import { useDevicesList } from '@vueuse/core'
 
 const {
-	devices,
-	videoInputs: cameras,
-	audioInputs: microphones,
-	audioOutputs: speakers,
+  devices,
+  videoInputs: cameras,
+  audioInputs: microphones,
+  audioOutputs: speakers,
 } = useDevicesList()
 ```
 
@@ -3815,8 +3815,8 @@ const { event, data } = useEventSource('https://event-source-url', ['notice', 'u
 
 ```json
 {
-	"event": "update",
-	"data": "User profile updated"
+  "event": "update",
+  "data": "User profile updated"
 }
 ```
 
@@ -3843,10 +3843,10 @@ Source: https://vueuse.org/core/useSpeechRecognition
 Basic setup for accessing speech recognition state and control methods.
 
 ```typescript
-import {useSpeechRecognition} from '@vueuse/core'
+import { useSpeechRecognition } from '@vueuse/core'
 
-const {isSupported, isListening, isFinal, result, start, stop} =
-	useSpeechRecognition()
+const { isSupported, isListening, isFinal, result, start, stop } =
+  useSpeechRecognition()
 ```
 
 ---
@@ -3858,28 +3858,28 @@ Source: https://vueuse.org/core/useManualRefHistory
 Provides examples for using structuredClone, lodash-es, or klona for deep cloning.
 
 ```typescript
-import {useManualRefHistory} from '@vueuse/core'
+import { useManualRefHistory } from '@vueuse/core'
 
 const refHistory = useManualRefHistory(target, {
-	clone: structuredClone,
+  clone: structuredClone,
 })
 ```
 
 ```typescript
-import {useManualRefHistory} from '@vueuse/core'
-import {cloneDeep} from 'lodash-es'
+import { useManualRefHistory } from '@vueuse/core'
+import { cloneDeep } from 'lodash-es'
 
 const refHistory = useManualRefHistory(target, {
-	clone: cloneDeep,
+  clone: cloneDeep,
 })
 ```
 
 ```typescript
-import {useManualRefHistory} from '@vueuse/core'
-import {klona} from 'klona'
+import { useManualRefHistory } from '@vueuse/core'
+import { klona } from 'klona'
 
 const refHistory = useManualRefHistory(target, {
-	clone: klona,
+  clone: klona,
 })
 ```
 
@@ -3926,9 +3926,9 @@ const { base64, promise, execute } = useBase64(text)
 
 ```json
 {
-	"base64": "data:text/plain;base64,SGVsbG8sIFdvcmxkIQ==",
-	"promise": "Promise<string>",
-	"execute": "() => Promise<string>"
+  "base64": "data:text/plain;base64,SGVsbG8sIFdvcmxkIQ==",
+  "promise": "Promise<string>",
+  "execute": "() => Promise<string>"
 }
 ```
 
@@ -4030,9 +4030,9 @@ const { now, pause, resume } = useNow({ controls: true })
 
 ```json
 {
-	"now": "2023-10-27T10:00:00.000Z",
-	"pause": "function",
-	"resume": "function"
+  "now": "2023-10-27T10:00:00.000Z",
+  "pause": "function",
+  "resume": "function"
 }
 ```
 
@@ -4209,7 +4209,7 @@ Returns a `Ref` containing the result of the Math operation.
 
 ```json
 {
-	"example": "8"
+  "example": "8"
 }
 ```
 
@@ -4249,17 +4249,17 @@ When using `<script setup>` in Vue, the native `ref` function provides the same 
 
 ```vue
 <script setup lang="ts">
-import {ref} from 'vue'
+import { ref } from 'vue'
 
 const target = ref<HTMLElement | null>(null)
 </script>
 
 <template>
-	<div
-		ref="
+  <div
+    ref="
 target
 "
-	/>
+  />
 </template>
 ```
 
@@ -4472,8 +4472,8 @@ const { width, height } = useWindowSize({
 
 ```json
 {
-	"width": 1280,
-	"height": 800
+  "width": 1280,
+  "height": 800
 }
 ```
 
@@ -4542,8 +4542,8 @@ Example of a JWT payload structure.
 
 ```json
 {
-	"sub": "1234567890",
-	"iat": 1516239022
+  "sub": "1234567890",
+  "iat": 1516239022
 }
 ```
 
@@ -4609,8 +4609,8 @@ POST
 
 ```json
 {
-	"orderId": 5001,
-	"status": "pending"
+  "orderId": 5001,
+  "status": "pending"
 }
 ```
 
@@ -4659,17 +4659,17 @@ Source: https://vueuse.org/math/useprecision
 Demonstrates how to use the usePrecision hook with different rounding methods. Ensure you have '@vueuse/math' installed and imported.
 
 ```typescript
-import {usePrecision} from '@vueuse/math'
+import { usePrecision } from '@vueuse/math'
 
 const value = ref(3.1415)
 const result = usePrecision(value, 2) // 3.14
 
 const ceilResult = usePrecision(value, 2, {
-	math: 'ceil',
+  math: 'ceil',
 }) // 3.15
 
 const floorResult = usePrecision(value, 3, {
-	math: 'floor',
+  math: 'floor',
 }) // 3.141
 ```
 
@@ -4682,14 +4682,14 @@ Source: https://vueuse.org/router/useRouteQuery
 Demonstrates basic initialization, default values, and type transformation for route query parameters.
 
 ```typescript
-import {useRouteQuery} from '@vueuse/router'
+import { useRouteQuery } from '@vueuse/router'
 
 const search = useRouteQuery('search')
 
 const search = useRouteQuery('search', 'foo') // or with a default value
 
 const page = useRouteQuery('page', '1', {
-	transform: Number,
+  transform: Number,
 }) // or transforming value
 
 console.log(search.value) // route.query.search
@@ -4745,9 +4745,9 @@ N/A (Composable)
 
 ```json
 {
-	"timestamp": 1776449480915,
-	"pause": "function",
-	"resume": "function"
+  "timestamp": 1776449480915,
+  "pause": "function",
+  "resume": "function"
 }
 ```
 
@@ -4805,9 +4805,9 @@ console.log(cloned.value.key) // Output: 'manual'
 
 ```json
 {
-	"cloned": {"key": "manual"},
-	"isModified": true,
-	"sync": "[Function: sync]"
+  "cloned": { "key": "manual" },
+  "isModified": true,
+  "sync": "[Function: sync]"
 }
 ```
 
@@ -4896,9 +4896,9 @@ POST
 
 ```json
 {
-	"id": "user-123",
-	"name": "John Doe",
-	"email": "john.doe@example.com"
+  "id": "user-123",
+  "name": "John Doe",
+  "email": "john.doe@example.com"
 }
 ```
 
@@ -4967,14 +4967,14 @@ const { x, y, top, right, bottom, left, width, height } = useElementBounding(el)
 
 ```json
 {
-	"x": 10,
-	"y": 20,
-	"top": 20,
-	"right": 150,
-	"bottom": 120,
-	"left": 10,
-	"width": 140,
-	"height": 100
+  "x": 10,
+  "y": 20,
+  "top": 20,
+  "right": 150,
+  "bottom": 120,
+  "left": 10,
+  "width": 140,
+  "height": 100
 }
 ```
 
@@ -5050,7 +5050,7 @@ const { data, isFinished } = useAxios('/posts', { method: 'POST' }, instance)
 
 ```json
 {
-	"message": "Post created successfully"
+  "message": "Post created successfully"
 }
 ```
 
@@ -5110,20 +5110,20 @@ Source: https://vueuse.org/shared/watchIgnorable
 Demonstrates how to use watchIgnorable to log changes to a source, with examples of ignoring updates and observing subsequent logged changes.
 
 ```typescript
-import {watchIgnorable} from '@vueuse/core'
-import {nextTick, shallowRef} from 'vue'
+import { watchIgnorable } from '@vueuse/core'
+import { nextTick, shallowRef } from 'vue'
 
 const source = shallowRef('foo')
 
-const {stop, ignoreUpdates} = watchIgnorable(source, v =>
-	console.log(`Changed to ${v}!`),
+const { stop, ignoreUpdates } = watchIgnorable(source, (v) =>
+  console.log(`Changed to ${v}!`),
 )
 
 source.value = 'bar'
 await nextTick() // logs: Changed to bar!
 
 ignoreUpdates(() => {
-	source.value = 'foobar'
+  source.value = 'foobar'
 })
 await nextTick() // (nothing happened)
 
@@ -5131,7 +5131,7 @@ source.value = 'hello'
 await nextTick() // logs: Changed to hello!
 
 ignoreUpdates(() => {
-	source.value = 'ignored'
+  source.value = 'ignored'
 })
 
 source.value = 'logged'
@@ -5199,7 +5199,7 @@ N/A (Composable Function returns a `ComputedRef<string>`)
 
 ```json
 {
-	"example": "2023-10-27 (Fri)"
+  "example": "2023-10-27 (Fri)"
 }
 ```
 
@@ -5259,7 +5259,7 @@ Returns a `Ref` object that is synchronized with the specified route query param
 
 ```json
 {
-	"value": "current_query_param_value"
+  "value": "current_query_param_value"
 }
 ```
 
@@ -5317,7 +5317,7 @@ Returns a `ComputedRef` that is identical to the source ref.
 
 ```json
 {
-	"icon": "light.png"
+  "icon": "light.png"
 }
 ```
 
@@ -5419,7 +5419,7 @@ const ready = useTimeout(1000)
 
 ```json
 {
-	"ready": true // after 1 second
+  "ready": true // after 1 second
 }
 ```
 
@@ -5537,7 +5537,7 @@ Returns a `ComputedRef<ColorSchemeType>` which holds the current color scheme.
 
 ```json
 {
-	"preferredColor": "light"
+  "preferredColor": "light"
 }
 ```
 
@@ -5615,7 +5615,7 @@ console.log(get(obj, 'count')) // 0
 
 ```json
 {
-	"example": "42"
+  "example": "42"
 }
 ```
 
@@ -5628,8 +5628,8 @@ console.log(get(obj, 'count')) // 0
 export declare function get<T>(ref: MaybeRef<T>): T
 
 export declare function get<T, K extends keyof T>(
-	ref: MaybeRef<T>,
-	key: K,
+  ref: MaybeRef<T>,
+  key: K,
 ): T[K]
 ```
 
@@ -5686,17 +5686,17 @@ const { x, y, pressure, pointerType } = usePointer()
 
 ```json
 {
-	"x": 150,
-	"y": 200,
-	"pressure": 0.5,
-	"pointerType": "mouse",
-	"pointerId": 0,
-	"tiltX": 0,
-	"tiltY": 0,
-	"width": 0,
-	"height": 0,
-	"twist": 0,
-	"isInside": true
+  "x": 150,
+  "y": 200,
+  "pressure": 0.5,
+  "pointerType": "mouse",
+  "pointerId": 0,
+  "tiltX": 0,
+  "tiltY": 0,
+  "width": 0,
+  "height": 0,
+  "twist": 0,
+  "isInside": true
 }
 ```
 
@@ -5825,16 +5825,16 @@ Demonstrates how to consume the `useMyFetch` composable within a Vue 3 setup scr
 
 ```vue
 <script setup lang="ts">
-import {useMyFetch} from './my-fetch-function'
+import { useMyFetch } from './my-fetch-function'
 
-const {onResult, onError} = useMyFetch('my api url')
+const { onResult, onError } = useMyFetch('my api url')
 
-onResult(result => {
-	console.log(result)
+onResult((result) => {
+  console.log(result)
 })
 
-onError(error => {
-	console.error(error)
+onError((error) => {
+  console.error(error)
 })
 </script>
 ```
@@ -5921,9 +5921,9 @@ None
 
 ```json
 {
-	"id": "user-12345",
-	"username": "johndoe",
-	"email": "john.doe@example.com"
+  "id": "user-12345",
+  "username": "johndoe",
+  "email": "john.doe@example.com"
 }
 ```
 
@@ -6040,11 +6040,11 @@ const { count, inc, dec, set, reset } = useCounter(1, { min: 0, max: 16 })
 
 ```json
 {
-	"count": 1,
-	"inc": "function",
-	"dec": "function",
-	"set": "function",
-	"reset": "function"
+  "count": 1,
+  "inc": "function",
+  "dec": "function",
+  "set": "function",
+  "reset": "function"
 }
 ```
 
@@ -6088,22 +6088,22 @@ Pass a template ref to `useParentElement` to get the parent element of a specifi
 
 ```vue
 <script setup lang="ts">
-import {useParentElement} from '@vueuse/core'
-import {useTemplateRef} from 'vue'
+import { useParentElement } from '@vueuse/core'
+import { useTemplateRef } from 'vue'
 
 const tooltip = useTemplateRef('tooltip')
 
 const tooltipWrapper = useParentElement(tooltip)
 
 onMounted(() => {
-	console.log(tooltipWrapper.value)
+  console.log(tooltipWrapper.value)
 })
 </script>
 
 <template>
-	<div>
-		<p ref="tooltip" />
-	</div>
+  <div>
+    <p ref="tooltip" />
+  </div>
 </template>
 ```
 
@@ -6194,12 +6194,12 @@ Source: https://vueuse.org/core/useAnimate
 Demonstrates manual control of animation playback by setting immediate to false.
 
 ```ts
-import {useAnimate} from '@vueuse/core'
+import { useAnimate } from '@vueuse/core'
 
-const {play} = useAnimate(el, keyframes, {
-	duration: 1000,
+const { play } = useAnimate(el, keyframes, {
+  duration: 1000,
 
-	immediate: false,
+  immediate: false,
 })
 
 // Start the animation manually
@@ -6216,7 +6216,7 @@ Source: https://vueuse.org/electron/useZoomFactor
 Import and use the useZoomFactor composable to get the current zoom factor and optionally set a new one. Ensure nodeIntegration is enabled if not explicitly providing a webFrame.
 
 ```typescript
-import {useZoomFactor} from '@vueuse/electron'
+import { useZoomFactor } from '@vueuse/electron'
 
 // enable nodeIntegration if you don't provide webFrame explicitly
 // see: https://www.electronjs.org/docs/api/webview-tag#nodeintegration
@@ -6269,12 +6269,12 @@ userId
 ```javascript
 'use strict'
 const getUser = useMemoize(
-	async (userId, headers) =>
-		axios.get(`users/${userId}`, {headers}).then(({data}) => data),
-	{
-		// Use only userId to get/set cache and ignore headers
-		getKey: (userId, headers) => userId,
-	},
+  async (userId, headers) =>
+    axios.get(`users/${userId}`, { headers }).then(({ data }) => data),
+  {
+    // Use only userId to get/set cache and ignore headers
+    getKey: (userId, headers) => userId,
+  },
 )
 ```
 
@@ -6287,7 +6287,7 @@ Source: https://vueuse.org/core/usebrowserlocation
 Import and use the useBrowserLocation composable to get a reactive reference to the browser's location object. Note: If using Vue Router, prefer its useRoute hook.
 
 ```typescript
-import {useBrowserLocation} from '@vueuse/core'
+import { useBrowserLocation } from '@vueuse/core'
 
 const location = useBrowserLocation()
 ```
@@ -6339,13 +6339,13 @@ css.value = '.foo { margin-top: 64px; }'
 ### Custom ID
 
 ```typescript
-useStyleTag('.foo { margin-top: 32px; }', {id: 'custom-id'})
+useStyleTag('.foo { margin-top: 32px; }', { id: 'custom-id' })
 ```
 
 ### Media Query
 
 ```typescript
-useStyleTag('.foo { margin-top: 32px; }', {media: 'print'})
+useStyleTag('.foo { margin-top: 32px; }', { media: 'print' })
 ```
 
 ````
@@ -6399,7 +6399,7 @@ Source: https://vueuse.org/router/useroutehash
 Import and use the useRouteHash composable to get the current route's hash value or set a new one. Setting the value uses router.replace to update the hash.
 
 ```typescript
-import {useRouteHash} from '@vueuse/router'
+import { useRouteHash } from '@vueuse/router'
 
 const search = useRouteHash()
 
@@ -6419,7 +6419,7 @@ Source: https://vueuse.org/math/useFloor
 Demonstrates importing and using useFloor with a reactive ref.
 
 ```typescript
-import {useFloor} from '@vueuse/math'
+import { useFloor } from '@vueuse/math'
 
 const value = ref(45.95)
 const result = useFloor(value) // 45
@@ -6539,7 +6539,7 @@ const targetIsVisible = useElementVisibility(target)
 
 ```json
 {
-	"isVisible": true
+  "isVisible": true
 }
 ```
 
@@ -6580,30 +6580,30 @@ Source: https://vueuse.org/core/usePerformanceObserver
 Demonstrates how to initialize the observer to track specific performance entry types.
 
 ```typescript
-import {usePerformanceObserver} from '@vueuse/core'
+import { usePerformanceObserver } from '@vueuse/core'
 
 const entrys = ref<PerformanceEntry[]>([])
 
 usePerformanceObserver(
-	{
-		entryTypes: ['paint'],
-	},
-	list => {
-		entrys.value = list.getEntries()
-	},
+  {
+    entryTypes: ['paint'],
+  },
+  (list) => {
+    entrys.value = list.getEntries()
+  },
 )
 ```
 
 ```javascript
-import {usePerformanceObserver} from '@vueuse/core'
+import { usePerformanceObserver } from '@vueuse/core'
 const entrys = ref([])
 usePerformanceObserver(
-	{
-		entryTypes: ['paint'],
-	},
-	list => {
-		entrys.value = list.getEntries()
-	},
+  {
+    entryTypes: ['paint'],
+  },
+  (list) => {
+    entrys.value = list.getEntries()
+  },
 )
 ```
 
@@ -6617,31 +6617,28 @@ This example demonstrates using useConfirmDialog with promises for asynchronous 
 
 ```vue
 <script setup lang="ts">
-import {useConfirmDialog} from '@vueuse/core'
+import { useConfirmDialog } from '@vueuse/core'
 
-const {isRevealed, reveal, confirm, cancel} = useConfirmDialog()
+const { isRevealed, reveal, confirm, cancel } = useConfirmDialog()
 
 async function openDialog() {
-	const {data, isCanceled} = await reveal()
-	if (!isCanceled) console.log(data)
+  const { data, isCanceled } = await reveal()
+  if (!isCanceled) console.log(data)
 }
 </script>
 
 <template>
-	<button @click="openDialog">Show Modal</button>
+  <button @click="openDialog">Show Modal</button>
 
-	<teleport to="body">
-		<div
-			v-if="isRevealed"
-			class="modal-layout"
-		>
-			<div class="modal">
-				<h2>Confirm?</h2>
-				<button @click="confirm(true)">Yes</button>
-				<button @click="confirm(false)">No</button>
-			</div>
-		</div>
-	</teleport>
+  <teleport to="body">
+    <div v-if="isRevealed" class="modal-layout">
+      <div class="modal">
+        <h2>Confirm?</h2>
+        <button @click="confirm(true)">Yes</button>
+        <button @click="confirm(false)">No</button>
+      </div>
+    </div>
+  </teleport>
 </template>
 ```
 
@@ -6654,13 +6651,13 @@ Source: https://vueuse.org/core/createtemplatepromise
 Defining and passing arguments to the start method, accessible via the args property in the template.
 
 ```ts
-import {createTemplatePromise} from '@vueuse/core'
+import { createTemplatePromise } from '@vueuse/core'
 
 const TemplatePromise = createTemplatePromise<boolean, [string, number]>()
 ```
 
 ```js
-import {createTemplatePromise} from '@vueuse/core'
+import { createTemplatePromise } from '@vueuse/core'
 const TemplatePromise = createTemplatePromise()
 ```
 
@@ -6782,7 +6779,7 @@ const absValue = useAbs(value) // Ref<23>
 
 ```json
 {
-	"absValue": 23
+  "absValue": 23
 }
 ```
 
@@ -6797,7 +6794,7 @@ const absValue = useAbs(value) // Ref<23>
  * @__NO_SIDE_EFFECTS__
  */
 export declare function useAbs(
-	value: MaybeRefOrGetter<number>,
+  value: MaybeRefOrGetter<number>,
 ): ComputedRef<number>
 ```
 
@@ -6918,29 +6915,29 @@ Similar to the array-based approach, this composable returns reactive state and 
 
 ```json
 {
-	"steps": {
-		"user-information": {
-			"title": "User information"
-		},
-		"billing-address": {
-			"title": "Billing address"
-		},
-		"terms": {
-			"title": "Terms"
-		},
-		"payment": {
-			"title": "Payment"
-		}
-	},
-	"stepNames": ["user-information", "billing-address", "terms", "payment"],
-	"index": 0,
-	"current": {
-		"title": "User information"
-	},
-	"next": "billing-address",
-	"previous": undefined,
-	"isFirst": true,
-	"isLast": false
+  "steps": {
+    "user-information": {
+      "title": "User information"
+    },
+    "billing-address": {
+      "title": "Billing address"
+    },
+    "terms": {
+      "title": "Terms"
+    },
+    "payment": {
+      "title": "Payment"
+    }
+  },
+  "stepNames": ["user-information", "billing-address", "terms", "payment"],
+  "index": 0,
+  "current": {
+    "title": "User information"
+  },
+  "next": "billing-address",
+  "previous": undefined,
+  "isFirst": true,
+  "isLast": false
 }
 ```
 
@@ -7025,24 +7022,24 @@ Demonstrates how to use onStartTyping to focus an input field when the user star
 
 ```vue
 <script setup lang="ts">
-import {onStartTyping} from '@vueuse/core'
-import {useTemplateRef} from 'vue'
+import { onStartTyping } from '@vueuse/core'
+import { useTemplateRef } from 'vue'
 
 const input = useTemplateRef('input')
 
 onStartTyping(() => {
-	if (!input.value.active) input.value.focus()
+  if (!input.value.active) input.value.focus()
 })
 </script>
 
 <template>
-	<input
-		ref="
+  <input
+    ref="
 input
 "
-		type="text"
-		placeholder="Start typing to focus"
-	/>
+    type="text"
+    placeholder="Start typing to focus"
+  />
 </template>
 ```
 
@@ -7158,21 +7155,21 @@ Source: https://vueuse.org/core/useVModels
 Integrate useVModels within the setup function of an Options API component.
 
 ```typescript
-import {useVModels} from '@vueuse/core'
+import { useVModels } from '@vueuse/core'
 
 export default {
-	props: {
-		foo: String,
-		bar: Number,
-	},
+  props: {
+    foo: String,
+    bar: Number,
+  },
 
-	setup(props, {emit}) {
-		const {foo, bar} = useVModels(props, emit)
+  setup(props, { emit }) {
+    const { foo, bar } = useVModels(props, emit)
 
-		console.log(foo.value) // props.foo
+    console.log(foo.value) // props.foo
 
-		foo.value = 'foo' // emit('update:foo', 'foo')
-	},
+    foo.value = 'foo' // emit('update:foo', 'foo')
+  },
 }
 ```
 
@@ -7343,12 +7340,12 @@ Source: https://vueuse.org/core/useStorage
 Demonstrates binding objects, primitives, and different storage types to reactive refs.
 
 ```ts
-import {useStorage} from '@vueuse/core'
+import { useStorage } from '@vueuse/core'
 
 // bind object
 const state = useStorage('my-store', {
-	hello: 'hi',
-	greeting: 'Hello',
+  hello: 'hi',
+  greeting: 'Hello',
 })
 
 // bind boolean
@@ -7460,11 +7457,11 @@ const { count, inc, dec, set, reset } = useCounter()
 
 ```json
 {
-	"count": 0,
-	"inc": "function",
-	"dec": "function",
-	"set": "function",
-	"reset": "function"
+  "count": 0,
+  "inc": "function",
+  "dec": "function",
+  "set": "function",
+  "reset": "function"
 }
 ```
 
@@ -7607,22 +7604,22 @@ Source: https://vueuse.org/math/useMath
 Demonstrates how to use `useMath` to create reactive references for the results of `Math.pow` and `Math.sqrt`. Ensure you import `useMath` and `ref` from their respective modules.
 
 ```typescript
-import {useMath} from '@vueuse/math'
+import { useMath } from '@vueuse/math'
 
 const base = ref(2)
 const exponent = ref(3)
 const result = useMath(
-	'pow',
+  'pow',
 
-	base,
-	exponent,
+  base,
+  exponent,
 ) // Ref<8>
 
 const num = ref(2)
 const root = useMath(
-	'sqrt',
+  'sqrt',
 
-	num,
+  num,
 ) // Ref<1.4142135623730951>
 
 num.value = 4
@@ -7639,9 +7636,9 @@ Source: https://vueuse.org/core/useDevicePixelRatio
 Import and use the `useDevicePixelRatio` function to get a reactive reference to the device's pixel ratio. This is useful for adjusting UI elements or rendering based on screen density.
 
 ```typescript
-import {useDevicePixelRatio} from '@vueuse/core'
+import { useDevicePixelRatio } from '@vueuse/core'
 
-const {pixelRatio} = useDevicePixelRatio()
+const { pixelRatio } = useDevicePixelRatio()
 ```
 
 ---
@@ -7655,7 +7652,7 @@ Example of consuming a global state store in a Vue component.
 ```vue
 <!-- app.vue -->
 <script setup lang="ts">
-import {useTodos} from './store'
+import { useTodos } from './store'
 
 const todos = useTodos()
 </script>
@@ -7670,7 +7667,7 @@ Source: https://vueuse.org/shared/useToggle
 Import and initialize useToggle to get a boolean value and a toggle function. The initial value defaults to false.
 
 ```typescript
-import {useToggle} from '@vueuse/core'
+import { useToggle } from '@vueuse/core'
 
 const [value, toggle] = useToggle()
 ```
@@ -7725,7 +7722,7 @@ N/A (Returns a ComputedRef)
 
 ```json
 {
-	"example": "Ref<23>"
+  "example": "Ref<23>"
 }
 ```
 
@@ -7740,7 +7737,7 @@ N/A (Returns a ComputedRef)
  * @__NO_SIDE_EFFECTS__
  */
 export declare function useAbs(
-	value: MaybeRefOrGetter<number>,
+  value: MaybeRefOrGetter<number>,
 ): ComputedRef<number>
 ```
 
@@ -7909,12 +7906,12 @@ Source: https://vueuse.org/shared/watchonce
 Demonstrates the basic implementation of watchOnce to trigger a callback only upon the first change of the source.
 
 ```typescript
-import {watchOnce} from '@vueuse/core'
+import { watchOnce } from '@vueuse/core'
 
 watchOnce(source, () => {
-	// triggers only once
+  // triggers only once
 
-	console.log('source changed!')
+  console.log('source changed!')
 })
 ```
 
@@ -7927,7 +7924,7 @@ Source: https://vueuse.org/core/usedark
 Import and initialize useDark and useToggle for basic dark mode functionality. isDark is a ref that controls the dark mode state, and toggleDark is a function to switch between light and dark modes.
 
 ```typescript
-import {useDark, useToggle} from '@vueuse/core'
+import { useDark, useToggle } from '@vueuse/core'
 
 const isDark = useDark()
 const toggleDark = useToggle(isDark)
@@ -7996,13 +7993,13 @@ Returns a controlled ref object with additional methods.
 
 ```json
 {
-	"value": 50,
-	"get": "function",
-	"set": "function",
-	"untrackedGet": "function",
-	"silentSet": "function",
-	"peek": "function",
-	"lay": "function"
+  "value": 50,
+  "get": "function",
+  "set": "function",
+  "untrackedGet": "function",
+  "silentSet": "function",
+  "peek": "function",
+  "lay": "function"
 }
 ```
 
@@ -8072,13 +8069,13 @@ Source: https://vueuse.org/core/useThrottledRefHistory
 Demonstrates how to use useThrottledRefHistory with a shallowRef counter. It initializes the history with a throttle of 1000ms and deep tracking.
 
 ```typescript
-import {useThrottledRefHistory} from '@vueuse/core'
-import {shallowRef} from 'vue'
+import { useThrottledRefHistory } from '@vueuse/core'
+import { shallowRef } from 'vue'
 
 const counter = shallowRef(0)
-const {history, undo, redo} = useThrottledRefHistory(counter, {
-	deep: true,
-	throttle: 1000,
+const { history, undo, redo } = useThrottledRefHistory(counter, {
+  deep: true,
+  throttle: 1000,
 })
 ```
 
@@ -8135,9 +8132,9 @@ None
 
 ```json
 {
-	"id": "user-12345",
-	"username": "johndoe",
-	"email": "john.doe@example.com"
+  "id": "user-12345",
+  "username": "johndoe",
+  "email": "john.doe@example.com"
 }
 ```
 
@@ -8204,7 +8201,7 @@ N/A (Utility function, returns the element directly)
 
 ```json
 {
-	"example": "<div> or Component's root element"
+  "example": "<div> or Component's root element"
 }
 ```
 
@@ -8239,8 +8236,8 @@ Source: https://vueuse.org/shared/reactify
 Example of making JSON.stringify reactive to track changes in an object ref.
 
 ```typescript
-import {reactify} from '@vueuse/core'
-import {shallowRef} from 'vue'
+import { reactify } from '@vueuse/core'
+import { shallowRef } from 'vue'
 
 const stringify = reactify(JSON.stringify)
 
@@ -8250,7 +8247,7 @@ const dumped = stringify(obj)
 console.log(dumped.value) // '42'
 
 obj.value = {
-	foo: 'bar',
+  foo: 'bar',
 }
 
 console.log(dumped.value) // '{"foo":"bar"}'
@@ -8265,8 +8262,8 @@ Source: https://vueuse.org/core/usecssvar
 Demonstrates how to use useCssVar to get and set a CSS variable '--color' on a specific element, with an initial value of '#eee'.
 
 ```typescript
-import {useCssVar} from '@vueuse/core'
-import {useTemplateRef} from 'vue'
+import { useCssVar } from '@vueuse/core'
+import { useTemplateRef } from 'vue'
 
 const el = useTemplateRef('el')
 const color1 = useCssVar('--color', el)
@@ -8276,7 +8273,7 @@ const key = ref('--color')
 const colorVal = useCssVar(key, elv)
 
 const someEl = useTemplateRef('someEl')
-const color2 = useCssVar('--color', someEl, {initialValue: '#eee'})
+const color2 = useCssVar('--color', someEl, { initialValue: '#eee' })
 ```
 
 ---
@@ -8288,12 +8285,12 @@ Source: https://vueuse.org/core/useEventBus
 Demonstrates how to create, listen to, emit, and unregister events using the useEventBus utility in TypeScript. Listeners registered within a component's setup are automatically cleaned up on unmount.
 
 ```typescript
-import {useEventBus} from '@vueuse/core'
+import { useEventBus } from '@vueuse/core'
 
 const bus = useEventBus<string>('news')
 
 function listener(event: string) {
-	console.log(`news: ${event}`)
+  console.log(`news: ${event}`)
 }
 
 // listen to an event
@@ -8320,25 +8317,25 @@ Source: https://vueuse.org/core/useUserMedia
 Shows how to combine useDevicesList with useUserMedia to request specific camera and microphone inputs.
 
 ```ts
-import {useDevicesList, useUserMedia} from '@vueuse/core'
-import {computed, reactive} from 'vue'
+import { useDevicesList, useUserMedia } from '@vueuse/core'
+import { computed, reactive } from 'vue'
 
-const {videoInputs: cameras, audioInputs: microphones} = useDevicesList({
-	requestPermissions: true,
+const { videoInputs: cameras, audioInputs: microphones } = useDevicesList({
+  requestPermissions: true,
 })
 const currentCamera = computed(() => cameras.value[0]?.deviceId)
 const currentMicrophone = computed(() => microphones.value[0]?.deviceId)
 
-const {stream} = useUserMedia({
-	constraints: reactive({
-		video: {
-			deviceId: currentCamera,
-		},
+const { stream } = useUserMedia({
+  constraints: reactive({
+    video: {
+      deviceId: currentCamera,
+    },
 
-		audio: {
-			deviceId: currentMicrophone,
-		},
-	}),
+    audio: {
+      deviceId: currentMicrophone,
+    },
+  }),
 })
 ```
 
@@ -8352,12 +8349,12 @@ Example of redundant template code that often necessitates component extraction.
 
 ```vue
 <template>
-	<dialog v-if="showInDialog">
-		<!-- something complex -->
-	</dialog>
-	<div v-else>
-		<!-- something complex -->
-	</div>
+  <dialog v-if="showInDialog">
+    <!-- something complex -->
+  </dialog>
+  <div v-else>
+    <!-- something complex -->
+  </div>
 </template>
 ```
 
@@ -8370,9 +8367,9 @@ Source: https://vueuse.org/guide/work-with-ai
 Demonstrates using useStorage and useLocalStorage for managing reactive state in local storage.
 
 ```typescript
-import {useLocalStorage, useStorage} from '@vueuse/core'
+import { useLocalStorage, useStorage } from '@vueuse/core'
 
-const state = useStorage('my-key', {hello: 'hi'}) // localStorage by default
+const state = useStorage('my-key', { hello: 'hi' }) // localStorage by default
 const theme = useLocalStorage('theme', 'light')
 ```
 
@@ -8430,7 +8427,7 @@ Returns a computed ref that dynamically adjusts to reactive bounds.
 
 ```json
 {
-	"clampedValue": 3
+  "clampedValue": 3
 }
 ```
 
@@ -8479,9 +8476,9 @@ greeting
 'use strict'
 localStorage.setItem('my-store', '{"hello": "hello"}')
 const state = useStorage(
-	'my-store',
-	{hello: 'hi', greeting: 'hello'},
-	localStorage,
+  'my-store',
+  { hello: 'hi', greeting: 'hello' },
+  localStorage,
 )
 console.log(state.value.greeting) // undefined, since the value is not presented in storage
 ```
@@ -8495,7 +8492,7 @@ Source: https://vueuse.org/math/usefloor
 Import and use the useFloor function with a ref to get a reactive floored value. The result is a computed ref.
 
 ```typescript
-import {useFloor} from '@vueuse/math'
+import { useFloor } from '@vueuse/math'
 
 const value = ref(45.95)
 const result = useFloor(value) // 45
@@ -8511,20 +8508,17 @@ Use this composable in your script setup to reactively manage image loading. It 
 
 ```vue
 <script setup lang="ts">
-import {useImage} from '@vueuse/core'
+import { useImage } from '@vueuse/core'
 
 const avatarUrl = 'https://place.dog/300/200'
-const {isLoading} = useImage({
-	src: avatarUrl,
+const { isLoading } = useImage({
+  src: avatarUrl,
 })
 </script>
 
 <template>
-	<span v-if="isLoading"> Loading </span>
-	<img
-		v-else
-		:src="avatarUrl"
-	/>
+  <span v-if="isLoading"> Loading </span>
+  <img v-else :src="avatarUrl" />
 </template>
 ```
 
@@ -8623,28 +8617,28 @@ Source: https://vueuse.org/core/usewebnotification
 Import and initialize useWebNotification with options. It provides reactive states for support, permission, and methods to show, close, and handle notification events. Ensure user grants permission before showing notifications.
 
 ```typescript
-import {useWebNotification} from '@vueuse/core'
+import { useWebNotification } from '@vueuse/core'
 
 const {
-	isSupported,
-	notification,
-	permissionGranted,
-	show,
-	close,
-	onClick,
-	onShow,
-	onError,
-	onClose,
+  isSupported,
+  notification,
+  permissionGranted,
+  show,
+  close,
+  onClick,
+  onShow,
+  onError,
+  onClose,
 } = useWebNotification({
-	title: 'Hello, VueUse world!',
+  title: 'Hello, VueUse world!',
 
-	dir: 'auto',
+  dir: 'auto',
 
-	lang: 'en',
+  lang: 'en',
 
-	renotify: true,
+  renotify: true,
 
-	tag: 'test',
+  tag: 'test',
 })
 
 if (isSupported.value && permissionGranted.value) show()
@@ -9030,9 +9024,9 @@ console.log(cloned.value.key) // Output: 'value'
 
 ```json
 {
-	"cloned": {"key": "value"},
-	"isModified": false,
-	"sync": "[Function: sync]"
+  "cloned": { "key": "value" },
+  "isModified": false,
+  "sync": "[Function: sync]"
 }
 ```
 
@@ -9088,8 +9082,8 @@ deepData
 ````
 
 ```js
-import {createRef} from '@vueuse/core'
-import {isShallow} from 'vue'
+import { createRef } from '@vueuse/core'
+import { isShallow } from 'vue'
 const initialData = 1
 const shallowData = createRef(initialData)
 const deepData = createRef(initialData, true)
@@ -9238,7 +9232,7 @@ duration.value = 2000
 
 ```json
 {
-	"ready": true // after the current duration, which can be updated reactively.
+  "ready": true // after the current duration, which can be updated reactively.
 }
 ```
 
@@ -9345,9 +9339,9 @@ POST
 
 ```json
 {
-	"id": "user123",
-	"name": "John Doe",
-	"email": "john.doe@example.com"
+  "id": "user123",
+  "name": "John Doe",
+  "email": "john.doe@example.com"
 }
 ```
 
@@ -9395,11 +9389,11 @@ autoUpdateDependencies
 
 ```javascript
 'use strict'
-const {get, getAll, set, remove, addChangeListener, removeChangeListener} =
-	useCookies(['cookie-name'], {
-		doNotParse: false,
-		autoUpdateDependencies: false,
-	})
+const { get, getAll, set, remove, addChangeListener, removeChangeListener } =
+  useCookies(['cookie-name'], {
+    doNotParse: false,
+    autoUpdateDependencies: false,
+  })
 ```
 
 ---
@@ -9452,10 +9446,10 @@ Accept: application/json
 
 ```json
 {
-	"id": "user-12345",
-	"username": "johndoe",
-	"email": "john.doe@example.com",
-	"createdAt": "2023-10-27T10:00:00Z"
+  "id": "user-12345",
+  "username": "johndoe",
+  "email": "john.doe@example.com",
+  "createdAt": "2023-10-27T10:00:00Z"
 }
 ```
 
@@ -9488,7 +9482,7 @@ Source: https://vueuse.org/math/useCeil
 Use this snippet to get a reactive ceiling value of a number. Ensure you have imported `useCeil` from `@vueuse/math` and `ref` from `vue`.
 
 ```typescript
-import {useCeil} from '@vueuse/math'
+import { useCeil } from '@vueuse/math'
 
 const value = ref(0.95)
 const result = useCeil(value) // 1
@@ -9542,9 +9536,9 @@ POST
 
 ```json
 {
-	"id": 1,
-	"name": "John Doe",
-	"email": "john.doe@example.com"
+  "id": 1,
+  "name": "John Doe",
+  "email": "john.doe@example.com"
 }
 ```
 
@@ -9592,7 +9586,7 @@ const data = useVModel(props, 'modelValue', emit, { passive: true })
 JavaScript
 
 ```javascript
-const data = useVModel(props, 'modelValue', emit, {passive: true})
+const data = useVModel(props, 'modelValue', emit, { passive: true })
 ```
 
 ### Deep Watching
@@ -9603,8 +9597,8 @@ TypeScript
 
 ```typescript
 const data = useVModel(props, 'modelValue', emit, {
-	passive: true,
-	deep: true,
+  passive: true,
+  deep: true,
 })
 ```
 
@@ -9612,8 +9606,8 @@ JavaScript
 
 ```javascript
 const data = useVModel(props, 'modelValue', emit, {
-	passive: true,
-	deep: true,
+  passive: true,
+  deep: true,
 })
 ```
 
@@ -9625,9 +9619,9 @@ TypeScript
 
 ```typescript
 const data = useVModel(props, 'modelValue', emit, {
-	clone: true,
-	// or provide custom clone function
-	// clone: (val) => structuredClone(val),
+  clone: true,
+  // or provide custom clone function
+  // clone: (val) => structuredClone(val),
 })
 ```
 
@@ -9635,9 +9629,9 @@ JavaScript
 
 ```javascript
 const data = useVModel(props, 'modelValue', emit, {
-	clone: true,
-	// or provide custom clone function
-	// clone: (val) => structuredClone(val),
+  clone: true,
+  // or provide custom clone function
+  // clone: (val) => structuredClone(val),
 })
 ```
 
@@ -9649,7 +9643,7 @@ TypeScript
 
 ```typescript
 const data = useVModel(props, 'modelValue', emit, {
-	defaultValue: 'default',
+  defaultValue: 'default',
 })
 ```
 
@@ -9657,7 +9651,7 @@ JavaScript
 
 ```javascript
 const data = useVModel(props, 'modelValue', emit, {
-	defaultValue: 'default',
+  defaultValue: 'default',
 })
 ```
 
@@ -9669,7 +9663,7 @@ TypeScript
 
 ```typescript
 const data = useVModel(props, 'value', emit, {
-	eventName: 'change',
+  eventName: 'change',
 })
 ```
 
@@ -9677,7 +9671,7 @@ JavaScript
 
 ```javascript
 const data = useVModel(props, 'value', emit, {
-	eventName: 'change',
+  eventName: 'change',
 })
 ```
 
@@ -9689,10 +9683,10 @@ TypeScript
 
 ```typescript
 const data = useVModel(props, 'modelValue', emit, {
-	shouldEmit: value => {
-		// Only emit if value is valid
-		return value.length > 0
-	},
+  shouldEmit: (value) => {
+    // Only emit if value is valid
+    return value.length > 0
+  },
 })
 ```
 
@@ -9700,10 +9694,10 @@ JavaScript
 
 ```javascript
 const data = useVModel(props, 'modelValue', emit, {
-	shouldEmit: value => {
-		// Only emit if value is valid
-		return value.length > 0
-	},
+  shouldEmit: (value) => {
+    // Only emit if value is valid
+    return value.length > 0
+  },
 })
 ```
 
@@ -9752,7 +9746,7 @@ const isDark = usePreferredDark()
 
 ```json
 {
-	"isDark": true
+  "isDark": true
 }
 ```
 
@@ -9861,7 +9855,7 @@ const preferredContrast = usePreferredContrast()
 
 ```json
 {
-	"contrast": "no-preference"
+  "contrast": "no-preference"
 }
 ```
 
@@ -9919,8 +9913,8 @@ Exposed via v-slot:
 
 ```json
 {
-	"width": 1280,
-	"height": 800
+  "width": 1280,
+  "height": 800
 }
 ```
 
@@ -9968,17 +9962,17 @@ watchEffect
 ````
 
 ```typescript
-const {shift, space, a} = useMagicKeys()
+const { shift, space, a } = useMagicKeys()
 
 watch(
-	() => space?.value,
-	v => {
-		if (v) console.log('space has been pressed')
-	},
+  () => space?.value,
+  (v) => {
+    if (v) console.log('space has been pressed')
+  },
 )
 
 watchEffect(() => {
-	if (shift?.value && a?.value) console.log('Shift + A have been pressed')
+  if (shift?.value && a?.value) console.log('Shift + A have been pressed')
 })
 ```
 
@@ -10061,9 +10055,9 @@ Returns an object with the following properties:
 
 ```json
 {
-	"stop": "function",
-	"pause": "function",
-	"resume": "function"
+  "stop": "function",
+  "pause": "function",
+  "resume": "function"
 }
 ```
 
@@ -10071,37 +10065,37 @@ Returns an object with the following properties:
 
 ```typescript
 export interface WatchPausableReturn extends Pausable {
-	stop: WatchStopHandle
+  stop: WatchStopHandle
 }
 export type WatchPausableOptions<Immediate> =
-	WatchWithFilterOptions<Immediate> & PausableFilterOptions
+  WatchWithFilterOptions<Immediate> & PausableFilterOptions
 
 /** @deprecated Use Vue's built-in `watch` instead. This function will be removed in future version. */
 export declare function watchPausable<
-	T,
-	Immediate extends Readonly<boolean> = false,
+  T,
+  Immediate extends Readonly<boolean> = false,
 >(
-	source: WatchSource<T>,
-	cb: WatchCallback<T, Immediate extends true ? T | undefined : T>,
-	options?: WatchPausableOptions<Immediate>,
+  source: WatchSource<T>,
+  cb: WatchCallback<T, Immediate extends true ? T | undefined : T>,
+  options?: WatchPausableOptions<Immediate>,
 ): WatchPausableReturn
 /** @deprecated Use Vue's built-in `watch` instead. This function will be removed in future version. */
 export declare function watchPausable<
-	T extends Readonly<MultiWatchSources>,
-	Immediate extends Readonly<boolean> = false,
+  T extends Readonly<MultiWatchSources>,
+  Immediate extends Readonly<boolean> = false,
 >(
-	sources: [...T],
-	cb: WatchCallback<MapSources<T>, MapOldSources<T, Immediate>>,
-	options?: WatchPausableOptions<Immediate>,
+  sources: [...T],
+  cb: WatchCallback<MapSources<T>, MapOldSources<T, Immediate>>,
+  options?: WatchPausableOptions<Immediate>,
 ): WatchPausableReturn
 /** @deprecated Use Vue's built-in `watch` instead. This function will be removed in future version. */
 export declare function watchPausable<
-	T extends object,
-	Immediate extends Readonly<boolean> = false,
+  T extends object,
+  Immediate extends Readonly<boolean> = false,
 >(
-	source: T,
-	cb: WatchCallback<T, Immediate extends true ? T | undefined : T>,
-	options?: WatchPausableOptions<Immediate>,
+  source: T,
+  cb: WatchCallback<T, Immediate extends true ? T | undefined : T>,
+  options?: WatchPausableOptions<Immediate>,
 ): WatchPausableReturn
 
 export declare const pausableWatch: typeof watchPausable
@@ -10187,11 +10181,11 @@ Source: https://vueuse.org/shared/whenever
 Demonstrates using whenever to trigger a callback when an async state becomes ready.
 
 ```javascript
-import {useAsyncState, whenever} from '@vueuse/core'
+import { useAsyncState, whenever } from '@vueuse/core'
 
-const {state, isReady} = useAsyncState(
-	fetch('https://jsonplaceholder.typicode.com/todos/1').then(t => t.json()),
-	{},
+const { state, isReady } = useAsyncState(
+  fetch('https://jsonplaceholder.typicode.com/todos/1').then((t) => t.json()),
+  {},
 )
 
 whenever(isReady, () => console.log(state))
@@ -10207,24 +10201,21 @@ Demonstrates applying media attributes to the style tag.
 
 ```typescript
 useStyleTag('.foo { margin-top: 32px; }', {
-	media: 'print',
+  media: 'print',
 })
 ```
 
 ```javascript
 'use strict'
-useStyleTag('.foo { margin-top: 32px; }', {media: 'print'})
+useStyleTag('.foo { margin-top: 32px; }', { media: 'print' })
 ```
 
 ```html
 <!-- injected to <head> -->
-<style
-	id="vueuse_styletag_1"
-	media="print"
->
-	.foo {
-		margin-top: 32px;
-	}
+<style id="vueuse_styletag_1" media="print">
+  .foo {
+    margin-top: 32px;
+  }
 </style>
 ```
 
@@ -10282,13 +10273,13 @@ provide(ArrayKey, array)
 **In Receiver Component:**
 
 ```typescript
-import {computedInject} from '@vueuse/core'
-import {ArrayKey} from './provider'
+import { computedInject } from '@vueuse/core'
+import { ArrayKey } from './provider'
 
-const computedArray = computedInject(ArrayKey, source => {
-	const arr = [...source.value]
-	arr.unshift({key: 0, value: 'all'})
-	return arr
+const computedArray = computedInject(ArrayKey, (source) => {
+  const arr = [...source.value]
+  arr.unshift({ key: 0, value: 'all' })
+  return arr
 })
 ```
 
@@ -10297,14 +10288,14 @@ const computedArray = computedInject(ArrayKey, source => {
 Provides a default value if the injection key is not found.
 
 ```typescript
-import {computedInject} from '@vueuse/core'
+import { computedInject } from '@vueuse/core'
 
 const computedArray = computedInject(
-	ArrayKey,
-	source => {
-		return source.value.map(item => item.value)
-	},
-	ref([]), // default source value
+  ArrayKey,
+  (source) => {
+    return source.value.map((item) => item.value)
+  },
+  ref([]), // default source value
 )
 ```
 
@@ -10313,15 +10304,15 @@ const computedArray = computedInject(
 Treats the default value as a factory function when `true` is passed as the fourth argument.
 
 ```typescript
-import {computedInject} from '@vueuse/core'
+import { computedInject } from '@vueuse/core'
 
 const computedArray = computedInject(
-	ArrayKey,
-	source => {
-		return source.value.map(item => item.value)
-	},
-	() => ref([]), // factory function for default
-	true, // treat default as factory
+  ArrayKey,
+  (source) => {
+    return source.value.map((item) => item.value)
+  },
+  () => ref([]), // factory function for default
+  true, // treat default as factory
 )
 ```
 
@@ -10330,15 +10321,15 @@ const computedArray = computedInject(
 Creates a writable computed property using `get` and `set` functions.
 
 ```typescript
-import {computedInject} from '@vueuse/core'
+import { computedInject } from '@vueuse/core'
 
 const computedArray = computedInject(ArrayKey, {
-	get(source) {
-		return source.value.map(item => item.value)
-	},
-	set(value) {
-		console.log('Setting value:', value)
-	},
+  get(source) {
+    return source.value.map((item) => item.value)
+  },
+  set(value) {
+    console.log('Setting value:', value)
+  },
 })
 ```
 
@@ -10352,7 +10343,7 @@ Returns a `ComputedRef` based on the provided getter or options.
 
 ```json
 {
-	"example": "ComputedRef<K | undefined> or ComputedRef<K>"
+  "example": "ComputedRef<K | undefined> or ComputedRef<K>"
 }
 ```
 
@@ -10449,8 +10440,8 @@ N/A (Composable Function returns a `ComputedRef<string>`)
 
 ```json
 {
-	"example_am": "05:05:05 ΠΜ",
-	"example_pm": "05:05:05 Μ.Μ."
+  "example_am": "05:05:05 ΠΜ",
+  "example_pm": "05:05:05 Μ.Μ."
 }
 ```
 
@@ -10506,14 +10497,7 @@ const qrcodeReactive = useQRCode(text)
 #### Response Example
 
 ```html
-<input
-	v-model="text"
-	type="text"
-/>
-<img
-	:src="qrcode"
-	alt="QR Code"
-/>
+<input v-model="text" type="text" /> <img :src="qrcode" alt="QR Code" />
 ```
 
 ### Type Declarations
@@ -10527,8 +10511,8 @@ const qrcodeReactive = useQRCode(text)
  * @param options
  */
 export declare function useQRCode(
-	text: MaybeRefOrGetter<string>,
-	options?: QRCode.QRCodeToDataURLOptions,
+  text: MaybeRefOrGetter<string>,
+  options?: QRCode.QRCodeToDataURLOptions,
 ): ShallowRef<string>
 ```
 
@@ -10568,13 +10552,13 @@ Source: https://vueuse.org/core/useAsyncState
 Shows how to await the result of useAsyncState directly in async functions or script setup.
 
 ```ts
-const {state, isReady} = await useAsyncState(fetchData, null)
+const { state, isReady } = await useAsyncState(fetchData, null)
 // `state` is now populated, `isReady` is true
 ```
 
 ```js
 'use strict'
-const {state, isReady} = await useAsyncState(fetchData, null)
+const { state, isReady } = await useAsyncState(fetchData, null)
 // `state` is now populated, `isReady` is true
 ```
 
@@ -10587,7 +10571,7 @@ Source: https://vueuse.org/math/useMin
 Import useMin from '@vueuse/math' and pass multiple refs or numbers to find the minimum among them.
 
 ```typescript
-import {useMin} from '@vueuse/math'
+import { useMin } from '@vueuse/math'
 
 const a = ref(1)
 const b = ref(3)
@@ -10662,12 +10646,12 @@ array
 ```
 
 ```javascript
-import {provide, ref} from 'vue'
+import { provide, ref } from 'vue'
 export const ArrayKey = Symbol('symbol-key')
 const array = ref([
-	{key: 1, value: '1'},
-	{key: 2, value: '2'},
-	{key: 3, value: '3'},
+  { key: 1, value: '1' },
+  { key: 2, value: '2' },
+  { key: 3, value: '3' },
 ])
 provide(ArrayKey, array)
 ```
@@ -10681,10 +10665,10 @@ Source: https://vueuse.org/shared/useTimeout
 Enables manual control over the timeout process by exposing start, stop, and isPending methods.
 
 ```typescript
-import {useTimeout} from '@vueuse/core'
+import { useTimeout } from '@vueuse/core'
 
-const {ready, start, stop, isPending} = useTimeout(1000, {
-	controls: true,
+const { ready, start, stop, isPending } = useTimeout(1000, {
+  controls: true,
 })
 
 // Check if timeout is pending
@@ -10921,7 +10905,7 @@ Source: https://vueuse.org/core/useTitle
 Import and use the useTitle composable to get and set the document's title. The initial value is the current document title. Not compatible with SSR.
 
 ```typescript
-import {useTitle} from '@vueuse/core'
+import { useTitle } from '@vueuse/core'
 
 const title = useTitle()
 
@@ -10939,7 +10923,7 @@ Source: https://vueuse.org/shared/useinterval
 Import and use useInterval to create a counter that increments every 200ms. No additional setup is required for basic functionality.
 
 ```typescript
-import {useInterval} from '@vueuse/core'
+import { useInterval } from '@vueuse/core'
 
 // count will increase every 200ms
 const counter = useInterval(200)
@@ -10954,13 +10938,13 @@ Source: https://vueuse.org/core/useBroadcastChannel
 Demonstrates initializing a channel, posting a message, and manually closing the connection.
 
 ```ts
-import {useBroadcastChannel} from '@vueuse/core'
-import {shallowRef} from 'vue'
+import { useBroadcastChannel } from '@vueuse/core'
+import { shallowRef } from 'vue'
 
-const {isSupported, channel, post, close, error, isClosed} =
-	useBroadcastChannel({
-		name: 'vueuse-demo-channel',
-	})
+const { isSupported, channel, post, close, error, isClosed } =
+  useBroadcastChannel({
+    name: 'vueuse-demo-channel',
+  })
 
 const message = shallowRef('')
 
@@ -10985,31 +10969,25 @@ This example demonstrates how to use toRefs in conjunction with useVModel to eas
 
 ```vue
 <script lang="ts">
-import {toRefs, useVModel} from '@vueuse/core'
+import { toRefs, useVModel } from '@vueuse/core'
 
 export default {
-	setup(props) {
-		const refs = toRefs(useVModel(props, 'data'))
+  setup(props) {
+    const refs = toRefs(useVModel(props, 'data'))
 
-		console.log(refs.a.value) // props.data.a
-		refs.a.value = 'a' // emit('update:data', { ...props.data, a: 'a' })
+    console.log(refs.a.value) // props.data.a
+    refs.a.value = 'a' // emit('update:data', { ...props.data, a: 'a' })
 
-		return {...refs}
-	},
+    return { ...refs }
+  },
 }
 </script>
 
 <template>
-	<div>
-		<input
-			v-model="a"
-			type="text"
-		/>
-		<input
-			v-model="b"
-			type="text"
-		/>
-	</div>
+  <div>
+    <input v-model="a" type="text" />
+    <input v-model="b" type="text" />
+  </div>
 </template>
 ```
 
@@ -11053,7 +11031,7 @@ const { timestamp, pause, resume } = useTimestamp({ controls: true })
 
 ```javascript
 'use strict'
-const {timestamp, pause, resume} = useTimestamp({controls: true})
+const { timestamp, pause, resume } = useTimestamp({ controls: true })
 ```
 
 ````
@@ -11207,7 +11185,7 @@ const el = useCurrentElement() // ComputedRef<Element>
 
 ```json
 {
-	"el": "<div id=\"app\">...</div>"
+  "el": "<div id=\"app\">...</div>"
 }
 ```
 
@@ -11357,7 +11335,7 @@ const { data } = useWebSocket('ws://websocketurl', {
 
 ```json
 {
-	"data": "Latest message data"
+  "data": "Latest message data"
 }
 ```
 
@@ -11448,29 +11426,29 @@ export declare function makeDestructurable<T extends Record<string, unknown>, A 
 #### TypeScript
 
 ```typescript
-import {makeDestructurable} from '@vueuse/core'
+import { makeDestructurable } from '@vueuse/core'
 
-const foo = {name: 'foo'}
+const foo = { name: 'foo' }
 const bar = 1024
 
-const obj = makeDestructurable({foo, bar} as const, [foo, bar] as const)
+const obj = makeDestructurable({ foo, bar } as const, [foo, bar] as const)
 
-let {foo, bar} = obj
+let { foo, bar } = obj
 let [foo, bar] = obj
 ```
 
 #### JavaScript
 
 ```javascript
-import {makeDestructurable} from '@vueuse/core'
+import { makeDestructurable } from '@vueuse/core'
 
-const foo = {name: 'foo'}
+const foo = { name: 'foo' }
 const bar = 1024
 
-const obj = makeDestructurable({foo, bar}, [foo, bar])
+const obj = makeDestructurable({ foo, bar }, [foo, bar])
 
 ;('use strict')
-let {foo, bar} = obj
+let { foo, bar } = obj
 let [foo, bar] = obj
 ```
 
@@ -11478,8 +11456,8 @@ let [foo, bar] = obj
 
 ```typescript
 export declare function makeDestructurable<
-	T extends Record<string, unknown>,
-	A extends readonly any[],
+  T extends Record<string, unknown>,
+  A extends readonly any[],
 >(obj: T, arr: A): T & A
 ```
 
@@ -11573,10 +11551,10 @@ watchEffect(() => {
 
 ```json
 {
-	"stream": "<MediaStream object>",
-	"start": "<function>",
-	"stop": "<function>",
-	"enabled": "<boolean>"
+  "stream": "<MediaStream object>",
+  "start": "<function>",
+  "stop": "<function>",
+  "enabled": "<boolean>"
 }
 ```
 
@@ -11584,30 +11562,30 @@ watchEffect(() => {
 
 ```typescript
 export interface UseDisplayMediaOptions extends ConfigurableNavigator {
-	/**
-	 * If the stream is enabled
-	 * @default false
-	 */
-	enabled?: MaybeRef<boolean>
-	/**
-	 * If the stream video media constraints
-	 */
-	video?: boolean | MediaTrackConstraints | undefined
-	/**
-	 * If the stream audio media constraints
-	 */
-	audio?: boolean | MediaTrackConstraints | undefined
+  /**
+   * If the stream is enabled
+   * @default false
+   */
+  enabled?: MaybeRef<boolean>
+  /**
+   * If the stream video media constraints
+   */
+  video?: boolean | MediaTrackConstraints | undefined
+  /**
+   * If the stream audio media constraints
+   */
+  audio?: boolean | MediaTrackConstraints | undefined
 }
 
 export interface UseDisplayMediaReturn extends Supportable {
-	stream: ShallowRef<MediaStream | undefined>
-	start: () => Promise<MediaStream | undefined>
-	stop: () => void
-	enabled: ShallowRef<boolean>
+  stream: ShallowRef<MediaStream | undefined>
+  start: () => Promise<MediaStream | undefined>
+  stop: () => void
+  enabled: ShallowRef<boolean>
 }
 
 export declare function useDisplayMedia(
-	options?: UseDisplayMediaOptions,
+  options?: UseDisplayMediaOptions,
 ): UseDisplayMediaReturn
 ```
 
@@ -11833,29 +11811,29 @@ For more complex easing, provide a custom easing function. This example uses an 
 
 ```typescript
 function easeOutElastic(n) {
-	return n === 0
-		? 0
-		: n === 1
-			? 1
-			: 2 ** (-10 * n) * Math.sin((n * 10 - 0.75) * ((2 * Math.PI) / 3)) + 1
+  return n === 0
+    ? 0
+    : n === 1
+      ? 1
+      : 2 ** (-10 * n) * Math.sin((n * 10 - 0.75) * ((2 * Math.PI) / 3)) + 1
 }
 
 useTransition(source, {
-	easing: easeOutElastic,
+  easing: easeOutElastic,
 })
 ```
 
 ```javascript
 'use strict'
 function easeOutElastic(n) {
-	return n === 0
-		? 0
-		: n === 1
-			? 1
-			: 2 ** (-10 * n) * Math.sin((n * 10 - 0.75) * ((2 * Math.PI) / 3)) + 1
+  return n === 0
+    ? 0
+    : n === 1
+      ? 1
+      : 2 ** (-10 * n) * Math.sin((n * 10 - 0.75) * ((2 * Math.PI) / 3)) + 1
 }
 useTransition(source, {
-	easing: easeOutElastic,
+  easing: easeOutElastic,
 })
 ```
 
@@ -11868,7 +11846,7 @@ Source: https://vueuse.org/core/usetitle
 Import and use the useTitle composable to get and set the document's title. The current title can be logged, and new titles can be assigned to the returned ref.
 
 ```typescript
-import {useTitle} from '@vueuse/core'
+import { useTitle } from '@vueuse/core'
 
 const title = useTitle()
 
@@ -11886,13 +11864,13 @@ Source: https://vueuse.org/core/onKeyStroke
 Use a custom function to determine which keys should trigger the handler. This example listens for 'Shift+A'.
 
 ```typescript
-import {onKeyStroke} from '@vueuse/core'
+import { onKeyStroke } from '@vueuse/core'
 
 onKeyStroke(
-	e => e.key === 'A' && e.shiftKey,
-	e => {
-		console.log('Shift+A pressed')
-	},
+  (e) => e.key === 'A' && e.shiftKey,
+  (e) => {
+    console.log('Shift+A pressed')
+  },
 )
 ```
 
@@ -11907,12 +11885,12 @@ Demonstrates how applying the 'dir="rtl"' attribute to the html tag affects text
 ```html
 <!--ltr-->
 <html>
-	...
+  ...
 </html>
 
 <!--rtl-->
 <html dir="rtl">
-	...
+  ...
 </html>
 ```
 
@@ -11925,19 +11903,19 @@ Source: https://vueuse.org/integrations/useAxios
 Provide an axios configuration object alongside an instance.
 
 ```typescript
-import {useAxios} from '@vueuse/integrations/useAxios'
+import { useAxios } from '@vueuse/integrations/useAxios'
 import axios from 'axios'
 
 const instance = axios.create({
-	baseURL: '/api',
+  baseURL: '/api',
 })
 
-const {data, isFinished} = useAxios(
-	'/posts',
-	{
-		method: 'POST',
-	},
-	instance,
+const { data, isFinished } = useAxios(
+  '/posts',
+  {
+    method: 'POST',
+  },
+  instance,
 )
 ```
 
@@ -12026,21 +12004,21 @@ Source: https://vueuse.org/core/useidle
 This example shows how to programmatically reset the idle timer using the 'reset' function returned by useIdle. It also demonstrates watching the 'idle' state and triggering an action, like incrementing a counter, when the user becomes idle.
 
 ```typescript
-import {useCounter, useIdle} from '@vueuse/core'
-import {watch} from 'vue'
+import { useCounter, useIdle } from '@vueuse/core'
+import { watch } from 'vue'
 
-const {inc, count} = useCounter()
+const { inc, count } = useCounter()
 
-const {idle, lastActive, reset} = useIdle(5 * 60 * 1000) // 5 min
+const { idle, lastActive, reset } = useIdle(5 * 60 * 1000) // 5 min
 
-watch(idle, idleValue => {
-	if (idleValue) {
-		inc()
+watch(idle, (idleValue) => {
+  if (idleValue) {
+    inc()
 
-		console.log(`Triggered ${count.value} times`)
+    console.log(`Triggered ${count.value} times`)
 
-		reset() // restarts the idle timer. Does not change lastActive value
-	}
+    reset() // restarts the idle timer. Does not change lastActive value
+  }
 })
 ```
 
@@ -12087,10 +12065,10 @@ const isDark = useDark({
 ```javascript
 'use strict'
 const isDark = useDark({
-	selector: 'body',
-	attribute: 'color-scheme',
-	valueDark: 'dark',
-	valueLight: 'light',
+  selector: 'body',
+  attribute: 'color-scheme',
+  valueDark: 'dark',
+  valueLight: 'light',
 })
 ```
 
@@ -12098,9 +12076,9 @@ const isDark = useDark({
 
 ```typescript
 const isDark = useDark({
-	onChanged(dark) {
-		// update the dom, call the API or something
-	},
+  onChanged(dark) {
+    // update the dom, call the API or something
+  },
 })
 ```
 
@@ -12194,7 +12172,7 @@ const data = useVModel(props, 'modelValue', emit)
 #### JavaScript
 
 ```javascript
-import {useVModel} from '@vueuse/core'
+import { useVModel } from '@vueuse/core'
 
 const props = defineProps()
 const emit = defineEmits(['update:modelValue'])
@@ -12205,15 +12183,15 @@ const data = useVModel(props, 'modelValue', emit)
 ### Options API
 
 ```typescript
-import {useVModel} from '@vueuse/core'
+import { useVModel } from '@vueuse/core'
 
 export default {
-	setup(props, {emit}) {
-		const data = useVModel(props, 'data', emit)
+  setup(props, { emit }) {
+    const data = useVModel(props, 'data', emit)
 
-		console.log(data.value) // props.data
-		data.value = 'foo' // emit('update:data', 'foo')
-	},
+    console.log(data.value) // props.data
+    data.value = 'foo' // emit('update:data', 'foo')
+  },
 }
 ```
 
@@ -12272,12 +12250,12 @@ Source: https://vueuse.org/core/useVibrate
 Demonstrates how to use the useVibrate hook to create a vibration pattern. The pattern is defined as an array of milliseconds for vibration and pause durations. The `vibrate()` function starts the pattern, and `stop()` can be used to halt it prematurely. `isSupported` indicates if the device supports vibration.
 
 ```typescript
-import {useVibrate} from '@vueuse/core'
+import { useVibrate } from '@vueuse/core'
 
 // This vibrates the device for 300 ms
 // then pauses for 100 ms before vibrating the device again for another 300 ms:
-const {vibrate, stop, isSupported} = useVibrate({
-	pattern: [300, 100, 300],
+const { vibrate, stop, isSupported } = useVibrate({
+  pattern: [300, 100, 300],
 })
 
 // Start the vibration, it will automatically stop when the pattern is complete:
@@ -12296,14 +12274,14 @@ Source: https://vueuse.org/core/createtemplatepromise
 Shows how to initialize the component in TypeScript and JavaScript, including optional generic type definitions.
 
 ```ts
-import {createTemplatePromise} from '@vueuse/core'
+import { createTemplatePromise } from '@vueuse/core'
 
 const TemplatePromise = createTemplatePromise()
 const MyPromise = createTemplatePromise<boolean>() // with generic type
 ```
 
 ```js
-import {createTemplatePromise} from '@vueuse/core'
+import { createTemplatePromise } from '@vueuse/core'
 const TemplatePromise = createTemplatePromise()
 const MyPromise = createTemplatePromise() // with generic type
 ```
@@ -12418,7 +12396,7 @@ const languages = usePreferredLanguages()
 
 ```json
 {
-	"languages": ["en-US", "en"]
+  "languages": ["en-US", "en"]
 }
 ```
 
@@ -12473,7 +12451,7 @@ const sum = useArrayReduce([
 
 ```json
 {
-	"value": 6
+  "value": 6
 }
 ```
 
@@ -12544,7 +12522,7 @@ console.log(permissionGranted.value)
 
 ```json
 {
-	"permissionGranted": true
+  "permissionGranted": true
 }
 ```
 
@@ -12793,8 +12771,8 @@ Returns a cached ref that updates only when the comparator function returns fals
 
 ```json
 {
-	"value": 42,
-	"extra": 0
+  "value": 42,
+  "extra": 0
 }
 ```
 
@@ -12802,17 +12780,17 @@ Returns a cached ref that updates only when the comparator function returns fals
 
 ```typescript
 export interface UseCachedOptions<D extends boolean = true>
-	extends ConfigurableDeepRefs<D>, WatchOptions {}
+  extends ConfigurableDeepRefs<D>, WatchOptions {}
 
 export declare function useCached<T, D extends boolean = true>(
-	refValue: Ref<T>,
-	comparator?: (a: T, b: T) => boolean,
-	options?: UseCachedOptions<D>,
+  refValue: Ref<T>,
+  comparator?: (a: T, b: T) => boolean,
+  options?: UseCachedOptions<D>,
 ): UseCachedReturn<T, D>
 
 export type UseCachedReturn<
-	T = any,
-	D extends boolean = true,
+  T = any,
+  D extends boolean = true,
 > = ShallowOrDeepRef<T, D>
 ```
 
@@ -12882,19 +12860,19 @@ useMyFetch
 ```javascript
 'use strict'
 const useMyFetch = createFetch({
-	baseUrl: 'https://my-api.com',
-	options: {
-		async beforeFetch({options}) {
-			const myToken = await getMyToken()
-			options.headers.Authorization = `Bearer ${myToken}`
-			return {options}
-		},
-	},
-	fetchOptions: {
-		mode: 'cors',
-	},
+  baseUrl: 'https://my-api.com',
+  options: {
+    async beforeFetch({ options }) {
+      const myToken = await getMyToken()
+      options.headers.Authorization = `Bearer ${myToken}`
+      return { options }
+    },
+  },
+  fetchOptions: {
+    mode: 'cors',
+  },
 })
-const {isFetching, error, data} = useMyFetch('users')
+const { isFetching, error, data } = useMyFetch('users')
 ```
 
 ---
@@ -13113,9 +13091,10 @@ Source: https://vueuse.org/core/useWebSocket
 Import and initialize the useWebSocket composable with a WebSocket URL. This sets up the connection and provides reactive references for status, data, and control functions.
 
 ```typescript
-import {useWebSocket} from '@vueuse/core'
+import { useWebSocket } from '@vueuse/core'
 
-const {status, data, send, open, close, ws} = useWebSocket('ws://websocketurl')
+const { status, data, send, open, close, ws } =
+  useWebSocket('ws://websocketurl')
 ```
 
 ---
@@ -13311,9 +13290,9 @@ Source: https://vueuse.org/core/usescreensafearea
 Import and use the `useScreenSafeArea` hook in your Vue component to get reactive safe area inset values.
 
 ```typescript
-import {useScreenSafeArea} from '@vueuse/core'
+import { useScreenSafeArea } from '@vueuse/core'
 
-const {top, right, bottom, left} = useScreenSafeArea()
+const { top, right, bottom, left } = useScreenSafeArea()
 ```
 
 ---
@@ -13389,7 +13368,7 @@ Source: https://vueuse.org/core/useonline
 Import the useOnline composable from '@vueuse/core' and use it to get a reactive boolean indicating the online status.
 
 ```typescript
-import {useOnline} from '@vueuse/core'
+import { useOnline } from '@vueuse/core'
 
 const online = useOnline()
 ```
@@ -13403,7 +13382,7 @@ Source: https://vueuse.org/core/useTextDirection
 Import the composable and call it to get a reactive reference to the text direction. By default, it returns 'ltr' or 'rtl'.
 
 ```typescript
-import {useTextDirection} from '@vueuse/core'
+import { useTextDirection } from '@vueuse/core'
 
 const dir = useTextDirection()
 ```
@@ -13511,15 +13490,15 @@ Formats the current date and time using a specified locale, for example, 'en-US'
 
 ```vue
 <script setup lang="ts">
-import {useDateFormat, useNow} from '@vueuse/core'
+import { useDateFormat, useNow } from '@vueuse/core'
 
 const formatted = useDateFormat(useNow(), 'YYYY-MM-DD (ddd)', {
-	locales: 'en-US',
+  locales: 'en-US',
 })
 </script>
 
 <template>
-	<div>{{ formatted }}</div>
+  <div>{{ formatted }}</div>
 </template>
 ```
 
@@ -13587,11 +13566,11 @@ N/A
  * @see   {@link https://vueuse.org/usePrevious}
  */
 export declare function usePrevious<T>(
-	value: MaybeRefOrGetter<T>,
+  value: MaybeRefOrGetter<T>,
 ): Readonly<ShallowRef<T | undefined>>
 export declare function usePrevious<T>(
-	value: MaybeRefOrGetter<T>,
-	initialValue: T,
+  value: MaybeRefOrGetter<T>,
+  initialValue: T,
 ): Readonly<ShallowRef<T>>
 ```
 
@@ -13644,7 +13623,7 @@ const lastMessage = useExtractedObservable(user, u => ObservableSocket.create(ma
 
 ```json
 {
-	"latestObservableValue": "any"
+  "latestObservableValue": "any"
 }
 ```
 
@@ -13688,13 +13667,13 @@ Formats the current date and time to 'YYYY-MM-DD HH:mm:ss'. Requires `useNow` to
 
 ```vue
 <script setup lang="ts">
-import {useDateFormat, useNow} from '@vueuse/core'
+import { useDateFormat, useNow } from '@vueuse/core'
 
 const formatted = useDateFormat(useNow(), 'YYYY-MM-DD HH:mm:ss')
 </script>
 
 <template>
-	<div>{{ formatted }}</div>
+  <div>{{ formatted }}</div>
 </template>
 ```
 
@@ -13743,8 +13722,8 @@ hash.value = 'foobar' // router.replace({ hash: 'foobar' })
 
 ```typescript
 export declare function useRouteHash(
-	defaultValue?: MaybeRefOrGetter<RouteHashValueRaw>,
-	{mode, route, router}?: ReactiveRouteOptions,
+  defaultValue?: MaybeRefOrGetter<RouteHashValueRaw>,
+  { mode, route, router }?: ReactiveRouteOptions,
 ): Ref<RouteHashValueRaw, RouteHashValueRaw>
 ```
 
@@ -13758,7 +13737,7 @@ Returns a `Ref` object that holds the route's hash value.
 
 ```json
 {
-	"example": "#section1"
+  "example": "#section1"
 }
 ```
 
@@ -13884,7 +13863,7 @@ Source: https://vueuse.org/math/useSum
 Use `useSum` with a ref containing an array of numbers to get a reactive sum. Ensure the array is imported from `@vueuse/math`.
 
 ```typescript
-import {useSum} from '@vueuse/math'
+import { useSum } from '@vueuse/math'
 
 const array = ref([1, 2, 3, 4])
 const sum = useSum(array) // Ref<10>
@@ -13899,7 +13878,7 @@ Source: https://vueuse.org/core/useMediaQuery
 Import and use the `useMediaQuery` composable to reactively track media query states like screen size or color scheme preference. The returned value is a computed property.
 
 ```typescript
-import {useMediaQuery} from '@vueuse/core'
+import { useMediaQuery } from '@vueuse/core'
 
 const isLargeScreen = useMediaQuery('(min-width: 1024px)')
 const isPreferredDark = useMediaQuery('(prefers-color-scheme: dark)')
@@ -14043,7 +14022,7 @@ Source: https://vueuse.org/core/usePreferredContrast
 Import the usePreferredContrast hook from '@vueuse/core' to get a reactive computed property reflecting the user's contrast preference.
 
 ```typescript
-import {usePreferredContrast} from '@vueuse/core'
+import { usePreferredContrast } from '@vueuse/core'
 
 const preferredContrast = usePreferredContrast()
 ```
@@ -14229,9 +14208,9 @@ value
 
 ```html
 <style id="vueuse_styletag_1">
-	.foo {
-		margin-top: 64px;
-	}
+  .foo {
+    margin-top: 64px;
+  }
 </style>
 ```
 
@@ -14244,7 +14223,7 @@ Source: https://vueuse.org/math/createProjection
 Demonstrates how to create a projector function that maps values from an input domain [0, 10] to an output domain [0, 100]. The projected value updates reactively as the input ref changes.
 
 ```typescript
-import {createProjection} from '@vueuse/math'
+import { createProjection } from '@vueuse/math'
 
 const useProjector = createProjection([0, 1], [0, 100])
 const input = ref(0)
@@ -14278,12 +14257,12 @@ Source: https://vueuse.org/core/useBase64
 Initialize the useBase64 hook with a reactive text reference.
 
 ```ts
-import {useBase64} from '@vueuse/core'
-import {shallowRef} from 'vue'
+import { useBase64 } from '@vueuse/core'
+import { shallowRef } from 'vue'
 
 const text = shallowRef('')
 
-const {base64, promise, execute} = useBase64(text)
+const { base64, promise, execute } = useBase64(text)
 ```
 
 ---
@@ -14448,7 +14427,7 @@ const max = useMax(a, b, 2)
 
 ```json
 {
-	"max": 3
+  "max": 3
 }
 ```
 
@@ -14504,10 +14483,10 @@ Declares the signature for the `transition` function, which animates a source re
 
 ```typescript
 export declare function transition<T>(
-	source: Ref<T>,
-	from: MaybeRefOrGetter<T>,
-	to: MaybeRefOrGetter<T>,
-	options?: TransitionOptions<T>,
+  source: Ref<T>,
+  from: MaybeRefOrGetter<T>,
+  to: MaybeRefOrGetter<T>,
+  options?: TransitionOptions<T>,
 ): PromiseLike<void>
 ```
 
@@ -14520,14 +14499,14 @@ Source: https://vueuse.org/router/useroutequery
 Define separate 'get' and 'set' transformation functions for useRouteQuery to handle complex data types in URL query parameters.
 
 ```typescript
-import {useRouteQuery} from '@vueuse/router'
+import { useRouteQuery } from '@vueuse/router'
 
 const filters = useRouteQuery('filters', [], {
-	transform: {
-		get: v => (v ? v.split(',') : []),
+  transform: {
+    get: (v) => (v ? v.split(',') : []),
 
-		set: v => v.join(','),
-	},
+    set: (v) => v.join(','),
+  },
 })
 
 // Reading: 'a,b,c' -> ['a', 'b', 'c']
@@ -14543,9 +14522,9 @@ Source: https://vueuse.org/core/useMouse
 Initializes the useMouse hook to track mouse coordinates.
 
 ```typescript
-import {useMouse} from '@vueuse/core'
+import { useMouse } from '@vueuse/core'
 
-const {x, y, sourceType} = useMouse()
+const { x, y, sourceType } = useMouse()
 ```
 
 ---
@@ -14557,8 +14536,8 @@ Source: https://vueuse.org/core/useprevious
 Import and use `usePrevious` with a shallowRef. The previous value is initially undefined and updates after the ref's value changes.
 
 ```typescript
-import {usePrevious} from '@vueuse/core'
-import {shallowRef} from 'vue'
+import { usePrevious } from '@vueuse/core'
+import { shallowRef } from 'vue'
 
 const counter = shallowRef('Hello')
 const previous = usePrevious(counter)
@@ -14597,15 +14576,15 @@ export declare const TransitionPresets: Record<
 ### Usage Example
 
 ```typescript
-import {transition, TransitionPresets} from '@vueuse/core'
+import { transition, TransitionPresets } from '@vueuse/core'
 
 const isVisible = ref(false)
 
 transition(isVisible, {
-	from: false,
-	to: true,
-	duration: 500,
-	easing: TransitionPresets.easeInOutCubic,
+  from: false,
+  to: true,
+  duration: 500,
+  easing: TransitionPresets.easeInOutCubic,
 })
 ```
 
@@ -14624,7 +14603,7 @@ const keys = useMagicKeys({ reactive: true })
 ````
 
 ```javascript
-const keys = useMagicKeys({reactive: true})
+const keys = useMagicKeys({ reactive: true })
 ```
 
 ---
@@ -14688,17 +14667,17 @@ console.log(cached.value) // Output: { value: 43, extra: 1 } (updated as value c
 
 ```typescript
 export interface UseCachedOptions<D extends boolean = true>
-	extends ConfigurableDeepRefs<D>, WatchOptions {}
+  extends ConfigurableDeepRefs<D>, WatchOptions {}
 
 export declare function useCached<T, D extends boolean = true>(
-	refValue: Ref<T>,
-	comparator?: (a: T, b: T) => boolean,
-	options?: UseCachedOptions<D>,
+  refValue: Ref<T>,
+  comparator?: (a: T, b: T) => boolean,
+  options?: UseCachedOptions<D>,
 ): UseCachedReturn<T, D>
 
 export type UseCachedReturn<
-	T = any,
-	D extends boolean = true,
+  T = any,
+  D extends boolean = true,
 > = ShallowOrDeepRef<T, D>
 ```
 
@@ -14855,13 +14834,13 @@ None
 ### Request Example
 
 ```ts
-import {reactiveOmit} from '@vueuse/core'
+import { reactiveOmit } from '@vueuse/core'
 
 const obj = reactive({
-	x: 0,
-	y: 0,
-	elementX: 0,
-	elementY: 0,
+  x: 0,
+  y: 0,
+  elementX: 0,
+  elementY: 0,
 })
 
 const picked = reactiveOmit(obj, 'x', 'elementX') // { y: number, elementY: number }
@@ -14877,8 +14856,8 @@ Returns a new reactive object with the specified keys omitted.
 
 ```json
 {
-	"y": 0,
-	"elementY": 0
+  "y": 0,
+  "elementY": 0
 }
 ```
 
@@ -14969,12 +14948,12 @@ Source: https://vueuse.org/core/useNavigatorLanguage
 Demonstrates how to import and use the hook to track the current language and react to its changes.
 
 ```typescript
-import {useNavigatorLanguage} from '@vueuse/core'
+import { useNavigatorLanguage } from '@vueuse/core'
 
-const {language} = useNavigatorLanguage()
+const { language } = useNavigatorLanguage()
 
 watch(language, () => {
-	// Listen to the value changing
+  // Listen to the value changing
 })
 ```
 
@@ -14987,10 +14966,10 @@ Source: https://vueuse.org/shared/useIntervalFn
 Demonstrates how to import and initialize the interval function with pause, resume, and active state controls.
 
 ```typescript
-import {useIntervalFn} from '@vueuse/core'
+import { useIntervalFn } from '@vueuse/core'
 
-const {pause, resume, isActive} = useIntervalFn(() => {
-	/* your function */
+const { pause, resume, isActive } = useIntervalFn(() => {
+  /* your function */
 }, 1000)
 ```
 
@@ -15004,10 +14983,10 @@ Import and use the useParallax composable within a Vue component's setup. It req
 
 ```vue
 <script setup lang="ts">
-import {useParallax} from '@vueuse/core'
+import { useParallax } from '@vueuse/core'
 
 const container = ref(null)
-const {tilt, roll, source} = useParallax(container)
+const { tilt, roll, source } = useParallax(container)
 </script>
 
 <template>< div ref =" container " /></template>
@@ -15022,7 +15001,7 @@ Source: https://vueuse.org/core/useFps
 Import and initialize the useFps reactive reference.
 
 ```typescript
-import {useFps} from '@vueuse/core'
+import { useFps } from '@vueuse/core'
 
 const fps = useFps()
 ```
@@ -15038,8 +15017,8 @@ Illustrates a straightforward way to open a dialog using the `useDialog` composa
 ```typescript
 const dialog = useDialog()
 const result = await dialog.open({
-	title: 'Hello',
-	content: 'World',
+  title: 'Hello',
+  content: 'World',
 })
 ```
 
@@ -15047,8 +15026,8 @@ const result = await dialog.open({
 'use strict'
 const dialog = useDialog()
 const result = await dialog.open({
-	title: 'Hello',
-	content: 'World',
+  title: 'Hello',
+  content: 'World',
 })
 ```
 
@@ -15061,29 +15040,29 @@ Source: https://vueuse.org/integrations/useaxios
 Configure advanced options for useAxios, including immediate execution, shallow refs, aborting previous requests, and callbacks like onSuccess, onError, and onFinish.
 
 ```typescript
-const {data} = useAxios('/api/posts', config, instance, {
-	// Execute immediately (default: true if url provided)
+const { data } = useAxios('/api/posts', config, instance, {
+  // Execute immediately (default: true if url provided)
 
-	immediate: true,
-	// Use shallowRef for data (default: true)
+  immediate: true,
+  // Use shallowRef for data (default: true)
 
-	shallow: true,
-	// Abort previous request on new execute (default: true)
+  shallow: true,
+  // Abort previous request on new execute (default: true)
 
-	abortPrevious: true,
-	// Reset data before executing (default: false)
+  abortPrevious: true,
+  // Reset data before executing (default: false)
 
-	resetOnExecute: false,
-	// Initial data value
+  resetOnExecute: false,
+  // Initial data value
 
-	initialData: [],
-	// Callbacks
+  initialData: [],
+  // Callbacks
 
-	onSuccess: data => console.log('Success:', data),
+  onSuccess: (data) => console.log('Success:', data),
 
-	onError: error => console.error('Error:', error),
+  onError: (error) => console.error('Error:', error),
 
-	onFinish: () => console.log('Finished'),
+  onFinish: () => console.log('Finished'),
 })
 ```
 
@@ -15150,7 +15129,7 @@ This composable does not have a direct HTTP response. Its effects are managed wi
 
 ```json
 {
-	"isPending": false
+  "isPending": false
 }
 ```
 
@@ -15268,10 +15247,10 @@ const { data } = useAxios('/api/posts', config, instance, {
 
 ```json
 {
-	"userId": 1,
-	"id": 1,
-	"title": "delectus aut autem",
-	"completed": false
+  "userId": 1,
+  "id": 1,
+  "title": "delectus aut autem",
+  "completed": false
 }
 ```
 
@@ -15513,7 +15492,7 @@ const injectedValue = injectLocal('MyInjectionKey') // injectedValue === 1
 
 ```json
 {
-	"injectedValue": 1
+  "injectedValue": 1
 }
 ```
 
@@ -15546,10 +15525,10 @@ stop
 ```javascript
 'use strict'
 onLongPress(target, handler, {
-	modifiers: {
-		prevent: true,
-		stop: true,
-	},
+  modifiers: {
+    prevent: true,
+    stop: true,
+  },
 })
 ```
 
@@ -15591,9 +15570,9 @@ Source: https://vueuse.org/core/usewakelock
 Basic implementation of the useWakeLock hook to manage screen wake lock state.
 
 ```typescript
-import {useWakeLock} from '@vueuse/core'
+import { useWakeLock } from '@vueuse/core'
 
-const {isSupported, isActive, forceRequest, request, release} = useWakeLock()
+const { isSupported, isActive, forceRequest, request, release } = useWakeLock()
 ```
 
 ---
@@ -15732,9 +15711,9 @@ const { pixelRatio } = useDevicePixelRatio()
 
 ```vue
 <template>
-	<UseDevicePixelRatio v-slot="{pixelRatio}">
-		Pixel Ratio: {{ pixelRatio }}
-	</UseDevicePixelRatio>
+  <UseDevicePixelRatio v-slot="{ pixelRatio }">
+    Pixel Ratio: {{ pixelRatio }}
+  </UseDevicePixelRatio>
 </template>
 ```
 
@@ -15743,8 +15722,8 @@ const { pixelRatio } = useDevicePixelRatio()
 ```typescript
 export interface UseDevicePixelRatioOptions extends ConfigurableWindow {}
 export interface UseDevicePixelRatioReturn {
-	pixelRatio: Readonly<ShallowRef<number>>
-	stop: WatchStopHandle
+  pixelRatio: Readonly<ShallowRef<number>>
+  stop: WatchStopHandle
 }
 
 /**
@@ -15755,7 +15734,7 @@ export interface UseDevicePixelRatioReturn {
  * @__NO_SIDE_EFFECTS__
  */
 export declare function useDevicePixelRatio(
-	options?: UseDevicePixelRatioOptions,
+  options?: UseDevicePixelRatioOptions,
 ): UseDevicePixelRatioReturn
 ```
 
@@ -15770,7 +15749,7 @@ export declare function useDevicePixelRatio(
 
 ```json
 {
-	"pixelRatio": 1
+  "pixelRatio": 1
 }
 ```
 
@@ -15826,9 +15805,9 @@ POST
 
 ```json
 {
-	"id": 1,
-	"username": "johndoe",
-	"email": "john.doe@example.com"
+  "id": 1,
+  "username": "johndoe",
+  "email": "john.doe@example.com"
 }
 ```
 
@@ -15909,12 +15888,12 @@ Source: https://vueuse.org/core/useMagicKeys
 Set `reactive: true` in the options to get a reactive object instead of an object of refs. This is useful for direct use in Vue templates.
 
 ```typescript
-const keys = useMagicKeys({reactive: true})
+const keys = useMagicKeys({ reactive: true })
 ```
 
 ```javascript
 'use strict'
-const keys = useMagicKeys({reactive: true})
+const keys = useMagicKeys({ reactive: true })
 ```
 
 ---
@@ -15929,7 +15908,7 @@ This is the equivalent manual implementation of useMounted in JavaScript, using 
 'use strict'
 const isMounted = ref(false)
 onMounted(() => {
-	isMounted.value = true
+  isMounted.value = true
 })
 ```
 
@@ -15942,7 +15921,7 @@ Source: https://vueuse.org/core/useKeyModifier
 Import and use useKeyModifier to get a reactive ref for the Caps Lock key state. The initial value is null until the first event.
 
 ```typescript
-import {useKeyModifier} from '@vueuse/core'
+import { useKeyModifier } from '@vueuse/core'
 
 const capsLockState = useKeyModifier('CapsLock')
 
@@ -15958,8 +15937,8 @@ Source: https://vueuse.org/electron/useipcrendererinvoke
 Example of using useIpcRendererInvoke with TypeScript. Ensure nodeIntegration is enabled if ipcRenderer is not explicitly provided. The result is a Ref that holds the response from the main process.
 
 ```typescript
-import {useIpcRendererInvoke} from '@vueuse/electron'
-import {computed} from 'vue'
+import { useIpcRendererInvoke } from '@vueuse/electron'
+import { computed } from 'vue'
 
 // enable nodeIntegration if you don't provide ipcRenderer explicitly
 // see: https://www.electronjs.org/docs/api/webview-tag#nodeintegration
@@ -15977,49 +15956,49 @@ Source: https://vueuse.org/integrations/useAxios
 Customize behavior such as immediate execution, shallow refs, and lifecycle callbacks.
 
 ```typescript
-const {data} = useAxios('/api/posts', config, instance, {
-	// Execute immediately (default: true if url provided)
+const { data } = useAxios('/api/posts', config, instance, {
+  // Execute immediately (default: true if url provided)
 
-	immediate: true,
-	// Use shallowRef for data (default: true)
+  immediate: true,
+  // Use shallowRef for data (default: true)
 
-	shallow: true,
-	// Abort previous request on new execute (default: true)
+  shallow: true,
+  // Abort previous request on new execute (default: true)
 
-	abortPrevious: true,
-	// Reset data before executing (default: false)
+  abortPrevious: true,
+  // Reset data before executing (default: false)
 
-	resetOnExecute: false,
-	// Initial data value
+  resetOnExecute: false,
+  // Initial data value
 
-	initialData: [],
-	// Callbacks
+  initialData: [],
+  // Callbacks
 
-	onSuccess: data => console.log('Success:', data),
+  onSuccess: (data) => console.log('Success:', data),
 
-	onError: error => console.error('Error:', error),
+  onError: (error) => console.error('Error:', error),
 
-	onFinish: () => console.log('Finished'),
+  onFinish: () => console.log('Finished'),
 })
 ```
 
 ```javascript
 'use strict'
-const {data} = useAxios('/api/posts', config, instance, {
-	// Execute immediately (default: true if url provided)
-	immediate: true,
-	// Use shallowRef for data (default: true)
-	shallow: true,
-	// Abort previous request on new execute (default: true)
-	abortPrevious: true,
-	// Reset data before executing (default: false)
-	resetOnExecute: false,
-	// Initial data value
-	initialData: [],
-	// Callbacks
-	onSuccess: data => console.log('Success:', data),
-	onError: error => console.error('Error:', error),
-	onFinish: () => console.log('Finished'),
+const { data } = useAxios('/api/posts', config, instance, {
+  // Execute immediately (default: true if url provided)
+  immediate: true,
+  // Use shallowRef for data (default: true)
+  shallow: true,
+  // Abort previous request on new execute (default: true)
+  abortPrevious: true,
+  // Reset data before executing (default: false)
+  resetOnExecute: false,
+  // Initial data value
+  initialData: [],
+  // Callbacks
+  onSuccess: (data) => console.log('Success:', data),
+  onError: (error) => console.error('Error:', error),
+  onFinish: () => console.log('Finished'),
 })
 ```
 
@@ -16075,9 +16054,9 @@ A callback function executed after the ref's value has changed. This provides a 
 
 ```typescript
 const num = refWithControl(0, {
-	onChanged(value, oldValue) {
-		console.log(`Value changed from ${oldValue} to ${value}`)
-	},
+  onChanged(value, oldValue) {
+    console.log(`Value changed from ${oldValue} to ${value}`)
+  },
 })
 
 num.value = 10
@@ -16196,13 +16175,13 @@ Source: https://vueuse.org/shared/reactify
 Demonstrates converting a simple addition function into a reactive version that accepts shallowRefs.
 
 ```typescript
-import {reactify} from '@vueuse/core'
-import {shallowRef} from 'vue'
+import { reactify } from '@vueuse/core'
+import { shallowRef } from 'vue'
 
 // a plain function
 function add(a: number, b: number): number {
-	return
-	a + b
+  return
+  a + b
 }
 
 // now it accept refs and returns a computed ref
@@ -16221,11 +16200,11 @@ console.log(sum.value) // 7
 ```
 
 ```javascript
-import {reactify} from '@vueuse/core'
-import {shallowRef} from 'vue'
+import { reactify } from '@vueuse/core'
+import { shallowRef } from 'vue'
 // a plain function
 function add(a, b) {
-	return a + b
+  return a + b
 }
 // now it accept refs and returns a computed ref
 // (a: number | Ref<number>, b: number | Ref<number>) => ComputedRef<number>
@@ -16281,16 +16260,16 @@ const isPreferredDark = useMediaQuery('(prefers-color-scheme: dark)')
 If you are using `useMediaQuery` with SSR enabled, then you need to specify which screen size you would like to render on the server and before hydration to avoid an hydration mismatch.
 
 ```typescript
-import {useMediaQuery} from '@vueuse/core'
+import { useMediaQuery } from '@vueuse/core'
 
 const isLarge = useMediaQuery('(min-width: 1024px)', {
-	ssrWidth: 768, // Will enable SSR mode and render like if the screen was 768px wide
+  ssrWidth: 768, // Will enable SSR mode and render like if the screen was 768px wide
 })
 
 console.log(isLarge.value) // always false because ssrWidth of 768px is smaller than 1024px
 
 onMounted(() => {
-	console.log(isLarge.value) // false if screen is smaller than 1024px, true if larger than 1024px
+  console.log(isLarge.value) // false if screen is smaller than 1024px, true if larger than 1024px
 })
 ```
 
@@ -16307,10 +16286,10 @@ Alternatively you can set this up globally for your app using `provideSSRWidth`.
  * @param options
  */
 export declare function useMediaQuery(
-	query: MaybeRefOrGetter<string>,
-	options?: ConfigurableWindow & {
-		ssrWidth?: number
-	},
+  query: MaybeRefOrGetter<string>,
+  options?: ConfigurableWindow & {
+    ssrWidth?: number
+  },
 ): ComputedRef<boolean>
 ```
 
@@ -16324,8 +16303,8 @@ Returns a `ComputedRef<boolean>` which is `true` if the media query matches, `fa
 
 ```json
 {
-	"isLargeScreen": true,
-	"prefersDark": false
+  "isLargeScreen": true,
+  "prefersDark": false
 }
 ```
 
@@ -16450,14 +16429,14 @@ Source: https://vueuse.org/shared/syncrefs
 Demonstrates how setting the flush option to 'pre' delays the target update until the next tick.
 
 ```typescript
-import {nextTick, shallowRef} from 'vue'
-import {syncRefs} from '@vueuse/core'
+import { nextTick, shallowRef } from 'vue'
+import { syncRefs } from '@vueuse/core'
 
 const source = shallowRef('hello')
 const target = shallowRef('target')
 
 syncRefs(source, target, {
-	flush: 'pre',
+  flush: 'pre',
 })
 
 console.log(target.value) // hello
@@ -16481,15 +16460,15 @@ JavaScript equivalent for basic key monitoring. Use `watch` or `watchEffect` to 
 
 ```javascript
 'use strict'
-const {shift, space, a} = useMagicKeys()
+const { shift, space, a } = useMagicKeys()
 watch(
-	() => space?.value,
-	v => {
-		if (v) console.log('space has been pressed')
-	},
+  () => space?.value,
+  (v) => {
+    if (v) console.log('space has been pressed')
+  },
 )
 watchEffect(() => {
-	if (shift?.value && a?.value) console.log('Shift + A have been pressed')
+  if (shift?.value && a?.value) console.log('Shift + A have been pressed')
 })
 ```
 
@@ -16546,130 +16525,130 @@ const lastMessage = useExtractedObservable(user, u => ObservableSocket.create(ma
 #### Basic Usage (JavaScript)
 
 ```javascript
-import {makeSocket, useUser} from '../some/lib/func'
-import {useExtractedObservable} from '@vueuse/rxjs'
+import { makeSocket, useUser } from '../some/lib/func'
+import { useExtractedObservable } from '@vueuse/rxjs'
 import ObservableSocket from 'observable-socket'
 
 // setup()
 const user = useUser()
 const lastMessage = useExtractedObservable(
-	user,
-	u => ObservableSocket.create(makeSocket(u.id)).down,
+  user,
+  (u) => ObservableSocket.create(makeSocket(u.id)).down,
 )
 ```
 
 #### Custom Error Handling (TypeScript)
 
 ```typescript
-import {mapTo, scan, startWith, tap} from 'rxjs/operators'
-import {useExtractedObservable} from '@vueuse/rxjs'
-import {shallowRef} from 'vue'
-import {interval} from 'rxjs'
+import { mapTo, scan, startWith, tap } from 'rxjs/operators'
+import { useExtractedObservable } from '@vueuse/rxjs'
+import { shallowRef } from 'vue'
+import { interval } from 'rxjs'
 
 // setup()
 const start = shallowRef(0)
 
 const count = useExtractedObservable(
-	start,
-	start => {
-		return interval(1000).pipe(
-			mapTo(1),
-			startWith(start),
-			scan((total, next) => next + total),
-			tap(n => {
-				if (n === 10) throw new Error('oops')
-			}),
-		)
-	},
-	{
-		onError: err => {
-			console.log(err.message) // "oops"
-		},
-	},
+  start,
+  (start) => {
+    return interval(1000).pipe(
+      mapTo(1),
+      startWith(start),
+      scan((total, next) => next + total),
+      tap((n) => {
+        if (n === 10) throw new Error('oops')
+      }),
+    )
+  },
+  {
+    onError: (err) => {
+      console.log(err.message) // "oops"
+    },
+  },
 )
 ```
 
 #### Custom Completion Handling (TypeScript)
 
 ```typescript
-import {mapTo, scan, startWith, takeWhile} from 'rxjs/operators'
-import {useExtractedObservable} from '@vueuse/rxjs'
-import {shallowRef} from 'vue'
-import {interval} from 'rxjs'
+import { mapTo, scan, startWith, takeWhile } from 'rxjs/operators'
+import { useExtractedObservable } from '@vueuse/rxjs'
+import { shallowRef } from 'vue'
+import { interval } from 'rxjs'
 
 // setup()
 const start = shallowRef(0)
 
 const count = useExtractedObservable(
-	start,
-	start => {
-		return interval(1000).pipe(
-			mapTo(1),
-			startWith(start),
-			scan((total, next) => next + total),
-			takeWhile(num => num < 10),
-		)
-	},
-	{
-		onComplete: () => {
-			console.log('Done!')
-		},
-	},
+  start,
+  (start) => {
+    return interval(1000).pipe(
+      mapTo(1),
+      startWith(start),
+      scan((total, next) => next + total),
+      takeWhile((num) => num < 10),
+    )
+  },
+  {
+    onComplete: () => {
+      console.log('Done!')
+    },
+  },
 )
 ```
 
 #### Passing Watch Options (TypeScript)
 
 ```typescript
-import {mapTo, scan, startWith, takeWhile} from 'rxjs/operators'
-import {useExtractedObservable} from '@vueuse/rxjs'
-import {shallowRef} from 'vue'
-import {interval} from 'rxjs'
+import { mapTo, scan, startWith, takeWhile } from 'rxjs/operators'
+import { useExtractedObservable } from '@vueuse/rxjs'
+import { shallowRef } from 'vue'
+import { interval } from 'rxjs'
 
 // setup()
 const start = shallowRef<number>()
 
 const count = useExtractedObservable(
-	start,
-	start => {
-		return interval(1000).pipe(
-			mapTo(1),
-			startWith(start),
-			scan((total, next) => next + total),
-			takeWhile(num => num < 10),
-		)
-	},
-	{},
-	{
-		immediate: false,
-	},
+  start,
+  (start) => {
+    return interval(1000).pipe(
+      mapTo(1),
+      startWith(start),
+      scan((total, next) => next + total),
+      takeWhile((num) => num < 10),
+    )
+  },
+  {},
+  {
+    immediate: false,
+  },
 )
 ```
 
 #### Passing Watch Options (JavaScript)
 
 ```javascript
-import {mapTo, scan, startWith, takeWhile} from 'rxjs/operators'
-import {useExtractedObservable} from '@vueuse/rxjs'
-import {shallowRef} from 'vue'
-import {interval} from 'rxjs'
+import { mapTo, scan, startWith, takeWhile } from 'rxjs/operators'
+import { useExtractedObservable } from '@vueuse/rxjs'
+import { shallowRef } from 'vue'
+import { interval } from 'rxjs'
 
 // setup()
 const start = shallowRef()
 const count = useExtractedObservable(
-	start,
-	start => {
-		return interval(1000).pipe(
-			mapTo(1),
-			startWith(start),
-			scan((total, next) => next + total),
-			takeWhile(num => num < 10),
-		)
-	},
-	{},
-	{
-		immediate: false,
-	},
+  start,
+  (start) => {
+    return interval(1000).pipe(
+      mapTo(1),
+      startWith(start),
+      scan((total, next) => next + total),
+      takeWhile((num) => num < 10),
+    )
+  },
+  {},
+  {
+    immediate: false,
+  },
 )
 ```
 
@@ -16720,56 +16699,56 @@ const { status, data, close } = useWebSocket('ws://websocketurl', {
 ### Request Example (custom autoReconnect)
 
 ```typescript
-const {status, data, close} = useWebSocket('ws://websocketurl', {
-	autoReconnect: {
-		retries: 3,
-		delay: 1000,
-		onFailed() {
-			alert('Failed to connect WebSocket after 3 retries')
-		},
-	},
+const { status, data, close } = useWebSocket('ws://websocketurl', {
+  autoReconnect: {
+    retries: 3,
+    delay: 1000,
+    onFailed() {
+      alert('Failed to connect WebSocket after 3 retries')
+    },
+  },
 })
 ```
 
 ### Request Example (exponential backoff delay)
 
 ```typescript
-const {status, data, close} = useWebSocket('ws://websocketurl', {
-	autoReconnect: {
-		retries: 5,
-		delay: retries => Math.min(1000 * 2 ** (retries - 1), 30000),
-	},
+const { status, data, close } = useWebSocket('ws://websocketurl', {
+  autoReconnect: {
+    retries: 5,
+    delay: (retries) => Math.min(1000 * 2 ** (retries - 1), 30000),
+  },
 })
 ```
 
 ### Request Example (linear backoff delay)
 
 ```typescript
-const {status, data, close} = useWebSocket('ws://websocketurl', {
-	autoReconnect: {
-		retries: 5,
-		delay: retries => retries * 1000,
-	},
+const { status, data, close } = useWebSocket('ws://websocketurl', {
+  autoReconnect: {
+    retries: 5,
+    delay: (retries) => retries * 1000,
+  },
 })
 ```
 
 ### Request Example (heartbeat enabled)
 
 ```typescript
-const {status, data, close} = useWebSocket('ws://websocketurl', {
-	heartbeat: true,
+const { status, data, close } = useWebSocket('ws://websocketurl', {
+  heartbeat: true,
 })
 ```
 
 ### Request Example (custom heartbeat)
 
 ```typescript
-const {status, data, close} = useWebSocket('ws://websocketurl', {
-	heartbeat: {
-		message: 'ping',
-		scheduler: cb => useIntervalFn(cb, 2000),
-		pongTimeout: 1000,
-	},
+const { status, data, close } = useWebSocket('ws://websocketurl', {
+  heartbeat: {
+    message: 'ping',
+    scheduler: (cb) => useIntervalFn(cb, 2000),
+    pongTimeout: 1000,
+  },
 })
 ```
 
@@ -16785,9 +16764,9 @@ const {status, data, close} = useWebSocket('ws://websocketurl', {
 
 ```json
 {
-	"status": "OPEN",
-	"data": "Latest message data",
-	"close": "function"
+  "status": "OPEN",
+  "data": "Latest message data",
+  "close": "function"
 }
 ```
 
@@ -16862,12 +16841,12 @@ When no argument is passed, `useParentElement` returns the parent element of the
 
 ```vue
 <script setup lang="ts">
-import {useParentElement} from '@vueuse/core'
+import { useParentElement } from '@vueuse/core'
 
 const parentEl = useParentElement()
 
 onMounted(() => {
-	console.log(parentEl.value)
+  console.log(parentEl.value)
 })
 </script>
 ```
@@ -16989,7 +16968,7 @@ Source: https://vueuse.org/core/usebreakpoints
 Import and use the `breakpointsTailwind` preset to define breakpoints based on Tailwind CSS conventions. This setup is useful for creating responsive logic in your Vue application.
 
 ```typescript
-import {breakpointsTailwind, useBreakpoints} from '@vueuse/core'
+import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
 
 const breakpoints = useBreakpoints(breakpointsTailwind)
 
@@ -17008,7 +16987,7 @@ Source: https://vueuse.org/shared/refWithControl
 Demonstrates how to use refWithControl to manually control reactivity tracking and triggering.
 
 ```typescript
-import {refWithControl} from '@vueuse/core'
+import { refWithControl } from '@vueuse/core'
 
 const num = refWithControl(0)
 const doubled = computed(() => num.value * 2)
@@ -17032,7 +17011,7 @@ console.log(doubled.value) // 84 (doesn't update)
 // get value without tracking the reactivity
 
 watchEffect(() => {
-	console.log(num.peek())
+  console.log(num.peek())
 }) // 30
 
 num.value = 50 // watch effect wouldn't be triggered since it collected nothing.
@@ -17086,9 +17065,9 @@ POST
 
 ```json
 {
-	"stop": "() => void",
-	"ignoreUpdates": "(updater: () => void) => void",
-	"ignorePrevAsyncUpdates": "() => void"
+  "stop": "() => void",
+  "ignoreUpdates": "(updater: () => void) => void",
+  "ignorePrevAsyncUpdates": "() => void"
 }
 ```
 
@@ -17243,7 +17222,7 @@ Source: https://vueuse.org/integrations/README
 For optimal tree-shaking, import composables like useAxios directly from their respective submodules.
 
 ```typescript
-import {useAxios} from '@vueuse/integrations/useAxios'
+import { useAxios } from '@vueuse/integrations/useAxios'
 ```
 
 ---
@@ -17255,12 +17234,12 @@ Source: https://vueuse.org/shared/syncref
 This example demonstrates one-directional synchronization from the right ref to the left ref ('rtl' direction). Changes in 'b' will update 'a', but changes in 'a' will not affect 'b'.
 
 ```typescript
-import {syncRef} from '@vueuse/core'
+import { syncRef } from '@vueuse/core'
 
 const a = ref('a')
 const b = ref('b')
 
-const stop = syncRef(a, b, {direction: 'rtl'})
+const stop = syncRef(a, b, { direction: 'rtl' })
 ```
 
 ---
@@ -17306,13 +17285,13 @@ const { result } = useAsyncQueue([p1, p2], {
 ### Request Example (Callbacks)
 
 ```typescript
-const {result} = useAsyncQueue([p1, p2], {
-	onError() {
-		console.log('A task failed')
-	},
-	onFinished() {
-		console.log('All tasks completed (or interrupted)')
-	},
+const { result } = useAsyncQueue([p1, p2], {
+  onError() {
+    console.log('A task failed')
+  },
+  onFinished() {
+    console.log('All tasks completed (or interrupted)')
+  },
 })
 ```
 
@@ -17321,8 +17300,8 @@ const {result} = useAsyncQueue([p1, p2], {
 ```typescript
 const controller = new AbortController()
 
-const {result} = useAsyncQueue([p1, p2], {
-	signal: controller.signal,
+const { result } = useAsyncQueue([p1, p2], {
+  signal: controller.signal,
 })
 
 // Later, abort the queue
@@ -17339,10 +17318,10 @@ controller.abort()
 
 ```json
 {
-	"result": [
-		{"state": "fulfilled", "data": 1000},
-		{"state": "fulfilled", "data": 2000}
-	]
+  "result": [
+    { "state": "fulfilled", "data": 1000 },
+    { "state": "fulfilled", "data": 2000 }
+  ]
 }
 ```
 
@@ -17398,25 +17377,25 @@ Source: https://vueuse.org/guidelines
 When using `watch` or `watchEffect` internally, make options like `immediate` and `flush` configurable. This example shows `watchDebounced` extending `WatchOptions` with a `debounce` property.
 
 ```typescript
-import type {WatchOptions} from 'vue'
+import type { WatchOptions } from 'vue'
 
 // extend the watch options
 export interface WatchDebouncedOptions extends WatchOptions {
-	debounce?: number
+  debounce?: number
 }
 
 export function watchDebounced(
-	source: any,
-	cb: any,
-	options: WatchDebouncedOptions = {},
+  source: any,
+  cb: any,
+  options: WatchDebouncedOptions = {},
 ): WatchHandle {
-	return watch(
-		source,
-		() => {
-			/* ... */
-		},
-		options, // pass watch options
-	)
+  return watch(
+    source,
+    () => {
+      /* ... */
+    },
+    options, // pass watch options
+  )
 }
 ```
 
@@ -17429,13 +17408,13 @@ Source: https://vueuse.org/core/usethrottledrefhistory
 Import and use useThrottledRefHistory with a ref and options. The history will be updated with a throttle of 1000ms.
 
 ```typescript
-import {useThrottledRefHistory} from '@vueuse/core'
-import {shallowRef} from 'vue'
+import { useThrottledRefHistory } from '@vueuse/core'
+import { shallowRef } from 'vue'
 
 const counter = shallowRef(0)
-const {history, undo, redo} = useThrottledRefHistory(counter, {
-	deep: true,
-	throttle: 1000,
+const { history, undo, redo } = useThrottledRefHistory(counter, {
+  deep: true,
+  throttle: 1000,
 })
 ```
 
@@ -17448,12 +17427,12 @@ Source: https://vueuse.org/core/usevibrate
 Demonstrates how to initialize the vibration pattern and manually control the vibration state.
 
 ```typescript
-import {useVibrate} from '@vueuse/core'
+import { useVibrate } from '@vueuse/core'
 
 // This vibrates the device for 300 ms
 // then pauses for 100 ms before vibrating the device again for another 300 ms:
-const {vibrate, stop, isSupported} = useVibrate({
-	pattern: [300, 100, 300],
+const { vibrate, stop, isSupported } = useVibrate({
+  pattern: [300, 100, 300],
 })
 
 // Start the vibration, it will automatically stop when the pattern is complete:
@@ -17540,31 +17519,31 @@ This example demonstrates how to change the focus state of an input element by c
 
 ```vue
 <script setup lang="ts">
-import {useFocus} from '@vueuse/core'
-import {shallowRef} from 'vue'
+import { useFocus } from '@vueuse/core'
+import { shallowRef } from 'vue'
 
 const input = shallowRef()
-const {focused} = useFocus(input)
+const { focused } = useFocus(input)
 </script>
 
 <template>
-	<div>
-		<button
-			type="button"
-			@
-			click="
+  <div>
+    <button
+      type="button"
+      @
+      click="
 focused
  = true"
-		>
-			Click me to focus input below
-		</button>
-		<input
-			ref="
+    >
+      Click me to focus input below
+    </button>
+    <input
+      ref="
 input
 "
-			type="text"
-		/>
-	</div>
+      type="text"
+    />
+  </div>
 </template>
 ```
 
@@ -17577,13 +17556,13 @@ Source: https://vueuse.org/shared/createGlobalState
 This snippet shows how to consume the global state defined by useGlobalState within a Vue component's setup function. The state is directly accessible and reactive.
 
 ```typescript
-import {useGlobalState} from './store'
+import { useGlobalState } from './store'
 
 export default defineComponent({
-	setup() {
-		const state = useGlobalState()
-		return {state}
-	},
+  setup() {
+    const state = useGlobalState()
+    return { state }
+  },
 })
 ```
 
@@ -17666,12 +17645,12 @@ Source: https://vueuse.org/core/usetransition
 Use a custom interpolation function for transitioning complex values like Three.js Quaternions. The interpolation function receives the start, end, and progress values.
 
 ```typescript
-import {Quaternion} from 'three'
+import { Quaternion } from 'three'
 
 const source = ref(new Quaternion())
 
 const output = useTransition(source, {
-	interpolation: (q1, q2, t) => new Quaternion().slerpQuaternions(q1, q2, t),
+  interpolation: (q1, q2, t) => new Quaternion().slerpQuaternions(q1, q2, t),
 })
 ```
 
@@ -17685,14 +17664,14 @@ Control how shortcut properties behave by setting the `strategy` option. 'min-wi
 
 ```ts
 const breakpoints = useBreakpoints(breakpointsTailwind, {
-	strategy: 'max-width', // desktop-first
+  strategy: 'max-width', // desktop-first
 })
 ```
 
 ```js
 'use strict'
 const breakpoints = useBreakpoints(breakpointsTailwind, {
-	strategy: 'max-width', // desktop-first
+  strategy: 'max-width', // desktop-first
 })
 ```
 
@@ -17705,17 +17684,17 @@ Source: https://vueuse.org/rxjs/usesubscription
 Use this composable to manage RxJS subscriptions. It automatically calls the `unsubscribe` method before the component unmounts, preventing memory leaks. Ensure you have `@vueuse/rxjs` installed and RxJS imported.
 
 ```typescript
-import {useSubscription} from '@vueuse/rxjs'
-import {interval} from 'rxjs'
+import { useSubscription } from '@vueuse/rxjs'
+import { interval } from 'rxjs'
 
 const count = ref(0)
 
 // useSubscription call unsubscribe method before unmount the component
 useSubscription(
-	interval(1000).subscribe(() => {
-		count.value++
-		console.log(count)
-	}),
+  interval(1000).subscribe(() => {
+    count.value++
+    console.log(count)
+  }),
 )
 ```
 
@@ -17728,10 +17707,10 @@ Source: https://vueuse.org/shared/useThrottleFn
 Import and use `useThrottleFn` to create a throttled version of your function. The throttled function will be called at most once per the specified millisecond delay. This example shows how to throttle a resize event handler.
 
 ```typescript
-import {useThrottleFn} from '@vueuse/core'
+import { useThrottleFn } from '@vueuse/core'
 
 const throttledFn = useThrottleFn(() => {
-	// do something, it will be called at most 1 time per second
+  // do something, it will be called at most 1 time per second
 }, 1000)
 
 useEventListener(window, 'resize', throttledFn)
@@ -17746,42 +17725,54 @@ Source: https://vueuse.org/rxjs/toObserver
 Demonstrates converting a ref into an RxJS observer within a subscription.
 
 ```typescript
-import {map, mapTo, startWith, takeUntil, withLatestFrom} from 'rxjs/operators'
-import {from, fromEvent, toObserver, useSubscription} from '@vueuse/rxjs'
-import {shallowRef, useTemplateRef} from 'vue'
-import {interval} from 'rxjs'
+import {
+  map,
+  mapTo,
+  startWith,
+  takeUntil,
+  withLatestFrom,
+} from 'rxjs/operators'
+import { from, fromEvent, toObserver, useSubscription } from '@vueuse/rxjs'
+import { shallowRef, useTemplateRef } from 'vue'
+import { interval } from 'rxjs'
 
 const count = shallowRef(0)
 const button = useTemplateRef('buttonRef')
 
 useSubscription(
-	interval(1000)
-		.pipe(
-			mapTo(1),
-			takeUntil(fromEvent(button, 'click')),
-			withLatestFrom(from(count).pipe(startWith(0))),
-			map(([curr, total]) => curr + total),
-		)
-		.subscribe(toObserver(count)), // same as ).subscribe(val => (count.value = val))
+  interval(1000)
+    .pipe(
+      mapTo(1),
+      takeUntil(fromEvent(button, 'click')),
+      withLatestFrom(from(count).pipe(startWith(0))),
+      map(([curr, total]) => curr + total),
+    )
+    .subscribe(toObserver(count)), // same as ).subscribe(val => (count.value = val))
 )
 ```
 
 ```javascript
-import {map, mapTo, startWith, takeUntil, withLatestFrom} from 'rxjs/operators'
-import {from, fromEvent, toObserver, useSubscription} from '@vueuse/rxjs'
-import {shallowRef, useTemplateRef} from 'vue'
-import {interval} from 'rxjs'
+import {
+  map,
+  mapTo,
+  startWith,
+  takeUntil,
+  withLatestFrom,
+} from 'rxjs/operators'
+import { from, fromEvent, toObserver, useSubscription } from '@vueuse/rxjs'
+import { shallowRef, useTemplateRef } from 'vue'
+import { interval } from 'rxjs'
 const count = shallowRef(0)
 const button = useTemplateRef('buttonRef')
 useSubscription(
-	interval(1000)
-		.pipe(
-			mapTo(1),
-			takeUntil(fromEvent(button, 'click')),
-			withLatestFrom(from(count).pipe(startWith(0))),
-			map(([curr, total]) => curr + total),
-		)
-		.subscribe(toObserver(count)),
+  interval(1000)
+    .pipe(
+      mapTo(1),
+      takeUntil(fromEvent(button, 'click')),
+      withLatestFrom(from(count).pipe(startWith(0))),
+      map(([curr, total]) => curr + total),
+    )
+    .subscribe(toObserver(count)),
 )
 ```
 
@@ -17794,19 +17785,19 @@ Source: https://vueuse.org/core/useVirtualList
 Initializes a virtual list with a fixed item height. Ensure the itemHeight matches the actual rendered row height to prevent layout issues.
 
 ```ts
-import {useVirtualList} from '@vueuse/core'
+import { useVirtualList } from '@vueuse/core'
 
-const {list, containerProps, wrapperProps} = useVirtualList(
-	Array.from(
-		Array.from({
-			length: 99999,
-		}).keys(),
-	),
-	{
-		// Keep `itemHeight` in sync with the item's row.
+const { list, containerProps, wrapperProps } = useVirtualList(
+  Array.from(
+    Array.from({
+      length: 99999,
+    }).keys(),
+  ),
+  {
+    // Keep `itemHeight` in sync with the item's row.
 
-		itemHeight: 22,
-	},
+    itemHeight: 22,
+  },
 )
 ```
 
@@ -17886,7 +17877,7 @@ Alternatively, provide the SSR width directly within your root component's setup
 
 ```vue
 <script setup lang="ts">
-import {provideSSRWidth} from '@vueuse/core'
+import { provideSSRWidth } from '@vueuse/core'
 
 provideSSRWidth(500)
 </script>
@@ -17945,7 +17936,7 @@ const targetIsVisible = useElementVisibility(target, {
 
 ```json
 {
-	"isVisible": true
+  "isVisible": true
 }
 ```
 
@@ -18003,20 +17994,20 @@ flush
 ```javascript
 'use strict'
 useStorage('key', defaults, storage, {
-	// Watch for deep changes in objects/arrays (default: true)
-	deep: true,
-	// Sync across tabs via storage events (default: true)
-	listenToStorageChanges: true,
-	// Write default value to storage if not present (default: true)
-	writeDefaults: true,
-	// Use shallowRef instead of ref (default: false)
-	shallow: false,
-	// Initialize only after component is mounted (default: false)
-	initOnMounted: false,
-	// Custom error handler (default: console.error)
-	onError: e => console.error(e),
-	// Watch flush timing (default: 'pre')
-	flush: 'pre',
+  // Watch for deep changes in objects/arrays (default: true)
+  deep: true,
+  // Sync across tabs via storage events (default: true)
+  listenToStorageChanges: true,
+  // Write default value to storage if not present (default: true)
+  writeDefaults: true,
+  // Use shallowRef instead of ref (default: false)
+  shallow: false,
+  // Initialize only after component is mounted (default: false)
+  initOnMounted: false,
+  // Custom error handler (default: console.error)
+  onError: (e) => console.error(e),
+  // Watch flush timing (default: 'pre')
+  flush: 'pre',
 })
 ```
 
@@ -18029,14 +18020,14 @@ Source: https://vueuse.org/router/useroutequery
 Import and use useRouteQuery to create a reactive reference linked to a URL query parameter. You can provide an initial value or a default value.
 
 ```typescript
-import {useRouteQuery} from '@vueuse/router'
+import { useRouteQuery } from '@vueuse/router'
 
 const search = useRouteQuery('search')
 
 const search = useRouteQuery('search', 'foo') // or with a default value
 
 const page = useRouteQuery('page', '1', {
-	transform: Number,
+  transform: Number,
 })
 
 console.log(search.value) // route.query.search
@@ -18053,7 +18044,7 @@ Source: https://vueuse.org/core/useBreakpoints
 Utilize the predefined Tailwind CSS breakpoints with the useBreakpoints composable. This example demonstrates creating reactive refs for various breakpoint conditions like 'sm and larger' or 'larger than sm'.
 
 ```ts
-import {breakpointsTailwind, useBreakpoints} from '@vueuse/core'
+import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
 
 const breakpoints = useBreakpoints(breakpointsTailwind)
 
@@ -18072,22 +18063,22 @@ Source: https://vueuse.org/core/computedAsync
 Implement cancellation logic for previous async operations when the computed source changes. This example uses AbortController with the fetch API. The `onCancel` function is provided by `computedAsync` to register cleanup callbacks.
 
 ```typescript
-import {computedAsync} from '@vueuse/core'
-import {shallowRef} from 'vue'
+import { computedAsync } from '@vueuse/core'
+import { shallowRef } from 'vue'
 
 const packageName = shallowRef('@vueuse/core')
 
-const downloads = computedAsync(async onCancel => {
-	const abortController = new AbortController()
+const downloads = computedAsync(async (onCancel) => {
+  const abortController = new AbortController()
 
-	onCancel(() => abortController.abort())
+  onCancel(() => abortController.abort())
 
-	return await fetch(
-		`https://api.npmjs.org/downloads/point/last-week/${packageName.value}`,
-		{signal: abortController.signal},
-	)
-		.then(response => (response.ok ? response.json() : {downloads: '—'}))
-		.then(result => result.downloads)
+  return await fetch(
+    `https://api.npmjs.org/downloads/point/last-week/${packageName.value}`,
+    { signal: abortController.signal },
+  )
+    .then((response) => (response.ok ? response.json() : { downloads: '—' }))
+    .then((result) => result.downloads)
 }, 0)
 ```
 
@@ -18152,10 +18143,10 @@ execute({ params: { key: 1 } })
 
 ```json
 {
-	"userId": 1,
-	"id": 1,
-	"title": "delectus aut autem",
-	"completed": false
+  "userId": 1,
+  "id": 1,
+  "title": "delectus aut autem",
+  "completed": false
 }
 ```
 
@@ -18209,10 +18200,10 @@ PUT
 
 ```json
 {
-	"id": 1,
-	"name": "Jane Doe",
-	"email": "john.doe@example.com",
-	"updatedAt": "2023-10-27T11:00:00Z"
+  "id": 1,
+  "name": "Jane Doe",
+  "email": "john.doe@example.com",
+  "updatedAt": "2023-10-27T11:00:00Z"
 }
 ```
 
@@ -18260,7 +18251,7 @@ function toggle() {
 
 ```json
 {
-	"isLoading": true
+  "isLoading": true
 }
 ```
 
@@ -18304,14 +18295,11 @@ const { isSupported, open, sRGBHex } = useEyeDropper()
 
 ```vue
 <template>
-	<UseEyeDropper v-slot="{ isSupported, sRGBHex, open ">
-		<button
-			:disabled="!isSupported"
-			@click="() => open()"
-		>
-			sRGBHex: {{ sRGBHex }}
-		</button>
-	</UseEyeDropper>
+  <UseEyeDropper v-slot="{ isSupported, sRGBHex, open ">
+    <button :disabled="!isSupported" @click="() => open()">
+      sRGBHex: {{ sRGBHex }}
+    </button>
+  </UseEyeDropper>
 </template>
 ```
 
@@ -18319,35 +18307,35 @@ const { isSupported, open, sRGBHex } = useEyeDropper()
 
 ```ts
 export interface EyeDropperOpenOptions {
-	/**
-	 * @see https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal
-	 */
-	signal?: AbortSignal
+  /**
+   * @see https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal
+   */
+  signal?: AbortSignal
 }
 
 export interface EyeDropper {
-	new (): EyeDropper
-	open: (options?: EyeDropperOpenOptions) => Promise<{sRGBHex: string}>
-	[Symbol.toStringTag]: 'EyeDropper'
+  new (): EyeDropper
+  open: (options?: EyeDropperOpenOptions) => Promise<{ sRGBHex: string }>
+  [Symbol.toStringTag]: 'EyeDropper'
 }
 
 export interface UseEyeDropperOptions {
-	/**
-	 * Initial sRGBHex.
-	 *
-	 * @default ''
-	 */
-	initialValue?: string
+  /**
+   * Initial sRGBHex.
+   *
+   * @default ''
+   */
+  initialValue?: string
 }
 
 export interface UseEyeDropperReturn extends Supportable {
-	sRGBHex: ShallowRef<string>
-	open: (openOptions?: EyeDropperOpenOptions) => Promise<
-		| {
-				sRGBHex: string
-		  }
-		| undefined
-	>
+  sRGBHex: ShallowRef<string>
+  open: (openOptions?: EyeDropperOpenOptions) => Promise<
+    | {
+        sRGBHex: string
+      }
+    | undefined
+  >
 }
 
 /**
@@ -18358,7 +18346,7 @@ export interface UseEyeDropperReturn extends Supportable {
  * @__NO_SIDE_EFFECTS__
  */
 export declare function useEyeDropper(
-	options?: UseEyeDropperOptions,
+  options?: UseEyeDropperOptions,
 ): UseEyeDropperReturn
 ```
 
@@ -18372,7 +18360,7 @@ export declare function useEyeDropper(
 
 ```json
 {
-	"sRGBHex": "#ff0000"
+  "sRGBHex": "#ff0000"
 }
 ```
 
@@ -18410,12 +18398,12 @@ const { data } = useFetch(url, { method: 'GET' }, { refetch: true }).blob()
 ```javascript
 'use strict'
 // Request will be sent with GET method and data will be parsed as JSON
-const {data} = useFetch(url).get().json()
+const { data } = useFetch(url).get().json()
 // Request will be sent with POST method and data will be parsed as text
-const {data} = useFetch(url).post().text()
+const { data } = useFetch(url).post().text()
 // Or set the method using the options
 // Request will be sent with GET method and data will be parsed as blob
-const {data} = useFetch(url, {method: 'GET'}, {refetch: true}).blob()
+const { data } = useFetch(url, { method: 'GET' }, { refetch: true }).blob()
 ```
 
 ````
@@ -18592,7 +18580,7 @@ Demonstrates how to configure the `window` option for `useActiveElement` when wo
 
 ```typescript
 // in iframe and bind to the parent window
-useActiveElement({window: window.parent})
+useActiveElement({ window: window.parent })
 ```
 
 ---
@@ -18604,7 +18592,7 @@ Source: https://vueuse.org/shared/refdefault
 Use refDefault to provide a fallback value for a ref. If the source ref's value becomes undefined or null, refDefault will return the specified default value. This example demonstrates its usage with useStorage.
 
 ```typescript
-import {refDefault, useStorage} from '@vueuse/core'
+import { refDefault, useStorage } from '@vueuse/core'
 
 const raw = useStorage('key')
 const state = refDefault(raw, 'default')
@@ -18764,7 +18752,7 @@ const count = useObservable(
 
 ```json
 {
-	"value": 0 // or subsequent emitted values
+  "value": 0 // or subsequent emitted values
 }
 ```
 
@@ -18816,7 +18804,7 @@ const sum = useArrayReduce(list, (sum, val) => sum + val.num, 0)
 
 ```json
 {
-	"value": 3
+  "value": 3
 }
 ```
 
@@ -19068,7 +19056,7 @@ Source: https://vueuse.org/core/useFavicon
 Initialize the favicon utility and update the icon by modifying the returned ref value.
 
 ```ts
-import {useFavicon} from '@vueuse/core'
+import { useFavicon } from '@vueuse/core'
 
 const icon = useFavicon()
 
@@ -19084,14 +19072,14 @@ Source: https://vueuse.org/core/onclickoutside
 Use the `controls` option to get `stop`, `cancel`, and `trigger` functions for manual control over the handler. `cancel` prevents the next click, `trigger` fires the handler manually, and `stop` removes listeners.
 
 ```typescript
-const {stop, cancel, trigger} = onClickOutside(
-	modalRef,
-	event => {
-		modal.value = false
-	},
-	{
-		controls: true,
-	},
+const { stop, cancel, trigger } = onClickOutside(
+  modalRef,
+  (event) => {
+    modal.value = false
+  },
+  {
+    controls: true,
+  },
 )
 
 // cancel prevents the next click from triggering the handler
@@ -19154,9 +19142,9 @@ POST
 
 ```json
 {
-	"id": "user-12345",
-	"username": "johndoe",
-	"email": "john.doe@example.com"
+  "id": "user-12345",
+  "username": "johndoe",
+  "email": "john.doe@example.com"
 }
 ```
 
@@ -19311,9 +19299,9 @@ PUT
 
 ```json
 {
-	"id": "user-123",
-	"name": "Jane Doe",
-	"email": "jane.doe@example.com"
+  "id": "user-123",
+  "name": "Jane Doe",
+  "email": "jane.doe@example.com"
 }
 ```
 
@@ -19388,7 +19376,7 @@ Source: https://vueuse.org/electron/useZoomLevel
 Initializes the zoom level and demonstrates how to read and modify it.
 
 ```typescript
-import {useZoomLevel} from '@vueuse/electron'
+import { useZoomLevel } from '@vueuse/electron'
 
 // enable nodeIntegration if you don't provide webFrame explicitly
 // see: https://www.electronjs.org/docs/api/webview-tag#nodeintegration
@@ -19410,8 +19398,8 @@ Pass a specific Vue component reference to `useCurrentElement` to obtain its DOM
 
 ```vue
 <script setup lang="ts">
-import {useCurrentElement, VueInstance} from '@vueuse/core'
-import {shallowRef} from 'vue'
+import { useCurrentElement, VueInstance } from '@vueuse/core'
+import { shallowRef } from 'vue'
 
 const componentRef = shallowRef<VueInstance>(null as unknown as VueInstance)
 
@@ -19419,10 +19407,10 @@ const el = useCurrentElement(componentRef) // ComputedRef<Element>
 </script>
 
 <template>
-	<div>
-		<OtherVueComponent ref="componentRef" />
-		<p>Hello world</p>
-	</div>
+  <div>
+    <OtherVueComponent ref="componentRef" />
+    <p>Hello world</p>
+  </div>
 </template>
 ```
 
@@ -19609,18 +19597,18 @@ Demonstrates using render functions to achieve more flexibility, which can feel 
 
 ```typescript
 const result = await dialog.open({
-	contentSlot: () =>
-		h(MyComponent, {
-			content,
-		}),
+  contentSlot: () =>
+    h(MyComponent, {
+      content,
+    }),
 })
 ```
 
 ```javascript
 'use strict'
 const result = await dialog.open({
-	title: 'Hello',
-	contentSlot: () => h(MyComponent, {content}),
+  title: 'Hello',
+  contentSlot: () => h(MyComponent, { content }),
 })
 ```
 
@@ -19700,40 +19688,40 @@ Defines a composable function `useCounterStore` using `createInjectionState` for
 
 ```javascript
 // useCounterStore.ts
-import {createInjectionState} from '@vueuse/core'
-import {computed, shallowRef} from 'vue'
+import { createInjectionState } from '@vueuse/core'
+import { computed, shallowRef } from 'vue'
 const [useProvideCounterStore, useCounterStore] = createInjectionState(
-	initialValue => {
-		// state
-		const count = shallowRef(initialValue)
-		// getters
-		const double = computed(() => count.value * 2)
-		// actions
-		function increment() {
-			count.value++
-		}
-		return {count, double, increment}
-	},
+  (initialValue) => {
+    // state
+    const count = shallowRef(initialValue)
+    // getters
+    const double = computed(() => count.value * 2)
+    // actions
+    function increment() {
+      count.value++
+    }
+    return { count, double, increment }
+  },
 )
-export {useProvideCounterStore}
+export { useProvideCounterStore }
 // If you want to hide `useCounterStore` and wrap it in default value logic or throw error logic, please don't export `useCounterStore`
-export {useCounterStore}
+export { useCounterStore }
 export function useCounterStoreWithDefaultValue() {
-	return (
-		useCounterStore() ?? {
-			count: shallowRef(0),
-			double: shallowRef(0),
-			increment: () => {},
-		}
-	)
+  return (
+    useCounterStore() ?? {
+      count: shallowRef(0),
+      double: shallowRef(0),
+      increment: () => {},
+    }
+  )
 }
 export function useCounterStoreOrThrow() {
-	const counterStore = useCounterStore()
-	if (counterStore == null)
-		throw new Error(
-			'Please call `useProvideCounterStore` on the appropriate parent component',
-		)
-	return counterStore
+  const counterStore = useCounterStore()
+  if (counterStore == null)
+    throw new Error(
+      'Please call `useProvideCounterStore` on the appropriate parent component',
+    )
+  return counterStore
 }
 ```
 
@@ -19801,19 +19789,19 @@ useMyFetch
 ```javascript
 'use strict'
 const useMyFetch = createFetch({
-	baseUrl: 'https://my-api.com',
-	options: {
-		async beforeFetch({options}) {
-			const myToken = await getMyToken()
-			options.headers.Authorization = `Bearer ${myToken}`
-			return {options}
-		},
-	},
-	fetchOptions: {
-		mode: 'cors',
-	},
+  baseUrl: 'https://my-api.com',
+  options: {
+    async beforeFetch({ options }) {
+      const myToken = await getMyToken()
+      options.headers.Authorization = `Bearer ${myToken}`
+      return { options }
+    },
+  },
+  fetchOptions: {
+    mode: 'cors',
+  },
 })
-const {isFetching, error, data} = useMyFetch('users')
+const { isFetching, error, data } = useMyFetch('users')
 ```
 
 ---
@@ -19865,7 +19853,7 @@ None
 
 ```json
 {
-	"msg": "Data received from main process"
+  "msg": "Data received from main process"
 }
 ```
 
@@ -19885,9 +19873,9 @@ None
  * @__NO_SIDE_EFFECTS__
  */
 export declare function useIpcRendererInvoke<T>(
-	ipcRenderer: IpcRenderer,
-	channel: string,
-	...args: any[]
+  ipcRenderer: IpcRenderer,
+  channel: string,
+  ...args: any[]
 ): ShallowRef<T | null>
 
 /**
@@ -19903,8 +19891,8 @@ export declare function useIpcRendererInvoke<T>(
  * @__NO_SIDE_EFFECTS__
  */
 export declare function useIpcRendererInvoke<T>(
-	channel: string,
-	...args: any[]
+  channel: string,
+  ...args: any[]
 ): ShallowRef<T | null>
 ```
 
@@ -19959,7 +19947,7 @@ None
 
 ```json
 {
-	"msg": "Hello from main process"
+  "msg": "Hello from main process"
 }
 ```
 
@@ -20061,7 +20049,7 @@ const count = useObservable(
 
 ```json
 {
-	"value": 0 // initial value until first emission
+  "value": 0 // initial value until first emission
 }
 ```
 
@@ -20204,7 +20192,7 @@ N/A
 
 ```json
 {
-	"example": "// The returned value is a function, not a direct response\n// Example of using the returned function:\n// const { data } = myFetch('/data')"
+  "example": "// The returned value is a function, not a direct response\n// Example of using the returned function:\n// const { data } = myFetch('/data')"
 }
 ```
 
@@ -20360,25 +20348,25 @@ Source: https://vueuse.org/core/useStorageAsync
 Use the onReady option to execute logic once the storage value is available.
 
 ```typescript
-import {useStorageAsync} from '@vueuse/core'
+import { useStorageAsync } from '@vueuse/core'
 
 // Use ES2024 Promise.withResolvers, you may use any Deferred object or EventBus to do same thing.
-const {promise, resolve} = Promise.withResolvers()
+const { promise, resolve } = Promise.withResolvers()
 
 const accessToken = useStorageAsync('access.token', '', SomeAsyncStorage, {
-	onReady(value) {
-		resolve(value)
-	},
+  onReady(value) {
+    resolve(value)
+  },
 })
 
 // At main.ts
 router.onReady(async () => {
-	// Let's wait accessToken loaded
-	await promise
+  // Let's wait accessToken loaded
+  await promise
 
-	// Now accessToken has loaded, we can safely mount our app
+  // Now accessToken has loaded, we can safely mount our app
 
-	app.mount('app')
+  app.mount('app')
 })
 ```
 
@@ -20391,7 +20379,7 @@ Source: https://vueuse.org/core/usemediaquery
 Tracks media query states reactively using the useMediaQuery hook.
 
 ```typescript
-import {useMediaQuery} from '@vueuse/core'
+import { useMediaQuery } from '@vueuse/core'
 
 const isLargeScreen = useMediaQuery('(min-width: 1024px)')
 const isPreferredDark = useMediaQuery('(prefers-color-scheme: dark)')
@@ -20561,7 +20549,7 @@ Returns a `Ref` that is bound to the RxJS Subject.
 
 ```json
 {
-	"example": "Ref<string | undefined>"
+  "example": "Ref<string | undefined>"
 }
 ```
 
@@ -20622,9 +20610,9 @@ Provides the TypeScript type declarations for the onStartTyping function, includ
  * @param options
  */
 export declare function onStartTyping(
-	callback: (event: KeyboardEvent) => void,
+  callback: (event: KeyboardEvent) => void,
 
-	options?: ConfigurableDocument,
+  options?: ConfigurableDocument,
 ): void
 ```
 
@@ -20654,16 +20642,16 @@ Source: https://vueuse.org/core/useColorMode
 Access system preference and stored override mode separately. Combine them to determine the effective color mode.
 
 ```typescript
-import {useColorMode} from '@vueuse/core'
+import { useColorMode } from '@vueuse/core'
 
-const {system, store} = useColorMode()
+const { system, store } = useColorMode()
 
 system.value // 'dark' | 'light'
 
 store.value // 'dark' | 'light' | 'auto'
 
 const myColorMode = computed(() =>
-	store.value === 'auto' ? system.value : store.value,
+  store.value === 'auto' ? system.value : store.value,
 )
 ```
 
@@ -20676,25 +20664,25 @@ Source: https://vueuse.org/core/useasyncqueue
 Demonstrates how to use useAsyncQueue to execute a series of asynchronous functions sequentially. The result of each task is passed to the next.
 
 ```typescript
-import {useAsyncQueue} from '@vueuse/core'
+import { useAsyncQueue } from '@vueuse/core'
 
 function p1() {
-	return new Promise(resolve => {
-		setTimeout(() => {
-			resolve(1000)
-		}, 10)
-	})
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(1000)
+    }, 10)
+  })
 }
 
 function p2(result: number) {
-	return new Promise(resolve => {
-		setTimeout(() => {
-			resolve(1000 + result)
-		}, 20)
-	})
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(1000 + result)
+    }, 20)
+  })
 }
 
-const {activeIndex, result} = useAsyncQueue([p1, p2])
+const { activeIndex, result } = useAsyncQueue([p1, p2])
 
 console.log(activeIndex.value) // current pending task index
 
@@ -20702,22 +20690,22 @@ console.log(result) // the tasks result
 ```
 
 ```javascript
-import {useAsyncQueue} from '@vueuse/core'
+import { useAsyncQueue } from '@vueuse/core'
 function p1() {
-	return new Promise(resolve => {
-		setTimeout(() => {
-			resolve(1000)
-		}, 10)
-	})
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(1000)
+    }, 10)
+  })
 }
 function p2(result) {
-	return new Promise(resolve => {
-		setTimeout(() => {
-			resolve(1000 + result)
-		}, 20)
-	})
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(1000 + result)
+    }, 20)
+  })
 }
-const {activeIndex, result} = useAsyncQueue([p1, p2])
+const { activeIndex, result } = useAsyncQueue([p1, p2])
 console.log(activeIndex.value) // current pending task index
 console.log(result) // the tasks result
 ```
@@ -20909,9 +20897,9 @@ Source: https://vueuse.org/core/usedeviceorientation
 Import and destructure the reactive orientation properties from the composable.
 
 ```ts
-import {useDeviceOrientation} from '@vueuse/core'
+import { useDeviceOrientation } from '@vueuse/core'
 
-const {isAbsolute, alpha, beta, gamma} = useDeviceOrientation()
+const { isAbsolute, alpha, beta, gamma } = useDeviceOrientation()
 ```
 
 ---
@@ -21010,8 +20998,8 @@ None
 
 ```json
 {
-	"width": 140,
-	"height": 100
+  "width": 140,
+  "height": 100
 }
 ```
 
@@ -21124,7 +21112,7 @@ const count = useObservable(
 
 ```json
 {
-	"value": "latest_emitted_value_or_initial_value"
+  "value": "latest_emitted_value_or_initial_value"
 }
 ```
 
@@ -21171,17 +21159,17 @@ Source: https://vueuse.org/shared/watchDebounced
 Demonstrates the standard implementation of watchDebounced with debounce and maxWait options.
 
 ```typescript
-import {watchDebounced} from '@vueuse/core'
+import { watchDebounced } from '@vueuse/core'
 
 watchDebounced(
-	source,
-	() => {
-		console.log('changed!')
-	},
-	{
-		debounce: 500,
-		maxWait: 1000,
-	},
+  source,
+  () => {
+    console.log('changed!')
+  },
+  {
+    debounce: 500,
+    maxWait: 1000,
+  },
 )
 ```
 
@@ -21254,11 +21242,11 @@ console.log(result) // the tasks result
 
 ```json
 {
-	"activeIndex": 1,
-	"result": [
-		{"state": "fulfilled", "data": 1000},
-		{"state": "fulfilled", "data": 2000}
-	]
+  "activeIndex": 1,
+  "result": [
+    { "state": "fulfilled", "data": 1000 },
+    { "state": "fulfilled", "data": 2000 }
+  ]
 }
 ```
 
@@ -21455,7 +21443,7 @@ Source: https://vueuse.org/math/useabs
 Demonstrates how to import and use useAbs with a reactive ref to obtain the absolute value.
 
 ```typescript
-import {useAbs} from '@vueuse/math'
+import { useAbs } from '@vueuse/math'
 
 const value = ref(-23)
 const absValue = useAbs(value) // Ref<23>
@@ -21655,14 +21643,14 @@ Source: https://vueuse.org/router/userouteparams
 Demonstrates basic usage, default values, and value transformation for route parameters.
 
 ```typescript
-import {useRouteParams} from '@vueuse/router'
+import { useRouteParams } from '@vueuse/router'
 
 const userId = useRouteParams('userId')
 
 const userId = useRouteParams('userId', '-1') // or with a default value
 
 const userId = useRouteParams('page', '1', {
-	transform: Number,
+  transform: Number,
 }) // or transforming value
 
 console.log(userId.value) // route.params.userId
@@ -21721,7 +21709,7 @@ None (for the basic `useFetch` signature)
 
 ```json
 {
-	"example": "// Example success response structure depends on the API\n{\"id\": 1, \"title\": \"Example Post\" }"
+  "example": "// Example success response structure depends on the API\n{\"id\": 1, \"title\": \"Example Post\" }"
 }
 ```
 
@@ -21781,8 +21769,8 @@ Returns reactive references for each prop that can be used with v-model.
 
 ```json
 {
-	"foo": "",
-	"bar": 0
+  "foo": "",
+  "bar": 0
 }
 ```
 

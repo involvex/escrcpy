@@ -8,8 +8,8 @@ import './vars.css'
 
 /** @type {import('vitepress').Theme} */
 export default {
-	Layout,
-	enhanceApp({app, router, siteData}) {
-		// ...
-	},
+  Layout,
+  enhanceApp({ app, router, siteData }) {
+    // ...
+  },
 }

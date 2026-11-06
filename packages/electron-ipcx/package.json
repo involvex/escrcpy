@@ -1,38 +1,38 @@
 {
-	"name": "@escrcpy/electron-ipcx",
-	"version": "2.11.1",
-	"private": false,
-	"description": "A more intuitive electron ipc system with function proxy support",
-	"homepage": "https://github.com/viarotel-org/escrcpy",
-	"author": "viarotel",
-	"sideEffects": false,
-	"type": "module",
-	"exports": {
-		"./main": "./dist/main/index.mjs",
-		"./renderer": "./dist/renderer/index.mjs",
-		"./package.json": "./package.json"
-	},
-	"types": "./dist/main/index.d.ts",
-	"files": [
-		"README.md",
-		"dist"
-	],
-	"scripts": {
-		"build": "tsdown",
-		"dev": "tsdown --watch",
-		"prepare": "tsdown",
-		"prepublishOnly": "tsdown",
-		"test": "vitest run",
-		"typecheck": "tsc"
-	},
-	"dependencies": {
-		"es-toolkit": "^1.49.0",
-		"nanoid": "^5.1.16"
-	},
-	"devDependencies": {
-		"electron": "^43.0.0",
-		"tsdown": "^0.22.3",
-		"typescript": "^6.0.3",
-		"vitest": "^3.2.4"
-	}
+  "name": "@escrcpy/electron-ipcx",
+  "type": "module",
+  "version": "2.11.1",
+  "private": false,
+  "description": "A more intuitive electron ipc system with function proxy support",
+  "author": "viarotel",
+  "homepage": "https://github.com/viarotel-org/escrcpy",
+  "sideEffects": false,
+  "exports": {
+    "./main": "./dist/main/index.mjs",
+    "./renderer": "./dist/renderer/index.mjs",
+    "./package.json": "./package.json"
+  },
+  "types": "./dist/main/index.d.ts",
+  "files": [
+    "README.md",
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown --watch",
+    "prepare": "tsdown",
+    "prepublishOnly": "tsdown",
+    "test": "vitest run",
+    "typecheck": "tsc"
+  },
+  "dependencies": {
+    "es-toolkit": "^1.49.0",
+    "nanoid": "^5.1.16"
+  },
+  "devDependencies": {
+    "electron": "^43.0.0",
+    "tsdown": "^0.22.3",
+    "typescript": "^6.0.3",
+    "vitest": "^3.2.4"
+  }
 }

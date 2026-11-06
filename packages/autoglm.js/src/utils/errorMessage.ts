@@ -1,6 +1,6 @@
 export function getErrorMessage(
-	error: any,
-	defaultMessage: string = 'Unknown error',
+  error: any,
+  defaultMessage: string = 'Unknown error',
 ) {
-	return error instanceof Error ? error.message : defaultMessage
+  return error instanceof Error ? error.message : defaultMessage
 }

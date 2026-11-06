@@ -1,46 +1,46 @@
 {
-	"name": "@escrcpy/electron-setup",
-	"version": "2.11.1",
-	"private": true,
-	"description": "A modular setup and runtime framework for Electron with plugins, window management, and contextual dependency injection.",
-	"homepage": "https://github.com/viarotel-org/escrcpy",
-	"author": "viarotel",
-	"sideEffects": false,
-	"type": "module",
-	"exports": {
-		"./main": "./dist/main/index.mjs",
-		"./plugins": "./dist/plugins/index.mjs",
-		"./package.json": "./package.json"
-	},
-	"types": "./dist/main/index.d.ts",
-	"typesVersions": {
-		"*": {
-			"plugins": [
-				"./dist/plugins/index.d.mts"
-			]
-		}
-	},
-	"files": [
-		"README.md",
-		"dist"
-	],
-	"scripts": {
-		"build": "tsdown",
-		"dev": "tsdown --watch",
-		"prepare": "tsdown",
-		"prepublishOnly": "tsdown",
-		"typecheck": "tsc"
-	},
-	"dependencies": {
-		"@escrcpy/electron-ipcx": "workspace:*",
-		"electron-store": "^11.0.2",
-		"es-toolkit": "^1.49.0",
-		"nanoid": "^5.1.16",
-		"unctx": "^2.5.0"
-	},
-	"devDependencies": {
-		"electron": "^43.0.0",
-		"tsdown": "^0.22.3",
-		"typescript": "^6.0.3"
-	}
+  "name": "@escrcpy/electron-setup",
+  "type": "module",
+  "version": "2.11.1",
+  "private": true,
+  "description": "A modular setup and runtime framework for Electron with plugins, window management, and contextual dependency injection.",
+  "author": "viarotel",
+  "homepage": "https://github.com/viarotel-org/escrcpy",
+  "sideEffects": false,
+  "exports": {
+    "./main": "./dist/main/index.mjs",
+    "./plugins": "./dist/plugins/index.mjs",
+    "./package.json": "./package.json"
+  },
+  "types": "./dist/main/index.d.ts",
+  "typesVersions": {
+    "*": {
+      "plugins": [
+        "./dist/plugins/index.d.mts"
+      ]
+    }
+  },
+  "files": [
+    "README.md",
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown --watch",
+    "prepare": "tsdown",
+    "prepublishOnly": "tsdown",
+    "typecheck": "tsc"
+  },
+  "dependencies": {
+    "@escrcpy/electron-ipcx": "workspace:*",
+    "electron-store": "^11.0.2",
+    "es-toolkit": "^1.49.0",
+    "nanoid": "^5.1.16",
+    "unctx": "^2.5.0"
+  },
+  "devDependencies": {
+    "electron": "^43.0.0",
+    "tsdown": "^0.22.3",
+    "typescript": "^6.0.3"
+  }
 }
