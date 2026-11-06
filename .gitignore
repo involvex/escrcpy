@@ -36,3 +36,4 @@ dist-release
 dist-release-new/
 dist-release-*
 dist-docs
+.cline
