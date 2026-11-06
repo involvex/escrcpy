@@ -62,11 +62,11 @@
     "vitepress-sidebar": "1.36.1"
   },
   "overrides": {
-    "electron": "43.0.0",
+    "electron": "43.8.1",
     "sharp": "^0.35.3",
     "tsdown": "0.22.3",
     "typescript": "6.0.3",
-    "vite": "5.4.21"
+    "vite": "6.4.4"
   },
   "sponsor": {
     "url": "https://github.com/sponsors/involvex"
