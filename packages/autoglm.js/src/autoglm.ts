@@ -36,6 +36,10 @@ export class AutoGLM {
     return this.phoneAgent.run(task)
   }
 
+  public getUsage() {
+    return this.phoneAgent.getUsage()
+  }
+
   public on(
     type: '*',
     handler: (type: EventType, data: EventData) => void,

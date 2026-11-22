@@ -53,6 +53,15 @@ const copilotTaskSchema = {
   durationMs: {
     type: FieldTypes.NUMBER,
   },
+  promptTokens: {
+    type: FieldTypes.NUMBER,
+  },
+  completionTokens: {
+    type: FieldTypes.NUMBER,
+  },
+  totalTokens: {
+    type: FieldTypes.NUMBER,
+  },
 }
 
 class CopilotTaskStore extends BaseStore {
@@ -71,6 +80,9 @@ class CopilotTaskStore extends BaseStore {
       total: 0,
       succeeded: 0,
       failed: 0,
+      promptTokens: 0,
+      completionTokens: 0,
+      totalTokens: 0,
       ...data,
       status: data.status || CopilotTaskStatus.RUNNING,
       createdAt: data.createdAt || Date.now(),
@@ -88,6 +100,9 @@ class CopilotTaskStore extends BaseStore {
       succeeded: patch.succeeded ?? existing.succeeded ?? 0,
       failed: patch.failed ?? existing.failed ?? 0,
       ...(patch.total !== undefined ? { total: patch.total } : {}),
+      promptTokens: patch.promptTokens ?? existing.promptTokens ?? 0,
+      completionTokens: patch.completionTokens ?? existing.completionTokens ?? 0,
+      totalTokens: patch.totalTokens ?? existing.totalTokens ?? 0,
       error: patch.error || '',
       finishedAt,
       durationMs,

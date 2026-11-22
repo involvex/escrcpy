@@ -12,8 +12,8 @@ function rejected(message) {
 describe('summarizeCopilotBatch', () => {
   it('reports completed when every device succeeded', () => {
     const summary = summarizeCopilotBatch([
-      fulfilled({ result: 'success' }),
-      fulfilled({ result: 'success' }),
+      fulfilled({ result: 'success', usage: { promptTokens: 10, completionTokens: 5, totalTokens: 15 } }),
+      fulfilled({ result: 'success', usage: { promptTokens: 20, completionTokens: 8, totalTokens: 28 } }),
     ])
 
     expect(summary).toMatchObject({
@@ -21,6 +21,9 @@ describe('summarizeCopilotBatch', () => {
       succeeded: 2,
       failed: 0,
       status: 'completed',
+      promptTokens: 30,
+      completionTokens: 13,
+      totalTokens: 43,
     })
   })
 

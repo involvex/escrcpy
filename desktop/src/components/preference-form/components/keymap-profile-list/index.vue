@@ -71,12 +71,23 @@
     <el-button type="primary" @click="addProfile">
       + {{ $t('keymap.editor.profile.new') }}
     </el-button>
+
+    <BindingFormDialog
+      :visible="bindingFormVisible"
+      :binding="editingBinding"
+      :device-width="1080"
+      :device-height="1920"
+      screenshot-url=""
+      @save="saveBinding"
+      @update:visible="closeBindingForm"
+    />
   </div>
 </template>
 
 <script setup>
 import { computed, ref, watch } from 'vue'
 import { usePreferenceStore } from '$/store/preference/index.js'
+import BindingFormDialog from '$/views/device/components/keymap-editor/binding-form.vue'
 
 const props = defineProps({
   modelValue: {
@@ -110,14 +121,17 @@ const activeProfile = computed({
   get() {
     return props.preferenceData?.keymap?.activeProfile || ''
   },
-  set(value) {
-    // This is handled by the parent preference form
+  set() {
+    // Managed by the parent preference form's activeProfile field.
   },
 })
 
 const expandedProfiles = ref([])
+const bindingFormVisible = ref(false)
+const editingBinding = ref(null)
+const editingProfileId = ref('')
+const editingBindingIndex = ref(-1)
 
-// Update activeProfile options in the preference model when profiles change
 watch(
   () => profiles.value,
   (newProfiles) => {
@@ -149,8 +163,6 @@ function remove(index) {
 }
 
 function setActive(profileId) {
-  // The activeProfile is managed by the preference form's activeProfile field
-  // We just emit a change to trigger the parent to update
   emit('update:model-value', profiles.value)
 }
 
@@ -158,24 +170,23 @@ function duplicate(profile) {
   const newProfile = {
     ...profile,
     id: `profile_${Date.now()}_${Math.random().toString(36).slice(2)}`,
-    name: `${profile.name} (副本)`,
+    name: `${profile.name} (${window.t('keymap.editor.profile.copySuffix')})`,
     bindings: profile.bindings.map(b => ({ ...b, id: `binding_${Date.now()}_${Math.random().toString(36).slice(2)}` })),
   }
   profiles.value = [...profiles.value, newProfile]
 }
 
 function addBinding(profileId) {
-  const profile = profiles.value.find(p => p.id === profileId)
-  if (!profile)
-    return
-  const newBinding = {
+  editingProfileId.value = profileId
+  editingBindingIndex.value = -1
+  editingBinding.value = {
     id: `binding_${Date.now()}_${Math.random().toString(36).slice(2)}`,
     action: 'keyevent',
     params: {},
     enabled: true,
+    key: '',
   }
-  profile.bindings = [...(profile.bindings || []), newBinding]
-  emitChange()
+  bindingFormVisible.value = true
 }
 
 function removeBinding(profileId, bIndex) {
@@ -187,8 +198,38 @@ function removeBinding(profileId, bIndex) {
 }
 
 function editBinding(profileId, bIndex) {
-  // TODO: Open binding editor dialog
-  console.log('Edit binding', profileId, bIndex)
+  const profile = profiles.value.find(p => p.id === profileId)
+  if (!profile?.bindings?.[bIndex])
+    return
+
+  editingProfileId.value = profileId
+  editingBindingIndex.value = bIndex
+  editingBinding.value = { ...profile.bindings[bIndex] }
+  bindingFormVisible.value = true
+}
+
+function saveBinding(binding) {
+  const profile = profiles.value.find(p => p.id === editingProfileId.value)
+  if (!profile)
+    return
+
+  const nextBindings = [...(profile.bindings || [])]
+  if (editingBindingIndex.value >= 0) {
+    nextBindings[editingBindingIndex.value] = binding
+  }
+  else {
+    nextBindings.push(binding)
+  }
+  profile.bindings = nextBindings
+  emitChange()
+  closeBindingForm()
+}
+
+function closeBindingForm() {
+  bindingFormVisible.value = false
+  editingBinding.value = null
+  editingProfileId.value = ''
+  editingBindingIndex.value = -1
 }
 
 function formatBindingParams(binding) {
@@ -211,9 +252,7 @@ function formatBindingParams(binding) {
   }
 }
 
-defineExpose({
-  // Expose methods if needed
-})
+defineExpose({})
 </script>
 
 <style scoped></style>

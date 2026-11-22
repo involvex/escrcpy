@@ -1,5 +1,6 @@
 import { allSettledWrapper } from '$/utils/index.js'
 import { adaptiveMessage } from '$/utils/modal/index.js'
+import { notifyTaskFinished } from '$/utils/task-notification/index.js'
 
 export function useScreenshotAction({ floating } = {}) {
   const deviceStore = useDeviceStore()
@@ -88,6 +89,7 @@ export function useScreenshotAction({ floating } = {}) {
     closeMessage()
 
     ElMessage.success(window.t('common.success.batch'))
+    notifyTaskFinished(window.t('common.success.batch'))
 
     loading.value = false
   }

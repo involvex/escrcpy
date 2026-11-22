@@ -1,7 +1,7 @@
 import type { AgentContext } from '@/context'
 import { EventType } from '@/context'
 import OpenAI from 'openai'
-import type { ModelResponse } from './types'
+import type { ModelResponse, TokenUsage } from './types'
 /**
  * Helper class for building conversation messages.
  */
@@ -127,6 +127,7 @@ export class ModelClient {
         top_p: this.config.topP,
         frequency_penalty: this.config.frequencyPenalty,
         stream: true,
+        stream_options: { include_usage: true },
       },
       { signal: options?.signal },
     )
@@ -135,8 +136,17 @@ export class ModelClient {
     let buffer = ''
     const actionMarkers = ['finish(message=', 'do(action=']
     let inActionPhase = false
+    let usage: TokenUsage | undefined
 
     for await (const chunk of stream) {
+      if (chunk.usage) {
+        usage = {
+          promptTokens: chunk.usage.prompt_tokens ?? 0,
+          completionTokens: chunk.usage.completion_tokens ?? 0,
+          totalTokens: chunk.usage.total_tokens ?? 0,
+        }
+      }
+
       if (chunk.choices.length === 0) {
         continue
       }
@@ -188,7 +198,7 @@ export class ModelClient {
 
     const [thinking, action] = this._parseResponse(rawContent)
     this.ctx.emit(EventType.THINKING, thinking)
-    return { thinking, action, rawContent }
+    return { thinking, action, rawContent, usage }
   }
 
   /**

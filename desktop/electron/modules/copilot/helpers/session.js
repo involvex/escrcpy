@@ -417,8 +417,10 @@ export class SessionManager {
   }) {
     let sessionSnapshot = null
     let sessionEmitter = null
+    let sessionInstance = null
     let exitCode = 0
     let errorInfo = null
+    let usage = null
 
     try {
       // Execute single task
@@ -430,6 +432,7 @@ export class SessionManager {
       )
 
       // Create session snapshot (hides internal details)
+      sessionInstance = executeResult.session
       sessionSnapshot = this._createSessionSnapshot(executeResult.session)
       sessionEmitter = executeResult.session.emitter
 
@@ -439,16 +442,22 @@ export class SessionManager {
 
       // Wait for task completion
       await executeResult.promise
+      usage = typeof sessionInstance?.agent?.getUsage === 'function'
+        ? sessionInstance.agent.getUsage()
+        : null
     }
     catch (err) {
       exitCode = 1
       // Normalize error information
       errorInfo = this._normalizeTaskError(err)
+      if (!usage && typeof sessionInstance?.agent?.getUsage === 'function') {
+        usage = sessionInstance.agent.getUsage()
+      }
     }
     finally {
       // Trigger exit event
       if (sessionEmitter) {
-        sessionEmitter.emit('exit', { session: sessionSnapshot, exitCode })
+        sessionEmitter.emit('exit', { session: sessionSnapshot, exitCode, usage })
       }
       // Wait for event handling to complete
       await sleep(TIME_CONSTANTS.POST_TASK_WAIT_TIME)
@@ -456,8 +465,8 @@ export class SessionManager {
 
     // Return normalized result
     return exitCode === 0
-      ? { status: 'fulfilled', session: sessionSnapshot }
-      : { status: 'rejected', session: sessionSnapshot, error: errorInfo }
+      ? { status: 'fulfilled', session: sessionSnapshot, usage }
+      : { status: 'rejected', session: sessionSnapshot, error: errorInfo, usage }
   }
 
   /**
@@ -706,8 +715,8 @@ export class SessionManager {
 
     // Bind exit callback
     if (typeof callbacks.onExit === 'function') {
-      const exitHandler = ({ exitCode, signal }) => {
-        callbacks.onExit({ exitCode, signal, session: sessionSnapshot })
+      const exitHandler = ({ exitCode, signal, usage }) => {
+        callbacks.onExit({ exitCode, signal, usage, session: sessionSnapshot })
       }
       session.emitter.on('exit', exitHandler)
       eventHandlerTeardowns.push(() => session.emitter.off('exit', exitHandler))

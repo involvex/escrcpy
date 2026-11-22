@@ -37,6 +37,7 @@ import {
   launchService,
   lifecycleService,
   listenersService,
+  notificationsService,
   shortcutsService,
   trayService,
   updaterService,
@@ -80,6 +81,7 @@ mainApp.use(edgerService)
 mainApp.use(errorReportingService)
 mainApp.use(listenersService)
 mainApp.use(handlesService)
+mainApp.use(notificationsService)
 mainApp.use(trayService)
 mainApp.use(contextMenuService)
 mainApp.use(updaterService)

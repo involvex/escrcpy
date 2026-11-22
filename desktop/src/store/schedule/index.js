@@ -89,6 +89,10 @@ export const useScheduleStore = defineStore('app-schedule', () => {
       label: 'automation.name.execute',
       value: 'automation',
     },
+    {
+      label: 'device.control.copilot',
+      value: 'copilot',
+    },
   ])
 
   const list = shallowRef([])
@@ -351,11 +355,19 @@ export const useScheduleStore = defineStore('app-schedule', () => {
 
   async function complete(schedule) {
     await stopScheduleTimer(schedule.id)
-    return scheduleDataStore.updateStatus(schedule.id, ScheduleStatus.COMPLETED, {
+    const result = await scheduleDataStore.updateStatus(schedule.id, ScheduleStatus.COMPLETED, {
       enabled: false,
       completedAt: Date.now(),
       lastError: void 0,
     })
+    try {
+      const { notifyTaskFinished } = await import('$/utils/task-notification/index.js')
+      notifyTaskFinished(window.t('device.schedule.completed', { title: schedule?.title || schedule?.scheduleType || '' }))
+    }
+    catch {
+      // Prefer schedule status update even if notifications fail.
+    }
+    return result
   }
 
   async function stop(schedule) {

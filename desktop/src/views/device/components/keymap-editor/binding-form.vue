@@ -217,7 +217,7 @@
 import { computed, ref, watch } from 'vue'
 import { getKeyeventLabel, KEYEVENT_LIST } from '$renderer/utils/keymap/index.js'
 
-defineProps({
+const props = defineProps({
   visible: { type: Boolean, default: false },
   binding: { type: Object, default: null },
   deviceWidth: { type: Number, default: 0 },

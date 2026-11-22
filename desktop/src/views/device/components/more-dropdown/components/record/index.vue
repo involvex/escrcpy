@@ -5,6 +5,7 @@
 <script>
 import { sleep } from '$/utils'
 import { openFloatControl } from '$/utils/device/index.js'
+import { notifyTaskFinished } from '$/utils/task-notification/index.js'
 
 const recordModel = {
   default: {
@@ -133,9 +134,9 @@ export default {
       return value
     },
     async handleSuccess(savePath) {
-      return this.$message.success(
-        `${this.$t('device.record.success.title')}`,
-      )
+      const message = `${this.$t('device.record.success.title')}`
+      notifyTaskFinished(message)
+      return this.$message.success(message)
     },
   },
 }

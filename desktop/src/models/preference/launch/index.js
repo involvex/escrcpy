@@ -119,6 +119,8 @@ export default {
       tips: 'preferences.launch.displayImePolicy.tips',
       options: [
         { label: 'local', value: 'local', placeholder: 'preferences.launch.displayImePolicy.local.placeholder' },
+        { label: 'fallback', value: 'fallback', placeholder: 'preferences.launch.displayImePolicy.fallback.placeholder' },
+        { label: 'hide', value: 'hide', placeholder: 'preferences.launch.displayImePolicy.hide.placeholder' },
       ],
     },
     flexDisplay: {

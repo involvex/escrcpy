@@ -5,7 +5,7 @@ title: Scrcpy
 > [!IMPORTANT]
 > Escrcpy基于以下开源项目构建。相关内容仅供参考，将定期更新。
 
-# scrcpy (v3.2)
+# scrcpy (v5.0.1)
 
 <img
 	src="https://cdn.jsdelivr.net/gh/Genymobile/scrcpy@master/app/data/icon.svg"

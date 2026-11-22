@@ -47,6 +47,12 @@
         </template>
       </el-table-column>
 
+      <el-table-column :label="$t('copilot.history.tokens')" width="90" align="right">
+        <template #default="{ row }">
+          {{ formatTokens(row.totalTokens) }}
+        </template>
+      </el-table-column>
+
       <el-table-column width="70" align="right">
         <template #default="{ row }">
           <el-button
@@ -113,6 +119,13 @@ function formatDuration(durationMs) {
   return durationMs >= 1000
     ? `${Math.round(durationMs / 1000)}s`
     : `${durationMs}ms`
+}
+
+function formatTokens(totalTokens) {
+  if (!totalTokens && totalTokens !== 0) {
+    return '-'
+  }
+  return String(totalTokens)
 }
 
 function tagType(status) {

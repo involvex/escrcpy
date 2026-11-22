@@ -5,7 +5,7 @@ Escrcpy is a Bun + Turborepo monorepo for an Electron GUI around Android mirrori
 ## Architecture
 
 - [desktop/](../desktop/) is the Electron app. The main process is plugin-based via `@escrcpy/electron-setup`; the entry point is [desktop/electron/main.js](../desktop/electron/main.js).
-- Renderer windows are separate Vite entries in [desktop/vite.config.js](../desktop/vite.config.js): `main`, `control`, `explorer`, `copilot`, `terminal`, `automation`, and `mirror`.
+- Renderer windows are separate Vite entries in [desktop/vite.config.js](../desktop/vite.config.js): `main`, `control`, `explorer`, `copilot`, `terminal`, `logcat`, and `apps`.
 - Window modules live under [desktop/electron/modules/](../desktop/electron/modules/). Register main-process features as modules/services instead of adding logic to the preload script.
 - [packages/electron-setup/](../packages/electron-setup/) provides app/plugin/window management primitives. [packages/electron-ipcx/README.md](../packages/electron-ipcx/README.md) documents IPC with renderer callbacks.
 

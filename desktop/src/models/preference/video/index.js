@@ -150,6 +150,21 @@ export default {
       placeholder: 'preferences.video.videoBuffer.placeholder',
       append: 'ms',
     },
+    hwdec: {
+      label: 'preferences.video.hwdec.name',
+      field: '--hwdec',
+      type: 'Select',
+      value: undefined,
+      placeholder: 'preferences.video.hwdec.placeholder',
+      tips: 'preferences.video.hwdec.tips',
+      options: [
+        { label: 'preferences.video.hwdec.auto', value: 'auto' },
+        { label: 'preferences.video.hwdec.disabled', value: 'disabled' },
+        { label: 'preferences.video.hwdec.d3d11va', value: 'd3d11va' },
+        { label: 'preferences.video.hwdec.vaapi', value: 'vaapi' },
+        { label: 'preferences.video.hwdec.videotoolbox', value: 'videotoolbox' },
+      ],
+    },
     v4l2Buffer: {
       label: 'preferences.video.v4l2Buffer.name',
       field: '--v4l2-buffer',

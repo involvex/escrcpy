@@ -30,7 +30,7 @@
     "nanoid": "^5.1.16"
   },
   "devDependencies": {
-    "electron": "^43.0.0",
+    "electron": "^43.8.12",
     "tsdown": "^0.22.3",
     "typescript": "^6.0.3",
     "vitest": "^4.1.11"

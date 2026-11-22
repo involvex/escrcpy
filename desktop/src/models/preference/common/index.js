@@ -208,6 +208,14 @@ export default {
       value: false,
       placeholder: 'preferences.common.minimizeToTray.placeholder',
     },
+    taskNotifications: {
+      label: 'preferences.common.taskNotifications.name',
+      field: 'taskNotifications',
+      type: 'Switch',
+      value: true,
+      placeholder: 'preferences.common.taskNotifications.placeholder',
+      tips: 'preferences.common.taskNotifications.tips',
+    },
     globalHotkey: {
       label: 'preferences.common.globalHotkey.name',
       field: 'globalHotkey',

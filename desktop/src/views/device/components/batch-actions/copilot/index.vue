@@ -14,6 +14,7 @@ import ChatInputDialog from './components/chat-input-dialog.vue'
 import copilotClient from '$copilot/services/index.js'
 import { copilotTaskStore, useChatMessages } from '$/database/index.js'
 import { summarizeCopilotBatch } from '$/utils/copilot-task/index.js'
+import { notifyTaskFinished } from '$/utils/task-notification/index.js'
 import pLimit from 'p-limit'
 
 defineOptions({ inheritAttrs: false })
@@ -136,7 +137,7 @@ async function executeWithRetryForDevice(device, command, taskConfig) {
       createTimeoutPromise(EXECUTION_TIMEOUT),
     ])
 
-    await saveAssistantMessage(deviceId, result, Date.now())
+    await saveAssistantMessage(deviceId, result.output, Date.now())
 
     const record = {
       timestamp,
@@ -144,7 +145,8 @@ async function executeWithRetryForDevice(device, command, taskConfig) {
       result: 'success',
       errorMessage: '',
       taskConfig,
-      output: result,
+      output: result.output,
+      usage: result.usage || null,
     }
 
     return record
@@ -197,6 +199,7 @@ async function executeCopilotCommandForDevice(device, command) {
   const deviceId = device.id
 
   let output = ''
+  let usage = null
 
   const config = copilotStore.config || {}
 
@@ -212,9 +215,14 @@ async function executeCopilotCommandForDevice(device, command) {
     onData: (data) => {
       output += data
     },
+    onExit: (result) => {
+      if (result?.usage) {
+        usage = result.usage
+      }
+    },
   })
 
-  return output
+  return { output, usage }
 }
 
 async function executeBatchCopilotTask(devices, options = {}) {
@@ -259,6 +267,9 @@ async function executeBatchCopilotTask(devices, options = {}) {
       succeeded: summary.succeeded,
       failed: summary.failed,
       error: summary.firstError,
+      promptTokens: summary.promptTokens,
+      completionTokens: summary.completionTokens,
+      totalTokens: summary.totalTokens,
       finishedAt: Date.now(),
     })
 
@@ -267,6 +278,7 @@ async function executeBatchCopilotTask(devices, options = {}) {
     }
     else {
       ElMessage.success(window.t('copilot.batch.success'))
+      notifyTaskFinished(window.t('copilot.batch.success'))
     }
   }
   catch (error) {

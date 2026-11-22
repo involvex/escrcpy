@@ -236,6 +236,22 @@ Also see \fB\-\-keyboard\fR and R\fB\-\-mouse\fR.
 Print this help.
 
 .TP
+.BI "\-\-hwdec " mode
+Configure hardware video decoding on the computer.
+
+Possible values are "auto" (the first available hardware decoder, software decoding otherwise), "disabled" (always use software decoding), "vaapi" (Linux only), "d3d11va" (Windows only) and "videotoolbox" (macOS only).
+
+Default is "auto".
+
+.TP
+.B \-\-ignore\-video\-encoder\-constraints
+Do not consider video encoder capabilities.
+
+This is useful if the reported capabilities are incorrect.
+
+It may help to force a value for \fB\-\-min\-size\-alignment\fR.
+
+.TP
 .B \-K
 Same as \fB\-\-keyboard=uhid\fR, or \fB\-\-keyboard=aoa\fR if \fB\-\-otg\fR is set.
 
@@ -419,6 +435,10 @@ Do not forward mouse hover (mouse motion without any clicks) events.
 .TP
 .B \-\-no\-power\-on
 Do not power on the device on start.
+
+.TP
+.B \-\-no\-terminal\-title
+Disable terminal title updates.
 
 .TP
 .B \-\-no\-vd\-destroy\-content
@@ -652,7 +672,7 @@ Default is 0 (no buffering).
 
 .TP
 .BI "\-\-video\-codec " name
-Select a video codec (h264, h265 or av1).
+Select a video codec (h264, h265, av1, vp8 or vp9).
 
 Default is h264.
 

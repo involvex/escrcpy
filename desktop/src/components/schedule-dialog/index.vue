@@ -74,6 +74,19 @@
                 }"
               />
             </el-form-item>
+
+            <el-form-item
+              v-if="model.scheduleType === 'copilot'"
+              :label="$t('device.schedule.extra.copilot')"
+              prop="extra"
+            >
+              <el-input
+                v-model="model.extra"
+                type="textarea"
+                :rows="3"
+                :placeholder="$t('device.schedule.extra.copilot.placeholder')"
+              />
+            </el-form-item>
           </el-card>
 
           <el-card
@@ -469,7 +482,7 @@ const rules = computed(() => {
     ]
   }
 
-  if (['install'].includes(model.value.scheduleType)) {
+  if (['install', 'copilot'].includes(model.value.scheduleType)) {
     baseRules.extra = [
       { required: true, message: window.t('common.required'), trigger: 'blur' },
     ]

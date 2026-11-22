@@ -5,7 +5,7 @@ title: Scrcpy
 > [!IMPORTANT]
 > Escrcpy is built on the following open-source projects. The relevant content is provided as is for user reference and will be updated periodically.
 
-# scrcpy (v3.2)
+# scrcpy (v5.0.1)
 
 <img
 	src="https://cdn.jsdelivr.net/gh/Genymobile/scrcpy@master/app/data/icon.svg"

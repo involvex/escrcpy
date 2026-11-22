@@ -110,7 +110,7 @@ class CopilotClient {
 
     const wrappedOnExit = (result) => {
       eventStreamManager.remove(result?.session?.id)
-      onExit(result)
+      onExit?.(result)
     }
 
     const customApps = await this.getCustomApps(deviceId)

@@ -4,9 +4,14 @@ import { getCurrentApp, getScreenshot } from '@/adb'
 import type { AgentContext } from '@/context'
 import { EventType } from '@/context'
 import { MessageBuilder, ModelClient } from '@/model/client'
+import type { TokenUsage } from '@/model/types'
 import { getFinishMessage } from '@/utils/finishMessage'
 import type { ChatCompletionMessageParam } from 'openai/resources/chat/completions'
 import type { StepResult } from './types'
+
+function emptyUsage(): TokenUsage {
+  return { promptTokens: 0, completionTokens: 0, totalTokens: 0 }
+}
 
 export class PhoneAgent {
   private ctx: AgentContext
@@ -17,6 +22,7 @@ export class PhoneAgent {
   private abortController: AbortController | null = null
   private externalSignal?: AbortSignal
   private isAborted: boolean = false
+  private usage: TokenUsage = emptyUsage()
 
   constructor(
     context: AgentContext,
@@ -117,6 +123,23 @@ export class PhoneAgent {
   reset(): void {
     this.context = []
     this.stepCount = 0
+    this.usage = emptyUsage()
+  }
+
+  /**
+   * Aggregated token usage for the current/last run.
+   */
+  getUsage(): TokenUsage {
+    return { ...this.usage }
+  }
+
+  private addUsage(usage?: TokenUsage) {
+    if (!usage) {
+      return
+    }
+    this.usage.promptTokens += usage.promptTokens || 0
+    this.usage.completionTokens += usage.completionTokens || 0
+    this.usage.totalTokens += usage.totalTokens || 0
   }
 
   /**
@@ -209,6 +232,7 @@ export class PhoneAgent {
       const response = await this.modelClient.request(this.context, {
         signal: combinedSignal,
       })
+      this.addUsage(response.usage)
 
       // Parse action from response
       let action
