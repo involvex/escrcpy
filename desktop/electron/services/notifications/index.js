@@ -1,4 +1,4 @@
-import { Notification, ipcMain } from 'electron'
+import { ipcMain, Notification } from 'electron'
 import electronStore from '$electron/helpers/store/index.js'
 import { t } from '$electron/helpers/i18n/index.js'
 
