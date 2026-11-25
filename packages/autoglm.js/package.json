@@ -39,19 +39,19 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@clack/prompts": "^1.8.1",
-    "acorn": "^8.17.0",
+    "@clack/prompts": "^1.9.0",
+    "acorn": "^8.19.0",
     "acorn-loose": "^8.5.2",
     "consola": "^3.4.2",
-    "dayjs": "^1.11.21",
-    "fs-extra": "^11.4.0",
-    "graceful-fs": "^4.2.11",
+    "dayjs": "^1.11.23",
+    "fs-extra": "^11.4.1",
+    "graceful-fs": "^4.2.12",
     "kolorist": "^1.8.0",
     "mitt": "^3.0.1",
-    "openai": "^7.53.0",
+    "openai": "^7.64.0",
     "sharp": "^0.35.5",
-    "std-env": "^4.1.0",
-    "tinyexec": "^1.2.4",
+    "std-env": "^4.3.0",
+    "tinyexec": "^1.4.0",
     "unzipper": "^0.12.5"
   },
   "optionalDependencies": {
@@ -61,7 +61,7 @@
     "@autoglm.js/shared": "workspace:*",
     "@types/fs-extra": "^11.0.4",
     "@types/minimist": "^1.2.5",
-    "tsdown": "^0.22.3",
+    "tsdown": "^0.22.14",
     "vitest": "^4.1.11"
   }
 }

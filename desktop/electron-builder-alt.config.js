@@ -3,12 +3,14 @@ export default {
   productName: 'Escrcpy',
   appId: 'org.viarotel.escrcpy',
   directories: {
-    output: 'dist-release-new',
+    output: 'dist-release',
     buildResources: 'electron/resources/build',
   },
   files: [
     'dist',
     'dist-electron',
+    '!dist-release{,/**/*}',
+    '!dist-release-*/**',
     '!**/node_modules/@img/sharp-*/**/*',
     '**/node_modules/@img/sharp-*${platform}-${arch}/**/*',
     '!**/node_modules/@lydell/node-pty-*/**/*',
