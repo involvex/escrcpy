@@ -7,6 +7,7 @@
       "outputs": ["dist/**"]
     },
     "build:electron": {
+      "cache": false,
       "dependsOn": ["build"],
       "outputs": ["dist-release/**"]
     },

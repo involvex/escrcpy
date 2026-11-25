@@ -29,12 +29,13 @@ jobs:
       - name: Install dependencies
         run: bun install --frozen-lockfile
 
-      - name: Build porteable
+      - name: Build portable
         run: bun run build
 
       - name: Upload Windows artifact
         uses: actions/upload-artifact@v4
         with:
+          name: windows-portable
           path: desktop/dist-release/Escrcpy-*-win-portable-x64.exe
           if-no-files-found: error
 
@@ -66,7 +67,7 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.tag.outputs.tag }}
-          name: Riftborn ${{ steps.tag.outputs.tag }}
+          name: Escrcpy ${{ steps.tag.outputs.tag }}
           generate_release_notes: true
           make_latest: true
           files: |

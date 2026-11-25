@@ -2,7 +2,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 
 const projectDir = process.cwd()
-const distDir = process.argv[2] || 'dist-release-new'
+const distDir = process.argv[2] || 'dist-release'
 const appDir = path.join(projectDir, distDir, 'win-unpacked', 'resources', 'app')
 const packagesDir = path.join(projectDir, '..', 'packages')
 

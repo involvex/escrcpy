@@ -47,6 +47,7 @@ For changes, run the smallest meaningful verification first, then `bun run lint`
 
 - In `desktop/electron/middleware/scrcpy`, never resolve a ready Promise with the scrcpy process object directly. It is thenable-like and Promise resolution can adopt it, causing `resolveOnReady` to hang; resolve with plain data or `undefined`.
 - Turbo disables caching for Electron packaging in [turbo.json](../turbo.json). Do not assume packaging output is incremental or cache-backed.
+- Windows packaging writes both `win-unpacked` and the portable exe under `desktop/dist-release` (dir build, autoglm patch, then portable `--prepackaged`).
 - Native dependencies such as `sharp`, Electron, Vite, tsdown, and TypeScript are pinned/overridden in the root [package.json](../package.json) `overrides`; change them deliberately.
 - The desktop app is mostly JavaScript/JSDoc, while workspace packages may be TypeScript. Do not add broad strict TS assumptions to the desktop renderer/main app.
 - Use kebab-case for new directories and files.

@@ -9,6 +9,8 @@ export default {
   files: [
     'dist',
     'dist-electron',
+    '!dist-release{,/**/*}',
+    '!dist-release-*/**',
     '!**/node_modules/@img/sharp-*/**/*',
     '**/node_modules/@img/sharp-*${platform}-${arch}/**/*',
     '!**/node_modules/@lydell/node-pty-*/**/*',

@@ -26,12 +26,12 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "es-toolkit": "^1.49.0",
+    "es-toolkit": "^1.53.2",
     "nanoid": "^5.1.16"
   },
   "devDependencies": {
-    "electron": "^43.8.12",
-    "tsdown": "^0.22.3",
+    "electron": "^43.8.13",
+    "tsdown": "^0.22.14",
     "typescript": "^6.0.3",
     "vitest": "^4.1.11"
   }
