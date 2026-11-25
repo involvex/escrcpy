@@ -23,7 +23,7 @@
     "prepare": "tsdown",
     "prepublishOnly": "tsdown",
     "test": "vitest run",
-    "typecheck": "tsc"
+    "typecheck": "bun check --no-script"
   },
   "dependencies": {
     "es-toolkit": "^1.53.2",

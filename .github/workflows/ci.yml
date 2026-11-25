@@ -18,13 +18,19 @@ jobs:
 
       - uses: oven-sh/setup-bun@v2
         with:
-          bun-version: 1.3.14
+          bun-version: canary
 
       - name: Install dependencies
         run: bun install
 
-      - name: Lint (desktop app)
-        run: bunx eslint desktop
+      - name: Format check
+        run: bun fmt --check
+
+      - name: Lint
+        run: bun run lint
+
+      - name: Typecheck
+        run: bun run typecheck
 
       - name: Unit tests
         run: bun run test

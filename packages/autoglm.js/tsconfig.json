@@ -14,8 +14,7 @@
     "esModuleInterop": true,
     "verbatimModuleSyntax": true,
     "skipDefaultLibCheck": true,
-    "skipLibCheck": true,
-    "ignoreDeprecations": "6.0"
+    "skipLibCheck": true
   },
   "include": ["./**/*.ts"],
   "exclude": ["dist", "node_modules"]

@@ -29,7 +29,7 @@
     "dev": "tsdown --watch",
     "prepare": "tsdown",
     "prepublishOnly": "tsdown",
-    "typecheck": "tsc"
+    "typecheck": "bun check --no-script"
   },
   "dependencies": {
     "@escrcpy/electron-ipcx": "workspace:*",
