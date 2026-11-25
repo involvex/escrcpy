@@ -7,11 +7,9 @@ const desktopAutoImport = require('./desktop/.eslintrc-auto-import.json')
 
 export default antfu(
   {
-    formatters: {
-      css: true,
-      html: true,
-      markdown: 'prettier',
-    },
+    // Formatting belongs to `bun fmt`; keep ESLint for logic/Vue/import rules.
+    stylistic: false,
+    formatters: false,
     ignores: [
       '.github',
       '.vscode',
@@ -61,7 +59,6 @@ export default antfu(
       'node/prefer-global/buffer': 'off',
 
       'no-console': 'off',
-      curly: 'off',
       eqeqeq: 'off',
       'no-unused-vars': 'off',
       'unused-imports/no-unused-vars': 'off',

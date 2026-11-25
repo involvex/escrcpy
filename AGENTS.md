@@ -11,16 +11,18 @@ Escrcpy is a Bun + Turborepo monorepo for an Electron GUI around Android mirrori
 
 ## Commands
 
-- Install: `bun install`.
+- Install: `bun install` (Bun canary `1.4.6+`; CI uses `bun-version: canary`).
 - Dev: `bun run dev` starts Turbo-managed app development; the desktop Vite server uses port `1535`.
-- Lint: `bun run lint` or `bun run lint:fix`.
+- Format: `bun run format` / `bun run format:check` (`bun fmt`).
+- Lint: `bun run lint` or `bun run lint:fix` (`bun lint`, still reads [eslint.config.js](../eslint.config.js)).
+- Typecheck: `bun run typecheck` (`bun check` in TypeScript packages).
 - Test: `bun run test` runs workspace unit tests (Turbo task); desktop parser/safety tests live in [desktop/test/](../desktop/test/) via Vitest.
 - Build: `bun run build`; platform variants are `bun run build:win`, `bun run build:mac`, and `bun run build:linux`.
 - Docs: `bun run docs:dev`, `bun run docs:build`, `bun run docs:preview`.
 - i18n sync: `bun run lang-sync` after editing locale keys in `desktop/electron/resources/extra/common/locales/*.json`.
 - Electron install repair: `bun run electron-fix` when Electron reports an incomplete install.
 
-For changes, run the smallest meaningful verification first, then `bun run lint`; use `bun run build` for packaging, Electron main-process, Vite config, dependency, or release-sensitive changes.
+For changes, run the smallest meaningful verification first, then `bun run lint` and `bun run typecheck`; use `bun run build` for packaging, Electron main-process, Vite config, dependency, or release-sensitive changes.
 
 ## Frontend Patterns
 
@@ -49,6 +51,7 @@ For changes, run the smallest meaningful verification first, then `bun run lint`
 - Turbo disables caching for Electron packaging in [turbo.json](../turbo.json). Do not assume packaging output is incremental or cache-backed.
 - Windows packaging writes both `win-unpacked` and the portable exe under `desktop/dist-release` (dir build, autoglm patch, then portable `--prepackaged`).
 - Native dependencies such as `sharp`, Electron, Vite, tsdown, and TypeScript are pinned/overridden in the root [package.json](../package.json) `overrides`; change them deliberately.
+- Prefer Bun builtins for tooling: `bun fmt`, `bun lint`, and `bun check`. [eslint.config.js](../eslint.config.js) keeps Antfu/Vue logic rules with `stylistic` and `formatters` off so formatting stays with `bun fmt`.
 - The desktop app is mostly JavaScript/JSDoc, while workspace packages may be TypeScript. Do not add broad strict TS assumptions to the desktop renderer/main app.
 - Use kebab-case for new directories and files.
 
